@@ -110,3 +110,6 @@ deploy.php
 
 # ignore wp-config file, different credentials between local, dev, and production
 wp-config.php
+
+/readme.html
+/license.txt
