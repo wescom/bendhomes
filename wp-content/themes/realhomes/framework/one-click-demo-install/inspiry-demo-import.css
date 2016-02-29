@@ -1,0 +1,13 @@
+#import-loader {
+    display: none;
+    height: 20px;
+    width: 20px;
+    margin: 3px 15px 5px;
+}
+
+.already-imported p {
+    text-transform: uppercase;
+    color: #ff050c;
+    font-size: 15px;
+    font-weight: bold;
+}
