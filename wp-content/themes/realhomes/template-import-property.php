@@ -78,7 +78,7 @@ if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
             /* check the type of action */
             $action = $myproperty['action'];
 
-            echo '<pre>';
+            echo '<pre style="background-color: green;">';
             echo $action;
             echo '<hr/>';
             print_r($myproperty);
