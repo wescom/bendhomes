@@ -26,7 +26,7 @@ $myproperty = array(
     929
   ),
   'featured_image_id' => 929,
-  'address' => '60900 Onyx St, Bend, OR 97702, USA',
+  'address' => '4207 SE 144th Ave, Portand, OR 97702 USA',
   'coordinates' => '44.011609,-121.33688599999999',
   'featured' => 'on',
   'features' => array(
