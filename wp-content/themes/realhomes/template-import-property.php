@@ -7,9 +7,8 @@
 *  Author: Justin Grady
 */
 
-
 $myproperty = array(
-  'inspiry_property_title' => '60900 Onyx St, Bend, OR 97702 jtg177',
+  'inspiry_property_title' => '4207 SE 144th Ave, Portand, OR 97702 jtg179',
   'description' => 'Nice house, includes huge shop, office, and very nicely landscaped yard',
   'type' => 47,
   'status' => 34,
@@ -38,7 +37,7 @@ $myproperty = array(
   'agent_id' => 90,
   'property_nonce' => '87b0a8b7d0bb',
   'action' => 'add_property',
-  'property_id' => 940
+  'property_id' => 945
 );
 
 $invalid_nonce = false;
