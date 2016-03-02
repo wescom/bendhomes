@@ -8,7 +8,7 @@
 */
 
 $myproperty = array(
-  'inspiry_property_title' => '4207B SE 144th Ave, Portand, OR 97702 jtg179',
+  'inspiry_property_title' => '4207C SE 144th Ave, Portand, OR 97702 jtg179',
   'description' => 'Nice house, includes huge shop, office, and very nicely landscaped yard',
   'type' => 47,
   'status' => 34,
