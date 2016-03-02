@@ -52,7 +52,7 @@ if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
 
     /* the nonce */
     // if( wp_verify_nonce( $myproperty['property_nonce'], 'submit_property' ) ){
-    if( 1 == 1 ) ){
+    if( 1 == 1 ) {
 
             // Start with basic array
             $new_property = array(
