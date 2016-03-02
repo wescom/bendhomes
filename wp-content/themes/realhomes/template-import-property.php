@@ -1,19 +1,58 @@
 <?php
 /*
-*  Template Name: Submit Property Template
+*  Template Name: Import Property Template
 */
+
+/*
+*  Author: Justin Grady
+*/
+
+
+$myproperty = array(
+  'inspiry_property_title' => '60963 Onyx St, Bend, OR',
+  'description' => 'Nice house, includes huge shop, office, and very nicely landscaped yard',
+  'type' => 47,
+  'status' => 34,
+  'location' => any,
+  'bedrooms' => 5,
+  'bathrooms' => 3,
+  'garages' => 3,
+  'property-id' => '',
+  'price' => 399000,
+  'price-postfix' => '',
+  'size' => 2700,
+  'area-postfix' => 'Sq Ft',
+  'video-url' => '',
+  'gallery_image_ids' => array(
+    929
+  ),
+  'featured_image_id' => 929,
+  'address' => '60900 Onyx St, Bend, OR 97702, USA',
+  'coordinates' => '44.011609,-121.33688599999999',
+  'featured' => 'on',
+  'features' => array(
+    35,
+    38
+  ),
+  'agent_display_option' => 'agent_info',
+  'agent_id' => 90,
+  'property_nonce' => '87b0a8b7d0bb',
+  'action' => 'update_property',
+  'property_id' => 930
+);
 
 $invalid_nonce = false;
 $submitted_successfully = false;
 $updated_successfully = false;
 
 /* Check if action field is set and user is logged in */
-if( isset( $_POST['action'] ) && is_user_logged_in() ) {
+if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
 
-    echo 'I am TEST300';
+    echo 'I am TEST301';
 
     /* the nonce */
-    if( wp_verify_nonce( $_POST['property_nonce'], 'submit_property' ) ){
+    // if( wp_verify_nonce( $myproperty['property_nonce'], 'submit_property' ) ){
+    if( 1 == 1 ) ){
 
             // Start with basic array
             $new_property = array(
@@ -21,13 +60,13 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
             );
 
             // Title
-            if( isset ( $_POST['inspiry_property_title'] ) && ! empty ( $_POST['inspiry_property_title'] ) ) {
-                $new_property['post_title']	= sanitize_text_field( $_POST['inspiry_property_title'] );
+            if( isset ( $myproperty['inspiry_property_title'] ) && ! empty ( $myproperty['inspiry_property_title'] ) ) {
+                $new_property['post_title']	= sanitize_text_field( $myproperty['inspiry_property_title'] );
             }
 
             // Description
-            if( isset ( $_POST['description'] ) && ! empty ( $_POST['description'] ) ) {
-                $new_property['post_content'] = wp_kses_post( $_POST['description'] );
+            if( isset ( $myproperty['description'] ) && ! empty ( $myproperty['description'] ) ) {
+                $new_property['post_content'] = wp_kses_post( $myproperty['description'] );
             }
 
             // Author
@@ -37,12 +76,12 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
 
 
             /* check the type of action */
-            $action = $_POST['action'];
+            $action = $myproperty['action'];
 
             echo '<pre>';
             echo $action;
             echo '<hr/>';
-            print_r($_POST);
+            print_r($myproperty);
             echo '</pre>';
 
             $property_id = 0;
@@ -60,7 +99,7 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
                     do_action( 'wp_insert_post', 'wp_insert_post' ); // Post the Post
                 }
             }else if( $action == "update_property" ) {
-                $new_property['ID'] = intval( $_POST['property_id'] );
+                $new_property['ID'] = intval( $myproperty['property_id'] );
                 $property_id = wp_update_post( $new_property ); // Update Property and get Property ID
                 if( $property_id > 0 ){
                     $updated_successfully = true;
@@ -70,16 +109,16 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
             if( $property_id > 0 ){
 
                 // Attach Property Type with Newly Created Property
-                if( isset( $_POST['type'] ) && ( $_POST['type'] != "-1" ) ) {
-                    wp_set_object_terms( $property_id, intval( $_POST['type'] ), 'property-type' );
+                if( isset( $myproperty['type'] ) && ( $myproperty['type'] != "-1" ) ) {
+                    wp_set_object_terms( $property_id, intval( $myproperty['type'] ), 'property-type' );
                 }
 
                 // Attach Property City with Newly Created Property
                 $location_select_names = inspiry_get_location_select_names();
                 $locations_count = count( $location_select_names );
                 for ( $l = $locations_count - 1; $l >= 0; $l-- ) {
-                    if ( isset( $_POST[ $location_select_names[$l] ] ) ) {
-                        $current_location = $_POST[ $location_select_names[ $l ] ];
+                    if ( isset( $myproperty[ $location_select_names[$l] ] ) ) {
+                        $current_location = $myproperty[ $location_select_names[ $l ] ];
                         if( ( ! empty ( $current_location ) ) && ( $current_location != 'any' ) ){
                             wp_set_object_terms( $property_id, $current_location, 'property-city' );
                             break;
@@ -88,15 +127,15 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
                 }
 
                 // Attach Property Status with Newly Created Property
-                if( isset( $_POST['status'] ) && ( $_POST['status'] != "-1" ) ) {
-                    wp_set_object_terms( $property_id, intval( $_POST['status'] ), 'property-status' );
+                if( isset( $myproperty['status'] ) && ( $myproperty['status'] != "-1" ) ) {
+                    wp_set_object_terms( $property_id, intval( $myproperty['status'] ), 'property-status' );
                 }
 
                 // Attach Property Features with Newly Created Property
-                if( isset( $_POST['features'] ) ) {
-                    if( ! empty( $_POST['features'] ) && is_array( $_POST['features'] ) ) {
+                if( isset( $myproperty['features'] ) ) {
+                    if( ! empty( $myproperty['features'] ) && is_array( $myproperty['features'] ) ) {
                         $property_features = array();
-                        foreach( $_POST['features'] as $property_feature_id ) {
+                        foreach( $myproperty['features'] as $property_feature_id ) {
                             $property_features[] = intval( $property_feature_id );
                         }
                         wp_set_object_terms( $property_id , $property_features, 'property-feature' );
@@ -104,71 +143,71 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
                 }
 
                 // Attach Price Post Meta
-                if( isset ( $_POST['price'] ) && ! empty ( $_POST['price'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_property_price', sanitize_text_field( $_POST['price'] ) );
+                if( isset ( $myproperty['price'] ) && ! empty ( $myproperty['price'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_price', sanitize_text_field( $myproperty['price'] ) );
 
-                    if( isset ( $_POST['price-postfix'] ) && ! empty ( $_POST['price-postfix'] ) ) {
-                        update_post_meta( $property_id, 'REAL_HOMES_property_price_postfix', sanitize_text_field( $_POST['price-postfix'] ) );
+                    if( isset ( $myproperty['price-postfix'] ) && ! empty ( $myproperty['price-postfix'] ) ) {
+                        update_post_meta( $property_id, 'REAL_HOMES_property_price_postfix', sanitize_text_field( $myproperty['price-postfix'] ) );
                     }
                 }
 
                 // Attach Size Post Meta
-                if( isset ( $_POST['size'] ) && ! empty ( $_POST['size'] ) ) {
-                    update_post_meta($property_id, 'REAL_HOMES_property_size', sanitize_text_field ( $_POST['size'] ) );
+                if( isset ( $myproperty['size'] ) && ! empty ( $myproperty['size'] ) ) {
+                    update_post_meta($property_id, 'REAL_HOMES_property_size', sanitize_text_field ( $myproperty['size'] ) );
 
-                    if( isset ( $_POST['area-postfix'] ) && ! empty ( $_POST['area-postfix'] ) ) {
-                        update_post_meta( $property_id, 'REAL_HOMES_property_size_postfix', sanitize_text_field( $_POST['area-postfix'] ) );
+                    if( isset ( $myproperty['area-postfix'] ) && ! empty ( $myproperty['area-postfix'] ) ) {
+                        update_post_meta( $property_id, 'REAL_HOMES_property_size_postfix', sanitize_text_field( $myproperty['area-postfix'] ) );
                     }
                 }
 
                 // Attach Bedrooms Post Meta
-                if( isset ( $_POST['bedrooms'] ) && ! empty ( $_POST['bedrooms'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_property_bedrooms', floatval( $_POST['bedrooms'] ) );
+                if( isset ( $myproperty['bedrooms'] ) && ! empty ( $myproperty['bedrooms'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_bedrooms', floatval( $myproperty['bedrooms'] ) );
                 }
 
                 // Attach Bathrooms Post Meta
-                if( isset ( $_POST['bathrooms'] ) && ! empty ( $_POST['bathrooms'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_property_bathrooms', floatval( $_POST['bathrooms'] ) );
+                if( isset ( $myproperty['bathrooms'] ) && ! empty ( $myproperty['bathrooms'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_bathrooms', floatval( $myproperty['bathrooms'] ) );
                 }
 
                 // Attach Garages Post Meta
-                if( isset ( $_POST['garages'] ) && ! empty ( $_POST['garages'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_property_garage', floatval( $_POST['garages'] ) );
+                if( isset ( $myproperty['garages'] ) && ! empty ( $myproperty['garages'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_garage', floatval( $myproperty['garages'] ) );
                 }
 
                 // Attach Address Post Meta
-                if( isset ( $_POST['address'] ) && ! empty ( $_POST['address'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_property_address', sanitize_text_field( $_POST['address'] ) );
+                if( isset ( $myproperty['address'] ) && ! empty ( $myproperty['address'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_address', sanitize_text_field( $myproperty['address'] ) );
                 }
 
                 // Attach Address Post Meta
-                if( isset ( $_POST['coordinates'] ) && ! empty ( $_POST['coordinates'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_property_location', $_POST['coordinates'] );
+                if( isset ( $myproperty['coordinates'] ) && ! empty ( $myproperty['coordinates'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_location', $myproperty['coordinates'] );
                 }
 
                 // Agent Display Option
-                if( isset ( $_POST['agent_display_option'] ) && ! empty ( $_POST['agent_display_option'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_agent_display_option', $_POST['agent_display_option']);
-                    if( ($_POST['agent_display_option'] == "agent_info") && isset( $_POST['agent_id'] ) ){
-                        update_post_meta( $property_id, 'REAL_HOMES_agents', $_POST['agent_id'] );
+                if( isset ( $myproperty['agent_display_option'] ) && ! empty ( $myproperty['agent_display_option'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_agent_display_option', $myproperty['agent_display_option']);
+                    if( ($myproperty['agent_display_option'] == "agent_info") && isset( $myproperty['agent_id'] ) ){
+                        update_post_meta( $property_id, 'REAL_HOMES_agents', $myproperty['agent_id'] );
                     }
                 }
 
                 // Attach Property ID Post Meta
-                if( isset ( $_POST['property-id'] ) && ! empty ( $_POST['property-id'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_property_id', sanitize_text_field( $_POST['property-id'] ) );
+                if( isset ( $myproperty['property-id'] ) && ! empty ( $myproperty['property-id'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_id', sanitize_text_field( $myproperty['property-id'] ) );
                 }
 
                 // Attach Virtual Tour Video URL Post Meta
-                if( isset ( $_POST['video-url'] ) && ! empty ( $_POST['video-url'] ) ) {
-                    update_post_meta( $property_id, 'REAL_HOMES_tour_video_url', esc_url_raw( $_POST['video-url'] ) );
+                if( isset ( $myproperty['video-url'] ) && ! empty ( $myproperty['video-url'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_tour_video_url', esc_url_raw( $myproperty['video-url'] ) );
                 }
 
                 // Attach additional details with property
-                if( isset( $_POST['detail-titles'] ) && isset( $_POST['detail-values'] ) ) {
+                if( isset( $myproperty['detail-titles'] ) && isset( $myproperty['detail-values'] ) ) {
 
-                    $additional_details_titles = $_POST['detail-titles'];
-                    $additional_details_values = $_POST['detail-values'];
+                    $additional_details_titles = $myproperty['detail-titles'];
+                    $additional_details_values = $myproperty['detail-values'];
 
                     $titles_count = count ( $additional_details_titles );
                     $values_count = count ( $additional_details_values );
@@ -188,7 +227,7 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
                 }
 
                 // Attach Property as Featured Post Meta
-                $featured = ( isset( $_POST['featured'] ) ) ? 1 : 0 ;
+                $featured = ( isset( $myproperty['featured'] ) ) ? 1 : 0 ;
                 if ( $featured ) {
                     update_post_meta( $property_id, 'REAL_HOMES_featured', $featured );
                 }
@@ -211,20 +250,20 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
                 }
 
                 // Attach gallery images with newly created property
-                if ( isset( $_POST['gallery_image_ids'] ) ) {
-                    if( ! empty ( $_POST['gallery_image_ids'] ) && is_array ( $_POST['gallery_image_ids'] ) ) {
+                if ( isset( $myproperty['gallery_image_ids'] ) ) {
+                    if( ! empty ( $myproperty['gallery_image_ids'] ) && is_array ( $myproperty['gallery_image_ids'] ) ) {
                         $gallery_image_ids = array();
-                        foreach ( $_POST['gallery_image_ids'] as $gallery_image_id ) {
+                        foreach ( $myproperty['gallery_image_ids'] as $gallery_image_id ) {
                             $gallery_image_ids[] = intval( $gallery_image_id );
                             add_post_meta( $property_id, 'REAL_HOMES_property_images', $gallery_image_id );
                         }
-                        if ( isset( $_POST['featured_image_id'] ) ) {
-                            $featured_image_id = intval( $_POST['featured_image_id'] );
+                        if ( isset( $myproperty['featured_image_id'] ) ) {
+                            $featured_image_id = intval( $myproperty['featured_image_id'] );
                             if ( in_array( $featured_image_id, $gallery_image_ids ) ) {     // validate featured image id
                                 update_post_meta ( $property_id, '_thumbnail_id', $featured_image_id );
 
                                 /* if video url is provided but there is no video image then use featured image as video image */
-                                if ( empty( $tour_video_image ) && !empty( $_POST['video-url'] ) ) {
+                                if ( empty( $tour_video_image ) && !empty( $myproperty['video-url'] ) ) {
                                     update_post_meta( $property_id, 'REAL_HOMES_tour_video_image', $featured_image_id );
                                 }
                             }
@@ -235,12 +274,12 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
                 }
 
 
-                if( "add_property" == $_POST['action'] ) {
+                if( "add_property" == $myproperty['action'] ) {
                     /*
                      * inspiry_submit_notice function in property-submit-handler.php is hooked with this hook
                      */
                     do_action( 'inspiry_after_property_submit', $property_id  );
-                } else if ( "update_property" == $_POST['action'] ) {
+                } else if ( "update_property" == $myproperty['action'] ) {
                     /*
                      * no default theme function is hooked with this hook
                      */
