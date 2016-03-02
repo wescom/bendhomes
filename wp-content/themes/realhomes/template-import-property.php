@@ -8,7 +8,7 @@
 */
 
 $myproperty = array(
-  'inspiry_property_title' => '4207E SE 145th Ave, Portand, OR 97702 jtg179',
+  'inspiry_property_title' => '4207F SE 145th Ave, Portand, OR 97236 jtg180',
   'description' => 'Nice house, includes huge shop, office, and very nicely landscaped yard',
   'type' => 47,
   'status' => 34,
@@ -26,7 +26,7 @@ $myproperty = array(
     929
   ),
   'featured_image_id' => 929,
-  'address' => '4207 SE 144th Ave, Portand, OR 97702 USA',
+  'address' => '4207F SE 133th Ave, Portand, OR 97236 USA',
   'coordinates' => '44.011609,-121.33688599999999',
   'featured' => 'on',
   'features' => array(
@@ -36,8 +36,9 @@ $myproperty = array(
   // 'agent_display_option' => 'agent_info',
   // 'agent_id' => 90,
   // 'property_nonce' => '87b0a8b7d0bb',
-  'action' => 'update_property',
-  'property_id' => 933
+  'action' => 'add_property',
+  // 'action' => 'update_property',
+  'property_id' => 986699367
 );
 
 $invalid_nonce = false;
@@ -86,7 +87,8 @@ if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
             $property_id = 0;
 
             if( $action == "add_property" ){
-                $submitted_property_status = get_option( 'theme_submitted_status' );
+                // $submitted_property_status = get_option( 'theme_submitted_status' );
+                $submitted_property_status = 'publish';
                 if ( !empty( $submitted_property_status ) ) {
                     $new_property['post_status'] = $submitted_property_status;
                 } else {
