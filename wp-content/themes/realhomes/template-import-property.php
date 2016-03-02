@@ -9,7 +9,7 @@
 
 
 $myproperty = array(
-  'inspiry_property_title' => '60963 Onyx St, Bend, OR',
+  'inspiry_property_title' => '60900 Onyx St, Bend, OR 97702 jtg177',
   'description' => 'Nice house, includes huge shop, office, and very nicely landscaped yard',
   'type' => 47,
   'status' => 34,
@@ -37,8 +37,8 @@ $myproperty = array(
   'agent_display_option' => 'agent_info',
   'agent_id' => 90,
   'property_nonce' => '87b0a8b7d0bb',
-  'action' => 'update_property',
-  'property_id' => 930
+  'action' => 'add_property',
+  'property_id' => 940
 );
 
 $invalid_nonce = false;
