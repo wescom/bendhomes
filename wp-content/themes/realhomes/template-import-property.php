@@ -22,9 +22,7 @@ $myproperty = array(
   'size' => 2700,
   'area-postfix' => 'Sq Ft',
   'video-url' => '',
-  'gallery_image_ids' => array(
-
-  ),
+  'gallery_image_ids' => array(),
   'featured_image_id' => ,
   'address' => '4207F SE 133th Ave, Portand, OR 97236 USA',
   'coordinates' => '44.011609,-121.33688599999999',
