@@ -49,6 +49,8 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
   echo 'bendhomes_image_upload YES YES';
 }
 
+sleep(10);
+
 /* Check if action field is set and user is logged in */
 if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
 
