@@ -13,6 +13,9 @@ jQuery(document).ready(function($) {
         };
 
         var ajaxURL = removeQueryStringParameters( propertySubmit.ajaxURL );
+
+        alert(ajaxURL);
+
         var uploadNonce = propertySubmit.uploadNonce;
         var fileTypeTitle = propertySubmit.fileTypeTitle;
 
