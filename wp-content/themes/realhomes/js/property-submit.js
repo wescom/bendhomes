@@ -39,10 +39,6 @@ jQuery(document).ready(function($) {
             }
         };
 
-        /* console.log(uploaderArguments); */
-        /* alert(uploaderArguments); */
-
-
         var uploader = new plupload.Uploader( uploaderArguments );
         uploader.init();
 
