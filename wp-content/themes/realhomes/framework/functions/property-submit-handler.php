@@ -62,6 +62,58 @@ if ( ! function_exists( 'inspiry_image_upload' ) ) {
 	add_action( 'wp_ajax_ajax_img_upload', 'inspiry_image_upload' );    // only for logged in user
 }
 
+/* START: Justin added this */
+
+if ( ! function_exists( 'bendhomes_image_upload' ) ) {
+	/**
+	 * Ajax image upload for property submit and update
+	 */
+	function bendhomes_image_upload() {
+
+		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
+		$uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
+
+		if ( isset( $uploaded_image[ 'file' ] ) ) {
+			$file_name = basename( $submitted_file[ 'name' ] );
+			$file_type = wp_check_filetype( $uploaded_image[ 'file' ] );   //Retrieve the file type from the file name.
+
+			// Prepare an array of post data for the attachment.
+			$attachment_details = array(
+				'guid' => $uploaded_image[ 'url' ],
+				'post_mime_type' => $file_type[ 'type' ],
+				'post_title' => preg_replace( '/\.[^.]+$/', '', basename( $file_name ) ),
+				'post_content' => '',
+				'post_status' => 'inherit'
+			);
+
+			$attach_id = wp_insert_attachment( $attachment_details, $uploaded_image[ 'file' ] );       // This function inserts an attachment into the media library
+			$attach_data = wp_generate_attachment_metadata( $attach_id, $uploaded_image[ 'file' ] );     // This function generates metadata for an image attachment. It also creates a thumbnail and other intermediate sizes of the image attachment based on the sizes defined
+			wp_update_attachment_metadata( $attach_id, $attach_data );                                      // Update metadata for an attachment.
+
+			$thumbnail_url = inspiry_get_thumbnail_url( $attach_data );
+
+			$ajax_response = array(
+				'success' => true,
+				'url' => $thumbnail_url,
+				'attachment_id' => $attach_id
+			);
+
+			echo json_encode( $ajax_response );
+			die;
+
+		} else {
+			$ajax_response = array( 'success' => false, 'reason' => 'Image upload failed!' );
+			echo json_encode( $ajax_response );
+			die;
+		}
+
+	}
+
+	add_action( 'wp_ajax_ajax_img_upload', 'inspiry_image_upload' );    // only for logged in user
+}
+
+/* END: Justin added this */
+
 
 if ( ! function_exists( 'inspiry_get_thumbnail_url' ) ) {
 	/**
