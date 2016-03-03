@@ -43,6 +43,12 @@ $invalid_nonce = false;
 $submitted_successfully = false;
 $updated_successfully = false;
 
+if ( ! function_exists( 'bendhomes_image_upload' ) ) {
+  echo 'no bendhomes function exists';
+} else {
+  echo 'bendhomes_image_upload YES YES';
+}
+
 /* Check if action field is set and user is logged in */
 if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
 
