@@ -8,7 +8,7 @@
 */
 
 $myproperty = array(
-  'inspiry_property_title' => '4207G SE 133rd Ave, Portand, OR 97236 jtg181',
+  'inspiry_property_title' => '4207H SE 145th Ave, Portand, OR 97236 jtg180',
   'description' => 'Nice house, includes huge shop, office, and very nicely landscaped yard',
   'type' => 47,
   'status' => 34,
@@ -22,8 +22,8 @@ $myproperty = array(
   'size' => 2700,
   'area-postfix' => 'Sq Ft',
   'video-url' => '',
-  'gallery_image_ids' => array(),
-  'featured_image_id' => ,
+  // 'gallery_image_ids' => array(929),
+  // 'featured_image_id' => 929,
   'address' => '4207F SE 133th Ave, Portand, OR 97236 USA',
   'coordinates' => '44.011609,-121.33688599999999',
   'featured' => 'on',
