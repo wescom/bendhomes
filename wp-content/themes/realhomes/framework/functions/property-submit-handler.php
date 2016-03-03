@@ -109,7 +109,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
 	}
 
-	add_action( 'wp_ajax_ajax_img_upload', 'inspiry_image_upload' );    // only for logged in user
+	add_action( 'wp_ajax_bendhomes_img_upload', 'bendhomes_image_upload' );    // only for logged in user
 }
 
 /* END: Justin added this */
