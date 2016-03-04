@@ -10,8 +10,6 @@ $updated_successfully = false;
 /* Check if action field is set and user is logged in */
 if( isset( $_POST['action'] ) && is_user_logged_in() ) {
 
-    echo 'I am TEST300';
-
     /* the nonce */
     if( wp_verify_nonce( $_POST['property_nonce'], 'submit_property' ) ){
 
