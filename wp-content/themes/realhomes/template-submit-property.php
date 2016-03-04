@@ -36,13 +36,6 @@ if( isset( $_POST['action'] ) && is_user_logged_in() ) {
 
             /* check the type of action */
             $action = $_POST['action'];
-
-            echo '<pre>';
-            echo $action;
-            echo '<hr/>';
-            print_r($_POST);
-            echo '</pre>';
-
             $property_id = 0;
 
             if( $action == "add_property" ){
