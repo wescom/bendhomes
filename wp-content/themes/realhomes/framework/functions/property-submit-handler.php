@@ -21,6 +21,10 @@ if ( ! function_exists( 'inspiry_image_upload' ) ) {
 		}
 
 		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
+
+		print_r($submitted_file);
+		error_log("image file: '.$submitted_file.'''\n", 3, "/var/log/apache2/error.log");
+
 		$uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
 
 		if ( isset( $uploaded_image[ 'file' ] ) ) {
@@ -71,6 +75,9 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 	function bendhomes_image_upload() {
 
 		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
+
+		print_r($submitted_file);
+
 		$uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
 
 		if ( isset( $uploaded_image[ 'file' ] ) ) {
