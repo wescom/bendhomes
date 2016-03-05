@@ -3,6 +3,10 @@
  * This file contains functions related to submit property template
  */
 
+/* if ( ! function_exists( 'wp_handle_upload' ) ) {
+	echo 'FT upload function!!!';
+} */
+
 
  if ( ! function_exists( 'bendhomes_image_upload' ) ) {
  	/**
@@ -10,7 +14,7 @@
  	 */
  	function bendhomes_image_upload() {
 
-     echo 'test998';
+     echo 'test998998';
      // print_r($_FILES);
 
  		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
@@ -52,7 +56,7 @@
 
  	}
 
- 	add_action( 'wp_ajax_bendhomes_img_upload', 'bendhomes_image_upload' );    // only for logged in user
+ 	add_action( 'bendhomes_img_upload', 'bendhomes_image_upload' );    // only for logged in user
  }
 
 /* ########## JUSTINGRADY ########## */

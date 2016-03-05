@@ -51,7 +51,7 @@ $updated_successfully = false;
 
 if ( function_exists( 'bendhomes_image_upload' ) ) {
   echo 'bendhomes_image_upload YES YES YES';
-  bendhomes_image_upload();
+  do_action ( 'bendhomes_img_upload', '' );
 } else {
   echo 'NO NO bendhomes function exists';
 }
