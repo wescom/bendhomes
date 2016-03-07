@@ -18,17 +18,27 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
  	 */
  	function bendhomes_image_upload() {
 
-    if ( function_exists( 'wp_handle_upload' ) ) {
-      echo 'teppppppppp';
+    if ( function_exists( 'media_handle_sideload' ) ) {
+      echo 'teppppppppp-sideload';
     }
 
-    $image = ABSPATH . '_testimages/truecoat2.jpg';
-    // $image = 'http://i1093.photobucket.com/albums/i433/MrMetroXFi/01/Fargo_032Pyxurz_zps0c9f08e4.jpg';
+    /* set the url of the file to sideload - probably be from $_POST or something */
+    $url = 'http://hvar.life/wp-content/uploads/2015/06/salomon-tour.jpg';
+    $tmp = download_url( $url );
+    $file_array = array(
+        'name' => basename( $url ),
+        'tmp_name' => $tmp
+    );
+    if ( is_wp_error( $tmp ) ) {
+        @unlink( $file_array[ 'tmp_name' ] );
+        return $tmp;
+    }
 
- 		// $submitted_file = $_FILES[ 'inspiry_upload_file' ];
-    $submitted_file = file_get_contents($image);
- 		$uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
+ 		$uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
 
+    print_r($uploaded_image);
+
+    /*
  		if ( isset( $uploaded_image[ 'file' ] ) ) {
  			$file_name = basename( $submitted_file[ 'name' ] );
  			$file_type = wp_check_filetype( $uploaded_image[ 'file' ] );   //Retrieve the file type from the file name.
@@ -62,6 +72,8 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
  			echo json_encode( $ajax_response );
  			die;
  		}
+
+    */
 
  	}
 
