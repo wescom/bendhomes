@@ -55,9 +55,9 @@ if ( function_exists( 'bendhomes_image_upload' ) ) {
 
 
 /* Check if action field is set and user is logged in */
-if( isset( $myproperty['actionyyy'] ) && is_user_logged_in() ) {
+if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
 
-    echo 'I am TEST301';
+    echo 'I am TEST302';
 
     /* the nonce */
     // if( wp_verify_nonce( $myproperty['property_nonce'], 'submit_property' ) ){
