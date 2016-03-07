@@ -18,8 +18,10 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
  	 */
  	function bendhomes_image_upload() {
 
-     echo 'test998998-889';
-     // print_r($_FILES);
+    if ( function_exists( 'wp_handle_upload' ) ) {
+      echo 'tep';
+    }
+
 
  		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
  		$uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
