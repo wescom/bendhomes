@@ -18,7 +18,7 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
  	 */
  	function bendhomes_image_upload() {
 
-     echo 'test998998-887';
+     echo 'test998998-889';
      // print_r($_FILES);
 
  		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
