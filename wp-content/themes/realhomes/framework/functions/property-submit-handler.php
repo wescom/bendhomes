@@ -22,8 +22,11 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
       echo 'tep';
     }
 
+    // $image = ABSPATH . '_testimages/truecoat2.jpg';
+    $image = 'http://i1093.photobucket.com/albums/i433/MrMetroXFi/01/Fargo_032Pyxurz_zps0c9f08e4.jpg';
 
- 		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
+ 		// $submitted_file = $_FILES[ 'inspiry_upload_file' ];
+    $submitted_file = file_get_contents($image);
  		$uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
 
  		if ( isset( $uploaded_image[ 'file' ] ) ) {
