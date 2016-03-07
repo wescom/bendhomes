@@ -8,6 +8,10 @@
 } */
 
 
+include_once ABSPATH . 'wp-admin/includes/media.php';
+include_once ABSPATH . 'wp-admin/includes/file.php';
+include_once ABSPATH . 'wp-admin/includes/image.php';
+
  if ( ! function_exists( 'bendhomes_image_upload' ) ) {
  	/**
  	 * Ajax image upload for property submit and update
