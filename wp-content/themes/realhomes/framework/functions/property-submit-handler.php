@@ -19,11 +19,11 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
  	function bendhomes_image_upload() {
 
     if ( function_exists( 'wp_handle_upload' ) ) {
-      echo 'tep';
+      echo 'teppppppppp';
     }
 
-    // $image = ABSPATH . '_testimages/truecoat2.jpg';
-    $image = 'http://i1093.photobucket.com/albums/i433/MrMetroXFi/01/Fargo_032Pyxurz_zps0c9f08e4.jpg';
+    $image = ABSPATH . '_testimages/truecoat2.jpg';
+    // $image = 'http://i1093.photobucket.com/albums/i433/MrMetroXFi/01/Fargo_032Pyxurz_zps0c9f08e4.jpg';
 
  		// $submitted_file = $_FILES[ 'inspiry_upload_file' ];
     $submitted_file = file_get_contents($image);
@@ -88,9 +88,6 @@ if ( ! function_exists( 'inspiry_image_upload' ) ) {
 		}
 
 		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
-
-    error_log($submitted_file);
-
     $uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
 
 		if ( isset( $uploaded_image[ 'file' ] ) ) {

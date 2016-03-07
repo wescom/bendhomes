@@ -8,7 +8,7 @@
 */
 
 $myproperty = array(
-  'inspiry_property_title' => '4207H SE 145th Ave, Portand, OR 97236 jtg180',
+  'inspiry_property_title' => '4207J SE 145th Ave, Portand, OR 97236',
   'description' => 'Nice house, includes huge shop, office, and very nicely landscaped yard',
   'type' => 47,
   'status' => 34,
@@ -24,7 +24,7 @@ $myproperty = array(
   'video-url' => '',
   'gallery_image_ids' => array(965,966,967),
   'featured_image_id' => 929,
-  'address' => '4207F SE 133th Ave, Portand, OR 97236 USA',
+  'address' => '4207J SE 145th Ave, Portand, OR 97236',
   'coordinates' => '44.011609,-121.33688599999999',
   'featured' => 'on',
   'features' => array(
@@ -46,16 +46,16 @@ $submitted_successfully = false;
 $updated_successfully = false;
 
 if ( function_exists( 'bendhomes_image_upload' ) ) {
-  // echo 'bendhomes_image_upload YES YES YES';
-  // bendhomes_image_upload();
+  echo 'bendhomes_image_upload YES';
+  do_action('bendhomes_img_upload');
 } else {
-  // echo 'NO NO bendhomes function exists';
+  echo 'NO NO bendhomes function exists';
 }
 
 
 
 /* Check if action field is set and user is logged in */
-if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
+if( isset( $myproperty['actionyyy'] ) && is_user_logged_in() ) {
 
     echo 'I am TEST302';
 
