@@ -14,7 +14,7 @@
  	 */
  	function bendhomes_image_upload() {
 
-     echo 'test998998';
+     echo 'test998998-887';
      // print_r($_FILES);
 
  		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
