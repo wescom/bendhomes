@@ -7,8 +7,17 @@
 *  Author: Justin Grady
 */
 
+
+if ( function_exists( 'bendhomes_image_upload' ) ) {
+  echo 'bendhomes_image_upload YES';
+  do_action('bendhomes_img_upload', $imageid = new stdClass());
+  var_dump($imageid->return);
+} else {
+  echo 'NO NO bendhomes function exists';
+}
+
 $myproperty = array(
-  'inspiry_property_title' => '4207L SE 133rd Ave, Portand, OR 97236',
+  'inspiry_property_title' => '4207N SE 133rd Ave, Portand, OR 97236',
   'description' => 'Nice house, includes huge shop, office, and very nicely landscaped yard',
   'type' => 47,
   'status' => 34,
@@ -22,9 +31,9 @@ $myproperty = array(
   'size' => 2700,
   'area-postfix' => 'Sq Ft',
   'video-url' => '',
-  'gallery_image_ids' => array(965,966,967),
-  'featured_image_id' => 929,
-  'address' => '4207L SE 133rd Ave, Portand, OR 97236',
+  'gallery_image_ids' => array($imageid),
+  'featured_image_id' => $imageid,
+  'address' => '4207N SE 133rd Ave, Portand, OR 97236',
   'coordinates' => '44.011609,-121.33688599999999',
   'featured' => 'on',
   'features' => array(
@@ -45,17 +54,8 @@ $invalid_nonce = false;
 $submitted_successfully = false;
 $updated_successfully = false;
 
-if ( function_exists( 'bendhomes_image_upload' ) ) {
-  echo 'bendhomes_image_upload YES';
-  do_action('bendhomes_img_upload');
-} else {
-  echo 'NO NO bendhomes function exists';
-}
-
-
-
 /* Check if action field is set and user is logged in */
-if( isset( $myproperty['action-TEST302'] ) && is_user_logged_in() ) {
+if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
 
     echo 'I am TEST302';
 

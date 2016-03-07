@@ -16,14 +16,14 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
  	/**
  	 * Ajax image upload for property submit and update
  	 */
- 	function bendhomes_image_upload() {
+ 	function bendhomes_image_upload($imageid) {
 
     if ( function_exists( 'media_handle_sideload' ) ) {
       echo 'teppppppppp-sideload';
     }
 
     /* set the url of the file to sideload - probably be from $_POST or something */
-    $url = 'http://hvar.life/wp-content/uploads/2015/06/salomon-tour.jpg';
+    $url = 'http://ultra.irunfar.com/wp-content/uploads/08sp-en0688.jpg';
     $tmp = download_url( $url );
     $file_array = array(
         'name' => basename( $url ),
@@ -36,8 +36,9 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 
  		$uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
 
-    print_r($uploaded_image);
-
+    $imageid = int ($uploaded_image);
+    $imageid->return;
+    
     /*
  		if ( isset( $uploaded_image[ 'file' ] ) ) {
  			$file_name = basename( $submitted_file[ 'name' ] );
