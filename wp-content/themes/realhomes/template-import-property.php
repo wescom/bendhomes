@@ -7,6 +7,13 @@
 *  Author: Justin Grady
 */
 
+function formatprice($price) {
+  $pricearr = explode('.',$price);
+  $newprice = $pricearr[0];
+  $newprice = (int) $newprice;
+  return $newprice;
+}
+
 /* Let's get some JSON data */
 $propjson = file_get_contents(ABSPATH.'_json/resi-property.json');
 $proparr = json_decode( $propjson );
@@ -17,6 +24,9 @@ $i = 0;
 $retsproperties = array();
 foreach($proparr as $propitem) {
   $propname = $propitem->{'StreetNumber'}.' '.$propitem->{'StreetNumberModifier'}.' '.$propitem->{'StreetName'}.' '.$propitem->{'StreetSuffix'}.', '.$propitem->{'City'}.', '.$propitem->{'State'}.' '.$propitem->{'ZipCode'};
+  $propname = trim($propname);
+  $propprice = formatprice($propitem->{'ListingPrice'});
+
   $retsproperties[$i] = array(
     'inspiry_property_title' => $propname,
     'description' => $propitem->{'MarketingRemarks'},
@@ -27,7 +37,7 @@ foreach($proparr as $propitem) {
     'bathrooms' => $propitem->{'Bathrooms'},
     'garages' => $propitem->{'RESIGARA'},
     'property-id' => $propitem->{'MLNumber'},
-    'price' => $propitmem->{'ListingPrice'},
+    'price' => $propprice,
     'price-postfix' => '',
     'size' => $propitem->{'SquareFootage'},
     'area-postfix' => 'Sq Ft',
@@ -47,7 +57,7 @@ foreach($proparr as $propitem) {
     // 'action' => 'update_property',
     'action' => 'add_property'
   );
-
+  $i++;
 }
 unset($i);
 
@@ -110,6 +120,11 @@ foreach($retsproperties as $myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
+  // echo '<h1>'.$i.'</h1>';
+  // echo '<pre>';
+  // print_r($myproperty);
+  // echo '</pre>';
+
   /* Check if action field is set and user is logged in */
   if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
 
@@ -140,15 +155,6 @@ foreach($retsproperties as $myproperty) {
 
               /* check the type of action */
               $action = $myproperty['action'];
-
-              echo '<pre style="background-color: cyan;">';
-              echo $action;
-              echo '<hr/>';
-              echo $i;
-              echo '<hr/>';
-              print_r($myproperty);
-              echo '</pre>';
-
               $property_id = 0;
 
               if( $action == "add_property" ){
@@ -352,20 +358,10 @@ foreach($retsproperties as $myproperty) {
                       // do_action( 'inspiry_after_property_update', $property_id );
                   }
 
-                  // redirect to my properties page
-                  /*
-                  $my_properties_url = get_option('theme_my_properties_url');
-                  if( !empty( $my_properties_url ) ) {
-                      $separator = ( parse_url( $my_properties_url, PHP_URL_QUERY ) == NULL ) ? '?' : '&';
-                      $parameter = ( $updated_successfully ) ? 'property-updated=true' : 'property-added=true';
-                      wp_redirect( $my_properties_url . $separator . $parameter );
-                  }
-                  */
-
               }
 
       } else {
-          $invalid_nonce = true;
+          // $invalid_nonce = true;
       }
   }
   $i++;
