@@ -16,7 +16,7 @@ $proparr = json_decode( $propjson );
 $i = 0;
 $retsproperties = array();
 foreach($proparr as $propitem) {
-  $propname = $propitem->{'StreetNumber'}.' '.$propitem->{'StreetNumberModifier'}.' '.$propitem->{'StreetName'}.' '.$propitem->{'StreetSuffix'}.', '.$propitem->{'City'}.' '.$propitem->{'State'}.' '.$propitem->{'ZipCode'};
+  $propname = $propitem->{'StreetNumber'}.' '.$propitem->{'StreetNumberModifier'}.' '.$propitem->{'StreetName'}.' '.$propitem->{'StreetSuffix'}.', '.$propitem->{'City'}.', '.$propitem->{'State'}.' '.$propitem->{'ZipCode'};
   $retsproperties[$i] = array(
     'inspiry_property_title' => $propname,
     'description' => $propitem->{'MarketingRemarks'},
