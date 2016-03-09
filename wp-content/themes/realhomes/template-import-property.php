@@ -8,7 +8,7 @@
 */
 
 /* Let's get some JSON data */
-$propjson = file_get_contents('/Users/justingrady/web_dev/phpretstest/json/resi-property.json');
+$propjson = file_get_contents(ABSPATH.'_json/resi-property.json');
 $proparr = json_decode( $propjson );
 
 // print_r($proparr);
