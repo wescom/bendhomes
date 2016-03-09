@@ -103,6 +103,7 @@ if ( function_exists( 'bendhomes_image_upload' ) ) {
 
 /* ##### we load in properties here ##### */
 
+$i = 0;
 foreach($retsproperties as $myproperty) {
 
   $invalid_nonce = false;
@@ -111,8 +112,6 @@ foreach($retsproperties as $myproperty) {
 
   /* Check if action field is set and user is logged in */
   if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
-
-      echo 'I am TEST303';
 
       /* the nonce */
       // if( wp_verify_nonce( $myproperty['property_nonce'], 'submit_property' ) ){
@@ -144,6 +143,8 @@ foreach($retsproperties as $myproperty) {
 
               echo '<pre style="background-color: cyan;">';
               echo $action;
+              echo '<hr/>';
+              echo $i;
               echo '<hr/>';
               print_r($myproperty);
               echo '</pre>';
@@ -367,8 +368,11 @@ foreach($retsproperties as $myproperty) {
           $invalid_nonce = true;
       }
   }
+  $i++;
 
 }
+
+unset($i);
 
 
 
