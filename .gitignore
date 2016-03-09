@@ -39,6 +39,7 @@
 !Gruntfile.ms
 !favicon.ico
 !_json
+!_images
 
 # ignore all files starting with .
 .*
