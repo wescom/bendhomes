@@ -352,12 +352,14 @@ foreach($retsproperties as $myproperty) {
                   }
 
                   // redirect to my properties page
+                  /*
                   $my_properties_url = get_option('theme_my_properties_url');
                   if( !empty( $my_properties_url ) ) {
                       $separator = ( parse_url( $my_properties_url, PHP_URL_QUERY ) == NULL ) ? '?' : '&';
                       $parameter = ( $updated_successfully ) ? 'property-updated=true' : 'property-added=true';
                       wp_redirect( $my_properties_url . $separator . $parameter );
                   }
+                  */
 
               }
 
