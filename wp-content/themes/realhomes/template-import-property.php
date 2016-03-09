@@ -343,12 +343,12 @@ foreach($retsproperties as $myproperty) {
                       /*
                        * inspiry_submit_notice function in property-submit-handler.php is hooked with this hook
                        */
-                      do_action( 'inspiry_after_property_submit', $property_id  );
+                      // do_action( 'inspiry_after_property_submit', $property_id  );
                   } else if ( "update_property" == $myproperty['action'] ) {
                       /*
                        * no default theme function is hooked with this hook
                        */
-                      do_action( 'inspiry_after_property_update', $property_id );
+                      // do_action( 'inspiry_after_property_update', $property_id );
                   }
 
                   // redirect to my properties page
