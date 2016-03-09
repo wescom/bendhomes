@@ -35,7 +35,7 @@ foreach($proparr as $propitem) {
     'gallery_image_ids' => array($bhimgid),
     'featured_image_id' => $bhimgid,
     'address' => $propname,
-    'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'];
+    'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
     'featured' => 'on',
     'features' => array(
       35,
