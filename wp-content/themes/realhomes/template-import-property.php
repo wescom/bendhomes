@@ -7,6 +7,12 @@
 *  Author: Justin Grady
 */
 
+/* #### INCLUDES ##### */
+include_once ABSPATH . 'wp-admin/includes/media.php';
+include_once ABSPATH . 'wp-admin/includes/file.php';
+include_once ABSPATH . 'wp-admin/includes/image.php';
+
+/* #### FUNCTIONS ##### */
 function formatprice($price) {
   $pricearr = explode('.',$price);
   $newprice = $pricearr[0];
@@ -14,20 +20,77 @@ function formatprice($price) {
   return $newprice;
 }
 
+/* #### DATA SETUP and PULL ##### */
+$retsproperties = array();
 /* Let's get some JSON data */
 $propjson = file_get_contents(ABSPATH.'_json/resi-property.json');
 $proparr = json_decode( $propjson );
 
-// print_r($proparr);
+/* #### IMAGES PROCESSING ##### */
+if ( ! function_exists( 'bendhomes_image_upload' ) ) {
+ /**
+  * Ajax image upload for property submit and update
+  */
+ function bendhomes_image_upload($imageid, $imguse) {
 
-$i = 0;
+   $imagedir = ABSPATH.'_images/';
+   $imagebase = $imguse;
+   $imagepull = $imagedir.$imagebase;
+
+   /* set the url of the file to sideload - probably be from $_POST or something */
+   // $url = 'https://upload.wikimedia.org/wikipedia/commons/5/52/Kilian.jpg';
+   // $tmp = download_url( $url );
+   // $tmp = file_get_contents($imagepull);
+   $tmp = $imagepull;
+   $file_array = array(
+       'name' => basename( $imagebase ),
+       'tmp_name' => $tmp
+   );
+   if ( is_wp_error( $tmp ) ) {
+       @unlink( $file_array[ 'tmp_name' ] );
+       return $tmp;
+   }
+
+   $uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );
+   $imageid->return = $uploaded_image;
+
+ }
+
+ add_action( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 2 );
+}
+
+/*
+do_action('bendhomes_img_upload', $imageid = new stdClass());
+$bhimgid = $imageid->return;
+echo '<pre> test199--';
+echo $bhimgid;
+echo '</pre>';
+*/
+
+// $bhimgid = 100;
+
+
+
+
+
+/* #### PROPERTY DATA LOOP ##### */
 $retsproperties = array();
 foreach($proparr as $propitem) {
+
+  foreach($propitem['images'] as $img) {
+    do_action('bendhomes_img_upload', $imageid = new stdClass(), $img);
+    $bhimgid = $imageid->return;
+    echo $bhimgid;
+    echo '<br/>';
+  }
+
+  // print_r($propitem);
+
   $propname = $propitem->{'StreetNumber'}.' '.$propitem->{'StreetNumberModifier'}.' '.$propitem->{'StreetName'}.' '.$propitem->{'StreetSuffix'}.', '.$propitem->{'City'}.', '.$propitem->{'State'}.' '.$propitem->{'ZipCode'};
   $propname = trim($propname);
   $propprice = formatprice($propitem->{'ListingPrice'});
 
-  $retsproperties[$i] = array(
+  $retsproperties[$propitem->{'ListingRid'}] = array(
     'inspiry_property_title' => $propname,
     'description' => $propitem->{'MarketingRemarks'},
     'type' => 47,
@@ -42,8 +105,8 @@ foreach($proparr as $propitem) {
     'size' => $propitem->{'SquareFootage'},
     'area-postfix' => 'Sq Ft',
     'video-url' => $propitem->{'VirtualTourURL'},
-    // 'gallery_image_ids' => array($bhimgid),
-    // 'featured_image_id' => $bhimgid,
+    'gallery_image_ids' => array($bhimgid),
+    'featured_image_id' => $bhimgid,
     'address' => $propname,
     'coordinates' => $propitem->{'Latitude'}.','.$propitem->{'Longitude'},
     'featured' => 'on',
@@ -61,57 +124,11 @@ foreach($proparr as $propitem) {
 }
 unset($i);
 
+// print_r($retsproperties);
+
 /* ##### */
 
-include_once ABSPATH . 'wp-admin/includes/media.php';
-include_once ABSPATH . 'wp-admin/includes/file.php';
-include_once ABSPATH . 'wp-admin/includes/image.php';
 
- if ( ! function_exists( 'bendhomes_image_upload' ) ) {
- 	/**
- 	 * Ajax image upload for property submit and update
- 	 */
- 	function bendhomes_image_upload($imageid) {
-
-    if ( function_exists( 'media_handle_sideload' ) ) {
-      echo 'teppppppppp-sideload';
-    }
-
-    /* set the url of the file to sideload - probably be from $_POST or something */
-    $url = 'https://upload.wikimedia.org/wikipedia/commons/5/52/Kilian.jpg';
-    $tmp = download_url( $url );
-    $file_array = array(
-        'name' => basename( $url ),
-        'tmp_name' => $tmp
-    );
-    if ( is_wp_error( $tmp ) ) {
-        @unlink( $file_array[ 'tmp_name' ] );
-        return $tmp;
-    }
-
- 		$uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );
-    $imageid->return = $uploaded_image;
-
- 	}
-
- 	add_action( 'bendhomes_img_upload', 'bendhomes_image_upload' );    // only for logged in user
- }
-
-
-
-if ( function_exists( 'bendhomes_image_upload' ) ) {
-  echo 'bendhomes_image_upload YES';
-  do_action('bendhomes_img_upload', $imageid = new stdClass());
-
-  $bhimgid = $imageid->return;
-
-  echo $bhimgid;
-
-} else {
-  echo 'NO NO bendhomes function exists';
-}
-
-/* ##### we load in properties here ##### */
 
 $i = 0;
 foreach($retsproperties as $myproperty) {
