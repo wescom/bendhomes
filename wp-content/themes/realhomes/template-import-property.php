@@ -78,7 +78,7 @@ foreach($proparr as $propitem) {
     'description' => $propitem->{'MarketingRemarks'},
     'type' => 47,
     'status' => 34,
-    'location' => any,
+    'location' => $propitem->{'City'},
     'bedrooms' => $propitem->{'Bedrooms'},
     'bathrooms' => $propitem->{'Bathrooms'},
     'garages' => $propitem->{'RESIGARA'},
