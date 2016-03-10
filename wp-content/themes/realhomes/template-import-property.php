@@ -78,7 +78,7 @@ $retsproperties = array();
 foreach($proparr as $propitem) {
 
   foreach($propitem['images'] as $img) {
-    do_action('bendhomes_img_upload', $imageid = new stdClass(), $img);
+    do_action('bendhomes_img_upload', $imageid = NULL, $img);
     $bhimgid = $imageid->return;
     echo $bhimgid;
     echo '<br/>';
