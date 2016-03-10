@@ -31,7 +31,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
  /**
   * Ajax image upload for property submit and update
   */
- function bendhomes_image_upload($imageid=NULL, $imguse) {
+ function bendhomes_image_upload($imguse) {
 
    $imagedir = ABSPATH.'_images/';
    $imagebase = $imguse;
@@ -52,41 +52,22 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    }
 
    $uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );
-   $imageid->return = $uploaded_image;
+   // $imageid->return = $uploaded_image;
+   return $uploaded_image;
 
  }
-
- add_action( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 2 );
+ // add_action( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 2 );
+ add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 1 );
 }
-
-/*
-do_action('bendhomes_img_upload', $imageid = new stdClass());
-$bhimgid = $imageid->return;
-echo '<pre> test199--';
-echo $bhimgid;
-echo '</pre>';
-*/
-
-// $bhimgid = 100;
-
-
-
-
 
 /* #### PROPERTY DATA LOOP ##### */
 $retsproperties = array();
 foreach($proparr as $propitem) {
-
-  foreach($propitem['images'] as $img) {
-    print_r($img);
-    echo '<hr/>';
-    // do_action('bendhomes_img_upload', $imageid, $img);
-    // $bhimgid = $imageid->return;
-    // echo $bhimgid;
-    // echo '<br/>';
+  // let's upload our images and get our wp image ids for use later in array
+  foreach($propitem->{'images'} as $img) {
+    $tf = apply_filters( 'bendhomes_img_upload', $img->{'file'} );
+    $bhimgid[] = $tf;
   }
-
-  // print_r($propitem);
 
   $propname = $propitem->{'StreetNumber'}.' '.$propitem->{'StreetNumberModifier'}.' '.$propitem->{'StreetName'}.' '.$propitem->{'StreetSuffix'}.', '.$propitem->{'City'}.', '.$propitem->{'State'}.' '.$propitem->{'ZipCode'};
   $propname = trim($propname);
@@ -107,8 +88,8 @@ foreach($proparr as $propitem) {
     'size' => $propitem->{'SquareFootage'},
     'area-postfix' => 'Sq Ft',
     'video-url' => $propitem->{'VirtualTourURL'},
-    'gallery_image_ids' => array($bhimgid),
-    'featured_image_id' => $bhimgid,
+    'gallery_image_ids' => $bhimgid,
+    'featured_image_id' => $bhimgid[0],
     'address' => $propname,
     'coordinates' => $propitem->{'Latitude'}.','.$propitem->{'Longitude'},
     'featured' => 'on',
@@ -123,10 +104,9 @@ foreach($proparr as $propitem) {
     'action' => 'add_property'
   );
   $i++;
+  unset($bhimgid);
 }
 unset($i);
-
-// print_r($retsproperties);
 
 /* ##### */
 
