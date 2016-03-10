@@ -31,7 +31,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
  /**
   * Ajax image upload for property submit and update
   */
- function bendhomes_image_upload($imageid, $imguse) {
+ function bendhomes_image_upload($imageid=NULL, $imguse) {
 
    $imagedir = ABSPATH.'_images/';
    $imagebase = $imguse;
@@ -78,7 +78,7 @@ $retsproperties = array();
 foreach($proparr as $propitem) {
 
   foreach($propitem['images'] as $img) {
-    do_action('bendhomes_img_upload', $imageid = NULL, $img);
+    do_action('bendhomes_img_upload', $imageid, $img);
     $bhimgid = $imageid->return;
     echo $bhimgid;
     echo '<br/>';
