@@ -1,7 +1,7 @@
 <?php
 
-include("inc/abspath.php");
-include(ABSPATH."/inc/header.php");
+include("inc/retsabspath.php");
+include(RETSABSPATH."/inc/header.php");
 
 // $system = $rets->GetSystemMetadata();
 // var_dump($system);

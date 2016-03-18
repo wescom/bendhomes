@@ -1,6 +1,6 @@
 <?php
-include("inc/abspath.php");
-include(ABSPATH."/inc/header.php");
+include("inc/retsabspath.php");
+include(RETSABSPATH."/inc/header.php");
 
 ini_set('max_execution_time', 0);
 
@@ -20,7 +20,7 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
   // It looks up the last time it was run, and queries from last modified forward
   // we store it as simple .txt file based on the query in use
   // $fnamerecent = '/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt';
-  $fnamerecent = ABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
+  $fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
 
   $pulldate = array();
   $pulldate['now'] = (int) time();
@@ -97,7 +97,7 @@ foreach ($itemsarr as $prop) {
           $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
           echo '<pre style="color: blue;">'.$photofilename.'</pre>';
           $photolist[] = $photofilename;
-          $fname = ABSPATH.'/images/'.strtolower($qvars['resource']).'/'.$photofilename;
+          $fname = RETSABSPATH.'/images/'.strtolower($qvars['resource']).'/'.$photofilename;
           // array_push($itemsarr[$prop['ListingRid']]['images'], $photometa);
           if (file_exists($fname)) {
             echo "<p style='background-color: #cccccc; color: darkgreen;'>photo file: ".$fname." already exists.</p>";
