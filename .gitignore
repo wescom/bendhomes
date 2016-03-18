@@ -39,7 +39,14 @@
 !Gruntfile.ms
 !favicon.ico
 !_json
-!_images
+!_retsapi
+!_retsapi/images/activeagent/
+!_retsapi/images/agent/
+!_retsapi/images/property/
+_retsapi/images/activeagent/*.jpg
+_retsapi/images/agent/*.jpg
+_retsapi/images/property/*.jpg
+
 
 # ignore all files starting with .
 .*

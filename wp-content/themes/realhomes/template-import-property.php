@@ -2,10 +2,11 @@
 /*
 *  Template Name: Import Property Template
 */
-
 /*
 *  Author: Justin Grady
 */
+
+ini_set('max_execution_time', 0);
 
 /* #### INCLUDES ##### */
 include_once ABSPATH . 'wp-admin/includes/media.php';
@@ -21,77 +22,115 @@ function formatprice($price) {
 }
 
 /* #### DATA SETUP and PULL ##### */
-$retsproperties = array();
-/* Let's get some JSON data */
-$propjson = file_get_contents(ABSPATH.'_json/resi-property.json');
-$proparr = json_decode( $propjson );
+function dbresult($dbtable) {
+  $data = array();
+  $db = array(
+    'host' => 'localhost',
+    'username' => 'phrets',
+    'password' => 'hCqaQvMKW9wJKQwS',
+    'database' => 'bh_rets'
+  );
+
+  $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+  /* check connection */
+  if ($mysqli->connect_errno) {
+      printf("Connect failed: %s\n", $mysqli->connect_error);
+      exit();
+  }
+
+  $sqlquery = "SELECT * FROM Property_RESI WHERE
+              PublishToInternet = 1
+              AND Status = 'Active'
+              LIMIT 10
+              ;";
+
+  /* Select queries return a resultset */
+  if ($result = $mysqli->query($sqlquery)) {
+      printf("Select returned %d rows.\n", $result->num_rows);
+      while($row = $result->fetch_assoc()) {
+          $data[] = $row;
+      }
+      // Frees the memory associated with a result
+      $result->free();
+      /* free result set */
+      $result->close();
+  }
+
+  $mysqli->close();
+  return $data;
+
+}
+
+$proparr = dbresult('Property_RESI');
 
 /* #### IMAGES PROCESSING ##### */
 if ( ! function_exists( 'bendhomes_image_upload' ) ) {
- /**
-  * Ajax image upload for property submit and update
-  */
- function bendhomes_image_upload($imguse) {
 
-   $imagedir = ABSPATH.'_images/';
-   $imagebase = $imguse;
+ function bendhomes_image_upload($imagebase) {
+
+   $imagedir = ABSPATH.'_images/property/';
    $imagepull = $imagedir.$imagebase;
-
-   /* set the url of the file to sideload - probably be from $_POST or something */
-   // $url = 'https://upload.wikimedia.org/wikipedia/commons/5/52/Kilian.jpg';
-   // $tmp = download_url( $url );
-   // $tmp = file_get_contents($imagepull);
    $tmp = $imagepull;
    $file_array = array(
        'name' => basename( $imagebase ),
        'tmp_name' => $tmp
    );
    if ( is_wp_error( $tmp ) ) {
-       @unlink( $file_array[ 'tmp_name' ] );
+       // @unlink( $file_array[ 'tmp_name' ] );
        return $tmp;
+       echo '<p style="background-color: red; color: #fff;">'.$tmp.'</p>';
    }
 
    $uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );
-   // $imageid->return = $uploaded_image;
+
+   // this returns the image id from WP that is used for property data import
    return $uploaded_image;
 
  }
- // add_action( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 2 );
  add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 1 );
 }
 
 /* #### PROPERTY DATA LOOP ##### */
-$retsproperties = array();
+$retsproperties = array(); // first declaration
 foreach($proparr as $propitem) {
+
+  $tmpimages = explode('|',$propitem['images']);
+
   // let's upload our images and get our wp image ids for use later in array
-  foreach($propitem->{'images'} as $img) {
-    $tf = apply_filters( 'bendhomes_img_upload', $img->{'file'} );
+  foreach($tmpimages as $img) {
+    $tf = apply_filters( 'bendhomes_img_upload', $img );
     $bhimgid[] = $tf;
   }
 
-  $propname = $propitem->{'StreetNumber'}.' '.$propitem->{'StreetNumberModifier'}.' '.$propitem->{'StreetName'}.' '.$propitem->{'StreetSuffix'}.', '.$propitem->{'City'}.', '.$propitem->{'State'}.' '.$propitem->{'ZipCode'};
-  $propname = trim($propname);
-  $propprice = formatprice($propitem->{'ListingPrice'});
+  echo '<pre style="color: brown;">';
+  print_r($bhimgid);
+  echo '</pre>';
 
-  $retsproperties[$propitem->{'ListingRid'}] = array(
+  //print_r($propitem);
+
+  $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
+  $propname = trim($propname);
+  $propprice = formatprice($propitem['ListingPrice']);
+
+  $retsproperties[$propitem['ListingRid']] = array(
     'inspiry_property_title' => $propname,
-    'description' => $propitem->{'MarketingRemarks'},
+    'description' => $propitem['MarketingRemarks'],
     'type' => 47,
     'status' => 34,
-    'location' => $propitem->{'City'},
-    'bedrooms' => $propitem->{'Bedrooms'},
-    'bathrooms' => $propitem->{'Bathrooms'},
-    'garages' => $propitem->{'RESIGARA'},
-    'property-id' => $propitem->{'MLNumber'},
+    'location' => $propitem['City'],
+    'bedrooms' => $propitem['Bedrooms'],
+    'bathrooms' => $propitem['Bathrooms'],
+    'garages' => $propitem['RESIGARA'],
+    'property-id' => $propitem['MLNumber'],
     'price' => $propprice,
     'price-postfix' => '',
-    'size' => $propitem->{'SquareFootage'},
+    'size' => $propitem['SquareFootage'],
     'area-postfix' => 'Sq Ft',
-    'video-url' => $propitem->{'VirtualTourURL'},
+    'video-url' => $propitem['VirtualTourURL'],
     'gallery_image_ids' => $bhimgid,
     'featured_image_id' => $bhimgid[0],
     'address' => $propname,
-    'coordinates' => $propitem->{'Latitude'}.','.$propitem->{'Longitude'},
+    'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
     'featured' => 'on',
     'features' => array(
       35,
@@ -103,32 +142,23 @@ foreach($proparr as $propitem) {
     // 'action' => 'update_property',
     'action' => 'add_property'
   );
-  $i++;
   unset($bhimgid);
 }
-unset($i);
 
-/* ##### */
+print_r($retsproperties);
 
-
-
-$i = 0;
+$count = 0;
 foreach($retsproperties as $myproperty) {
+
+  echo '<h1>'.$count.'</h1>';
 
   $invalid_nonce = false;
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  // echo '<h1>'.$i.'</h1>';
-  // echo '<pre>';
-  // print_r($myproperty);
-  // echo '</pre>';
+  /* Check if action field is set  */
+  if( isset( $myproperty['action'] ) ) {
 
-  /* Check if action field is set and user is logged in */
-  if( isset( $myproperty['action'] ) && is_user_logged_in() ) {
-
-      /* the nonce */
-      // if( wp_verify_nonce( $myproperty['property_nonce'], 'submit_property' ) ){
       if( 1 == 1 ) {
 
               // Start with basic array
@@ -185,6 +215,7 @@ foreach($retsproperties as $myproperty) {
                   }
 
                   // Attach Property City with Newly Created Property
+                  // If a city does not exist in the city table, it creates it
                   $location_select_names = inspiry_get_location_select_names();
                   $locations_count = count( $location_select_names );
                   for ( $l = $locations_count - 1; $l >= 0; $l-- ) {
@@ -359,25 +390,10 @@ foreach($retsproperties as $myproperty) {
 
               }
 
-      } else {
-          // $invalid_nonce = true;
       }
   }
-  $i++;
-
+  $count++;
 }
-
-unset($i);
-
-
-
-
-
-
-
-
-
-
 
 
 
