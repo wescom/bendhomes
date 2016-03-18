@@ -4,7 +4,7 @@
 date_default_timezone_set('America/New_York');
 
 // pull in the packages managed by Composer
-include("RETSABSPATH.php");
+include("retsabspath.php");
 include(RETSABSPATH."/vendor/autoload.php");
 
 // setup your configuration
