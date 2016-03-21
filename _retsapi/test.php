@@ -176,8 +176,8 @@ if ($rets->NumRows($search) > 0) {
 
 $bhresults = $search->results;
 
-print_r($search);
-// print_r($bhresults);
+// œœprint_r($search);
+print_r($bhresults);
 
 
 

@@ -29,14 +29,16 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
     $pulldate['recent'] = file_get_contents($fnamerecent);
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
-    $pulldate['recent'] = strtotime('January, 1 2016');
+    $pulldate['recent'] = strtotime('-7 days');
   }
   // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
+  echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
   file_put_contents($fnamerecent,$pulldate['now']);
 
   // first part, resource and class uses the minimum unique key for query, then last modified
   $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+  print_r($usethisquery);
   return $usethisquery;
 }
 
@@ -98,6 +100,7 @@ foreach ($itemsarr as $prop) {
           echo '<pre style="color: blue;">'.$photofilename.'</pre>';
           $photolist[] = $photofilename;
           $fname = RETSABSPATH.'/images/'.strtolower($qvars['resource']).'/'.$photofilename;
+          $fnamebackup = RETSABSPATH.'/imagesbackup/'.strtolower($qvars['resource']).'/'.$photofilename;
           // array_push($itemsarr[$prop['ListingRid']]['images'], $photometa);
           if (file_exists($fname)) {
             echo "<p style='background-color: #cccccc; color: darkgreen;'>photo file: ".$fname." already exists.</p>";
@@ -105,6 +108,7 @@ foreach ($itemsarr as $prop) {
           } else {
             $photobinary = $photo->getContent();
             file_put_contents($fname, $photobinary, LOCK_EX);
+            file_put_contents($fnamebackup, $photobinary, LOCK_EX);
             echo "<p style='background-color: #cccccc; color: orange;'>photo file: ".$fname." written to filesystem.</p>";
           }
         }

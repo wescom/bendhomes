@@ -41,7 +41,6 @@ function dbresult($dbtable) {
   $sqlquery = "SELECT * FROM Property_RESI WHERE
               PublishToInternet = 1
               AND Status = 'Active'
-              LIMIT 10
               ;";
 
   /* Select queries return a resultset */
@@ -63,12 +62,14 @@ function dbresult($dbtable) {
 
 $proparr = dbresult('Property_RESI');
 
+// print_r($proparr);
+
 /* #### IMAGES PROCESSING ##### */
 if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
  function bendhomes_image_upload($imagebase) {
 
-   $imagedir = ABSPATH.'_images/property/';
+   $imagedir = ABSPATH.'/_retsapi/images/property/';
    $imagepull = $imagedir.$imagebase;
    $tmp = $imagepull;
    $file_array = array(
@@ -94,19 +95,23 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 $retsproperties = array(); // first declaration
 foreach($proparr as $propitem) {
 
-  $tmpimages = explode('|',$propitem['images']);
-
-  // let's upload our images and get our wp image ids for use later in array
-  foreach($tmpimages as $img) {
-    $tf = apply_filters( 'bendhomes_img_upload', $img );
-    $bhimgid[] = $tf;
+  $bhimgids = NULL;
+  // if $propitem['images'] key is empty, don't try to import images
+  if($propitem['images'] != '') {
+    $tmpimages = explode('|',$propitem['images']);
+    $bhimgids = array(); // predeclare wp images id array for use
+    // let's upload our images and get our wp image ids for use later in array
+    foreach($tmpimages as $img) {
+      $tf = apply_filters( 'bendhomes_img_upload', $img );
+      $bhimgids[] = $tf;
+      echo '<pre style="color: green;">';
+      echo $img;
+      echo ' -- ';
+      print_r($tf);
+      echo '</pre>';
+    }
+    unset($tmpimages,$tf); // we only need $tmpimages & $tf for this loop
   }
-
-  echo '<pre style="color: brown;">';
-  print_r($bhimgid);
-  echo '</pre>';
-
-  //print_r($propitem);
 
   $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
   $propname = trim($propname);
@@ -127,8 +132,8 @@ foreach($proparr as $propitem) {
     'size' => $propitem['SquareFootage'],
     'area-postfix' => 'Sq Ft',
     'video-url' => $propitem['VirtualTourURL'],
-    'gallery_image_ids' => $bhimgid,
-    'featured_image_id' => $bhimgid[0],
+    'gallery_image_ids' => $bhimgids,
+    'featured_image_id' => $bhimgids[0],
     'address' => $propname,
     'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
     'featured' => 'on',
@@ -142,7 +147,7 @@ foreach($proparr as $propitem) {
     // 'action' => 'update_property',
     'action' => 'add_property'
   );
-  unset($bhimgid);
+  unset($bhimgids);
 }
 
 print_r($retsproperties);

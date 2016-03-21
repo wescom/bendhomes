@@ -47,6 +47,12 @@ _retsapi/images/activeagent/*.jpg
 _retsapi/images/agent/*.jpg
 _retsapi/images/property/*.jpg
 
+!_retsapi/imagesbackup/activeagent/
+!_retsapi/imagesbackup/agent/
+!_retsapi/imagesbackup/property/
+_retsapi/imagesbackup/activeagent/*.jpg
+_retsapi/imagesbackup/agent/*.jpg
+_retsapi/imagesbackup/property/*.jpg
 
 # ignore all files starting with .
 .*
