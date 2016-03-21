@@ -23,6 +23,16 @@ function formatprice($price) {
 
 /* #### DATA SETUP and PULL ##### */
 function dbresult($dbtable) {
+
+  $scenarios = array(
+    'resi' => "SELECT * FROM Property_RESI WHERE
+                PublishToInternet = 1
+                AND Status = 'Active'
+                AND images IS NOT NULL
+                LIMIT 50
+                ;"
+  );
+
   $data = array();
   $db = array(
     'host' => 'localhost',
@@ -41,6 +51,8 @@ function dbresult($dbtable) {
   $sqlquery = "SELECT * FROM Property_RESI WHERE
               PublishToInternet = 1
               AND Status = 'Active'
+              AND images IS NOT NULL
+              LIMIT 50
               ;";
 
   /* Select queries return a resultset */
