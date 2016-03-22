@@ -21,17 +21,106 @@ function formatprice($price) {
   return $newprice;
 }
 
-/* #### DATA SETUP and PULL ##### */
-function dbresult($dbtable) {
+function bhLookupPostByMLS($mlsnum) {
+  if($mlsnum != NULL) {
+    // only do this lookup if $mlsnum is not empty/NULL
+    // look up Wordpress property posts by MLS id
+    $mls_ids = array();
+    $args = array(
+          'post_type'     => 'property',
+          // 'post_status'   => 'publish',
+          'posts_per_page'=> -1, // want all items in query, not just default 10
+          'meta_query' => array(
+              array(
+                  'key' => 'REAL_HOMES_property_id',
+                  'value' => $mlsnum
+              )
+          )
+      );
+      $getPosts = new WP_Query($args);
 
-  $scenarios = array(
-    'resi' => "SELECT * FROM Property_RESI WHERE
-                PublishToInternet = 1
-                AND Status = 'Active'
-                AND images IS NOT NULL
-                LIMIT 50
-                ;"
-  );
+      if( $getPosts->have_posts() ) {
+        while( $getPosts->have_posts() ) {
+          $getPosts->the_post();
+          $mls_ids[] = get_the_ID();
+        } // end while
+    } else {
+      $mls_ids = NULL;
+    }
+    wp_reset_postdata();
+    // sort ids from lowest to highest integer value, lowest number is the first entry in db for a given property
+    if($mls_ids == NULL) {
+      return NULL;
+    } else {
+      sort($mls_ids,SORT_NUMERIC);
+      return $mls_ids;
+    }
+  } else {
+    return NULL;
+  }
+}
+
+/* ############################### */
+/* #### POST ACTIONS - CASES ##### */
+/* ############################### */
+function bhPostActions($status,$mlsid=NULL) {
+  // // end use cases
+  // add_property
+  // skip_property
+  // update_property
+  // delete_property
+
+  // // From feeds statuses
+  // 'Active'
+  // 'Contingent Bumpable'
+  // 'ShrtSale-BringBckUps'
+  // 'Leased'
+  // 'Pending'
+  // 'Sold'
+  // 'Terminated'
+  // 'Withdrawn'
+  // 'Expired'
+
+  // if the property already exists in db, then update it
+  // works with feed statuses, see scenarios
+  if($mlsid != NULL) {
+    $mlsaction = 'update';
+  } else {
+    $mlsaction = 'insert';
+  }
+
+  // insert from API use cases
+  if($mlsaction == 'insert') {
+    if($status == 'Active') {
+      $apiaction = 'add_property'; // only add if insert/Active are true, skip everywhere else
+    }
+    else
+    {
+      $apiaction = 'skip_property'; // skip prop if insert, but is on list of prohibited statuses
+    }
+  }
+  // update from API use cases
+  elseif($mlsaction == 'update') {
+    if($status == 'Active' ||
+        $status == 'Pending' ||
+        $status == 'ShrtSale-BringBckUps')
+    {
+      $apiaction = 'update_property';
+    }
+    else
+    {
+      $apiaction = 'delete_property';
+    }
+  }
+
+  // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>mlsid: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
+  return $apiaction;
+}
+
+/* ############################## */
+/* #### DATA SETUP and PULL ##### */
+/* ############################## */
+function dbresult($dbtable) {
 
   $data = array();
   $db = array(
@@ -50,9 +139,8 @@ function dbresult($dbtable) {
 
   $sqlquery = "SELECT * FROM Property_RESI WHERE
               PublishToInternet = 1
-              AND Status = 'Active'
               AND images IS NOT NULL
-              LIMIT 50
+              LIMIT 100
               ;";
 
   /* Select queries return a resultset */
@@ -63,8 +151,6 @@ function dbresult($dbtable) {
       }
       // Frees the memory associated with a result
       $result->free();
-      /* free result set */
-      $result->close();
   }
 
   $mysqli->close();
@@ -74,9 +160,9 @@ function dbresult($dbtable) {
 
 $proparr = dbresult('Property_RESI');
 
-// print_r($proparr);
-
+/* ############################ */
 /* #### IMAGES PROCESSING ##### */
+/* ############################ */
 if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
  function bendhomes_image_upload($imagebase) {
@@ -103,71 +189,94 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
  add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 1 );
 }
 
-/* #### PROPERTY DATA LOOP ##### */
-$retsproperties = array(); // first declaration
-foreach($proparr as $propitem) {
-
+function bhImageSet($item) {
   $bhimgids = NULL;
-  // if $propitem['images'] key is empty, don't try to import images
-  if($propitem['images'] != '') {
-    $tmpimages = explode('|',$propitem['images']);
+  if($item['images'] != '') {
+    $tmpimages = explode('|',$item['images']);
     $bhimgids = array(); // predeclare wp images id array for use
     // let's upload our images and get our wp image ids for use later in array
     foreach($tmpimages as $img) {
       $tf = apply_filters( 'bendhomes_img_upload', $img );
       $bhimgids[] = $tf;
-      echo '<pre style="color: green;">';
-      echo $img;
-      echo ' -- ';
-      print_r($tf);
-      echo '</pre>';
+      // echo '<pre style="color: green;">';
+      // echo $img;
+      // echo ' -- ';
+      // print_r($tf);
+      // echo '</pre>';
     }
     unset($tmpimages,$tf); // we only need $tmpimages & $tf for this loop
   }
-
-  $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
-  $propname = trim($propname);
-  $propprice = formatprice($propitem['ListingPrice']);
-
-  $retsproperties[$propitem['ListingRid']] = array(
-    'inspiry_property_title' => $propname,
-    'description' => $propitem['MarketingRemarks'],
-    'type' => 47,
-    'status' => 34,
-    'location' => $propitem['City'],
-    'bedrooms' => $propitem['Bedrooms'],
-    'bathrooms' => $propitem['Bathrooms'],
-    'garages' => $propitem['RESIGARA'],
-    'property-id' => $propitem['MLNumber'],
-    'price' => $propprice,
-    'price-postfix' => '',
-    'size' => $propitem['SquareFootage'],
-    'area-postfix' => 'Sq Ft',
-    'video-url' => $propitem['VirtualTourURL'],
-    'gallery_image_ids' => $bhimgids,
-    'featured_image_id' => $bhimgids[0],
-    'address' => $propname,
-    'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-    'featured' => 'on',
-    'features' => array(
-      35,
-      38
-    ),
-    // 'agent_display_option' => 'agent_info',
-    // 'agent_id' => 90,
-    // 'property_nonce' => '87b0a8b7d0bb',
-    // 'action' => 'update_property',
-    'action' => 'add_property'
-  );
-  unset($bhimgids);
+  return($bhimgids);
 }
 
-print_r($retsproperties);
+/* #### PROPERTY DATA LOOP ##### */
+$retsproperties = array(); // first declaration
+foreach($proparr as $propitem) {
+
+  // status use cases
+  // DECIDE what to do with pre-existing records
+  // update, delete,
+  // how about multiple records?
+  $mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
+  $bhpropertyid = $mlsposts[0];
+  $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
+
+  echo '<h1 style="color: gold;">'.$bhpropertyid.'</h1>';
+
+  // // end use cases
+  // add_property
+  // skip_property
+  // update_property
+  // delete_property
+  if($postaction == 'delete_property' || $postaction == 'skip_property') {
+    $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
+  } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
+    $bhimgids = bhImageSet($propitem);
+    $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
+    $propname = trim($propname);
+    $propprice = formatprice($propitem['ListingPrice']);
+
+    $retsproperties[$propitem['ListingRid']] = array(
+      'inspiry_property_title' => $propname,
+      'description' => $propitem['MarketingRemarks'],
+      'type' => 47,
+      'status' => 34,
+      'location' => $propitem['City'],
+      'bedrooms' => $propitem['Bedrooms'],
+      'bathrooms' => $propitem['Bathrooms'],
+      'garages' => $propitem['RESIGARA'],
+      'property-id' => $propitem['MLNumber'], // this the the MLS ID
+      'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+      'price' => $propprice,
+      'price-postfix' => '',
+      'size' => $propitem['SquareFootage'],
+      'area-postfix' => 'Sq Ft',
+      'video-url' => $propitem['VirtualTourURL'],
+      'gallery_image_ids' => $bhimgids,
+      'featured_image_id' => $bhimgids[0],
+      'address' => $propname,
+      'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+      'featured' => 'off',
+      'features' => array(
+        35,
+        38
+      ),
+      'agent_display_option' => 'agent_info',
+      'agent_id' => 90,
+      // 'property_nonce' => '87b0a8b7d0bb',
+      // 'action' => 'update_property',
+      'action' => $postaction // give api db status, and pre-existing wp id, if exists
+    );
+    unset($bhimgids,$mlsposts);
+  } // end $postaction ifelse
+}
+
+// print_r($retsproperties);
 
 $count = 0;
 foreach($retsproperties as $myproperty) {
 
-  echo '<h1>'.$count.'</h1>';
+  echo '<h1>'.$count.' - '.$myproperty['action'].'</h1>';
 
   $invalid_nonce = false;
   $submitted_successfully = false;
@@ -176,7 +285,9 @@ foreach($retsproperties as $myproperty) {
   /* Check if action field is set  */
   if( isset( $myproperty['action'] ) ) {
 
-      if( 1 == 1 ) {
+      if( $myproperty['action'] != 'skip_property' ) {
+
+              echo '<h3 style="color: blue;">'.$count.' - '.$myproperty['action'].'</h3>';
 
               // Start with basic array
               $new_property = array(
@@ -221,6 +332,7 @@ foreach($retsproperties as $myproperty) {
                   $property_id = wp_update_post( $new_property ); // Update Property and get Property ID
                   if( $property_id > 0 ){
                       $updated_successfully = true;
+                      echo '<h1 style="background-color: orange;">'.$updated_successfully.' - '.$property_id.'</h1>';
                   }
               }
 
