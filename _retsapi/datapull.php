@@ -153,13 +153,10 @@ function dbpopulate($items,$dbtable) {
   );
   $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
   unset($db);
-
   foreach($items as $key => $array) {
 
     // escape the array for db username
     $escarray = array_map('mysql_real_escape_string', $array);
-
-    print_r($escarray);/
 
     // $query  = "INSERT INTO ".$dbtable;
     $query  = "REPLACE INTO ".$dbtable;
