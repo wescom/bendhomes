@@ -38,6 +38,8 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
 
   // first part, resource and class uses the minimum unique key for query, then last modified
   $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+  // $usethisquery = ''.$funiversalqueries[$resource][$class].'';
+
   print_r($usethisquery);
   return $usethisquery;
 }
@@ -77,14 +79,13 @@ $i = 0;
 
 foreach ($itemsarr as $prop) {
 
-    echo '<pre>';
-    print_r($prop);
-    echo '</pre>';
+    $puid = $universalkeys[$qvars['resource']][$qvars['class']];
+    $dt2 = date('Y-m-d H:i:s');
+    $itemsarr[$prop[$puid]]['lastPullTime'] = $dt2;
 
     // if( ($qvars['fotos'] == 'yes') && ($prop['PictureCount'] > 0) ) {
     if($qvars['fotos'] == 'yes') {
       unset($photos);
-      $puid = $universalkeys[$qvars['resource']][$qvars['class']];
       print_r($puid);
       $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
       $itemsarr[$prop[$puid]]['images'] = '';

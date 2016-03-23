@@ -1,7 +1,7 @@
 <?php
 
 // set your timezone
-date_default_timezone_set('America/New_York');
+date_default_timezone_set('America/Los_Angeles');
 
 // pull in the packages managed by Composer
 include("retsabspath.php");
@@ -90,7 +90,7 @@ $universalkeys = array(
     'ASSC' => 'OfficeAssociationKey'
   ),
   'OpenHouse' => array(
-    'OPEN' => 'ListingRid'
+    'OPEN' => 'OpenHouseRid'
   ),
 );
 

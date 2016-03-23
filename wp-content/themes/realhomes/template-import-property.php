@@ -7,6 +7,7 @@
 */
 
 ini_set('max_execution_time', 0);
+date_default_timezone_set('America/Los_Angeles');
 
 /* #### INCLUDES ##### */
 include_once ABSPATH . 'wp-admin/includes/media.php';
@@ -19,6 +20,55 @@ function formatprice($price) {
   $newprice = $pricearr[0];
   $newprice = (int) $newprice;
   return $newprice;
+}
+
+function bhLookupPropertyType($type) {
+  // this taked the RESIPropertySubtype var from rets
+  // and does a like compare to property types in the Wordpress database
+  // it then supplies the property type as an integer for feed ingestion
+  global $wpdb;
+
+  // Yeah, I know this is sorta hacky
+  if($type == 'Residential') {
+    $type = 'Single Family Home';
+  }
+
+  // need single quotes around string for correct mysql syntax
+  $type = "'".$type."'";
+  $results = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$type);
+
+  // there is usually only one result, but if more, take the first key
+  $myid = $results[0]->{term_id};
+  $myid = (int) $myid;
+
+  return $myid;
+}
+
+function bhLookupFeatures($featlist_interior,$featlist_exterior) {
+  // this taked the
+  // RESIINTE, RESIEXTE,
+  // and does a like compare to property types in the Wordpress database
+  // it then supplies the property type as an integer for feed ingestion
+  global $wpdb;
+
+  $fint = explode(',',$featlist_interior);
+  $fext = explode(',',$featlist_exterior);
+  $features = array_merge($fint,$fext);
+
+  foreach($features as $feature) {
+    $feature = "'".$feature."'";
+    $results[] = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$feature, OBJECT);
+  }
+
+  $output = array();
+  foreach($results as $result) {
+    $output[] = $result[0]->{term_id};
+  }
+
+  // strip empty keys from array
+  $output = array_filter($output);
+  print_r($output);
+  return $output;
 }
 
 function bhLookupPostByMLS($mlsnum) {
@@ -120,7 +170,7 @@ function bhPostActions($status,$mlsid=NULL) {
 /* ############################## */
 /* #### DATA SETUP and PULL ##### */
 /* ############################## */
-function dbresult($dbtable) {
+function dbresult() {
 
   $data = array();
   $db = array(
@@ -137,11 +187,29 @@ function dbresult($dbtable) {
       exit();
   }
 
-  $sqlquery = "SELECT * FROM Property_RESI WHERE
+  $resource = 'Property';
+  $class = 'RESI';
+  $rc = $resource.'_'.$class;
+
+  $fnamerecent = ABSPATH.'/_retsapi/pulldates/'.$rc.'.txt';
+  if(file_exists($fnamerecent)) {
+    $pulldate = file_get_contents($fnamerecent);
+  } else {
+    $pulldate = strtotime('-7 days');
+  }
+
+  $querydate = date('Y-m-d H:i:s',$pulldate);
+  // echo $pulldate;
+  /* AND images IS NOT NULL */
+
+  $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
-              AND images IS NOT NULL
-              LIMIT 100
+              AND lastPullTime >= '".$querydate."'
               ;";
+
+  echo '<pre> test199 -- <br/>';
+  print_r($sqlquery);
+  echo '</pre>';
 
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
@@ -158,7 +226,10 @@ function dbresult($dbtable) {
 
 }
 
-$proparr = dbresult('Property_RESI');
+$proparr = dbresult();
+echo '<pre> test199 -- <br/>';
+print_r($proparr);
+echo '</pre>';
 
 /* ############################ */
 /* #### IMAGES PROCESSING ##### */
@@ -230,6 +301,7 @@ foreach($proparr as $propitem) {
   // delete_property
   if($postaction == 'delete_property' || $postaction == 'skip_property') {
     $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
+    $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
   } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
     $bhimgids = bhImageSet($propitem);
     $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
@@ -239,7 +311,7 @@ foreach($proparr as $propitem) {
     $retsproperties[$propitem['ListingRid']] = array(
       'inspiry_property_title' => $propname,
       'description' => $propitem['MarketingRemarks'],
-      'type' => 47,
+      'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
       'status' => 34,
       'location' => $propitem['City'],
       'bedrooms' => $propitem['Bedrooms'],
@@ -257,10 +329,7 @@ foreach($proparr as $propitem) {
       'address' => $propname,
       'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
       'featured' => 'off',
-      'features' => array(
-        35,
-        38
-      ),
+      'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
       'agent_display_option' => 'agent_info',
       'agent_id' => 90,
       // 'property_nonce' => '87b0a8b7d0bb',
@@ -327,12 +396,24 @@ foreach($retsproperties as $myproperty) {
                       $submitted_successfully = true;
                       do_action( 'wp_insert_post', 'wp_insert_post' ); // Post the Post
                   }
-              }else if( $action == "update_property" ) {
+              } else if( $action == "update_property" ) {
                   $new_property['ID'] = intval( $myproperty['property_id'] );
                   $property_id = wp_update_post( $new_property ); // Update Property and get Property ID
                   if( $property_id > 0 ){
                       $updated_successfully = true;
                       echo '<h1 style="background-color: orange;">'.$updated_successfully.' - '.$property_id.'</h1>';
+                  }
+              } else if( $action == "delete_property" ) {
+                  $del_property['ID'] = intval( $myproperty['property_id'] );
+                  $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
+
+                  echo 'del prop: '.$property_id;
+
+                  if( $property_id > 0 ){
+                      $deleted_successfully = true;
+                      echo '<h1 style="background-color: cyan; color: #fff;">'.$deleted_successfully.' - '.$property_id.'</h1>';
+                  } else {
+                      echo '<h1 style="background-color: #cc0000; color: #ccc;">'.$deleted_successfully.' - '.$property_id.'</h1>';
                   }
               }
 
