@@ -227,9 +227,9 @@ function dbresult() {
 }
 
 $proparr = dbresult();
-echo '<pre> test199 -- <br/>';
-print_r($proparr);
-echo '</pre>';
+// echo '<pre> test199 -- <br/>';
+// print_r($proparr);
+// echo '</pre>';
 
 /* ############################ */
 /* #### IMAGES PROCESSING ##### */
