@@ -207,7 +207,7 @@ function dbresult() {
               AND lastPullTime >= '".$querydate."'
               ;";
 
-  echo '<pre> test199 -- <br/>';
+  echo '<pre>';
   print_r($sqlquery);
   echo '</pre>';
 
