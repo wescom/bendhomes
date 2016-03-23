@@ -104,13 +104,13 @@ foreach ($itemsarr as $prop) {
           $fnamebackup = RETSABSPATH.'/imagesbackup/'.strtolower($qvars['resource']).'/'.$photofilename;
           // array_push($itemsarr[$prop['ListingRid']]['images'], $photometa);
           if (file_exists($fname)) {
-            echo "<p style='background-color: #cccccc; color: darkgreen;'>photo file: ".$fname." already exists.</p>";
+            echo "<p style='border: 2px solid blue; color: blue;'>photo file: ".$fname." already exists.</p>";
             // skip
           } else {
             $photobinary = $photo->getContent();
             file_put_contents($fname, $photobinary, LOCK_EX);
             file_put_contents($fnamebackup, $photobinary, LOCK_EX);
-            echo "<p style='background-color: #cccccc; color: orange;'>photo file: ".$fname." written to filesystem.</p>";
+            echo "<p style='border: 2px solid green; color: green;'>photo file: ".$fname." written to filesystem.</p>";
           }
         }
       }
@@ -159,7 +159,7 @@ function dbpopulate($items,$dbtable) {
     // escape the array for db username
     $escarray = array_map('mysql_real_escape_string', $array);
 
-    print_r($escarray);
+    print_r($escarray);/
 
     // $query  = "INSERT INTO ".$dbtable;
     $query  = "REPLACE INTO ".$dbtable;
