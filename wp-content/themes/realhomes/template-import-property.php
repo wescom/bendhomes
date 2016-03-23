@@ -205,7 +205,7 @@ function dbresult() {
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND lastPullTime >= '".$querydate."'
-              LIMIT 1
+              LIMIT 5
               ;";
 
   echo '<pre>';
