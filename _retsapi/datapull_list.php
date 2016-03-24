@@ -34,37 +34,37 @@ $scenarios = array(
     'class' => 'OPEN'
   ),*/
   'Property_BUSI' => array(
-    'count' => 10,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'BUSI'
   ),
   'Property_COMM' => array(
-    'count' => 10,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'COMM'
   ),
   'Property_FARM' => array(
-    'count' => 10,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'FARM'
   ),
   'Property_LAND' => array(
-    'count' => 10,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'LAND'
   ),
   'Property_MULT' => array(
-    'count' => 10,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'MULT'
   ),
   'Property_RESI' => array(
-    'count' => 10,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'RESI'
@@ -242,7 +242,7 @@ function runRetsQuery($qvars) {
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
 
-echo '<h1 style="border: 1px solid green; color: green;">start - '.date(DATE_RSS);
+echo '<h1 style="border: 1px solid red; color: red;">start - '.date(DATE_RSS);
 
 foreach($scenarios as $qvars) {
   // 1. Get RETS data
