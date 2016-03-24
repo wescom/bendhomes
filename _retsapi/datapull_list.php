@@ -242,6 +242,8 @@ function runRetsQuery($qvars) {
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
 
+echo '<h1 style="border: 1px solid green; color: green;">start - '.date(DATE_RSS);
+
 foreach($scenarios as $qvars) {
   // 1. Get RETS data
   $rets_data = runRetsQuery($qvars);
@@ -260,6 +262,6 @@ $get = file_get_contents('http://dev.bendhomes.com/import-property-test/');
 
 echo '<hr/>';
 echo $get;
-echo 'done - '.date(DATE_RSS);
+echo '<h1 style="border: 1px solid green; color: green;">completed - '.date(DATE_RSS);
 
 ?>
