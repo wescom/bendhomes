@@ -93,7 +93,7 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
     $pulldate['recent'] = file_get_contents($fnamerecent);
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
-    $pulldate['recent'] = strtotime('-7 days');
+    $pulldate['recent'] = strtotime('-1 days');
   }
   // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
