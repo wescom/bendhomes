@@ -256,10 +256,10 @@ foreach($scenarios as $qvars) {
 /* ##### PULL DATA INTO WP #### */
 /* ##### ######### ####### #### */
 
-// $get = file_get_contents('http://local.bendhomes.com/import-property-test/');
+$get = file_get_contents('http://dev.bendhomes.com/import-property-test/');
 
-// echo '<hr/>';
-// echo $get;
-// echo 'done - '.date(DATE_RSS);
+echo '<hr/>';
+echo $get;
+echo 'done - '.date(DATE_RSS);
 
 ?>
