@@ -260,8 +260,8 @@ foreach($scenarios as $qvars) {
 
 $get = file_get_contents('http://dev.bendhomes.com/import-property-test/');
 
-echo '<hr/>';
-echo $get;
-echo '<h1 style="border: 1px solid green; color: green;">completed - '.date(DATE_RSS);
+// echo '<hr/>';
+// echo $get;
+// echo '<h1 style="border: 1px solid green; color: green;">completed - '.date(DATE_RSS);
 
 ?>
