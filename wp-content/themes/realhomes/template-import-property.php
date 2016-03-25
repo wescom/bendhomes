@@ -14,6 +14,58 @@ include_once ABSPATH . 'wp-admin/includes/media.php';
 include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
 
+/* ################################# */
+/* #### DATA TYPES - SCENARIOS ##### */
+/* ################################# */
+$scenarios = array(
+  /*
+  'OpenHouse_OPEN'=> array(
+    'count' => 999999,
+    'fotos' => 'no',
+    'resource' => 'OpenHouse',
+    'class' => 'OPEN'
+  ),*/
+  'Property_BUSI' => array(
+    'count' => 999999,
+    'fotos' => 'yes',
+    'resource' => 'Property',
+    'class' => 'BUSI'
+  ),
+  'Property_COMM' => array(
+    'count' => 999999,
+    'fotos' => 'yes',
+    'resource' => 'Property',
+    'class' => 'COMM'
+  ),
+  'Property_FARM' => array(
+    'count' => 999999,
+    'fotos' => 'yes',
+    'resource' => 'Property',
+    'class' => 'FARM'
+  ),
+  'Property_LAND' => array(
+    'count' => 999999,
+    'fotos' => 'yes',
+    'resource' => 'Property',
+    'class' => 'LAND'
+  ),
+  'Property_MULT' => array(
+    'count' => 999999,
+    'fotos' => 'yes',
+    'resource' => 'Property',
+    'class' => 'MULT'
+  ),
+  'Property_RESI' => array(
+    'count' => 20,
+    'fotos' => 'yes',
+    'resource' => 'Property',
+    'class' => 'RESI'
+  )
+);
+
+// for now, manually set the data to pull
+$scenarioset($scenarios['Property_RESI']);
+
 /* #### FUNCTIONS ##### */
 function formatprice($price) {
   $pricearr = explode('.',$price);
@@ -170,7 +222,7 @@ function bhPostActions($status,$mlsid=NULL) {
 /* ############################## */
 /* #### DATA SETUP and PULL ##### */
 /* ############################## */
-function dbresult() {
+function dbresult($sset) {
 
   $data = array();
   $db = array(
@@ -187,8 +239,10 @@ function dbresult() {
       exit();
   }
 
-  $resource = 'Property';
-  $class = 'RESI';
+  $resource = $sset['resource'];
+  $class = $sset['class'];
+  // $resource = 'Property';
+  // $class = 'RESI';
   $rc = $resource.'_'.$class;
 
   $fnamerecent = ABSPATH.'/_retsapi/pulldates/'.$rc.'.txt';
@@ -206,7 +260,7 @@ function dbresult() {
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND lastPullTime >= '".$querydate."'
-              LIMIT 20
+              LIMIT ".$sset['count']."
               ;";
 
   echo '<pre>';
@@ -228,7 +282,7 @@ function dbresult() {
 
 }
 
-$proparr = dbresult();
+$proparr = dbresult($scenarioset);
 // echo '<pre> test199 -- <br/>';
 // print_r($proparr);
 // echo '</pre>';
