@@ -195,7 +195,7 @@ function dbresult() {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    $pulldate = strtotime('-7 days');
+    $pulldate = strtotime('-1 days');
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
