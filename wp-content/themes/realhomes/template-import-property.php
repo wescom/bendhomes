@@ -276,7 +276,9 @@ function bhImageSet($item) {
     foreach($tmpimages as $img) {
       // copies image from backup dir, to images dir, file is unlinked/deleted
       // upon processing. This will enable images to update and scripts to be rerun
-      copy($imagesdir['source'].'/'.$img,$imagesdir['tmpdest'].'/'.$img);
+      if(!file_exists($imagesdir['tmpdest'].'/'.$img)) {
+        copy($imagesdir['source'].'/'.$img,$imagesdir['tmpdest'].'/'.$img);
+      }
       $tf = apply_filters( 'bendhomes_img_upload', $img );
       $bhimgids[] = $tf;
     }
