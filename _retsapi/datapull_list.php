@@ -5,13 +5,12 @@ include(RETSABSPATH."/inc/header.php");
 ini_set('max_execution_time', 0);
 
 $scenarios = array(
-  /*
   'ActiveAgent_MEMB' => array(
     'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
-  ), */
+  ),
   /*
   'Agent_MEMB'=> array(
     'count' => 999999,
@@ -258,10 +257,10 @@ foreach($scenarios as $qvars) {
 /* ##### PULL DATA INTO WP #### */
 /* ##### ######### ####### #### */
 
-$get = file_get_contents('http://dev.bendhomes.com/import-property-test/');
+// $get = file_get_contents('http://dev.bendhomes.com/import-property-test/');
 
 // echo '<hr/>';
-print_r($get);
+// print_r($get);
 echo '<h1 style="border: 1px solid green; color: green;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>
