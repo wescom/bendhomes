@@ -201,11 +201,11 @@ function dbresult() {
   $querydate = date('Y-m-d H:i:s',$pulldate);
   // echo $pulldate;
   /* AND images IS NOT NULL */
+  // AND Status = 'Active'
 
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND lastPullTime >= '".$querydate."'
-              AND Status = 'Active'
               LIMIT 20
               ;";
 
