@@ -64,7 +64,7 @@ $scenarios = array(
 );
 
 // for now, manually set the data to pull
-$scenarioset($scenarios['Property_RESI']);
+$scenarioset = $scenarios['Property_RESI'];
 
 /* #### FUNCTIONS ##### */
 function formatprice($price) {
@@ -249,7 +249,7 @@ function dbresult($sset) {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    $pulldate = strtotime('-1 days');
+    $pulldate = strtotime('-6 hours'); //'-6 hours' '-1 days'
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
