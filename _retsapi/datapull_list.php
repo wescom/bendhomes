@@ -242,7 +242,7 @@ function runRetsQuery($qvars) {
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
 
-echo '<h1 style="border: 1px solid red; color: red;">start - '.date(DATE_RSS);
+echo '<h1 style="border: 1px solid red; color: red;">start - '.date(DATE_RSS).'</h1>';
 
 foreach($scenarios as $qvars) {
   // 1. Get RETS data
@@ -251,17 +251,17 @@ foreach($scenarios as $qvars) {
   $db_table = $qvars['resource'].'_'.$qvars['class'];
   // 3. populate local database with harvested RETS data
   $do = dbpopulate($rets_data,$db_table);
-  echo $do;
+  echo $do.' --- '.$db_table;
 }
 
 /* ##### ######### ####### #### */
 /* ##### PULL DATA INTO WP #### */
 /* ##### ######### ####### #### */
 
-$get = file_get_contents('http://dev.bendhomes.com/import-property-test/');
+// $get = file_get_contents('http://dev.bendhomes.com/import-property-test/');
 
 // echo '<hr/>';
 // echo $get;
-// echo '<h1 style="border: 1px solid green; color: green;">completed - '.date(DATE_RSS);
+echo '<h1 style="border: 1px solid green; color: green;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>

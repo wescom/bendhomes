@@ -67,7 +67,7 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
 
   // strip empty keys from array
   $output = array_filter($output);
-  print_r($output);
+  // print_r($output);
   return $output;
 }
 
@@ -206,6 +206,7 @@ function dbresult() {
               PublishToInternet = 1
               AND lastPullTime >= '".$querydate."'
               AND Status = 'Active'
+              LIMIT 20
               ;";
 
   echo '<pre>';
@@ -253,6 +254,9 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    }
 
    $uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );
+   echo '<pre>';
+   print_r($uploaded_image);
+   echo '</pre>';
 
    // this returns the image id from WP that is used for property data import
    return $uploaded_image;
@@ -262,19 +266,19 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 }
 
 function bhImageSet($item) {
+  $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
+  $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
   if($item['images'] != '') {
     $tmpimages = explode('|',$item['images']);
     $bhimgids = array(); // predeclare wp images id array for use
     // let's upload our images and get our wp image ids for use later in array
     foreach($tmpimages as $img) {
+      // copies image from backup dir, to images dir, file is unlinked/deleted
+      // upon processing. This will enable images to update and scripts to be rerun
+      copy($imagesdir['source'].'/'.$img,$imagesdir['tmpdest'].'/'.$img);
       $tf = apply_filters( 'bendhomes_img_upload', $img );
       $bhimgids[] = $tf;
-      // echo '<pre style="color: green;">';
-      // echo $img;
-      // echo ' -- ';
-      // print_r($tf);
-      // echo '</pre>';
     }
     unset($tmpimages,$tf); // we only need $tmpimages & $tf for this loop
   }
@@ -288,12 +292,9 @@ foreach($proparr as $propitem) {
   // status use cases
   // DECIDE what to do with pre-existing records
   // update, delete,
-  // how about multiple records?
   $mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
   $bhpropertyid = $mlsposts[0];
   $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
-
-  echo '<h1 style="color: gold;">'.$bhpropertyid.'</h1>';
 
   // // end use cases
   // add_property
@@ -304,7 +305,6 @@ foreach($proparr as $propitem) {
     $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
     $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
   } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
-    $bhimgids = bhImageSet($propitem);
     $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
     $propname = trim($propname);
     $propprice = formatprice($propitem['ListingPrice']);
@@ -325,23 +325,26 @@ foreach($proparr as $propitem) {
       'size' => $propitem['SquareFootage'],
       'area-postfix' => 'Sq Ft',
       'video-url' => $propitem['VirtualTourURL'],
-      'gallery_image_ids' => $bhimgids,
-      'featured_image_id' => $bhimgids[0],
       'address' => $propname,
       'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
       'featured' => 'off',
       'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
       'agent_display_option' => 'agent_info',
       'agent_id' => 90,
-      // 'property_nonce' => '87b0a8b7d0bb',
-      // 'action' => 'update_property',
+      // 'gallery_image_ids' => $bhimgids,
+      // 'featured_image_id' => $bhimgids[0],
       'action' => $postaction // give api db status, and pre-existing wp id, if exists
     );
+
+    if(1 == 1) {
+      $bhimgids = bhImageSet($propitem);
+      $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
+      $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
+    }
+
     unset($bhimgids,$mlsposts);
   } // end $postaction ifelse
 }
-
-// print_r($retsproperties);
 
 $count = 0;
 foreach($retsproperties as $myproperty) {
