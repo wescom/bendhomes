@@ -32,6 +32,7 @@ $scenarios = array(
     'resource' => 'OpenHouse',
     'class' => 'OPEN'
   ),*/
+
   'Property_BUSI' => array(
     'count' => 999999,
     'fotos' => 'yes',
@@ -68,6 +69,7 @@ $scenarios = array(
     'resource' => 'Property',
     'class' => 'RESI'
   )
+
 );
 
 /* ##### ######### ##### */
@@ -191,7 +193,7 @@ function runRetsQuery($qvars) {
       // if( ($qvars['fotos'] == 'yes') && ($prop['PictureCount'] > 0) ) {
       if($qvars['fotos'] == 'yes') {
         unset($photos);
-        print_r($puid);
+        // print_r($puid);
         $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
         $itemsarr[$prop[$puid]]['images'] = '';
         if($qvars['resource'] == 'Property') {
@@ -246,6 +248,13 @@ echo '<h1 style="border: 1px solid red; color: red;">start - '.date(DATE_RSS).'<
 foreach($scenarios as $qvars) {
   // 1. Get RETS data
   $rets_data = runRetsQuery($qvars);
+
+  echo '<pre style="background-color: brown; color: #fff;">';
+  echo $rets_data['ListingAgentFullName'].'<br/>';
+  echo $rets_data['ListingAgentMLSID'].'<br/>';
+  echo $rets_data['ListingAgentNumber'].'<br/>';
+  echo '</pre>';
+
   // 2. specify table we want data to go into
   $db_table = $qvars['resource'].'_'.$qvars['class'];
   // 3. populate local database with harvested RETS data

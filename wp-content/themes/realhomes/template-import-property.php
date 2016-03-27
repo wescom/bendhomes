@@ -74,6 +74,22 @@ function formatprice($price) {
   return $newprice;
 }
 
+function bhLookupAgent($guid) {
+  if($guid != NULL) {
+    global $wpdb;
+    $guid = "'http://".$guid."'";
+    $sqlquery = "SELECT ID FROM $wpdb->posts WHERE guid = ".$guid;
+    echo $sqlquery;
+    $result = $wpdb->get_results( $sqlquery );
+  } else {
+    $result = NULL;
+  }
+  // echo '<pre> test222';
+  // print_r($result);
+  // echo '</pre>';
+  return $result;
+}
+
 function bhLookupPropertyType($type) {
   // this taked the RESIPropertySubtype var from rets
   // and does a like compare to property types in the Wordpress database
@@ -263,9 +279,9 @@ function dbresult($sset) {
               LIMIT ".$sset['count']."
               ;";
 
-  echo '<pre>';
-  print_r($sqlquery);
-  echo '</pre>';
+  // echo '<pre>';
+  // print_r($sqlquery);
+  // echo '</pre>';
 
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
@@ -308,9 +324,9 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    }
 
    $uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );
-   echo '<pre>';
-   print_r($uploaded_image);
-   echo '</pre>';
+   // echo '<pre>';
+   // print_r($uploaded_image);
+   // echo '</pre>';
 
    // this returns the image id from WP that is used for property data import
    return $uploaded_image;
@@ -365,9 +381,14 @@ foreach($proparr as $propitem) {
     $propname = trim($propname);
     $propprice = formatprice($propitem['ListingPrice']);
 
+    $agentguid = 'agent_'.$propitem['ListingAgentNumber'];
+    $agentposts = bhLookupAgent($agentguid);
+    $bhagentid = $agentposts[0];
+    $bhagentid = $bhagentid->{ID};
+
     $retsproperties[$propitem['ListingRid']] = array(
       'inspiry_property_title' => $propname,
-      'description' => $propitem['MarketingRemarks'],
+      'description' => $propitem['MarketingRemarks'].'<br/><br/>Listing agent number: '.$propitem['ListingAgentNumber'],
       'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
       'status' => 34,
       'location' => $propitem['City'],
@@ -386,13 +407,13 @@ foreach($proparr as $propitem) {
       'featured' => 'off',
       'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
       'agent_display_option' => 'agent_info',
-      'agent_id' => 90,
+      'agent_id' => $bhagentid,
       // 'gallery_image_ids' => $bhimgids,
       // 'featured_image_id' => $bhimgids[0],
       'action' => $postaction // give api db status, and pre-existing wp id, if exists
     );
 
-    if(1 == 1) {
+    if($postaction == 'add_property') {
       $bhimgids = bhImageSet($propitem);
       $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
       $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
@@ -417,7 +438,7 @@ foreach($retsproperties as $myproperty) {
       if( $myproperty['action'] != 'skip_property' ) {
 
               echo '<h3 style="color: blue;">'.$count.' - '.$myproperty['action'].'</h3>';
-
+              echo '<h4 style="color: red;">my property agent_id: '.$myproperty['agent_id'].'</h4>';
               // Start with basic array
               $new_property = array(
                   'post_type'	    =>	'property'

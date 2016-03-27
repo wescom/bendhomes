@@ -37,10 +37,12 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
   file_put_contents($fnamerecent,$pulldate['now']);
 
   // first part, resource and class uses the minimum unique key for query, then last modified
-  // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
-  $usethisquery = ''.$funiversalqueries[$resource][$class].'';
+  $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+  // $usethisquery = ''.$funiversalqueries[$resource][$class].'';
 
+  echo '</pre>';
   print_r($usethisquery);
+  echo '</pre>';
   return $usethisquery;
 }
 
@@ -61,7 +63,7 @@ $results = $rets->Search(
 $temparr = $results->toArray();
 
 function refactorarr($itemsarray,$ukeys,$qvars) {
-  // refactor properties array so universalkeys is the key for each item
+  // refactor array so universalkeys is the key for each item
   $newarray = array();
   foreach ($itemsarray as $prop) {
     foreach($prop as $key => $val) {
