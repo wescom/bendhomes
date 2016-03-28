@@ -18,53 +18,60 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
 $scenarios = array(
-  /*
   'OpenHouse_OPEN'=> array(
     'count' => 999999,
     'fotos' => 'no',
     'resource' => 'OpenHouse',
-    'class' => 'OPEN'
-  ),*/
+    'class' => 'OPEN',
+    'name' => 'OpenHouse_OPEN'
+  ),
   'Property_BUSI' => array(
-    'count' => 999999,
+    'count' => 20,
     'fotos' => 'yes',
     'resource' => 'Property',
-    'class' => 'BUSI'
+    'class' => 'BUSI',
+    'name' => 'Property_BUSI'
   ),
   'Property_COMM' => array(
-    'count' => 999999,
+    'count' => 20,
     'fotos' => 'yes',
     'resource' => 'Property',
-    'class' => 'COMM'
+    'class' => 'COMM',
+    'name' => 'Property_COMM'
   ),
   'Property_FARM' => array(
-    'count' => 999999,
+    'count' => 20,
     'fotos' => 'yes',
     'resource' => 'Property',
-    'class' => 'FARM'
+    'class' => 'FARM',
+    'name' => 'Property_FARM'
   ),
   'Property_LAND' => array(
-    'count' => 999999,
+    'count' => 20,
     'fotos' => 'yes',
     'resource' => 'Property',
-    'class' => 'LAND'
+    'class' => 'LAND',
+    'name' => 'Property_LAND'
   ),
   'Property_MULT' => array(
-    'count' => 999999,
+    'count' => 20,
     'fotos' => 'yes',
     'resource' => 'Property',
-    'class' => 'MULT'
+    'class' => 'MULT',
+    'name' => 'Property_MULT'
   ),
   'Property_RESI' => array(
     'count' => 20,
     'fotos' => 'yes',
     'resource' => 'Property',
-    'class' => 'RESI'
+    'class' => 'RESI',
+    'name' => 'Property_RESI'
   )
 );
 
 // for now, manually set the data to pull
 $scenarioset = $scenarios['Property_RESI'];
+echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenarioset['name'].'</p>';
 
 /* #### FUNCTIONS ##### */
 function formatprice($price) {
@@ -79,7 +86,7 @@ function bhLookupAgent($guid) {
     global $wpdb;
     $guid = "'http://".$guid."'";
     $sqlquery = "SELECT ID FROM $wpdb->posts WHERE guid = ".$guid;
-    echo $sqlquery;
+    // echo $sqlquery;
     $result = $wpdb->get_results( $sqlquery );
   } else {
     $result = NULL;
@@ -90,26 +97,41 @@ function bhLookupAgent($guid) {
   return $result;
 }
 
-function bhLookupPropertyType($type) {
+function bhLookupPropertyType($typestring) {
   // this taked the RESIPropertySubtype var from rets
   // and does a like compare to property types in the Wordpress database
   // it then supplies the property type as an integer for feed ingestion
   global $wpdb;
 
-  // Yeah, I know this is sorta hacky
-  if($type == 'Residential') {
-    $type = 'Single Family Home';
+  // multiple types can come in comma delim from RETS feed
+  $types = explode(',',$typestring);
+
+  $output = array();
+  foreach($types as $type) {
+
+    // remove any spaces
+    $type = trim($type);
+
+    // Yeah, I know this is sorta hacky
+    if($type == 'Residential') {
+      $type = 'Single Family Home';
+    }
+
+    // need single quotes around string for correct mysql syntax
+    $type = "'".$type."'";
+    $result = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$type);
+
+    // echo '<pre> test322db -- ';
+    // print_r($result);
+    // echo '</pre>';
+
+    // there is usually only one result, but if more, take the first key
+    $myid = $result[0]->{term_id};
+    $myid = (int) $myid;
+
+    $output[] = $myid;
   }
-
-  // need single quotes around string for correct mysql syntax
-  $type = "'".$type."'";
-  $results = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$type);
-
-  // there is usually only one result, but if more, take the first key
-  $myid = $results[0]->{term_id};
-  $myid = (int) $myid;
-
-  return $myid;
+  return $output;
 }
 
 function bhLookupFeatures($featlist_interior,$featlist_exterior) {
@@ -265,7 +287,7 @@ function dbresult($sset) {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    $pulldate = strtotime('-6 hours'); //'-6 hours' '-1 days'
+    $pulldate = strtotime('-14 days'); //'-6 hours' '-1 days'
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
@@ -285,7 +307,7 @@ function dbresult($sset) {
 
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
-      printf("Select returned %d rows.\n", $result->num_rows);
+      // printf("Select returned %d rows.\n", $result->num_rows);
       while($row = $result->fetch_assoc()) {
           $data[] = $row;
       }
@@ -363,10 +385,12 @@ foreach($proparr as $propitem) {
 
   // status use cases
   // DECIDE what to do with pre-existing records
-  // update, delete,
+  // update, delete
   $mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
   $bhpropertyid = $mlsposts[0];
   $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
+
+  // print_r($propitem);
 
   // // end use cases
   // add_property
@@ -377,7 +401,7 @@ foreach($proparr as $propitem) {
     $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
     $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
   } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
-    $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
+    $propname = $scenarioset['name'].' -- '.$propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
     $propname = trim($propname);
     $propprice = formatprice($propitem['ListingPrice']);
 
@@ -386,39 +410,165 @@ foreach($proparr as $propitem) {
     $bhagentid = $agentposts[0];
     $bhagentid = $bhagentid->{ID};
 
-    $retsproperties[$propitem['ListingRid']] = array(
-      'inspiry_property_title' => $propname,
-      'description' => $propitem['MarketingRemarks'].'<br/><br/>Listing agent number: '.$propitem['ListingAgentNumber'],
-      'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
-      'status' => 34,
-      'location' => $propitem['City'],
-      'bedrooms' => $propitem['Bedrooms'],
-      'bathrooms' => $propitem['Bathrooms'],
-      'garages' => $propitem['RESIGARA'],
-      'property-id' => $propitem['MLNumber'], // this the the MLS ID
-      'property_id' => $bhpropertyid, // this is the WP post id if there's record update
-      'price' => $propprice,
-      'price-postfix' => '',
-      'size' => $propitem['SquareFootage'],
-      'area-postfix' => 'Sq Ft',
-      'video-url' => $propitem['VirtualTourURL'],
-      'address' => $propname,
-      'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-      'featured' => 'off',
-      'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
-      'agent_display_option' => 'agent_info',
-      'agent_id' => $bhagentid,
-      // 'gallery_image_ids' => $bhimgids,
-      // 'featured_image_id' => $bhimgids[0],
-      'action' => $postaction // give api db status, and pre-existing wp id, if exists
-    );
-
+    switch ($scenarioset['name']){
+    	case "OpenHouse_OPEN":
+    		echo "Bring an extra $500";
+    		break;
+    	case "Property_BUSI":
+        // START Property_BUSI import template
+        $retsproperties[$propitem['ListingRid']] = array(
+          'inspiry_property_title' => $propname,
+          'description' => $propitem['MarketingRemarks'],
+          'type' => bhLookupPropertyType($propitem['BUSITYPE']),
+          'status' => 34,
+          'location' => $propitem['City'],
+          'property-id' => $propitem['MLNumber'], // this the the MLS ID
+          'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+          'price' => $propprice,
+          'price-postfix' => '',
+          'video-url' => $propitem['VirtualTourURL'],
+          'address' => $propname,
+          'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+          'featured' => 0, // 0 == not featured, 1 == featured
+          'agent_display_option' => 'agent_info',
+          'agent_id' => $bhagentid,
+          'action' => $postaction // give api db status, and pre-existing wp id, if exists
+        );
+        // END Property_BUSI import template
+    		break;
+    	case "Property_COMM":
+        // START Property_COMM import template
+        $retsproperties[$propitem['ListingRid']] = array(
+          'inspiry_property_title' => $propname,
+          'description' => $propitem['MarketingRemarks'],
+          'type' => bhLookupPropertyType($propitem['COMMTYPE']),
+          'status' => 34,
+          'location' => $propitem['City'],
+          'property-id' => $propitem['MLNumber'], // this the the MLS ID
+          'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+          'price' => $propprice,
+          'price-postfix' => '',
+          'video-url' => $propitem['VirtualTourURL'],
+          'address' => $propname,
+          'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+          'featured' => 0, // 0 == not featured, 1 == featured
+          'agent_display_option' => 'agent_info',
+          'agent_id' => $bhagentid,
+          'action' => $postaction // give api db status, and pre-existing wp id, if exists
+        );
+        // END Property_COMM import template
+    		break;
+    	case "Property_FARM":
+        // START Property_FARM import template
+        $retsproperties[$propitem['ListingRid']] = array(
+          'inspiry_property_title' => $propname,
+          'description' => $propitem['MarketingRemarks'],
+          'type' => bhLookupPropertyType($propitem['PropertyType']),
+          'status' => 34,
+          'location' => $propitem['City'],
+          'bedrooms' => $propitem['Bedrooms'],
+          'bathrooms' => $propitem['Bathrooms'],
+          'garages' => $propitem['FARMGARA'],
+          'property-id' => $propitem['MLNumber'], // this the the MLS ID
+          'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+          'price' => $propprice,
+          'price-postfix' => '',
+          'size' => $propitem['SquareFootage'],
+          'area-postfix' => 'Sq Ft',
+          'video-url' => $propitem['VirtualTourURL'],
+          'address' => $propname,
+          'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+          'featured' => 0, // 0 == not featured, 1 == featured
+          'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
+          'agent_display_option' => 'agent_info',
+          'agent_id' => $bhagentid,
+          'action' => $postaction // give api db status, and pre-existing wp id, if exists
+        );
+        // END Property_FARM import template
+    		break;
+    	case "Property_LAND":
+        // START Property_LAND import template
+        $retsproperties[$propitem['ListingRid']] = array(
+          'inspiry_property_title' => $propname,
+          'description' => $propitem['MarketingRemarks'],
+          'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
+          'status' => 34,
+          'location' => $propitem['City'],
+          'property-id' => $propitem['MLNumber'], // this the the MLS ID
+          'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+          'price' => $propprice,
+          'price-postfix' => '',
+          'video-url' => $propitem['VirtualTourURL'],
+          'address' => $propname,
+          'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+          'featured' => 0, // 0 == not featured, 1 == featured
+          'agent_display_option' => 'agent_info',
+          'agent_id' => $bhagentid,
+          'action' => $postaction // give api db status, and pre-existing wp id, if exists
+        );
+        // END Property_LAND import template
+    		break;
+      case "Property_MULT":
+        // START Property_MULT import template
+        $retsproperties[$propitem['ListingRid']] = array(
+          'inspiry_property_title' => $propname,
+          'description' => $propitem['MarketingRemarks'],
+          'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
+          'status' => 34,
+          'location' => $propitem['City'],
+          'bedrooms' => $propitem['Bedrooms'],
+          'bathrooms' => $propitem['Bathrooms'],
+          'property-id' => $propitem['MLNumber'], // this the the MLS ID
+          'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+          'price' => $propprice,
+          'price-postfix' => '',
+          'size' => $propitem['SquareFootage'],
+          'area-postfix' => 'Sq Ft',
+          'video-url' => $propitem['VirtualTourURL'],
+          'address' => $propname,
+          'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+          'featured' => 0, // 0 == not featured, 1 == featured
+          'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
+          'agent_display_option' => 'agent_info',
+          'agent_id' => $bhagentid,
+          'action' => $postaction // give api db status, and pre-existing wp id, if exists
+        );
+        // END Property_MULT import template
+    		break;
+      case "Property_RESI":
+        // START Property_RESI import template
+        $retsproperties[$propitem['ListingRid']] = array(
+          'inspiry_property_title' => $propname,
+          'description' => $propitem['MarketingRemarks'].'<br/><br/>Listing agent number: '.$propitem['ListingAgentNumber'],
+          'type' => bhLookupPropertyType($propitem['PropertyType']),
+          'status' => 34,
+          'location' => $propitem['City'],
+          'bedrooms' => $propitem['Bedrooms'],
+          'bathrooms' => $propitem['Bathrooms'],
+          'garages' => $propitem['RESIGARA'],
+          'property-id' => $propitem['MLNumber'], // this the the MLS ID
+          'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+          'price' => $propprice,
+          'price-postfix' => '',
+          'size' => $propitem['SquareFootage'],
+          'area-postfix' => 'Sq Ft',
+          'video-url' => $propitem['VirtualTourURL'],
+          'address' => $propname,
+          'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+          'featured' => 0, // 0 == not featured, 1 == featured
+          'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
+          'agent_display_option' => 'agent_info',
+          'agent_id' => $bhagentid,
+          'action' => $postaction // give api db status, and pre-existing wp id, if exists
+        );
+        // END Property_RESI import template
+    		break;
+    } // end swich statement
     if($postaction == 'add_property') {
       $bhimgids = bhImageSet($propitem);
       $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
       $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
     }
-
     unset($bhimgids,$mlsposts);
   } // end $postaction ifelse
 }
@@ -427,6 +577,9 @@ $count = 0;
 foreach($retsproperties as $myproperty) {
 
   echo '<h1>'.$count.' - '.$myproperty['action'].'</h1>';
+  echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
+  print_r($myproperty);
+  echo '</pre>';
 
   $invalid_nonce = false;
   $submitted_successfully = false;
@@ -502,7 +655,7 @@ foreach($retsproperties as $myproperty) {
 
                   // Attach Property Type with Newly Created Property
                   if( isset( $myproperty['type'] ) && ( $myproperty['type'] != "-1" ) ) {
-                      wp_set_object_terms( $property_id, intval( $myproperty['type'] ), 'property-type' );
+                      wp_set_object_terms( $property_id, $myproperty['type'], 'property-type' );
                   }
 
                   // Attach Property City with Newly Created Property
@@ -620,7 +773,7 @@ foreach($retsproperties as $myproperty) {
                   }
 
                   // Attach Property as Featured Post Meta
-                  $featured = ( isset( $myproperty['featured'] ) ) ? 1 : 0 ;
+                  $featured = ( isset( $myproperty['featured'] ) ) ? $myproperty['featured'] : 0 ;
                   if ( $featured ) {
                       update_post_meta( $property_id, 'REAL_HOMES_featured', $featured );
                   }
@@ -637,10 +790,12 @@ foreach($retsproperties as $myproperty) {
                   }
 
                   // if property is being updated, clean up the old meta information related to images
+                  /*
                   if( $action == "update_property" ){
                       delete_post_meta( $property_id, 'REAL_HOMES_property_images' );
                       delete_post_meta( $property_id, '_thumbnail_id' );
                   }
+                  */
 
                   // Attach gallery images with newly created property
                   if ( isset( $myproperty['gallery_image_ids'] ) ) {
@@ -664,20 +819,7 @@ foreach($retsproperties as $myproperty) {
                               update_post_meta ( $property_id, '_thumbnail_id', $gallery_image_ids[0] );
                           }
                       }
-                  }
-
-
-                  if( "add_property" == $myproperty['action'] ) {
-                      /*
-                       * inspiry_submit_notice function in property-submit-handler.php is hooked with this hook
-                       */
-                      // do_action( 'inspiry_after_property_submit', $property_id  );
-                  } else if ( "update_property" == $myproperty['action'] ) {
-                      /*
-                       * no default theme function is hooked with this hook
-                       */
-                      // do_action( 'inspiry_after_property_update', $property_id );
-                  }
+                  } // end gallery if
 
               }
 

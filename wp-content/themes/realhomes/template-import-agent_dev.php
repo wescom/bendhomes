@@ -5,7 +5,24 @@
 /*
 *  Author: Justin Grady
 */
+?>
+<head>
+  <style>
+    .add_agent {
+      color: green;
+    }
 
+    .update_agent {
+      color: orange;
+    }
+
+    .delete_agent {
+      color: red;
+    }
+  </style>
+</head>
+
+<?php
 ini_set('max_execution_time', 0);
 date_default_timezone_set('America/Los_Angeles');
 
@@ -240,7 +257,7 @@ foreach($agentarr as $agentitem) {
       'post_date' => date('Y-m-d H:i:s'),
       'post_date_gmt' => date('Y-m-d H:i:s'),
       'post_content' => 'bio of agent '.$fullname.' goes here.',
-      'post_title' => $fullname . '-TEST330', // full name of agent goes here, becomes wp post title
+      'post_title' => $fullname . '-TEST331', // full name of agent goes here, becomes wp post title
       'post_exerpt' => '',
       'post_status' => 'publish',
       'comment_status' => 'closed',
@@ -275,7 +292,8 @@ $count = 0;
 
 foreach($retsagents as $myagent) {
 
-  echo '<h1>'.$count.' - '.$myagent['action'].'</h1>';
+  echo '<hr/>';
+  echo '<h1 class="'.$myagent['action'].'">'.$count.' - '.$myagent['action'].'</h1>';
   // $myagent['action'] = 'skip_agent';
 
   $invalid_nonce = false;
@@ -287,7 +305,6 @@ foreach($retsagents as $myagent) {
 
       if( $myagent['action'] != 'skip_agent' ) {
 
-        echo '<h3 style="color: blue;">'.$count.' - '.$myagent['action'].'</h3>';
         $new_agent = array();
 
         $new_agent['post_type'] = $myagent['post_type'];
@@ -314,9 +331,9 @@ foreach($retsagents as $myagent) {
         get_currentuserinfo();
         $new_agent['post_author'] = $current_user->ID;
 
-        echo '<pre>agent_start_201<br/>';
-        print_r($new_agent);
-        echo '</pre>agent_end_201<br/>';
+        echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
+        print_r($myagent);
+        echo '</pre>';
 
         /* check the type of action */
         $action = $myagent['action'];
@@ -325,7 +342,6 @@ foreach($retsagents as $myagent) {
           $bhimgids = bhImageSet($myagent['images']);
           $myagent['agent_img_id'] = $bhimgids[0];
           unset($bhimgids);
-          echo '<h1 style="color:red;">'.$action.'</h1>';
           $agent_id = wp_insert_post( $new_agent ); // Insert Agent and get post ID
           if( $agent_id > 0 ){
               $submitted_successfully = true;
@@ -335,7 +351,6 @@ foreach($retsagents as $myagent) {
               }
           }
         } else if( $action == "update_agent" ) {
-            echo '<h1 style="color:orange;">'.$action.'</h1>';
             $new_agent['ID'] = intval( $myagent['agent_id'] );
             // get post pre-existing thumbnail img id, replaced is from loop above
             $myagent['agent_img_id'] = get_post_thumbnail_id( $new_agent['ID'] );
@@ -346,15 +361,14 @@ foreach($retsagents as $myagent) {
             }
             $agent_id = wp_update_post( $new_agent ); // Update Agent and get post ID
             if( $agent_id > 0 ){
-                echo '<h2 style="color:green;">agentid: '.$agent_id.'<br/>imgid:  '.$myagent['agent_img_id'].'<br/>do set haz3 post thumbnail</h2>';
                 // set_post_thumbnail( $agent_id, 17355 );
                 if( !empty ( $myagent['agent_img_id'] )) {
+                  echo '<p style="background-color:brown; color: #fff;">agentid: '.$agent_id.' | imgid:  '.$myagent['agent_img_id'].' | set new agent post thumbnail</p>';
                   update_post_meta( $agent_id, '_thumbnail_id', $myagent['agent_img_id'] );
                 }
                 $updated_successfully = true;
             }
         } else if( $action == "delete_agent" ) {
-            echo '<h1 style="color:red;">'.$action.'</h1>';
             $del_agent['ID'] = intval( $myagent['agent_id'] );
             $agent_id = wp_delete_post( $del_property['ID'] ); // Delete Agent with supplied Agent ID
             $agent_id = 0;
@@ -383,90 +397,6 @@ foreach($retsagents as $myagent) {
   $count++;
 }
 
-
-
-
-
-get_header();
+// get_header();
+// get_footer();
 ?>
-
-    <!-- Page Head -->
-    <?php get_template_part("banners/default_page_banner"); ?>
-
-    <!-- Content -->
-    <div class="container contents single">
-
-        <div class="row">
-
-            <div class="span12 main-wrap">
-
-                <!-- Main Content -->
-                <div class="main">
-
-                    <div class="inner-wrapper">
-                        <?php
-                        /* Page contents */
-                        if ( have_posts() ) :
-                            while ( have_posts() ) :
-                                the_post();
-                                ?>
-                                <article id="post-<?php the_ID(); ?>" <?php post_class("clearfix"); ?>>
-                                    <?php the_content(); ?>
-                                </article>
-                                <?php
-                            endwhile;
-                        endif;
-
-
-                        /* Stuff related to property submit or property edit */
-                        if( is_user_logged_in() ) {
-
-                            if( $invalid_nonce ){
-
-                                alert( __('Error:','framework'),__('Security check failed!','framework') );
-
-                            } else {
-
-                                if ( $submitted_successfully ) {
-
-                                    alert( __('Success:','framework'), get_option('theme_submit_message') );
-
-                                } else if ( $updated_successfully ) {
-
-                                    alert( __('Success:','framework'),__('Property updated successfully!','framework') );
-
-                                } else {
-
-                                    /* if passed parameter is properly set to edit property */
-                                    if( isset( $_GET['edit_property'] ) && ! empty( $_GET['edit_property'] ) ){
-
-                                        get_template_part( 'template-parts/property-edit' );
-
-                                    } else {
-
-                                        get_template_part( 'template-parts/property-submit' );
-
-
-                                    } /* end of add/edit property*/
-
-                                } /* end of submitted or updated successfully */
-
-                            } /* end of invalid nonce */
-
-                        } else {
-
-                            alert( __( 'Login Required:', 'framework' ), __( 'Please login to submit property!', 'framework' ) );
-
-                        }
-                        ?>
-                    </div>
-
-                </div><!-- End Main Content -->
-
-            </div><!-- End span12 -->
-
-        </div><!-- End contents row -->
-
-    </div><!-- End Content -->
-
-<?php get_footer(); ?>
