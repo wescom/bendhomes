@@ -257,7 +257,7 @@ foreach($agentarr as $agentitem) {
       'post_date' => date('Y-m-d H:i:s'),
       'post_date_gmt' => date('Y-m-d H:i:s'),
       'post_content' => 'bio of agent '.$fullname.' goes here.',
-      'post_title' => $fullname . '-TEST331', // full name of agent goes here, becomes wp post title
+      'post_title' => $fullname, // full name of agent goes here, becomes wp post title
       'post_exerpt' => '',
       'post_status' => 'publish',
       'comment_status' => 'closed',
