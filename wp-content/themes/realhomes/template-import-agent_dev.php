@@ -145,9 +145,9 @@ function dbresult($sset) {
               IsActive = 'TRUE'
               ;";
 
-  // echo '<pre>';
-  // print_r($sqlquery);
-  // echo '</pre>';
+  echo '<pre>';
+  print_r($sqlquery);
+  echo '</pre>';
 
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
