@@ -70,7 +70,7 @@ $scenarios = array(
 );
 
 // for now, manually set the data to pull
-$scenarioset = $scenarios['Property_COMM'];
+$scenarioset = $scenarios['Property_RESI'];
 echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenarioset['name'].'</p>';
 
 /* #### FUNCTIONS ##### */
