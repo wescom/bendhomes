@@ -48,7 +48,7 @@ function bhLookupAgent($guid) {
     global $wpdb;
     $guid = "'http://".$guid."'";
     $sqlquery = "SELECT ID FROM $wpdb->posts WHERE guid = ".$guid;
-    // echo $sqlquery;
+    echo $sqlquery;
     $result = $wpdb->get_results( $sqlquery );
   } else {
     $result = NULL;
