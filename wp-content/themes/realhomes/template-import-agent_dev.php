@@ -42,6 +42,8 @@ $scenarios = array(
 
 // for now, manually set the data to pull
 $scenarioset = $scenarios['ActiveAgent_MEMB'];
+print_r($scenarioset);
+
 
 function bhLookupAgent($guid) {
   if($guid != NULL) {
