@@ -18,13 +18,13 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
 $scenarios = array(
-  'OpenHouse_OPEN'=> array(
+  /* 'OpenHouse_OPEN'=> array(
     'count' => 999999,
     'fotos' => 'no',
     'resource' => 'OpenHouse',
     'class' => 'OPEN',
     'name' => 'OpenHouse_OPEN'
-  ),
+  ), */
   'Property_BUSI' => array(
     'count' => 20,
     'fotos' => 'yes',
@@ -70,7 +70,7 @@ $scenarios = array(
 );
 
 // for now, manually set the data to pull
-$scenarioset = $scenarios['Property_RESI'];
+$scenarioset = $scenarios['Property_BUSI'];
 echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenarioset['name'].'</p>';
 
 /* #### FUNCTIONS ##### */
