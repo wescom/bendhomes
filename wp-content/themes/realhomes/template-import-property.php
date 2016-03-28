@@ -287,7 +287,7 @@ function dbresult($sset) {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    $pulldate = strtotime('-14 days'); //'-6 hours' '-1 days'
+    $pulldate = strtotime('-30 days'); //'-6 hours' '-1 days'
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
@@ -639,16 +639,9 @@ foreach($retsproperties as $myproperty) {
                   }
               } else if( $action == "delete_property" ) {
                   $del_property['ID'] = intval( $myproperty['property_id'] );
+                  delete_post_meta( $del_property['ID'], 'REAL_HOMES_property_images' );
+                  delete_post_meta( $del_property['ID'], '_thumbnail_id' );
                   $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
-
-                  echo 'del prop: '.$property_id;
-
-                  if( $property_id > 0 ){
-                      $deleted_successfully = true;
-                      echo '<h1 style="background-color: cyan; color: #fff;">'.$deleted_successfully.' - '.$property_id.'</h1>';
-                  } else {
-                      echo '<h1 style="background-color: #cc0000; color: #ccc;">'.$deleted_successfully.' - '.$property_id.'</h1>';
-                  }
               }
 
               if( $property_id > 0 ){
