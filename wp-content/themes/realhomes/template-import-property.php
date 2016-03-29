@@ -541,7 +541,7 @@ foreach($proparr as $propitem) {
         // START Property_RESI import template
         $retsproperties[$propitem['ListingRid']] = array(
           'inspiry_property_title' => $propname,
-          'description' => $propitem['MarketingRemarks'].'<br/><br/>Listing agent number: '.$propitem['ListingAgentNumber'],
+          'description' => $propitem['MarketingRemarks'],
           'type' => bhLookupPropertyType($propitem['PropertyType']),
           'status' => 34,
           'location' => $propitem['City'],
