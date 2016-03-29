@@ -94,7 +94,7 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
     $pulldate['recent'] = file_get_contents($fnamerecent);
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
-    $pulldate['recent'] = strtotime('-30 days');
+    $pulldate['recent'] = strtotime('-7 days');
   }
   // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
@@ -243,7 +243,7 @@ function runRetsQuery($qvars) {
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
 
-echo '<h1 style="border: 1px solid red; color: red;">start - '.date(DATE_RSS).'</h1>';
+echo '<h1 style="border: 3px solid orange; color: orange; padding: 3px;">start - '.date(DATE_RSS).'</h1>';
 
 foreach($scenarios as $qvars) {
   // 1. Get RETS data
@@ -270,6 +270,6 @@ foreach($scenarios as $qvars) {
 
 // echo '<hr/>';
 // print_r($get);
-echo '<h1 style="border: 1px solid green; color: green;">completed - '.date(DATE_RSS).'</h1>';
+echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>

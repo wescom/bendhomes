@@ -320,11 +320,6 @@ function dbresult($sset) {
 
 }
 
-$proparr = dbresult($scenarioset);
-// echo '<pre> test199 -- <br/>';
-// print_r($proparr);
-// echo '</pre>';
-
 /* ############################ */
 /* #### IMAGES PROCESSING ##### */
 /* ############################ */
@@ -379,6 +374,13 @@ function bhImageSet($item) {
   return($bhimgids);
 }
 
+
+
+
+
+
+$proparr = dbresult($scenarioset);
+
 /* #### PROPERTY DATA LOOP ##### */
 $retsproperties = array(); // first declaration
 foreach($proparr as $propitem) {
@@ -401,7 +403,7 @@ foreach($proparr as $propitem) {
     $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
     $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
   } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
-    $propname = $scenarioset['name'].' -- '.$propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
+    $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
     $propname = trim($propname);
     $propprice = formatprice($propitem['ListingPrice']);
 
