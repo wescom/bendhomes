@@ -70,6 +70,7 @@ switch($theme_homepage_module){
                         }
                     endif;
 
+                    echo 'test199';
 
                     /* Homepage Contents from Page Editor */
                     if ( have_posts() ) :
@@ -88,13 +89,17 @@ switch($theme_homepage_module){
                         endwhile;
                     endif;
 
+                    echo 'test200';
 
                     /* Homepage Properties */
                     $show_home_properties = get_option('theme_show_home_properties');
                     if( $show_home_properties == 'true' ){
+                        echo 'test209';
                         get_template_part("template-parts/home-properties") ;
+                        echo 'test210';
                     }
 
+                    echo 'test201';
 
                     /* Featured Properties */
                     $show_featured_properties = get_option('theme_show_featured_properties');
