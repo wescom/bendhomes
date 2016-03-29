@@ -431,7 +431,7 @@ foreach($proparr as $propitem) {
           'video-url' => $propitem['VirtualTourURL'],
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-          'featured' => 0, // 0 == not featured, 1 == featured
+          // 'featured' => 0, // 0 == not featured, 1 == featured
           'agent_display_option' => 'agent_info',
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
@@ -453,7 +453,7 @@ foreach($proparr as $propitem) {
           'video-url' => $propitem['VirtualTourURL'],
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-          'featured' => 0, // 0 == not featured, 1 == featured
+          // 'featured' => 0, // 0 == not featured, 1 == featured
           'agent_display_option' => 'agent_info',
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
@@ -480,7 +480,7 @@ foreach($proparr as $propitem) {
           'video-url' => $propitem['VirtualTourURL'],
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-          'featured' => 0, // 0 == not featured, 1 == featured
+          // 'featured' => 0, // 0 == not featured, 1 == featured
           'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
           'agent_display_option' => 'agent_info',
           'agent_id' => $bhagentid,
@@ -503,7 +503,7 @@ foreach($proparr as $propitem) {
           'video-url' => $propitem['VirtualTourURL'],
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-          'featured' => 0, // 0 == not featured, 1 == featured
+          // 'featured' => 0, // 0 == not featured, 1 == featured
           'agent_display_option' => 'agent_info',
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
@@ -529,7 +529,7 @@ foreach($proparr as $propitem) {
           'video-url' => $propitem['VirtualTourURL'],
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-          'featured' => 0, // 0 == not featured, 1 == featured
+          // 'featured' => 0, // 0 == not featured, 1 == featured
           'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
           'agent_display_option' => 'agent_info',
           'agent_id' => $bhagentid,
@@ -557,7 +557,7 @@ foreach($proparr as $propitem) {
           'video-url' => $propitem['VirtualTourURL'],
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-          'featured' => 0, // 0 == not featured, 1 == featured
+          // 'featured' => 0, // 0 == not featured, 1 == featured
           'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
           'agent_display_option' => 'agent_info',
           'agent_id' => $bhagentid,
