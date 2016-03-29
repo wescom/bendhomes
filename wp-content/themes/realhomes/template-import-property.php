@@ -26,42 +26,42 @@ $scenarios = array(
     'name' => 'OpenHouse_OPEN'
   ), */
   'Property_BUSI' => array(
-    'count' => 20,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'BUSI',
     'name' => 'Property_BUSI'
   ),
   'Property_COMM' => array(
-    'count' => 20,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'COMM',
     'name' => 'Property_COMM'
   ),
   'Property_FARM' => array(
-    'count' => 20,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'FARM',
     'name' => 'Property_FARM'
   ),
   'Property_LAND' => array(
-    'count' => 20,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'LAND',
     'name' => 'Property_LAND'
   ),
   'Property_MULT' => array(
-    'count' => 20,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'MULT',
     'name' => 'Property_MULT'
   ),
   'Property_RESI' => array(
-    'count' => 20,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'RESI',
