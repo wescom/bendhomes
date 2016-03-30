@@ -225,6 +225,8 @@ function bhImageSet($imagelist) {
 $retsagents = array(); // first declaration
 foreach($agentarr as $agentitem) {
 
+  print_r($agentitem);
+
   // remove excess whitepaces within names as they come from RETS
   $fullname = preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $agentitem['FullName']);
   $urlslug = $fullname;
@@ -258,7 +260,7 @@ foreach($agentarr as $agentitem) {
       'post_author' => '', // left empty on purpose
       'post_date' => date('Y-m-d H:i:s'),
       'post_date_gmt' => date('Y-m-d H:i:s'),
-      'post_content' => 'bio of agent '.$fullname.' goes here.',
+      'post_content' => $agentitem['OfficeName'],
       'post_title' => $fullname, // full name of agent goes here, becomes wp post title
       'post_exerpt' => '',
       'post_status' => 'publish',
