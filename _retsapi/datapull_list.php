@@ -239,6 +239,19 @@ function runRetsQuery($qvars) {
   return $itemsarr;
 }
 
+/* gets the data from a URL */
+function get_url($url) {
+	$ch = curl_init();
+	$timeout = 14400; // 0 = infinate, 14400 = 4 hours
+  curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, 0);
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	$data = curl_exec($ch);
+	curl_close($ch);
+	return $data;
+}
+
 /* ##### ######### ####### */
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
@@ -266,7 +279,12 @@ foreach($scenarios as $qvars) {
 /* ##### PULL DATA INTO WP #### */
 /* ##### ######### ####### #### */
 
-// $get = file_get_contents('http://dev.bendhomes.com/import-property-test/');
+$get = array();
+$get['properties'] = get_url('http://dev.bendhomes.com/import-agents/');
+sleep(600); // sleep for 10 minutes
+$get['properties'] = get_url('http://dev.bendhomes.com/import-property-test/');
+sleep(600);
+
 
 // echo '<hr/>';
 // print_r($get);
