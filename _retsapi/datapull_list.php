@@ -256,7 +256,7 @@ function get_url($url) {
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
 
-echo '<h1 style="border: 3px solid orange; color: orange; padding: 3px;">start - '.date(DATE_RSS).'</h1>';
+echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).'</h1>';
 
 foreach($scenarios as $qvars) {
   // 1. Get RETS data
@@ -281,7 +281,7 @@ foreach($scenarios as $qvars) {
 
 function pullWPdata() {
   $get = array();
-  $msg = NULL;
+  $msg = '<h4>WP import data</h4>';
 
   $msg .= 'start: importing WP properties data '.date(DATE_RSS)."<br/>\n";
   $get['agents'] = get_url('http://dev.bendhomes.com/import-agents/');
@@ -302,7 +302,7 @@ echo '<pre style="background-color: #ececec;">';
 echo pullWPdata();
 echo '</pre>';
 
-// echo '<hr/>';
+echo '<hr/>';
 // print_r($get);
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
