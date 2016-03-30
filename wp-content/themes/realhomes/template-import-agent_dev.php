@@ -145,9 +145,9 @@ function dbresult($sset) {
               IsActive = 'TRUE'
               ;";
 
-  echo '<pre>';
-  print_r($sqlquery);
-  echo '</pre>';
+  // echo '<pre>';
+  // print_r($sqlquery);
+  // echo '</pre>';
 
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
@@ -270,16 +270,16 @@ foreach($agentarr as $agentitem) {
       'images' => $agentitem['images'], // pipe delimited list of rets api images
       'office_number' => $agentitem['OfficeNumber'],
       'REAL_HOMES_meta' => array(
-        'agent_email' => 'testemail@emailserver.com',
-        'mobile_number' => '541-555-1212',
-        'office_number' => '541-633-2190',
-        'fax_number' => '541-365-4751',
-        'facebook_url' => 'http://www.facebook.com/testagent',
-        'twitter_url' => 'http://www.twitter.com/testagent',
-        'google_plus_url' => 'https://plus.google.com/testagent',
-        'linked_in_url' => 'https://www.linkedin.com/in/testagent',
-        'banner_title' => NULL,
-        'banner_sub_title' => 'Senior agent, job title sample',
+        'agent_email' => '',
+        'mobile_number' => '',
+        'office_number' => '',
+        'fax_number' => '',
+        'facebook_url' => '',
+        'twitter_url' => '',
+        'google_plus_url' => '',
+        'linked_in_url' => '',
+        'banner_title' => '',
+        'banner_sub_title' => '',
       ),
       'agent_member_number' => $agentitem['MemberNumber'], // unique identifier of agent in wp
       'agent_guid' => $guid, // this must *never* change as is the unique id per agent
@@ -378,10 +378,12 @@ foreach($retsagents as $myagent) {
 
         if($agent_id > 0) {
 
-          foreach($myagent['REAL_HOMES_meta'] as $metaitemkey => $metaitemvalue ) {
-            // Attach Bedrooms Post Meta
-            if( (isset( $metaitemkey)) && (!empty($metaitemkey)) ) {
-                update_post_meta( $agent_id, 'REAL_HOMES_'.$metaitemkey, $metaitemvalue );
+          if( (isset( $myagent['REAL_HOMES_meta'])) && (!empty($myagent['REAL_HOMES_meta'])) ) {
+            foreach($myagent['REAL_HOMES_meta'] as $metaitemkey => $metaitemvalue ) {
+              // Attach Bedrooms Post Meta
+              if( (isset( $metaitemkey)) && (!empty($metaitemkey)) ) {
+                  update_post_meta( $agent_id, 'REAL_HOMES_'.$metaitemkey, $metaitemvalue );
+              }
             }
           }
 
