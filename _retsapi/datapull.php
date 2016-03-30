@@ -133,7 +133,7 @@ foreach ($itemsarr as $prop) {
 
 echo '<pre style="background-color: brown; color: #fff;">';
 echo '<p>count: '.$i.'</p>';
-// print_r($itemsarr);
+print_r($itemsarr);
 echo '</pre>';
 
 $jsondata = json_encode($itemsarr);

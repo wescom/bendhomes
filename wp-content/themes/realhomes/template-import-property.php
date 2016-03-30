@@ -411,6 +411,8 @@ foreach($proparr as $propitem) {
     $agentposts = bhLookupAgent($agentguid);
     $bhagentid = $agentposts[0];
     $bhagentid = $bhagentid->{ID};
+    // options: agent_info,
+    $bhagentdisplayoption = 'none'; // my_profile_info, agent_info, none
 
     switch ($scenarioset['name']){
     	case "OpenHouse_OPEN":
@@ -432,7 +434,7 @@ foreach($proparr as $propitem) {
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
           // 'featured' => 0, // 0 == not featured, 1 == featured
-          'agent_display_option' => 'agent_info',
+          'agent_display_option' => $bhagentdisplyoption,
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
         );
@@ -454,7 +456,7 @@ foreach($proparr as $propitem) {
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
           // 'featured' => 0, // 0 == not featured, 1 == featured
-          'agent_display_option' => 'agent_info',
+          'agent_display_option' => $bhagentdisplyoption,
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
         );
@@ -482,7 +484,7 @@ foreach($proparr as $propitem) {
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
           // 'featured' => 0, // 0 == not featured, 1 == featured
           'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
-          'agent_display_option' => 'agent_info',
+          'agent_display_option' => $bhagentdisplyoption,
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
         );
@@ -504,7 +506,7 @@ foreach($proparr as $propitem) {
           'address' => $propname,
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
           // 'featured' => 0, // 0 == not featured, 1 == featured
-          'agent_display_option' => 'agent_info',
+          'agent_display_option' => $bhagentdisplyoption,
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
         );
@@ -531,7 +533,7 @@ foreach($proparr as $propitem) {
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
           // 'featured' => 0, // 0 == not featured, 1 == featured
           'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
-          'agent_display_option' => 'agent_info',
+          'agent_display_option' => $bhagentdisplyoption,
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
         );
@@ -559,7 +561,7 @@ foreach($proparr as $propitem) {
           'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
           // 'featured' => 0, // 0 == not featured, 1 == featured
           'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
-          'agent_display_option' => 'agent_info',
+          'agent_display_option' => $bhagentdisplyoption,
           'agent_id' => $bhagentid,
           'action' => $postaction // give api db status, and pre-existing wp id, if exists
         );
