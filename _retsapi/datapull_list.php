@@ -256,7 +256,7 @@ function get_url($url) {
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
 
-echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).'</h1>';
+echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
 foreach($scenarios as $qvars) {
   // 1. Get RETS data
