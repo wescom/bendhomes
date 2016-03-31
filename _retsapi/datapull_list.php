@@ -287,13 +287,13 @@ function pullWPdata() {
 
   $msg .= 'start: importing WP properties data '.date(DATE_RSS)."<br/>\n";
   $get['agents'] = get_url('http://dev.bendhomes.com/import-agents/');
-  $msg .= print_r($get['agents'],true);
+  // $msg .= print_r($get['agents'],true);
   $msg .= 'end: importing WP properties data '.date(DATE_RSS)."<br/>\n";
   sleep(300); // sleep for 5 minutes
 
   $msg .= 'start: importing WP agent data '.date(DATE_RSS)."<br/>\n";
-  $get['properties'] = get_url('http://dev.bendhomes.com/import-property-test/');
-  $msg .= print_r($get['properties'],true);
+  $get['properties'] = get_url('http://dev.bendhomes.com/bh-import-properties/');
+  // $msg .= print_r($get['properties'],true);
   $msg .= 'end: importing WP agent data '.date(DATE_RSS)."<br/>\n";
   sleep(300);
 
@@ -302,10 +302,9 @@ function pullWPdata() {
 
 echo '<pre style="background-color: #ececec;">';
 echo pullWPdata();
+echo '<hr/>';
 echo '</pre>';
 
-echo '<hr/>';
-// print_r($get);
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>
