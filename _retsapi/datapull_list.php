@@ -262,17 +262,19 @@ foreach($scenarios as $qvars) {
   // 1. Get RETS data
   $rets_data = runRetsQuery($qvars);
 
+  /*
   echo '<pre style="background-color: brown; color: #fff;">';
   echo $rets_data['ListingAgentFullName'].'<br/>';
   echo $rets_data['ListingAgentMLSID'].'<br/>';
   echo $rets_data['ListingAgentNumber'].'<br/>';
   echo '</pre>';
+  */
 
   // 2. specify table we want data to go into
   $db_table = $qvars['resource'].'_'.$qvars['class'];
   // 3. populate local database with harvested RETS data
   $do = dbpopulate($rets_data,$db_table);
-  echo $do.' --- '.$db_table;
+  // echo $do.' --- '.$db_table;
 }
 
 /* ##### ######### ####### #### */
