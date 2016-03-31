@@ -270,7 +270,7 @@ foreach($agentarr as $agentitem) {
       'post_name' => $urlslug,
       'post_type' => 'agent',
       'images' => $agentitem['images'], // pipe delimited list of rets api images
-      'office_number' => $agentitem['OfficeNumber'],
+      'office_number' => $agentitem['OfficeNumber'], // MLS number of office
       'REAL_HOMES_meta' => array(
         'agent_email' => '',
         'mobile_number' => '',
@@ -335,9 +335,9 @@ foreach($retsagents as $myagent) {
         get_currentuserinfo();
         $new_agent['post_author'] = $current_user->ID;
 
-        echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
-        print_r($myagent);
-        echo '</pre>';
+        // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
+        // print_r($myagent);
+        // echo '</pre>';
 
         /* check the type of action */
         $action = $myagent['action'];
@@ -367,7 +367,7 @@ foreach($retsagents as $myagent) {
             if( $agent_id > 0 ){
                 // set_post_thumbnail( $agent_id, 17355 );
                 if( !empty ( $myagent['agent_img_id'] )) {
-                  echo '<p style="background-color:brown; color: #fff;">agentid: '.$agent_id.' | imgid:  '.$myagent['agent_img_id'].' | set new agent post thumbnail</p>';
+                  // echo '<p style="background-color:brown; color: #fff;">agentid: '.$agent_id.' | imgid:  '.$myagent['agent_img_id'].' | set new agent post thumbnail</p>';
                   update_post_meta( $agent_id, '_thumbnail_id', $myagent['agent_img_id'] );
                 }
                 $updated_successfully = true;
