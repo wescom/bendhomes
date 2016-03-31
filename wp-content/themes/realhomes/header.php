@@ -157,7 +157,6 @@
 
                     <div class="menu-and-contact-wrap">
                         <?php
-                        echo 'test300';
                         $header_phone = get_option('theme_header_phone');
                         if( !empty($header_phone) ){
 
