@@ -81,7 +81,8 @@ function bhLookupAgent($guid) {
   if($guid != NULL) {
     global $wpdb;
     $guid = "'http://".$guid."'";
-    $sqlquery = "SELECT ID FROM $wpdb->posts WHERE guid = ".$guid;
+    // ID == , post_title == agent full name
+    $sqlquery = "SELECT ID,post_title FROM $wpdb->posts WHERE guid = ".$guid;
     // echo $sqlquery;
     $result = $wpdb->get_results( $sqlquery );
   } else {
@@ -400,9 +401,14 @@ function dataPreProc($proparr,$scenarioset) {
 
       $agentguid = 'agent_'.$propitem['ListingAgentNumber'];
       $agentposts = bhLookupAgent($agentguid);
+
       $bhagentid = $agentposts[0];
       $bhagentid = $bhagentid->{ID};
+      $bhagentfullname = $agentposts[0];
+      $bhagentfullname = $bhagentfullname->{post_title};
+
       $bhagentdisplayoption = 'none'; // my_profile_info, agent_info, none
+      $bhmarketingremarks = $propitem['MarketingRemarks'].'<br/><br/><strong>Listing Agent: </strong><br/>'.$bhagentfullname.'<br/>'.$propitem['ListingOfficeName'];
 
       switch ($scenarioset['name']){
       	case "OpenHouse_OPEN":
@@ -411,7 +417,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_BUSI import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
-            'description' => $propitem['MarketingRemarks'],
+            'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['BUSITYPE']),
             'status' => 34,
             'location' => $propitem['City'],
@@ -433,7 +439,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_COMM import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
-            'description' => $propitem['MarketingRemarks'],
+            'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['COMMTYPE']),
             'status' => 34,
             'location' => $propitem['City'],
@@ -455,7 +461,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_FARM import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
-            'description' => $propitem['MarketingRemarks'],
+            'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertyType']),
             'status' => 34,
             'location' => $propitem['City'],
@@ -483,7 +489,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_LAND import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
-            'description' => $propitem['MarketingRemarks'],
+            'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
             'status' => 34,
             'location' => $propitem['City'],
@@ -505,7 +511,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_MULT import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
-            'description' => $propitem['MarketingRemarks'],
+            'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
             'status' => 34,
             'location' => $propitem['City'],
@@ -532,7 +538,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_RESI import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
-            'description' => $propitem['MarketingRemarks'].'<br/><br/>Listing agent number: '.$propitem['ListingAgentNumber'],
+            'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertyType']),
             'status' => 34,
             'location' => $propitem['City'],
