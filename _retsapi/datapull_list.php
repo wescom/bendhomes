@@ -289,13 +289,13 @@ function pullWPdata() {
   $get['agents'] = get_url('http://dev.bendhomes.com/import-agents/');
   $msg .= print_r($get['agents'],true);
   $msg .= 'end: importing WP properties data '.date(DATE_RSS)."<br/>\n";
-  sleep(600); // sleep for 10 minutes
+  sleep(300); // sleep for 5 minutes
 
   $msg .= 'start: importing WP agent data '.date(DATE_RSS)."<br/>\n";
   $get['properties'] = get_url('http://dev.bendhomes.com/import-property-test/');
   $msg .= print_r($get['properties'],true);
   $msg .= 'end: importing WP agent data '.date(DATE_RSS)."<br/>\n";
-  sleep(600);
+  sleep(300);
 
   return $msg;
 }
