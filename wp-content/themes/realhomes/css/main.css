@@ -1612,7 +1612,8 @@ p .icon-remove {
 }
 
 .property-items {
-  background: url(../images/container-gradient.png) #fff repeat-x 0 0;
+  /* background: url(../images/container-gradient.png) #fff repeat-x 0 0; */
+  background-color: #ffffff;
   text-align: center;
   overflow: hidden;
   padding-bottom: 20px;
