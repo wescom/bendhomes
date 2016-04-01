@@ -20,15 +20,20 @@
         <?php
         $recent_posts_args = array(
             'post_type' => 'post',
-            'cat' => '68',
+            // 'cat' => '68',
             'posts_per_page' => 9,
-            'ignore_sticky_posts' => 0,
+            'ignore_sticky_posts' => 1,
             'tax_query' => array(
                 array(
-                    'taxonomy' => 'post_format',
-                    'field' => 'slug',
-                    'terms' => array('post-format-quote', 'post-format-link', 'post-format-audio'),
-                    'operator' => 'NOT IN'
+                  'taxonomy' => 'category',
+                  'field'    => 'slug',
+                  'terms'    => array( 'real-estate-news' )
+                  /*
+                  'taxonomy' => 'post_format',
+                  'field' => 'slug',
+                  'terms' => array('post-format-quote', 'post-format-link', 'post-format-audio'),
+                  'operator' => 'NOT IN'
+                  */
                 )
             ),
             'meta_query' => array(
