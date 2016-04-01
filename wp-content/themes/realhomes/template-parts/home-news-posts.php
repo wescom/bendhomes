@@ -20,7 +20,8 @@
         <?php
         $recent_posts_args = array(
             'post_type' => 'post',
-            'posts_per_page' => 6,
+            'cat' => '68',
+            'posts_per_page' => 3,
             'ignore_sticky_posts' => 1,
             'tax_query' => array(
                 array(
