@@ -4,67 +4,69 @@ include(RETSABSPATH."/inc/header.php");
 
 ini_set('max_execution_time', 0);
 
+$centralcount = 5;
+
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
   ),
   /*
   'Agent_MEMB'=> array(
-    'count' => 999999,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Agent',
     'class' => 'MEMB'
   ), */
   /*
   'Office_OFFI'=> array(
-    'count' => 999999,
+    'count' => $centralcount,
     'fotos' => 'no',
     'resource' => 'Office',
     'class' => 'OFFI'
   ),*/
   /*
   'OpenHouse_OPEN'=> array(
-    'count' => 999999,
+    'count' => $centralcount,
     'fotos' => 'no',
     'resource' => 'OpenHouse',
     'class' => 'OPEN'
   ),*/
 
   'Property_BUSI' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'BUSI'
   ),
   'Property_COMM' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'COMM'
   ),
   'Property_FARM' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'FARM'
   ),
   'Property_LAND' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'LAND'
   ),
   'Property_MULT' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'MULT'
   ),
   'Property_RESI' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'RESI'
@@ -94,7 +96,7 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
     $pulldate['recent'] = file_get_contents($fnamerecent);
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
-    $pulldate['recent'] = strtotime('-3 days');
+    $pulldate['recent'] = strtotime('-7 days');
   }
   // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
@@ -243,7 +245,7 @@ function runRetsQuery($qvars) {
 function get_url($url) {
 	$ch = curl_init();
 	$timeout = 14400; // 0 = infinate, 14400 = 4 hours
-  curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, 0);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
@@ -285,16 +287,16 @@ function pullWPdata() {
   $get = array();
   $msg = '<h4>WP import data</h4>';
 
-  $msg .= 'start: importing WP properties data '.date(DATE_RSS)."<br/>\n";
-  $get['agents'] = get_url('http://dev.bendhomes.com/import-agents/');
-  // $msg .= print_r($get['agents'],true);
-  $msg .= 'end: importing WP properties data '.date(DATE_RSS)."<br/>\n";
+  $msg .= 'start: importing WP agents data '.date(DATE_RSS)."<br/>\n";
+  $get['agents'] = get_url('http://dev.bendhomes.com/bh-import-agents/');
+  $msg .= print_r($get['agents'],true);
+  $msg .= 'end: importing WP agents data '.date(DATE_RSS)."<br/>\n";
   sleep(300); // sleep for 5 minutes
 
-  $msg .= 'start: importing WP agent data '.date(DATE_RSS)."<br/>\n";
+  $msg .= 'start: importing WP property data '.date(DATE_RSS)."<br/>\n";
   $get['properties'] = get_url('http://dev.bendhomes.com/bh-import-properties/');
-  // $msg .= print_r($get['properties'],true);
-  $msg .= 'end: importing WP agent data '.date(DATE_RSS)."<br/>\n";
+  $msg .= print_r($get['properties'],true);
+  $msg .= 'end: importing WP property data '.date(DATE_RSS)."<br/>\n";
   sleep(300);
 
   return $msg;
