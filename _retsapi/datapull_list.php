@@ -6,7 +6,7 @@ ini_set('max_execution_time', 0);
 
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
-    'count' => 999999,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
@@ -34,37 +34,37 @@ $scenarios = array(
   ),*/
 
   'Property_BUSI' => array(
-    'count' => 999999,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'BUSI'
   ),
   'Property_COMM' => array(
-    'count' => 999999,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'COMM'
   ),
   'Property_FARM' => array(
-    'count' => 999999,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'FARM'
   ),
   'Property_LAND' => array(
-    'count' => 999999,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'LAND'
   ),
   'Property_MULT' => array(
-    'count' => 999999,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'MULT'
   ),
   'Property_RESI' => array(
-    'count' => 999999,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'RESI'
