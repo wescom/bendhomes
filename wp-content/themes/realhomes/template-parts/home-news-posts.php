@@ -22,7 +22,7 @@
             'post_type' => 'post',
             'cat' => '68',
             'posts_per_page' => 9,
-            'ignore_sticky_posts' => 1,
+            'ignore_sticky_posts' => 0,
             'tax_query' => array(
                 array(
                     'taxonomy' => 'post_format',
