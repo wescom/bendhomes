@@ -35,7 +35,8 @@
                   'operator' => 'NOT IN'
                   */
                 )
-            ),
+            )
+            /*
             'meta_query' => array(
                 'relation' => 'OR',
                 array(
@@ -51,6 +52,7 @@
                     'compare' => 'EXISTS'
                 )
             )
+            */
         );
 
         // The Query
