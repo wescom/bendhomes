@@ -7,7 +7,6 @@ ini_set('max_execution_time', 0);
 $centralcount = 10;
 
 $scenarios = array(
-  /*
   'ActiveAgent_MEMB' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
@@ -20,7 +19,6 @@ $scenarios = array(
     'resource' => 'Agent',
     'class' => 'MEMB'
   ),
-  */
   /*
   'Office_OFFI'=> array(
     'count' => $centralcount,
