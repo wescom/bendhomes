@@ -37,8 +37,8 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
   file_put_contents($fnamerecent,$pulldate['now']);
 
   // first part, resource and class uses the minimum unique key for query, then last modified
-  $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
-  // $usethisquery = ''.$funiversalqueries[$resource][$class].'';
+  // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+  $usethisquery = ''.$funiversalqueries[$resource][$class].'';
 
   echo '</pre>';
   print_r($usethisquery);

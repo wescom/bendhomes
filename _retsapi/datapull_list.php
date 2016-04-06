@@ -4,9 +4,10 @@ include(RETSABSPATH."/inc/header.php");
 
 ini_set('max_execution_time', 0);
 
-$centralcount = 999999;
+$centralcount = 10;
 
 $scenarios = array(
+  /*
   'ActiveAgent_MEMB' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
@@ -19,6 +20,7 @@ $scenarios = array(
     'resource' => 'Agent',
     'class' => 'MEMB'
   ),
+  */
   /*
   'Office_OFFI'=> array(
     'count' => $centralcount,
@@ -75,7 +77,7 @@ $scenarios = array(
 /* ##### ######### ##### */
 
 /* ##### Build RETS db query ##### */
-function buildRetsQuery($fqvars,$funiversalqueries) {
+function buildRetsQuery($fqvars) {
   $resource = $fqvars['resource'];
   $class = $fqvars['class'];
 
@@ -94,16 +96,18 @@ function buildRetsQuery($fqvars,$funiversalqueries) {
   } else {
     $pulldate['recent'] = strtotime('-7 days');
   }
-  // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
+
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
+  $funiversalqueries = universalqueries($pulldate['retsquery']);
+
+  // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
+
   echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
   file_put_contents($fnamerecent,$pulldate['now']);
 
   // first part, resource and class uses the minimum unique key for query, then last modified
-  $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
-  // $usethisquery = ''.$funiversalqueries[$resource][$class].'';
-
-  // print_r($usethisquery);
+  // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+  $usethisquery = ''.$funiversalqueries[$resource][$class].'';
   return $usethisquery;
 }
 
@@ -141,6 +145,8 @@ function dbpopulate($items,$dbtable) {
     $query .= " (`".implode("`, `", array_keys($escarray))."`)";
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
 
+    // print_r($query);
+
     if (mysqli_query($dbConnection, $query)) {
         $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
     } else {
@@ -155,11 +161,13 @@ function dbpopulate($items,$dbtable) {
 /* ##### ######### ##### */
 
 function runRetsQuery($qvars) {
-  global $universalqueries;
   global $universalkeys;
   global $rets;
 
-  $query = buildRetsQuery($qvars,$universalqueries);
+  $query = buildRetsQuery($qvars);
+
+  print_r($query);
+
   $results = $rets->Search(
       $qvars['resource'],
       $qvars['class'],
@@ -172,6 +180,10 @@ function runRetsQuery($qvars) {
           'StandardNames' => 0, // give system names
       ]
   );
+
+  // echo '<pre>';
+  // print_r($results);
+  // echo '</pre>';
 
   // convert from objects to array, easier to process
   $temparr = $results->toArray();
@@ -260,6 +272,10 @@ foreach($scenarios as $qvars) {
   // 1. Get RETS data
   $rets_data = runRetsQuery($qvars);
 
+  // echo '<pre>';
+  // print_r($rets_data);
+  // echo '</pre>';
+
   /*
   echo '<pre style="background-color: brown; color: #fff;">';
   echo $rets_data['ListingAgentFullName'].'<br/>';
@@ -270,9 +286,10 @@ foreach($scenarios as $qvars) {
 
   // 2. specify table we want data to go into
   $db_table = $qvars['resource'].'_'.$qvars['class'];
+  echo '<p>populating:'.$db_table.'</p>';
   // 3. populate local database with harvested RETS data
   $do = dbpopulate($rets_data,$db_table);
-  // echo $do.' --- '.$db_table;
+  // echo $do.' --- '.$db_table; // echo for db query debugging
 }
 
 /* ##### ######### ####### #### */
@@ -299,7 +316,7 @@ function pullWPdata() {
 }
 
 echo '<pre style="background-color: #ececec;">';
-echo pullWPdata();
+// echo pullWPdata();
 echo '<hr/>';
 echo '</pre>';
 

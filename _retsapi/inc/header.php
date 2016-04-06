@@ -32,36 +32,40 @@ $connect = $rets->Login();
 
 // print_r($rets);
 
-$universalqueries = array(
-  'Property' => array(
-    'BUSI' => '(ListingRid=0+)',
-    'COMM' => '(ListingRid=0+)',
-    'FARM' => '(ListingRid=0+)',
-    'LAND' => '(ListingRid=0+)',
-    'MULT' => '(ListingRid=0+)',
-    'RESI' => '(ListingRid=0+)'
-  ),
-  'ActiveAgent' => array(
-    'MEMB' => '(MemberNumber=0+)'
-    // 'MEMB' => '(IsActive=1)'
-  ),
-  'Agent' => array(
-    'MEMB' => '(MemberNumber=0+)'
-    // 'MEMB' => '(IsActive=1)'
-  ),
-  'MemberAssociation' => array(
-    'ASSC' => '(MemberNumber=0+)'
-  ),
-  'Office' => array(
-    'OFFI' => '(OfficeNumber=0+)'
-  ),
-  'OfficeAssociation' => array(
-    'ASSC' => '(OfficeAssociationKey=0+)'
-  ),
-  'OpenHouse' => array(
-    'OPEN' => '(ListingRid=0+)'
-  ),
-);
+function universalqueries($pulltime) {
+
+  $universalqueries = array(
+    'Property' => array(
+      'BUSI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'COMM' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'FARM' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'LAND' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'MULT' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'RESI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)'
+    ),
+    'ActiveAgent' => array(
+      'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      // 'MEMB' => '(IsActive=1)'
+    ),
+    'Agent' => array(
+      'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      // 'MEMB' => '(IsActive=1)'
+    ),
+    'MemberAssociation' => array(
+      'ASSC' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
+    ),
+    'Office' => array(
+      'OFFI' => '(OfficeNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
+    ),
+    'OfficeAssociation' => array(
+      'ASSC' => '(OfficeAssociationKey=0+), (LastModifiedDateTime='.$pulltime.'+)',
+    ),
+    'OpenHouse' => array(
+      'OPEN' => '(OpenHouseRid=0+)',
+    ),
+  );
+  return $universalqueries;
+}
 
 $universalkeys = array(
   'Property' => array(

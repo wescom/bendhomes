@@ -26,48 +26,96 @@ $scenarios = array(
     'name' => 'OpenHouse_OPEN'
   ), */
   'Property_BUSI' => array(
-    'count' => 20,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'BUSI',
     'name' => 'Property_BUSI'
   ),
   'Property_COMM' => array(
-    'count' => 20,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'COMM',
     'name' => 'Property_COMM'
   ),
   'Property_FARM' => array(
-    'count' => 20,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'FARM',
     'name' => 'Property_FARM'
   ),
   'Property_LAND' => array(
-    'count' => 20,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'LAND',
     'name' => 'Property_LAND'
   ),
   'Property_MULT' => array(
-    'count' => 20,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'MULT',
     'name' => 'Property_MULT'
   ),
   'Property_RESI' => array(
-    'count' => 20,
+    'count' => 999999,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'RESI',
     'name' => 'Property_RESI'
   )
 );
+
+if ( ! function_exists( 'delete_associated_media' ) ) {
+  function delete_associated_media($post_id) {
+    global $wpdb;
+    $imgdir = ABSPATH.'wp-content/uploads/';
+
+    // get post ids of all images
+    $imageids = get_post_meta( $post_id, 'REAL_HOMES_property_images' );
+
+    if (empty($imageids)) return;
+
+    // query the db and get image path and filename
+    foreach ($imageids as $imgid) {
+        if($imgid != NULL) {
+          $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
+          // echo $sqlquery;
+          $results = $wpdb->get_results( $sqlquery, ARRAY_A );
+        } else {
+          $results = NULL;
+        }
+
+        foreach($results as $result) {
+          echo '<pre style="color:blue; border: 2px solid blue;">';
+
+          if($result['meta_key'] == '_wp_attached_file' ) {
+            $deletefile = $imgdir.$result['meta_value'];
+            $froot = explode('.',$deletefile);
+            $froot = $froot[0]; // we want of root of the filename with no extension
+            foreach( glob($froot.'*') as $file )
+            {
+                // this deletes all files with the orignal images name pattern, deletes WP versions
+                unlink($file);
+            }
+
+          }
+          // delete the image post
+          $delpost = wp_delete_post( $imgid );
+          // print_r($result['meta_key']);
+          print_r($delpost);
+          echo '</pre>';
+        }
+
+        // wp_delete_attachment($attachment->ID);
+        // unlink(get_attached_file($file->ID));
+    }
+  }
+  add_action('before_delete_post', 'delete_associated_media', 10, 1);
+}
 
 /* #### FUNCTIONS ##### */
 function formatprice($price) {
@@ -250,6 +298,8 @@ function bhPostActions($status,$mlsid=NULL) {
     }
   }
 
+  // $apiaction = 'delete_property';
+
   // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>mlsid: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
   return $apiaction;
 }
@@ -284,7 +334,7 @@ function dbresult($sset) {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    $pulldate = strtotime('-4 days'); //'-6 hours' '-1 days'
+    $pulldate = strtotime('-1 days'); //'-6 hours' '-1 days'
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
@@ -642,8 +692,12 @@ function dataWPinsert($retsproperties) {
                     }
                 } else if( $action == "delete_property" ) {
                     $del_property['ID'] = intval( $myproperty['property_id'] );
-                    delete_post_meta( $del_property['ID'], 'REAL_HOMES_property_images' );
-                    delete_post_meta( $del_property['ID'], '_thumbnail_id' );
+                    echo '<h1>'.$action.' - '.$del_property['ID'].'</h1>';
+                    // delete (unlink) all images, and remove their posts and metadata
+                    do_action( 'before_delete_post', $del_property['ID'] ); // Post th
+                    // delete all post metadata
+                    delete_post_meta( $del_property['ID'] );
+                    // delete the post itself
                     $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
                 }
 
