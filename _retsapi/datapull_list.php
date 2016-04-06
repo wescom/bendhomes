@@ -4,7 +4,7 @@ include(RETSABSPATH."/inc/header.php");
 
 ini_set('max_execution_time', 0);
 
-$centralcount = 10;
+$centralcount = 999999;
 
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
@@ -13,12 +13,14 @@ $scenarios = array(
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
   ),
+  /*
   'Agent_MEMB'=> array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Agent',
     'class' => 'MEMB'
   ),
+  */
   /*
   'Office_OFFI'=> array(
     'count' => $centralcount,

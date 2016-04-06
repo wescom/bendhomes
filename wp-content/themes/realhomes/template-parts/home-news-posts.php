@@ -71,7 +71,7 @@
                     <?php get_template_part( "post-formats/$format" ); ?>
                     <h4 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                     <div class="post-meta">
-                        <span class="date"> <?php the_time('M n, Y g:iA'); ?></span>
+                        <span class="date"> <?php the_time('M j, Y g:iA'); ?></span>
                         <?php /* <span><?php _e('by', 'framework'); ?> <span class="author-link"><?php the_author() ?></span></span> */ ?>
                     </div>
                     <p><?php framework_excerpt(18);  ?></p>
