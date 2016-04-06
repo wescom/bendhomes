@@ -436,6 +436,10 @@ function dataPreProc($proparr,$scenarioset) {
 
     // print_r($propitem);
 
+    if($propitem['City'] == 'Redmond') {
+      $postaction = 'delete_property';
+    }
+
     // // end use cases
     // add_property
     // skip_property
