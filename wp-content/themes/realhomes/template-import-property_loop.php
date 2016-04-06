@@ -438,6 +438,7 @@ function dataPreProc($proparr,$scenarioset) {
 
     if($propitem['City'] == 'Bend') {
       $postaction = 'delete_property';
+      echo '177';
     }
 
     // // end use cases
