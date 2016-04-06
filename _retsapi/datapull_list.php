@@ -4,7 +4,7 @@ include(RETSABSPATH."/inc/header.php");
 
 ini_set('max_execution_time', 0);
 
-$centralcount = 1;
+$centralcount = 999999;
 
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
