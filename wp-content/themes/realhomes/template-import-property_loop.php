@@ -437,8 +437,8 @@ function dataPreProc($proparr,$scenarioset) {
     // print_r($propitem);
 
     if($propitem['City'] == 'Bend') {
-      // $postaction = 'delete_property';
-      // echo '177';
+      $postaction = 'delete_property';
+      echo '177';
     }
 
     // // end use cases
