@@ -1975,8 +1975,8 @@ p .icon-remove {
 }
 
 .brands-carousel .jcarousel-clip-horizontal {
-  overflow: hidden;
-  height: 55px;
+  /* overflow: hidden; */
+  /* height: 55px; */
 }
 
 .brands-carousel .jcarousel-next,
