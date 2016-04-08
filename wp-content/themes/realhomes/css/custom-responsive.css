@@ -118,6 +118,7 @@
   }
   .brands-carousel ul.brands-carousel-list li {
     width: 178px;
+    border: 1px solid red !important;
   }
   /* Widgets
   -------------------------------------------------------------- */

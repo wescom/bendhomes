@@ -69,7 +69,13 @@
                         ?>
 
                         <!-- Social Navigation -->
-                        <?php  get_template_part('template-parts/social-nav') ;    ?>
+                        <?php
+                          get_template_part('template-parts/social-nav') ;
+
+                          var_dump( get_intermediate_image_sizes() );
+                        ?>
+
+
                         <?php
                         $enable_user_nav = get_option('theme_enable_user_nav');
                         if( $enable_user_nav == "true" ){

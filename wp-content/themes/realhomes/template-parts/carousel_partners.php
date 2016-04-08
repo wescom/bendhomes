@@ -30,6 +30,7 @@ if($show_partners == 'true'){
                                             <a target="_blank" href="<?php echo $partner_url; ?>" title="<?php the_title();?>">
                                                 <?php
                                                 $thumb_title = trim(strip_tags( get_the_title($post->ID)));
+                                                echo 'lars989766TEST';
                                                 the_post_thumbnail('partners-logo',array(
                                                     'alt'	=> $thumb_title,
                                                     'title'	=> $thumb_title

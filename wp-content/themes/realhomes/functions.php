@@ -63,7 +63,8 @@ if ( ! function_exists( 'inspiry_theme_setup' ) ) {
 		 */
 		add_theme_support( 'post-thumbnails' );
 		set_post_thumbnail_size( 150, 150 );                            // default Post Thumbnail dimensions
-		add_image_size( 'partners-logo', 200, 58, true );                // For partner carousel logos
+		// add_image_size( 'partners-logo', 200, 58, true );                // For partner carousel logos
+		add_image_size( 'partners-logo', 200, 200, true );                // For partner carousel logos
 		add_image_size( 'post-featured-image', 830, 323, true );         // For Standard Post Thumbnails
 		add_image_size( 'gallery-two-column-image', 536, 269, true );    // For Gallery Two Column property Thumbnails
 		add_image_size( 'property-thumb-image', 244, 163, true );        // For Home page posts thumbnails/Featured Properties carousels thumb
