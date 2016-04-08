@@ -27,6 +27,12 @@
 <body <?php body_class(); ?>>
 
         <!-- Start Header -->
+        <div class="ad-wrapper">
+          <div class="container">
+            <?php do_action('dfp_ad_spot','leadheader'); ?>
+          </div>
+        </div>
+
         <div class="header-wrapper">
 
             <div class="container"><!-- Start Header Container -->
@@ -64,8 +70,6 @@
 
                         <!-- Social Navigation -->
                         <?php  get_template_part('template-parts/social-nav') ;    ?>
-
-
                         <?php
                         $enable_user_nav = get_option('theme_enable_user_nav');
                         if( $enable_user_nav == "true" ){

@@ -1,1 +1,25 @@
 /* Custom CSS File for Buyers to Modify */
+
+.dfp-ad {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ad-wrapper {
+  background-color: #252a2b;
+  padding: 10px 0;
+}
+
+.footer-ad-wrapper {
+  padding: 20px 0;
+}
+
+.mid-ad-wrapper {
+  padding: 20px 31px;
+  background-color: #ffffff;
+}
+
+.mid-ad-wrapper .dfp-ad {
+  border-top: 1px solid #dedede;
+  padding: 25px 0 0 0;
+}

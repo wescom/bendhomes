@@ -38,3 +38,117 @@ if ( !function_exists( 'inspiry_load_translation_from_child' ) ) {
     }
     add_action ( 'after_setup_theme', 'inspiry_load_translation_from_child' );
 }
+
+// Add scripts to wp_head()
+function child_theme_head_script() { ?>
+  <script type='text/javascript'>
+    // DFP init
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function() {
+      var gads = document.createElement('script');
+      gads.async = true;
+      gads.type = 'text/javascript';
+      var useSSL = 'https:' == document.location.protocol;
+      gads.src = (useSSL ? 'https:' : 'http:') +
+        '//www.googletagservices.com/tag/js/gpt.js';
+      var node = document.getElementsByTagName('script')[0];
+      node.parentNode.insertBefore(gads, node);
+    })();
+
+    // DFP slot definitions
+
+    googletag.cmd.push(function () {
+    				// set up var ahead of time
+    				var width = document.documentElement.clientWidth;
+
+            var sizetopleaderboard
+            var sizemidleaderboard
+            var sizebottomleaderboard
+            var sizerail
+
+    				if (width >= 320 && width < 768) { 			//320--767
+    					sizetopleaderboard = [320, 50];
+              sizemidleaderboard = [320, 50];
+    					sizebottomleaderboard = [320, 50];
+    					sizerail = [180, 150];
+    				} else if(width >= 768 && width < 992) {	//768--991
+    					sizetopleaderboard = [728,90];
+              sizemidleaderboard = [728, 90];
+              sizebottomleaderboard = [728, 90];
+    					sizerail = [[300, 600],[300, 250],[300, 100]];
+    				} else if(width >= 992) {					//992+
+    					sizetopleaderboard = [[970, 90], [728,90]];
+    					sizemidleaderboard = [728, 90];
+              sizebottomleaderboard = [[970, 90], [728,90]];
+    					sizerail = [[300,600],[300, 250],[300, 100]];
+    				} else { // fallback
+              sizetopleaderboard = [728,90];
+              sizemidleaderboard = [728, 90];
+              sizebottomleaderboard = [728, 90];
+              sizerail = [[300, 250],[300, 100]];
+    				}
+
+    				var gadsgenerateId = 1459980402618;
+    				var gadssectionkey = "Home";
+
+            var slot01 = googletag.defineSlot('/38749147/BendHomes-topLeaderboard', sizetopleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-0').addService(googletag.pubads());
+    				/* var slot02 = googletag.defineSlot('/38749147/BendHomes-middleLeaderboard', sizemidleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-1').addService(googletag.pubads()); */
+    				var slot03 = googletag.defineSlot('/38749147/BendHomes-Rectangle', sizerail, 'div-gpt-ad-' + gadsgenerateId + '-2').addService(googletag.pubads());
+    				var slot04 = googletag.defineSlot('/38749147/BendHomes-bottomLeaderboard', sizebottomleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-3').addService(googletag.pubads());
+
+            slot01.setTargeting("section", [gadssectionkey]);
+    				/* slot02.setTargeting("section", [gadssectionkey]); */
+    				slot03.setTargeting("section", [gadssectionkey]);
+    				slot04.setTargeting("section", [gadssectionkey]);
+
+            googletag.pubads().collapseEmptyDivs();
+    				googletag.enableServices();
+
+    				$(window).resize(function () {
+    					googletag.pubads().refresh([slot01, slot03, slot04]);
+    				});
+          });
+
+          function refreshAd(slotName) {
+    				googletag.pubads().refresh();
+    			}
+
+  </script>
+
+<?php }
+add_action( 'wp_head', 'child_theme_head_script' );
+
+// Google DFP postion rener
+if ( ! function_exists( 'dfp_ad_render' ) ) {
+  function dfp_ad_render($position) {
+    echo '<!-- '.$position.' -->';
+
+    // // positions
+    // leadheader
+    // leadmid
+    // leadfooter
+    // siderail
+
+    $posid = array(
+      'leadheader' => 0,
+      'leadmid' => 1,
+      'leadfooter' => 3,
+      'siderail' => 2
+    );
+
+    $dispid = 'div-gpt-ad-1459980402618-'.$posid[$position];
+
+    ?>
+    <div class="dfp-ad">
+      <div id='<?php echo $dispid; ?>'>
+        <script type='text/javascript'>
+        googletag.cmd.push(function() { googletag.display('<?php echo $dispid; ?>'); });
+        </script>
+      </div>
+    </div>
+    <?php
+
+  }
+}
+add_action('dfp_ad_spot', 'dfp_ad_render', 10, 1);

@@ -96,7 +96,13 @@ switch($theme_homepage_module){
                     if($show_news_posts == 'true'){
                         get_template_part("template-parts/home-news-posts") ;
                     }
+                    ?>
 
+                    <div class="mid-ad-wrapper">
+                      <?php do_action('dfp_ad_spot','leadfooter'); ?>
+                    </div>
+
+                    <?php
                     /* Homepage Properties */
                     $show_home_properties = get_option('theme_show_home_properties');
                     if( $show_home_properties == 'true' ){

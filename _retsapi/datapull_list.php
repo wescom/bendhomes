@@ -316,7 +316,7 @@ function pullWPdata() {
 }
 
 echo '<pre style="background-color: #ececec;">';
-// echo pullWPdata();
+echo pullWPdata();
 echo '<hr/>';
 echo '</pre>';
 
