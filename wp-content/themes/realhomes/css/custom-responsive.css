@@ -117,8 +117,7 @@
     padding-right: 50px;
   }
   .brands-carousel ul.brands-carousel-list li {
-    /* width: 178px; */
-    width: 200px;
+    width: 178px;
     border: 1px solid red !important;
   }
   /* Widgets
