@@ -34,4 +34,7 @@
 #logo {
   background-color: #6c9c31;
   padding: 15px 10px 0 10px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  border-left: 2px solid #fff;
 }
