@@ -2012,6 +2012,8 @@ p .icon-remove {
 
 .brands-carousel ul.brands-carousel-list li {
   width: 170px;
+  margin: 0 18px;
+  border: 1px solid blue;
 }
 
 /* Carousel  Nav
