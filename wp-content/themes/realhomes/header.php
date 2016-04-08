@@ -71,8 +71,6 @@
                         <!-- Social Navigation -->
                         <?php
                           get_template_part('template-parts/social-nav') ;
-
-                          var_dump( get_intermediate_image_sizes() );
                         ?>
 
 
