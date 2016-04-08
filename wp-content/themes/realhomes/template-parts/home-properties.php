@@ -5,16 +5,16 @@
 ?>
 
 <section id="home-properties-section" class="property-items <?php if( 'true' == get_option('theme_ajax_pagination_home') ) { echo 'ajax-pagination'; } ?>">
-
     <?php
     /* Homepage Slogan */
     get_template_part( 'template-parts/home-slogan' );
     ?>
-	<div id="home-properties-section-wrapper">
+
+  <div id="home-properties-section-wrapper">
 	<div id="home-properties-section-inner">
     <div id="home-properties-wrapper">
-
-    <div id="home-properties" class="property-items-container clearfix">
+      <h2 class="bh-section-header">Recent Properties</h2>
+      <div id="home-properties" class="property-items-container clearfix">
         <?php
         /* List of Properties on Homepage */
         $number_of_properties = intval( get_option('theme_properties_on_home') );

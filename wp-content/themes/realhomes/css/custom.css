@@ -23,3 +23,8 @@
   border-top: 1px solid #dedede;
   padding: 25px 0 0 0;
 }
+
+.bh-section-header {
+  padding: 10px 31px;
+  text-align: left;
+}
