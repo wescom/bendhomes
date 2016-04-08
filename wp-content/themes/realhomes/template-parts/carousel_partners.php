@@ -26,7 +26,7 @@ if($show_partners == 'true'){
                                             $partner_url = $post_meta_data['REAL_HOMES_partner_url'][0];
                                         }
                                         ?>
-                                        <li>200x200 px
+                                        <li>
                                             <a target="_blank" href="<?php echo $partner_url; ?>" title="<?php the_title();?>">
                                                 <?php
                                                 $thumb_title = trim(strip_tags( get_the_title($post->ID)));
