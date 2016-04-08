@@ -9,11 +9,13 @@
     /* Homepage Slogan */
     get_template_part( 'template-parts/home-slogan' );
     ?>
-
+    <div class="narrative">
+      <h3>Recent Properties</h3>
+      <p>Recent listings, updated hourly.</p>
+    </div>
   <div id="home-properties-section-wrapper">
 	<div id="home-properties-section-inner">
     <div id="home-properties-wrapper">
-      <h2 class="bh-section-header">Recent Properties</h2>
       <div id="home-properties" class="property-items-container clearfix">
         <?php
         /* List of Properties on Homepage */
