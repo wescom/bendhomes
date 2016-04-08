@@ -26,12 +26,22 @@
 </head>
 <body <?php body_class(); ?>>
 
+        <?php
+          // print_r(get_registered_nav_menus());
+          // Conditional. Don't show top navigation on home/front page
+          if( get_queried_object()->post_name == home ) {
+            // do nothing
+          } else { ?>
+            <div class="ad-wrapper">
+              <div class="container">
+                <?php do_action('dfp_ad_spot','leadheader'); ?>
+              </div>
+            </div>
+            <?php
+          }
+        ?>
+
         <!-- Start Header -->
-        <div class="ad-wrapper">
-          <div class="container">
-            <?php do_action('dfp_ad_spot','leadheader'); ?>
-          </div>
-        </div>
 
         <div class="header-wrapper">
 
