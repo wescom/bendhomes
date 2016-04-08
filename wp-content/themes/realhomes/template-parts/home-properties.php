@@ -9,9 +9,10 @@
     /* Homepage Slogan */
     get_template_part( 'template-parts/home-slogan' );
     ?>
-
-  <h3>Recent Properties</h3>
-  <p>Recent listings, updated hourly.</p>
+  <div class="bh-section-header">
+    <h3>Recent Properties</h3>
+    <p>Recent listings, updated hourly.</p>
+  </div>
 
   <div id="home-properties-section-wrapper">
 	<div id="home-properties-section-inner">
