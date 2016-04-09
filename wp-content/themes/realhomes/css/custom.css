@@ -35,3 +35,17 @@
   background-color: #6c9c31;
   padding: 15px 10px 0 10px;
 }
+
+.main {
+  border: 1px solid #dedede;
+}
+
+.property-title {
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #dedede;
+}
+
+.page-spacer {
+  height: 35px;
+}
