@@ -80,7 +80,7 @@
 
                         <!-- Social Navigation -->
                         <?php
-                          get_template_part('template-parts/social-nav') ;
+                          // get_template_part('template-parts/social-nav') ;
                         ?>
 
 
@@ -174,6 +174,15 @@
 
 
                     <div class="menu-and-contact-wrap">
+
+
+                      <!-- Social Navigation -->
+                      <?php
+                        get_template_part('template-parts/social-nav') ;
+                      ?>
+
+
+
                         <?php
                         $header_phone = get_option('theme_header_phone');
                         if( !empty($header_phone) ){

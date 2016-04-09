@@ -99,7 +99,7 @@ switch($theme_homepage_module){
                     ?>
 
                     <div class="mid-ad-wrapper">
-                      <?php do_action('dfp_ad_spot','leadfooter'); ?>
+                      <?php // do_action('dfp_ad_spot','leadmid'); ?>
                     </div>
 
                     <?php
