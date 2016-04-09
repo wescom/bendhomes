@@ -276,9 +276,9 @@ foreach($scenarios as $qvars) {
   // 1. Get RETS data
   $rets_data = runRetsQuery($qvars);
 
-  // echo '<pre>';
-  // print_r($rets_data);
-  // echo '</pre>';
+  echo '<pre>';
+  print_r($rets_data);
+  echo '</pre>';
 
   /*
   echo '<pre style="background-color: brown; color: #fff;">';
@@ -293,7 +293,7 @@ foreach($scenarios as $qvars) {
   echo '<p>populating:'.$db_table.'</p>';
   // 3. populate local database with harvested RETS data
   $do = dbpopulate($rets_data,$db_table);
-  // echo $do.' --- '.$db_table; // echo for db query debugging
+  echo $do.' --- '.$db_table; // echo for db query debugging
 }
 
 /* ##### ######### ####### #### */
