@@ -7,22 +7,18 @@ ini_set('max_execution_time', 0);
 $centralcount = 999999;
 
 $scenarios = array(
-  /*
   'ActiveAgent_MEMB' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
   ),
-  */
-  /*
   'Agent_MEMB'=> array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Agent',
     'class' => 'MEMB'
   ),
-  */
   /*
   'Office_OFFI'=> array(
     'count' => $centralcount,
@@ -35,8 +31,7 @@ $scenarios = array(
     'fotos' => 'no',
     'resource' => 'OpenHouse',
     'class' => 'OPEN'
-  )
-  /*
+  ),
   'Property_BUSI' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
@@ -73,7 +68,6 @@ $scenarios = array(
     'resource' => 'Property',
     'class' => 'RESI'
   )
-  */
 );
 
 /* ##### ######### ##### */
@@ -275,10 +269,9 @@ echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RS
 foreach($scenarios as $qvars) {
   // 1. Get RETS data
   $rets_data = runRetsQuery($qvars);
-
-  echo '<pre>';
-  print_r($rets_data);
-  echo '</pre>';
+  // echo '<pre>';
+  // print_r($rets_data);
+  // echo '</pre>';
 
   /*
   echo '<pre style="background-color: brown; color: #fff;">';
@@ -290,10 +283,10 @@ foreach($scenarios as $qvars) {
 
   // 2. specify table we want data to go into
   $db_table = $qvars['resource'].'_'.$qvars['class'];
-  echo '<p>populating:'.$db_table.'</p>';
+  // echo '<p>populating:'.$db_table.'</p>';
   // 3. populate local database with harvested RETS data
   $do = dbpopulate($rets_data,$db_table);
-  echo $do.' --- '.$db_table; // echo for db query debugging
+  // echo $do.' --- '.$db_table; // echo for db query debugging
 }
 
 /* ##### ######### ####### #### */
@@ -319,12 +312,11 @@ function pullWPdata() {
   return $msg;
 }
 
-/*
 echo '<pre style="background-color: #ececec;">';
 echo pullWPdata();
 echo '<hr/>';
 echo '</pre>';
-*/
+
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>
