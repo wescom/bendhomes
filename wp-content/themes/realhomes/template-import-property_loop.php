@@ -298,7 +298,7 @@ function bhPostActions($status,$mlsid=NULL) {
     }
   }
 
-  // $apiaction = 'delete_property';
+  # $apiaction = 'delete_property';
 
   // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>mlsid: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
   return $apiaction;
@@ -334,7 +334,7 @@ function dbresult($sset) {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    $pulldate = strtotime('-1 days'); //'-6 hours' '-1 days'
+    $pulldate = strtotime('-3 days'); //'-6 hours' '-1 days'
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
