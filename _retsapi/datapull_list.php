@@ -91,7 +91,8 @@ function buildRetsQuery($fqvars) {
     $pulldate['recent'] = file_get_contents($fnamerecent);
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
-    $pulldate['recent'] = strtotime('-2 days');
+    // $pulldate['recent'] = strtotime('-2 days');
+    $pulldate['recent'] = strtotime("-10 years");
   }
 
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
@@ -222,7 +223,7 @@ function runRetsQuery($qvars) {
               // skip
             } else {
               $photobinary = $photo->getContent();
-              file_put_contents($fname, $photobinary, LOCK_EX);
+              // file_put_contents($fname, $photobinary, LOCK_EX);
               file_put_contents($fnamebackup, $photobinary, LOCK_EX);
               // echo "<p style='margin: 0; color: green;'>photo file: ".$fname." written to filesystem.</p>";
             }
@@ -311,10 +312,10 @@ function pullWPdata() {
   return $msg;
 }
 
-echo '<pre style="background-color: #ececec;">';
-echo pullWPdata();
+// echo '<pre style="background-color: #ececec;">';
+// echo pullWPdata();
 // echo '<hr/>';
-echo '</pre>';
+// echo '</pre>';
 
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 

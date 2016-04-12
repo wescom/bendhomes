@@ -35,7 +35,6 @@ class rssPIFeaturedImage {
 		preg_match('/href="(.+?)"/i', $content, $matches);
 		$baseref = (is_array($matches) && !empty($matches)) ? $matches[1] : '';
 
-
 		// get the first image from content
 		// preg_match('/<img.+?src="(.+?)"[^}]+>/i', $content, $matches);
 		// $img_url = (is_array($matches) && !empty($matches)) ? $matches[1] : '';
