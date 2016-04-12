@@ -30,9 +30,6 @@ class rssPIFeaturedImage {
 
 		// 1777
 		$string = NULL;
-		// $string = "/n/n/n ########## /n/n/n";
-		// $string .= var_export($content, true);
-
 
 		// catch base url
 		preg_match('/href="(.+?)"/i', $content, $matches);
@@ -46,18 +43,6 @@ class rssPIFeaturedImage {
 		// get the first image from content
 		preg_match('/<img.+?src="(.+?)"[^}]+>/i', $content, $matches);
 		$img_url = (is_array($matches) && !empty($matches)) ? $matches[1] : '';
-		// $img_url = str_replace('&amp;', '&', $img_url);
-
-		// if url contains traps bendbulletin.com empty image urls
-		if (strpos($img_url, 'image/jpeg') === false && strpos($img_url, 'bendbulletin.com') !== false) {
-    	return false;
-		}
-
-		// error_log($img_url, 3, "/Users/justingrady/web_dev/bendhomes2/my-errors.log");
-		// if (empty($img_url)) {
-		// 	return false;
-		// }
-
 
 		$img_host = parse_url($img_url, PHP_URL_HOST);
 
@@ -94,9 +79,16 @@ class rssPIFeaturedImage {
 
 		// $img_url = 'http://justingrady.net/memes/assholes_everywhere_toystory.jpg';
 
-		$post_title = $item->get_title();
-		$imguid = $this->_titleprep($post_title,$img_url);
-		$featured_id = $this->_dtisideload( $img_url, $post_id, $imguid );
+		// if url contains traps bendbulletin.com empty image urls
+		if (strpos($img_url, 'image/jpeg') !== false && strpos($img_url, 'bendbulletin.com') !== false) {
+			$post_title = $item->get_title();
+			$imguid = $this->_titleprep($post_title,$img_url);
+			$featured_id = $this->_dtisideload( $img_url, $post_id, $imguid );
+		} else {
+			$featured_id = $this->_sideload( $img_url, $post_id);
+		}
+
+		// $featured_id = $this->_dtisideload( $img_url, $post_id, $imguid );
 
 		return $featured_id;
 	}
@@ -169,21 +161,11 @@ class rssPIFeaturedImage {
 
 		if (!empty($file)) {
 
-			error_log($file, 3, "/Users/justingrady/web_dev/bendhomes2/my-errors.log");
-
 			// Set variables for storage, fix file filename for query strings.
 			// preg_match('/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $file, $matches);
 			$file_array = array();
-			$file_array['name'] = basename($file);
-			// $file_array['name'] = 'test1777';
-
-			$tempimagedata = file_get_contents($file);
-			$tempimagefile = '/Users/justingrady/web_dev/bendhomes2/_retsapi/images/articleimages/image.jpg';
-			file_put_contents($tempimagefile,$tempimagedata);
-
-			// Download file to temp location.
-			// $file_array['tmp_name'] = @download_url($file);
-			$file_array['tmp_name'] = $tempimagefile;
+			$file_array['name'] = basename($file).'.jpg';
+			$file_array['tmp_name'] = @download_url($file);
 
 			// If error storing temporarily, return the error.
 			if (is_wp_error($file_array['tmp_name'])) {
@@ -192,6 +174,10 @@ class rssPIFeaturedImage {
 
 			// Do the validation and storage stuff.
 			$id = media_handle_sideload($file_array, $post_id, $desc['combo']);
+
+			// debugging, if bad file type, will throw an error in returend object, write to PHP error log
+			// $idstr = print_r($id,true);
+			// error_log('returned object: '.$idstr, 0);
 
 			// If error storing permanently, unlink.
 			if (is_wp_error($id)) {
