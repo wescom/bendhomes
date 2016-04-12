@@ -91,7 +91,7 @@ function buildRetsQuery($fqvars) {
     $pulldate['recent'] = file_get_contents($fnamerecent);
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
-    $pulldate['recent'] = strtotime('-730 days');
+    $pulldate['recent'] = strtotime('-1 days');
   }
 
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
@@ -285,7 +285,7 @@ foreach($scenarios as $qvars) {
   // echo '<p>populating:'.$db_table.'</p>';
   // 3. populate local database with harvested RETS data
   $do = dbpopulate($rets_data,$db_table);
-  // echo $do.' --- '.$db_table; // echo for db query debugging
+  echo $do.' --- '.$db_table; // echo for db query debugging
 }
 
 /* ##### ######### ####### #### */

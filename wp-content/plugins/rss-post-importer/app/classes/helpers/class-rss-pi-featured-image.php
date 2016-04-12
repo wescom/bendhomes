@@ -29,13 +29,15 @@ class rssPIFeaturedImage {
 		$content = $item->get_content() != "" ? $item->get_content() : $item->get_description();
 
 		// 1777
+		$string = NULL;
 		// $string = "/n/n/n ########## /n/n/n";
 		// $string .= var_export($content, true);
-		// error_log($string, 3, "/Users/justingrady/web_dev/bendhomes2/my-errors.log");
+
 
 		// catch base url
 		preg_match('/href="(.+?)"/i', $content, $matches);
 		$baseref = (is_array($matches) && !empty($matches)) ? $matches[1] : '';
+
 
 		// get the first image from content
 		// preg_match('/<img.+?src="(.+?)"[^}]+>/i', $content, $matches);
@@ -44,12 +46,18 @@ class rssPIFeaturedImage {
 		// get the first image from content
 		preg_match('/<img.+?src="(.+?)"[^}]+>/i', $content, $matches);
 		$img_url = (is_array($matches) && !empty($matches)) ? $matches[1] : '';
+		// $img_url = str_replace('&amp;', '&', $img_url);
 
-		/*
-		if (empty($img_url)) {
-			return false;
+		// if url contains traps bendbulletin.com empty image urls
+		if (strpos($img_url, 'image/jpeg') === false && strpos($img_url, 'bendbulletin.com') !== false) {
+    	return false;
 		}
-		*/
+
+		// error_log($img_url, 3, "/Users/justingrady/web_dev/bendhomes2/my-errors.log");
+		// if (empty($img_url)) {
+		// 	return false;
+		// }
+
 
 		$img_host = parse_url($img_url, PHP_URL_HOST);
 
@@ -84,7 +92,11 @@ class rssPIFeaturedImage {
 		 */
 		// sideload it
 
-		$featured_id = $this->_sideload( $img_url, $post_id, '' );
+		// $img_url = 'http://justingrady.net/memes/assholes_everywhere_toystory.jpg';
+
+		$post_title = $item->get_title();
+		$imguid = $this->_titleprep($post_title,$img_url);
+		$featured_id = $this->_dtisideload( $img_url, $post_id, $imguid );
 
 		return $featured_id;
 	}
@@ -149,6 +161,62 @@ class rssPIFeaturedImage {
 		}
 
 		return $id;
+	}
+
+	private function _dtisideload($file, $post_id, $desc = null) {
+
+		$id = 0;
+
+		if (!empty($file)) {
+
+			error_log($file, 3, "/Users/justingrady/web_dev/bendhomes2/my-errors.log");
+
+			// Set variables for storage, fix file filename for query strings.
+			// preg_match('/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $file, $matches);
+			$file_array = array();
+			$file_array['name'] = basename($file);
+			// $file_array['name'] = 'test1777';
+
+			$tempimagedata = file_get_contents($file);
+			$tempimagefile = '/Users/justingrady/web_dev/bendhomes2/_retsapi/images/articleimages/image.jpg';
+			file_put_contents($tempimagefile,$tempimagedata);
+
+			// Download file to temp location.
+			// $file_array['tmp_name'] = @download_url($file);
+			$file_array['tmp_name'] = $tempimagefile;
+
+			// If error storing temporarily, return the error.
+			if (is_wp_error($file_array['tmp_name'])) {
+				return $file_array['tmp_name'];
+			}
+
+			// Do the validation and storage stuff.
+			$id = media_handle_sideload($file_array, $post_id, $desc['combo']);
+
+			// If error storing permanently, unlink.
+			if (is_wp_error($id)) {
+				@unlink($file_array['tmp_name']);
+				return $id;
+			}
+		}
+
+		return $id;
+	}
+
+	private function _titleprep($titlestring,$imgstring) {
+		$title = $titlestring;
+		$title = strtolower($title);
+		$title = str_replace(' ','',$title);
+		$title = preg_replace("/[^A-Za-z0-9?!]/",'',$title);
+		$image = $imgstring;
+		$image = md5($image);
+		$combo = $title.'-'.$image;
+		$output = array(
+			'combo' => $combo,
+			'title' => $title,
+			'image' => $image
+		);
+		return $output;
 	}
 
 }
