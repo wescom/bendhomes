@@ -19,13 +19,12 @@ $scenarios = array(
     'resource' => 'Agent',
     'class' => 'MEMB'
   ),
-  /*
   'Office_OFFI'=> array(
     'count' => $centralcount,
     'fotos' => 'no',
     'resource' => 'Office',
     'class' => 'OFFI'
-  ),*/
+  ),
   'OpenHouse_OPEN'=> array(
     'count' => $centralcount,
     'fotos' => 'no',
@@ -312,10 +311,10 @@ function pullWPdata() {
   return $msg;
 }
 
-// echo '<pre style="background-color: #ececec;">';
-// echo pullWPdata();
+echo '<pre style="background-color: #ececec;">';
+echo pullWPdata();
 // echo '<hr/>';
-// echo '</pre>';
+echo '</pre>';
 
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
