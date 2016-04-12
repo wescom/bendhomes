@@ -294,6 +294,7 @@ foreach($scenarios as $qvars) {
 /* ##### ######### ####### #### */
 
 function pullWPdata() {
+  /*
   $get = array();
   $msg = '<h4>WP import data</h4>';
 
@@ -310,6 +311,7 @@ function pullWPdata() {
   sleep(300);
 
   return $msg;
+  */
 }
 
 // echo '<pre style="background-color: #ececec;">';

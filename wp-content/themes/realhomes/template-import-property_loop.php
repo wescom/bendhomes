@@ -17,51 +17,53 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 /* ################################# */
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
+
+$centralcount = 5;
 $scenarios = array(
   /* 'OpenHouse_OPEN'=> array(
-    'count' => 999999,
+    'count' => $centralcount,
     'fotos' => 'no',
     'resource' => 'OpenHouse',
     'class' => 'OPEN',
     'name' => 'OpenHouse_OPEN'
   ), */
   'Property_BUSI' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'BUSI',
     'name' => 'Property_BUSI'
   ),
   'Property_COMM' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'COMM',
     'name' => 'Property_COMM'
   ),
   'Property_FARM' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'FARM',
     'name' => 'Property_FARM'
   ),
   'Property_LAND' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'LAND',
     'name' => 'Property_LAND'
   ),
   'Property_MULT' => array(
-    'count' => 10,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'MULT',
     'name' => 'Property_MULT'
   ),
   'Property_RESI' => array(
-    'count' => 999999,
+    'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
     'class' => 'RESI',
@@ -375,7 +377,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
  function bendhomes_image_upload($imagebase) {
 
-   $imagedir = ABSPATH.'/_retsapi/images/property/';
+   $imagedir = ABSPATH.'_retsapi/images/property/';
    $imagepull = $imagedir.$imagebase;
    $tmp = $imagepull;
    $file_array = array(
@@ -394,6 +396,13 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    // echo '</pre>';
 
    // this returns the image id from WP that is used for property data import
+
+   // if successfully loaded, unlink the originated image
+   // unlink($tmp);
+   echo 'unlink this!: ';
+   print_r($tmp);
+   echo '<br/>';
+
    return $uploaded_image;
 
  }
