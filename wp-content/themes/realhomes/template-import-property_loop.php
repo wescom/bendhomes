@@ -494,7 +494,7 @@ function dataPreProc($proparr,$scenarioset) {
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
             'featured' => 0, // 0 == not featured, 1 == featured
-            'agent_display_option' => $bhagentdisplyoption,
+            'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
           );
@@ -516,7 +516,7 @@ function dataPreProc($proparr,$scenarioset) {
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
             'featured' => 0, // 0 == not featured, 1 == featured
-            'agent_display_option' => $bhagentdisplyoption,
+            'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
           );
@@ -544,7 +544,7 @@ function dataPreProc($proparr,$scenarioset) {
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
             'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
-            'agent_display_option' => $bhagentdisplyoption,
+            'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
           );
@@ -566,7 +566,7 @@ function dataPreProc($proparr,$scenarioset) {
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
             'featured' => 0, // 0 == not featured, 1 == featured
-            'agent_display_option' => $bhagentdisplyoption,
+            'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
           );
@@ -593,7 +593,7 @@ function dataPreProc($proparr,$scenarioset) {
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
             'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
-            'agent_display_option' => $bhagentdisplyoption,
+            'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
           );
@@ -621,7 +621,7 @@ function dataPreProc($proparr,$scenarioset) {
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
             'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
-            'agent_display_option' => $bhagentdisplyoption,
+            'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
           );
