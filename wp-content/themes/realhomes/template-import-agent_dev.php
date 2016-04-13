@@ -33,7 +33,7 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
-    'count' => 999999,
+    'count' => 10,
     'fotos' => 'yes',
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
