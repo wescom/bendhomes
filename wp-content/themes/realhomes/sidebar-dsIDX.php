@@ -5,6 +5,7 @@
         <?php
         if ( ! dynamic_sidebar( 'dsidx-sidebar' ) ) :
         endif;
+        get_template_part( 'template-parts/rail-ad' );
         ?>
     </aside><!-- End Sidebar -->
 

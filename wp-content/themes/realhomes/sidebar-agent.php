@@ -5,12 +5,8 @@
         <?php
         if ( ! dynamic_sidebar ( 'agent-sidebar' ) ) :
         endif;
+        get_template_part( 'template-parts/rail-ad' );
         ?>
-        <div class="rail-ad-wrapper">
-          <?php // 1777ad
-            do_action('dfp_ad_spot','siderail');
-          ?>
-        </div>
     </aside>
     <!-- End Sidebar -->
 
