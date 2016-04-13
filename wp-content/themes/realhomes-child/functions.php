@@ -71,31 +71,33 @@ function child_theme_head_script() { ?>
     					sizetopleaderboard = [320, 50];
               sizemidleaderboard = [320, 50];
     					sizebottomleaderboard = [320, 50];
-    					sizerail = [180, 150];
+    					sizerail = [[180, 150], [160, 600]];
     				} else if(width >= 768 && width < 992) {	//768--991
     					sizetopleaderboard = [728,90];
               sizemidleaderboard = [728, 90];
               sizebottomleaderboard = [728, 90];
-    					sizerail = [[300, 600],[300, 250],[300, 100]];
+    					sizerail = [160, 600];
     				} else if(width >= 992) {					//992+
     					sizetopleaderboard = [[970, 90], [728,90]];
     					sizemidleaderboard = [728, 90];
               sizebottomleaderboard = [[970, 90], [728,90]];
-    					sizerail = [[300,600],[300, 250],[300, 100]];
+    					sizerail = [160, 600];
     				} else { // fallback
               sizetopleaderboard = [728,90];
               sizemidleaderboard = [728, 90];
               sizebottomleaderboard = [728, 90];
-              sizerail = [[300, 250],[300, 100]];
+              sizerail = [160, 600];
     				}
 
     				var gadsgenerateId = 1459980402618;
     				var gadssectionkey = "Home";
 
             var slot01 = googletag.defineSlot('/38749147/BendHomes-topLeaderboard', sizetopleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-0').addService(googletag.pubads());
-    				// var slot02 = googletag.defineSlot('/38749147/BendHomes-middleLeaderboard', sizemidleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-1').addService(googletag.pubads()); */
+    				// var slot02 = googletag.defineSlot('/38749147/BendHomes-middleLeaderboard', sizemidleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-1').addService(googletag.pubads()); */
     				var slot03 = googletag.defineSlot('/38749147/BendHomes-Rectangle', sizerail, 'div-gpt-ad-' + gadsgenerateId + '-2').addService(googletag.pubads());
     				var slot04 = googletag.defineSlot('/38749147/BendHomes-bottomLeaderboard', sizebottomleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-3').addService(googletag.pubads());
+            var slot05 = googletag.defineSlot('/38749147/BendHomes-wideskyscraper', sizerail, 'div-gpt-ad-' + gadsgenerateId + '-4').addService(googletag.pubads());
+
 
             slot01.setTargeting("section", [gadssectionkey]);
     				/* slot02.setTargeting("section", [gadssectionkey]); */
@@ -106,7 +108,7 @@ function child_theme_head_script() { ?>
     				googletag.enableServices();
 
     				$(window).resize(function () {
-    					googletag.pubads().refresh([slot01, slot03, slot04]);
+    					googletag.pubads().refresh([slot01, slot02, slot03, slot04, slot05]);
     				});
           });
 
@@ -134,7 +136,7 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
       'leadheader' => 0,
       'leadmid' => 1,
       'leadfooter' => 3,
-      'siderail' => 2
+      'siderail' => 4
     );
 
     $dispid = 'div-gpt-ad-1459980402618-'.$posid[$position];
