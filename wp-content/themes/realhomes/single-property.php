@@ -147,6 +147,7 @@ if( $banner_image_id ){
                         <?php
                         if ( ! dynamic_sidebar( 'property-sidebar' ) ) :
                         endif;
+                        get_template_part( 'template-parts/rail-ad' );
                         ?>
                     </aside>
                     <!-- End Sidebar -->
@@ -155,6 +156,7 @@ if( $banner_image_id ){
             }else{
                 get_sidebar('property');
             }
+
             ?>
 
         </div><!-- End contents row -->
