@@ -18,7 +18,7 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
 
-$centralcount = 5;
+$centralcount = 1;
 $scenarios = array(
   /* 'OpenHouse_OPEN'=> array(
     'count' => $centralcount,
