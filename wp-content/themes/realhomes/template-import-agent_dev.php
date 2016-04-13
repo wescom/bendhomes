@@ -180,7 +180,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    $imagepull = $imagedir.$imagebase;
    $tmp = $imagepull;
    $file_array = array(
-       'name' => basename( $imagebase ),
+       'name' => 'agent-'.basename( $imagebase ),
        'tmp_name' => $tmp
    );
    if ( is_wp_error( $tmp ) ) {
