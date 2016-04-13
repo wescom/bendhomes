@@ -472,7 +472,7 @@ function dataPreProc($proparr,$scenarioset) {
       $bhagentfullname = $agentposts[0];
       $bhagentfullname = $bhagentfullname->{post_title};
 
-      $bhagentdisplayoption = 'agent_info'; // my_profile_info, agent_info, none
+      $bhagentdisplayoption = 'none'; // my_profile_info, agent_info, none
       $bhmarketingremarks = $propitem['MarketingRemarks'].'<br/><br/><strong>Listing Agent: </strong><br/>'.$bhagentfullname.'<br/>'.$propitem['ListingOfficeName'];
 
       switch ($scenarioset['name']){
