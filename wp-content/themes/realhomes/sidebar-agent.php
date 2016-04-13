@@ -6,7 +6,7 @@
         if ( ! dynamic_sidebar ( 'agent-sidebar' ) ) :
         endif;
         ?>
-        <div class="ad-wrapper">
+        <div class="rail-ad-wrapper">
           <?php // 1777ad
             do_action('dfp_ad_spot','siderail');
           ?>
