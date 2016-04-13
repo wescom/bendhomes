@@ -7,18 +7,19 @@ ini_set('max_execution_time', 0);
 $centralcount = 999999;
 
 $scenarios = array(
-  'ActiveAgent_MEMB' => array(
+  /* 'ActiveAgent_MEMB' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
-  ),
+  ),*/
   'Agent_MEMB'=> array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Agent',
     'class' => 'MEMB'
-  ),
+  )
+  /*
   'Office_OFFI'=> array(
     'count' => $centralcount,
     'fotos' => 'no',
@@ -67,6 +68,7 @@ $scenarios = array(
     'resource' => 'Property',
     'class' => 'RESI'
   )
+  */
 );
 
 /* ##### ######### ##### */
