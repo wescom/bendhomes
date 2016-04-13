@@ -18,7 +18,7 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
 
-$centralcount = 1;
+$centralcount = 10;
 $scenarios = array(
   /* 'OpenHouse_OPEN'=> array(
     'count' => $centralcount,
@@ -381,7 +381,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    $imagepull = $imagedir.$imagebase;
    $tmp = $imagepull;
    $file_array = array(
-       'name' => basename( $imagebase ),
+       'name' => 'property-'.basename( $imagebase ),
        'tmp_name' => $tmp
    );
    if ( is_wp_error( $tmp ) ) {
