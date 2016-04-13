@@ -138,9 +138,9 @@ function bhLookupAgent($guid) {
   } else {
     $result = NULL;
   }
-  // echo '<pre> test222';
-  // print_r($result);
-  // echo '</pre>';
+  echo '<pre> test222-agent<br/>';
+  print_r($result);
+  echo '</pre>';
   return $result;
 }
 
