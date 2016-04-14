@@ -33,7 +33,7 @@ $connect = $rets->Login();
 // print_r($rets);
 
 function universalqueries($pulltime) {
-  // used for initial pull
+  // used for initial pull, nuclear option to get all data
   // $pulltime = '1900-10-12T08:50Z';
 
   $universalqueries = array(

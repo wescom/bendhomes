@@ -353,6 +353,7 @@ function dbresult($sset) {
               ;";
               */
 
+  // used for initial pull, nuclear option to get all data
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND Status = 'Active'
