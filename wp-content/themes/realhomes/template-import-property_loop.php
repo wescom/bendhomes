@@ -376,10 +376,10 @@ function dbresult($sset) {
   }
 
   $mysqli->close();
-  // echo '<pre>';
+  echo '<pre>';
   // print_r($data);
-  // echo '</pre>';
-  return $data;
+  echo '</pre>';
+  // return $data;
 
 }
 
