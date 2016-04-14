@@ -33,8 +33,8 @@ $connect = $rets->Login();
 // print_r($rets);
 
 function universalqueries($pulltime) {
-
-  $pulltime = '1900-10-12T08:50Z';
+  // used for initial pull
+  // $pulltime = '1900-10-12T08:50Z';
 
   $universalqueries = array(
     'Property' => array(
