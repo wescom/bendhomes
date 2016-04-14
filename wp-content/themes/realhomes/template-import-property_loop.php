@@ -375,7 +375,7 @@ function dbresult($sset) {
   }
 
   $mysqli->close();
-  // return $data;
+  return $data;
 
 }
 
