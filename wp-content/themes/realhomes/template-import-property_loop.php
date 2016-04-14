@@ -345,19 +345,28 @@ function dbresult($sset) {
   /* AND images IS NOT NULL */
   // AND Status = 'Active'
 
+  /*
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND lastPullTime >= '".$querydate."'
               LIMIT ".$sset['count']."
               ;";
+              */
 
-  // echo '<pre>';
-  // print_r($sqlquery);
-  // echo '</pre>';
+  $sqlquery = "SELECT * FROM ".$rc." WHERE
+              PublishToInternet = 1
+              AND Status = 'Active'
+              ;";
+
+  echo '<pre>';
+  print_r($sqlquery);
+  echo '</pre>';
 
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
-      // printf("Select returned %d rows.\n", $result->num_rows);
+      echo '<pre>';
+      printf("Select returned %d rows.\n", $result->num_rows);
+      echo '</pre>';
       while($row = $result->fetch_assoc()) {
           $data[] = $row;
       }
@@ -366,7 +375,7 @@ function dbresult($sset) {
   }
 
   $mysqli->close();
-  return $data;
+  // return $data;
 
 }
 
