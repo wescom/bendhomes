@@ -34,6 +34,8 @@ $connect = $rets->Login();
 
 function universalqueries($pulltime) {
 
+  $pulltime = '1900-10-12T08:50Z';
+
   $universalqueries = array(
     'Property' => array(
       'BUSI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
