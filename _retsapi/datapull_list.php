@@ -294,7 +294,6 @@ foreach($scenarios as $qvars) {
 /* ##### ######### ####### #### */
 
 function pullWPdata() {
-  /*
   $get = array();
   $msg = '<h4>WP import data</h4>';
 
@@ -302,22 +301,21 @@ function pullWPdata() {
   $get['agents'] = get_url('http://dev.bendhomes.com/bh-import-agents/');
   $msg .= print_r($get['agents'],true);
   $msg .= 'end: importing WP agents data '.date(DATE_RSS)."<br/>\n";
+
   sleep(300); // sleep for 5 minutes
 
   $msg .= 'start: importing WP property data '.date(DATE_RSS)."<br/>\n";
   $get['properties'] = get_url('http://dev.bendhomes.com/bh-import-properties/');
   $msg .= print_r($get['properties'],true);
   $msg .= 'end: importing WP property data '.date(DATE_RSS)."<br/>\n";
-  sleep(300);
 
   return $msg;
-  */
 }
 
-// echo '<pre style="background-color: #ececec;">';
-// echo pullWPdata();
-// echo '<hr/>';
-// echo '</pre>';
+echo '<pre style="background-color: #ececec;">';
+echo pullWPdata();
+echo '<hr/>';
+echo '</pre>';
 
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
