@@ -351,13 +351,20 @@ function dbresult($sset) {
               AND lastPullTime >= '".$querydate."'
               LIMIT ".$sset['count']."
               ;";
-              */
+  */
+
+  $sqlquery = "SELECT * FROM ".$rc." WHERE
+              PublishToInternet = 1
+              AND lastPullTime >= '".$querydate."'
+              ;";
 
   // used for initial pull, nuclear option to get all data
+  /*
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND Status = 'Active'
               ;";
+  */
 
   echo '<pre>';
   print_r($sqlquery);
@@ -376,10 +383,10 @@ function dbresult($sset) {
   }
 
   $mysqli->close();
-  echo '<pre>';
+  // echo '<pre>';
   // print_r($data);
-  echo '</pre>';
-  // return $data;
+  // echo '</pre>';
+  return $data;
 
 }
 
