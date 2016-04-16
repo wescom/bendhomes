@@ -174,6 +174,8 @@ $my_openhouses = appendData($my_mlsids);
 // insert it as meta data into wpdb
 $wpdata = insertWPdata($my_openhouses);
 
+echo '<pre style="background-color: #ccc">';
 print_r($wpdata);
+echo '</pre>';
 
 ?>
