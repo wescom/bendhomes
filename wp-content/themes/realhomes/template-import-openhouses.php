@@ -86,6 +86,8 @@ function dbresult($sset) {
   EndDateTime < '".$querydateend."'
   ;";
 
+  print_r($sqlquery);
+
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
       while($row = $result->fetch_assoc()) {
