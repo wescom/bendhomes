@@ -181,7 +181,8 @@ $my_openhouses = appendData($my_mlsids);
 $wpdata = insertWPdata($my_openhouses);
 
 echo '<pre style="background-color: #ccc">';
-print_r($wpdata);
+echo 'my_openhouses';
+print_r($my_openhouses);
 echo '</pre>';
 
 ?>
