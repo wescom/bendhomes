@@ -86,7 +86,7 @@ function dbresult($sset) {
   EndDateTime < '".$querydateend."'
   ;";
 
-  print_r($sqlquery);
+  // print_r($sqlquery);
 
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
@@ -104,29 +104,33 @@ function dbresult($sset) {
 
 }
 
-function findProperty($rid) {
-  if($rid != NULL) {
+function findProperty($mlsid) {
+  if($mlsid != NULL) {
     global $wpdb;
     // ID == , post_title == agent full name
-    $sqlquery = "SELECT post_id FROM $wpdb->postmeta WHERE meta_id = ".$rid;
-    // echo $sqlquery;
+    $sqlquery = "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = 'REAL_HOMES_property_id' AND meta_value = ".$mlsid;
+    echo '<hr/>';
+    echo $sqlquery;
     $result = $wpdb->get_results( $sqlquery, ARRAY_A );
   } else {
     $result = NULL;
   }
-  // this is the returned post_id by ListingRid
+  echo '<pre style="background-color: yellow;">';
+  print_r($result);
+  echo '</pre>';
+  // this is the returned post_id by MLNumber
   return $result[0];
 }
 
-function appendData($rids) {
+function appendData($mlsids) {
   // we want the open houses data, with actual post ids within array
   $i = 0;
   $entries = array();
-  foreach($rids as $rid) {
-    $entries[$i] = $rid;
-    foreach($rid as $key => $val) {
+  foreach($mlsids as $mlsid) {
+    $entries[$i] = $mlsid;
+    foreach($mlsid as $key => $val) {
       // print_r($val);
-      if($key == 'ListingRid') {
+      if($key == 'MLNumber') {
         $entries[$i] = array_merge($entries[$i],findProperty($val));
       }
     }
@@ -161,10 +165,10 @@ delOpensMet();
 sleep(5);
 
 // get open house data from intermediary database bh_rets
-$my_rids = dbresult($scenarios['OpenHouse_OPEN']);
+$my_mlsids = dbresult($scenarios['OpenHouse_OPEN']);
 
 // we want the open houses data, with actual pre-existing wordpress post ids within array
-$my_openhouses = appendData($my_rids);
+$my_openhouses = appendData($my_mlsids);
 
 // now that we have the bh_rets open house data matched to pre-existing posts using ListingRid as token
 // insert it as meta data into wpdb
