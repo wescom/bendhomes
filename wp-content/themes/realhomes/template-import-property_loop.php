@@ -20,13 +20,6 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 
 $centralcount = 999999;
 $scenarios = array(
-  /* 'OpenHouse_OPEN'=> array(
-    'count' => $centralcount,
-    'fotos' => 'no',
-    'resource' => 'OpenHouse',
-    'class' => 'OPEN',
-    'name' => 'OpenHouse_OPEN'
-  ), */
   'Property_BUSI' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
@@ -353,18 +346,19 @@ function dbresult($sset) {
               ;";
   */
 
+  /* every day query
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND lastPullTime >= '".$querydate."'
-              ;";
+              ;"; */
 
   // used for initial pull, nuclear option to get all data
-  /*
+
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND Status = 'Active'
               ;";
-  */
+
 
   echo '<pre>';
   print_r($sqlquery);
