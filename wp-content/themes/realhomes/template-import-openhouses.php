@@ -115,14 +115,14 @@ function findProperty($mlsid) {
   } else {
     $result = NULL;
   }
-
+  
   if(empty($result)) {
     $color = 'red';
   } else {
     $color = 'green';
   }
   echo '<pre style="border: 3px solid '.$color.';">';
-  print_r($result);
+  print_r($result[0]);
   echo '</pre>';
   // this is the returned post_id by MLNumber
   return $result[0];
