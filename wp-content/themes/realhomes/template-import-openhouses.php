@@ -49,11 +49,11 @@ $scenarios = array(
   )
 );
 
-/* ############################## */
-/* #### DATA SETUP and PULL ##### */
-/* ############################## */
+/* ################################### */
+/* #### DATA SETUP and FUNCTIONS ##### */
+/* ################################### */
 function dbresult($sset) {
-
+  // get open house data from intermediary database bh_rets
   $data = array();
   $db = array(
     'host' => 'localhost',
@@ -105,6 +105,7 @@ function dbresult($sset) {
 }
 
 function findProperty($mlsid) {
+  // lookup property in WP database by mlsid
   if($mlsid != NULL) {
     global $wpdb;
     // ID == , post_title == agent full name
@@ -115,7 +116,8 @@ function findProperty($mlsid) {
   } else {
     $result = NULL;
   }
-  
+
+  // testing stuff
   if(empty($result)) {
     $color = 'red';
   } else {
@@ -124,12 +126,14 @@ function findProperty($mlsid) {
   echo '<pre style="border: 3px solid '.$color.';">';
   print_r($result[0]);
   echo '</pre>';
-  // this is the returned post_id by MLNumber
+
+  // this is the returned post_id by MLNumber, returns a one item array
+  // we want a string, so set index to 0
   return $result[0];
 }
 
 function appendData($mlsids) {
-  // we want the open houses data, with actual post ids within array
+  // we want the open houses data, with actual post ids from wordpress within array
   $i = 0;
   $entries = array();
   foreach($mlsids as $mlsid) {
@@ -146,23 +150,46 @@ function appendData($mlsids) {
 }
 
 function delOpensMet() {
+  $result = array();
   // delete all OPEN_HOUSE meta data
   global $wpdb;
   $sqlquery = "DELETE FROM $wpdb->postmeta WHERE meta_key LIKE '%OPEN_HOUSE%' ";
-  $result = $wpdb->get_results( $sqlquery, ARRAY_A );
+  $result['postmeta'] = $wpdb->get_results( $sqlquery, ARRAY_A );
+  unset($sqlquery);
+  $sqlquery = "DELETE FROM $wpdb->term_relationships WHERE term_taxonomy_id = 79";
+  $result['term_relationships'] = $wpdb->get_results( $sqlquery, ARRAY_A );
   return $result;
 }
 
 function insertWPdata($openhouses) {
+  // setup property statuses
+  /*
+  for-sale    34
+  for-rent    33
+  open-house  79
+  */
+  $statusprop = 'open-house';
+  $statusappend = true; // append open-house status onto pre-existing status
+
+  // insert open house meta data into wordpress db
   $pm = array();
   foreach($openhouses as $openhouse) {
     $post_id = $openhouse['post_id'];
     foreach($openhouse as $key => $val) {
+      // insert meta data with this line
+      $pm[$post_id]['OPEN_HOUSE_'.$key] = add_post_meta( $post_id, 'OPEN_HOUSE_'.$key, $val );
+      // add post status of 'open' to post_id (property)
+      // wp_set_object_terms( $post_id, $statusprop, 'property-status',$statusappend );
+
       $pm[$post_id]['OPEN_HOUSE_'.$key] = add_post_meta( $post_id, 'OPEN_HOUSE_'.$key, $val );
     }
   }
   return $pm;
 }
+
+/* ################################### */
+/* #### EXECUTE DATA FUNCTIONS ####### */
+/* ################################### */
 
 // delete that shit, flush all current open house data, we're about to insert new open house data
 delOpensMet();
@@ -176,7 +203,7 @@ $my_mlsids = dbresult($scenarios['OpenHouse_OPEN']);
 // we want the open houses data, with actual pre-existing wordpress post ids within array
 $my_openhouses = appendData($my_mlsids);
 
-// now that we have the bh_rets open house data matched to pre-existing posts using ListingRid as token
+// now that we have the bh_rets open house data matched to pre-existing posts using MLSID as token
 // insert it as meta data into wpdb
 $wpdata = insertWPdata($my_openhouses);
 

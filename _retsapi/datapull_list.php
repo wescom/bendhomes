@@ -323,7 +323,6 @@ echo '<pre style="background-color: #ececec;">';
 echo pullWPdata();
 echo '<hr/>';
 echo '</pre>';
-
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>
