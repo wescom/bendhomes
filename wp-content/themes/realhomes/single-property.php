@@ -47,7 +47,6 @@ if( $banner_image_id ){
               ?>
                 <!-- Main Content -->
                 <div class="main">
-                    test1777singleproperty
                     <div id="overview">
                         <?php
                         // 1777
@@ -79,6 +78,7 @@ if( $banner_image_id ){
                                     /*
                                     * 2. Property Information Bar, Icons Bar, Text Contents and Features
                                     */
+                                    echo 'here1777';
                                     get_template_part('property-details/property-contents');
 
                                     /*
