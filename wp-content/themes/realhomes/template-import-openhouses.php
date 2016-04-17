@@ -150,12 +150,13 @@ function appendData($mlsids) {
 }
 
 function delOpensMet() {
+  global $wpdb;
   $result = array();
   // delete all OPEN_HOUSE meta data
-  global $wpdb;
   $sqlquery = "DELETE FROM $wpdb->postmeta WHERE meta_key LIKE '%OPEN_HOUSE%' ";
   $result['postmeta'] = $wpdb->get_results( $sqlquery, ARRAY_A );
   unset($sqlquery);
+  // delete open-house taxomony from all properties | 79 == open-house
   $sqlquery = "DELETE FROM $wpdb->term_relationships WHERE term_taxonomy_id = 79";
   $result['term_relationships'] = $wpdb->get_results( $sqlquery, ARRAY_A );
   return $result;
@@ -179,7 +180,7 @@ function insertWPdata($openhouses) {
       // insert meta data with this line
       $pm[$post_id]['OPEN_HOUSE_'.$key] = add_post_meta( $post_id, 'OPEN_HOUSE_'.$key, $val );
       // add post status of 'open' to post_id (property)
-      // wp_set_object_terms( $post_id, $statusprop, 'property-status',$statusappend );
+      wp_set_object_terms( $post_id, $statusprop, 'property-status',$statusappend );
 
       $pm[$post_id]['OPEN_HOUSE_'.$key] = add_post_meta( $post_id, 'OPEN_HOUSE_'.$key, $val );
     }
