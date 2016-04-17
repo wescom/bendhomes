@@ -78,12 +78,12 @@ if( $banner_image_id ){
                                     /*
                                     * 2. Property Information Bar, Icons Bar, Text Contents and Features
                                     */
-                                    echo 'here1777';
                                     get_template_part('property-details/property-contents');
 
                                     /*
                                     * 3. Property Floor Plans
                                     */
+                                    echo 'here1777';
                                     get_template_part('property-details/property-floor-plans');
 
                                     /*
