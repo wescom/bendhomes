@@ -17,7 +17,8 @@ if ( has_post_thumbnail() ){
         }
 
         if( is_page_template( 'template-home.php' )){
-            the_post_thumbnail('gallery-two-column-image');
+            // the_post_thumbnail('gallery-two-column-image');
+            the_post_thumbnail('post-featured-image');
         } else {
             the_post_thumbnail('post-featured-image');
         }

@@ -94,7 +94,7 @@ switch($theme_homepage_module){
                         $show_news_posts = $_GET['news-on-home'];
                     }
                     if($show_news_posts == 'true'){
-                        get_template_part("template-parts/home-news-posts") ;
+                        get_template_part("bend-homes/home-news-posts") ;
                     }
                     ?>
 
@@ -103,6 +103,7 @@ switch($theme_homepage_module){
                     </div>
 
                     <?php
+                    echo 'test199';
                     /* Homepage Properties */
                     $show_home_properties = get_option('theme_show_home_properties');
                     if( $show_home_properties == 'true' ){
