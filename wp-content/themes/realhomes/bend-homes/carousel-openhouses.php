@@ -4,9 +4,11 @@ $openhouse_properties_args = array(
     'post_type' => 'property',
     'posts_per_page' => 12,
     'tax_query' => array(
+      array(
         'taxonomy' => 'property-status',
         'field' => 'slug',
-        'terms' => 'open-house',
+        'terms' => 'open-house'
+      )
     )
 );
 
@@ -39,6 +41,9 @@ if ( $openhouse_properties_query->have_posts() ) :
                     <?php
                     while ( $openhouse_properties_query->have_posts() ) :
                         $openhouse_properties_query->the_post();
+                        // echo '<pre>';
+                        // var_dump($openhouse_properties_query->the_post());
+                        // echo '</pre>';
                         ?>
                         <li>
                             <figure>
