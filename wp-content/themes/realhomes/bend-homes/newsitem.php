@@ -1,7 +1,7 @@
 <?php
 if ( has_post_thumbnail() ){
     ?>
-    <figure> test199
+    <figure> test200
         <span class="format-icon image"></span>
         <?php
         if( is_single() ){
