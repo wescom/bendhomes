@@ -115,6 +115,13 @@ switch($theme_homepage_module){
                         get_template_part("template-parts/carousel") ;
                     }
 
+                    /* Open House Properties */
+                    $show_openhouse_properties = get_option('theme_show_openhouse_properties');
+                    // $show_openhouse_properties = true;
+                    if($show_openhouse_properties == 'true'){
+                        get_template_part("bend-homes/carousel-openhouses") ;
+                    }
+
                     ?>
                 </div><!-- End Main Content -->
 

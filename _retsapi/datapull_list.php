@@ -311,10 +311,10 @@ function pullWPdata() {
 
   sleep(300); // sleep for 5 minutes
 
-  $msg .= 'start: importing WP open house data '.date(DATE_RSS)."<br/>\n";
+  $msg .= 'start: importing WP property data '.date(DATE_RSS)."<br/>\n";
   $get['openhouses'] = get_url('http://dev.bendhomes.com/bh-import-opens/');
   $msg .= print_r($get['openhouses'],true);
-  $msg .= 'end: importing WP open house data '.date(DATE_RSS)."<br/>\n";
+  $msg .= 'end: importing WP property data '.date(DATE_RSS)."<br/>\n";
 
   return $msg;
 }
@@ -323,6 +323,7 @@ echo '<pre style="background-color: #ececec;">';
 echo pullWPdata();
 echo '<hr/>';
 echo '</pre>';
+
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>

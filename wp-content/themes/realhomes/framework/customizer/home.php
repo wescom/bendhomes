@@ -402,6 +402,67 @@ if ( ! function_exists( 'inspiry_home_customizer' ) ) :
 			)
 		) );
 
+		/**
+		 * 1777JTG
+		 * Home Open House Properties Section
+		 */
+
+		$wp_customize->add_section( 'inspiry_home_openhouse_properties', array(
+			'title' => __( 'Open House Properties', 'framework' ),
+			'panel' => 'inspiry_home_panel',
+		) );
+
+		/* Show/Hide Featured Properties on Homepage */
+		$wp_customize->add_setting( 'theme_show_openhouse_properties', array(
+			'type' => 'option',
+			'default' => 'true',
+		) );
+		$wp_customize->add_control( 'theme_show_openhouse_properties', array(
+			'label' => __( 'Open House Properties on Homepage', 'framework' ),
+			'type' => 'radio',
+			'section' => 'inspiry_home_openhouse_properties',
+			'choices' => array(
+				'true' => __( 'Show', 'framework' ),
+				'false' => __( 'Hide', 'framework' ),
+			)
+		) );
+
+		/* Title */
+		$wp_customize->add_setting( 'theme_openhouse_prop_title', array(
+			'type' => 'option',
+			'sanitize_callback' => 'sanitize_text_field',
+		) );
+		$wp_customize->add_control( 'theme_openhouse_prop_title', array(
+			'label' => __( 'Title', 'framework' ),
+			'type' => 'text',
+			'section' => 'inspiry_home_openhouse_properties',
+		) );
+
+		/* Text */
+		$wp_customize->add_setting( 'theme_openhouse_prop_text', array(
+			'type' => 'option',
+			'sanitize_callback' => 'wp_kses_data',
+		) );
+		$wp_customize->add_control( 'theme_openhouse_prop_text', array(
+			'label' => __( 'Description Text', 'framework' ),
+			'type' => 'textarea',
+			'section' => 'inspiry_home_openhouse_properties',
+		) );
+
+		/* Exclude Featured Properties from Properties on Homepage */
+		$wp_customize->add_setting( 'theme_exclude_openhouse_properties', array(
+			'type' => 'option',
+			'default' => 'false',
+		) );
+		$wp_customize->add_control( 'theme_exclude_openhouse_properties', array(
+			'label' => __( 'Exclude or Include Open House Properties from Recent Properties on Homepage', 'framework' ),
+			'type' => 'radio',
+			'section' => 'inspiry_home_openhouse_properties',
+			'choices' => array(
+				'true' => 'Exclude',
+				'false' => 'Include',
+			)
+		) );
 
 		/**
 		 * Home News Section
