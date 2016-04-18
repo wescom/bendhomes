@@ -87,27 +87,13 @@ switch($theme_homepage_module){
                         endwhile;
                     endif;
 
-                    /* Blog Posts */
-                    $show_news_posts = get_option('theme_show_news_posts');
-                    /* For demo purpose only */
-                    if(isset($_GET['news-on-home'])){
-                        $show_news_posts = $_GET['news-on-home'];
-                    }
-                    if($show_news_posts == 'true'){
-                        get_template_part("bend-homes/home-news-posts") ;
-                    }
-                    ?>
-
-                    <div class="mid-ad-wrapper">
-                      <?php do_action('dfp_ad_spot','leadmid'); ?>
-                    </div>
-
-                    <?php
                     /* Homepage Properties */
                     $show_home_properties = get_option('theme_show_home_properties');
                     if( $show_home_properties == 'true' ){
                         get_template_part("template-parts/home-properties") ;
                     }
+
+                    get_template_part("bend-homes/midadwrap") ;
 
                     /* Featured Properties */
                     $show_featured_properties = get_option('theme_show_featured_properties');
@@ -120,6 +106,16 @@ switch($theme_homepage_module){
                     // $show_openhouse_properties = true;
                     if($show_openhouse_properties == 'true'){
                         get_template_part("bend-homes/carousel-openhouses") ;
+                    }
+
+                    /* Blog Posts */
+                    $show_news_posts = get_option('theme_show_news_posts');
+                    /* For demo purpose only */
+                    if(isset($_GET['news-on-home'])){
+                        $show_news_posts = $_GET['news-on-home'];
+                    }
+                    if($show_news_posts == 'true'){
+                        get_template_part("bend-homes/home-news-posts") ;
                     }
 
                     ?>

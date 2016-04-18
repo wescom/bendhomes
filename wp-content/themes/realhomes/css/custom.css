@@ -32,9 +32,8 @@
 
 .bh-section-header {
   margin: 10px 31px;
-  padding: 10px 0 5px;
+  /* padding: 10px 0 5px; */
   text-align: left;
-  border-top: 1px solid #dedede;
 }
 
 #logo {
