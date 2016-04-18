@@ -103,7 +103,6 @@ switch($theme_homepage_module){
                     </div>
 
                     <?php
-                    echo 'test199';
                     /* Homepage Properties */
                     $show_home_properties = get_option('theme_show_home_properties');
                     if( $show_home_properties == 'true' ){

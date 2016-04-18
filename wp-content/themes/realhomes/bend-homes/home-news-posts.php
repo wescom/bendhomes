@@ -36,23 +36,6 @@
                   */
                 )
             )
-            /*
-            'meta_query' => array(
-                'relation' => 'OR',
-                array(
-                    'key' => '_thumbnail_id',
-                    'compare' => 'EXISTS'
-                ),
-                array(
-                    'key' => 'REAL_HOMES_embed_code',
-                    'compare' => 'EXISTS'
-                ),
-                array(
-                    'key' => 'REAL_HOMES_gallery',
-                    'compare' => 'EXISTS'
-                )
-            )
-            */
         );
 
         // The Query
@@ -66,9 +49,10 @@
                 if (false === $format) {
                     $format = 'standard';
                 }
+                $format = 'newsitem';
                 ?>
                 <article <?php post_class('span4 clearfix'); ?>>
-                    <?php get_template_part( "post-formats/$format" ); ?>
+                    <?php get_template_part( "bend-homes/$format" ); ?>
                     <h4 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                     <div class="post-meta">
                         <span class="date"> <?php the_time('M j, Y g:iA'); ?></span>
