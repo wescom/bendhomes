@@ -1,7 +1,6 @@
 <?php
 if ( has_post_thumbnail() ){
     ?>
-    test201
     <figure>
         <span class="format-icon image"></span>
         <?php
@@ -24,8 +23,6 @@ if ( has_post_thumbnail() ){
     </figure>
     <?php
 } else {
-    ?>
-    <p></p>
-    <?php
+  
 }
 ?>
