@@ -47,6 +47,7 @@ if( $banner_image_id ){
               ?>
                 <!-- Main Content -->
                 <div class="main">
+
                     <div id="overview">
                         <?php
                         // 1777
@@ -83,7 +84,6 @@ if( $banner_image_id ){
                                     /*
                                     * 3. Property Floor Plans
                                     */
-                                    echo 'here1777';
                                     get_template_part('property-details/property-floor-plans');
 
                                     /*

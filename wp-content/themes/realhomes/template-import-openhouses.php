@@ -174,16 +174,21 @@ function insertWPdata($openhouses) {
 
   // insert open house meta data into wordpress db
   $pm = array();
+  $count = 0;
   foreach($openhouses as $openhouse) {
     $post_id = $openhouse['post_id'];
+    if($flag != $post_id) {
+      // this is if there is a new post_id, the counter is reset to 0 for use in setting meta keynum in $count var
+      $count = 0;
+    }
     foreach($openhouse as $key => $val) {
       // insert meta data with this line
-      $pm[$post_id]['OPEN_HOUSE_'.$key] = add_post_meta( $post_id, 'OPEN_HOUSE_'.$key, $val );
+      $pm[$post_id]['OPEN_HOUSE_'.$key] = add_post_meta( $post_id, 'OPEN_HOUSE_'.$count.'_'.$key, $val );
       // add post status of 'open' to post_id (property)
       wp_set_object_terms( $post_id, $statusprop, 'property-status',$statusappend );
-
-      $pm[$post_id]['OPEN_HOUSE_'.$key] = add_post_meta( $post_id, 'OPEN_HOUSE_'.$key, $val );
     }
+    $flag = $post_id;
+    $count++;
   }
   return $pm;
 }
