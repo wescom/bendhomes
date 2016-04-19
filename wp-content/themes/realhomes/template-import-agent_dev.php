@@ -50,7 +50,7 @@ function bhLookupAgent($guid) {
     global $wpdb;
     $guid = "'http://".$guid."'";
     $sqlquery = "SELECT ID FROM $wpdb->posts WHERE guid = ".$guid;
-    echo $sqlquery;
+    // echo $sqlquery;
     $result = $wpdb->get_results( $sqlquery );
   } else {
     $result = NULL;
@@ -80,7 +80,7 @@ function bhPostActions($status,$id=NULL) {
 
   // insert from API use cases
   if($mlsaction == 'insert') {
-    if($status == 'TRUE') {
+    if($status == 'TRUE' || $status == 'T') {
       $apiaction = 'add_agent'; // only add if insert/Active are true, skip everywhere else
     }
     else
@@ -90,8 +90,7 @@ function bhPostActions($status,$id=NULL) {
   }
   // update from API use cases
   elseif($mlsaction == 'update') {
-    if($status == 'TRUE')
-    {
+    if($status == 'TRUE' || $status == 'T') {
       $apiaction = 'update_agent';
     }
     else
@@ -141,15 +140,45 @@ function dbresult($sset) {
   /* AND lastPullTime >= '".$querydate."' */
   /* LIMIT 10 */
 
+  /*
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               IsActive = 'TRUE'
               ;";
+  */
 
-  // echo '<pre>';
-  // print_r($sqlquery);
-  // echo '</pre>';
+  $sqlquery = "SELECT ActiveAgent_MEMB.FullName,
+              	ActiveAgent_MEMB.lastPullTime,
+                ActiveAgent_MEMB.MemberNumber,
+                ActiveAgent_MEMB.images,
+                Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+                Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+                Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+                Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+                Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+                Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+                Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+                Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+                Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+                Agent_MEMB.IsActive,
+              	Office_OFFI.OfficeName,
+              	Office_OFFI.OfficePhoneComplete,
+              	Office_OFFI.StreetAddress,
+              	Office_OFFI.StreetCity,
+              	Office_OFFI.StreetState,
+              	Office_OFFI.StreetZipCode
+                FROM ActiveAgent_MEMB, Agent_MEMB, Office_OFFI
+                WHERE ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+                AND ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+                AND Agent_MEMB.IsActive = 'T'
+                LIMIT 100
+                ;";
+
+  echo '<pre>';
+  print_r($sqlquery);
+  echo '</pre>';
 
   /* Select queries return a resultset */
+
   if ($result = $mysqli->query($sqlquery)) {
       printf("Select returned %d rows.\n", $result->num_rows);
       while($row = $result->fetch_assoc()) {
@@ -199,9 +228,16 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 }
 
 function bhImageSet($imagelist) {
+  echo 'bhImageSet function!';
   $imagesdir['source'] = ABSPATH.'_retsapi/imagesbackup/activeagent/';
   $imagesdir['tmpdest'] = ABSPATH.'_retsapi/images/activeagent/';
   $bhimgids = NULL;
+
+  echo '<pre>';
+  echo 'imagelist<br/>';
+  print_r($imagelist);
+  echo '</pre>';
+
   if($imagelist != '') {
     $tmpimages = explode('|',$imagelist);
     $bhimgids = array(); // predeclare wp images id array for use
@@ -220,13 +256,50 @@ function bhImageSet($imagelist) {
   return($bhimgids);
 }
 
+function getMobilePhone($item) {
+  // the db results sloppy for phone numbers, organize it
+  // the reason I set a mobile_number key, is if MLS give other numbers later
+  $output = array();
+  $count = 0;
+  foreach($item as $key => $val) {
+    if($key == 'ContactAddlPhoneType_1' || $key == 'ContactAddlPhoneType_2' || $key == 'ContactAddlPhoneType_3') {
+      if($val == 'Cellular') {
+        $output['mobile_number'][$count] = NULL; // preset mobile_number key
+        $mobileflag = explode('_',$key);
+      }
+    }
+    if(isset($mobileflag) == TRUE && ($key == 'ContactPhoneAreaCode_'.$mobileflag[1])) {
+        $output['mobile_number'][$count] .= $val; // get area code
+    }
+    if(isset($mobileflag) == TRUE && ($key == 'ContactPhoneNumber_'.$mobileflag[1])) {
+        $output['mobile_number'][$count] .= $val; // get main 7 digit number
+        $count++;
+    }
+    // unset($mobileflag);
+  }
+
+  // foreach number in array, format it with dashes for standard 10 dig output
+  $count = 0;
+  if(empty($output['mobile_number'])) {
+    return NULL;
+  } else {
+    foreach($output['mobile_number'] as $pn) {
+        if(  preg_match( '/^(\d{3})(\d{3})(\d{4})$/', $pn,  $matches ) )
+        {
+            $output['mobile_number'][$count] = $matches[1] . '-' .$matches[2] . '-' . $matches[3];
+            $count++;
+        }
+    }
+  }
+  unset($count);
+  // I know this seems whack to only return the one number, but data repeats, but want functionality for multiple numbers later
+  return $output['mobile_number'][0];
+}
+
 /* #### AGENT DATA LOOP ##### */
 
 $retsagents = array(); // first declaration
 foreach($agentarr as $agentitem) {
-
-  print_r($agentitem);
-
   // remove excess whitepaces within names as they come from RETS
   $fullname = preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $agentitem['FullName']);
   $urlslug = $fullname;
@@ -243,8 +316,8 @@ foreach($agentarr as $agentitem) {
   $bhagentid = $agentposts[0];
   $bhagentid = $bhagentid->{ID};
   $postaction = bhPostActions($agentitem['IsActive'],$bhagentid);
-
-  // echo '<h1 style="color: gold;">'.$agentitem['MemberNumber'].'</h1>';
+  $postcontent = $agentitem['OfficeName'].'<br/>'.$agentitem['StreetAddress'].'<br/>'.$agentitem['StreetCity'].', '.$agentitem['StreetState'].' '.$agentitem['StreetZip'];
+  $mobilephone = getMobilePhone($agentitem);
 
   // // end use cases
   // add_agent
@@ -260,7 +333,7 @@ foreach($agentarr as $agentitem) {
       'post_author' => '', // left empty on purpose
       'post_date' => date('Y-m-d H:i:s'),
       'post_date_gmt' => date('Y-m-d H:i:s'),
-      'post_content' => $agentitem['OfficeName'],
+      'post_content' => $postcontent,
       'post_title' => $fullname, // full name of agent goes here, becomes wp post title
       'post_exerpt' => '',
       'post_status' => 'publish',
@@ -273,8 +346,8 @@ foreach($agentarr as $agentitem) {
       'office_number' => $agentitem['OfficeNumber'], // MLS number of office
       'REAL_HOMES_meta' => array(
         'agent_email' => '',
-        'mobile_number' => '',
-        'office_number' => '',
+        'mobile_number' => $mobilephone,
+        'office_number' => $agentitem['OfficePhoneComplete'],
         'fax_number' => '',
         'facebook_url' => '',
         'twitter_url' => '',
@@ -298,7 +371,6 @@ foreach($retsagents as $myagent) {
 
   echo '<hr/>';
   echo '<h1 class="'.$myagent['action'].'">'.$count.' - '.$myagent['action'].'</h1>';
-  // $myagent['action'] = 'skip_agent';
 
   $invalid_nonce = false;
   $submitted_successfully = false;
@@ -334,11 +406,6 @@ foreach($retsagents as $myagent) {
         global $current_user;
         get_currentuserinfo();
         $new_agent['post_author'] = $current_user->ID;
-
-        // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
-        // print_r($myagent);
-        // echo '</pre>';
-
         /* check the type of action */
         $action = $myagent['action'];
 
@@ -362,6 +429,15 @@ foreach($retsagents as $myagent) {
             if( empty ( $myagent['agent_img_id'] )) {
               $bhimgids = bhImageSet($myagent['images']);
               $myagent['agent_img_id'] = $bhimgids[0];
+              echo '<pre style="background-color: blue; color: #fff;">';
+              echo 'new agent image: <br/>';
+              print_r($myagent['agent_img_id']);
+              echo '</pre>';
+            } else {
+              echo '<pre style="background-color: green; color: #fff;">';
+              echo 'agent already has image: <br/>';
+              print_r($myagent['agent_img_id']);
+              echo '</pre>';
             }
             $agent_id = wp_update_post( $new_agent ); // Update Agent and get post ID
             if( $agent_id > 0 ){
