@@ -170,7 +170,6 @@ function dbresult($sset) {
                 WHERE ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
                 AND ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
                 AND Agent_MEMB.IsActive = 'T'
-                LIMIT 100
                 ;";
 
   echo '<pre>';
