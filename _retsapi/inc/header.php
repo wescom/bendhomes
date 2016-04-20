@@ -46,11 +46,11 @@ function universalqueries($pulltime) {
       'RESI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)'
     ),
     'ActiveAgent' => array(
-      'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime=1900-10-12T08:50Z+)',
+      'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
       // 'MEMB' => '(IsActive=1)'
     ),
     'Agent' => array(
-      'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime=1900-10-12T08:50Z+)',
+      'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
       // 'MEMB' => '(IsActive=1)'
     ),
     'MemberAssociation' => array(
