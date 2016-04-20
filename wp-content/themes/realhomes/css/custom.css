@@ -41,6 +41,10 @@
   padding: 15px 10px 0 10px;
 }
 
+#logo img {
+  height: 50px;
+}
+
 .main {
   border: 1px solid #dedede;
 }
