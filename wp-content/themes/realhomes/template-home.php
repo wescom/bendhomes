@@ -66,7 +66,7 @@ switch($theme_homepage_module){
                         $show_home_search = get_option('theme_show_home_search');
                         if( $show_home_search == 'true' ){
                             /* Advance Search Form for Homepage */
-                            get_template_part('template-parts/advance-search');
+                            get_template_part('bend-homes/advance-search');
                         }
                     endif;
 

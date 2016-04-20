@@ -1544,27 +1544,28 @@ p .icon-remove {
   display: none;
 }
 
-.advance-search .more-options-wrapper .option-bar {
+.advance-search .more-options-wrapper .option-checkboxes .option-bar {
   height: auto;
   margin: 15px 0 0 20px;
 }
 
-.advance-search .more-options-wrapper label {
+.advance-search .more-options-wrapper .option-checkboxes label {
   margin: 0;
   display: inline-block;
   cursor: pointer;
 }
 
-.advance-search .more-options-wrapper label small {
+.advance-search .more-options-wrapper .option-checkboxes label small {
   color: #8b9293;
 }
 
-.advance-search .more-options-wrapper input[type="checkbox"] {
+.advance-search .more-options-wrapper .option-checkboxes input[type="checkbox"] {
   margin: 0 5px 2px 0;
 }
 
 .advance-search label {
-  color: #394041;
+  /* color: #394041; */
+  color: #cc0000;
   cursor: text;
   margin-bottom: 10px;
 }

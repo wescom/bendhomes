@@ -58,3 +58,12 @@
 .page-spacer {
   height: 35px;
 }
+
+.option-checkboxes {
+  display: block;
+  clear: both;
+}
+
+.advance-search .more-options-wrapper {
+  margin-top: 20px;
+}
