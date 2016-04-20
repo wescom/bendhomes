@@ -293,7 +293,7 @@ function bhPostActions($status,$mlsid=NULL) {
     }
   }
 
-  $apiaction = 'delete_property';
+  // $apiaction = 'delete_property';
 
   // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>mlsid: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
   return $apiaction;
