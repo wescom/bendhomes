@@ -166,10 +166,9 @@ function dbresult($sset) {
               	Office_OFFI.StreetCity,
               	Office_OFFI.StreetState,
               	Office_OFFI.StreetZipCode
-                FROM ActiveAgent_MEMB, Agent_MEMB, Office_OFFI
-                WHERE ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-                AND ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
-                AND Agent_MEMB.IsActive = 'T'
+                FROM ActiveAgent_MEMB
+                LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+                LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
                 ;";
 
   echo '<pre>';
@@ -193,9 +192,9 @@ function dbresult($sset) {
 }
 
 $agentarr = dbresult($scenarioset);
-// echo '<pre> agent_test_199 -- <br/>';
-// print_r($agentarr);
-// echo '</pre>';
+echo '<pre> agent_test_199 -- <br/>';
+print_r($agentarr);
+echo '</pre>';
 
 /* ############################ */
 /* #### IMAGES PROCESSING ##### */
@@ -315,7 +314,7 @@ foreach($agentarr as $agentitem) {
   $bhagentid = $agentposts[0];
   $bhagentid = $bhagentid->{ID};
   $postaction = bhPostActions($agentitem['IsActive'],$bhagentid);
-  $postcontent = $agentitem['OfficeName'].'<br/>'.$agentitem['StreetAddress'].'<br/>'.$agentitem['StreetCity'].', '.$agentitem['StreetState'].' '.$agentitem['StreetZip'];
+  $postcontent = $agentitem['OfficeName'].'<br/> '.$agentitem['StreetAddress'].'<br/> '.$agentitem['StreetCity'].', '.$agentitem['StreetState'].' '.$agentitem['StreetZipCode'];
   $mobilephone = getMobilePhone($agentitem);
 
   // // end use cases
