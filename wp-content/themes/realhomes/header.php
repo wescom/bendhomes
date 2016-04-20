@@ -179,7 +179,7 @@
 
                       <!-- Social Navigation -->
                       <?php
-                        // get_template_part('template-parts/social-nav') ;
+                        get_template_part('template-parts/social-nav') ;
                       ?>
 
 
