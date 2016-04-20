@@ -61,11 +61,12 @@
 
 
                         // Currency Switcher
-                        get_template_part( 'template-parts/header-currency-switcher' );
+                        // get_template_part( 'template-parts/header-currency-switcher' );
 
 
                         // header email
-                        $header_email = get_option('theme_header_email');
+                        // $header_email = get_option('theme_header_email');
+                        $header_email = NULL;
                         if ( ! empty( $header_email ) ) {
                             ?>
                             <h2 id="contact-email">
