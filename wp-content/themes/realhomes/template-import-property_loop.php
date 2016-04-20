@@ -293,7 +293,7 @@ function bhPostActions($status,$mlsid=NULL) {
     }
   }
 
-  # $apiaction = 'delete_property';
+  $apiaction = 'delete_property';
 
   // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>mlsid: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
   return $apiaction;
@@ -815,7 +815,7 @@ function dataWPinsert($retsproperties) {
                     // Agent Display Option
                     if( isset ( $myproperty['agent_display_option'] ) && ! empty ( $myproperty['agent_display_option'] ) ) {
                         update_post_meta( $property_id, 'REAL_HOMES_agent_display_option', $myproperty['agent_display_option']);
-                        if( ($myproperty['agent_display_option'] == "agent_info") && isset( $myproperty['agent_id'] ) ){
+                        if( isset( $myproperty['agent_id'] ) ){
                             update_post_meta( $property_id, 'REAL_HOMES_agents', $myproperty['agent_id'] );
                         }
                     }
