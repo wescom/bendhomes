@@ -72,6 +72,9 @@ function display_sidebar_agent_box( $args ) {
 		</div>
 
 		<?php
+
+    print_r($args);
+
 		if ( isset( $args[ 'agent_email' ] ) ) {
 			$agent_form_id = 'agent-form-id';
 			if ( isset( $args[ 'agent_id' ] ) ) {
