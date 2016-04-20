@@ -1564,8 +1564,7 @@ p .icon-remove {
 }
 
 .advance-search label {
-  /* color: #394041; */
-  color: #cc0000;
+  color: #394041;
   cursor: text;
   margin-bottom: 10px;
 }
