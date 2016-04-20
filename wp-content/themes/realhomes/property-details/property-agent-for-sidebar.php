@@ -66,7 +66,7 @@ function display_sidebar_agent_box( $args ) {
 				if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
 					?><a class="real-btn" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
 				} else {
-					?><a class="real-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
+					?><a class="real-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'View Agent Profile & Properties', 'framework' ); ?></a><?php
 				}
 			?></p>
 		</div>
