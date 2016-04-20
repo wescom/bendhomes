@@ -412,9 +412,9 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
    // if successfully loaded, unlink the originated image
    // unlink($tmp);
-   echo 'unlink this!: ';
-   print_r($tmp);
-   echo '<br/>';
+   // echo 'unlink this!: ';
+   // print_r($tmp);
+   // echo '<br/>';
 
    return $uploaded_image;
 
@@ -434,7 +434,7 @@ function bhImageSet($item) {
       // copies image from backup dir, to images dir, file is unlinked/deleted
       // upon processing. This will enable images to update and scripts to be rerun
       if(!file_exists($imagesdir['tmpdest'].'/'.$img)) {
-        copy($imagesdir['source'].'/'.$img,$imagesdir['tmpdest'].'/'.$img);
+        copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
       }
       $tf = apply_filters( 'bendhomes_img_upload', $img );
       $bhimgids[] = $tf;

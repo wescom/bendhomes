@@ -819,8 +819,8 @@ p .icon-remove {
 /*  Header Top
 --------------------------------------------------------*/
 #header-top {
-  border-bottom: 1px solid #343a3b;
-  margin-bottom: 30px;
+  /* border-bottom: 1px solid #343a3b;
+  margin-bottom: 30px; */
 }
 
 #header-top #lang_sel {

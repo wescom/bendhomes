@@ -4,7 +4,7 @@
 <!--[if IE 8]>    <html class="lt-ie9" <?php language_attributes(); ?>> <![endif]-->
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
+  <meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<meta name="format-detection" content="telephone=no">
@@ -28,7 +28,7 @@
 
         <?php
           // print_r(get_registered_nav_menus());
-          // Conditional. Don't show top navigation on home/front page
+          // Conditional. Don't show top ad banner on home/front page
           if( get_queried_object()->post_name == home ) {
             // do nothing
           } else { ?>
