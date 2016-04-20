@@ -131,7 +131,7 @@ function dbresult($sset) {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    $pulldate = strtotime('-30 days');
+    $pulldate = strtotime('-10 years');
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
