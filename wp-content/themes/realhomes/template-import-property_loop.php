@@ -357,6 +357,7 @@ function dbresult($sset) {
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND Status = 'Active'
+              LIMIT ".$sset['count']."
               ;";
 
   echo '<pre>';
@@ -506,7 +507,7 @@ function dataPreProc($proparr,$scenarioset) {
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-            'featured' => 0, // 0 == not featured, 1 == featured
+            // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
@@ -528,7 +529,7 @@ function dataPreProc($proparr,$scenarioset) {
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-            'featured' => 0, // 0 == not featured, 1 == featured
+            // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
@@ -555,7 +556,7 @@ function dataPreProc($proparr,$scenarioset) {
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-            'featured' => 0, // 0 == not featured, 1 == featured
+            // 'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
@@ -578,7 +579,7 @@ function dataPreProc($proparr,$scenarioset) {
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-            'featured' => 0, // 0 == not featured, 1 == featured
+            // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
             'action' => $postaction // give api db status, and pre-existing wp id, if exists
@@ -604,7 +605,7 @@ function dataPreProc($proparr,$scenarioset) {
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-            'featured' => 0, // 0 == not featured, 1 == featured
+            // 'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
@@ -632,7 +633,7 @@ function dataPreProc($proparr,$scenarioset) {
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
             'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
-            'featured' => 0, // 0 == not featured, 1 == featured
+            // 'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
@@ -851,10 +852,12 @@ function dataWPinsert($retsproperties) {
                     }
 
                     // Attach Property as Featured Post Meta
+                    /*
                     $featured = ( isset( $myproperty['featured'] ) ) ? $myproperty['featured'] : 0 ;
                     if ( $featured ) {
                         update_post_meta( $property_id, 'REAL_HOMES_featured', $featured );
                     }
+                    */
 
                     // Tour video image - in case of update
                     $tour_video_image = "";

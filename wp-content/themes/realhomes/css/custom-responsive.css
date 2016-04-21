@@ -470,6 +470,14 @@
   #home-idx-search .dsidx-search-widget input[type=text].dsidx-improvedsqft, #home-idx-search .dsidx-search-widget input[type=text].dsidx-beds, #home-idx-search .dsidx-search-widget input[type=text].dsidx-baths {
     width: 125px !important;
   }
+
+  .mid-ad-wrapper .dfp-ad,
+  .footer-ad-wrapper .dfp-ad,
+  .ad-wrapper .dfp-ad {
+    min-width: 728px;
+    /* height: 90px; */
+  }
+
 }
 
 /* Common Styles = Tablet to Small Devices
@@ -1086,6 +1094,14 @@
   #lidd_mc_details #lidd_mc_inspector {
     right: 4%;
   }
+
+  .mid-ad-wrapper .dfp-ad,
+  .footer-ad-wrapper .dfp-ad,
+  .ad-wrapper .dfp-ad {
+    width: 320px;
+    height: 50px;
+  }
+
 }
 
 /* Responsive: Landscape phone to desktop/tablet
@@ -1819,6 +1835,14 @@
   .floor-plans .floor-plan-content .floor-plan-desc {
     color: #71797a;
   }
+
+  .mid-ad-wrapper .dfp-ad,
+  .footer-ad-wrapper .dfp-ad,
+  .ad-wrapper .dfp-ad {
+    width: 320px;
+    height: 50px;
+  }
+
 }
 
 @media (max-width: 499px) {
@@ -2641,4 +2665,12 @@
   #property-detail-flexslider .jcarousel-container-vertical {
     display: none !important;
   }
+
+  .mid-ad-wrapper .dfp-ad,
+  .footer-ad-wrapper .dfp-ad,
+  .ad-wrapper .dfp-ad {
+    width: 320px;
+    height: 50px;
+  }
+
 }

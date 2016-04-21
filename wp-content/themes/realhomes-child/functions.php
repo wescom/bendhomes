@@ -73,9 +73,9 @@ function child_theme_head_script() { ?>
     					sizebottomleaderboard = [320, 50];
     					sizerail = [[180, 150], [160, 600]];
     				} else if(width >= 768 && width < 992) {	//768--991
-    					sizetopleaderboard = [728,90];
-              sizemidleaderboard = [728, 90];
-              sizebottomleaderboard = [728, 90];
+    					sizetopleaderboard = [320, 50];
+              sizemidleaderboard = [320, 50];
+              sizebottomleaderboard = [320, 50];
     					sizerail = [160, 600];
     				} else if(width >= 992) {					//992+
     					sizetopleaderboard = [[970, 90], [728,90]];
@@ -83,7 +83,7 @@ function child_theme_head_script() { ?>
               sizebottomleaderboard = [[970, 90], [728,90]];
     					sizerail = [160, 600];
     				} else { // fallback
-              sizetopleaderboard = [728,90];
+              sizetopleaderboard = [728, 90];
               sizemidleaderboard = [728, 90];
               sizebottomleaderboard = [728, 90];
               sizerail = [160, 600];

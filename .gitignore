@@ -40,6 +40,7 @@
 !favicon.ico
 !_json
 !_retsapi
+!_logs
 !_retsapi/images/activeagent/
 !_retsapi/images/agent/
 !_retsapi/images/property/
