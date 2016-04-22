@@ -49,7 +49,7 @@
   -webkit-backface-visibility: hidden;
 }
 
-#home-flexslider .flexslider img {
+#home-flexslider .flexslider .slides img
     /* 1777 */
   margin: -200px;
 }
