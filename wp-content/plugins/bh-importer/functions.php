@@ -4,7 +4,7 @@
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
 
-$centralcount = 100;
+$centralcount = 1;
 $scenarios = array(
   'Property_BUSI' => array(
     'count' => $centralcount,
@@ -486,9 +486,9 @@ function dbresult($sset) {
               LIMIT ".$sset['count']."
               ;";
 
-  // echo '<pre>';
-  // print_r($sqlquery);
-  // echo '</pre>';
+  echo '<pre>';
+  print_r($sqlquery);
+  echo '</pre>';
 
   /* Select queries return a resultset */
   if ($result = $mysqli->query($sqlquery)) {
