@@ -50,13 +50,14 @@
 }
 
 #home-flexslider .flexslider .slides img {
-    /* 1777 */
-  margin-top: -200px;
+  margin: -200px 0 0 0;
 }
 
 .flexslider .slides img {
   width: 100%;
   display: block;
+  /* 1777 */
+  /* margin: -200px 0 0 0; */
 }
 .flexslider .slides:after {
   content: "\0020";
