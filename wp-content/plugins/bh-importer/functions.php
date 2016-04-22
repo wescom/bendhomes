@@ -93,12 +93,138 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
   add_action('before_delete_post', 'delete_associated_media', 10, 1);
 }
 
+function agent_dbresult($sset) {
+
+  $data = array();
+  $db = array(
+    'host' => 'localhost',
+    'username' => 'phrets',
+    'password' => 'hCqaQvMKW9wJKQwS',
+    'database' => 'bh_rets'
+  );
+
+  $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+  /* check connection */
+  if ($mysqli->connect_errno) {
+      printf("Connect failed: %s\n", $mysqli->connect_error);
+      exit();
+  }
+
+  $resource = $sset['resource'];
+  $class = $sset['class'];
+  $rc = $resource.'_'.$class;
+
+  $fnamerecent = ABSPATH.'/_retsapi/pulldates/'.$rc.'.txt';
+  if(file_exists($fnamerecent)) {
+    $pulldate = file_get_contents($fnamerecent);
+  } else {
+    $pulldate = strtotime('-10 years');
+  }
+
+  $querydate = date('Y-m-d H:i:s',$pulldate);
+  // echo $pulldate;
+  /* AND images IS NOT NULL */
+  /* AND lastPullTime >= '".$querydate."' */
+  /* LIMIT 10 */
+
+  /*
+  $sqlquery = "SELECT * FROM ".$rc." WHERE
+              IsActive = 'TRUE'
+              ;";
+  */
+
+  $sqlquery = "SELECT ActiveAgent_MEMB.FullName,
+              	ActiveAgent_MEMB.lastPullTime,
+                ActiveAgent_MEMB.MemberNumber,
+                ActiveAgent_MEMB.IsActive,
+                ActiveAgent_MEMB.images,
+                Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+                Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+                Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+                Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+                Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+                Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+                Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+                Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+                Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+                # Agent_MEMB.IsActive,
+              	Office_OFFI.OfficeName,
+              	Office_OFFI.OfficePhoneComplete,
+              	Office_OFFI.StreetAddress,
+              	Office_OFFI.StreetCity,
+              	Office_OFFI.StreetState,
+              	Office_OFFI.StreetZipCode
+                FROM ActiveAgent_MEMB
+                LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+                LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+                LIMIT 30;
+                ;";
+
+  echo '<pre>';
+  print_r($sqlquery);
+  echo '</pre>';
+
+  /* Select queries return a resultset */
+
+  if ($result = $mysqli->query($sqlquery)) {
+      printf("Select returned %d rows.\n", $result->num_rows);
+      while($row = $result->fetch_assoc()) {
+          $data[] = $row;
+      }
+      // Frees the memory associated with a result
+      $result->free();
+  }
+
+  $mysqli->close();
+  return $data;
+
+}
+
 /* #### FUNCTIONS ##### */
 function formatprice($price) {
   $pricearr = explode('.',$price);
   $newprice = $pricearr[0];
   $newprice = (int) $newprice;
   return $newprice;
+}
+
+function bhAgentPostAction($status,$id=NULL) {
+  // // end use cases
+  // add_agent
+  // update_agent
+  // delete_agent
+
+  // if the agent already exists in db, then update it
+  // works with feed statuses, see scenarios
+  if($id != NULL) {
+    $mlsaction = 'update';
+  } else {
+    $mlsaction = 'insert';
+  }
+
+  // insert from API use cases
+  if($mlsaction == 'insert') {
+    if($status == 'TRUE' || $status == 'T') {
+      $apiaction = 'add_agent'; // only add if insert/Active are true, skip everywhere else
+    }
+    else
+    {
+      $apiaction = 'skip_agent'; // skip prop if insert, but is on list of prohibited statuses
+    }
+  }
+  // update from API use cases
+  elseif($mlsaction == 'update') {
+    if($status == 'TRUE' || $status == 'T') {
+      $apiaction = 'update_agent';
+    }
+    else
+    {
+      $apiaction = 'delete_agent';
+    }
+  }
+
+  // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>mlsid: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
+  return $apiaction;
 }
 
 function bhLookupAgent($guid) {
@@ -117,6 +243,25 @@ function bhLookupAgent($guid) {
   // echo '</pre>';
   return $result;
 }
+
+/* from agent importer */
+/*
+function bhLookupAgent($guid) {
+  if($guid != NULL) {
+    global $wpdb;
+    $guid = "'http://".$guid."'";
+    $sqlquery = "SELECT ID FROM $wpdb->posts WHERE guid = ".$guid;
+    // echo $sqlquery;
+    $result = $wpdb->get_results( $sqlquery );
+  } else {
+    $result = NULL;
+  }
+  // echo '<pre> test222';
+  // print_r($result);
+  // echo '</pre>';
+  return $result;
+}
+*/
 
 function bhLookupPropertyType($typestring) {
   // this taked the RESIPropertySubtype var from rets

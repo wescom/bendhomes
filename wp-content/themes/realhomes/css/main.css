@@ -1372,6 +1372,9 @@ p .icon-remove {
   border: none;
   margin: auto;
   border-radius: 0;
+  /* 1777 */
+  height: 500px;
+  overflow: hidden;
 }
 
 /* Slide Description
@@ -1975,7 +1978,7 @@ p .icon-remove {
 }
 
 .brands-carousel .jcarousel-clip-horizontal {
-  /* overflow: hidden; */
+  overflow: hidden;
   /* height: 55px; */
 }
 
@@ -2011,8 +2014,8 @@ p .icon-remove {
 }
 
 .brands-carousel ul.brands-carousel-list li {
-  width: 170px;
   margin: 0 18px;
+  border: 1px solid #dedede;
 }
 
 /* Carousel  Nav

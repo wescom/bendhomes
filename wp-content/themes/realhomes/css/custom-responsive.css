@@ -118,7 +118,7 @@
   }
   .brands-carousel ul.brands-carousel-list li {
     width: 178px;
-    border: 1px solid #dedede;
+    height: 178px;
   }
   /* Widgets
   -------------------------------------------------------------- */
@@ -753,7 +753,8 @@
     padding-right: 41px;
   }
   .brands-carousel ul.brands-carousel-list li {
-    width: 160px;
+    width: 90px;
+    height: 90px;
   }
   /* Footer */
   #footer > .row > .span3 {
@@ -1251,7 +1252,8 @@
     padding-right: 69px;
   }
   .brands-carousel ul.brands-carousel-list li {
-    width: 180px;
+    width: 80px;
+    height: 80px;
   }
   /* Widgets */
   .widget.quick-links ul li {
@@ -1912,7 +1914,8 @@
     padding-right: 41px;
   }
   .brands-carousel ul.brands-carousel-list li {
-    width: 180px;
+    width: 100px;
+    height: 100px;
   }
   .sidebar .widget {
     margin-left: auto;

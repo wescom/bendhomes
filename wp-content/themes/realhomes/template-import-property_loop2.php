@@ -216,7 +216,7 @@ function dataPreProc($proparr,$scenarioset) {
     // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
     // print_r($data_to_insert);
     // echo '</pre>';
-    dataWPinsert($data_to_insert);
+    dataPropertyWPinsert($data_to_insert);
     unset($data_to_insert);
     $count++;
   } // end $propitem forach
@@ -225,7 +225,7 @@ function dataPreProc($proparr,$scenarioset) {
   return $retsproperties;
 }
 
-function dataWPinsert($myproperty) {
+function dataPropertyWPinsert($myproperty) {
 
   $invalid_nonce = false;
   $submitted_successfully = false;
@@ -480,7 +480,7 @@ foreach($scenarios as $scenario) {
   $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
 
   // loop again to insert into WP posts
-  // $do = dataWPinsert($retsPreProcResults);
+  // $do = dataPropertyWPinsert($retsPreProcResults);
   echo '<hr/>';
 }
 // echo 'import complete: '.date(DATE_RSS)."<br/>\n";
