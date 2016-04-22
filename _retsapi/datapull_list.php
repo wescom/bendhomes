@@ -92,7 +92,7 @@ function buildRetsQuery($fqvars) {
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
     // $pulldate['recent'] = strtotime('-2 days');
-    $pulldate['recent'] = strtotime("-10 years");
+    $pulldate['recent'] = strtotime("-20 years");
   }
 
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
