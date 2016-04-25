@@ -60,17 +60,21 @@ get_header();
                                                         'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
                                                       );
 
-                                                      if(!array_filter($brokerage)) {
-                                                        echo 'no brokerage info supplied';
+                                                      if(array_filter($brokerage)) {
+                                                        echo '<div class="agent-brokerage-office">'."\n";
+                                                        echo '</pre>';
+                                                        print_r($brokerage);
+                                                        echo '</pre>';
+                                                        echo '</div>';
+                                                      } else {
+                                                        echo '<!-- no brokerage information supplied -->';
                                                       }
-                                                      print_r($brokerage);
-                                                      unset($brokerage);
 
                                                     ?>
                                                     <div class="agent-brokerage-office">
                                                         <?php
 
-                                                        echo 'test199';
+                                                        echo 'test200';
                                                         ?>
                                                     </div>
 
