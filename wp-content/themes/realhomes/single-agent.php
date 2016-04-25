@@ -60,9 +60,17 @@ get_header();
 
                                                     if(array_filter($brokerage)) {
                                                       echo '<div class="agent-brokerage-office">'."\n";
-                                                      echo '</pre>';
-                                                      print_r($brokerage);
-                                                      echo '</pre>';
+                                                      echo '<p>';
+                                                      if(!empty($brokerage['name'])){
+                                                        echo '<strong>'.$brokerage['name']).'</strong><br/>';
+                                                      }
+                                                      if(!empty($brokerage['address'])){
+                                                        echo $brokerage['address']).'<br/>';
+                                                      }
+                                                      if(!empty($brokerage['phone'])){
+                                                        echo $brokerage['phone']);
+                                                      }
+                                                      echo '</p>';
                                                       echo '</div>';
                                                     } else {
                                                       echo '<!-- no brokerage information supplied -->';
