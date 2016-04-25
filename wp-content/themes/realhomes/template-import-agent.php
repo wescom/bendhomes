@@ -187,7 +187,7 @@ foreach($agentarr as $agentitem) {
       'post_author' => '', // left empty on purpose
       'post_date' => date('Y-m-d H:i:s'),
       'post_date_gmt' => date('Y-m-d H:i:s'),
-      // 'post_content' => $postcontent,
+      'post_content' => '',
       'post_title' => 'test1778-'.$fullname, // full name of agent goes here, becomes wp post title
       'post_exerpt' => '',
       'post_status' => 'publish',
@@ -254,7 +254,7 @@ function dataAgentWPinsert($myagent) {
           $new_agent['post_title']	= sanitize_text_field( $myagent['post_title'] );
 
           // Description
-          // $new_agent['post_content'] = wp_kses_post( $myagent['post_content'] );
+          $new_agent['post_content'] = wp_kses_post( $myagent['post_content'] );
 
           // Publish status
           $new_agent['post_status'] = $myagent['post_status'];
