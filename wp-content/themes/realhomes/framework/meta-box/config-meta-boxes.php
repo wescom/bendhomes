@@ -234,7 +234,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'columns' => 12,
                     'tab' => 'gallery',
                 ),
-				
+
 				// Floor Plans
                 array(
                     'id'    => "inspiry_floor_plans",
@@ -304,7 +304,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                             'max_file_uploads' => 1,
                         ),
                     ),
-                ),				
+                ),
 
 
                 // Property Video
@@ -434,7 +434,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                 )
             )
         );
-
 
         // Agent Meta Box
         $meta_boxes[] = array(
