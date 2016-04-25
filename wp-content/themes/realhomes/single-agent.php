@@ -59,9 +59,12 @@ get_header();
                                                         'address' => get_post_meta($post->ID, 'brk_office_address',true),
                                                         'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
                                                       );
+
+                                                      if(!array_filter($brokerage)) {
+                                                        echo 'no brokerage info supplied';
+                                                      }
                                                       print_r($brokerage);
                                                       unset($brokerage);
-
 
                                                     ?>
                                                     <div class="agent-brokerage-office">
