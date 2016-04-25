@@ -54,32 +54,23 @@ get_header();
                                                         ?>
                                                     </div>
                                                     <?php
-                                                      $brokerage = array(
-                                                        'name' => get_post_meta($post->ID, 'brk_office_name',true),
-                                                        'address' => get_post_meta($post->ID, 'brk_office_address',true),
-                                                        'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
-                                                      );
+                                                    /* show brokerage office infomation, if any */
+                                                    $brokerage = array(
+                                                      'name' => get_post_meta($post->ID, 'brk_office_name',true),
+                                                      'address' => get_post_meta($post->ID, 'brk_office_address',true),
+                                                      'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
+                                                    );
 
-                                                      if(array_filter($brokerage)) {
-                                                        echo '<div class="agent-brokerage-office">'."\n";
-                                                        echo '</pre>';
-                                                        print_r($brokerage);
-                                                        echo '</pre>';
-                                                        echo '</div>';
-                                                      } else {
-                                                        echo '<!-- no brokerage information supplied -->';
-                                                      }
+                                                    if(array_filter($brokerage)) {
+                                                      echo '<div class="agent-brokerage-office">'."\n";
+                                                      echo '</pre>';
+                                                      print_r($brokerage);
+                                                      echo '</pre>';
+                                                      echo '</div>';
+                                                    } else {
+                                                      echo '<!-- no brokerage information supplied -->';
+                                                    }
 
-                                                    ?>
-                                                    <div class="agent-brokerage-office">
-                                                        <?php
-
-                                                        echo 'test200';
-                                                        ?>
-                                                    </div>
-
-
-                                                    <?php
                                                     /* Agent Contact Info */
                                                     $agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
                                                     $agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);
