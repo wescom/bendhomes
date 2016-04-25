@@ -157,7 +157,7 @@ function agent_dbresult($sset) {
                 FROM ActiveAgent_MEMB
                 LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
                 LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-                LIMIT 30;
+                LIMIT 60;
                 ;";
 
   echo '<pre>';
