@@ -214,7 +214,7 @@ foreach($agentarr as $agentitem) {
         'brk_office_name' => $agentitem['OfficeName'],
         'brk_office_address' => $agentitem['StreetAddress']."\n".$agentitem['StreetCity'].', '.$agentitem['StreetState'].' '.$agentitem['StreetZipCode'],
         'brk_office_phone' => $agentitem['OfficePhoneComplete']
-      )
+      ),
       'agent_member_number' => $agentitem['MemberNumber'], // unique identifier of agent in wp
       'agent_guid' => $guid, // this must *never* change as is the unique id per agent
       'agent_id' => $bhagentid, // system assigned unique key, empty if new agent, filled if update agent
