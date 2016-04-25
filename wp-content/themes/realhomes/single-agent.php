@@ -68,7 +68,7 @@ get_header();
                                                         echo $brokerage['address'].'<br/>';
                                                       }
                                                       if(!empty($brokerage['phone'])){
-                                                        echo $brokerage['phone']);
+                                                        echo $brokerage['phone'];
                                                       }
                                                       echo '</p>';
                                                       echo '</div>';
