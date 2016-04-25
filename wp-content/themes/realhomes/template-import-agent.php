@@ -188,7 +188,7 @@ foreach($agentarr as $agentitem) {
       'post_date' => date('Y-m-d H:i:s'),
       'post_date_gmt' => date('Y-m-d H:i:s'),
       'post_content' => $postcontent,
-      'post_title' => 'test1777 - '.$fullname, // full name of agent goes here, becomes wp post title
+      'post_title' => 'test1777-'.$fullname, // full name of agent goes here, becomes wp post title
       'post_exerpt' => '',
       'post_status' => 'publish',
       'comment_status' => 'closed',
@@ -226,10 +226,11 @@ function dataAgentWPinsert($myagent) {
 
     echo '<hr/>';
     echo '<h1 class="'.$myagent['action'].'">'.$count.' - '.$myagent['action'].'</h1>';
-    echo '<pre class="'.$myagent['action'].'">';
+
+    echo '<pre>';
     echo 'my agent: <br/>';
     print_r($myagent);
-    echo '</pre>';
+    echo '<pre>';
 
     $invalid_nonce = false;
     $submitted_successfully = false;
