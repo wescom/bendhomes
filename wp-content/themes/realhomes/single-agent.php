@@ -48,10 +48,7 @@ get_header();
                                                 <div class="span9">
 
                                                     <div class="agent-content">
-                                                        <?php the_content();
-
-                                                        echo 'test199';
-                                                        ?>
+                                                        <?php the_content(); ?>
                                                     </div>
                                                     <?php
                                                     /* show brokerage office infomation, if any */
