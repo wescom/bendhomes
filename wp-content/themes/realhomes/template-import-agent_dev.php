@@ -372,7 +372,7 @@ foreach($retsagents as $myagent) {
   echo '<h1 class="'.$myagent['action'].'">'.$count.' - '.$myagent['action'].'</h1>';
 
   echo '<pre>';
-  echo 'my agent: <br/>';
+  echo 'my agent dev: <br/>';
   print_r($myagent);
   echo '<pre>';
 

@@ -341,7 +341,6 @@ function dataAgentWPinsert($myagent) {
 
             if( (isset( $myagent['brokerage_office_meta'])) && (!empty($myagent['brokerage_office_meta'])) ) {
               foreach($myagent['brokerage_office_meta'] as $metaitemkey => $metaitemvalue ) {
-                // Attach Bedrooms Post Meta
                 if( (isset( $metaitemkey)) && (!empty($metaitemkey)) ) {
                     update_post_meta( $agent_id, $metaitemkey, $metaitemvalue );
                 }
