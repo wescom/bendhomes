@@ -210,7 +210,7 @@ foreach($agentarr as $agentitem) {
         'banner_title' => '',
         'banner_sub_title' => '',
       ),
-      'brokerage_office_meta' = array(
+      'brokerage_office_meta' => array(
         'brk_office_name' => $agentitem['OfficeName'],
         'brk_office_address' => $agentitem['StreetAddress']."\n".$agentitem['StreetCity'].', '.$agentitem['StreetState'].' '.$agentitem['StreetZipCode'],
         'brk_office_phone' => $agentitem['OfficePhoneComplete']
