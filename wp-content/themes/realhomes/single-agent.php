@@ -58,6 +58,8 @@ get_header();
                                                       'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
                                                     );
 
+                                                    $brokerage['address'] = str_replace("\n",'<br/>', $brokerage['address']);
+
                                                     if(array_filter($brokerage)) {
                                                       echo '<div class="agent-brokerage-office">'."\n";
                                                       echo '<p>';
