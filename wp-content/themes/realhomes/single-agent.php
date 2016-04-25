@@ -56,9 +56,9 @@ get_header();
                                                     <?php
                                                       $brokerage = array(
                                                         'name' => get_post_meta($post->ID, 'brk_office_name',true),
-                                                        'address' => get_post_meta($post->ID, 'brk_office_address',true),,
-                                                        'phone' => get_post_meta($post->ID, 'brk_office_phone',true),
-                                                      )
+                                                        'address' => get_post_meta($post->ID, 'brk_office_address',true),
+                                                        'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
+                                                      );
                                                       print_r($brokerage);
                                                       unset($brokerage);
 
