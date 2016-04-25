@@ -62,10 +62,10 @@ get_header();
                                                       echo '<div class="agent-brokerage-office">'."\n";
                                                       echo '<p>';
                                                       if(!empty($brokerage['name'])){
-                                                        echo '<strong>'.$brokerage['name']).'</strong><br/>';
+                                                        echo '<strong>'.$brokerage['name'].'</strong><br/>';
                                                       }
                                                       if(!empty($brokerage['address'])){
-                                                        echo $brokerage['address']).'<br/>';
+                                                        echo $brokerage['address'].'<br/>';
                                                       }
                                                       if(!empty($brokerage['phone'])){
                                                         echo $brokerage['phone']);
