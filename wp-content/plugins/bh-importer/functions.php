@@ -4,7 +4,7 @@
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
 
-$centralcount = 100;
+$centralcount = 1;
 $scenarios = array(
   'Property_BUSI' => array(
     'count' => $centralcount,
