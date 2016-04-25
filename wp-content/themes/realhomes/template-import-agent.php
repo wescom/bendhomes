@@ -187,7 +187,7 @@ foreach($agentarr as $agentitem) {
       'post_author' => '', // left empty on purpose
       'post_date' => date('Y-m-d H:i:s'),
       'post_date_gmt' => date('Y-m-d H:i:s'),
-      'post_content' => $postcontent,
+      // 'post_content' => $postcontent,
       'post_title' => 'test1777-'.$fullname, // full name of agent goes here, becomes wp post title
       'post_exerpt' => '',
       'post_status' => 'publish',
@@ -210,6 +210,11 @@ foreach($agentarr as $agentitem) {
         'banner_title' => '',
         'banner_sub_title' => '',
       ),
+      'brokerage_office_meta' = array(
+        'brk_office_name' => $agentitem['OfficeName'],
+        'brk_office_address' => $agentitem['StreetAddress']."\n".$agentitem['StreetCity'].', '.$agentitem['StreetState'].' '.$agentitem['StreetZipCode'],
+        'brk_office_phone' => $agentitem['OfficePhoneComplete']
+      )
       'agent_member_number' => $agentitem['MemberNumber'], // unique identifier of agent in wp
       'agent_guid' => $guid, // this must *never* change as is the unique id per agent
       'agent_id' => $bhagentid, // system assigned unique key, empty if new agent, filled if update agent
@@ -249,7 +254,7 @@ function dataAgentWPinsert($myagent) {
           $new_agent['post_title']	= sanitize_text_field( $myagent['post_title'] );
 
           // Description
-          $new_agent['post_content'] = wp_kses_post( $myagent['post_content'] );
+          // $new_agent['post_content'] = wp_kses_post( $myagent['post_content'] );
 
           // Publish status
           $new_agent['post_status'] = $myagent['post_status'];
@@ -332,6 +337,17 @@ function dataAgentWPinsert($myagent) {
                 }
               }
             }
+            unset($metaitemkey, $metaitemvalue);
+
+            if( (isset( $myagent['brokerage_office_meta'])) && (!empty($myagent['brokerage_office_meta'])) ) {
+              foreach($myagent['brokerage_office_meta'] as $metaitemkey => $metaitemvalue ) {
+                // Attach Bedrooms Post Meta
+                if( (isset( $metaitemkey)) && (!empty($metaitemkey)) ) {
+                    update_post_meta( $agent_id, $metaitemkey, $metaitemvalue );
+                }
+              }
+            }
+            unset($metaitemkey, $metaitemvalue);
 
             // if property is being updated, clean up the old meta information related to images
             /*
