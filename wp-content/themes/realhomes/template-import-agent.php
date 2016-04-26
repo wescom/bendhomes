@@ -277,8 +277,11 @@ function dataAgentWPinsert($myagent) {
           if( $action == "add_agent" ){
             $agent_id = wp_insert_post( $new_agent ); // Insert Agent and get post ID
             if( $agent_id > 0 ){
-                
-                wp_set_object_terms($agent_id, 'standard-agent', 'agent_types');
+
+                $sot = wp_set_object_terms($agent_id, 241, 'agent_types');
+                echo '<pre>';
+                var_dump($sot);
+                echo '</pre>';
                 $bhimgids = bhAgentImageSet($myagent['images']);
                 $myagent['agent_img_id'] = $bhimgids[0];
                 unset($bhimgids);
@@ -292,6 +295,9 @@ function dataAgentWPinsert($myagent) {
           } else if( $action == "update_agent" ) {
               $new_agent['ID'] = intval( $myagent['agent_id'] );
               // get post pre-existing thumbnail img id, replaced is from loop above
+              // wp_get_object_terms($new_agent['ID'], 'standard-agent', 'agent_types');
+
+
               $myagent['agent_img_id'] = get_post_thumbnail_id( $new_agent['ID'] );
               // post has not current thumbnail image, and a new one comes in on update, set it
               if( empty ( $myagent['agent_img_id'] )) {
