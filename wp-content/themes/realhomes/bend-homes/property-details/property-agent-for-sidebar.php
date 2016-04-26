@@ -198,15 +198,6 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
 		// remove duplicated ids
 		$property_agents = array_unique( $property_agents );
 
-    echo 'test199';
-    print_r($property_agents);
-
-    // get post pre-existing thumbnail img id, replaced is from loop above
-    // wp_get_object_terms($new_agent['ID'], 'standard-agent', 'agent_types');
-
-    // $sot = bhLookupTaxonomy($new_agent['ID'],'agent_types');
-    // print_r($property_agents);
-
 		if ( ! empty( $property_agents ) ) {
 			$agents_count = count( $property_agents );
 			foreach ( $property_agents as $agent ) {
