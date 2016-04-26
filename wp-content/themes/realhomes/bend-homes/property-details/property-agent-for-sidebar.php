@@ -233,9 +233,10 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
             echo '<strong>Listing Agent:</strong><br/>'."\n";
             echo $agent_args[ 'agent_title_text' ]."\n";
             /* Agent Brokerage Info */
-            echo 'test322A';
-            get_template_part( 'bend-homes/template-parts/brokerage-block' );
-            echo 'test322B';
+            echo 'test323A';
+            brokerageBlock($agent_args[ 'agent_id' ]);
+            // get_template_part( 'bend-homes/template-parts/brokerage-block' );
+            echo 'test323B';
             echo '</div>';
           }
 				}

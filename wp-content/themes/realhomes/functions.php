@@ -89,6 +89,10 @@ if ( ! function_exists( 'inspiry_theme_setup' ) ) {
 
 }
 
+/**
+ * Bend Homes functions
+ */
+require_once( 'bend-homes/bh-functions.php' );        // Agent
 
 /**
  * Custom Post Types

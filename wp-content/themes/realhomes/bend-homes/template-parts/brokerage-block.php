@@ -1,9 +1,17 @@
 <?php
 /* show brokerage office infomation, if any */
+/*
 $brokerage = array(
   'name' => get_post_meta($post->ID, 'brk_office_name',true),
   'address' => get_post_meta($post->ID, 'brk_office_address',true),
   'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
+);
+*/
+
+$brokerage = array(
+  'name' => get_post_meta($my_id, 'brk_office_name',true),
+  'address' => get_post_meta($my_id, 'brk_office_address',true),
+  'phone' => get_post_meta($my_id, 'brk_office_phone',true)
 );
 
 $brokerage['address'] = str_replace("\n",'<br/>', $brokerage['address']);
