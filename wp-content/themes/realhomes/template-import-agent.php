@@ -279,7 +279,7 @@ function dataAgentWPinsert($myagent) {
             if( $agent_id > 0 ){
 
                 $sot = wp_set_object_terms($agent_id, 241, 'agent_types');
-                echo '<pre>';
+                echo '<pre style="background-color: green; color: #fff;">';
                 var_dump($sot);
                 echo '</pre>';
                 $bhimgids = bhAgentImageSet($myagent['images']);
