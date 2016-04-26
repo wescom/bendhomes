@@ -74,9 +74,10 @@ function display_sidebar_agent_box( $args ) {
 				}
 			?>
 			</ul>
-      <?php brokerageBlock($args[ 'agent_id' ]); ?>
+      <?php // brokerageBlock($args[ 'agent_id' ]); ?>
 			<p><?php
 				echo $args[ 'agent_description' ];
+        brokerageBlock($args[ 'agent_id' ]);
 				if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
 					?><a class="real-btn" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
 				} else {
