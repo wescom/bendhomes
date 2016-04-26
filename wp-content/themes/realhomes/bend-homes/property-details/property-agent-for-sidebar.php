@@ -218,7 +218,7 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
             // we only want to show featured agents in right rail JTG 1777
             display_sidebar_agent_box( $agent_args );
           } else {
-            echo '<div class="rail_ad_wrapper">';
+            echo '<div class="rail-ad-wrapper">';
             echo '<p style="color: red;">'.$agent_args[ 'agent_display_type' ].'</p>';
             echo '<p>';
             echo '<strong>Listing Agent:</strong><br/>'."\n";
