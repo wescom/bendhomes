@@ -48,7 +48,9 @@ function dataPreProc($proparr,$scenarioset) {
       $bhagentfullname = $bhagentfullname->{post_title};
 
       $bhagentdisplayoption = 'agent_info'; // my_profile_info, agent_info, none
-      $bhmarketingremarks = $propitem['MarketingRemarks'].'<br/><br/><strong>Listing Agent: </strong><br/>'.$bhagentfullname.'<br/>'.$propitem['ListingOfficeName'];
+      // $bhmarketingremarks = $propitem['MarketingRemarks'].'<br/><br/><strong>Listing Agent: </strong><br/>'.$bhagentfullname.'<br/>'.$propitem['ListingOfficeName'];
+      $bhmarketingremarks = $propitem['MarketingRemarks'];
+
 
       switch ($scenarioset['name']) {
       	case "OpenHouse_OPEN":
