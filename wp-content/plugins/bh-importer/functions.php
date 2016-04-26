@@ -335,7 +335,8 @@ function bhLookupTaxonomy($postid,$taxonomy) {
     'order' => 'ASC',
     'fields' => 'all'
   );
-  $output = wp_get_object_terms($postid, $taxonomy, $args);
+  $query = wp_get_object_terms($postid, $taxonomy, $args);
+  $output = $query[0]->{slug}
   return $output;
 }
 
