@@ -51,12 +51,7 @@ get_header();
                                                         <?php the_content(); ?>
                                                     </div>
                                                     <?php
-
-                                                    // Agent contact form
-                                                    get_template_part( 'bend-homes/template-parts/brokerage-block' );
-
                                                     /* show brokerage office infomation, if any */
-                                                    /*
                                                     $brokerage = array(
                                                       'name' => get_post_meta($post->ID, 'brk_office_name',true),
                                                       'address' => get_post_meta($post->ID, 'brk_office_address',true),
@@ -82,9 +77,6 @@ get_header();
                                                     } else {
                                                       echo '<!-- no brokerage information supplied -->';
                                                     }
-                                                    */
-                                                    ?>
-                                                    <?php_check_syntax
 
                                                     /* Agent Contact Info */
                                                     $agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
