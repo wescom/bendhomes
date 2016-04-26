@@ -278,7 +278,7 @@ function dataAgentWPinsert($myagent) {
             $agent_id = wp_insert_post( $new_agent ); // Insert Agent and get post ID
             if( $agent_id > 0 ){
 
-                $sot = wp_set_object_terms($agent_id, 241, 'agent_types');
+                $sot = wp_set_object_terms($agent_id, 'standard-agent', 'agent_types');
                 echo '<pre style="background-color: green; color: #fff;">';
                 var_dump($sot);
                 echo '</pre>';
@@ -297,8 +297,12 @@ function dataAgentWPinsert($myagent) {
               // get post pre-existing thumbnail img id, replaced is from loop above
               // wp_get_object_terms($new_agent['ID'], 'standard-agent', 'agent_types');
 
-              $sot = wp_set_object_terms($new_agent['ID'], 'standard-agent', 'agent_types');
+              $sot = bhLookupTaxonomy($new_agent['ID'],'agent_types');
+
+              // $sot = wp_set_object_terms($new_agent['ID'], 'standard-agent', 'agent_types');
+
               echo '<pre style="background-color: brown; color: #fff;">';
+              echo 'pre-existing agent type<br/>';
               var_dump($sot);
               echo '</pre>';
 

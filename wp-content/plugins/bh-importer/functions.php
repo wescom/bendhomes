@@ -157,7 +157,7 @@ function agent_dbresult($sset) {
                 FROM ActiveAgent_MEMB
                 LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
                 LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-                # LIMIT 60;
+                LIMIT 10;
                 ;";
 
   echo '<pre>';
@@ -244,6 +244,8 @@ function bhLookupAgent($guid) {
   return $result;
 }
 
+
+
 /* from agent importer */
 /*
 function bhLookupAgent($guid) {
@@ -327,7 +329,7 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
   return $output;
 }
 
-function bhLookupPostTaxonomy($postid,$taxonomy) {
+function bhLookupTaxonomy($postid,$taxonomy) {
   $args = array(
     'orderby' => 'name',
     'order' => 'ASC',
