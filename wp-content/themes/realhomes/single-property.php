@@ -143,7 +143,7 @@ if( $banner_image_id ){
                 <div class="span3 sidebar-wrap">
                     <!-- Sidebar -->
                     <aside class="sidebar">
-                        <?php get_template_part('property-details/property-agent-for-sidebar'); ?>
+                        <?php get_template_part('bend-home/property-details/property-agent-for-sidebar'); ?>
                         <?php
                         if ( ! dynamic_sidebar( 'property-sidebar' ) ) :
                         endif;
