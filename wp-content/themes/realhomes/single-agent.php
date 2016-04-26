@@ -51,6 +51,10 @@ get_header();
                                                         <?php the_content(); ?>
                                                     </div>
                                                     <?php
+
+                                                    echo 'test202';
+                                                    get_template_part( 'bend-homes/template-parts/brokerage-block' );
+
                                                     /* show brokerage office infomation, if any */
                                                     $brokerage = array(
                                                       'name' => get_post_meta($post->ID, 'brk_office_name',true),
