@@ -297,6 +297,10 @@ function dataAgentWPinsert($myagent) {
               // get post pre-existing thumbnail img id, replaced is from loop above
               // wp_get_object_terms($new_agent['ID'], 'standard-agent', 'agent_types');
 
+              $sot = wp_set_object_terms($new_agent['ID'], 'standard-agent', 'agent_types');
+              echo '<pre style="background-color: brown; color: #fff;">';
+              var_dump($sot);
+              echo '</pre>';
 
               $myagent['agent_img_id'] = get_post_thumbnail_id( $new_agent['ID'] );
               // post has not current thumbnail image, and a new one comes in on update, set it
