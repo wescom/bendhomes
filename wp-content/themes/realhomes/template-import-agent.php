@@ -187,7 +187,7 @@ foreach($agentarr as $agentitem) {
       'post_author' => '', // left empty on purpose
       'post_date' => date('Y-m-d H:i:s'),
       'post_date_gmt' => date('Y-m-d H:i:s'),
-      'post_content' => '',
+      // 'post_content' => $postcontent,
       'post_title' => $fullname, // full name of agent goes here, becomes wp post title
       'post_exerpt' => '',
       'post_status' => 'publish',
@@ -199,16 +199,16 @@ foreach($agentarr as $agentitem) {
       'images' => $agentitem['images'], // pipe delimited list of rets api images
       'office_number' => $agentitem['OfficeNumber'], // MLS number of office
       'REAL_HOMES_meta' => array(
-        'agent_email' => '',
+        // 'agent_email' => '',
         'mobile_number' => $mobilephone,
-        'office_number' => $agentitem['OfficePhoneComplete'],
-        'fax_number' => '',
-        'facebook_url' => '',
-        'twitter_url' => '',
-        'google_plus_url' => '',
-        'linked_in_url' => '',
-        'banner_title' => '',
-        'banner_sub_title' => '',
+        'office_number' => $agentitem['OfficePhoneComplete']
+        // 'fax_number' => '',
+        // 'facebook_url' => '',
+        // 'twitter_url' => '',
+        // 'google_plus_url' => '',
+        // 'linked_in_url' => '',
+        // 'banner_title' => '',
+        // 'banner_sub_title' => '',
       ),
       'brokerage_office_meta' => array(
         'brk_office_name' => $agentitem['OfficeName'],
@@ -254,7 +254,7 @@ function dataAgentWPinsert($myagent) {
           $new_agent['post_title']	= sanitize_text_field( $myagent['post_title'] );
 
           // Description
-          $new_agent['post_content'] = wp_kses_post( $myagent['post_content'] );
+          // $new_agent['post_content'] = wp_kses_post( $myagent['post_content'] );
 
           // Publish status
           $new_agent['post_status'] = $myagent['post_status'];
@@ -277,7 +277,8 @@ function dataAgentWPinsert($myagent) {
           if( $action == "add_agent" ){
             $agent_id = wp_insert_post( $new_agent ); // Insert Agent and get post ID
             if( $agent_id > 0 ){
-
+                
+                wp_set_object_terms($agent_id, 'standard-agent', 'agent_types');
                 $bhimgids = bhAgentImageSet($myagent['images']);
                 $myagent['agent_img_id'] = $bhimgids[0];
                 unset($bhimgids);

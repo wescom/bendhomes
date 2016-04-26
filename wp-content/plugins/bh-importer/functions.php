@@ -327,6 +327,16 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
   return $output;
 }
 
+function bhLookupPostTaxonomy($postid,$taxonomy) {
+  $args = array(
+    'orderby' => 'name',
+    'order' => 'ASC',
+    'fields' => 'all'
+  );
+  $output = wp_get_object_terms($postid, $taxonomy, $args);
+  return $output;
+}
+
 function bhLookupPostByMLS($mlsnum) {
   if($mlsnum != NULL) {
     // only do this lookup if $mlsnum is not empty/NULL
