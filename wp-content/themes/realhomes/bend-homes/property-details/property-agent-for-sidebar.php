@@ -6,6 +6,19 @@ global $post;   // property
  *
  * @param array $args
  */
+
+ function bhLookupTaxonomy($postid,$taxonomy) {
+   $args = array(
+     'orderby' => 'name',
+     'order' => 'ASC',
+     'fields' => 'all'
+   );
+   $query = wp_get_object_terms($postid, $taxonomy, $args);
+   $output = $query[0]->{slug};
+   return $output;
+ }
+
+
 function display_sidebar_agent_box( $args ) {
     global $post;
     ?>
@@ -188,12 +201,19 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
     echo 'test199';
     print_r($property_agents);
 
+    // get post pre-existing thumbnail img id, replaced is from loop above
+    // wp_get_object_terms($new_agent['ID'], 'standard-agent', 'agent_types');
+
+    // $sot = bhLookupTaxonomy($new_agent['ID'],'agent_types');
+    // print_r($property_agents);
+
 		if ( ! empty( $property_agents ) ) {
 			$agents_count = count( $property_agents );
 			foreach ( $property_agents as $agent ) {
 				if ( 0 < intval( $agent ) ) {
 					$agent_args = array();
 					$agent_args[ 'agent_id' ] = intval( $agent );
+          $agent_args[ 'agent_display_flag' ] = bhLookupTaxonomy($agent,'agent_types');
 					$agent_args[ 'agents_count' ] = $agents_count;
 					$agent_args[ 'agent_title_text' ] = __( 'Agent', 'framework' ) . " " . get_the_title( $agent_args[ 'agent_id' ] );
 					$agent_args[ 'agent_mobile' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_mobile_number', true );
@@ -202,7 +222,11 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
 					$agent_args[ 'agent_email' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_agent_email', true );
 					$agent_args[ 'agent_excerpt' ] = get_post_field( 'post_content', $agent_args[ 'agent_id' ] );
 					$agent_args[ 'agent_description' ] = get_framework_custom_excerpt( $agent_args[ 'agent_excerpt' ], 20 );
-					display_sidebar_agent_box( $agent_args );
+
+          echo '<pre>agent args; <br/>';
+          print_r($agent_args);
+          echo '</pre>';
+          display_sidebar_agent_box( $agent_args );
 				}
 			}
 		}
