@@ -184,6 +184,10 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
 		});
 		// remove duplicated ids
 		$property_agents = array_unique( $property_agents );
+
+    echo 'test199';
+    print_r($property_agents);
+
 		if ( ! empty( $property_agents ) ) {
 			$agents_count = count( $property_agents );
 			foreach ( $property_agents as $agent ) {
