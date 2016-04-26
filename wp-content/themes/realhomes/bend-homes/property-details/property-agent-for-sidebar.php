@@ -232,7 +232,7 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
             echo '<p>';
             echo '<strong>Listing Agent:</strong><br/>'."\n";
             echo $agent_args[ 'agent_title_text' ]."\n";
-            echo '</div>'
+            echo '</div>';
           }
 				}
 			}
