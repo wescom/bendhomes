@@ -74,6 +74,7 @@ function display_sidebar_agent_box( $args ) {
 				}
 			?>
 			</ul>
+      <?php brokerageBlock($args[ 'agent_id' ]); ?>
 			<p><?php
 				echo $args[ 'agent_description' ]; ?><br/><?php
 				if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
@@ -213,8 +214,6 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
 					$agent_args[ 'agent_email' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_agent_email', true );
 					$agent_args[ 'agent_excerpt' ] = get_post_field( 'post_content', $agent_args[ 'agent_id' ] );
 					$agent_args[ 'agent_description' ] = get_framework_custom_excerpt( $agent_args[ 'agent_excerpt' ], 20 );
-
-          echo '<p style="color: red;">'.$agent_args[ 'agent_display_type' ].'</p>';
 
           if($agent_args[ 'agent_display_type' ] == 'featured-agent') {
             // we only want to show featured agents in right rail JTG 1777
