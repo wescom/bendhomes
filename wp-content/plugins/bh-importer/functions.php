@@ -468,8 +468,8 @@ function dbresult($sset) {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    // $pulldate = strtotime('-730 days'); //'-6 hours' '-1 days'
-    $pulldate = strtotime("-10 years");
+    // $pulldate = strtotime('-730 days'); //'-6 hours' '-1 days' '-10 years'
+    $pulldate = strtotime("-1 days");
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
