@@ -213,20 +213,25 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
 				if ( 0 < intval( $agent ) ) {
 					$agent_args = array();
 					$agent_args[ 'agent_id' ] = intval( $agent );
-          $agent_args[ 'agent_display_flag' ] = bhLookupTaxonomy($agent,'agent_types');
-					$agent_args[ 'agents_count' ] = $agents_count;
-					$agent_args[ 'agent_title_text' ] = __( 'Agent', 'framework' ) . " " . get_the_title( $agent_args[ 'agent_id' ] );
-					$agent_args[ 'agent_mobile' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_mobile_number', true );
-					$agent_args[ 'agent_office_phone' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_office_number', true );
-					$agent_args[ 'agent_office_fax' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_fax_number', true );
-					$agent_args[ 'agent_email' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_agent_email', true );
-					$agent_args[ 'agent_excerpt' ] = get_post_field( 'post_content', $agent_args[ 'agent_id' ] );
-					$agent_args[ 'agent_description' ] = get_framework_custom_excerpt( $agent_args[ 'agent_excerpt' ], 20 );
+          $agent_args[ 'agent_display_type' ] = bhLookupTaxonomy($agent,'agent_types');
 
-          echo '<pre>agent args; <br/>';
-          print_r($agent_args);
-          echo '</pre>';
-          display_sidebar_agent_box( $agent_args );
+          // we only want to show featured agents in right rail JTG 1777
+          if($agent_args[ 'agent_display_type' ] == 'featured-agent') {
+  					$agent_args[ 'agents_count' ] = $agents_count;
+  					$agent_args[ 'agent_title_text' ] = __( 'Agent', 'framework' ) . " " . get_the_title( $agent_args[ 'agent_id' ] );
+  					$agent_args[ 'agent_mobile' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_mobile_number', true );
+  					$agent_args[ 'agent_office_phone' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_office_number', true );
+  					$agent_args[ 'agent_office_fax' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_fax_number', true );
+  					$agent_args[ 'agent_email' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_agent_email', true );
+  					$agent_args[ 'agent_excerpt' ] = get_post_field( 'post_content', $agent_args[ 'agent_id' ] );
+  					$agent_args[ 'agent_description' ] = get_framework_custom_excerpt( $agent_args[ 'agent_excerpt' ], 20 );
+            echo '<pre>agent args; <br/>';
+            print_r($agent_args);
+            echo '</pre>';
+            display_sidebar_agent_box( $agent_args );
+          } else {
+            continue;
+          }
 				}
 			}
 		}
