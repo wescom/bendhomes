@@ -4,7 +4,7 @@
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
 
-$centralcount = 500;
+$centralcount = 1000;
 $scenarios = array(
   'Property_BUSI' => array(
     'count' => $centralcount,
@@ -493,7 +493,6 @@ function dbresult($sset) {
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND Status = 'Active'
-              AND lastPullTime >= '".$querydate."'
               ;";
 
   echo '<pre>';
