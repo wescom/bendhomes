@@ -214,12 +214,13 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
 					$agent_args[ 'agent_excerpt' ] = get_post_field( 'post_content', $agent_args[ 'agent_id' ] );
 					$agent_args[ 'agent_description' ] = get_framework_custom_excerpt( $agent_args[ 'agent_excerpt' ], 20 );
 
+          echo '<p style="color: red;">'.$agent_args[ 'agent_display_type' ].'</p>';
+
           if($agent_args[ 'agent_display_type' ] == 'featured-agent') {
             // we only want to show featured agents in right rail JTG 1777
             display_sidebar_agent_box( $agent_args );
           } else {
             echo '<div class="rail-ad-wrapper">';
-            echo '<p style="color: red;">'.$agent_args[ 'agent_display_type' ].'</p>';
             echo '<p>';
             echo '<strong>Listing Agent:</strong><br/>'."\n";
             echo $agent_args[ 'agent_title_text' ]."\n";
