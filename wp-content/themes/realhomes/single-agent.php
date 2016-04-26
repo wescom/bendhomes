@@ -52,35 +52,8 @@ get_header();
                                                     </div>
                                                     <?php
 
-                                                    echo 'test202';
+                                                    /* Agent Brokerage Info */
                                                     get_template_part( 'bend-homes/template-parts/brokerage-block' );
-
-                                                    /* show brokerage office infomation, if any */
-                                                    $brokerage = array(
-                                                      'name' => get_post_meta($post->ID, 'brk_office_name',true),
-                                                      'address' => get_post_meta($post->ID, 'brk_office_address',true),
-                                                      'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
-                                                    );
-
-                                                    $brokerage['address'] = str_replace("\n",'<br/>', $brokerage['address']);
-
-                                                    if(array_filter($brokerage)) {
-                                                      echo '<div class="agent-brokerage-office">'."\n";
-                                                      echo '<p>';
-                                                      if(!empty($brokerage['name'])){
-                                                        echo '<strong>'.$brokerage['name'].'</strong><br/>';
-                                                      }
-                                                      if(!empty($brokerage['address'])){
-                                                        echo $brokerage['address'].'<br/>';
-                                                      }
-                                                      if(!empty($brokerage['phone'])){
-                                                        echo $brokerage['phone'];
-                                                      }
-                                                      echo '</p>';
-                                                      echo '</div>';
-                                                    } else {
-                                                      echo '<!-- no brokerage information supplied -->';
-                                                    }
 
                                                     /* Agent Contact Info */
                                                     $agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
