@@ -20,6 +20,7 @@ get_header();
 
                         <section class="listing-layout">
                             <?php
+                            echo 'test300';
                             $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
                             if( $title_display != 'hide' ){
                                 ?>
