@@ -20,7 +20,6 @@ get_header();
 
                         <section class="listing-layout">
                             <?php
-                            echo 'test201';
                             $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
                             if( $title_display != 'hide' ){
                                 ?>
@@ -31,6 +30,7 @@ get_header();
 
                             <div class="list-container">
                                 <?php
+                                echo 'test222';
                                 $number_of_posts = intval(get_option('theme_number_posts_agent'));
                                 if(!$number_of_posts){
                                     $number_of_posts = 3;
