@@ -230,7 +230,7 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
             echo '</pre>';
             display_sidebar_agent_box( $agent_args );
           } else {
-            continue;
+            echo '<p>'.$agent_args[ 'agent_display_type' ].'</p>';
           }
 				}
 			}
