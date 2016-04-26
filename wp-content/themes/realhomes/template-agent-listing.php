@@ -30,7 +30,6 @@ get_header();
 
                             <div class="list-container">
                                 <?php
-                                echo 'test222';
                                 $number_of_posts = intval(get_option('theme_number_posts_agent'));
                                 if(!$number_of_posts){
                                     $number_of_posts = 3;
