@@ -16,6 +16,12 @@
   padding: 20px 0;
 }
 
+.rail-standard-agent-wrapper {
+  background-color: #ffffff;
+  border: 1px solid #dedede;
+  padding: 20px;
+}
+
 .footer-ad-wrapper {
   padding: 20px 0;
 }
