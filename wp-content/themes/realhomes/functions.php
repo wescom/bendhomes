@@ -90,7 +90,7 @@ if ( ! function_exists( 'inspiry_theme_setup' ) ) {
 }
 
 /**
- * Bend Homes functions
+ * Bend Homes functions 
  */
 require_once( get_template_directory() . 'bend-homes/bh-functions.php' );        // Agent
 
