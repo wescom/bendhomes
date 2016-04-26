@@ -225,12 +225,9 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
   					$agent_args[ 'agent_email' ] = get_post_meta( $agent_args[ 'agent_id' ], 'REAL_HOMES_agent_email', true );
   					$agent_args[ 'agent_excerpt' ] = get_post_field( 'post_content', $agent_args[ 'agent_id' ] );
   					$agent_args[ 'agent_description' ] = get_framework_custom_excerpt( $agent_args[ 'agent_excerpt' ], 20 );
-            echo '<pre>agent args; <br/>';
-            print_r($agent_args);
-            echo '</pre>';
             display_sidebar_agent_box( $agent_args );
           } else {
-            echo '<p>'.$agent_args[ 'agent_display_type' ].'</p>';
+            echo '<p style="color: red;">'.$agent_args[ 'agent_display_type' ].'</p>';
           }
 				}
 			}
