@@ -6,7 +6,7 @@
 
 $centralcount = 1000;
 $scenarios = array(
-  /*'Property_BUSI' => array(
+  'Property_BUSI' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
@@ -33,7 +33,7 @@ $scenarios = array(
     'resource' => 'Property',
     'class' => 'LAND',
     'name' => 'Property_LAND'
-  ), */
+  ),
   'Property_MULT' => array(
     'count' => $centralcount,
     'fotos' => 'yes',

@@ -34,7 +34,6 @@ include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 $agentscenarios = array(
   'ActiveAgent_MEMB' => array(
-    'count' => 1,
     'fotos' => 'yes',
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
