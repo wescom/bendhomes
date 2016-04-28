@@ -50,7 +50,12 @@ function dataPreProc($proparr,$scenarioset) {
       $bhagentdisplayoption = 'agent_info'; // my_profile_info, agent_info, none
       // $bhmarketingremarks = $propitem['MarketingRemarks'].'<br/><br/><strong>Listing Agent: </strong><br/>'.$bhagentfullname.'<br/>'.$propitem['ListingOfficeName'];
       $bhmarketingremarks = $propitem['MarketingRemarks'];
-
+      // if MLS give no coordinates, they set them to zeroes, trap that. Don't submit to importer
+      if(strpos($propitem['Latitude'],'0.0') === true || strpos($propitem['Latitude'],'0.0') === true) {
+        $bhcoordinates = NULL;
+      } else {
+        $bhcoordinates = $propitem['Latitude'].','.$propitem['Longitude'];
+      }
 
       switch ($scenarioset['name']) {
       	case "OpenHouse_OPEN":
@@ -69,7 +74,7 @@ function dataPreProc($proparr,$scenarioset) {
             'price-postfix' => '',
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
-            'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+            'coordinates' => $bhcoordinates,
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
@@ -91,7 +96,7 @@ function dataPreProc($proparr,$scenarioset) {
             'price-postfix' => '',
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
-            'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+            'coordinates' => $bhcoordinates,
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
@@ -118,7 +123,7 @@ function dataPreProc($proparr,$scenarioset) {
             'area-postfix' => 'Sq Ft',
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
-            'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+            'coordinates' => $bhcoordinates,
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
@@ -141,7 +146,7 @@ function dataPreProc($proparr,$scenarioset) {
             'price-postfix' => '',
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
-            'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+            'coordinates' => $bhcoordinates,
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
@@ -167,7 +172,7 @@ function dataPreProc($proparr,$scenarioset) {
             'area-postfix' => 'Sq Ft',
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
-            'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+            'coordinates' => $bhcoordinates,
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
@@ -195,7 +200,7 @@ function dataPreProc($proparr,$scenarioset) {
             'area-postfix' => 'Sq Ft',
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
-            'coordinates' => $propitem['Latitude'].','.$propitem['Longitude'],
+            'coordinates' => $bhcoordinates,
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
