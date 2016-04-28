@@ -238,6 +238,10 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
+  echo '<pre>';
+  print_r($myproperty);
+  echo '</pre>';
+
   /* Check if action field is set  */
   if( isset( $myproperty['action'] ) ) {
 
