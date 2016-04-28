@@ -3,13 +3,14 @@
     <figure>
         <a href="<?php the_permalink() ?>">
             <?php
-            echo 'test1777 grid view ph-B';
+            echo 'test1777 grid view ph-A';
             global $post;
             if( has_post_thumbnail( $post->ID ) ) {
                 the_post_thumbnail( 'grid-view-image' );
+                echo 'test1777 grid view ph-B';
             } else {
                 inspiry_image_placeholder( 'grid-view-image' );
-                echo 'test1777 grid view ph-B';
+                echo 'test1777 grid view ph-C';
             }
             ?>
         </a>
