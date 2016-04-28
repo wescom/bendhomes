@@ -214,7 +214,8 @@
   }
   /* Agent Listing Page */
   .list-container {
-    padding: 28px 25px;
+    /* padding: 28px 25px; */
+    padding: 28px 24px;
   }
   /* Listing */
   .listing-layout .property-item .price {
