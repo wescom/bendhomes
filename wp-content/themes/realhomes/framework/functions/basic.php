@@ -417,6 +417,7 @@ if ( ! function_exists( 'get_inspiry_image_placeholder' ) ) {
 		$holder_width = 0;
 		$holder_height = 0;
 		$holder_text = get_bloginfo( 'name' );
+		$holder_text = urlencode($holder_text);
 
 		if ( in_array( $image_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
 
@@ -446,7 +447,6 @@ if ( ! function_exists( 'inspiry_image_placeholder' ) ) {
 	 * @param $image_size
 	 */
 	function inspiry_image_placeholder( $image_size ) {
-		echo 'test placeholder';
 		echo get_inspiry_image_placeholder( $image_size );
 	}
 }
