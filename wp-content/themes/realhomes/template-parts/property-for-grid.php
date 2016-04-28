@@ -8,6 +8,7 @@
                 the_post_thumbnail( 'grid-view-image' );
             } else {
                 inspiry_image_placeholder( 'grid-view-image' );
+                echo 'test1777 grid view ph';
             }
             ?>
         </a>
