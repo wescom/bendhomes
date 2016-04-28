@@ -433,7 +433,7 @@ if ( ! function_exists( 'get_inspiry_image_placeholder' ) ) {
 		}
 
 		if ( intval( $holder_width ) > 0 && intval( $holder_height ) > 0 ) {
-			return '<img src="placeholdit.imgix.net/~' . 'w='$holder_width . '&h=' . $holder_height . '&txt=' . urlencode( $holder_text ) . '&txtsize=' . $holder_text_size .'" />';
+			return '<img src="placeholdit.imgix.net/~' . 'w=' . $holder_width . '&h=' . $holder_height . '&txt=' . urlencode( $holder_text ) . '&txtsize=' . $holder_text_size .'" />';
 		}
 
 		return '';
