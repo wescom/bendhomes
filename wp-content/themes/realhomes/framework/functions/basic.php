@@ -440,7 +440,6 @@ if ( ! function_exists( 'get_inspiry_image_placeholder' ) ) {
 	}
 }
 
-
 if ( ! function_exists( 'inspiry_image_placeholder' ) ) {
 	/**
 	 * Output image place holder for given size
