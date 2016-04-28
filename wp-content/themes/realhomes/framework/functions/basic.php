@@ -416,8 +416,8 @@ if ( ! function_exists( 'get_inspiry_image_placeholder' ) ) {
 
 		$holder_width = 0;
 		$holder_height = 0;
-		$holder_text = get_bloginfo( 'name' );
-		$holder_text = urldecode($holder_text);
+		// $holder_text = get_bloginfo( 'name' );
+		$holder_text = 'image not available';
 
 		if ( in_array( $image_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
 
