@@ -7,10 +7,10 @@
             global $post;
             if( has_post_thumbnail( $post->ID ) ) {
                 the_post_thumbnail( 'grid-view-image' );
-                echo 'test1777 grid view ph-B';
+                echo 'test1777 grid view ph - has thumbnail';
             } else {
                 inspiry_image_placeholder( 'grid-view-image' );
-                echo 'test1777 grid view ph-C';
+                echo 'test1777 grid view ph - no thumbnail';
             }
             ?>
         </a>
