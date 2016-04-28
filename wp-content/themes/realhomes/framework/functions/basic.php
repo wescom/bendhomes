@@ -446,6 +446,7 @@ if ( ! function_exists( 'inspiry_image_placeholder' ) ) {
 	 * @param $image_size
 	 */
 	function inspiry_image_placeholder( $image_size ) {
+		echo 'test placeholder';
 		echo get_inspiry_image_placeholder( $image_size );
 	}
 }
