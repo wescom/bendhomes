@@ -81,6 +81,11 @@
   margin: 0 0 15px 0;
 }
 
+.property-openhouse p {
+  margin: 0;
+  color: #000000;
+}
+
 .property-openhouse .oh_header {
   font-weight: bold;
   font-size: 1.2em;
@@ -98,13 +103,7 @@
   margin: 5px;
 }
 
-.property-openhouse .oh_timeblock p {
-  margin: 0;
-  color: #000000;
-}
-
 .property-openhouse .oh_time {
-  /* color: #006600; */
   font-weight: bold;
 }
 
