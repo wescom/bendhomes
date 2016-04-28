@@ -7,7 +7,6 @@
             if( has_post_thumbnail( $post->ID ) ) {
                 the_post_thumbnail( 'grid-view-image' );
             } else {
-                echo '1777 not thumbnail image';
                 inspiry_image_placeholder( 'grid-view-image' );
             }
             ?>
