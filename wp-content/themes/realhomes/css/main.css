@@ -2965,6 +2965,7 @@ ul.featured-properties li .price {
   margin-bottom: 35px;
   padding-top: 42px;
   min-height: 147px;
+  display: none; /* 1777 JTG */
 }
 
 .page-head .container {
