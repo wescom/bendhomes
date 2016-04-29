@@ -55,6 +55,8 @@ _retsapi/imagesbackup/activeagent/*.jpg
 _retsapi/imagesbackup/agent/*.jpg
 _retsapi/imagesbackup/property/*.jpg
 
+!loaderio-dbb59f50f8f54126cc9086f77748d806.txt
+
 # ignore all files starting with .
 .*
 
