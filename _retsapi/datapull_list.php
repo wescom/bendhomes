@@ -302,14 +302,14 @@ function pullWPdata() {
   $msg .= print_r($get['agents'],true);
   $msg .= 'end: importing WP agents data '.date(DATE_RSS)."<br/>\n";
 
-  sleep(300); // sleep for 5 minutes
+  sleep(60); // sleep for 1 minutes
 
   $msg .= 'start: importing WP property data '.date(DATE_RSS)."<br/>\n";
   $get['properties'] = get_url('http://dev.bendhomes.com/bh-import-properties/');
   $msg .= print_r($get['properties'],true);
   $msg .= 'end: importing WP property data '.date(DATE_RSS)."<br/>\n";
 
-  sleep(300); // sleep for 5 minutes
+  sleep(60); // sleep for 1 minutes
 
   $msg .= 'start: importing WP property data '.date(DATE_RSS)."<br/>\n";
   $get['openhouses'] = get_url('http://dev.bendhomes.com/bh-import-opens/');
