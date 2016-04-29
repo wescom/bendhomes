@@ -223,6 +223,7 @@ function dataPreProc($proparr,$scenarioset) {
     // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
     // print_r($data_to_insert);
     // echo '</pre>';
+    usleep(500000); // 1/2 second sleep
     dataPropertyWPinsert($data_to_insert);
     unset($data_to_insert);
     $count++;
