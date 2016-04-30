@@ -222,7 +222,7 @@ foreach($agentarr as $agentitem) {
     );
   }
   $data_to_insert = $retsagents[$agentitem['MemberNumber']];
-  // usleep(500000); // 1/2 second sleep
+  // usleep(500000); // 1/2 second sleep 
   dataAgentWPinsert($data_to_insert);
   unset($data_to_insert);
 }
