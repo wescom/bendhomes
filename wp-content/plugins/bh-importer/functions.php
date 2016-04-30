@@ -159,7 +159,7 @@ function agent_dbresult($sset) {
                 FROM ActiveAgent_MEMB
                 LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
                 LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-                LIMIT 10;
+                WHERE ActiveAgent_MEMB.lastPullTime >= '".$querydate."'
                 ;";
 
   echo '<pre>';
