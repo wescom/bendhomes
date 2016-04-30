@@ -294,7 +294,7 @@ foreach($scenarios as $qvars) {
 /* ##### ######### ####### #### */
 
 function pullWPdata() {
-  $get = array();
+  /* $get = array();
   $msg = '<h4>WP import data</h4>';
 
   $msg .= 'start: importing WP agents data '.date(DATE_RSS)."<br/>\n";
@@ -317,10 +317,11 @@ function pullWPdata() {
   $msg .= 'end: importing WP property data '.date(DATE_RSS)."<br/>\n";
 
   return $msg;
+  */
 }
 
 echo '<pre style="background-color: #ececec;">';
-echo pullWPdata();
+// echo pullWPdata();
 echo '<hr/>';
 echo '</pre>';
 
