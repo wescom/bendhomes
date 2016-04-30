@@ -488,18 +488,19 @@ function dbresult($sset) {
   */
 
   // daily cron query
-  /* $sqlquery = "SELECT * FROM ".$rc." WHERE
+  $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND lastPullTime >= '".$querydate."'
-              ;"; */
+              ;";
 
   // used for initial pull, nuclear option to get all data
-
+  /*
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND Status = 'Active'
               LIMIT ".$sset['count']."
               ;";
+              */
 
   echo '<pre>';
   print_r($sqlquery);
