@@ -42,7 +42,8 @@
     width: 1170px;
   }
   .slide-description {
-    top: 179px;
+    /* top: 179px; */
+    top: 140px;
     left: 0;
   }
   /* Advance Search */
