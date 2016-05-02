@@ -1209,9 +1209,11 @@ p .icon-remove {
 /*  Menu and Contact Wrap
 --------------------------------------------------------*/
 .menu-and-contact-wrap {
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
-  right: 0;
+  right: 0; */
+  float: left;
+  margin: 25px 5px 0 75px;
 }
 
 /*  Main Nav
