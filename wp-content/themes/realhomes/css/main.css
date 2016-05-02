@@ -1212,8 +1212,8 @@ p .icon-remove {
   /* position: absolute;
   bottom: 0;
   right: 0; */
-  float: left;
-  margin: 25px 5px 0 75px;
+  float: right;
+  margin: 25px 0 0 0;
 }
 
 /*  Main Nav
