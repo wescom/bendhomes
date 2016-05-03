@@ -1,6 +1,6 @@
 <?php
 /*
-*  Template Name: Import Open Houses
+*  Template Name: Import RETS Open Houses
 */
 /*
 *  Author: Justin Grady
