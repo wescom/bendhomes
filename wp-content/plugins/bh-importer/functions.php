@@ -120,7 +120,7 @@ function agent_dbresult($sset) {
   if(file_exists($fnamerecent)) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
-    $pulldate = strtotime('-1 day');
+    $pulldate = strtotime('-10 years');
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
@@ -471,7 +471,7 @@ function dbresult($sset) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
     // $pulldate = strtotime('-730 days'); //'-6 hours' '-1 day' '-10 years'
-    $pulldate = strtotime("-1 day");
+    $pulldate = strtotime("-10 years");
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
