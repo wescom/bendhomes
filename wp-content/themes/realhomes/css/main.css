@@ -2052,6 +2052,8 @@ p .icon-remove {
 #footer-wrapper {
   background: url("../images/background-outer-wrapper.png") repeat-x scroll bottom center transparent;
   padding-bottom: 245px;
+  border: 1px solid orange;
+  background-color: #151100;
 }
 
 .disable-responsive #footer-wrapper {
