@@ -1,6 +1,7 @@
 <?php get_template_part("template-parts/carousel_partners"); ?>
 
 <div class="container">
+  test177
   <div class="row">
     <div class="span12">
       <div class="footer-ad-wrapper">
