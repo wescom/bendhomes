@@ -8,7 +8,7 @@ define('DONOTCACHEPAGE',1);
 
 $centralcount = 999999;
 $scenarios = array(
-  'Property_BUSI' => array(
+  /* 'Property_BUSI' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Property',
@@ -42,7 +42,7 @@ $scenarios = array(
     'resource' => 'Property',
     'class' => 'MULT',
     'name' => 'Property_MULT'
-  ),
+  ), */
   'Property_RESI' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
