@@ -25,6 +25,8 @@
 
 .footer-ad-wrapper {
   padding: 20px 0;
+  background-color: #252a2b;
+  width: 100%;
 }
 
 .mid-ad-wrapper {
@@ -113,4 +115,159 @@
 
 .property-openhouse .oh_agent {
 
+}
+
+.bhfooter h4 {
+  color: #dedede;
+  border-bottom: 1px solid #333333;
+  padding: 20px 0;
+}
+
+.bhfooter ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.bhfooter ul li {
+  line-height: 30px;
+}
+
+.bhfooter .logocol {
+  text-align: center;
+  padding: 60px 0 0 0;
+  background-color: #252a2b;
+  border-radius: 5px;
+  min-height: 250px;
+}
+
+.bhfooter .logocol h3 {
+  color: #ffffff;
+  font-weight: normal;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+
+span[class^="chiclet-"], span[class*=" chiclet-"] {
+  margin: 0 10px 0 0;
+}
+.chiclet-facebook {
+  border-radius: 3px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  background-color: #2591FF;
+  font-size: 26px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 1.35em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.chiclet-facebook:hover {
+    background-color: #0077f1;
+}
+
+.chiclet-twitter {
+  border-radius: 3px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  background-color: #25CEFF;
+  font-size: 26px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 1.35em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.chiclet-twitter:hover {
+    background-color: #00bbf1;
+}
+
+.chiclet-pinterest {
+  border-radius: 3px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  background-color: #CD2129;
+  font-size: 26px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 1.35em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.chiclet-pinterest:hover {
+    background-color: #a11a20;
+}
+
+.chiclet-youtube {
+  border-radius: 3px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  background-color: #A80202;
+  font-size: 26px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 1.35em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.chiclet-youtube:hover {
+    background-color: #760101;
+}
+
+.chiclet-instagram {
+  border-radius: 3px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  background-color: #895A4D;
+  font-size: 26px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 1.35em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  }
+
+.chiclet-instagram:hover {
+    background-color: #68453b;
+}
+
+.chiclet-rss {
+  border-radius: 3px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  background-color: #FF9900;
+  font-size: 26px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 1.35em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.chiclet-rss:hover {
+    background-color: #cc7a00;
+}
+
+.chiclet-linkedin {
+  border-radius: 3px;
+  border: 1px solid #333333;
+  color: #ffffff;
+  background-color: #007BB6;
+  font-size: 26px;
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  line-height: 1.35em;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  margin: 0 0.1em 0 0;
+}
+
+.chiclet-linkedin:hover {
+    background-color: #005983;
 }

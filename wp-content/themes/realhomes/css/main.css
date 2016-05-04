@@ -2052,7 +2052,6 @@ p .icon-remove {
 #footer-wrapper {
   background: url("../images/background-outer-wrapper.png") repeat-x scroll bottom center transparent;
   padding-bottom: 245px;
-  border: 1px solid orange;
   background-color: #151100;
 }
 
@@ -2166,7 +2165,7 @@ p .icon-remove {
 
 #footer-bottom {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  border-top: 1px solid #dedede;
+  border-top: 1px solid #333333;
   padding: 25px 0;
   margin-top: 38px;
 }
