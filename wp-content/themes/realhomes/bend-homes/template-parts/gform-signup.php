@@ -5,12 +5,9 @@ print_r($scripturl);
 ?>
 <script type='text/javascript' src="<?php echo $scripturl; ?>"></script>
 
-<p>Sign up today to receive special alerts, listings, and knowledge articles about real estate in Central Oregon</p>
-
 <div class="funnelbox">
     <div class="nl-notice">
-        <h5>Be the first to know when we launch</h5>
-        <p>Submit your email address and we'll notify you ahead of time so you can be first in line to get great Burmese food. We promise to not to share your email address.</p>
+      <p>Sign up today to receive special alerts, listings, and knowledge articles about real estate in Central Oregon</p>
     </div>
     <div id="mc_embed_signup" class="clearfix bv-form" novalidate="novalidate">
         <form action="//burmasphere.us12.list-manage.com/subscribe/post-json?u=42c03db0ed60b21c7c76ebe02&amp;id=dfe8c70d46&amp;c=?" method="get" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
@@ -51,7 +48,7 @@ print_r($scripturl);
                 <input type="hidden" value="benotifiedform" name="SOURCE" class="" id="mce-SOURCE">
             </div>
 
-            <button type="submit" class="btn btn-success bm-form-button" id="mc_sub_button" name="sub_button">Notify me! <span>Burmese food awaits.</span></button>
+            <button type="submit" class="btn btn-success bm-form-button" id="mc_sub_button" name="sub_button">Sign Up</button>
 
         </form>
         <input type="hidden" name="sub_button" value="">
