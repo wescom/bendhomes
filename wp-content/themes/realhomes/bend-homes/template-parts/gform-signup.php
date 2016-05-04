@@ -1,12 +1,12 @@
+<script type='text/javascript' src='http://adhosting.wescompapers.com/wp-content/plugins/bwp-minify/min/?f=wp-content/plugins/login-with-ajax/widget/login-with-ajax.js,wp-content/plugins/tbb-functions/js/mobile-check.js,wp-content/plugins/gravityforms/js/jquery.json.js,wp-content/plugins/gravityforms/js/gravityforms.min.js,wp-content/plugins/gravityforms/js/placeholders.jquery.min.js&#038;ver=4.5'></script>
+
+
 <p>Sign up today to receive special alerts, listings, and knowledge articles about real estate in Central Oregon</p>
 
-<div class="fusion-two-fifth fusion-layout-column fusion-column-last fusion-spacing-yes" style="margin-top:0px;margin-bottom:20px;">
-  <div class="fusion-column-wrapper fusion-animated" style="padding: 50px 30px; visibility: visible; animation-duration: 0.5s; background-color: rgba(58, 170, 203, 0.74902);" data-animationtype="fadeInRight" data-animationduration="0.5" data-animationoffset="100%">
-    <h2 style="text-align: center; font-size: 46px; font-weight: bold; margin: 0 0 15px; line-height: 46px;"><span style="color: #ffffff;">SIGN UP TODAY</span></h2>
-    <p style="text-align: center;">
-    </p>
+<div>
+  <div class="fusion-column-wrapper fusion-animated" style="visibility: visible; animation-duration: 0.5s;" data-animationtype="fadeInRight" data-animationduration="0.5" data-animationoffset="100%">
     <div class="gf_browser_chrome gform_wrapper no-labels top-form gform_minify_errors_wrapper" id="gform_wrapper_7">
-      <form method="post" enctype="multipart/form-data" target="gform_ajax_frame_7" id="gform_7" class="no-labels top-form gform_minify_errors" action="/bend-homes/">
+      <form method="post" enctype="multipart/form-data" target="gform_ajax_frame_7" id="gform_7" class="no-labels top-form gform_minify_errors" action="http://adhosting.wescompapers.com/bend-homes/">
         <div class="gform_body">
           <ul id="gform_fields_7" class="gform_fields top_label form_sublabel_below description_below">
             <li id="field_7_1" class="gfield gfield_contains_required field_sublabel_below field_description_below">
