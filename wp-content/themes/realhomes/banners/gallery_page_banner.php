@@ -29,17 +29,13 @@ if(empty($banner_sub_title)){
 }
 
 ?>
+<?php /* <div class="page-head" style="background-repeat: no-repeat;background-position: center top;background-image: url('<?php echo $banner_image_path; ?>'); background-size: cover; "> */ ?>
 
-<div class="page-head" style="background-repeat: no-repeat;background-position: center top;background-image: url('<?php echo $banner_image_path; ?>'); background-size: cover; ">
+<div class="page-head">
     <?php if(!('true' == get_option('theme_banner_titles'))): ?>
     <div class="container">
         <div class="wrap clearfix">
-            <h1 class="page-title"><span><?php echo $banner_title; ?></span></h1>
-            <?php
-            if($banner_sub_title){
-                ?><p><?php echo $banner_sub_title; ?></p><?php
-            }
-            ?>
+            <h1 class="page-title"><?php echo $banner_title .' | '. $banner_sub_title; ?></h1>
         </div>
     </div>
     <?php endif; ?>

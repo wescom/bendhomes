@@ -453,6 +453,24 @@ if ( ! function_exists( 'add_disable_responsive_class' ) ) {
 }
 
 
+
+if ( ! function_exists( 'photoheader_toggle' ) ) {
+	/**
+	 * Toggle display of top photo header area
+	 *
+	 * @return string
+	 */
+	function photoheader_toggle() {
+		$showphotoheader = 'false'; // preset a default
+		$showphotoheader = get_option( 'theme_show_photoheaders' );
+		if ( $showphotoheader == 'true' ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
 if ( ! function_exists( 'load_theme_scripts' ) ) {
     /**
      * Enqueue JavaScripts required for this theme

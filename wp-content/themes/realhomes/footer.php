@@ -113,10 +113,10 @@
                         </div>
 
                         <div class="span3 logocol">
-                          <h3>Find your dream home in Central Oregon</h3>
                           <a title="Bend Homes &amp; Real Estate" href="http://local.bendhomes.com">
                             <img src="http://local.bendhomes.com/wp-content/uploads/2016/04/bh_logo.png" alt="Bend Homes &amp; Real Estate">
                           </a>
+                          <h3>Find your dream home in Central Oregon</h3>
                         </div>
                 </div>
 
