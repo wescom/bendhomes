@@ -42,11 +42,11 @@
                         <div class="span4">
                             <h4>Popular Home Searches</h4>
                             <ul>
-                              <li><a href="#">3 bedroom, 2 bathroom</a></li>
-                              <li><a href="#">Price under $300,000</a></li>
-                              <li><a href="#">Single family home</a></li>
-                              <li><a href="#">Homes over 3000 sq ft</a></li>
-                              <li><a href="#">Open houses</a></li>
+                              <li><a href="/property-search/?bedrooms=3&bathrooms=2">3 bedroom, 2 bathroom</a></li>
+                              <li><a href="/property-search/?max-price=300000">Price under $300,000</a></li>
+                              <li><a href="/property-search/?type=single-family-home">Single family home</a></li>
+                              <li><a href="/property-search/?min-area=3000">Homes over 3000 sq ft</a></li>
+                              <li><a href="/property-search/?status=open-house">Open houses</a></li>
                             </ul>
                         </div>
 
