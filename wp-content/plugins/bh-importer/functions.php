@@ -503,7 +503,6 @@ function dbresult($sset) {
               LIMIT 300, 100
               ;";
 
-
   echo '<pre>';
   print_r($sqlquery);
   echo '</pre>';
