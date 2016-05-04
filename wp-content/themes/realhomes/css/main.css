@@ -3973,7 +3973,8 @@ address {
 
 #overview .property-item .price span {
   display: inline-block;
-  background-color: #4DC7EC;
+  /* background-color: #4DC7EC; */
+  background-color: #006267;
   padding: 11px 10px 11px 14px;
   margin-right: -1px;
   color: #fff;
