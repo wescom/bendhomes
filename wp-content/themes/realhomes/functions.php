@@ -618,6 +618,8 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             wp_enqueue_script( 'jqtransit' );
             wp_enqueue_script( 'bootstrap' );
 
+						$template_url = get_template_directory_uri();
+
 						wp_enqueue_script( 'bsvalidator-script', $template_url . '/bend-homes/js/bootstrapValidator.js', array( 'jquery' ), '0.1', false );
 						wp_enqueue_script( 'mailform-script', $template_url . '/bend-homes/js/mcproc.js', array( 'jquery' ), '0.2', false );
 

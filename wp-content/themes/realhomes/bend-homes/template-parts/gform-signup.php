@@ -1,10 +1,7 @@
 
 <?php
-$scripturl = site_url() . '/wp-content/themes/realhomes/bend-homes/js/mcproc.js';
 $posturl = "//bendbulletin.us1.list-manage.com/subscribe/post-json?u=a5d36976165603b3ce7485798&amp;id=5e8299d4c6&amp;c=?";
 ?>
-<script type='text/javascript' src="<?php echo $scripturl; ?>"></script>
-test177
 
 <div class="funnelbox">
     <div class="nl-notice">
@@ -41,11 +38,10 @@ test177
                 <input type="hidden" value="bendhomesfooter" name="SOURCE" class="" id="mce-SOURCE">
             </div>
 
-            <button type="submit" class="btn btn-success bh-form-button" id="mc_sub_button" name="sub_button">Sign Up</button>
+            <button type="submit" class="bh-form-button" id="mc_sub_button" name="sub_button">Sign Me Up</button>
 
         </form>
         <input type="hidden" name="sub_button" value="">
     </div>
     <!-- end: email signup form -->
-</div>
 </div>

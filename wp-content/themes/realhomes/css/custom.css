@@ -134,11 +134,9 @@
 }
 
 .bhfooter .logocol {
-  text-align: center;
-  padding: 80px 0 0 0;
-  background-color: #252a2b;
-  border-radius: 5px;
+  padding: 20px 0 0 0;
   min-height: 230px;
+  margin: 20px 0 0 30px;
 }
 
 .bhfooter .logocol h3 {
@@ -147,6 +145,46 @@
   line-height: 30px;
   font-size: 20px;
   margin: 30px 0 0 0;
+}
+
+.bhfooter .logocol img {
+    margin: 0 0 20px 20px;
+}
+
+.bhfooter .logocol .funnelbox  {
+  padding: 0 20px;
+}
+
+.bhfooter .logocol .funnelbox .bh-form-control {
+  background-color: #FFFFFF;
+  color: #151100;
+  padding: 10px;
+  border: none;
+  width: 270px;
+}
+
+.bhfooter .logocol .funnelbox .bh-form-button {
+  background-color: #ff6600;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 1.4em;
+  padding: 10px;
+  border: 0;
+  letter-spacing: .09em;
+  line-height: 24px;
+}
+
+.bhfooter .logocol .funnelbox .bh-form-button:hover {
+  background-color: #02888f;
+}
+
+
+.bhfooter .logocol .funnelbox p {
+  color: #ffffff;
+  font-size: 1.2em;
+  line-height: 1.4em;
+  margin: 0 0 20px 0;
 }
 
 
