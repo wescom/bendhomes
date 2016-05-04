@@ -1,8 +1,7 @@
 
 <?php
-$scripturl = get_template_directory() . '/bend-homes/js/mcproc.js';
+$scripturl = site_url() . '/wp-content/themes/realhomes/bend-homes/js/mcproc.js';
 $posturl = "//bendbulletin.us1.list-manage.com/subscribe/post-json?u=a5d36976165603b3ce7485798&amp;id=5e8299d4c6&amp;c=?";
-print_r($scripturl);
 ?>
 <script type='text/javascript' src="<?php echo $scripturl; ?>"></script>
 
