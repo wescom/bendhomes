@@ -225,7 +225,7 @@ function dataPreProc($proparr,$scenarioset) {
     // echo '</pre>';
     // usleep(500000); // 1/2 second sleep
     dataPropertyWPinsert($data_to_insert);
-    sleep(1);
+    // sleep(1);
     unset($data_to_insert);
     $count++;
   } // end $propitem forach
