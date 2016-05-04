@@ -187,6 +187,10 @@
   margin: 0 0 20px 0;
 }
 
+.bhfooter .socialicons {
+  margin: 20px 0;
+}
+
 
 span[class^="chiclet-"], span[class*=" chiclet-"] {
   margin: 0 10px 0 0;

@@ -33,9 +33,9 @@
                               <a target="_blank" href="https://www.pinterest.com/bendhomescom/"><span class="fa fa-pinterest chiclet-pinterest"></span></a>
                             </div>
                             <ul>
-                              <li><a href="#">About Us</a></li>
-                              <li><a href="#">Advertise With Us</a></li>
-                              <li><a href="#">Contact Us</a></li>
+                              <li><a href="#">About Us - <strong style="color: red;">NEED PAGE BUILT</strong></a></li>
+                              <li><a href="#">Advertise With Us - <strong style="color: red;">NEED PAGE BUILT</strong></a></li>
+                              <li><a href="mailto:info@bendhomes.com">Contact Us</a></li>
                             </ul>
                         </div>
 
