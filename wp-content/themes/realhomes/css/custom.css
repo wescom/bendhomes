@@ -39,6 +39,10 @@
   display: block;
 }
 
+.rail-button-agent-wrapper .button:hover {
+    background-color: #02888f;
+}
+
 .footer-ad-wrapper {
   padding: 20px 0;
   background-color: #252a2b;
