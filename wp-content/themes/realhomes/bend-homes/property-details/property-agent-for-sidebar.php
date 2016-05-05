@@ -36,7 +36,7 @@ function bhAgentRender($page_position) {
   					$agent_args[ 'agent_excerpt' ] = get_post_field( 'post_content', $agent_args[ 'agent_id' ] );
   					$agent_args[ 'agent_description' ] = get_framework_custom_excerpt( $agent_args[ 'agent_excerpt' ], 20 );
 
-            if($agent_args[ 'agent_display_type' ] == 'featured-agent') {
+            if( ($agent_args[ 'agent_display_type' ] == 'featured-agent') && ($page_position == 'sidebar') ) {
               // we only want to show featured agents in right rail JTG 1777
               display_sidebar_agent_box( $agent_args );
             } elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($page_position == 'sidebar') ) {
@@ -51,7 +51,7 @@ function bhAgentRender($page_position) {
               brokerageBlock($agent_args[ 'agent_id' ]);
               echo '</div>';
             }
-            
+
   				}
   			}
   		}
