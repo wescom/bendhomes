@@ -16,11 +16,27 @@
   padding: 20px 0;
 }
 
-.rail-standard-agent-wrapper {
+.rail-standard-agent-wrapper,
+.rail-button-agent-wrapper {
   background-color: #ffffff;
   border: 1px solid #dedede;
   padding: 18px 14px 18px;
   margin-bottom: 28px;
+}
+
+.rail-button-agent-wrapper .button {
+  background-color: #ff6600;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 1.4em;
+  padding: 10px;
+  border: 0;
+  letter-spacing: .09em;
+  line-height: 24px;
+  width: auto;
+  text-align: center;
+  display: block;
 }
 
 .footer-ad-wrapper {

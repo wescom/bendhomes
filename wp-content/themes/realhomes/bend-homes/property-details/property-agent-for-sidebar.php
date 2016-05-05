@@ -77,6 +77,7 @@ function display_sidebar_agent_box( $args ) {
       <?php // brokerageBlock($args[ 'agent_id' ]); ?>
 			<p><?php
 				echo $args[ 'agent_description' ];
+        echo 'test';
         brokerageBlock($args[ 'agent_id' ]);
 				if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
 					?><a class="real-btn" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
@@ -220,13 +221,18 @@ if ( ( $display_agent_info == 'true' ) && ( $agent_display_option != "none" ) ) 
             // we only want to show featured agents in right rail JTG 1777
             display_sidebar_agent_box( $agent_args );
           } else {
+            echo '<div class="rail-button-agent-wrapper">';
+            echo '<a href="/agents/" class="button">Find an Agent</a>';
+            echo '</div>';
+            /*
             echo '<div class="rail-standard-agent-wrapper">';
             echo '<p>';
             echo '<strong>Listing Agent:</strong><br/>'."\n";
             echo $agent_args[ 'agent_title_text' ]."\n";
-            /* Agent Brokerage Info */
+
             brokerageBlock($agent_args[ 'agent_id' ]);
             echo '</div>';
+            */
           }
 				}
 			}
