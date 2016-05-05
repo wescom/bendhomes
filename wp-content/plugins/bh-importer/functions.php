@@ -504,7 +504,7 @@ function dbresult($sset) {
               ;";
 
   echo '<pre>';
-  print_r($sqlquery);
+  print_r($sqlquery); 
   echo '</pre>';
 
   /* Select queries return a resultset */
