@@ -33,8 +33,8 @@
                               <a target="_blank" href="https://www.pinterest.com/bendhomescom/"><span class="fa fa-pinterest chiclet-pinterest"></span></a>
                             </div>
                             <ul>
-                              <li><a href="/about-bend-homes/">About Us - <strong style="color: red;">NEED PAGE BUILT</strong></a></li>
-                              <li><a href="/advertise-bend-homes/">Advertise With Us - <strong style="color: red;">NEED PAGE BUILT</strong></a></li>
+                              <li><a href="/about-bend-homes/">About Us</a></li>
+                              <li><a href="/advertise-bend-homes/">Advertise With Us</a></li>
                               <li><a href="mailto:info@bendhomes.com">Contact Us</a></li>
                             </ul>
                         </div>
@@ -52,7 +52,7 @@
 
                         <div class="span4 logocol">
                           <a title="Bend Homes &amp; Real Estate" href="http://local.bendhomes.com">
-                            <img src="http://local.bendhomes.com/wp-content/uploads/2016/04/bh_logo.png" alt="Bend Homes &amp; Real Estate">
+                            <img src="/wp-content/uploads/2016/04/bh_logo.png" alt="Bend Homes &amp; Real Estate">
                           </a>
                           <!-- <h3>Find your dream home in Central Oregon</h3> -->
                           <?php get_template_part("bend-homes/template-parts/gform-signup"); ?>

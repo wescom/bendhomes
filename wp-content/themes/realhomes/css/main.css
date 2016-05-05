@@ -2050,8 +2050,8 @@ p .icon-remove {
 /* Footer
 --------------------------------------------------------*/
 #footer-wrapper {
-  background: url("../images/background-outer-wrapper.png") repeat-x scroll bottom center transparent;
-  padding-bottom: 245px;
+  /* background: url("../images/background-outer-wrapper.png") repeat-x scroll bottom center transparent;
+  padding-bottom: 245px; */
   background-color: #151100;
 }
 
