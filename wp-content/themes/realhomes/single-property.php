@@ -11,8 +11,12 @@ if( $banner_image_id ){
 }else{
     $banner_image_path = get_default_banner();
 }
-?>
-    <?php // 1777 -- removal of graphic head area on property detail view
+
+get_template_part('bend-homes/property-details/property-agent-functions');
+get_template_part('bend-homes/property-details/property-agent-for-sidebar');
+
+
+ // 1777 -- removal of graphic head area on property detail view
     /*
     <div class="page-head" style="background-repeat: no-repeat;background-position: center top;background-image: url('<?php echo $banner_image_path; ?>'); background-size: cover;">
         <?php if(!('true' == get_option('theme_banner_titles'))): ?>
@@ -82,6 +86,11 @@ if( $banner_image_id ){
                                     get_template_part('property-details/property-contents');
 
                                     /*
+                                    * 2.5. Property Agent information, if not a featured agent
+                                    */
+                                    bhAgentRender('body');
+
+                                    /*
                                     * 3. Property Floor Plans
                                     */
                                     get_template_part('property-details/property-floor-plans');
@@ -143,8 +152,8 @@ if( $banner_image_id ){
                 <div class="span3 sidebar-wrap">
                     <!-- Sidebar -->
                     <aside class="sidebar">
-                        <?php get_template_part('bend-homes/property-details/property-agent-for-sidebar'); ?>
                         <?php
+                        bhAgentRender('sidebar');
                         if ( ! dynamic_sidebar( 'property-sidebar' ) ) :
                         endif;
                         get_template_part( 'template-parts/rail-ad' );

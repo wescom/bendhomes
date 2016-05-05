@@ -1,12 +1,5 @@
 <?php
 /* show brokerage office infomation, if any */
-/*
-$brokerage = array(
-  'name' => get_post_meta($post->ID, 'brk_office_name',true),
-  'address' => get_post_meta($post->ID, 'brk_office_address',true),
-  'phone' => get_post_meta($post->ID, 'brk_office_phone',true)
-);
-*/
 
 $brokerage = array(
   'name' => get_post_meta($my_id, 'brk_office_name',true),
@@ -18,6 +11,10 @@ $brokerage['address'] = str_replace("\n",'<br/>', $brokerage['address']);
 
 /* only show block if something is in $brokerage array */
 if(array_filter($brokerage)) {
+  if(!empty($brokerage['name'])){
+    echo '<br/>'.$brokerage['name'];
+  }
+  /*
   echo '<div class="agent-brokerage-office">'."\n";
   echo '<p>';
   if(!empty($brokerage['name'])){
@@ -31,7 +28,9 @@ if(array_filter($brokerage)) {
   }
   echo '</p>';
   echo '</div>';
+  */
 } else {
   echo '<!-- no brokerage information supplied -->';
 }
+unset($brokerage);
 ?>

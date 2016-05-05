@@ -69,6 +69,7 @@
 
         // common note from theme options
         get_template_part( 'property-details/property-common-note' );
+
         ?>
     </div>
 

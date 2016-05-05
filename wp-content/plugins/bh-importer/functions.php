@@ -500,7 +500,7 @@ function dbresult($sset) {
   $sqlquery = "SELECT * FROM ".$rc." WHERE
               PublishToInternet = 1
               AND Status = 'Active'
-              LIMIT 600, 100
+              LIMIT 700, 100
               ;";
 
   echo '<pre>';
