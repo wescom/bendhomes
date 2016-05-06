@@ -78,7 +78,7 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
               echo "\n";
               unlink($file);
               $imagecounter++;
-              file_put_contents($file, $logfile, FILE_APPEND | LOCK_EX);
+              file_put_contents($logfile, $file . PHP_EOL, FILE_APPEND | LOCK_EX);
           }
           delete_post_meta($imgid, $imgpostmeta['meta_key']);
         }
