@@ -28,7 +28,7 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
       LEFT JOIN wp_posts wp ON wp.ID = pm.post_id
       WHERE wp.ID IS NULL
       AND pm.meta_key = 'REAL_HOMES_property_images'
-      LIMIT 200
+      LIMIT 20
     ";
 
     echo '<pre style="background-color: yellow;">';
