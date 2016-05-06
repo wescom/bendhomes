@@ -41,6 +41,7 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
 
     $logfile = '/var/www/logs/deleted_images_'.date(DATERSS).'.txt';
     $imagecounter = 0;
+    $delpostcount = 0;
 
     foreach($results as $result) {
       if(strpos($result['meta_value'],'WP_Error')) {
@@ -93,11 +94,18 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
       $delpost = wp_delete_post( $imgid );
       echo '<p style="color: blue;">delete status: ';
       print_r($delpost);
+      if($delpost > 0) {
+        $delpostcount++;
+      }
       echo '</p>';
       // print_r($delpost);
       echo '</pre>';
     }
 
+    file_put_contents($logfile, '-- deleted images count: '.$imagecounter . PHP_EOL, FILE_APPEND | LOCK_EX);
+    file_put_contents($logfile, '-- deleted posts count : '.$delpostcount . PHP_EOL, FILE_APPEND | LOCK_EX);
+    echo '<p style="color: blue;">deleted images count: '.$imagecounter;.'</p>';
+    echo '<p style="color: blue;">deleted posts count: '.$delpostcount;.'</p>';
   }
   add_action('delete_orphans', 'delete_orphan_images', 10, 1);
 }
