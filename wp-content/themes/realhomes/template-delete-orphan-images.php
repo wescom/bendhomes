@@ -38,7 +38,7 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
       	SELECT * FROM $wpdb->posts wp
       	WHERE pm.post_id = wp.ID
       )
-      AND pm.meta_key = 'REAL_HOMES_property_images' LIMIT 100
+      AND pm.meta_key = 'REAL_HOMES_property_images' LIMIT 10000
     ";
 
     echo '<pre style="background-color: yellow;">';
