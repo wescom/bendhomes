@@ -104,8 +104,8 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
 
     file_put_contents($logfile, '-- deleted images count: '.$imagecounter . PHP_EOL, FILE_APPEND | LOCK_EX);
     file_put_contents($logfile, '-- deleted posts count : '.$delpostcount . PHP_EOL, FILE_APPEND | LOCK_EX);
-    echo '<p style="color: blue;">deleted images count: '.$imagecounter.'</p>';
-    echo '<p style="color: blue;">deleted posts count: '.$delpostcount.'</p>';
+    echo '<p style="color: green;">deleted images count: '.$imagecounter.'</p>';
+    echo '<p style="color: green;">deleted posts count: '.$delpostcount.'</p>';
   }
   add_action('delete_orphans', 'delete_orphan_images', 10, 1);
 }
