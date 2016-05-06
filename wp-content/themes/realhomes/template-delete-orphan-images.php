@@ -23,12 +23,22 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
     $imgdir = ABSPATH.'wp-content/uploads/';
 
     // orphaned images query
+    /*
     $sqlquery = "SELECT pm.meta_value
       FROM $wpdb->postmeta pm
-      LEFT JOIN wp_posts wp ON wp.ID = pm.post_id
+      LEFT JOIN $wpdb->posts wp ON wp.ID = pm.post_id
       WHERE wp.ID IS NULL
       AND pm.meta_key = 'REAL_HOMES_property_images'
       LIMIT 20
+    ";
+    */
+
+    $sqlquery = "SELECT pm.meta_value FROM $wpdb->postmeta pm
+      WHERE NOT EXISTS (
+      	SELECT * FROM $wpdb->posts wp
+      	WHERE pm.post_id = wp.ID
+      )
+      AND pm.meta_key = 'REAL_HOMES_property_images' LIMIT 100
     ";
 
     echo '<pre style="background-color: yellow;">';
@@ -39,7 +49,10 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
     $results = $wpdb->get_results( $sqlquery, ARRAY_A );
     unset($sqlquery);
 
-    $logfile = '/var/www/logs/deleted_images_'.date(DATERSS).'.txt';
+    // $logpath = '/Users/justingrady/web_dev/bendhomes2/_logs/';
+    $logpath = '/var/www/logs/';
+    $logfile = $logpath.'deleted_images_'.date(DATE_RSS).'.txt';
+
     $imagecounter = 0;
     $delpostcount = 0;
 
@@ -75,22 +88,24 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
           foreach( glob($froot.'*') as $file )
           {
               // this deletes all files with the orignal images name pattern, deletes WP versions
-              echo $file;
-              echo "\n";
-              unlink($file);
-              $imagecounter++;
-              file_put_contents($logfile, $file . PHP_EOL, FILE_APPEND | LOCK_EX);
+              if(file_exists($file)) {
+                echo $file;
+                echo "\n";
+                unlink($file);
+                $imagecounter++;
+                file_put_contents($logfile, $file . PHP_EOL, FILE_APPEND | LOCK_EX);
+              }
           }
-          delete_post_meta($imgid, $imgpostmeta['meta_key']);
         }
+        delete_post_meta($imgid, $imgpostmeta['meta_key']);
       }
+
       $wpdb->delete( 'wp_postmeta', array(
         'meta_key' => 'REAL_HOMES_property_images',
         'meta_value' => $imgid
         )
       );
-      // delete_post_meta($imgid, '_wp_attached_file');
-      // delete_post_meta($imgid, '_wp_attachment_metadata');
+
       $delpost = wp_delete_post( $imgid );
       echo '<p style="color: blue;">delete status: ';
       print_r($delpost);
@@ -98,7 +113,6 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
         $delpostcount++;
       }
       echo '</p>';
-      // print_r($delpost);
       echo '</pre>';
     }
 
