@@ -60,6 +60,8 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
       unset($sqlquery);
       // print_r($imgpostmetas);
 
+      $logfile = '/var/www/logs/deleted_images_'.date(DATERSS).'.txt';
+
       echo '<pre style="background-color: #ececec; margin: 10px; borderL 1px solid #cc0000; padding: 10px;">';
       echo "\n".'<strong style="color: #cc0000">imgage post id: '.$imgid.'</strong>'."\n";
       foreach($imgpostmetas as $imgpostmeta) {
@@ -73,6 +75,7 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
               echo $file;
               echo "\n";
               unlink($file);
+              file_put_contents($file, $logfile, FILE_APPEND | LOCK_EX);
           }
           delete_post_meta($imgid, $imgpostmeta['meta_key']);
         }
