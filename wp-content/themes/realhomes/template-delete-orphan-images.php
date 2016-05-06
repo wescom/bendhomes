@@ -39,6 +39,9 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
     $results = $wpdb->get_results( $sqlquery, ARRAY_A );
     unset($sqlquery);
 
+    $logfile = '/var/www/logs/deleted_images_'.date(DATERSS).'.txt';
+    $imagecounter = 0;
+
     foreach($results as $result) {
       if(strpos($result['meta_value'],'WP_Error')) {
         // if wp_error, throw it out, continue onto next in loop, no actions
@@ -60,10 +63,9 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
       unset($sqlquery);
       // print_r($imgpostmetas);
 
-      $logfile = '/var/www/logs/deleted_images_'.date(DATERSS).'.txt';
-
       echo '<pre style="background-color: #ececec; margin: 10px; borderL 1px solid #cc0000; padding: 10px;">';
       echo "\n".'<strong style="color: #cc0000">imgage post id: '.$imgid.'</strong>'."\n";
+
       foreach($imgpostmetas as $imgpostmeta) {
         if($imgpostmeta['meta_key'] == '_wp_attached_file' ) {
           $deletefile = $imgdir.$imgpostmeta['meta_value'];
@@ -75,6 +77,7 @@ if ( ! function_exists( 'delete_orphan_images' ) ) {
               echo $file;
               echo "\n";
               unlink($file);
+              $imagecounter++;
               file_put_contents($file, $logfile, FILE_APPEND | LOCK_EX);
           }
           delete_post_meta($imgid, $imgpostmeta['meta_key']);
