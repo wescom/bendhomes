@@ -6,7 +6,9 @@ function brokerageBlock($my_id) {
 
 if ( ! function_exists( 'add_googleanalytics' ) ) {
   function add_googleanalytics() {
+    echo "\n";
     include( 'template-parts/googleanalytics.php' );
+    echo "\n";
   }
   add_action('wp_footer', 'add_googleanalytics');
 }
