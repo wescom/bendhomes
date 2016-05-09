@@ -4,7 +4,7 @@ function brokerageBlock($my_id) {
   include( 'template-parts/brokerage-block.php' );
 }
 
-if ( ! function_exists( 'inspiry_theme_setup' ) ) {
+if ( ! function_exists( 'add_googleanalytics' ) ) {
   function add_googleanalytics() {
     include( 'template-parts/googleanalytics.php' );
   }
