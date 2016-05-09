@@ -21,7 +21,7 @@ if ( ! function_exists( 'inspiry_image_upload' ) ) {
 		}
 
 		$submitted_file = $_FILES[ 'inspiry_upload_file' ];
-		$uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
+    $uploaded_image = wp_handle_upload( $submitted_file, array( 'test_form' => false ) );   //Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.
 
 		if ( isset( $uploaded_image[ 'file' ] ) ) {
 			$file_name = basename( $submitted_file[ 'name' ] );

@@ -11,8 +11,13 @@ if( $banner_image_id ){
 }else{
     $banner_image_path = get_default_banner();
 }
-?>
 
+get_template_part('bend-homes/property-details/property-agent-functions');
+get_template_part('bend-homes/property-details/property-agent-for-sidebar');
+
+
+ // 1777 -- removal of graphic head area on property detail view
+    /*
     <div class="page-head" style="background-repeat: no-repeat;background-position: center top;background-image: url('<?php echo $banner_image_path; ?>'); background-size: cover;">
         <?php if(!('true' == get_option('theme_banner_titles'))): ?>
             <div class="container">
@@ -28,17 +33,32 @@ if( $banner_image_id ){
             </div>
         <?php endif; ?>
     </div><!-- End Page Head -->
+    */
+    ?>
+
+    <div class="page-spacer"></div>
 
     <!-- Content -->
     <div class="container contents detail">
         <div class="row">
             <div class="span9 main-wrap">
-
+              <?php
+              // 1777
+              $display_property_breadcrumbs = get_option( 'theme_display_property_breadcrumbs' );
+              if ( $display_property_breadcrumbs == 'true' ) {
+                  get_template_part( 'property-details/property-breadcrumbs' );
+              }
+              ?>
                 <!-- Main Content -->
                 <div class="main">
 
                     <div id="overview">
                         <?php
+                        // 1777
+                        echo '<h1 class="property-title">';
+                        the_title();
+                        echo '</h1>';
+
                         if ( have_posts() ) :
                             while ( have_posts() ) :
                                 the_post();
@@ -64,7 +84,12 @@ if( $banner_image_id ){
                                     * 2. Property Information Bar, Icons Bar, Text Contents and Features
                                     */
                                     get_template_part('property-details/property-contents');
-									
+
+                                    /*
+                                    * 2.5. Property Agent information, if not a featured agent
+                                    */
+                                    bhAgentRender('body');
+
                                     /*
                                     * 3. Property Floor Plans
                                     */
@@ -127,10 +152,11 @@ if( $banner_image_id ){
                 <div class="span3 sidebar-wrap">
                     <!-- Sidebar -->
                     <aside class="sidebar">
-                        <?php get_template_part('property-details/property-agent-for-sidebar'); ?>
                         <?php
+                        bhAgentRender('sidebar');
                         if ( ! dynamic_sidebar( 'property-sidebar' ) ) :
                         endif;
+                        get_template_part( 'template-parts/rail-ad' );
                         ?>
                     </aside>
                     <!-- End Sidebar -->
@@ -139,6 +165,7 @@ if( $banner_image_id ){
             }else{
                 get_sidebar('property');
             }
+
             ?>
 
         </div><!-- End contents row -->

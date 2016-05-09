@@ -63,7 +63,8 @@ if ( ! function_exists( 'inspiry_theme_setup' ) ) {
 		 */
 		add_theme_support( 'post-thumbnails' );
 		set_post_thumbnail_size( 150, 150 );                            // default Post Thumbnail dimensions
-		add_image_size( 'partners-logo', 200, 58, true );                // For partner carousel logos
+		// add_image_size( 'partners-logo', 200, 58, true );                // For partner carousel logos
+		add_image_size( 'partners-logo', 200, 200, true );                // For partner carousel logos
 		add_image_size( 'post-featured-image', 830, 323, true );         // For Standard Post Thumbnails
 		add_image_size( 'gallery-two-column-image', 536, 269, true );    // For Gallery Two Column property Thumbnails
 		add_image_size( 'property-thumb-image', 244, 163, true );        // For Home page posts thumbnails/Featured Properties carousels thumb
@@ -88,6 +89,10 @@ if ( ! function_exists( 'inspiry_theme_setup' ) ) {
 
 }
 
+/**
+ * Bend Homes functions
+ */
+require_once( get_template_directory() . '/bend-homes/bh-functions.php' );        // Agent
 
 /**
  * Custom Post Types
@@ -448,6 +453,24 @@ if ( ! function_exists( 'add_disable_responsive_class' ) ) {
 }
 
 
+
+if ( ! function_exists( 'photoheader_toggle' ) ) {
+	/**
+	 * Toggle display of top photo header area
+	 *
+	 * @return string
+	 */
+	function photoheader_toggle() {
+		$showphotoheader = 'false'; // preset a default
+		$showphotoheader = get_option( 'theme_show_photoheaders' );
+		if ( $showphotoheader == 'true' ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
 if ( ! function_exists( 'load_theme_scripts' ) ) {
     /**
      * Enqueue JavaScripts required for this theme
@@ -594,6 +617,13 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             wp_enqueue_script( 'selectbox' );
             wp_enqueue_script( 'jqtransit' );
             wp_enqueue_script( 'bootstrap' );
+
+						$template_url = get_template_directory_uri();
+
+						wp_enqueue_script( 'bsvalidator-script', $template_url . '/bend-homes/js/bootstrapValidator.js', array( 'jquery' ), '0.1', false );
+						wp_enqueue_script( 'mailform-script', $template_url . '/bend-homes/js/mcproc.js', array( 'jquery' ), '0.2', false );
+
+
 
             if ( google_map_needed() ) {
 

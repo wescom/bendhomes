@@ -4,7 +4,7 @@
 <!--[if IE 8]>    <html class="lt-ie9" <?php language_attributes(); ?>> <![endif]-->
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
+  <meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<meta name="format-detection" content="telephone=no">
@@ -26,7 +26,23 @@
 </head>
 <body <?php body_class(); ?>>
 
+        <?php
+          // print_r(get_registered_nav_menus());
+          // Conditional. Don't show top ad banner on home/front page
+          if( get_queried_object()->post_name == home ) {
+            // do nothing
+          } else { ?>
+            <div class="ad-wrapper">
+              <div class="container">
+                <?php do_action('dfp_ad_spot','leadheader'); ?>
+              </div>
+            </div>
+            <?php
+          }
+        ?>
+
         <!-- Start Header -->
+
         <div class="header-wrapper">
 
             <div class="container"><!-- Start Header Container -->
@@ -45,11 +61,12 @@
 
 
                         // Currency Switcher
-                        get_template_part( 'template-parts/header-currency-switcher' );
+                        // get_template_part( 'template-parts/header-currency-switcher' );
 
 
                         // header email
-                        $header_email = get_option('theme_header_email');
+                        // $header_email = get_option('theme_header_email');
+                        $header_email = NULL;
                         if ( ! empty( $header_email ) ) {
                             ?>
                             <h2 id="contact-email">
@@ -63,7 +80,9 @@
                         ?>
 
                         <!-- Social Navigation -->
-                        <?php  get_template_part('template-parts/social-nav') ;    ?>
+                        <?php
+                          // get_template_part('template-parts/social-nav') ;
+                        ?>
 
 
                         <?php
@@ -156,15 +175,19 @@
 
 
                     <div class="menu-and-contact-wrap">
-                        <?php
-                        $header_phone = get_option('theme_header_phone');
-                        if( !empty($header_phone) ){
-						
-						    $desktop_version = '<span class="desktop-version">' . $header_phone . '</span>';
-                            $mobile_version =  '<a class="mobile-version" href="tel://'.$header_phone.'" title="Make a Call">' .$header_phone. '</a>';
 
+
+                      <!-- Social Navigation -->
+                      <?php
+                        get_template_part('template-parts/social-nav') ;
+
+                        // $header_phone = get_option('theme_header_phone');
+                        $header_phone = NULL;
+                        if( !empty($header_phone) ){
+						                $desktop_version = '<span class="desktop-version">' . $header_phone . '</span>';
+                            $mobile_version =  '<a class="mobile-version" href="tel://'.$header_phone.'" title="Make a Call">' .$header_phone. '</a>';
                             echo '<h2  class="contact-number "><i class="fa fa-phone"></i>'.  $desktop_version . $mobile_version .  '<span class="outer-strip"></span></h2>';
-						}
+						            }
                         ?>
 
                         <!-- Start Main Menu-->

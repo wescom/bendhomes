@@ -6,14 +6,13 @@ $banner_image_path = get_default_banner();
 $banner_title = __('404 - Page Not Found!', 'framework');
 $banner_details = __('The page you are looking for is not here!', 'framework');
 ?>
+    <?php /* <div class="page-head" style="background-repeat: no-repeat;background-position: center top;background-image: url('<?php echo $banner_image_path; ?>'); ">
+ */ ?>
 
-    <div class="page-head" style="background-repeat: no-repeat;background-position: center top;background-image: url('<?php echo $banner_image_path; ?>'); ">
+    <div class="page-head">
         <div class="container">
             <div class="wrap clearfix">
-                <h1 class="page-title"><span><?php echo $banner_title; ?></span></h1>
-                <?php if(!empty($banner_details)){ ?>
-                    <p><?php echo $banner_details; ?></p>
-                <?php } ?>
+                <h1 class="page-title"><?php echo $banner_title .' | '. $banner_details; ?></h1>
             </div>
         </div>
     </div><!-- End Page Head -->

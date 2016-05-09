@@ -3,6 +3,8 @@
 $slogan_title = get_option('theme_slogan_title');
 $slogan_text = get_option('theme_slogan_text');
 
+
+if( (!empty($slogan_title)) || (!empty($slogan_text)) ) {
 ?>
 <div class="narrative">
     <?php
@@ -15,3 +17,4 @@ $slogan_text = get_option('theme_slogan_text');
     }
     ?>
 </div>
+<?php } ?>

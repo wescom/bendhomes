@@ -42,7 +42,8 @@
     width: 1170px;
   }
   .slide-description {
-    top: 179px;
+    /* top: 179px; */
+    top: 140px;
     left: 0;
   }
   /* Advance Search */
@@ -78,18 +79,19 @@
   }
   .property-item {
     padding: 15px 19px 0;
+    /* padding: 15px 18px 0; 1777 */
   }
   .property-item figure {
     width: 244px;
   }
   .property-item .detail {
     width: 240px;
-    padding-left: 16px;
+    padding-left: 15px;
   }
   .property-item .price {
     font-size: 18px;
     padding: 8px 10px 10px 13px;
-    margin-left: -16px;
+    margin-left: -15px;
   }
   .property-item p {
     font-size: 13px;
@@ -118,6 +120,7 @@
   }
   .brands-carousel ul.brands-carousel-list li {
     width: 178px;
+    height: 178px;
   }
   /* Widgets
   -------------------------------------------------------------- */
@@ -212,7 +215,8 @@
   }
   /* Agent Listing Page */
   .list-container {
-    padding: 28px 25px;
+    /* padding: 28px 25px; */
+    padding: 28px 24px;
   }
   /* Listing */
   .listing-layout .property-item .price {
@@ -283,7 +287,7 @@
   }
   #property-detail-flexslider .jcarousel-container-vertical {
     width: 82px;
-    padding: 9px;
+    padding: 8px;
   }
   #property-detail-flexslider .jcarousel-clip-vertical {
     height: 335px;
@@ -469,6 +473,14 @@
   #home-idx-search .dsidx-search-widget input[type=text].dsidx-improvedsqft, #home-idx-search .dsidx-search-widget input[type=text].dsidx-beds, #home-idx-search .dsidx-search-widget input[type=text].dsidx-baths {
     width: 125px !important;
   }
+
+  .mid-ad-wrapper .dfp-ad,
+  .footer-ad-wrapper .dfp-ad,
+  .ad-wrapper .dfp-ad {
+    min-width: 728px;
+    /* height: 90px; */
+  }
+
 }
 
 /* Common Styles = Tablet to Small Devices
@@ -512,6 +524,7 @@
   }
   #logo img {
     margin-bottom: 5px;
+    height: 50px;
   }
   #logo h2 {
     margin-bottom: 5px;
@@ -717,6 +730,7 @@
   }
   .property-item figure {
     width: 244px;
+
   }
   .property-item .detail {
     width: 56.3%;
@@ -744,7 +758,8 @@
     padding-right: 41px;
   }
   .brands-carousel ul.brands-carousel-list li {
-    width: 160px;
+    width: 90px;
+    height: 90px;
   }
   /* Footer */
   #footer > .row > .span3 {
@@ -1085,6 +1100,14 @@
   #lidd_mc_details #lidd_mc_inspector {
     right: 4%;
   }
+
+  .mid-ad-wrapper .dfp-ad,
+  .footer-ad-wrapper .dfp-ad,
+  .ad-wrapper .dfp-ad {
+    width: 320px;
+    height: 50px;
+  }
+
 }
 
 /* Responsive: Landscape phone to desktop/tablet
@@ -1234,7 +1257,8 @@
     padding-right: 69px;
   }
   .brands-carousel ul.brands-carousel-list li {
-    width: 180px;
+    width: 80px;
+    height: 80px;
   }
   /* Widgets */
   .widget.quick-links ul li {
@@ -1818,6 +1842,14 @@
   .floor-plans .floor-plan-content .floor-plan-desc {
     color: #71797a;
   }
+
+  .mid-ad-wrapper .dfp-ad,
+  .footer-ad-wrapper .dfp-ad,
+  .ad-wrapper .dfp-ad {
+    width: 320px;
+    height: 50px;
+  }
+
 }
 
 @media (max-width: 499px) {
@@ -1887,7 +1919,8 @@
     padding-right: 41px;
   }
   .brands-carousel ul.brands-carousel-list li {
-    width: 180px;
+    width: 100px;
+    height: 100px;
   }
   .sidebar .widget {
     margin-left: auto;
@@ -2640,4 +2673,12 @@
   #property-detail-flexslider .jcarousel-container-vertical {
     display: none !important;
   }
+
+  .mid-ad-wrapper .dfp-ad,
+  .footer-ad-wrapper .dfp-ad,
+  .ad-wrapper .dfp-ad {
+    width: 320px;
+    height: 50px;
+  }
+
 }

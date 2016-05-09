@@ -416,7 +416,9 @@ if ( ! function_exists( 'get_inspiry_image_placeholder' ) ) {
 
 		$holder_width = 0;
 		$holder_height = 0;
-		$holder_text = get_bloginfo( 'name' );
+		// $holder_text = get_bloginfo( 'name' );
+		$holder_text = 'image not available';
+		$holder_text_size = 30;
 
 		if ( in_array( $image_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
 
@@ -431,13 +433,12 @@ if ( ! function_exists( 'get_inspiry_image_placeholder' ) ) {
 		}
 
 		if ( intval( $holder_width ) > 0 && intval( $holder_height ) > 0 ) {
-			return '<img src="http://placehold.it/' . $holder_width . 'x' . $holder_height . '&text=' . urlencode( $holder_text ) . '" />';
+			return '<img src="http://placeholdit.imgix.net/~text?' . 'w=' . $holder_width . '&h=' . $holder_height . '&txt=' . urlencode( $holder_text ) . '&txtsize=' . $holder_text_size .'" />';
 		}
 
 		return '';
 	}
 }
-
 
 if ( ! function_exists( 'inspiry_image_placeholder' ) ) {
 	/**

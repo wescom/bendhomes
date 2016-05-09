@@ -50,8 +50,12 @@ get_header();
                                                     <div class="agent-content">
                                                         <?php the_content(); ?>
                                                     </div>
-
                                                     <?php
+
+                                                    /* Agent Brokerage Info */
+                                                    brokerageBlock($post->ID);
+                                                    // get_template_part( 'bend-homes/template-parts/brokerage-block' );
+
                                                     /* Agent Contact Info */
                                                     $agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
                                                     $agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);

@@ -48,9 +48,16 @@
   display: none;
   -webkit-backface-visibility: hidden;
 }
+
+#home-flexslider .flexslider .slides img {
+  margin: -200px 0 0 0;
+}
+
 .flexslider .slides img {
   width: 100%;
   display: block;
+  /* 1777 */
+  /* margin: -200px 0 0 0; */
 }
 .flexslider .slides:after {
   content: "\0020";

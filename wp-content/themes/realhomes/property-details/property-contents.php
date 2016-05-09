@@ -6,7 +6,8 @@
             /* Property ID if exists */
             $property_id = get_post_meta($post->ID, 'REAL_HOMES_property_id', true);
             if(!empty($property_id)){
-                echo __('Property ID','framework').' : '.$property_id;
+                // echo __('Property ID','framework').' : '.$property_id;
+                echo 'MLS# : '.$property_id;
             }
 
             ?>
@@ -57,6 +58,9 @@
 
     <div class="content clearfix">
         <?php
+        // open house info, if array_change_key_case
+        get_template_part('bend-homes/open-house-fragment');
+
         // contents from WordPress editor
         the_content();
 
@@ -65,6 +69,7 @@
 
         // common note from theme options
         get_template_part( 'property-details/property-common-note' );
+
         ?>
     </div>
 

@@ -960,7 +960,7 @@
         // if homepage
         if( homePropertiesSection.length && homePropertiesSection.hasClass('ajax-pagination') ) {
 
-            
+
 
             $(document).on('click','#home-properties-section-wrapper .pagination > a',function(e){
                 e.preventDefault();

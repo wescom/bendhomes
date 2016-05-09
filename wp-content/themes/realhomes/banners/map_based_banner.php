@@ -73,6 +73,9 @@ if ( $properties_for_map_query->have_posts() ) :
 
         /* Property Location */
         $property_location = get_post_meta($post->ID,'REAL_HOMES_property_location',true);
+        if($property_location == '0.000000,0.000000') {
+          unset($property_location);
+        }
         if(!empty($property_location)){
             $lat_lng = explode(',',$property_location);
             $current_prop_array['lat'] = $lat_lng[0];
@@ -116,7 +119,7 @@ if ( $properties_for_map_query->have_posts() ) :
         }
 
         $properties_data[] = $current_prop_array;
-        
+
     endwhile;
     wp_reset_query();
     ?>

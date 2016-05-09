@@ -66,10 +66,9 @@ switch($theme_homepage_module){
                         $show_home_search = get_option('theme_show_home_search');
                         if( $show_home_search == 'true' ){
                             /* Advance Search Form for Homepage */
-                            get_template_part('template-parts/advance-search');
+                            get_template_part('bend-homes/advance-search');
                         }
                     endif;
-
 
                     /* Homepage Contents from Page Editor */
                     if ( have_posts() ) :
@@ -88,13 +87,13 @@ switch($theme_homepage_module){
                         endwhile;
                     endif;
 
-
                     /* Homepage Properties */
                     $show_home_properties = get_option('theme_show_home_properties');
                     if( $show_home_properties == 'true' ){
                         get_template_part("template-parts/home-properties") ;
                     }
 
+                    get_template_part("bend-homes/midadwrap") ;
 
                     /* Featured Properties */
                     $show_featured_properties = get_option('theme_show_featured_properties');
@@ -102,6 +101,12 @@ switch($theme_homepage_module){
                         get_template_part("template-parts/carousel") ;
                     }
 
+                    /* Open House Properties */
+                    $show_openhouse_properties = get_option('theme_show_openhouse_properties');
+                    // $show_openhouse_properties = true;
+                    if($show_openhouse_properties == 'true'){
+                        get_template_part("bend-homes/carousel-openhouses") ;
+                    }
 
                     /* Blog Posts */
                     $show_news_posts = get_option('theme_show_news_posts');
@@ -110,7 +115,7 @@ switch($theme_homepage_module){
                         $show_news_posts = $_GET['news-on-home'];
                     }
                     if($show_news_posts == 'true'){
-                        get_template_part("template-parts/home-news-posts") ;
+                        get_template_part("bend-homes/home-news-posts") ;
                     }
 
                     ?>

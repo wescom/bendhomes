@@ -8,6 +8,10 @@ global $post;
     <div class="map-wrap clearfix">
         <?php
             $property_location = get_post_meta($post->ID,'REAL_HOMES_property_location',true);
+            // set a trap if we get zeroes for map lat long from MLS | 1777 JTG
+            if($property_location == '0.000000,0.000000') {
+              unset($property_location);
+            }
             $property_address = get_post_meta($post->ID,'REAL_HOMES_property_address',true);
             $property_map = get_post_meta($post->ID,'REAL_HOMES_property_map',true);
 

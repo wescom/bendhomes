@@ -1,0 +1,13 @@
+
+
+http://www.retstest.com/datapull.php?resource=Property&class=BUSI&count=999999&photos=yes
+
+http://www.retstest.com/datapull.php?resource=Property&class=COMM&count=999999&photos=yes
+
+http://www.retstest.com/datapull.php?resource=Property&class=FARM&count=999999&photos=yes
+
+http://www.retstest.com/datapull.php?resource=Property&class=LAND&count=999999&photos=yes
+
+http://www.retstest.com/datapull.php?resource=Property&class=MULT&count=999999&photos=yes
+
+http://www.retstest.com/datapull.php?resource=Property&class=RESI&count=999999&photos=yes
