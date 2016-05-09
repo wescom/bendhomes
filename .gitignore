@@ -55,6 +55,9 @@ _retsapi/imagesbackup/activeagent/*.jpg
 _retsapi/imagesbackup/agent/*.jpg
 _retsapi/imagesbackup/property/*.jpg
 
+!_retsapi/pulldates/ph.txt
+_retsapi/pulldates/*.txt
+
 !loaderio-dbb59f50f8f54126cc9086f77748d806.txt
 
 # ignore all files starting with .
@@ -110,8 +113,11 @@ Thumbs.db
 # "themes" directory
 wp-content/*
 !wp-content/mu-plugins/
-!wp-content/plugins/
-!wp-content/themes/
+!wp-content/plugins/bh-importer/
+wp-content/plugins/
+!wp-content/themes/realhomes
+!wp-content/themes/realhomes-child
+wp-content/themes/
 
 # ignore these plugins
 wp-content/plugins/hello.php
