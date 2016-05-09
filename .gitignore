@@ -115,8 +115,9 @@ wp-content/*
 !wp-content/mu-plugins/
 !wp-content/plugins/bh-importer/
 wp-content/plugins/
-!wp-content/themes/realhomes
-!wp-content/themes/realhomes-child
+!wp-content/themes/realhomes/
+!wp-content/themes/realhomes/bend-homes/
+!wp-content/themes/realhomes-child/
 wp-content/themes/
 
 # ignore these plugins
