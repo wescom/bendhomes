@@ -121,9 +121,9 @@ get_header();
 	                                                   placeholder="<?php _e( 'Confirm Password', 'framework' ); ?>" required/>
                                             </div>
                                             
-                                            <div class="form-option register-checkbox">
+                                            <!--div class="form-option register-checkbox">
                                                 <label><input type="checkbox" name="mc4wp-try-subscribe" value="1" checked /> Subscribe to our newsletter?</label>
-                                            </div>
+                                            </div-->
 
                                             <input type="hidden" name="user-cookie" value="1" />
                                             <input type="submit" id="register-button" name="user-submit" value="<?php _e('Register','framework');?>" class="real-btn register-btn" />
