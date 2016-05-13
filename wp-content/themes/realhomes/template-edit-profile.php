@@ -118,7 +118,7 @@ get_header();
 
                                 </div><!-- end of span6 -->
 
-                                <div class="span6">
+                                <?php /*<div class="span6">
 
                                     <div class="form-option">
                                         <label for="description"><?php _e('Biographical Information', 'framework') ?></label>
@@ -160,25 +160,25 @@ get_header();
                                         <input name="linkedin-url" type="text" id="linkedin-url" value="<?php if( isset( $current_user_meta['linkedin_url'] ) ) { echo $current_user_meta['linkedin_url'][0]; } ?>" />
                                     </div>
 
-                                    <div class="form-option">
-                                        <?php
-                                        //action hook for plugin and extra fields
-                                        do_action('edit_user_profile',$current_user);
-                                        // WordPress Nonce for Security Check
-                                        wp_nonce_field( 'update_user', 'user_profile_nonce' );
-                                        ?>
-                                        <input type="hidden" name="action" value="inspiry_update_profile" />
-                                    </div>
+                                </div><!-- end of span6 -->*/ ?>
+                                
+                                <div class="form-option">
+									<?php
+                                    //action hook for plugin and extra fields
+                                    do_action('edit_user_profile',$current_user);
+                                    // WordPress Nonce for Security Check
+                                    wp_nonce_field( 'update_user', 'user_profile_nonce' );
+                                    ?>
+                                    <input type="hidden" name="action" value="inspiry_update_profile" />
+                                </div>
 
-                                    <div class="form-option">
-                                        <input name="update-user" type="submit" id="update-user" class="real-btn" value="<?php _e('Save Changes', 'framework'); ?>" />
-                                        <img src="<?php echo get_template_directory_uri(); ?>/images/ajax-loader.gif" id="form-loader" alt="Loading...">
-                                    </div>
+                                <div class="form-option">
+                                    <input name="update-user" type="submit" id="update-user" class="real-btn" value="<?php _e('Save Changes', 'framework'); ?>" />
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/ajax-loader.gif" id="form-loader" alt="Loading...">
+                                </div>
 
-                                    <p id="form-message"></p>
-                                    <ul id="form-errors"></ul>
-
-                                </div><!-- end of span6 -->
+                                <p id="form-message"></p>
+                                <ul id="form-errors"></ul>
 
                             </div>
 
