@@ -111,6 +111,10 @@
                                title="<?php _e( '* Password should be same as above', 'framework' ); ?>"
                                placeholder="<?php _e( 'Confirm Password', 'framework' ); ?>" required/>
                     </div>
+                    
+                    <div class="form-option register-checkbox">
+                    	<?php echo do_shortcode('[mc4wp_checkbox "Subscribe to our newsletter?"]'); ?>
+                    </div>
 
                     <input type="hidden" name="user-cookie" value="1" />
                     <input type="submit" id="register-button" name="user-submit" value="<?php _e('Register','framework');?>" class="real-btn register-btn" />
