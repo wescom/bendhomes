@@ -50,7 +50,7 @@ get_header();
 
                             <div class="row-fluid">
 
-                                <div class="span6">
+                                <div class="span12">
 
                                     <div class="form-option user-profile-img-wrapper clearfix">
 
@@ -116,7 +116,7 @@ get_header();
                                         <input name="pass2" type="password" id="pass2" />
                                     </div>
 
-                                </div><!-- end of span6 -->
+                                </div><!-- end of span12 -->
 
                                 <?php /*<div class="span6">
 
