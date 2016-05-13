@@ -113,7 +113,7 @@
                     </div>
                     
                     <div class="form-option register-checkbox">
-                    	<label><input type="checkbox" name="mc4wp-try-subscribe" value="1" /> Subscribe to our newsletter?</label>
+                    	<label><input type="checkbox" name="mc4wp-try-subscribe" value="1" checked /> Subscribe to our newsletter?</label>
                     </div>
 
                     <input type="hidden" name="user-cookie" value="1" />
