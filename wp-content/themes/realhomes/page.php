@@ -20,13 +20,13 @@ get_header();
                                 ?>
                                 <article id="post-<?php the_ID(); ?>" <?php post_class("clearfix"); ?>>
                                         <?php
-                                        $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
+                                        /*$title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
                                         if( $title_display != 'hide' ){
                                             ?>
                                             <h3 class="post-title"><?php the_title(); ?></h3>
                                             <hr/>
                                             <?php
-                                        }
+                                        }*/
 
                                         if ( has_post_thumbnail() )
                                         {
