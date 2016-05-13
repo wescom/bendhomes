@@ -52,7 +52,7 @@ get_header();
 
                                 <div class="span12">
 
-                                    <div class="form-option user-profile-img-wrapper clearfix">
+                                    <?php /*<div class="form-option user-profile-img-wrapper clearfix">
 
                                         <div id="user-profile-img">
 
@@ -84,7 +84,7 @@ get_header();
 
                                         </div><!-- end of profile image controls -->
 
-                                    </div><!-- end of user-profile-img-wrapper wrapper -->
+                                    </div><!-- end of user-profile-img-wrapper wrapper -->*/ ?>
 
                                     <div class="form-option">
                                         <label for="first-name"><?php _e('First Name', 'framework'); ?></label>
