@@ -389,7 +389,7 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 			wp_deregister_style( 'flexslider' );    // deregister flexslider if it registered by some plugin
 			wp_enqueue_style(
 				'flexslider',
-				get_template_directory_uri() . '/js/flexslider/flexslider.css',
+				get_template_directory_uri() . '/js/flexslider/flexslider.min.css',
 				array(),
 				'2.6.0',
 				'all'
@@ -498,7 +498,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             // Easing
             wp_register_script(
                 'easing',
-                $js_directory_uri . 'elastislide/jquery.easing.1.3.js',
+                $js_directory_uri . 'elastislide/jquery.easing.1.3.min.js',
                 array( 'jquery' ),
                 '1.3',
                 false
@@ -507,7 +507,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             // elasti slide
             wp_register_script(
                 'elastislide',
-                $js_directory_uri . 'elastislide/jquery.elastislide.js',
+                $js_directory_uri . 'elastislide/jquery.elastislide.min.js',
                 array( 'jquery' ),
                 false
             );
@@ -551,7 +551,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             // jQuery Form
             wp_register_script(
                 'jqform',
-                $js_directory_uri . 'jquery.form.js',
+                $js_directory_uri . 'jquery.form.min.js',
                 array( 'jquery' ),
                 '3.40',
                 false
@@ -560,7 +560,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             // selectbox
             wp_register_script(
                 'selectbox',
-                $js_directory_uri . 'jquery.selectbox.js',
+                $js_directory_uri . 'jquery.selectbox.min.js',
                 array( 'jquery' ),
                 '1.2',
                 false
@@ -595,7 +595,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             // Theme's main script
             wp_register_script(
                 'custom',
-                $js_directory_uri . 'custom.js',
+                $js_directory_uri . 'custom.min.js',
                 array( 'jquery' ),
                 INSPIRY_THEME_VERSION,
                 true
@@ -661,14 +661,14 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                 // Google Map Info Box API
                 wp_enqueue_script(
                     'google-map-info-box',
-                    esc_url_raw( $js_directory_uri . 'infobox.js' ),
+                    esc_url_raw( $js_directory_uri . 'infobox.min.js' ),
                     array( 'google-map-api' ),
                     '1.1.9'
                 );
 
                 wp_enqueue_script(
                     'google-map-marker-clusterer',
-                    esc_url_raw( $js_directory_uri . 'markerclusterer.js' ),
+                    esc_url_raw( $js_directory_uri . 'markerclusterer.min.js' ),
                     array( 'google-map-api' ),
                     '2.1.1'
                 );
@@ -690,7 +690,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                 // Property Submit Script
                 wp_register_script(
                     'property-submit',
-                    $js_directory_uri . 'property-submit.js',
+                    $js_directory_uri . 'property-submit.min.js',
                     array( 'jquery', 'jquery-ui-sortable', 'plupload' ),
                     INSPIRY_THEME_VERSION,
                     true
@@ -748,7 +748,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             if ( ! is_user_logged_in() ) {
                 wp_enqueue_script(
                     'inspiry-login-register',
-                    $js_directory_uri . 'inspiry-login-register.js',
+                    $js_directory_uri . 'inspiry-login-register.min.js',
                     array( 'jquery' ),
                     INSPIRY_THEME_VERSION,
                     true
