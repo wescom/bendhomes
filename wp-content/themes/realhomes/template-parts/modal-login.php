@@ -113,7 +113,7 @@
                     </div>
                     
                     <div class="form-option register-checkbox">
-                    	<?php echo do_shortcode('[mc4wp_checkbox "Subscribe to our newsletter?"]'); ?>
+                    	<label><input type="checkbox" name="mc4wp-try-subscribe" value="1" /> Subscribe to our newsletter?</label>
                     </div>
 
                     <input type="hidden" name="user-cookie" value="1" />
