@@ -120,7 +120,15 @@ get_header();
 	                                                   title="<?php _e( '* Password should be same as above', 'framework' ); ?>"
 	                                                   placeholder="<?php _e( 'Confirm Password', 'framework' ); ?>" required/>
                                             </div>
+                                            
+                                            <!--div class="form-option">
+                                                <label>
+                                                    <input type="checkbox" name="mc4wp-subscribe" value="1" checked />
+                                                    Sign-up to our newsletter.
+                                                </label>
+                                            </div-->
 
+											<!--input type="hidden" name="mc4wp-subscribe" value="1" /-->
                                             <input type="hidden" name="user-cookie" value="1" />
                                             <input type="submit" id="register-button" name="user-submit" value="<?php _e('Register','framework');?>" class="real-btn register-btn" />
                                             <img id="register-loader" class="modal-loader" src="<?php echo get_template_directory_uri(); ?>/images/ajax-loader.gif" alt="Working...">

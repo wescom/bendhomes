@@ -12,7 +12,8 @@ if($show_partners == 'true'){
                                 <?php
                                 $partners_query_args = array(
                                     'post_type' => 'partners',
-                                    'posts_per_page' => -1
+                                    'posts_per_page' => -1,
+									'orderby' => 'rand'
                                 );
 
                                 $partners_query = new WP_Query( $partners_query_args );
