@@ -40,17 +40,6 @@ if ( !function_exists( 'inspiry_load_translation_from_child' ) ) {
 }
 
 
-// Enqueue Files from Google CDN instead
-add_action( 'wp_enqueue_scripts', 'bh_enqueue_additional_files');
-function bh_enqueue_additional_files() {
-	//if (!is_admin() && $GLOBALS['pagenow'] != 'wp-login.php') {
-		wp_deregister_script('jquery');
-        wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', false, '1.11.3');
-        wp_enqueue_script('jquery');	
-	//}
-}
-
-
 // Add scripts to wp_head()
 add_action( 'wp_head', 'child_theme_head_script' );
 function child_theme_head_script() { ?>
