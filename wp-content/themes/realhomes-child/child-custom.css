@@ -1,1 +1,4 @@
 /* Child Theme - Custom CSS File for Buyers to Modify */
+.property-breadcrumbs ul { margin-left: 0; list-style: none; }
+.property-breadcrumbs li { display: inline-block; }
+.property-breadcrumbs i { margin: 0 10px; }

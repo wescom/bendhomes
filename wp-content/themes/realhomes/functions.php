@@ -1,4 +1,4 @@
-<?php // Dev test 2
+<?php
 /**
  * The current version of the theme.
  */
