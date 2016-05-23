@@ -1,4 +1,4 @@
-<?php
+<?php // Jarel Test 1
 /**
  * The current version of the theme.
  */
