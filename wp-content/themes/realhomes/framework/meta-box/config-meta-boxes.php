@@ -25,6 +25,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
 		//$file_base = strval( substr($file_part, 0, strpos($file_part, "-")) );
 		$file_base = (string)$file_part;
+		echo $file_base;
 		
     //}
 
