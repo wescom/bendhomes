@@ -151,7 +151,6 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
     ?>
     <div class="dfp-ad">
       <div id='<?php echo $dispid; ?>'>
-      	<!-- test Jarel -->
         <script type='text/javascript'>
         googletag.cmd.push(function() { googletag.display('<?php echo $dispid; ?>'); });
         </script>
@@ -160,4 +159,22 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
     <?php
 
   }
+}
+
+
+add_action('admin_init','load_admin_datapicker_script');
+   function load_admin_datapicker_script() {
+    global $pagenow, $typenow;
+    if (empty($typenow) && !empty($_GET['post'])) {
+        $post = get_post($_GET['post']);
+        $typenow = $post->post_type;
+    }
+    if (is_admin() && $pagenow=='post-new.php' OR $pagenow=='post.php' && $typenow=='property') { ?>
+        
+		<!-- Jarel Test -->
+        <script type="text/javascript">
+			<!-- Test Jarel -->
+		</script>
+		
+    <?php }
 }
