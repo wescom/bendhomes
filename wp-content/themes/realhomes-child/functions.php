@@ -174,9 +174,12 @@ function tbb_admin_load_property_script() {
 		$property = get_post_meta( $post->ID );
 		print_r($property);
 		
+		$image_id = $property['REAL_HOMES_slider_image'][0];
+		
 		echo '
         <script type="text/javascript">
 			<!-- Test Jarel -->
+			<!-- ID: '. $image_id .' -->
 		</script>
 		';
 		
