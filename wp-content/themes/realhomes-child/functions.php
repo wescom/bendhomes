@@ -171,6 +171,7 @@ function tbb_admin_load_property_script() {
     }
     if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
         
+		print_r($post);
 		echo '
         <script type="text/javascript">
 			<!-- Test Jarel -->
