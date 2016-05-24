@@ -111,14 +111,23 @@ Thumbs.db
 # "mu-plugins" directory
 # "plugins" directory
 # "themes" directory
-wp-content/*
-!wp-content/mu-plugins/
-!wp-content/plugins/bh-importer/
+# wp-content/*
+# !wp-content/mu-plugins/
+# !wp-content/plugins/bh-importer/
+# wp-content/plugins/
+# !wp-content/themes/realhomes/
+# !wp-content/themes/realhomes/bend-homes/
+# !wp-content/themes/realhomes-child/
+# wp-content/themes/
+
+wp-content/*.php
+wp-content/*.txt
+wp-content/aiowps_backups/
+wp-content/cache/
 wp-content/plugins/
-!wp-content/themes/realhomes/
-!wp-content/themes/realhomes/bend-homes/
-!wp-content/themes/realhomes-child/
-wp-content/themes/
+wp-content/rsspi-log/
+wp-content/uploads/
+wp-content/upgrade/
 
 # ignore these plugins
 wp-content/plugins/hello.php
