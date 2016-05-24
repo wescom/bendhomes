@@ -42,7 +42,10 @@ if ( !function_exists( 'inspiry_load_translation_from_child' ) ) {
 
 // Add scripts to wp_head()
 add_action( 'wp_head', 'child_theme_head_script' );
-function child_theme_head_script() { ?>
+function child_theme_head_script() { 
+
+	ob_start();
+	?>
   <script type='text/javascript'>
     // DFP init
     var googletag = googletag || {};
@@ -60,7 +63,9 @@ function child_theme_head_script() { ?>
 
     // DFP slot definitions
 
-    googletag.cmd.push(function () {
+    <?php /* Unminified JS code. Minified code added below.
+	
+			googletag.cmd.push(function () {
     				// set up var ahead of time
     				var width = document.documentElement.clientWidth;
 
@@ -102,7 +107,7 @@ function child_theme_head_script() { ?>
 
 
             slot01.setTargeting("section", [gadssectionkey]);
-    				/* slot02.setTargeting("section", [gadssectionkey]); */
+    				//*** slot02.setTargeting("section", [gadssectionkey]);
     				slot03.setTargeting("section", [gadssectionkey]);
     				slot04.setTargeting("section", [gadssectionkey]);
 
@@ -116,11 +121,14 @@ function child_theme_head_script() { ?>
 
           function refreshAd(slotName) {
     				googletag.pubads().refresh();
-    			}
-
-  </script>
-
-<?php }
+    			}*/ ?>
+				
+		function refreshAd(e){googletag.pubads().refresh()}googletag.cmd.push(function(){var e,g,o,d,a=document.documentElement.clientWidth;a>=320&&768>a?(e=[320,50],g=[320,50],o=[320,50],d=[[180,150],[160,600]]):a>=768&&992>a?(e=[320,50],g=[320,50],o=[320,50],d=[160,600]):a>=992?(e=[[970,90],[728,90]],g=[728,90],o=[[970,90],[728,90]],d=[160,600]):(e=[728,90],g=[728,90],o=[728,90],d=[160,600]);var t=1459980402618,i="Home",n=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+t+"-0").addService(googletag.pubads()),s=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+t+"-1").addService(googletag.pubads()),l=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-"+t+"-2").addService(googletag.pubads()),r=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",o,"div-gpt-ad-"+t+"-3").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-wideskyscraper",d,"div-gpt-ad-"+t+"-4").addService(googletag.pubads());n.setTargeting("section",[i]),l.setTargeting("section",[i]),r.setTargeting("section",[i]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([n,s,l,r,c])})});
+	</script>
+  
+  <?php
+  ob_get_clean();
+}
 
 
 // Google DFP postion rener
