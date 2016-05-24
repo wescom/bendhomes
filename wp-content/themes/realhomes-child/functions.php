@@ -151,6 +151,7 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
     ?>
     <div class="dfp-ad">
       <div id='<?php echo $dispid; ?>'>
+      	<!-- test Jarel -->
         <script type='text/javascript'>
         googletag.cmd.push(function() { googletag.display('<?php echo $dispid; ?>'); });
         </script>
