@@ -171,10 +171,10 @@ function tbb_admin_load_property_script() {
     }
     if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
         global $post;
-		$property = get_post_meta( $post->ID );
+		$image_id = get_post_meta( $post->ID, 'REAL_HOMES_slider_image', true );
 		print_r($property);
 		
-		$image_id = $property['REAL_HOMES_slider_image'][0];
+		//$image_id = $property['REAL_HOMES_slider_image'][0];
 		$image_src = wp_get_attachment_image_src( $image_id );
 		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
 		$file_base = substr($file_part, 0, strpos($file_part, "-"));
