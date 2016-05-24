@@ -177,6 +177,7 @@ function tbb_admin_load_property_script() {
 		$image_id = $property['REAL_HOMES_slider_image'][0];
 		$image_src = wp_get_attachment_image_src( $image_id );
 		$file = basename( $image_src[0], ".jpg" );
+		$file_part = str_replace( 'property-', '', str_replace( '-150x150', '', $file ) );
 		
 		echo '
         <script type="text/javascript">
@@ -184,6 +185,7 @@ function tbb_admin_load_property_script() {
 			<!-- ID: '. $image_id .' -->
 			<!-- URL: '. $image_src[0] .' -->
 			<!-- FILE: '. $file .' -->
+			<!-- PART: '. $file_part .' -->
 		</script>
 		';
 		
