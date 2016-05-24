@@ -678,11 +678,11 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 
 function tbb_get_image_basename() {
 	global $pagenow, $typenow;
-    if (empty($typenow) && !empty($_GET['post'])) {
+    /*if (empty($typenow) && !empty($_GET['post'])) {
         $post = get_post($_GET['post']);
         $typenow = $post->post_type;
-    }
-    if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
+    }*/
+    //if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
         global $post;
 		$property = get_post_meta( $post->ID );
 		//print_r($property);
@@ -694,5 +694,5 @@ function tbb_get_image_basename() {
 		
 		echo $file_base;
 		
-    }
+    //}
 }
