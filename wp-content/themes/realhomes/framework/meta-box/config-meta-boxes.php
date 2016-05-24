@@ -17,14 +17,14 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
     }*/
     //if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
         global $post;
-		$image_id = get_post_meta( $post->ID, $prefix .'slider_image', true );
+		$image_id = get_post_meta( $post->ID, 'REAL_HOMES_slider_image', true );
 		//print_r($property);
 		
 		//$image_id = $property[$prefix .'slider_image'][0];
 		$image_src = wp_get_attachment_image_src( $image_id );
 		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
 		//$file_base = substr($file_part, 0, strpos($file_part, "-"));
-		$file_base = $image_id;
+		$file_base = '{$image_id}';
 		
     //}
 
