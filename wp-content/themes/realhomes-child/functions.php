@@ -42,10 +42,7 @@ if ( !function_exists( 'inspiry_load_translation_from_child' ) ) {
 
 // Add scripts to wp_head()
 add_action( 'wp_head', 'child_theme_head_script' );
-function child_theme_head_script() { 
-
-	ob_start();
-	?>
+function child_theme_head_script() { ?>
   <script type='text/javascript'>
     // DFP init
     var googletag = googletag || {};
@@ -127,7 +124,6 @@ function child_theme_head_script() {
 	</script>
   
   <?php
-  ob_get_clean();
 }
 
 
