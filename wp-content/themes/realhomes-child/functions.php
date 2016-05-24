@@ -193,6 +193,7 @@ function tbb_admin_load_property_script() {
 					jQuery("#media-search-input").val("'. $file_base .'");
 				});*/
 				jQuery("#REAL_HOMES_slider_image_description").before("<p>Image Base Name: '. $file_base .'</p>");
+				jQuery("#media-search-input").val("'. $file_base .'");
 			});
 		</script>
 		';
