@@ -52,6 +52,10 @@
 			<span class="share-facebook"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fa fa-facebook fa-lg"></i><?php _e('Facebook','framework'); ?></a></span>
 			<span class="share-twitter"><a target="_blank" href="https://twitter.com/share?url=<?php the_permalink(); ?>" ><i class="fa fa-twitter fa-lg"></i><?php _e('Twitter','framework'); ?></a></span>
 			<span class="share-googleplus"><a target="_blank" href="https://plus.google.com/share?url={<?php the_permalink(); ?>}" onclick="javascript:window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes')"><i class="fa fa-google-plus fa-lg"></i><?php _e('Google','framework'); ?></a></span>
+            <?php // Add to favorites
+        	get_template_part('property-details/property-add-to-favorites'); ?>
+            <!-- Print link -->
+        	<span class="printer-icon"><a href="javascript:window.print()"><i class="fa fa-print"></i><?php _e('Print','framework'); ?></a></span>
 		</div>
 		<?php
 	} ?>
@@ -62,11 +66,11 @@
         get_template_part('property-details/property-metas');
 
         // Add to favorites
-        get_template_part('property-details/property-add-to-favorites');
+        //get_template_part('property-details/property-add-to-favorites');
 
         ?>
         <!-- Print link -->
-        <span class="printer-icon"><a href="javascript:window.print()"><i class="fa fa-print"></i><?php _e('Print','framework'); ?></a></span>
+        <!--span class="printer-icon"><a href="javascript:window.print()"><i class="fa fa-print"></i><?php //_e('Print','framework'); ?></a></span-->
     </div>
 
     <div class="content clearfix">
