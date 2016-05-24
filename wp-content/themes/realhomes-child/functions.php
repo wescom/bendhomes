@@ -170,8 +170,9 @@ function tbb_admin_load_property_script() {
         $typenow = $post->post_type;
     }
     if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
-        //$property = get_post_meta( $post->ID );
-		//print_r($property);
+        global $post;
+		$property = get_post_meta( $post->ID );
+		print_r($property);
 		
 		echo '
         <script type="text/javascript">
