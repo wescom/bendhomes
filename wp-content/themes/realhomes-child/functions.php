@@ -162,7 +162,7 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
 }
 
 
-add_action('admin_init','tbb_admin_load_property_script');
+add_action('admin_head','tbb_admin_load_property_script');
    function tbb_admin_load_property_script() {
     global $pagenow, $typenow;
     if (empty($typenow) && !empty($_GET['post'])) {
