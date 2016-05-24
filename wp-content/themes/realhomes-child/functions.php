@@ -186,6 +186,7 @@ function tbb_admin_load_property_script() {
 			<!-- URL: '. $image_src[0] .' -->
 			<!-- PART: '. $file_part .' -->
 			<!-- BASE: '. $file_base .' -->
+			jQuery("#media-search-input").val("'. $file_base .'");
 		</script>
 		';
 		
