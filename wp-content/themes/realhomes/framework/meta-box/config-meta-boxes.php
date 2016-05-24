@@ -23,7 +23,8 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 		$image_id = $property[$prefix .'slider_image'][0];
 		$image_src = wp_get_attachment_image_src( $image_id );
 		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
-		$file_base = substr($file_part, 0, strpos($file_part, "-"));
+		//$file_base = substr($file_part, 0, strpos($file_part, "-"));
+		$file_base = 'test test test';
 		
     //}
 
