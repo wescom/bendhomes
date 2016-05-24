@@ -1,7 +1,8 @@
-<?php
+<?php  // Moved social sharing box to property-contents.php
 $display_google_map = get_option('theme_display_google_map');
-$display_social_share = get_option('theme_display_social_share');
-if($display_google_map == 'true' || $display_social_share == 'true'){
+//$display_social_share = get_option('theme_display_social_share');
+//if($display_google_map == 'true' || $display_social_share == 'true'){
+if($display_google_map == 'true'){
 global $post;
 
     ?>
@@ -54,7 +55,9 @@ global $post;
                 <script>
                     /* Property Detail Page - Google Map for Property Location */
 
-                    function initialize_property_map(){
+                    <?php /* Unminified JS. Minified js located below
+					
+						function initialize_property_map(){
 
                         var propertyMarkerInfo = <?php echo json_encode( $property_marker ); ?>
 
@@ -92,13 +95,15 @@ global $post;
                         });
                     }
 
-                    window.onload = initialize_property_map();
+                    window.onload = initialize_property_map(); */ ?>
+					
+					function initialize_property_map(){var e=<?php echo json_encode( $property_marker ); ?>,o=e.icon,n=new google.maps.Size(42,57);window.devicePixelRatio>1.5&&e.retinaIcon&&(o=e.retinaIcon,n=new google.maps.Size(83,113));var a={url:o,size:n,scaledSize:new google.maps.Size(42,57),origin:new google.maps.Point(0,0),anchor:new google.maps.Point(21,56)},i=new google.maps.LatLng(e.lat,e.lang),p={center:i,zoom:15,mapTypeId:google.maps.MapTypeId.ROADMAP,scrollwheel:!1},g=new google.maps.Map(document.getElementById("property_map"),p);new google.maps.Marker({position:i,map:g,icon:a})}window.onload=initialize_property_map();
                 </script>
 
                 <?php
             }
 
-            if ( $display_social_share == 'true' ) {
+            /*if ( $display_social_share == 'true' ) {
                 ?>
                 <div class="share-networks clearfix">
                     <span class="share-label"><?php _e('Share this', 'framework'); ?></span>
@@ -107,7 +112,7 @@ global $post;
                     <span><a target="_blank" href="https://plus.google.com/share?url={<?php the_permalink(); ?>}" onclick="javascript:window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes')"><i class="fa fa-google-plus fa-lg"></i><?php _e('Google','framework'); ?></a></span>
                 </div>
                 <?php
-            }
+            }*/
         ?>
 
     </div>

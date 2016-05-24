@@ -334,7 +334,7 @@ span[class^="chiclet-"], span[class*=" chiclet-"] {
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   margin: 0 0.1em 0 0;
 }
-
+ 
 .chiclet-linkedin:hover {
     background-color: #005983;
 }

@@ -22,7 +22,7 @@ if (!function_exists('inspiry_enqueue_child_styles')) {
             wp_enqueue_style('child-default', get_stylesheet_uri(), array('parent-default'), '1.0', 'all' );
 
             // child custom css
-            wp_enqueue_style('child-custom',  get_stylesheet_directory_uri() . '/child-custom.css', array('child-default'), '1.0', 'all' );
+            //wp_enqueue_style('child-custom',  get_stylesheet_directory_uri() . '/child-custom.css', array('child-default'), '1.0', 'all' );
         }
     }
 }
@@ -60,7 +60,9 @@ function child_theme_head_script() { ?>
 
     // DFP slot definitions
 
-    googletag.cmd.push(function () {
+    <?php /* Unminified JS code. Minified code added below.
+	
+			googletag.cmd.push(function () {
     				// set up var ahead of time
     				var width = document.documentElement.clientWidth;
 
@@ -102,7 +104,7 @@ function child_theme_head_script() { ?>
 
 
             slot01.setTargeting("section", [gadssectionkey]);
-    				/* slot02.setTargeting("section", [gadssectionkey]); */
+    				//*** slot02.setTargeting("section", [gadssectionkey]);
     				slot03.setTargeting("section", [gadssectionkey]);
     				slot04.setTargeting("section", [gadssectionkey]);
 
@@ -116,11 +118,13 @@ function child_theme_head_script() { ?>
 
           function refreshAd(slotName) {
     				googletag.pubads().refresh();
-    			}
-
-  </script>
-
-<?php }
+    			}*/ ?>
+				
+		function refreshAd(e){googletag.pubads().refresh()}googletag.cmd.push(function(){var e,g,o,d,a=document.documentElement.clientWidth;a>=320&&768>a?(e=[320,50],g=[320,50],o=[320,50],d=[[180,150],[160,600]]):a>=768&&992>a?(e=[320,50],g=[320,50],o=[320,50],d=[160,600]):a>=992?(e=[[970,90],[728,90]],g=[728,90],o=[[970,90],[728,90]],d=[160,600]):(e=[728,90],g=[728,90],o=[728,90],d=[160,600]);var t=1459980402618,i="Home",n=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+t+"-0").addService(googletag.pubads()),s=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+t+"-1").addService(googletag.pubads()),l=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-"+t+"-2").addService(googletag.pubads()),r=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",o,"div-gpt-ad-"+t+"-3").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-wideskyscraper",d,"div-gpt-ad-"+t+"-4").addService(googletag.pubads());n.setTargeting("section",[i]),l.setTargeting("section",[i]),r.setTargeting("section",[i]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([n,s,l,r,c])})});
+	</script>
+  
+  <?php
+}
 
 
 // Google DFP postion rener
@@ -155,4 +159,35 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
     <?php
 
   }
+}
+
+
+add_action('admin_head','tbb_admin_load_property_script');
+function tbb_admin_load_property_script() {
+    global $pagenow, $typenow;
+    if (empty($typenow) && !empty($_GET['post'])) {
+        $post = get_post($_GET['post']);
+        $typenow = $post->post_type;
+    }
+    if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
+        global $post;
+		$property = get_post_meta( $post->ID );
+		print_r($property);
+		
+		$image_id = $property['REAL_HOMES_slider_image'][0];
+		$image_src = wp_get_attachment_image_src( $image_id );
+		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
+		$file_base = substr($file_part, 0, strpos($file_part, "-"));
+		
+		echo '
+        <script type="text/javascript">
+			<!-- Test Jarel 194197 -->
+			<!-- ID: '. $image_id .' -->
+			<!-- URL: '. $image_src[0] .' -->
+			<!-- PART: '. $file_part .' -->
+			<!-- BASE: '. $file_base .' -->
+		</script>
+		';
+		
+    }
 }

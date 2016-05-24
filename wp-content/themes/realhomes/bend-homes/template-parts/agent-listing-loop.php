@@ -1,7 +1,7 @@
 <article class="about-agent clearfix <?php echo $term_val['class']; ?>">
     <?php
       $title_label = '<span class="label">'.$term_val['title_label'].'</span>';
-    ?>
+    ?> 
     <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a><?php echo $title_label; ?></h4>
 
         <div class="row-fluid">
