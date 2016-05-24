@@ -414,7 +414,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                 array(
                     'name' => __("Slider Image: {$file_base}", "framework"),
                     'id' => "{$prefix}slider_image",
-                    'desc' => __('The recommended image size is 2000px by 700px. You can use bigger or smaller image but try to keep the same height to width ratio and use the exactly same size images for all properties that will be added in slider.', 'framework'),
+                    'desc' => __('The recommended image size is 2000px by 700px. You can use bigger or smaller image but try to keep the same height to width ratio and use the exactly same size images for all properties that will be added in slider. {$prefix}', 'framework'),
                     'type' => 'image_advanced',
                     'max_file_uploads' => 1,
                     'columns' => 12,
