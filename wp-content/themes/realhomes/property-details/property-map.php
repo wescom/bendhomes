@@ -54,7 +54,9 @@ global $post;
                 <script>
                     /* Property Detail Page - Google Map for Property Location */
 
-                    function initialize_property_map(){
+                    <?php /* Unminified JS. Minified js located below
+					
+						function initialize_property_map(){
 
                         var propertyMarkerInfo = <?php echo json_encode( $property_marker ); ?>
 
@@ -92,7 +94,9 @@ global $post;
                         });
                     }
 
-                    window.onload = initialize_property_map();
+                    window.onload = initialize_property_map(); */ ?>
+					
+					function initialize_property_map(){var e=<?php echo json_encode( $property_marker ); ?>,o=e.icon,n=new google.maps.Size(42,57);window.devicePixelRatio>1.5&&e.retinaIcon&&(o=e.retinaIcon,n=new google.maps.Size(83,113));var a={url:o,size:n,scaledSize:new google.maps.Size(42,57),origin:new google.maps.Point(0,0),anchor:new google.maps.Point(21,56)},i=new google.maps.LatLng(e.lat,e.lang),p={center:i,zoom:15,mapTypeId:google.maps.MapTypeId.ROADMAP,scrollwheel:!1},g=new google.maps.Map(document.getElementById("property_map"),p);new google.maps.Marker({position:i,map:g,icon:a})}window.onload=initialize_property_map();
                 </script>
 
                 <?php
