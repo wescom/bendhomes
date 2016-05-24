@@ -360,7 +360,7 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 
 			// register styles
 			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '2.2.2', 'all' );
-			wp_register_style( 'responsive-css', get_template_directory_uri() . '/css/responsive.min.css', array(), '2.2.2', 'all' );
+			//wp_register_style( 'responsive-css', get_template_directory_uri() . '/css/responsive.min.css', array(), '2.2.2', 'all' );
 			wp_register_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.1.0', 'all' );
 			wp_register_style( 'pretty-photo-css', get_template_directory_uri() . '/js/prettyphoto/css/prettyPhoto.min.css', array(), '3.1.6', 'all' );
 			wp_register_style( 'swipebox', get_template_directory_uri() . '/js/swipebox/css/swipebox.min.css', array(), '1.3.0', 'all' );
@@ -375,11 +375,11 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 			// enqueue bootstrap styles
 			wp_enqueue_style( 'bootstrap-css' );
 
-			$disable_responsive_styles = get_option( 'theme_disable_responsive' );
+			/*$disable_responsive_styles = get_option( 'theme_disable_responsive' );
 			if ( $disable_responsive_styles != "true" ) {
 				// enqueue bootstrap responsive styles
 				wp_enqueue_style( 'responsive-css' );
-			}
+			}*/
 
 			// Font awesome css
 			wp_enqueue_style( 'font-awesome' );
