@@ -23,9 +23,8 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 		//$image_id = $property[$prefix .'slider_image'][0];
 		$image_src = wp_get_attachment_image_src( $image_id );
 		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
-		//$file_base = strval( substr($file_part, 0, strpos($file_part, "-")) );
-		$file_base = (string)$file_part;
-		echo $file_base;
+		$file_base = strval( substr($file_part, 0, strpos($file_part, "-")) );
+		echo 'Test Jarel: '.$file_base;
 		
     //}
 
@@ -80,7 +79,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
         // Property Details Meta Box
         $meta_boxes[] = array(
             'id' => 'property-meta-box',
-            'title' => __('Property', 'framework'),
+            'title' => __('Property {$file_base}', 'framework'),
             'post_types' => array('property'),
             'tabs' => array(
                 'details' => array(
