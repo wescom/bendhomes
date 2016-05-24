@@ -367,30 +367,30 @@ if( !function_exists( 'generate_dynamic_css' ) ){
 
         if($prop_count > 0)
         {
-            echo "<style type='text/css' id='dynamic-css'>\n\n";
+            echo "<style type='text/css' id='dynamic-css'>";
 
             foreach($dynamic_css as $css_unit )
             {
                 if(!empty($css_unit['value']))
                 {
-                    echo $css_unit['elements']."{\n";
-                    echo $css_unit['property'].":".$css_unit['value'].";\n";
-                    echo "}\n\n";
+                    echo $css_unit['elements']."{";
+                    echo $css_unit['property'].":".$css_unit['value'].";";
+                    echo "}";
                 }
             }
 
             /* CSS For min width 980px */
-            echo "@media (min-width: 980px) {\n";
+            echo "@media (min-width: 980px) {";
             foreach($dynamic_css_above_980px as $css_unit )
             {
                 if(!empty($css_unit['value']))
                 {
-                    echo $css_unit['elements']."{\n";
-                    echo $css_unit['property'].":".$css_unit['value'].";\n";
-                    echo "}\n\n";
+                    echo $css_unit['elements']."{";
+                    echo $css_unit['property'].":".$css_unit['value'].";";
+                    echo "}";
                 }
             }
-            echo "}\n";
+            echo "}";
 
             echo '</style>';
         }

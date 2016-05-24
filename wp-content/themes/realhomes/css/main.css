@@ -156,7 +156,7 @@ a:hover {
 /*  Real Btn
 --------------------------------------------------------*/
 .real-btn, .btn-blue, .btn-grey, .sidebar .widget .dsidx-widget .submit {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   display: inline-block;
   vertical-align: middle;
   font-size: 13px;
@@ -270,7 +270,7 @@ input[type="email"],
 input[type="text"],
 input[type="password"],
 textarea {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   box-shadow: inset 0 0 2px #e9e9e9;
   border: 1px solid #cdcdcd;
   height: 24px;
@@ -320,7 +320,7 @@ textarea {
 /* Select Box
 --------------------------------------------------------*/
 .selectwrap {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   position: relative;
   display: block;
 }
@@ -385,7 +385,7 @@ textarea {
 /* More Details
 --------------------------------------------------------*/
 .more-details {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   color: #394041;
   display: inline-block;
   margin-bottom: 10px;
@@ -511,7 +511,7 @@ p .icon-remove {
   color: #38b6d7;
   padding: 12px 35px 12px 22px;
   margin-bottom: 18px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 300;
   position: relative;
 }
@@ -522,7 +522,7 @@ p .icon-remove {
   color: #6b6631;
   padding: 12px 35px 12px 22px;
   margin-bottom: 18px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 300;
   position: relative;
 }
@@ -533,7 +533,7 @@ p .icon-remove {
   color: #284b13;
   padding: 12px 35px 12px 22px;
   margin-bottom: 18px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 300;
   position: relative;
 }
@@ -544,7 +544,7 @@ p .icon-remove {
   color: #7e1613;
   padding: 12px 35px 12px 22px;
   margin-bottom: 18px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 300;
   position: relative;
 }
@@ -1238,7 +1238,7 @@ p .icon-remove {
 }
 
 .main-menu ul li a {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   color: #afb4b5;
   font-size: 14px;
   display: block;
@@ -1417,13 +1417,13 @@ p .icon-remove {
 .slide-description span {
   font-size: 18px;
   color: #df5400;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
 
 .slide-description .know-more {
   text-decoration: none;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   position: absolute;
   bottom: -34px;
   left: 0;
@@ -1494,7 +1494,7 @@ p .icon-remove {
 /* Advance Search
 --------------------------------------------------------*/
 .advance-search {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   position: relative;
   background-color: #fff;
   border-bottom: 1px solid #dedede;
@@ -1656,7 +1656,7 @@ p .icon-remove {
 }
 
 .property-item h4, .property-item h4 a {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #394041;
   text-transform: capitalize;
@@ -1718,7 +1718,7 @@ p .icon-remove {
 
 .property-item .property-meta {
   overflow: hidden;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   border-top: 1px solid #dedede;
   background-color: #f5f5f5;
   margin: 0 -10px;
@@ -1834,7 +1834,7 @@ p .icon-remove {
 }
 
 .es-carousel-wrapper ul li h4, .es-carousel-wrapper ul li .property-item h4 a, .property-item h4 .es-carousel-wrapper ul li a, .es-carousel-wrapper ul li h4 a, .property-item h4 .es-carousel-wrapper ul li a a {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #394041;
 }
@@ -1858,7 +1858,7 @@ p .icon-remove {
 }
 
 .es-carousel-wrapper ul li .price {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   display: inline-block;
   padding: 3px 10px;
   margin-bottom: 10px;
@@ -2060,7 +2060,7 @@ p .icon-remove {
 }
 
 #footer .widget {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 22px;
   background: none;
@@ -2069,7 +2069,7 @@ p .icon-remove {
 }
 
 #footer .widget .title {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   margin-bottom: 26px;
   font-weight: normal;
   font-size: 20px;
@@ -2164,7 +2164,7 @@ p .icon-remove {
 }
 
 #footer-bottom {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   border-top: 1px solid #333333;
   padding: 25px 0;
   margin-top: 38px;
@@ -2204,7 +2204,7 @@ p .icon-remove {
 /* widgets
 --------------------------------------------------------*/
 .widget {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 22px;
   background-color: #f2f2f2;
@@ -2217,7 +2217,7 @@ p .icon-remove {
 }
 
 .widget .title {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 21px;
   line-height: 24px;
   font-weight: normal;
@@ -2240,7 +2240,7 @@ p .icon-remove {
 }
 
 .widget ul li {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   color: #75797A;
   background: url(../images/feature-list-bullet.png) no-repeat 2px 15px;
   border-bottom: 1px solid #dedede;
@@ -2376,7 +2376,7 @@ p .icon-remove {
 }
 
 .widget .enquiry-form .agent-form-title {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: 18px;
   margin: 10px 0 15px;
@@ -2932,7 +2932,7 @@ ul.featured-properties li h4 a,
 ul.featured-properties li .property-item h4 a a, .property-item h4
 ul.featured-properties li a a {
   font-size: 14px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #394041;
 }
@@ -2986,12 +2986,12 @@ ul.featured-properties li .price {
 
 .page-head h1.page-title {
   /* font-size: 24px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: blod;
   text-transform: capitalize;
   margin: 0; */
   font-size: 40px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: blod;
   text-transform: capitalize;
   margin: 20px 0;
@@ -3117,7 +3117,7 @@ body.page-template-template-search-php #map-head {
 #listing-map .prop-title a {
   font-size: 14px;
   line-height: 18px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #394041;
 }
@@ -3134,7 +3134,7 @@ body.page-template-template-search-php #map-head {
   font-size: 11px;
   line-height: 18px;
   color: #df5400;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 /* Blog Page
@@ -3212,7 +3212,7 @@ p.wp-caption-text {
 .post-title, .post-title a {
   font-size: 27px;
   line-height: 36px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #394041;
   word-spacing: -1px;
@@ -3227,7 +3227,7 @@ p.wp-caption-text {
 }
 
 .post-meta {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   border-top: 1px solid #dedede;
   border-bottom: 5px solid #4dc7ec;
   color: #394041;
@@ -3469,7 +3469,7 @@ address {
 #respond #reply-title, .form-heading {
   border-top: 2px solid #4dc7ec;
   background-color: #ededed;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 21px;
   font-weight: normal;
   margin: 0;
@@ -3617,7 +3617,7 @@ address {
 
 #contact-form,
 #respond {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   margin-top: 25px;
 }
 
@@ -3669,7 +3669,7 @@ address {
 /* Contact Page
 --------------------------------------------------------*/
 .contact-page {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 .contact-page .inner-wrapper {
@@ -3938,7 +3938,7 @@ address {
 }
 
 #overview {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   background-color: #fff;
 }
 
@@ -3968,7 +3968,7 @@ address {
   float: right;
   margin: 0;
   padding: 0 0 0 15px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 #overview .property-item .price span {
@@ -4168,7 +4168,7 @@ address {
   display: inline-block;
   padding: 6px 17px 8px 14px;
   color: #fff;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -4273,7 +4273,7 @@ address {
 }
 
 #overview .child-properties h3 {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-weight: normal;
   margin: 0 0 5px;
@@ -4325,7 +4325,7 @@ address {
 }
 
 #overview .agent-detail h3 {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 20px;
   line-height: 24px;
   font-weight: normal;
@@ -4609,7 +4609,7 @@ address {
 }
 
 .detail .list-container h3 {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-weight: normal;
   margin: 0 0 7px 30px;
@@ -4784,7 +4784,7 @@ address {
 
 .about-agent .contact-types {
   color: #394041;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 .about-agent .contacts-list {
@@ -4944,7 +4944,7 @@ address {
 }
 
 .listing-layout h4, .listing-layout .property-item h4 a, .property-item h4 .listing-layout a {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 20px;
   line-height: 26px;
   font-weight: normal;
@@ -5172,7 +5172,7 @@ address {
 /* Gallery Template
 --------------------------------------------------------*/
 #filter-by {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   margin: 30px 0 0;
   text-align: center;
 }
@@ -5269,7 +5269,7 @@ address {
   margin-bottom: 18px;
   font-size: 14px;
   font-weight: normal;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 .gallery-item .item-title a {
@@ -5424,7 +5424,7 @@ table td {
 }
 
 #dsidx-listings .dsidx-address a {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: normal;
   color: #fff;
@@ -5435,7 +5435,7 @@ table td {
 }
 
 #dsidx-listings .dsidx-price {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   color: #fff;
   font-size: 18px;
   font-weight: normal;
@@ -5469,7 +5469,7 @@ table td {
   background-color: #4dc7ec;
   color: #fff;
   padding: 8px 10px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   text-transform: capitalize;
   margin: 0;
@@ -5503,7 +5503,7 @@ table td {
 --------------------------------------------------------*/
 #dsidx.dsidx-details #dsidx-actions {
   margin: 0 0 15px;
-  font-family: "Roboto",Helvetica,Arial,sans-serif;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
   font-weight: normal;
 }
 
@@ -5583,13 +5583,13 @@ table td {
 }
 
 #dsidx.dsidx-details .dsidx-contact-form table label {
-  font-family: "Roboto",Helvetica,Arial,sans-serif;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
   margin-top: 5px;
 }
 
 #dsidx.dsidx-details .dsidx-contact-form table input[type=button] {
   padding: 10px 18px;
-  font-family: "Roboto",Helvetica,Arial,sans-serif;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
   font-size: 14px;
   height: auto;
   line-height: 18px;
@@ -5626,14 +5626,14 @@ table td {
   border: none;
   background: transparent;
   color: #636464;
-  font-family: "Roboto",Helvetica,Arial,sans-serif;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
   font-weight: normal;
 }
 
 #dsidx-header table#dsidx-primary-data td {
   border: none;
   color: #636464;
-  font-family: "Roboto",Helvetica,Arial,sans-serif;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
   font-weight: normal;
 }
 
@@ -5672,7 +5672,7 @@ table td {
   background-color: #4dc7ec;
   color: #fff;
   padding: 5px 5px 6px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   text-transform: capitalize;
   margin: 0;
@@ -5707,7 +5707,7 @@ table td {
   background-color: #4dc7ec;
   color: #fff;
   padding: 5px 5px 6px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   text-transform: capitalize;
   margin: 0;
@@ -5788,7 +5788,7 @@ table td {
 }
 
 .sidebar .widget .dsidx-search-widget span.select-wrapper {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   position: relative;
   display: block;
 }
@@ -5841,7 +5841,7 @@ table td {
 
 .sidebar .widget .dsidx-search-widget .dsidx-search-button .submit {
   padding: 8px 16px;
-  font-family: "Roboto",Helvetica,Arial,sans-serif;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
   font-size: 14px;
   text-transform: capitalize;
   color: #fff;
@@ -5856,7 +5856,7 @@ table td {
 }
 
 .sidebar .widget .dsidx-widget-single-listing h3.widget-title {
-  font-family: "Roboto",Helvetica,Arial,sans-serif;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
 }
 
 .sidebar .widget .dsidx-controls {
@@ -5993,7 +5993,7 @@ ol#dsidx-listings {
 
 #dsidx-listings .dsidx-listing-container .dsidx-listing .dsidx-primary-data .dsidx-address a {
   color: #fff;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: normal;
 }
@@ -6713,7 +6713,7 @@ input[type="text"].ui-autocomplete-loading {
 .login-register .main-wrap h3 {
   margin-top: 0;
   font-size: 18px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   text-align: left;
   font-weight: normal;
   margin-bottom: 0;
@@ -6733,7 +6733,7 @@ input[type="text"].ui-autocomplete-loading {
 
 .login-register .info-text {
   color: #171717;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   margin-bottom: 20px;
   font-size: 16px;
@@ -6746,7 +6746,7 @@ input[type="text"].ui-autocomplete-loading {
 
 .login-register input[type="text"],
 .login-register input[type="password"] {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   box-shadow: inset 0 0 2px #e9e9e9;
   border: 1px solid #cdcdcd;
   height: 28px;
@@ -6774,7 +6774,7 @@ input[type="text"].ui-autocomplete-loading {
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 5px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 .login-register label span {
@@ -6837,7 +6837,7 @@ input[type="text"].ui-autocomplete-loading {
 .my-properties .main-wrap h3 {
   margin-top: 0;
   font-size: 18px;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   text-align: left;
   font-weight: normal;
   margin-bottom: 0;
@@ -6861,7 +6861,7 @@ input[type="text"].ui-autocomplete-loading {
 }
 
 .my-properties .alert-wrapper h5 {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
 
@@ -6878,7 +6878,7 @@ input[type="text"].ui-autocomplete-loading {
 }
 
 .my-property .cell h5 {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: 14px;
   line-height: 32px;
