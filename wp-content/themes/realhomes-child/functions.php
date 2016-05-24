@@ -162,19 +162,21 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
 }
 
 
-add_action('admin_init','load_admin_datapicker_script');
-   function load_admin_datapicker_script() {
+add_action('admin_init','tbb_admin_load_property_script');
+   function tbb_admin_load_property_script() {
     global $pagenow, $typenow;
     if (empty($typenow) && !empty($_GET['post'])) {
         $post = get_post($_GET['post']);
         $typenow = $post->post_type;
     }
-    if (is_admin() && $pagenow=='post-new.php' OR $pagenow=='post.php' && $typenow=='property') { ?>
+    if (is_admin() && $pagenow=='post-new.php' OR $pagenow=='post.php' && $typenow=='property') {
         
+		echo '
 		<!-- Jarel Test -->
         <script type="text/javascript">
 			<!-- Test Jarel -->
 		</script>
+		';
 		
-    <?php }
+    }
 }
