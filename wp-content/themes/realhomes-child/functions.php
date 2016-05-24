@@ -187,11 +187,12 @@ function tbb_admin_load_property_script() {
 			<!-- PART: '. $file_part .' -->
 			<!-- BASE: '. $file_base .' -->
 			jQuery(document).ready(function(){
-				frame = wp.media();
+				/*frame = wp.media();
 				frame.on("open",function() {
 					console.log("Yes I opened it!");
 					jQuery("#media-search-input").val("'. $file_base .'");
-				});
+				});*/
+				jQuery("#REAL_HOMES_slider_image_description").before("<p>Image Base Name: '. $file_base .'</p>");
 			});
 		</script>
 		';
