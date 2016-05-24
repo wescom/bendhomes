@@ -179,6 +179,8 @@ function tbb_admin_load_property_script() {
 		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
 		$file_base = substr($file_part, 0, strpos($file_part, "-"));
 		
+		// http://wordpress.stackexchange.com/questions/161880/passing-jquery-into-the-wordpress-media-uploader
+		
 		echo '
         <script type="text/javascript">
 			<!-- Test Jarel 194197 -->
@@ -187,11 +189,6 @@ function tbb_admin_load_property_script() {
 			<!-- PART: '. $file_part .' -->
 			<!-- BASE: '. $file_base .' -->
 			jQuery(document).ready(function(){
-				/*frame = wp.media();
-				frame.on("open",function() {
-					console.log("Yes I opened it!");
-					jQuery("#media-search-input").val("'. $file_base .'");
-				});*/
 				jQuery("#REAL_HOMES_slider_image_description").before("<p>Image Base Name: '. $file_base .'</p>");
 				jQuery("#media-search-input").val("'. $file_base .'");
 			});
