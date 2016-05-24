@@ -186,7 +186,16 @@ function tbb_admin_load_property_script() {
 			<!-- URL: '. $image_src[0] .' -->
 			<!-- PART: '. $file_part .' -->
 			<!-- BASE: '. $file_base .' -->
-			jQuery("#media-search-input").val("'. $file_base .'");
+			jQuery(document).ready(function(){
+				jQuery("#media-search-input").val("'. $file_base .'");
+			});
+			(function($){
+				$.extend( wp.Uploader.prototype, {
+					success : function( file_attachment ){
+						console.log( file_attachment );
+					}
+				});
+			})(jQuery);
 		</script>
 		';
 		
