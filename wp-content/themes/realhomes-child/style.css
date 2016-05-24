@@ -17,7 +17,7 @@ a { color: #37b3d9; } footer a { color: #8b9293; }
 .gform_wrapper .gform_button:hover, .gform_wrapper .gform_button:active, .mc4wp-form-fields input[type=submit]:hover, .mc4wp-form-fields input[type=submit]:active { background: #02888F; border-color: #02888F; }
 footer .mc4wp-form-fields label { display: none; }
 footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding: 0 4%; font-size: 18px; border: none; }
-
 .property-breadcrumbs ul { margin-left: 0; list-style: none; }
 .property-breadcrumbs li { display: inline-block; }
 .property-breadcrumbs i { margin: 0 10px; }
+.share-facebook { background: #3F589B; } .share-twitter { background: #00ACED; } .share-googleplus { background: #D84533; }
