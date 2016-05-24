@@ -9,6 +9,23 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
     function inspiry_register_meta_boxes( $meta_boxes ) {
 
         $prefix = 'REAL_HOMES_';
+		
+		//global $pagenow, $typenow;
+    /*if (empty($typenow) && !empty($_GET['post'])) {
+        $post = get_post($_GET['post']);
+        $typenow = $post->post_type;
+    }*/
+    //if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
+        global $post;
+		$property = get_post_meta( $post->ID );
+		//print_r($property);
+		
+		$image_id = $property[$prefix .'slider_image'][0];
+		$image_src = wp_get_attachment_image_src( $image_id );
+		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
+		$file_base = substr($file_part, 0, strpos($file_part, "-"));
+		
+    //}
 
         // Video embed code meta box for video post format
         $meta_boxes[] = array(
@@ -394,7 +411,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'home-slider',
                 ),
                 array(
-                    'name' => 'Slider Image: '. tbb_get_image_basename(),
+                    'name' => 'Slider Image: '. $file_base,
                     'id' => "{$prefix}slider_image",
                     'desc' => __('The recommended image size is 2000px by 700px. You can use bigger or smaller image but try to keep the same height to width ratio and use the exactly same size images for all properties that will be added in slider.', 'framework'),
                     'type' => 'image_advanced',
@@ -673,26 +690,4 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
         return $meta_boxes;
 
     }
-}
-
-
-function tbb_get_image_basename() {
-	global $pagenow, $typenow;
-    /*if (empty($typenow) && !empty($_GET['post'])) {
-        $post = get_post($_GET['post']);
-        $typenow = $post->post_type;
-    }*/
-    //if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
-        global $post;
-		$property = get_post_meta( $post->ID );
-		//print_r($property);
-		
-		$image_id = $property['REAL_HOMES_slider_image'][0];
-		$image_src = wp_get_attachment_image_src( $image_id );
-		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
-		$file_base = substr($file_part, 0, strpos($file_part, "-"));
-		
-		echo $file_base;
-		
-    //}
 }
