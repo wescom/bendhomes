@@ -25,7 +25,7 @@
     ?>
 </head>
 <body <?php body_class(); ?>>
-
+  
         <?php
           // print_r(get_registered_nav_menus());
           // Conditional. Don't show top ad banner on home/front page

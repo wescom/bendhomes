@@ -338,3 +338,25 @@ span[class^="chiclet-"], span[class*=" chiclet-"] {
 .chiclet-linkedin:hover {
     background-color: #005983;
 }
+
+/* styles for agents listing page */
+.featured-agent-type span.label,
+.standard-agent-type span.label {
+  line-height: 16px;
+  font-size: 14px;
+  margin: 0 0 0 10px;
+}
+
+.featured-agent-type span.label {
+  background-color: #FF6600;
+}
+
+.standard-agent-type {
+  /* intentionally left blank */
+  /* put styles here if you'd like */
+}
+
+.standard-agent-type span.label {
+  /* intentionally left blank */
+  /* put styles here if you'd like */
+}
