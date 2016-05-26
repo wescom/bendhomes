@@ -7600,3 +7600,26 @@ input[type="text"].ui-autocomplete-loading {
   height: 1px;
   background-color: #394041;
 }
+
+/* styles for agents listing page */
+/* move these to where you want them */
+.featured-agent-type span.label,
+.standard-agent-type span.label {
+  line-height: 16px;
+  font-size: 14px;
+  margin: 0 0 0 10px;
+}
+
+.featured-agent-type span.label {
+  background-color: #FF6600;
+}
+
+.standard-agent-type {
+  /* intentionally left blank */
+  /* put styles here if you'd like */
+}
+
+.standard-agent-type span.label {
+  /* intentionally left blank */
+  /* put styles here if you'd like */
+}

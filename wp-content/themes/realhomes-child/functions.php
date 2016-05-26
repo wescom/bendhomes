@@ -162,13 +162,19 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
 }
 
 
+<<<<<<< HEAD
 add_action('admin_init','tbb_admin_load_properties_script');
    function tbb_admin_load_properties_script() {
+=======
+add_action('admin_head','tbb_admin_load_property_script');
+function tbb_admin_load_property_script() {
+>>>>>>> development
     global $pagenow, $typenow;
     if (empty($typenow) && !empty($_GET['post'])) {
         $post = get_post($_GET['post']);
         $typenow = $post->post_type;
     }
+<<<<<<< HEAD
     if (is_admin() && $pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') { ?>
         
         <script type="text/javascript">
@@ -177,3 +183,27 @@ add_action('admin_init','tbb_admin_load_properties_script');
         
     <?php }
 }
+=======
+    if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
+        global $post;
+		$property = get_post_meta( $post->ID );
+		//print_r($property);
+		$image_id = $property['REAL_HOMES_slider_image'][0];
+		$image_src = wp_get_attachment_image_src( $image_id );
+		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
+		$file_base = substr($file_part, 0, strpos($file_part, "-"));
+		
+		// http://wordpress.stackexchange.com/questions/161880/passing-jquery-into-the-wordpress-media-uploader
+		
+		echo '
+        <script type="text/javascript">
+			jQuery(document).ready(function(){
+				jQuery("#REAL_HOMES_slider_image_description").before("<p>Image Base Name: '. $file_base .'</p>");
+				jQuery("#media-search-input").val("'. $file_base .'");
+			});
+		</script>
+		';
+		
+    }
+}
+>>>>>>> development
