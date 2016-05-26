@@ -173,10 +173,18 @@ function tbb_admin_load_property_script() {
         global $post;
 		$property = get_post_meta( $post->ID );
 		//print_r($property);
-		$image_id = $property['REAL_HOMES_slider_image'][0];
-		$image_src = wp_get_attachment_image_src( $image_id );
-		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
-		$file_base = substr($file_part, 0, strpos($file_part, "-"));
+		$slider_image_id = $property['REAL_HOMES_slider_image'][0];
+		
+		$image_id = $slider_image_id ? $property['REAL_HOMES_slider_image'][0] : get_post_thumbnail_id( $post->ID );
+		
+		//if(!empty( $image_id )) {
+			$image_src = wp_get_attachment_image_src( $image_id );
+			$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
+			$file_base = substr($file_part, 0, strpos($file_part, "-"));
+		//} else {
+			//$featured_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ) );
+			//$featured_part = str_replace( 'property-', '', basename( $featured_image[0], ".jpg" ) );
+		//}
 		
 		// http://wordpress.stackexchange.com/questions/161880/passing-jquery-into-the-wordpress-media-uploader
 		
