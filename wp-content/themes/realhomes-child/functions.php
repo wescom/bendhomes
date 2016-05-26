@@ -162,28 +162,13 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
 }
 
 
-<<<<<<< HEAD
-add_action('admin_init','tbb_admin_load_properties_script');
-   function tbb_admin_load_properties_script() {
-=======
 add_action('admin_head','tbb_admin_load_property_script');
 function tbb_admin_load_property_script() {
->>>>>>> development
     global $pagenow, $typenow;
     if (empty($typenow) && !empty($_GET['post'])) {
         $post = get_post($_GET['post']);
         $typenow = $post->post_type;
     }
-<<<<<<< HEAD
-    if (is_admin() && $pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') { ?>
-        
-        <script type="text/javascript">
-			// Jarel Testing 1
-		</script>
-        
-    <?php }
-}
-=======
     if ($pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') {
         global $post;
 		$property = get_post_meta( $post->ID );
@@ -206,4 +191,3 @@ function tbb_admin_load_property_script() {
 		
     }
 }
->>>>>>> development
