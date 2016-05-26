@@ -173,7 +173,6 @@ function tbb_admin_load_property_script() {
         global $post;
 		$property = get_post_meta( $post->ID );
 		//print_r($property);
-		
 		$image_id = $property['REAL_HOMES_slider_image'][0];
 		$image_src = wp_get_attachment_image_src( $image_id );
 		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
@@ -183,11 +182,6 @@ function tbb_admin_load_property_script() {
 		
 		echo '
         <script type="text/javascript">
-			<!-- Test Jarel 194197 -->
-			<!-- ID: '. $image_id .' -->
-			<!-- URL: '. $image_src[0] .' -->
-			<!-- PART: '. $file_part .' -->
-			<!-- BASE: '. $file_base .' -->
 			jQuery(document).ready(function(){
 				jQuery("#REAL_HOMES_slider_image_description").before("<p>Image Base Name: '. $file_base .'</p>");
 				jQuery("#media-search-input").val("'. $file_base .'");
