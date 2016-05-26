@@ -160,3 +160,20 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
 
   }
 }
+
+
+add_action('admin_init','tbb_admin_load_properties_script');
+   function tbb_admin_load_properties_script() {
+    global $pagenow, $typenow;
+    if (empty($typenow) && !empty($_GET['post'])) {
+        $post = get_post($_GET['post']);
+        $typenow = $post->post_type;
+    }
+    if (is_admin() && $pagenow=='post-new.php' || $pagenow=='post.php' && $typenow=='property') { ?>
+        
+        <script type="text/javascript">
+			// Jarel Testing 1
+		</script>
+        
+    <?php }
+}
