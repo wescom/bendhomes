@@ -57,9 +57,7 @@ function child_theme_head_script() { ?>
       var node = document.getElementsByTagName('script')[0];
       node.parentNode.insertBefore(gads, node);
     })();
-
     // DFP slot definitions
-
     <?php /* Unminified JS code. Minified code added below.
 	
 			googletag.cmd.push(function () {
@@ -119,8 +117,7 @@ function child_theme_head_script() { ?>
           function refreshAd(slotName) {
     				googletag.pubads().refresh();
     			}*/ ?>
-				
-		function refreshAd(e){googletag.pubads().refresh()}googletag.cmd.push(function(){var e,g,o,d,a=document.documentElement.clientWidth;a>=320&&768>a?(e=[320,50],g=[320,50],o=[320,50],d=[[180,150],[160,600]]):a>=768&&992>a?(e=[320,50],g=[320,50],o=[320,50],d=[160,600]):a>=992?(e=[[970,90],[728,90]],g=[728,90],o=[[970,90],[728,90]],d=[160,600]):(e=[728,90],g=[728,90],o=[728,90],d=[160,600]);var t=1459980402618,i="Home",n=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+t+"-0").addService(googletag.pubads()),s=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+t+"-1").addService(googletag.pubads()),l=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-"+t+"-2").addService(googletag.pubads()),r=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",o,"div-gpt-ad-"+t+"-3").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-wideskyscraper",d,"div-gpt-ad-"+t+"-4").addService(googletag.pubads());n.setTargeting("section",[i]),l.setTargeting("section",[i]),r.setTargeting("section",[i]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([n,s,l,r,c])})});
+function refreshAd(e){googletag.pubads().refresh()}googletag.cmd.push(function(){var e,g,o,d,a=document.documentElement.clientWidth;a>=320&&768>a?(e=[320,50],g=[320,50],o=[320,50],d=[[180,150],[160,600]]):a>=768&&992>a?(e=[320,50],g=[320,50],o=[320,50],d=[160,600]):a>=992?(e=[[970,90],[728,90]],g=[728,90],o=[[970,90],[728,90]],d=[160,600]):(e=[728,90],g=[728,90],o=[728,90],d=[160,600]);var t=1459980402618,i="Home",n=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+t+"-0").addService(googletag.pubads()),s=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+t+"-1").addService(googletag.pubads()),l=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-"+t+"-2").addService(googletag.pubads()),r=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",o,"div-gpt-ad-"+t+"-3").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-wideskyscraper",d,"div-gpt-ad-"+t+"-4").addService(googletag.pubads());n.setTargeting("section",[i]),l.setTargeting("section",[i]),r.setTargeting("section",[i]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([n,s,l,r,c])})});
 	</script>
   
   <?php
@@ -162,6 +159,8 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
 }
 
 
+// Displays property image "basename" underneath the Homepage Slider metabox on Propery
+// edit screen, to make searching for property images easier.
 add_action('admin_head','tbb_admin_load_property_script');
 function tbb_admin_load_property_script() {
     global $pagenow, $typenow;
@@ -173,26 +172,22 @@ function tbb_admin_load_property_script() {
         global $post;
 		$property = get_post_meta( $post->ID );
 		//print_r($property);
+		
+		// Get the Homepage Slider metadata value
 		$slider_image_id = $property['REAL_HOMES_slider_image'][0];
 		
+		// Use the Homepage Slider image value if it exists, otherwise get the Featured Image value.
 		$image_id = $slider_image_id ? $property['REAL_HOMES_slider_image'][0] : get_post_thumbnail_id( $post->ID );
 		
-		//if(!empty( $image_id )) {
-			$image_src = wp_get_attachment_image_src( $image_id );
-			$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
-			$file_base = substr($file_part, 0, strpos($file_part, "-"));
-		//} else {
-			//$featured_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ) );
-			//$featured_part = str_replace( 'property-', '', basename( $featured_image[0], ".jpg" ) );
-		//}
-		
-		// http://wordpress.stackexchange.com/questions/161880/passing-jquery-into-the-wordpress-media-uploader
-		
+		// Break down $image_id value to get the "basename" only.
+		$image_src = wp_get_attachment_image_src( $image_id );
+		$file_part = str_replace( 'property-', '', basename( $image_src[0], ".jpg" ) );
+		$file_base = substr($file_part, 0, strpos($file_part, "-"));
+				
 		echo '
         <script type="text/javascript">
 			jQuery(document).ready(function(){
 				jQuery("#REAL_HOMES_slider_image_description").before("<p>Image Base Name: '. $file_base .'</p>");
-				jQuery("#media-search-input").val("'. $file_base .'");
 			});
 		</script>
 		';
