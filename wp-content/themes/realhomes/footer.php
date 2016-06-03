@@ -67,22 +67,18 @@
 
         <!-- Footer Bottom -->
         <div id="footer-bottom" class="container">
+			<div class="row">
+            	<div class="span12">
+                	<p style="text-align: center;">The content relating to real estate for sale on this website is from the MSL of Central Oregon. ©MLSCO. All information provided is deemed reliable but is not guaranteed and should be independently verified. All content displayed on this website is restricted to personal, non-commercial use, and only for ascertaining information regarding real property for sale. The consumer will not copy, retransmit nor redistribute any of the content from this website. The consumer is reminded that all listing content provided by automatic transmission by MLSCO is © Multiple Listing Service of Central Oregon (MLSCO).</p>
+                    <?php
+                    $copyright_text = get_option('theme_copyright_text');
+                    echo ( $copyright_text ) ? '<p class="copyright" style="text-align: center;">'.$copyright_text.'</p>' : '';
 
-                <div class="row">
-                        <div class="span6">
-                            <?php
-                            $copyright_text = get_option('theme_copyright_text');
-                            echo ( $copyright_text ) ? '<p class="copyright">'.$copyright_text.'</p>' : '';
-                            ?>
-                        </div>
-                        <div class="span6">
-                            <?php
-                            $designed_by_text = get_option('theme_designed_by_text');
-                            echo ( $designed_by_text ) ? '<p class="designed-by">'.$designed_by_text.'</p>' : '';
-                            ?>
-                        </div>
+                    $designed_by_text = get_option('theme_designed_by_text');
+                    echo ( $designed_by_text ) ? '<p class="designed-by" style="text-align: center;">'.$designed_by_text.'</p>' : '';
+                    ?>
                 </div>
-
+            </div>
         </div>
         <!-- End Footer Bottom -->
 
