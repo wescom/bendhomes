@@ -1,5 +1,4 @@
-# bendhomes - development branch 
-BendHomes.com rebuild.  Wordpress base code with custom RETS data integration.
+# bendhomes - COAR-additions-june2016 branch 
+BendHomes.com requested additons and alterations from COAR.
 
-
-Mon May 23 21:36:58 PDT 2016
+Sat Jun  4 17:55:04 PDT 2016
