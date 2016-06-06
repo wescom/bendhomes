@@ -52,7 +52,7 @@ function display_sidebar_agent_box( $args ) {
 					?>
 					<li class="office">
 						<?php include( get_template_directory() . '/images/icon-phone.svg' );
-						_e( 'Office', 'framework' ); ?> : <?php echo $args[ 'agent_office_phone' ]; ?>
+						_e( 'Office', 'framework' ); ?> : <a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?></a>
 					</li>
 					<?php
 				}
@@ -60,7 +60,7 @@ function display_sidebar_agent_box( $args ) {
 					?>
 					<li class="mobile">
 						<?php include( get_template_directory() . '/images/icon-mobile.svg' );
-						_e( 'Mobile', 'framework' ); ?> : <?php echo $args[ 'agent_mobile' ]; ?>
+						_e( 'Mobile', 'framework' ); ?> : <a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_mobile' ]; ?></a>
 					</li>
 					<?php
 				}
@@ -84,7 +84,7 @@ function display_sidebar_agent_box( $args ) {
 					?><a class="real-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'View Agent Profile & Properties', 'framework' ); ?></a><?php
 				}
 			?></p>
-            <img class="reciprocity-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/brslogosm.gif" alt="Broker Reciprocity Logo" />
+            <p><img class="reciprocity-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/brslogosm.gif" alt="Broker Reciprocity Logo" /></p>
 		</div>
 
 		<?php
