@@ -84,6 +84,7 @@ function display_sidebar_agent_box( $args ) {
 					?><a class="real-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'View Agent Profile & Properties', 'framework' ); ?></a><?php
 				}
 			?></p>
+            <img class="reciprocity-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/brslogosm.gif" alt="Broker Reciprocity Logo" />
 		</div>
 
 		<?php
