@@ -45,7 +45,7 @@ function bhAgentRender($page_position) {
               echo '</div>';
             } elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($page_position == 'body') ) {
               echo '<div class="rail-standard-agent-wrapper">';
-			  echo '<img src="'. get_stylesheet_uri() .'/images/brslogosm.gif" alt="Broker Reciprocity Logo" />';
+			  echo '<img class="reciprocity-logo pull-right" src="'. get_stylesheet_uri() .'/images/brslogosm.gif" alt="Broker Reciprocity Logo" />';
               echo '<p>';
               echo '<strong>Listing Agent:</strong><br/>'."\n";
               echo $agent_args[ 'agent_title_text' ]."\n";
