@@ -52,7 +52,7 @@ function display_sidebar_agent_box( $args ) {
 					?>
 					<li class="office">
 						<?php include( get_template_directory() . '/images/icon-phone.svg' );
-						_e( 'Office', 'framework' ); ?> : <a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?></a>
+						_e( 'Office', 'framework' ); ?> : <a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_office_phone' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?></a>
 					</li>
 					<?php
 				}
