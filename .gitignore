@@ -125,7 +125,7 @@ wp-content/*.txt
 wp-content/aiowps_backups/
 wp-content/cache/
 wp-content/plugins/
-!wp-content/plugins/tbb*/
+!wp-content/plugins/tbb-functions/*
 wp-content/rsspi-log/
 wp-content/uploads/
 wp-content/upgrade/
