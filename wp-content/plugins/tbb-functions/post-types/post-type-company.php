@@ -46,7 +46,12 @@ if(class_exists('CPT')) {
 		foreach ( $terms as $term ) {
 			echo '<a href="'. $term->slug .'">'. $term->name .'</a>, ';
 		}
-	}); 
+	});
+	
+	// array to make additional columns sortable
+	$company->sortable(array(
+		'company_category' => array('project_category', true)
+	));
 	
 	// use "multisite" icon for post type
 	$company->menu_icon("dashicons-admin-multisite");
