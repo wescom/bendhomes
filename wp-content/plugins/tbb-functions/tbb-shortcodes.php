@@ -116,3 +116,117 @@ function add_autofocus_shortcode( $atts ) {
 	<?php
 	return ob_get_clean();
 }
+
+
+// Display any post type in a 1-6 column grid
+add_shortcode('BH_CUSTOM_POSTS', 'tbb_custom_posts');
+function tbb_custom_posts( $defaults ) {
+	$defaults = shortcode_atts( array(
+		'type' => 'post',
+		'per_page' => '-1',
+		'limit' => '',
+		'offset' => '',
+		'category_type' => 'category',
+		'categories' => '',
+		'featured_image' => '',
+		'meta_key' => '',
+		'meta_value' => '',
+		'meta_compare' => '=',
+		'classes' => '',
+		'columns' => '3',
+		'order' => 'ASC',
+		'orderby' => 'name'
+	), $defaults );
+	
+	$classes = sanitize_text_field( $defaults['classes'] );
+	
+	switch( $defaults['columns'] ){
+		case "6":
+			$cols = "six";
+		break;
+		case "5":
+			$cols = "five";
+		break;
+		case "4":
+			$cols = "four";
+		break;
+		case "3":
+			$cols = "three";
+		break;
+		case "2":
+			$cols = "two";
+		break;
+		case "1":
+			$cols = "one";
+		break;
+	}
+	
+	// Transform categories to array
+	if ( $defaults['category_type'] && $defaults['categories'] ) {
+		$cat_slugs = preg_replace( '/\s+/', '', $defaults['categories'] );
+		$cat_slugs = explode( ',', $defaults['categories'] );
+	} else {
+		$cat_slugs = array();
+	}
+	
+	// Initialize the query array
+	$args = array(
+		'post_type' 		=> $defaults['type'],
+		'paged' 			=> 1,
+		'posts_per_page'	=> $defaults['per_page'],
+		'has_password' 		=> false,
+		'order' => $defaults['order'],
+		'orderby' => $defaults['orderby']
+	);
+	
+	// Adds offset to query
+	if ( $defaults['offset'] ) {
+		$args['offset'] =  $defaults['offset'];
+	}
+	
+	// Adds categories to query
+	if ( !empty( $cat_slugs ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' 	=> $defaults['category_type'],
+				'field' 	=> 'slug',
+				'terms' 	=> $cat_slugs
+			)
+		);
+	}
+	
+	// Adds meta key and value pair to query with optional comparision value
+	if ( !empty( $defaults['meta_key'] ) && !empty( $defaults['meta_value'] ) ) {
+		$args['meta_query'] = array(
+			array(
+				'key' => $defaults['meta_key'],
+				'value' => $defaults['meta_value'],
+				'compare' => $defaults['meta_compare'],
+			)
+		);
+	}
+	
+	wp_reset_query();
+	
+	$count = 1;
+
+	$custom_posts = new WP_Query( $args );
+	
+	$output = '<div>';
+	
+		// Loop through returned posts
+		// Setup the inner HTML for each elements
+		while ( $custom_posts->have_posts() ) :
+		
+			$custom_posts->the_post();
+			
+			$count++;
+			
+		endwhile;
+	
+	$output .= '</div>';
+	
+	return $output;
+	
+	wp_reset_query();
+}
