@@ -111,6 +111,8 @@ Thumbs.db
 # "mu-plugins" directory
 # "plugins" directory
 # "themes" directory
+# “tbb-functions” plugin by Jarel
+
 # wp-content/*
 # !wp-content/mu-plugins/
 # !wp-content/plugins/bh-importer/
@@ -124,11 +126,28 @@ wp-content/*.php
 wp-content/*.txt
 wp-content/aiowps_backups/
 wp-content/cache/
-!wp-content/plugins/tbb-functions/*
-wp-content/plugins/
+wp-content/plugins/advanced-custom-fields/
+wp-content/plugins/advanced-custom-post-search/
+wp-content/plugins/akismet/
+wp-content/plugins/all-in-one-wp-security-and-firewall/
+wp-content/plugins/google-analytics-dashboard-for-wp/
+wp-content/plugins/gravityforms
+wp-content/plugins/mailchimp-for-wp/
+wp-content/plugins/p3-profiler/
+wp-content/plugins/post-tags-and-categories-for-pages/
+wp-content/plugins/rss-post-importer/
+wp-content/plugins/server-ip-memory-usage/
+wp-content/plugins/simple-taxonomy/
+wp-content/plugins/wordpress-seo/
+wp-content/plugins/wp-migrate-db/
+wp-content/plugins/wp-super-cache/
 wp-content/rsspi-log/
 wp-content/uploads/
 wp-content/upgrade/
+wp-content/plugins/tbb-functions/_notes/dwsync.xml
+wp-content/plugins/tbb-functions/admin/_notes/dwsync.xml
+wp-content/plugins/tbb-functions/js/_notes/dwsync.xml
+wp-content/plugins/tbb-functions/images/_notes/dwsync.xml
 
 # ignore these plugins
 wp-content/plugins/hello.php
