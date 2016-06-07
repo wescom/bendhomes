@@ -2,3 +2,7 @@
 .property-breadcrumbs ul { margin-left: 0; list-style: none; }
 .property-breadcrumbs li { display: inline-block; }
 .property-breadcrumbs i { margin: 0 10px; }
+
+@media (max-width:980px) {
+	.menu-and-contact-wrap { position: static; }
+}
