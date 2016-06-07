@@ -6,7 +6,12 @@ require_once( TBB_FUNCTIONS_DIR .'/class-custom-posts.php' );
 if(class_exists('CPT')) {
 	
 	// create a new custom post type
-	$company = new CPT('company', array(
+	$company = new CPT( array(
+		'post_type_name' => 'company',
+		'singular' => 'Company',
+		'plural' => 'Companies',
+		'slug' => 'company'
+	), array(
     	'supports' => array('title', 'editor', 'thumbnail')
 	));
 	
