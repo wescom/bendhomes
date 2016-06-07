@@ -12,7 +12,8 @@ if(class_exists('CPT')) {
 		'plural' => 'Companies',
 		'slug' => 'company'
 	), array(
-    	'supports' => array('title', 'editor', 'thumbnail')
+    	'supports' => array('title', 'editor', 'thumbnail'),
+		'menu_position' => 10,
 	));
 	
 	// create taxonomies
