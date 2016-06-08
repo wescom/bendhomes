@@ -234,9 +234,9 @@ function tbb_custom_posts( $defaults ) {
 				case "property" :
 					$bedrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true ) );
 					$bathrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true ) );
-						if( $bedrooms >= 1 ) $bedrooms = sprintf( '<span>%s Bd</span>', $bedrooms );
-						if( $bathrooms >= 1 ) $bathrooms = sprintf( '<span>%s Ba</span>', $bathrooms );
-						if( $bedrooms < 1 && $bathrooms < 1 ) $spacer = ' / ';
+						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
+						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
+						$spacer = !empty($beds) && !empty($baths) ? ' / ' : '';
 					$additional_meta = sprintf( '<h5 class="property-price">%s%s</h5><div class="extra-meta property-meta">%s%s%s</div>', 
 							get_property_price(), inspiry_get_property_types( get_the_ID() ), $bedrooms, $spacer, $bathrooms );
 					break;
