@@ -179,13 +179,12 @@ function tbb_custom_posts( $defaults ) {
 			$image_size = 'agent-image';
 			break;
 		case "company" :
-			$post_meta_data = get_post_custom($post->ID);
-			if( !empty ( $post_meta_data['company_office_phone'][0] ) ) { 
-				$phone = sprintf( '<div class="phone">Phone: %s</div>', $post_meta_data['company_office_phone'][0] ); 
-			}
-			if( !empty ( $post_meta_data['company_office_fax'][0] ) ) { 
-				$fax = sprintf( '<div class="fax">Fax: %s</div>', $post_meta_data['company_office_fax'][0] ); 
-			}
+			$phone = get_post_meta( get_the_ID(), company_office_phone, true );
+			$fax = get_post_meta( get_the_ID(), company_office_fax, true );
+			if( !empty ( $phone ) )
+				$phone = sprintf( '<div class="phone">Phone: %s</div>', $phone );
+			if( !empty ( $fax ) )
+				$fax = sprintf( '<div class="fax">Fax: %s</div>', $fax );
 			$additional_meta = sprintf( '<div class="extra-meta agent-meta">%s%s</div>', $phone, $fax );
 			break;
 	}
