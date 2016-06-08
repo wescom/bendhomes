@@ -228,17 +228,18 @@ function tbb_custom_posts( $defaults ) {
 			$title = get_the_title();
 			
 			// Show additional meta fields based on post type chosen
+			$property_price = '';
 			$additional_meta = '';
 			switch( $defaults['type'] ) {
 				
 				case "property" :
+					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( get_the_ID() ) );
 					$bedrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true ) );
 					$bathrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true ) );
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 						$spacer = !empty($beds) && !empty($baths) ? ' / ' : '';
-					$additional_meta = sprintf( '<h5 class="property-price">%s%s</h5><div class="extra-meta property-meta">%s%s%s</div>', 
-							get_property_price(), inspiry_get_property_types( get_the_ID() ), $bedrooms, $spacer, $bathrooms );
+					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
 					break;
 					
 				case "agent" :
@@ -267,6 +268,8 @@ function tbb_custom_posts( $defaults ) {
 							$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
 			
 				}
+				
+				$output .= $property_price;
 				
 				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $title );
 				
