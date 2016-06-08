@@ -178,7 +178,8 @@ function tbb_custom_posts( $defaults ) {
 	// Initialize the query array
 	$args = array(
 		'post_type' 		=> $defaults['type'],
-		'post_per_page' => $defaults['limit'],
+		'paged' 			=> 1,
+		'posts_per_page'	=> $defaults['limit'],
 		'has_password' 		=> false,
 		'order' => $defaults['order'],
 		'orderby' => $defaults['orderby']
@@ -285,10 +286,12 @@ function tbb_custom_posts( $defaults ) {
 			
 			$output .= '</div></div>';
 			
-			$count++;
-			if( ($count % $cols) == 0 ){
+			$clearfix_test = $count / $cols;
+			if( is_int( $clearfix_test ) ) {
 				$output .= '<div class="clearfix"></div>';
 			}
+			
+			$count++;
 			
 		endwhile;
 	
