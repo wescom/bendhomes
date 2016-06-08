@@ -287,7 +287,7 @@ function tbb_custom_posts( $defaults ) {
 			
 			$count++;
 			if( ($count % $cols) == 0 ){
-				echo '<div class="clearfix"></div>';
+				$output .= '<div class="clearfix"></div>';
 			}
 			
 		endwhile;
@@ -298,6 +298,5 @@ function tbb_custom_posts( $defaults ) {
 	
 	return $output;
 	
-	//wp_reset_query();
-	wp_reset_postdata();
+	wp_reset_query();
 }
