@@ -286,7 +286,7 @@ function tbb_custom_posts( $defaults ) {
 			
 			$output .= '</div></div>';
 			
-			$clearfix_test = $count / $cols;
+			$clearfix_test = $count % $cols;
 			if( is_int( $clearfix_test ) ) {
 				$output .= '<div class="clearfix"></div>';
 			}
