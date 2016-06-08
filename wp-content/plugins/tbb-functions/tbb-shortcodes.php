@@ -250,7 +250,7 @@ function tbb_custom_posts( $defaults ) {
 			
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
 			
-			$output .= sprintf( '<div class="custom-post %s %s"><div class="custom-post-item clearfix">', $cols, $classes );
+			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s"><div class="custom-post-item clearfix">', $count, $cols, $classes );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
 				
