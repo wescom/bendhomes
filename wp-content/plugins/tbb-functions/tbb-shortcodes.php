@@ -238,7 +238,7 @@ function tbb_custom_posts( $defaults ) {
 					$bathrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true ) );
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
-						$spacer = !empty($beds) && !empty($baths) ? ' / ' : '';
+						$spacer = ($bedrooms != 0 && $bathrooms != 0) ? ' / ' : '';
 					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
 					break;
 					
