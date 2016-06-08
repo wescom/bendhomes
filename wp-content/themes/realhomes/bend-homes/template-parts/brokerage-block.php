@@ -12,7 +12,12 @@ $brokerage['address'] = str_replace("\n",'<br/>', $brokerage['address']);
 /* only show block if something is in $brokerage array */
 if(array_filter($brokerage)) {
   if(!empty($brokerage['name'])){
-    echo '<br/>'.$brokerage['name'];
+    // echo '<br/>'.$brokerage['name'];
+    echo '<div class="brokerage-label">'."\n";
+    echo $brokerage['name'];
+    echo '<img src="'.get_template_directory_uri().'/images/idx-small.gif" alt="Broker Reciprocity">';
+    echo '</div>'."\n";
+
   }
   /*
   echo '<div class="agent-brokerage-office">'."\n";

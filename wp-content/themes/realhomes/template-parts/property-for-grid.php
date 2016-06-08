@@ -24,5 +24,8 @@
         if ( $price ){
             echo '<span>'.$price.'</span>';
         }
-    ?>
+        echo '<br style="clear: both;">';
+        brokerage_label( $post->ID, 'small' );
+        ?>
+
 </article>
