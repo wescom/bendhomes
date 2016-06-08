@@ -23,3 +23,19 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .share-facebook { background: #3F589B; } .share-twitter { background: #00ACED; } .share-googleplus { background: #D84533; }
 #overview .share-networks .add-to-fav a, #overview .share-networks .add-to-fav a i { color: #394041; }
 #overview .share-networks .add-to-fav a:hover, #overview .share-networks .add-to-fav a:hover i { color: #f60; }
+
+/*--- Custom Posts Shortcode Styles --- */
+.custom-posts-wrapper {}
+.custom-post-container { margin-left: -2%; margin-right: -2%; }
+.custom-post { float: left; }
+.custom-post.one { width: 100%; }
+.custom-post.two { width: 50%; }
+.custom-post.three { width: 33.3333%; }
+.custom-post.four { width: 25%; }
+.custom-post.five { width: 20%; }
+.custom-post.six { width: 16.66667%; }
+.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 0; border: 1px solid #dedede; background: #fff;  }
+.custom-post h4 { font-weight: 400; color: #394041; text-transform: capitalize; margin: 0 0 17px; font-size: 18px; }
+.custom-post img { width: 100%; height: auto; }
+
+
