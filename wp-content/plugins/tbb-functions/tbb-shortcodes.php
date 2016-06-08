@@ -212,9 +212,7 @@ function tbb_custom_posts( $defaults ) {
 			)
 		);
 	}
-	
-	wp_reset_query();
-	
+		
 	$count = 1;
 
 	$custom_posts = new WP_Query( $args );
