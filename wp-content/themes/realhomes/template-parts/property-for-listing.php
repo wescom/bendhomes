@@ -30,6 +30,8 @@
                 ?>
             </h5>
             <p><?php framework_excerpt( 25 ); ?></p>
+            <?php brokerage_label( $post->ID ); ?>
+
             <a class="more-details" href="<?php the_permalink() ?>"><?php _e('More Details ','framework'); ?><i class="fa fa-caret-right"></i></a>
         </div>
 

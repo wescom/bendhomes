@@ -30,8 +30,8 @@
             </h5>
             <p><?php framework_excerpt(12); ?></p>
             <a class="more-details" href="<?php the_permalink() ?>"><?php _e('More Details ','framework'); ?><i class="fa fa-caret-right"></i></a>
+            <?php brokerage_label( $post->ID, 'small' ); ?>
         </div>
-
         <div class="property-meta">
             <?php get_template_part('property-details/property-metas'); ?>
         </div>

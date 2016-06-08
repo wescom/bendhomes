@@ -7623,3 +7623,57 @@ input[type="text"].ui-autocomplete-loading {
   /* intentionally left blank */
   /* put styles here if you'd like */
 }
+
+.brokerage-label {
+  color: #333333;
+}
+
+.brokerage-label p {
+  float: left;
+  color: #333333;
+}
+
+.brokerage-label.bl-small {
+  display: block;
+  border-top: 1px solid #dedede;
+  padding: 7px 0 3px 0;
+  margin: 7px 0 0 0;
+}
+
+.brokerage-label.bl-small p {
+  width: 74%;
+  line-height: 1.2em;
+}
+
+.brokerage-label.bl-small img {
+  margin-left: 5px;
+}
+
+.brokerage-label.bl-large {
+  display: table-cell;
+  border-left: 1px solid #dedede;
+  padding: 0 0 0 20px;
+  float: right;
+}
+
+.brokerage-label.bl-large img {
+  margin-left: 10px;
+}
+
+.brokerage-label span {
+  font-weight: normal;
+  font-size: 0.8em;
+}
+
+.property-grid .brokerage-label {
+
+}
+
+.listing-agent {
+  float: left;
+  display: table-cell;
+}
+
+.time-ago {
+  color: #ff0000;
+}

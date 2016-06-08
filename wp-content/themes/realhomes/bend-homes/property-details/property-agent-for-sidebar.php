@@ -45,10 +45,12 @@ function bhAgentRender($page_position) {
               echo '</div>';
             } elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($page_position == 'body') ) {
               echo '<div class="rail-standard-agent-wrapper">';
-              echo '<p>';
-              echo '<strong>Listing Agent:</strong><br/>'."\n";
+              echo '<p class="listing-agent">';
+              echo '<strong>Listing Agent: </strong><br/>'."\n";
               echo $agent_args[ 'agent_title_text' ]."\n";
-              brokerageBlock($agent_args[ 'agent_id' ]);
+              echo '</p>';
+              brokerageBlock($agent_args[ 'agent_id' ],'large');
+              echo '<br style="clear: both;"/>'."\n";
               echo '</div>';
             }
 

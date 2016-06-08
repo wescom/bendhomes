@@ -8,6 +8,7 @@
                 <section class="listing-layout">
 
                     <?php
+
                     $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
                     if( $title_display != 'hide' ){
                         ?>
@@ -20,6 +21,7 @@
                     ?>
 
                     <div class="list-container clearfix">
+                        <p>Updated: <?php properties_updated_timestamp(); ?></p>
                         <?php
                         get_template_part('template-parts/sort-controls');
 

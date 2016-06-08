@@ -11,7 +11,7 @@
     ?>
   <div class="bh-section-header">
     <h3>Recent Properties</h3>
-    <p>Recent listings, updated hourly.</p>
+    <p>Updated: <?php properties_updated_timestamp(); ?></p>
   </div>
 
   <div id="home-properties-section-wrapper">
