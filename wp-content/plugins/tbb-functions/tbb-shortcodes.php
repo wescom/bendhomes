@@ -242,10 +242,12 @@ function tbb_custom_posts( $defaults ) {
 					$image_size = 'agent-image';
 					break;
 				case "company" :
-					$phone = sprintf( '<div class="phone">Phone: %s</div>', get_post_meta( get_the_ID(), company_office_phone, true ) );
-						if( !empty($phone)) return $phone;
-					$fax = sprintf( '<div class="fax">Fax: %s</div>', get_post_meta( get_the_ID(), company_office_fax, true ) );
-						if( !empty($fax)) return $fax;
+					$phone = get_post_meta( get_the_ID(), company_office_phone, true );
+					$fax = get_post_meta( get_the_ID(), company_office_fax, true );
+					if( !empty($phone))
+						$phone = sprintf( '<div class="phone">Phone: %s</div>', $phone );
+					if( !empty($fax))
+						$fax = sprintf( '<div class="fax">Fax: %s</div>', $fax );
 					$additional_meta = sprintf( '<div class="extra-meta agent-meta">%s%s</div>', $phone, $fax );
 					break;
 			}
