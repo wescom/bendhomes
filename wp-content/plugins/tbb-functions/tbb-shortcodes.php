@@ -126,7 +126,7 @@ function tbb_custom_posts( $defaults ) {
 		'per_page' => '-1',
 		'limit' => '',
 		'offset' => '',
-		'category_type' => 'category',
+		'category_type' => '',
 		'categories' => '',
 		'featured_image' => '',
 		'excerpt_length' => '12',
