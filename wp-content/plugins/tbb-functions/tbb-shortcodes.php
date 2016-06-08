@@ -178,10 +178,10 @@ function tbb_custom_posts( $defaults ) {
 	// Initialize the query array
 	$args = array(
 		'post_type' 		=> $defaults['type'],
+		'post_per_page' => $defaults['limit'],
 		'has_password' 		=> false,
 		'order' => $defaults['order'],
-		'orderby' => $defaults['orderby'],
-		'limit' => $defaults['limit']
+		'orderby' => $defaults['orderby']
 	);
 	
 	// Adds offset to query
