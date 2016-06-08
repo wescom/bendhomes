@@ -39,7 +39,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .custom-post a { color: #394041; }
 .custom-post a:hover { color: #02888f; }
 .custom-post a.more-details { display: inline-block; margin-bottom: 15px; margin-top: 10px; float: right; }
-.custom-post .custom-post-excerpt { line-height: 22px; margin-bottom: 10px; }
+.inner-wrapper .custom-post .custom-post-excerpt { line-height: 22px; margin-bottom: 10px; }
 .custom-post .extra-meta { margin-bottom: 10px; }
 .custom-post .custom-post-image { margin-bottom: 15px; }
 .custom-post img { width: 100%; height: auto; }

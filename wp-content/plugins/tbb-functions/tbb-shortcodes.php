@@ -269,7 +269,7 @@ function tbb_custom_posts( $defaults ) {
 				
 				$output .= $additional_meta;
 				
-				$output .= sprintf( '<a href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 			
 			$output .= '</div></div>';
 			
