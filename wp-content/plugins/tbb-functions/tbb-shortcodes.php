@@ -123,8 +123,7 @@ add_shortcode('BH_CUSTOM_POSTS', 'tbb_custom_posts');
 function tbb_custom_posts( $defaults ) {
 	$defaults = shortcode_atts( array(
 		'type' => 'post',
-		'per_page' => '-1',
-		'limit' => '',
+		'limit' => '12',
 		'offset' => '',
 		'category_type' => '',
 		'categories' => '',
@@ -179,11 +178,10 @@ function tbb_custom_posts( $defaults ) {
 	// Initialize the query array
 	$args = array(
 		'post_type' 		=> $defaults['type'],
-		'paged' 			=> 1,
-		'posts_per_page'	=> $defaults['per_page'],
 		'has_password' 		=> false,
 		'order' => $defaults['order'],
-		'orderby' => $defaults['orderby']
+		'orderby' => $defaults['orderby'],
+		'limit' => $defaults['limit']
 	);
 	
 	// Adds offset to query
@@ -217,13 +215,13 @@ function tbb_custom_posts( $defaults ) {
 
 	$custom_posts = new WP_Query( $args );
 	
+	if ( $custom_posts->have_posts() ) :
+	
 	$output = '<div class="custom-posts-wrapper"><div class="custom-posts-container clearfix">';
 	
 		// Loop through returned posts
 		// Setup the inner HTML for each elements
-		while ( $custom_posts->have_posts() ) :
-		
-			$custom_posts->the_post();
+		while ( $custom_posts->have_posts() ) : $custom_posts->the_post();
 			
 			$permalink = get_permalink();
 			
@@ -284,7 +282,10 @@ function tbb_custom_posts( $defaults ) {
 	
 	$output .= '</div></div>';
 	
+	endif;
+	
 	return $output;
 	
-	wp_reset_query();
+	//wp_reset_query();
+	wp_reset_postdata();
 }
