@@ -142,26 +142,32 @@ function tbb_custom_posts( $defaults ) {
 	
 	switch( $defaults['columns'] ) {
 		case "6":
+			$cols_per_row = 6;
 			$cols = "six";
 			$image_size = 'grid-view-image';
 			break;
 		case "5":
+			$cols_per_row = 5;
 			$cols = "five";
 			$image_size = 'grid-view-image';
 			break;
 		case "4":
+			$cols_per_row = 4;
 			$cols = "four";
 			$image_size = 'grid-view-image';
 			break;
 		case "3":
+			$cols_per_row = 3;
 			$cols = "three";
 			$image_size = 'gallery-two-column-image';
 			break;
 		case "2":
+			$cols_per_row = 2;
 			$cols = "two";
 			$image_size = 'gallery-two-column-image';
 			break;
 		case "1":
+			$cols_per_row = 1;
 			$cols = "one";
 			$image_size = 'post-featured-image';
 			break;
@@ -211,8 +217,6 @@ function tbb_custom_posts( $defaults ) {
 			)
 		);
 	}
-		
-	$count = 1;
 
 	$custom_posts = new WP_Query( $args );
 	
@@ -220,6 +224,7 @@ function tbb_custom_posts( $defaults ) {
 	
 	$output = '<div class="custom-posts-wrapper post-'. $defaults['type'] .'"><div class="custom-posts-container clearfix">';
 	
+		$count = 1;
 		// Loop through returned posts
 		// Setup the inner HTML for each elements
 		while ( $custom_posts->have_posts() ) : $custom_posts->the_post();
@@ -286,7 +291,7 @@ function tbb_custom_posts( $defaults ) {
 			
 			$output .= '</div></div>';
 			
-			$clearfix_test = $count % $cols;
+			$clearfix_test = $count / $cols_per_row;
 			if( is_int( $clearfix_test ) ) {
 				$output .= '<div class="clearfix"></div>';
 			}
