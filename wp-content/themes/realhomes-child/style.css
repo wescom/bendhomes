@@ -41,7 +41,10 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .custom-post a.more-details { display: inline-block; margin-bottom: 15px; margin-top: 10px; float: right; }
 .inner-wrapper .custom-post .custom-post-excerpt { line-height: 22px; margin-bottom: 10px; }
 .custom-post .extra-meta { margin-bottom: 10px; }
-.custom-post .custom-post-image { margin-bottom: 15px; }
+.custom-post .custom-post-image { margin-bottom: 10px; }
+.post-property .custom-post .custom-post-image { margin-bottom: 0; }
 .custom-post img { width: 100%; height: auto; }
+.custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
+.custom-post .property-price small { color: #fff; }
 
 

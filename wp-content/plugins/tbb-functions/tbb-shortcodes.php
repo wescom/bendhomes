@@ -217,7 +217,7 @@ function tbb_custom_posts( $defaults ) {
 	
 	if ( $custom_posts->have_posts() ) :
 	
-	$output = '<div class="custom-posts-wrapper"><div class="custom-posts-container clearfix">';
+	$output = '<div class="custom-posts-wrapper post-'. $defaults['type'] .'"><div class="custom-posts-container clearfix">';
 	
 		// Loop through returned posts
 		// Setup the inner HTML for each elements
@@ -232,11 +232,11 @@ function tbb_custom_posts( $defaults ) {
 			switch( $defaults['type'] ) {
 				
 				case "property" :
-					$bedrooms = get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true );
-					$bathrooms = get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true );
-						if( !empty( $bedrooms ) ) $bedrooms = sprintf( '<span>%s Bd</span>', floatval($bedrooms) );
-						if( !empty( $bathrooms ) ) $bathrooms = sprintf( '<span>%s Ba</span>', floatval($bathrooms) );
-						if( !empty( $bedrooms ) && !empty( $bathrooms ) ) $spacer = ' / ';
+					$bedrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true ) );
+					$bathrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true ) );
+						if( $bedrooms >= 1 ) $bedrooms = sprintf( '<span>%s Bd</span>', $bedrooms );
+						if( $bathrooms >= 1 ) $bathrooms = sprintf( '<span>%s Ba</span>', $bathrooms );
+						if( $bedrooms < 1 && $bathrooms < 1 ) $spacer = ' / ';
 					$additional_meta = sprintf( '<h5 class="property-price">%s%s</h5><div class="extra-meta property-meta">%s%s%s</div>', 
 							get_property_price(), inspiry_get_property_types( get_the_ID() ), $bedrooms, $spacer, $bathrooms );
 					break;
