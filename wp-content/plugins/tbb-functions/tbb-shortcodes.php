@@ -230,22 +230,31 @@ function tbb_custom_posts( $defaults ) {
 			// Show additional meta fields based on post type chosen
 			$additional_meta = '';
 			switch( $defaults['type'] ) {
+				
 				case "property" :
-					$additional_meta = sprintf( '<div class="property-price">%s</div><div class="extra-meta property-meta">%s</div>', 
-							property_price(), get_template_part('property-details/property-metas') );
+					$bedrooms = get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true );
+					$bathrooms = get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true );
+						if( !empty( $bedrooms ) ) $bedrooms = sprintf( '<span>%s %s Bd</span>', include( get_template_directory() . '/images/icon-bed.svg' ), $bedrooms );
+						if( !empty( $bathrooms ) ) $bathrooms = sprintf( '<span>%s %s Ba</span>', include( get_template_directory() . '/images/icon-bath.svg' ), $bathrooms );
+						if( !empty( $bedrooms ) && !empty( $bathrooms ) ) $spacer = '/';
+					$additional_meta = sprintf( '<h5 class="property-price">%s%s</h5><div class="extra-meta property-meta">%s%s%s</div>', 
+							get_property_price(), inspiry_get_property_types( get_the_ID() ), $bedrooms, $spacer, $bathrooms );
 					break;
+					
 				case "agent" :
 					$image_size = 'agent-image';
 					break;
+					
 				case "company" :
-					$phone = get_post_meta( get_the_ID(), company_office_phone, true );
-					$fax = get_post_meta( get_the_ID(), company_office_fax, true );
+					$phone = get_post_meta( get_the_ID(), 'company_office_phone', true );
+					$fax = get_post_meta( get_the_ID(), 'company_office_fax', true );
 					if( !empty($phone))
 						$phone = sprintf( '<div class="phone">Phone: %s</div>', $phone );
 					if( !empty($fax))
 						$fax = sprintf( '<div class="fax">Fax: %s</div>', $fax );
 					$additional_meta = sprintf( '<div class="extra-meta agent-meta">%s%s</div>', $phone, $fax );
 					break;
+					
 			}
 			
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
