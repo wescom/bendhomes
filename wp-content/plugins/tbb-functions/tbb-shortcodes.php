@@ -268,7 +268,7 @@ function tbb_custom_posts( $defaults ) {
 				
 				if( $defaults['excerpt_length'] != 0 ) {
 					
-					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', framework_excerpt( $defaults['excerpt_length'] ) );
+					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', get_framework_excerpt( $defaults['excerpt_length'] ) );
 				
 				}
 				
