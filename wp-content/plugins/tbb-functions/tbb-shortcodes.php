@@ -168,27 +168,6 @@ function tbb_custom_posts( $defaults ) {
 			break;
 	}
 	
-	// Show additional meta fields based on post type chosen
-	$additional_meta = '';
-	switch( $defaults['type'] ) {
-		case "property" :
-			$additional_meta = sprintf( '<div class="property-price">%s</div><div class="extra-meta property-meta">%s</div>', 
-					property_price(), get_template_part('property-details/property-metas') );
-			break;
-		case "agent" :
-			$image_size = 'agent-image';
-			break;
-		case "company" :
-			$phone = get_post_meta( get_the_ID(), company_office_phone, true );
-			$fax = get_post_meta( get_the_ID(), company_office_fax, true );
-			if( !empty ( $phone ) )
-				$phone = sprintf( '<div class="phone">Phone: %s</div>', $phone );
-			if( !empty ( $fax ) )
-				$fax = sprintf( '<div class="fax">Fax: %s</div>', $fax );
-			$additional_meta = sprintf( '<div class="extra-meta agent-meta">%s%s</div>', $phone, $fax );
-			break;
-	}
-	
 	// Transform categories to array
 	if ( $defaults['category_type'] && $defaults['categories'] ) {
 		$cat_slugs = preg_replace( '/\s+/', '', $defaults['categories'] );
@@ -251,6 +230,25 @@ function tbb_custom_posts( $defaults ) {
 			$permalink = get_permalink();
 			
 			$title = get_the_title();
+			
+			// Show additional meta fields based on post type chosen
+			$additional_meta = '';
+			switch( $defaults['type'] ) {
+				case "property" :
+					$additional_meta = sprintf( '<div class="property-price">%s</div><div class="extra-meta property-meta">%s</div>', 
+							property_price(), get_template_part('property-details/property-metas') );
+					break;
+				case "agent" :
+					$image_size = 'agent-image';
+					break;
+				case "company" :
+					$phone = sprintf( '<div class="phone">Phone: %s</div>', get_post_meta( get_the_ID(), company_office_phone, true ) );
+						if( !empty($phone)) return $phone;
+					$fax = sprintf( '<div class="fax">Fax: %s</div>', get_post_meta( get_the_ID(), company_office_fax, true ) );
+						if( !empty($fax)) return $fax;
+					$additional_meta = sprintf( '<div class="extra-meta agent-meta">%s%s</div>', $phone, $fax );
+					break;
+			}
 			
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
 			
