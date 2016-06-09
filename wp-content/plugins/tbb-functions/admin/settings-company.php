@@ -55,22 +55,34 @@ class CompanySettingsPage {
                         <a class="nav-tab" id="tbb-shortcodes-tab" href="#top#shortcodes">Shortcodes</a>
                     </h2>
                     
-                    <div id="company" class="tbb-tab active">
-                    	<h3>Companies Settings</h3>
-                        <p>Create companies imported from Agents meta fields. To create company posts click the button below.</p>
-                        <p>
-                        	<input type="hidden" name="action" value="companies_created" />
-                        	<input class="button-primary" type="submit" value="<?php _e( 'Create Companies', 'tbb_company' ); ?>" />
-                        </p>
-                    </div>
-                    
-                    <div id="shortcodes" class="tbb-tab">
-                    	<h3>Shortcodes</h3>
+                    <div id="sections">
+                        <section id="company" class="tbb-tab active">
+                            <h3>Companies Settings</h3>
+                            <p>Create companies imported from Agents meta fields. To create company posts click the button below.</p>
+                            <p>
+                                <input type="hidden" name="action" value="companies_created" />
+                                <input class="button-primary" type="submit" value="<?php _e( 'Create Companies', 'tbb_company' ); ?>" />
+                            </p>
+                        </section>
+                        
+                        <section id="shortcodes" class="tbb-tab">
+                            <h3>Shortcodes</h3>
+                        </section>
                     </div>
                 </form>
             
             </div>
         </div>
+        
+        <script type="text/javascript">
+			(function($) {
+				$(document).on( 'click', '.nav-tab-wrapper a', function() {
+					$('section').hide();
+					$('section').eq($(this).index()).show();
+					return false;
+				})
+			})( jQuery );
+		</script>
         
 	<?php }
 	
