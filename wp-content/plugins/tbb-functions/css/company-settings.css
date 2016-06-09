@@ -40,3 +40,10 @@
 	padding:0px;
 	border:0px;
 }
+.company-wrap .holdon {
+	display: inline-block;
+	background: url(../images/loader.gif) no-repeat left center;
+	line-height: 22px;
+	margin-left: 10px;
+	padding-left: 28px;
+}

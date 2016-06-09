@@ -61,7 +61,7 @@ class CompanySettingsPage {
                             <p>Create companies imported from Agents meta fields. To create company posts click the button below.</p>
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
-                                <input class="button-primary" type="submit" value="<?php _e( 'Create Companies', 'tbb_company' ); ?>" />
+                                <input id="company-submit" class="button-primary" type="submit" value="<?php _e( 'Create Companies', 'tbb_company' ); ?>" />
                             </p>
                         </section>
                         
@@ -85,9 +85,25 @@ class CompanySettingsPage {
 					$('section').eq($(this).index()).show().addClass('active');
 					return false;
 				})
-				$('#create-companies').submit(function() {
+				$('#company-submit').click(function() {
+					$("#company-submit").attr("disabled","disabled");
+					
 					var c = confirm("If you're sure, click OK to continue");
-					return c; //you can just return c because it will be true or false
+						return c; //you can just return c because it will be true or false
+					
+					if ( $("#create-companies").valid() ) {
+						
+						$("#create-companies").submit();
+						$("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>');
+						
+					} else {
+						
+						$("#company-submit").removeAttr("disabled");
+							return false;
+					}
+				});
+				$('#create-companies').submit(function() {
+					
 				});
 			})( jQuery );
 		</script>
@@ -95,7 +111,6 @@ class CompanySettingsPage {
 	<?php }
 	
 	function create_company_posts() {
-		
 		$args = array(
 			'post_type' => 'agent',
 			'posts_per_page' => '-1'
@@ -107,13 +122,12 @@ class CompanySettingsPage {
 			while ( $agents->have_posts() ) : $agents->the_post();
 				
 				$company_name = get_field( 'brk_office_name' );
+				$company_phone = get_field( 'brk_office_phone' );
+				$company_address = get_field( 'brk_office_address' );
 				
-				$page_check = get_page_by_title( $company_name );
+				//$page_check = get_page_by_title( $company_name );
 		
-				if(!isset($page_check->ID)) {
-					
-					$company_phone = get_field( 'brk_office_phone' );
-					$company_address = get_field( 'brk_office_address' );
+				//if(!isset($page_check->ID)) {
 				
 					$new_office = array(
 						'post_type' => 'company',
@@ -122,11 +136,14 @@ class CompanySettingsPage {
 						'post_author' => 1,
 					);
 				
-					$new_office_id = wp_insert_post($new_office);
+					//if ( !isset( $new_office_id ) ) {
+					if( !$this->wp_exist_post_by_title( 'company', $company_name ) ) {
+						$new_office_id = wp_insert_post($new_office);
+					}
 					
 					update_post_meta($new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta($new_office_id, 'company_office_address', $company_address );
-				}
+				//}
 			
 			endwhile;
 		endif;
@@ -134,6 +151,16 @@ class CompanySettingsPage {
 		return;
 		
 		wp_reset_query();
+	}
+	
+	function wp_exist_post_by_title( $post_type, $title ) {
+		global $wpdb;
+		$return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $title . "' && post_status = 'publish' && post_type = '" . $post_type . "' ", 'ARRAY_N' );
+		if( empty( $return ) ) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
 
