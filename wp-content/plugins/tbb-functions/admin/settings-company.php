@@ -85,18 +85,24 @@ class CompanySettingsPage {
 					$('section').eq($(this).index()).show().addClass('active');
 					return false;
 				})
-				$('#company-submit').click(function() {					
+				$('#company-submit').click(function() {			
+					$(this).attr("disabled","disabled");		
 					var c = confirm("If you're sure, click OK to continue");
-						return c; //you can just return c because it will be true or false
-					
-					if ( $("#create-companies").valid() ) {
-						
-						$("#create-companies").submit();
-						$("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>');
-						
-					} else {
+					if (c == true) {
+						if ( $("#create-companies").valid() ) {
+							$("#create-companies").submit();
+							$("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>');
+						} else { 
+							$("#company-submit").removeAttr("disabled");
+							return false; 
+						}
+					}
+					else {
+						$("#company-submit").removeAttr("disabled");
 						return false;
 					}
+					
+					
 				});
 			})( jQuery );
 		</script>
