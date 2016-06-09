@@ -1,5 +1,8 @@
 /* CSS Document */
 
+.tbb-company-page .updated p {
+	font-weight: bold;
+}
 .company-wrap h2.nav-tab-wrapper {
 	margin:22px 0 0 0;
 }

@@ -43,7 +43,7 @@ class CompanySettingsPage {
             
             <?php if ( $_GET['companies-created'] == 'true' ) { ?>
                 <div class="updated">
-                    <h3>Companies Created</h3>
+                    <p>Companies Created Successfully</p>
                 </div>
             <?php } ?> 
             
@@ -92,6 +92,44 @@ class CompanySettingsPage {
 	
 	function create_company_posts() {
 		
+		$args = array(
+			'post_type' => 'agent',
+			'posts_per_page' => '-1'
+		);
+		
+		$agents = new WP_Query( $args );
+		
+		if ( $agents->have_posts() ) :	
+			while ( $agents->have_posts() ) : $agents->the_post();
+				
+				$company_name = get_field( 'brk_office_name' );
+				
+				$page_check = get_page_by_title( $company_name );
+		
+				if(!isset($page_check->ID)) {
+					
+					$company_phone = get_field( 'brk_office_phone' );
+					$company_address = get_field( 'brk_office_address' );
+				
+					$new_office = array(
+						'post_type' => 'company',
+						'post_title' => $company_name,
+						'post_status' => 'publish',
+						'post_author' => 1,
+					);
+				
+					$new_office_id = wp_insert_post($new_office);
+					
+					update_post_meta($new_office_id, 'company_office_phone', $company_phone );
+					update_post_meta($new_office_id, 'company_office_address', $company_address );
+				}
+			
+			endwhile;
+		endif;
+		
+		return;
+		
+		wp_reset_query();
 	}
 }
 
