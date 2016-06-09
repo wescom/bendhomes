@@ -90,6 +90,10 @@ class CompanySettingsPage {
 					
 					var c = confirm("If you're sure, click OK to continue");
 						return c; //you can just return c because it will be true or false
+					if(c == false) {
+						$("#company-submit").removeAttr("disabled");
+							return false;
+					}
 					
 					if ( $("#create-companies").valid() ) {
 						
