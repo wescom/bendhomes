@@ -85,8 +85,18 @@ class CompanySettingsPage {
 					$('section').eq($(this).index()).show().addClass('active');
 					return false;
 				})
-				$('#company-submit').click(function() {			
-					$(this).attr("disabled","disabled");		
+				$('#company-submit').click(function(e) {	
+					e.preventDefault();
+					$(this).attr("disabled","disabled");
+					if( confirm("If you're sure, click OK to continue") ) {
+						$("#create-companies").submit();
+						$("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>');
+					} else {
+						$(this).removeAttr("disabled");	
+					}
+				
+						
+					/*$(this).attr("disabled","disabled");		
 					var c = confirm("If you're sure, click OK to continue");
 					if (c == true) {
 						if ( $("#create-companies").valid() ) {
@@ -100,7 +110,7 @@ class CompanySettingsPage {
 					else {
 						$("#company-submit").removeAttr("disabled");
 						return false;
-					}
+					}*/
 					
 					
 				});
