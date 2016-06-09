@@ -23,7 +23,7 @@ class CompanySettingsPage {
 	}
 	
 	function enqueue_company_files() {
-		wp_enqueue_style( 'company', TBB_FUNCTIONS_URL . '/css/company-settings.css' );
+		wp_enqueue_style( 'company', TBB_FUNCTIONS_URL . 'css/company-settings.css' );
 	}
 
 	function  company_settings_do_page() {
