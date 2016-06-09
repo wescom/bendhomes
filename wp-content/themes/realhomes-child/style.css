@@ -42,6 +42,8 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .custom-post a.more-details:hover { background: #006267; }
 .inner-wrapper .custom-post .custom-post-excerpt { line-height: 22px; margin-bottom: 10px; }
 .custom-post .extra-meta { margin-bottom: 10px; }
+.custom-post .extra-meta i { width: 15px; text-align: center; }
+.custom-post .extra-meta i.fa-mobile { font-size: 1.25em; }
 .custom-post .custom-post-image { margin-bottom: 10px; }
 .post-property .custom-post .custom-post-image { margin-bottom: 0; }
 .custom-post img { width: 100%; height: auto; }
