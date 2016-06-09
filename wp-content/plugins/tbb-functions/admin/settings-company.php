@@ -79,8 +79,10 @@ class CompanySettingsPage {
         <script type="text/javascript">
 			(function($) {
 				$(document).on( 'click', '.nav-tab-wrapper a', function() {
-					$('section').hide();
-					$('section').eq($(this).index()).show();
+					$('section').hide().removeClass('active');
+					$('.nav-tab-wrapper a').removeClass('nav-tab-active');
+					$('.nav-tab-wrapper a').eq($(this).index()).addClass('nav-tab-active');
+					$('section').eq($(this).index()).show().addClass('active');
 					return false;
 				})
 			})( jQuery );
