@@ -85,15 +85,9 @@ class CompanySettingsPage {
 					$('section').eq($(this).index()).show().addClass('active');
 					return false;
 				})
-				$('#company-submit').click(function() {
-					$("#company-submit").attr("disabled","disabled");
-					
+				$('#company-submit').click(function() {					
 					var c = confirm("If you're sure, click OK to continue");
 						return c; //you can just return c because it will be true or false
-					if(c == false) {
-						$("#company-submit").removeAttr("disabled");
-							return false;
-					}
 					
 					if ( $("#create-companies").valid() ) {
 						
@@ -101,13 +95,8 @@ class CompanySettingsPage {
 						$("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>');
 						
 					} else {
-						
-						$("#company-submit").removeAttr("disabled");
-							return false;
+						return false;
 					}
-				});
-				$('#create-companies').submit(function() {
-					
 				});
 			})( jQuery );
 		</script>
