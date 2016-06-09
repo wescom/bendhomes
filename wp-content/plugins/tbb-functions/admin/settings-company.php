@@ -43,14 +43,15 @@ class CompanySettingsPage {
 	}
 
 	function admin_menu() {
-		add_options_page(
+		add_submenu_page(
+			'edit.php?post_type=company',
 			'Company Settings',
 			'Settings',
 			'manage_options',
 			'company-settings',
 			array(
 				$this,
-				'company_settings_page'
+				'company_settings_do_page'
 			)
 		);
 	}
@@ -59,7 +60,7 @@ class CompanySettingsPage {
 		wp_enqueue_style( 'company-css', TBB_FUNCTIONS_DIR . '/css/company-settings.css' );
 	}
 
-	function  company_settings_page() {
+	function  company_settings_do_page() {
 		echo 'This is the page content';
 	}
 }
