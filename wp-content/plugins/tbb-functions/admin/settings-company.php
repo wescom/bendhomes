@@ -124,7 +124,7 @@ class CompanySettingsPage {
 				$company_phone = get_field( 'brk_office_phone' );
 				$company_address = get_field( 'brk_office_address' );
 				
-				//$page_check = get_page_by_title( $company_name );
+				/*/$page_check = get_page_by_title( $company_name );
 		
 				//if(!isset($page_check->ID)) {
 				
@@ -135,14 +135,46 @@ class CompanySettingsPage {
 						'post_author' => 1,
 					);
 				
-					//if ( !isset( $new_office_id ) ) {
 					if( !$this->wp_exist_post_by_title( 'company', $company_name ) ) {
 						$new_office_id = wp_insert_post($new_office);
 					}
 					
 					update_post_meta($new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta($new_office_id, 'company_office_address', $company_address );
-				//}
+				//}*/
+				
+				global $user_ID, $wpdb;
+				
+				$query = $wpdb->prepare(
+					'SELECT ID FROM ' . $wpdb->posts . '
+					WHERE post_title = %s
+					AND post_type = \'agent\'',
+					$company_name
+				);
+				
+				$wpdb->query( $query );
+				
+				if ( $wpdb->num_rows ) {
+					$post_id = $wpdb->get_var( $query );
+					$phone = get_post_meta( $post_id, 'brk_office_phone', TRUE );
+					$address = get_post_meta( $post_id, 'brk_office_address', TRUE );
+					update_post_meta( $post_id, 'company_office_phone', $phone );
+					update_post_meta( $post_id, 'company_office_address', $address );
+				} else {
+					$new_post = array(
+						'post_title' => $postTitle,
+						'post_content' => '',
+						'post_status' => 'publish',
+						'post_date' => date('Y-m-d H:i:s'),
+						'post_author' => '',
+						'post_type' => 'agent',
+						'post_category' => array(0)
+					);
+			
+					$post_id = wp_insert_post( $new_post );
+					add_post_meta( $post_id, 'company_office_phone', $company_phone );
+					add_post_meta( $post_id, 'company_office_address', $company_address );
+				}
 			
 			endwhile;
 		endif;
@@ -152,7 +184,7 @@ class CompanySettingsPage {
 		wp_reset_query();
 	}
 	
-	function wp_exist_post_by_title( $post_type, $title ) {
+	/*function wp_exist_post_by_title( $post_type, $title ) {
 		global $wpdb;
 		$return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $title . "' && post_status = 'publish' && post_type = '" . $post_type . "' ", 'ARRAY_N' );
 		if( empty( $return ) ) {
@@ -160,7 +192,7 @@ class CompanySettingsPage {
 		} else {
 			return true;
 		}
-	}
+	}*/
 }
 
 new CompanySettingsPage;
