@@ -1,41 +1,38 @@
 /* CSS Document */
 
-h2.nav-tab-wrapper {
+.company-wrap h2.nav-tab-wrapper {
 	margin:22px 0 0 0;
 }
-
-#sections {
+.company-wrap .nav-tab-active, .company-wrap .nav-tab-active:hover, 
+.company-wrap .nav-tab-active:focus, .company-wrap .nav-tab-active:focus:active {
+	border-bottom-color: #fff;
+	background: #fff;	
+}
+.company-wrap #sections {
 	padding:22px;
 	background: #fff;
 	border:1px solid #ccc;
 	border-top:0px;
 }
-
-section {
+.company-wrap section {
 	display:none;
 }
-
-section:first-child {
+.company-wrap section:first-child {
 	display:block;
 }
-
-
-.no-js h2.nav-tab-wrapper {
+.no-js .company-wrap h2.nav-tab-wrapper {
 	display:none;
 }
-
-.no-js #sections {
+.no-js .company-wrap #sections {
 	border-top:1px solid #ccc;
 	margin-top:22px;
 }
-
-.no-js section {
+.no-js .company-wrap section {
 	border-top: 1px dashed #aaa;
 	margin-top:22px;
 	padding-top:22px;
 }
-
-.no-js section:first-child {
+.no-js .company-wrap section:first-child {
 	margin:0px;
 	padding:0px;
 	border:0px;
