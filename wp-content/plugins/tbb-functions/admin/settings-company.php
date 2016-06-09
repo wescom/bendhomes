@@ -134,11 +134,11 @@ class CompanySettingsPage {
 				$company_phone = get_field( 'brk_office_phone' );
 				$company_address = get_field( 'brk_office_address' );
 				
-				echo $company_name .'\n';
-				
-				/*/$page_check = get_page_by_title( $company_name );
+				$page_check = get_page_by_title( $company_name, '', 'agent' );
 		
-				//if(!isset($page_check->ID)) {
+				if(!isset($page_check->ID)) {
+					echo '<pre>'. $company_name .'</pre>';
+				}
 				
 					$new_office = array(
 						'post_type' => 'company',
