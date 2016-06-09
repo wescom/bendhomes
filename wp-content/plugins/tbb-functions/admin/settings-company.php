@@ -49,7 +49,7 @@ class CompanySettingsPage {
             
             <div class="company-wrap">
             
-                <form method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
+                <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                 	<h2 class="nav-tab-wrapper" id="tbb-company-tabs">
                     	<a class="nav-tab nav-tab-active" id="tbb-company-tab" href="#top#company">Companies</a>
                         <a class="nav-tab" id="tbb-shortcodes-tab" href="#top#shortcodes">Shortcodes</a>
@@ -85,6 +85,10 @@ class CompanySettingsPage {
 					$('section').eq($(this).index()).show().addClass('active');
 					return false;
 				})
+				$('#create-companies').submit(function() {
+					var c = confirm("If you're sure, click OK to continue");
+					return c; //you can just return c because it will be true or false
+				});
 			})( jQuery );
 		</script>
         
