@@ -75,7 +75,7 @@ class CompanySettingsPage {
             
             </div>
         </div>
-        
+        <?php /* Unminified JS
         <script type="text/javascript">
 			(function($) {
 				$(document).on( 'click', '.nav-tab-wrapper a', function() {
@@ -94,29 +94,12 @@ class CompanySettingsPage {
 					} else {
 						$(this).removeAttr("disabled");	
 					}
-				
-						
-					/*$(this).attr("disabled","disabled");		
-					var c = confirm("If you're sure, click OK to continue");
-					if (c == true) {
-						if ( $("#create-companies").valid() ) {
-							$("#create-companies").submit();
-							$("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>');
-						} else { 
-							$("#company-submit").removeAttr("disabled");
-							return false; 
-						}
-					}
-					else {
-						$("#company-submit").removeAttr("disabled");
-						return false;
-					}*/
-					
-					
 				});
 			})( jQuery );
+		</script> */ ?>
+        <script type="text/javascript">
+		!function(a){a(document).on("click",".nav-tab-wrapper a",function(){return a("section").hide().removeClass("active"),a(".nav-tab-wrapper a").removeClass("nav-tab-active"),a(".nav-tab-wrapper a").eq(a(this).index()).addClass("nav-tab-active"),a("section").eq(a(this).index()).show().addClass("active"),!1}),a("#company-submit").click(function(e){e.preventDefault(),a(this).attr("disabled","disabled"),confirm("If you're sure, click OK to continue")?(a("#create-companies").submit(),a("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>')):a(this).removeAttr("disabled")})}(jQuery);
 		</script>
-        
 	<?php }
 	
 	function create_company_posts() {
