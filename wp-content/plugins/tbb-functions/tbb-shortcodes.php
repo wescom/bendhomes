@@ -255,11 +255,16 @@ function tbb_custom_posts( $defaults ) {
 				case "company" :
 					$phone = get_post_meta( get_the_ID(), 'company_office_phone', true );
 					$fax = get_post_meta( get_the_ID(), 'company_office_fax', true );
+					$address = get_post_meta( get_the_ID(), 'company_office_address', true );
+					if( !empty($address))
+						$address = sprintf( '<div class="address">%s</div>', $address );
 					if( !empty($phone))
-						$phone = sprintf( '<div class="phone">Phone: %s</div>', $phone );
+						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> %s</div>', $phone );
 					if( !empty($fax))
-						$fax = sprintf( '<div class="fax">Fax: %s</div>', $fax );
-					$additional_meta = sprintf( '<div class="extra-meta agent-meta">%s%s</div>', $phone, $fax );
+						$fax = sprintf( '<div class="fax"><i class="fa fa-print"></i> %s</div>', $fax );
+					$additional_meta = sprintf( '
+						<div class="extra-meta agent-meta row-fluid"><div class="span6">%s</div><div class="span6">%s%s</div></div>', 
+							$address, $phone, $fax );
 					break;
 					
 			}
