@@ -67,6 +67,8 @@ class CompanySettingsPage {
                         
                         <section id="shortcodes" class="tbb-tab">
                             <h3>Shortcodes</h3>
+                            <p>This section displays a list of available shortcodes to use with the Company post type to display companies on the website.</p>
+                            <p><strong>Shortcode: [BH_CUSTOM_POSTS]</strong></p>
                         </section>
                     </div>
                 </form>
