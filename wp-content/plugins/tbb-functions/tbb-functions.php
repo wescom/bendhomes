@@ -30,7 +30,7 @@ define('TBB_FUNCTIONS_DIR', plugin_dir_path(__FILE__));
 require_once('admin/dashboard_widget.php');
 require_once('admin/pages-metabox.php');
 require_once('post-types/post-type-company.php');
-//require_once('forms.php');
+require_once('admin/settings-company.php');
 require_once('tbb-shortcodes.php');
 
 
