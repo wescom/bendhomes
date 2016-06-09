@@ -147,3 +147,22 @@ add_filter('option_users_can_register', function($value) {
     }
     return $value;
 });
+
+
+// Add Product URL column to Manufacturers admin list
+add_filter('manage_edit-agent_columns','create_agent_admin_column');
+function create_agent_admin_column($columns) {
+	$new_column = array(
+		'brokerage' => __( 'Brokerage' )
+	);
+	return array_merge($columns, $new_column);
+}
+
+// Populate Brokerage column with agent office name meta value
+add_action('manage_agent_posts_custom_column', 'populate_agent_admin_column', 10, 2);
+function populate_agent_admin_column($column_name, $term_id) {
+	if($column_name == 'brokerage') {
+		$brokerage = get_post_meta($term_id, 'brk_office_name', true);
+		echo $brokerage;
+	}
+}
