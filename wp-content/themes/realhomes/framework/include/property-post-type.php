@@ -28,7 +28,7 @@ if( !function_exists( 'create_property_post_type' ) ){
             //'hierarchical' => true,
             'menu_icon' => 'dashicons-building',
             'menu_position' => 5,
-            'supports' => array('title','editor','thumbnail','author','excerpt'),
+            'supports' => array('title','editor','thumbnail','author','page-attributes','excerpt'),
             'rewrite' => array( 'slug' => __('property', 'framework') )
       );
 
