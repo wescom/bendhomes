@@ -277,9 +277,14 @@ function tbb_custom_posts( $defaults ) {
 			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', $count, $cols, $classes, $has_image_class );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
-				
-					$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
-							$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
+					
+					if( $defaults['type'] != 'company' ) {
+						$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
+								$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
+					} else {
+						$output .= sprintf( '<figure class="custom-post-image image-%s %s"><img src="%s" width="%s" height="%s" /></figure>', 
+								$count, $image_size, $image[0], $image[1], $image[2] );	
+					}
 			
 				}
 				
