@@ -113,37 +113,37 @@ class CompanySettingsPage {
 		if ( $agents->have_posts() ) :	
 			while ( $agents->have_posts() ) : $agents->the_post();
 			
-				global $wpdb;
+				//global $wpdb;
 				
 				$company_name = get_field( 'brk_office_name' );
 				$company_phone = get_field( 'brk_office_phone' );
 				$company_address = get_field( 'brk_office_address' );
 				
-				$post_if = $wpdb->get_var( "SELECT count(post_title) FROM $wpdb->posts WHERE post_type = 'company' && post_title like '". $company_name ."'" );
+				/*$post_if = $wpdb->get_var( "SELECT count(post_title) FROM $wpdb->posts WHERE post_type = 'company' && post_title like '". $company_name ."'" );
 				if( $post_if < 1 ) {
 					echo '<pre>'. $company_name .'</pres>';
-				}
+				}*/
 				
-				//$page_check = get_page_by_title( $company_name, '', 'agent' );
+				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) :
 		
 				//if( !isset( $this->wp_exist_post_by_title( 'company', $company_name ) ) ) {
 					//echo '<pre>'. $company_name .'</pre>';
 				//}
 				
-					/*$new_office = array(
+					$new_office = array(
 						'post_type' => 'company',
 						'post_title' => $company_name,
 						'post_status' => 'publish',
 						'post_author' => 1,
 					);
 				
-					if( !$this->wp_exist_post_by_title( 'company', $company_name ) ) {
-						$new_office_id = wp_insert_post($new_office);
-					}
+					$new_office_id = wp_insert_post($new_office);
 					
 					update_post_meta($new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta($new_office_id, 'company_office_address', $company_address );
-				//}*/
+				//}
+				
+				endif;
 			
 			endwhile;
 		endif;
@@ -155,8 +155,7 @@ class CompanySettingsPage {
 	
 	function get_company_exists_by_title( $title ) {
 		global $wpdb;
-		//$return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $title . "' && post_status = 'publish' && post_type = '" . $post_type . "' ", 'ARRAY_N' );
-		$return = $wpdb->get_var( "SELECT count(post_title) FROM $wpdb->posts WHERE post_type = 'company' && post_title like '". $title ."'" );
+		$return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $title . "' && post_status = 'publish' && post_type = '" . $post_type . "' ", 'ARRAY_N' );
 		if( empty( $return ) ) {
 			return false;
 		} else {
