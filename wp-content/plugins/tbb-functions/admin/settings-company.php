@@ -115,7 +115,7 @@ class CompanySettingsPage {
 							
 				$company_name = get_field( 'brk_office_name' );
 				$company_phone = get_field( 'brk_office_phone' );
-				$company_address = str_replace( '<br>', '', get_field( 'brk_office_address' ) );
+				$company_address = str_replace( array('<br>, <br/>, <br />'), '', get_field( 'brk_office_address' ) );
 				
 				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) :
 				
