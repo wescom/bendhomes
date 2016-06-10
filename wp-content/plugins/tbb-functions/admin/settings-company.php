@@ -88,7 +88,7 @@ class CompanySettingsPage {
 				$('#company-submit').click(function(e) {	
 					e.preventDefault();
 					$(this).attr("disabled","disabled");
-					if( confirm("If you're sure, click OK to continue") ) {
+					if( confirm("If you're sure, click OK to continue. This will take several minutes.") ) {
 						$("#create-companies").submit();
 						$("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>');
 					} else {
@@ -98,7 +98,7 @@ class CompanySettingsPage {
 			})( jQuery );
 		</script> */ ?>
         <script type="text/javascript">
-		!function(a){a(document).on("click",".nav-tab-wrapper a",function(){return a("section").hide().removeClass("active"),a(".nav-tab-wrapper a").removeClass("nav-tab-active"),a(".nav-tab-wrapper a").eq(a(this).index()).addClass("nav-tab-active"),a("section").eq(a(this).index()).show().addClass("active"),!1}),a("#company-submit").click(function(e){e.preventDefault(),a(this).attr("disabled","disabled"),confirm("If you're sure, click OK to continue")?(a("#create-companies").submit(),a("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>')):a(this).removeAttr("disabled")})}(jQuery);
+		!function(a){a(document).on("click",".nav-tab-wrapper a",function(){return a("section").hide().removeClass("active"),a(".nav-tab-wrapper a").removeClass("nav-tab-active"),a(".nav-tab-wrapper a").eq(a(this).index()).addClass("nav-tab-active"),a("section").eq(a(this).index()).show().addClass("active"),!1}),a("#company-submit").click(function(e){e.preventDefault(),a(this).attr("disabled","disabled"),confirm("If you're sure, click OK to continue. This will take several minutes.")?(a("#create-companies").submit(),a("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>')):a(this).removeAttr("disabled")})}(jQuery);
 		</script>
 	<?php }
 	
@@ -112,12 +112,19 @@ class CompanySettingsPage {
 		
 		if ( $agents->have_posts() ) :	
 			while ( $agents->have_posts() ) : $agents->the_post();
+			
+				global $wpdb;
 				
 				$company_name = get_field( 'brk_office_name' );
 				$company_phone = get_field( 'brk_office_phone' );
 				$company_address = get_field( 'brk_office_address' );
 				
-				$page_check = get_page_by_title( $company_name, '', 'agent' );
+				$post_if = $wpdb->get_var( "SELECT count(post_title) FROM $wpdb->posts WHERE post_type = 'company' && post_title like '". $company_name ."'" );
+				if( $post_if < 1 ) {
+					echo '<pre>'. $company_name .'</pres>';
+				}
+				
+				//$page_check = get_page_by_title( $company_name, '', 'agent' );
 		
 				//if( !isset( $this->wp_exist_post_by_title( 'company', $company_name ) ) ) {
 					//echo '<pre>'. $company_name .'</pre>';
@@ -146,9 +153,10 @@ class CompanySettingsPage {
 		wp_reset_query();
 	}
 	
-	function wp_exist_post_by_title( $post_type, $title ) {
+	function get_company_exists_by_title( $title ) {
 		global $wpdb;
-		$return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $title . "' && post_status = 'publish' && post_type = '" . $post_type . "' ", 'ARRAY_N' );
+		//$return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $title . "' && post_status = 'publish' && post_type = '" . $post_type . "' ", 'ARRAY_N' );
+		$return = $wpdb->get_var( "SELECT count(post_title) FROM $wpdb->posts WHERE post_type = 'company' && post_title like '". $title ."'" );
 		if( empty( $return ) ) {
 			return false;
 		} else {
