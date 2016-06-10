@@ -36,7 +36,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .custom-post.six { width: 16.66667%; }
 .custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 0; border: 1px solid #dedede; background: #fff;  }
 .custom-post h4 { font-weight: 400; text-transform: capitalize; margin: 0 0 10px; font-size: 18px; }
-.custom-post p { margin-bottom: 10px; line-height: 150%; }
+.inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; }
 .custom-post a { color: #394041; }
 .custom-post a:hover { color: #02888f; }
 .custom-post a.more-details { display: inline-block; margin: 0 -11px -1px 0; float: right; padding: 8px 15px; background: #02888f; color: #fff; }
