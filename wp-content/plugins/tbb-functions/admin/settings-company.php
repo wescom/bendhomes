@@ -119,9 +119,9 @@ class CompanySettingsPage {
 				
 				$page_check = get_page_by_title( $company_name, '', 'agent' );
 		
-				if( !isset( $this->wp_exist_post_by_title( 'company', $company_name ) ) ) {
-					echo '<pre>'. $company_name .'</pre>';
-				}
+				//if( !isset( $this->wp_exist_post_by_title( 'company', $company_name ) ) ) {
+					//echo '<pre>'. $company_name .'</pre>';
+				//}
 				
 					/*$new_office = array(
 						'post_type' => 'company',
