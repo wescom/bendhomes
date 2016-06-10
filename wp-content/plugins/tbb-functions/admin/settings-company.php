@@ -61,7 +61,7 @@ class CompanySettingsPage {
                             <p>Create companies imported from Agents meta fields. To create company posts click the button below.</p>
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
-                                <input id="company-submit" class="button-primary" type="submit" value="<?php _e( 'Create Companies', 'tbb_company' ); ?>" />
+                                <input id="company-submit" class="button-primary" type="submit" value="<?php _e( 'Create/Update Companies', 'tbb_company' ); ?>" />
                             </p>
                         </section>
                         
@@ -98,7 +98,7 @@ class CompanySettingsPage {
 			})( jQuery );
 		</script> */ ?>
         <script type="text/javascript">
-		!function(a){a(document).on("click",".nav-tab-wrapper a",function(){return a("section").hide().removeClass("active"),a(".nav-tab-wrapper a").removeClass("nav-tab-active"),a(".nav-tab-wrapper a").eq(a(this).index()).addClass("nav-tab-active"),a("section").eq(a(this).index()).show().addClass("active"),!1}),a("#company-submit").click(function(e){e.preventDefault(),a(this).attr("disabled","disabled"),confirm("If you're sure, click OK to continue. This will take several minutes.")?(a("#create-companies").submit(),a("#company-submit").after('<span class="holdon">Please hold, we\'re creating your companies.</span>')):a(this).removeAttr("disabled")})}(jQuery);
+		!function(a){a(document).on("click",".nav-tab-wrapper a",function(){return a("section").hide().removeClass("active"),a(".nav-tab-wrapper a").removeClass("nav-tab-active"),a(".nav-tab-wrapper a").eq(a(this).index()).addClass("nav-tab-active"),a("section").eq(a(this).index()).show().addClass("active"),!1}),a("#company-submit").click(function(e){e.preventDefault(),a(this).attr("disabled","disabled"),confirm("If you're sure, click OK to continue. This will take several minutes.")?(a("#create-companies").submit(),a("#company-submit").after('<span class="holdon">Please hold on, we\'re creating/updating all companies.</span>')):a(this).removeAttr("disabled")})}(jQuery);
 		</script>
 	<?php }
 	
@@ -117,7 +117,7 @@ class CompanySettingsPage {
 				$company_phone = get_field( 'brk_office_phone' );
 				$company_address = str_replace( array('<br>, <br/>, <br />'), '', get_field( 'brk_office_address' ) );
 				
-				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) :
+				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) {
 				
 					$new_office = array(
 						'post_type' => 'company',
@@ -131,7 +131,14 @@ class CompanySettingsPage {
 					update_post_meta($new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta($new_office_id, 'company_office_address', $company_address );
 				
-				endif;
+				} else {
+				
+					$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
+					
+					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
+					update_post_meta($company_check->ID, 'company_office_address', $company_address );
+					
+				}
 			
 			endwhile;
 		endif;
