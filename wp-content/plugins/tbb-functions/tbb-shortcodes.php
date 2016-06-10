@@ -253,18 +253,18 @@ function tbb_custom_posts( $defaults ) {
 					break;
 					
 				case "company" :
-					$image_size = '';
+					$image_size = 'medium';
 					$phone = get_field( 'company_office_phone' );
 					$fax = get_field( 'company_office_fax' );
 					$address = get_field( 'company_office_address' );
 					if( $address )
-						$address = sprintf( '<div class="address">%s</div>', $address );
+						$address = sprintf( '<p class="address">%s</p>', $address );
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> %s</div>', $phone );
 					if( $fax )
 						$fax = sprintf( '<div class="fax"><i class="fa fa-print"></i> %s</div>', $fax );
 					$additional_meta = sprintf( '
-						<div class="extra-meta company-meta"><p>%s</p><p>%s%s</p></div>', 
+						<div class="extra-meta company-meta">%s<div>%s%s</div></div>', 
 							$address, $phone, $fax );
 					break;
 					
