@@ -2,7 +2,7 @@
 /*
 Plugin Name: Wescom Custom Functions
 Plugin URI: mailto:jculley@bendbulletin.com
-Description: Custom functions for Wescom Ads
+Description: Custom functions for Bend Homes.  Includes "Companies" custom post type and Settings page to create companies based on Agents brokerage office fields. Also includes additional shortcodes and cleans up the wordpress admin area.
 Version: 1.0
 Author: Jarel Culley
 Author URI: http://www.bendbulletin.com
