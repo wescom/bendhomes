@@ -253,9 +253,7 @@ function tbb_custom_posts( $defaults ) {
 					break;
 					
 				case "company" :
-					//$phone = get_post_meta( get_the_ID(), 'company_office_phone', true );
-					//$fax = get_post_meta( get_the_ID(), 'company_office_fax', true );
-					//$address = get_post_meta( get_the_ID(), 'company_office_address', true );
+					$image_size = '';
 					$phone = get_field( 'company_office_phone' );
 					$fax = get_field( 'company_office_fax' );
 					$address = get_field( 'company_office_address' );
@@ -291,7 +289,7 @@ function tbb_custom_posts( $defaults ) {
 					$output .= sprintf( '<h4 class="custom-post-title">%s</h4>', $title );
 				}
 				
-				if( $defaults['excerpt_length'] != 0 ) {
+				if( $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
 					
 					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', get_framework_excerpt( $defaults['excerpt_length'] ) );
 				
