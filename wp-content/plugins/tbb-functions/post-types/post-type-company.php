@@ -10,12 +10,12 @@ if(class_exists('CPT')) {
 		'post_type_name' => 'company',
 		'singular' => 'Company',
 		'plural' => 'Companies',
-		'slug' => 'company',
-		'public' => true,
-		'has_archive' => true
+		'slug' => 'company'
 	), array(
     	'supports' => array('title', 'editor', 'thumbnail'),
-		'menu_position' => 10,
+		'menu_position' => 5,
+		'public' => true,
+		'has_archive' => true
 	));
 	
 	// create taxonomies

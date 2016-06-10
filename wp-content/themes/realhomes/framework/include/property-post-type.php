@@ -25,10 +25,10 @@ if( !function_exists( 'create_property_post_type' ) ){
             'query_var' => true,
             'has_archive' => true,
             'capability_type' => 'post',
-            'hierarchical' => true,
+            //'hierarchical' => true,
             'menu_icon' => 'dashicons-building',
             'menu_position' => 5,
-            'supports' => array('title','editor','thumbnail','revisions','author','page-attributes','excerpt'),
+            'supports' => array('title','editor','thumbnail','author','excerpt'),
             'rewrite' => array( 'slug' => __('property', 'framework') )
       );
 
