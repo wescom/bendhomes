@@ -260,7 +260,7 @@ function tbb_custom_posts( $defaults ) {
 					if( $address )
 						$address = sprintf( '<p class="address">%s</p>', $address );
 					if( $phone )
-						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> %s</div>', $phone );
+						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					if( $fax )
 						$fax = sprintf( '<div class="fax"><i class="fa fa-print"></i> %s</div>', $fax );
 					$additional_meta = sprintf( '
