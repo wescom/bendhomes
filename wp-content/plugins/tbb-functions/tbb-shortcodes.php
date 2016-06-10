@@ -266,7 +266,7 @@ function tbb_custom_posts( $defaults ) {
 					if( $fax )
 						$fax = sprintf( '<div class="fax"><i class="fa fa-print"></i> %s</div>', $fax );
 					$additional_meta = sprintf( '
-						<div class="extra-meta company-meta row-fluid"><div class="span6">%s</div><div class="span6">%s%s</div></div>', 
+						<div class="extra-meta company-meta"><p>%s</p><p>%s%s</p></div>', 
 							$address, $phone, $fax );
 					break;
 					
