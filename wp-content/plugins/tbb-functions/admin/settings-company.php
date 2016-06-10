@@ -43,7 +43,7 @@ class CompanySettingsPage {
             
             <?php if ( $_GET['companies-created'] == 'true' ) { ?>
                 <div class="updated">
-                    <p>Companies Created Successfully</p>
+                    <p>Companies Created/Updated Successfully</p>
                 </div>
             <?php } ?> 
             
@@ -115,7 +115,7 @@ class CompanySettingsPage {
 							
 				$company_name = get_field( 'brk_office_name' );
 				$company_phone = get_field( 'brk_office_phone' );
-				$company_address = str_replace( array('<br>, <br/>, <br />'), '', get_field( 'brk_office_address' ) );
+				$company_address = str_replace( '<br />', '', get_field( 'brk_office_address' ) );
 				
 				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) {
 				
@@ -136,7 +136,7 @@ class CompanySettingsPage {
 					$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
 					
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
-					update_post_meta($company_check->ID, 'company_office_address', $company_address );
+					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
 					
 				}
 			
