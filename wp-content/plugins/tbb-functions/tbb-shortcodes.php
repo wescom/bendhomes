@@ -285,7 +285,11 @@ function tbb_custom_posts( $defaults ) {
 				
 				$output .= $property_price;
 				
-				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $title );
+				if( $defaults['type'] != 'company' ) {
+					$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $title );
+				} else {
+					$output .= sprintf( '<h4 class="custom-post-title">%s</h4>', $title );
+				}
 				
 				if( $defaults['excerpt_length'] != 0 ) {
 					
@@ -295,7 +299,9 @@ function tbb_custom_posts( $defaults ) {
 				
 				$output .= $additional_meta;
 				
-				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+				if( $defaults['type'] != 'company' ) {
+					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+				}
 			
 			$output .= '</div></div>';
 			
