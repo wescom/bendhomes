@@ -112,23 +112,12 @@ class CompanySettingsPage {
 		
 		if ( $agents->have_posts() ) :	
 			while ( $agents->have_posts() ) : $agents->the_post();
-			
-				//global $wpdb;
-				
+							
 				$company_name = get_field( 'brk_office_name' );
 				$company_phone = get_field( 'brk_office_phone' );
-				$company_address = get_field( 'brk_office_address' );
-				
-				/*$post_if = $wpdb->get_var( "SELECT count(post_title) FROM $wpdb->posts WHERE post_type = 'company' && post_title like '". $company_name ."'" );
-				if( $post_if < 1 ) {
-					echo '<pre>'. $company_name .'</pres>';
-				}*/
+				$company_address = str_replace( '<br>', '', get_field( 'brk_office_address' ) );
 				
 				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) :
-		
-				//if( !isset( $this->wp_exist_post_by_title( 'company', $company_name ) ) ) {
-					//echo '<pre>'. $company_name .'</pre>';
-				//}
 				
 					$new_office = array(
 						'post_type' => 'company',
@@ -141,7 +130,6 @@ class CompanySettingsPage {
 					
 					update_post_meta($new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta($new_office_id, 'company_office_address', $company_address );
-				//}
 				
 				endif;
 			
@@ -153,15 +141,6 @@ class CompanySettingsPage {
 		wp_reset_query();
 	}
 	
-	function get_company_exists_by_title( $title ) {
-		global $wpdb;
-		$return = $wpdb->get_row( "SELECT ID FROM wp_posts WHERE post_title = '" . $title . "' && post_status = 'publish' && post_type = '" . $post_type . "' ", 'ARRAY_N' );
-		if( empty( $return ) ) {
-			return false;
-		} else {
-			return true;
-		}
-	}
 }
 
 new CompanySettingsPage;
