@@ -116,3 +116,203 @@ function add_autofocus_shortcode( $atts ) {
 	<?php
 	return ob_get_clean();
 }
+
+
+// Display any post type in a 1-6 column grid
+add_shortcode('BH_CUSTOM_POSTS', 'tbb_custom_posts');
+function tbb_custom_posts( $defaults ) {
+	$defaults = shortcode_atts( array(
+		'type' => 'post',
+		'limit' => '12',
+		'offset' => '',
+		'category_type' => '',
+		'categories' => '',
+		'featured_image' => '',
+		'excerpt_length' => '12',
+		'meta_key' => '',
+		'meta_value' => '',
+		'meta_compare' => '=',
+		'classes' => '',
+		'columns' => '3',
+		'order' => 'ASC',
+		'orderby' => 'name'
+	), $defaults );
+	
+	$classes = sanitize_text_field( $defaults['classes'] );
+	
+	switch( $defaults['columns'] ) {
+		case "6":
+			$cols_per_row = 6;
+			$cols = "six";
+			$image_size = 'grid-view-image';
+			break;
+		case "5":
+			$cols_per_row = 5;
+			$cols = "five";
+			$image_size = 'grid-view-image';
+			break;
+		case "4":
+			$cols_per_row = 4;
+			$cols = "four";
+			$image_size = 'grid-view-image';
+			break;
+		case "3":
+			$cols_per_row = 3;
+			$cols = "three";
+			$image_size = 'gallery-two-column-image';
+			break;
+		case "2":
+			$cols_per_row = 2;
+			$cols = "two";
+			$image_size = 'gallery-two-column-image';
+			break;
+		case "1":
+			$cols_per_row = 1;
+			$cols = "one";
+			$image_size = 'post-featured-image';
+			break;
+	}
+	
+	// Transform categories to array
+	if ( $defaults['category_type'] && $defaults['categories'] ) {
+		$cat_slugs = preg_replace( '/\s+/', '', $defaults['categories'] );
+		$cat_slugs = explode( ',', $defaults['categories'] );
+	} else {
+		$cat_slugs = array();
+	}
+	
+	// Initialize the query array
+	$args = array(
+		'post_type' 		=> $defaults['type'],
+		'paged' 			=> 1,
+		'posts_per_page'	=> $defaults['limit'],
+		'has_password' 		=> false,
+		'order' => $defaults['order'],
+		'orderby' => $defaults['orderby']
+	);
+	
+	// Adds offset to query
+	if ( $defaults['offset'] ) {
+		$args['offset'] =  $defaults['offset'];
+	}
+	
+	// Adds categories to query
+	if ( !empty( $cat_slugs ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' 	=> $defaults['category_type'],
+				'field' 	=> 'slug',
+				'terms' 	=> $cat_slugs
+			)
+		);
+	}
+	
+	// Adds meta key and value pair to query with optional comparision value
+	if ( !empty( $defaults['meta_key'] ) && !empty( $defaults['meta_value'] ) ) {
+		$args['meta_query'] = array(
+			array(
+				'key' => $defaults['meta_key'],
+				'value' => $defaults['meta_value'],
+				'compare' => $defaults['meta_compare'],
+			)
+		);
+	}
+
+	$custom_posts = new WP_Query( $args );
+	
+	if ( $custom_posts->have_posts() ) :
+	
+	$output = '<div class="custom-posts-wrapper post-'. $defaults['type'] .'"><div class="custom-posts-container clearfix">';
+	
+		$count = 1;
+		// Loop through returned posts
+		// Setup the inner HTML for each elements
+		while ( $custom_posts->have_posts() ) : $custom_posts->the_post();
+			
+			$permalink = get_permalink();
+			
+			$title = get_the_title();
+			
+			// Show additional meta fields based on post type chosen
+			$property_price = '';
+			$additional_meta = '';
+			switch( $defaults['type'] ) {
+				
+				case "property" :
+					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( get_the_ID() ) );
+					$bedrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true ) );
+					$bathrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true ) );
+						if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
+						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
+						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
+					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
+					break;
+					
+				case "agent" :
+					$image_size = 'agent-image';
+					break;
+					
+				case "company" :
+					//$phone = get_post_meta( get_the_ID(), 'company_office_phone', true );
+					//$fax = get_post_meta( get_the_ID(), 'company_office_fax', true );
+					//$address = get_post_meta( get_the_ID(), 'company_office_address', true );
+					$phone = get_field( 'company_office_phone' );
+					$fax = get_field( 'company_office_fax' );
+					$address = get_field( 'company_office_address' );
+					if( $address )
+						$address = sprintf( '<div class="address">%s</div>', $address );
+					if( $phone )
+						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> %s</div>', $phone );
+					if( $fax )
+						$fax = sprintf( '<div class="fax"><i class="fa fa-print"></i> %s</div>', $fax );
+					$additional_meta = sprintf( '
+						<div class="extra-meta agent-meta row-fluid"><div class="span6">%s</div><div class="span6">%s%s</div></div>', 
+							$address, $phone, $fax );
+					break;
+					
+			}
+			
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
+			
+			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s"><div class="custom-post-item clearfix">', $count, $cols, $classes );
+			
+				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
+				
+					$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
+							$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
+			
+				}
+				
+				$output .= $property_price;
+				
+				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $title );
+				
+				if( $defaults['excerpt_length'] != 0 ) {
+					
+					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', get_framework_excerpt( $defaults['excerpt_length'] ) );
+				
+				}
+				
+				$output .= $additional_meta;
+				
+				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+			
+			$output .= '</div></div>';
+			
+			$clearfix_test = $count / $cols_per_row;
+			if( is_int( $clearfix_test ) ) {
+				$output .= '<div class="clearfix"></div>';
+			}
+			
+			$count++;
+			
+		endwhile;
+	
+	$output .= '</div></div>';
+	
+	endif;
+	
+	return $output;
+	
+	wp_reset_query();
+}
