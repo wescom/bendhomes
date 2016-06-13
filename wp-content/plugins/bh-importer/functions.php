@@ -471,7 +471,7 @@ function dbresult($sset) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
     // $pulldate = strtotime('-730 days'); //'-6 hours' '-1 day' '-10 years'
-    $pulldate = strtotime("-10 years");
+    $pulldate = strtotime("-2 days");
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
@@ -532,32 +532,44 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
  function bendhomes_image_upload($imagebase) {
 
    $imagedir = ABSPATH.'_retsapi/images/property/';
+   $ptmp = explode('.',$imagebase);
+   $post_name = 'property-'.$ptmp[0];
    $imagepull = $imagedir.$imagebase;
    $tmp = $imagepull;
    $file_array = array(
        'name' => 'property-'.basename( $imagebase ),
        'tmp_name' => $tmp
    );
-   if ( is_wp_error( $tmp ) ) {
-       // @unlink( $file_array[ 'tmp_name' ] );
-       return $tmp;
-       echo '<p style="background-color: red; color: #fff;">'.$tmp.'</p>';
+
+   $attachment_id = get_page_by_title( $post_name, 'ARRAY_A', 'attachment' );
+   $attachment_fname = basename($attachment_id['guid']);
+
+   if( (!empty($attachment_id['ID'])) && ($attachment_fname == $file_array['name'] ) ) {
+     $myid = $attachment_id['ID'];
+     // echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
+   } else {
+     if ( is_wp_error( $tmp ) ) {
+         // @unlink( $file_array[ 'tmp_name' ] );
+         return $tmp;
+         // echo '<p style="background-color: red; color: #fff;">'.$tmp.'</p>';
+     }
+     $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
+     // echo '<p style="color: green;">new-id: '.$myid.'</p>';
    }
 
-   $uploaded_image = media_handle_sideload( $file_array, array( 'test_form' => false ) );
-   // echo '<pre>';
-   // print_r($uploaded_image);
-   // echo '</pre>';
+   /* debugging
+   echo '<pre style="background-color: cyan;">';
+   echo 'post_name'.$post_name.'<br/>';
+   echo 'attachment_id:';
+   print_r($attachment_id);
+   echo '<br/>';
+   echo 'myid: '.$myid;
+   echo '<br/>';
+   print_r($file_array);
+   echo '</pre>';
+   */
 
-   // this returns the image id from WP that is used for property data import
-
-   // if successfully loaded, unlink the originated image
-   // unlink($tmp);
-   // echo 'unlink this!: ';
-   // print_r($tmp);
-   // echo '<br/>';
-
-   return $uploaded_image;
+   return $myid;
 
  }
  add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 1 );
@@ -596,7 +608,7 @@ function bh_write_to_log($string,$type) {
   $logdate = date("F j, Y, g:i a");
   $log  = $string.PHP_EOL;
   //Save string to log, use FILE_APPEND to append.
-  file_put_contents($fname, $log, FILE_APPEND);
+  // file_put_contents($fname, $log, FILE_APPEND);
 }
 
 ?>
