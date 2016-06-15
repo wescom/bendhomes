@@ -7,6 +7,7 @@ function brokerageBlock($my_id,$size) {
     'phone' => get_post_meta($my_id, 'brk_office_phone',true)
   );
 
+  error_log("size: ".$size, 0);
   $brokerage['address'] = str_replace("\n",'<br/>', $brokerage['address']);
 
   /* only show block if something is in $brokerage array */
