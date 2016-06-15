@@ -37,6 +37,7 @@
                               <li><a href="/advertise-bend-homes/">Advertise With Us</a></li>
                               <li><a href="mailto:info@bendhomes.com">Contact Us</a></li>
                             </ul>
+                          <h4>Last updated:<?php properties_updated_timestamp(); ?></h4>
                         </div>
 
                         <div class="span4">
