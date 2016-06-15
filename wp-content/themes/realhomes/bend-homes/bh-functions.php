@@ -130,16 +130,15 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
     $fnamerecent = ABSPATH.'/_retsapi/pulldates/'.$rc.'.txt';
 
     if(file_exists($fnamerecent)) {
-      error_log("File exists, pulling that", 0);
       $pulldate = file_get_contents($fnamerecent);
     } else {
-      error_log("File does not exist", 0);
       $pulldate = strtotime('-30 days'); //'-6 hours' '-1 days'
     }
     $showdate = date('F j, Y g:ia', $pulldate);
     //$showdate->sub('6H')
 
     $datetime_now = new DateTime("now");
+    error_log("Time now ".$datetime_now, 0);
     $datetime_smp = date_create($showdate);
     $diff = date_diff($datetime_now, $datetime_smp);
 
