@@ -134,7 +134,8 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
     } else {
       $pulldate = strtotime('-30 days'); //'-6 hours' '-1 days'
     }
-    $showdate = date('F j, Y g:ia', $pulldate);
+    $showdate = date('F j, Y g:ia', $pulldate - 60*60^7);
+    //$showdate->sub('6H')
 
     $datetime_now = new DateTime("now");
     $datetime_smp = date_create($showdate);
