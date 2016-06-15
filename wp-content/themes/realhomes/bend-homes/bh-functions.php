@@ -59,6 +59,9 @@ if ( ! function_exists( 'brokerage_label' ) ) {
 	 * @param string $post_id string to pull in needed data
 	 */
 	function brokerage_label( $post_id, $size ) {
+    if ($size == "xsmall") {
+        error_log("In brokerage_label!", 0);
+    }
     $property_agents = get_post_meta( $post_id, 'REAL_HOMES_agents' );
     // remove invalid ids
     $property_agents = array_filter( $property_agents, function($v){
