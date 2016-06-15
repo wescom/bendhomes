@@ -548,7 +548,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
    if( (!empty($attachment_id['ID'])) && ($attachment_fname == $file_array['name'] ) ) {
      $myid = $attachment_id['ID'];
-     // echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
+     echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
    } else {
      if ( is_wp_error( $tmp ) ) {
          // @unlink( $file_array[ 'tmp_name' ] );
@@ -556,7 +556,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
          // echo '<p style="background-color: red; color: #fff;">'.$tmp.'</p>';
      }
      $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
-     // echo '<p style="color: green;">new-id: '.$myid.'</p>';
+     echo '<p style="color: green;">new-id: '.$myid.'</p>';
    }
 
    /* debugging
