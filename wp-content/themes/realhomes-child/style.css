@@ -65,14 +65,20 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 
 @media(max-width: 767px) {
+	.page-spacer { height: 20px; }
 	#home-flexslider .flexslider { height: auto; }
-	#home-flexslider .desc-wrap { display: none; }
+	#home-flexslider .desc-wrap, #overview .property-item .printer-icon { display: none; }
 	#home-flexslider .flexslider .slides img { margin-top: 0; }
 	.property-items .span6 { width: auto; margin-right: 2%; }
 	.property-item .detail { float: none; }
 	.home-recent-posts { background: #f5f5f5; border-top: 1px solid #dedede; padding: 0 2%; }
 	.home-recent-posts article { border: 1px solid #dedede; padding: 0 15px; margin-bottom: 10px; background: #fff; }
 	.home-recent-posts article img { margin-top: 15px; }
-	#footer-wrapper { padding: 0 2%; }
+	#footer-wrapper, .page-breadcrumbs { padding: 0 2%; }
+	.property-title { font-size: 1.75em; }
+	#property-detail-flexslider, #property-detail-flexslider .flex-viewport { width: 100%; height: auto; }
+	#property-detail-flexslider .jcarousel-container-vertical { display: none; }
+	#overview .property-item .title { padding: 0; float: none; text-align: center; }
+	.property-grid .property-item { width: auto; }
 }
 
