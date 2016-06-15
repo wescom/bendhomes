@@ -27,7 +27,7 @@ if( !function_exists( 'create_agent_post_type' ) ){
             'hierarchical' => false,
             'menu_icon' => 'dashicons-businessman',
             'menu_position' => 5,
-            'supports' => array('title','editor','thumbnail','revisions'),
+            'supports' => array('title','editor','thumbnail'),
             'rewrite' => array( 'slug' => __('agent', 'framework') )
         );
 

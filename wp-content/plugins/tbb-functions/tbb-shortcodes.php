@@ -253,20 +253,18 @@ function tbb_custom_posts( $defaults ) {
 					break;
 					
 				case "company" :
-					//$phone = get_post_meta( get_the_ID(), 'company_office_phone', true );
-					//$fax = get_post_meta( get_the_ID(), 'company_office_fax', true );
-					//$address = get_post_meta( get_the_ID(), 'company_office_address', true );
+					$image_size = 'medium';
 					$phone = get_field( 'company_office_phone' );
 					$fax = get_field( 'company_office_fax' );
 					$address = get_field( 'company_office_address' );
 					if( $address )
-						$address = sprintf( '<div class="address">%s</div>', $address );
+						$address = sprintf( '<p class="address">%s</p>', $address );
 					if( $phone )
-						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> %s</div>', $phone );
+						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					if( $fax )
 						$fax = sprintf( '<div class="fax"><i class="fa fa-print"></i> %s</div>', $fax );
 					$additional_meta = sprintf( '
-						<div class="extra-meta agent-meta row-fluid"><div class="span6">%s</div><div class="span6">%s%s</div></div>', 
+						<div class="extra-meta company-meta">%s<div>%s%s</div></div>', 
 							$address, $phone, $fax );
 					break;
 					
@@ -274,20 +272,31 @@ function tbb_custom_posts( $defaults ) {
 			
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
 			
-			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s"><div class="custom-post-item clearfix">', $count, $cols, $classes );
+			$has_image_class = !empty( $image ) ? 'with-image' : '';
+			
+			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', $count, $cols, $classes, $has_image_class );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
-				
-					$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
-							$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
+					
+					if( $defaults['type'] != 'company' ) {
+						$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
+								$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
+					} else {
+						$output .= sprintf( '<figure class="custom-post-image image-%s %s"><img src="%s" width="%s" height="%s" /></figure>', 
+								$count, $image_size, $image[0], $image[1], $image[2] );	
+					}
 			
 				}
 				
 				$output .= $property_price;
 				
-				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $title );
+				if( $defaults['type'] != 'company' ) {
+					$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $title );
+				} else {
+					$output .= sprintf( '<h4 class="custom-post-title">%s</h4>', $title );
+				}
 				
-				if( $defaults['excerpt_length'] != 0 ) {
+				if( $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
 					
 					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', get_framework_excerpt( $defaults['excerpt_length'] ) );
 				
@@ -295,7 +304,9 @@ function tbb_custom_posts( $defaults ) {
 				
 				$output .= $additional_meta;
 				
-				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+				if( $defaults['type'] != 'company' ) {
+					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+				}
 			
 			$output .= '</div></div>';
 			
