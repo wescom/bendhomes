@@ -138,7 +138,6 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
     //$showdate->sub('6H')
 
     $datetime_now = new DateTime("now");
-    error_log("Time now ".$datetime_now, 0);
     $datetime_smp = date_create($showdate);
     $diff = date_diff($datetime_now, $datetime_smp);
 
