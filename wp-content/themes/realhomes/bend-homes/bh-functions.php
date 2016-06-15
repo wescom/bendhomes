@@ -1,6 +1,6 @@
 <?php
 
-function brokerageBlock($my_id,$size) {
+function brokerageBlock($my_id,$size='small') {
   $brokerage = array(
     'name' => get_post_meta($my_id, 'brk_office_name',true),
     'address' => get_post_meta($my_id, 'brk_office_address',true),
@@ -14,7 +14,7 @@ function brokerageBlock($my_id,$size) {
     if(!empty($brokerage['name'])){
 
       if($size == 'small') {
-        echo '<div class="brokerage-label bl-'.$size.'">'."\n"; 
+        echo '<div class="brokerage-label bl-'.$size.'">'."\n";
         echo '<p>';
         echo $brokerage['name'];
         echo '</p>';
@@ -58,7 +58,7 @@ if ( ! function_exists( 'brokerage_label' ) ) {
 	 *
 	 * @param string $post_id string to pull in needed data
 	 */
-	function brokerage_label( $post_id, $size ) {
+	function brokerage_label( $post_id ) {
     $property_agents = get_post_meta( $post_id, 'REAL_HOMES_agents' );
     // remove invalid ids
     $property_agents = array_filter( $property_agents, function($v){
@@ -68,7 +68,7 @@ if ( ! function_exists( 'brokerage_label' ) ) {
     $property_agents = array_unique( $property_agents );
     // print_r($property_agents);
     if(!empty($property_agents[0])) {
-      brokerageBlock($property_agents[0], $size);
+      brokerageBlock($property_agents[0]);
     }
 	}
 }
