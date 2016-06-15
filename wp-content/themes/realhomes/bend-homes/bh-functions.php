@@ -1,6 +1,6 @@
 <?php
 
-function brokerageBlock($my_id,$size='small') {
+function brokerageBlock($my_id,$size) {
   $brokerage = array(
     'name' => get_post_meta($my_id, 'brk_office_name',true),
     'address' => get_post_meta($my_id, 'brk_office_address',true),

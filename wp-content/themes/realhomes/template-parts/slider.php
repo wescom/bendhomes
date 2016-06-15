@@ -42,7 +42,6 @@ if($slider_query->have_posts()){
                                     if ( $price ){
                                         echo '<span>'.$price.'</span>';
                                     }
-                                    error_log("Calling brokerage_label!", 0);
                                     brokerage_label( $post->ID, 'xsmall' );
                                     ?>
                                     <a href="<?php the_permalink(); ?>" class="know-more"><?php _e('Know More','framework'); ?></a>
