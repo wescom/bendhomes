@@ -40,9 +40,9 @@ if($slider_query->have_posts()){
                                     <?php
                                     $price = get_property_price();
                                     if ( $price ){
-                                        echo '<span>'.$price.'</span>';
+                                        echo '<div><span>'.$price.'</span>'.brokerage_label( $post->ID, 'small' ).'</div>';
                                     }
-                                    brokerage_label( $post->ID, 'small' );
+
                                     ?>
                                     <a href="<?php the_permalink(); ?>" class="know-more"><?php _e('Know More','framework'); ?></a>
                                 </div>
