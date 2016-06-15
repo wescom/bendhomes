@@ -64,7 +64,6 @@ if ( $openhouse_properties_query->have_posts() ) :
                             if ( $price ){
                                 echo '<span class="price">'.$price.'</span>';
                             }
-                            <?php brokerage_label( $post->ID, 'small' ); ?>
                             ?>
                         </li>
                         <?php
