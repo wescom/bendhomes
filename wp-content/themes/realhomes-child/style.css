@@ -48,9 +48,11 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .custom-post .custom-post-image { margin-bottom: 10px; }
 .custom-post.one .custom-post-image, .custom-post.two .custom-post-image { float: left; width: 35%; max-width: 180px; margin-right: 5%; }
 .custom-post.one.with-image .custom-post-title, .custom-post.one.with-image .custom-post-excerpt, .custom-post.one.with-image .extra-meta, .custom-post.two.with-image .custom-post-title, .custom-post.two.with-image .custom-post-excerpt, .custom-post.two.with-image .extra-meta { float: right; width: 60%; }
-.post-property .custom-post .custom-post-image { margin-bottom: 0; }
+.post-property .custom-post .custom-post-image { margin-bottom: 0; margin-right: 0; float: none; width: 100%; max-width: 100%; }
+.post-property .custom-post.one.with-image .custom-post-title, .post-property .custom-post.two.with-image .custom-post-title, .post-property .custom-post.one.with-image .custom-post-excerpt, .post-property .custom-post.two.with-image .custom-post-excerpt, .post-property .custom-post.one.with-image .extra-meta, .post-property .custom-post.two.with-image .extra-meta { float: none; width: 100%; }
 .custom-post img { width: 100%; height: auto; }
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
 .custom-post .property-price small { color: #fff; }
+
 
 
