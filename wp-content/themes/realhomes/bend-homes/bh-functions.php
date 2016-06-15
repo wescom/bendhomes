@@ -137,14 +137,14 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
     $showdate = date('F j, Y g:ia', $pulldate);
     //$showdate->sub('6H')
 
-    $datetime_now = new DateTime("now");
-    $datetime_smp = date_create($showdate);
-    $diff = date_diff($datetime_now, $datetime_smp);
+    //$datetime_now = new DateTime("now");
+    //$datetime_smp = date_create($showdate);
+    //$diff = date_diff($datetime_now, $datetime_smp);
 
-    if($diff->h < 1){
+    //if($diff->h < 1){
       // if date stamp of last update is less than one day, use 'ago' language
-      $showdate = '<span class="time-ago">'.time_ago($showdate).'</span>'; 
-    }
+      //$showdate = '<span class="time-ago">'.time_ago($showdate).'</span>'; 
+    //}
     echo $showdate;
 	}
 }
