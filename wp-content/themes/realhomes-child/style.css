@@ -63,7 +63,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	.property-item figure, .property-item figure img { float: none; width: 100%; margin-bottom: 0; }
 	.property-item .detail, .listing-layout .property-item .detail { width: auto; float: none; }
 	.container.listing-grid-layout { width: auto; margin-left: 2%; margin-right: 2%; }
-	.listing-grid-layout .span9.main-wrap, listing-grid-layout .span3.sidebar-wrap { width: auto; float: none; }
+	.listing-grid-layout .span9.main-wrap, .listing-grid-layout .span3.sidebar-wrap { width: auto; float: none; }
 	.widget ul.featured-properties li { padding: 15px; background: #fff; border: 1px solid #dedede !important; margin-bottom: 10px; }
 }
 
