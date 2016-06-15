@@ -28,7 +28,7 @@ function brokerageBlock($my_id,$size) {
         echo '<span>brokered by:</span><br/>'."\n";
         echo $brokerage['name'];
         echo '</p>';
-        echo '<img src="'.get_template_directory_uri().'/images/idx-small.gif" alt="Broker Reciprocity">';
+        echo '<img src="'.get_template_directory_uri().'/images/idx-small.gif" alt="Broker Reciprocity2">';
         echo '</div>'."\n";
       }elseif ($size == 'large') {
         // echo '<br/>'.$brokerage['name'];
