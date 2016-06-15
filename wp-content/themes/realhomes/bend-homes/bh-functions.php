@@ -59,7 +59,7 @@ if ( ! function_exists( 'brokerage_label' ) ) {
 	 *
 	 * @param string $post_id string to pull in needed data
 	 */
-	function brokerage_label( $post_id ) {
+	function brokerage_label( $post_id, $size) {
     $property_agents = get_post_meta( $post_id, 'REAL_HOMES_agents' );
     // remove invalid ids
     $property_agents = array_filter( $property_agents, function($v){
@@ -69,8 +69,7 @@ if ( ! function_exists( 'brokerage_label' ) ) {
     $property_agents = array_unique( $property_agents );
     // print_r($property_agents);
     if(!empty($property_agents[0])) {
-      error_log("calling brokerageBlock", 0);
-      brokerageBlock($property_agents[0]);
+      brokerageBlock($property_agents[0], $size);
     }
 	}
 }
