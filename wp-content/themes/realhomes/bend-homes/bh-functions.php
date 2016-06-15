@@ -69,6 +69,7 @@ if ( ! function_exists( 'brokerage_label' ) ) {
     $property_agents = array_unique( $property_agents );
     // print_r($property_agents);
     if(!empty($property_agents[0])) {
+      error_log("calling brokerageBlock", 0);
       brokerageBlock($property_agents[0]);
     }
 	}
