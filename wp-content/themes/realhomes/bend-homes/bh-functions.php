@@ -14,7 +14,7 @@ function brokerageBlock($my_id,$size='small') {
     if(!empty($brokerage['name'])){
 
       if($size == 'small') {
-        echo '<div class="brokerage-label bl-'.$size.'">'."\n";
+        echo '<div class="brokerage-label bl-'.$size.'">'."\n"; 
         echo '<p>';
         echo $brokerage['name'];
         echo '</p>';
