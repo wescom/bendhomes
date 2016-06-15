@@ -58,7 +58,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	.user-nav, #logo { float: none; width: auto; text-align: center; }
 	.menu-and-contact-wrap { position: static; width: auto; }
 	.main-menu { float: none; width: auto; margin: 5px 15px 10px; }
-	.main-menu #menu-main-menu { display: none; }
+	.main-menu #menu-main-menu, .view-type { display: none; }
 	.main-menu .responsive-nav { display: block; }
 	.property-item figure, .property-item figure img { float: none; width: 100%; margin-bottom: 0; }
 	.property-item .detail, .listing-layout .property-item .detail { width: auto; float: none; }
