@@ -14,12 +14,21 @@ function brokerageBlock($my_id,$size) {
   if(array_filter($brokerage)) {
     if(!empty($brokerage['name'])){
 
-      if(($size == 'small')|| ($size == 'xsmall')) {
+      if($size == 'small') {
         echo '<div class="brokerage-label bl-'.$size.'">'."\n";
         echo '<p>';
         echo $brokerage['name'];
         echo '</p>';
         echo '<img src="'.get_template_directory_uri().'/images/idx-'.$size.'.gif" alt="Broker Reciprocity">';
+        echo '</div>'."\n";
+      }elseif ($size == 'xsmall') {
+        // echo '<br/>'.$brokerage['name'];
+        echo '<div class="brokerage-label bl-'.$size.'">'."\n";
+        echo '<p>';
+        echo '<span>brokered by:</span><br/>'."\n";
+        echo $brokerage['name'];
+        echo '</p>';
+        echo '<img src="'.get_template_directory_uri().'/images/idx-small.gif" alt="Broker Reciprocity">';
         echo '</div>'."\n";
       }elseif ($size == 'large') {
         // echo '<br/>'.$brokerage['name'];
