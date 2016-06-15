@@ -76,7 +76,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	.home-recent-posts article img { margin-top: 15px; }
 	#footer-wrapper, .page-breadcrumbs { padding: 0 2%; }
 	.property-title { font-size: 1.75em; }
-	#property-detail-flexslider, #property-detail-flexslider .flex-viewport { width: 100%; height: auto; }
+	#property-detail-flexslider, #property-detail-flexslider .flex-viewport, #property-detail-flexslider .flex-direction-nav { width: 100%; }
 	#property-detail-flexslider .jcarousel-container-vertical { display: none !important; }
 	#overview .property-item .title { padding: 0; float: none; text-align: center; }
 	.property-grid .property-item { width: auto; }
