@@ -25,7 +25,6 @@ function brokerageBlock($my_id,$size) {
         // echo '<br/>'.$brokerage['name'];
         echo '<div class="brokerage-label bl-'.$size.'">'."\n";
         echo '<p>';
-        echo '<span>brokered by:</span><br/>'."\n";
         echo $brokerage['name'];
         echo '</p>';
         echo '<img src="'.get_template_directory_uri().'/images/idx-small.gif" alt="Broker Reciprocity2">';
