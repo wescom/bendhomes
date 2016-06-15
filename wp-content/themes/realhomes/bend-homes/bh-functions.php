@@ -139,6 +139,7 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
 
     $datetime_now = new DateTime("now");
     $datetime_smp = date_create($showdate);
+    echo "<!-- date now ".$datetime_now." -->";
     $diff = date_diff($datetime_now, $datetime_smp);
 
     if($diff->h < 1){
