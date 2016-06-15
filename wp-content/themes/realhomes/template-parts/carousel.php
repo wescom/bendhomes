@@ -62,6 +62,7 @@ if ( $featured_properties_query->have_posts() ) :
                             if ( $price ){
                                 echo '<span class="price">'.$price.'</span>';
                             }
+                            brokerage_label( $post->ID, 'small' );
                             ?>
                         </li>
                         <?php
