@@ -119,7 +119,7 @@ function bhAgentRender($page_position) {
 						echo '</div>';
 					  
 					// If the Agent or Company is "not" featured and "not" in the sidebar do this
-					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') || ($company_is_featured != true) && ($page_position == 'body') ) {
+					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured != true) && ($page_position == 'body') ) {
 						
 						sprintf( '<div class="agent-%s company-featured-%s position-%s">
 								  <div class="rail-standard-agent-wrapper">
@@ -131,7 +131,8 @@ function bhAgentRender($page_position) {
 								  $agent_args[ 'agent_title_text' ], brokerageBlock( $agent_args[ 'agent_id' ], 'large' ) 
 						);
 					  
-					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') || ($company_is_featured == true) && ($page_position == 'body') ) {
+					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured == true) && ($page_position == 'body') ) {
+						
 						// Do nothing for body area
 					}
 				}
