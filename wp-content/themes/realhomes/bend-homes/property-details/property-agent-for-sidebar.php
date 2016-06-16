@@ -112,6 +112,10 @@ function bhAgentRender($page_position) {
 						
 						// Do nothing for body area
 						
+					} elseif( ($agent_args[ 'agent_display_type' ] == 'featured-agent') && ($company_is_featured == true) && ($page_position == 'body') ) {
+						
+						// Do nothing for body area
+						
 					// If the Agent is "not" featured and in the sidebar do this
 					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured != true) && ($page_position == 'sidebar') ) {
 					  
