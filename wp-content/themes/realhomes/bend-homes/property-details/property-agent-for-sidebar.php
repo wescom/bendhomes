@@ -93,6 +93,7 @@ function bhAgentRender($page_position) {
 							
 							$company_is_featured = get_field( 'company_featured_company' );
 							var_dump( $company_is_featured );
+							$company_featured = '';
 							if($company_is_featured == true) {
 								$company_featured = 'yes';
 							} else {
@@ -105,14 +106,14 @@ function bhAgentRender($page_position) {
 					wp_reset_query();
 					
 					// If the Agent or Company is featured and in the sidebar do this
-					if( ($agent_args[ 'agent_display_type' ] == 'featured-agent') || $company_featured = 'yes' && ($page_position == 'sidebar') ) {
+					if( ($agent_args[ 'agent_display_type' ] == 'featured-agent') || ($company_is_featured == true) && ($page_position == 'sidebar') ) {
 							
 						echo '<div class="agent-'. $agent_args[ 'agent_display_type' ] .' company-featured-'. $company_featured .' position-'. $page_position .'">';
 							display_sidebar_agent_box( $agent_args );
 						echo '</div>';
 					  
 					// If the Agent is "not" featured and in the sidebar do this
-					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($page_position == 'sidebar') ) {
+					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') || ($company_is_featured != true) && ($page_position == 'sidebar') ) {
 					  
 					  	echo '<div class="agent-'. $agent_args[ 'agent_display_type' ] .' company-featured-'. $company_featured .' position-'. $page_position .'">';
 							echo '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
