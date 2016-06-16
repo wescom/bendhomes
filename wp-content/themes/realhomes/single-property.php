@@ -189,7 +189,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						wp_reset_query();
 						
 						$company_post = new WP_Query( array(
-							'post_type' => 'company'
+							'post_type' => 'company',
+							'name' => $agent_brokerage_office
 						) );
 						
 						if( $company_post->have_posts() ) :
