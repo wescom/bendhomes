@@ -93,7 +93,7 @@ function bhAgentRender($page_position) {
 							
 							$company_is_featured = get_field( 'company_featured_company' );
 							var_dump( $company_is_featured );
-							if($company_is_featured) {
+							if($company_is_featured == true) {
 								$company_featured = 'yes';
 							} else {
 								$company_featured = 'no';
