@@ -100,11 +100,9 @@ function bhAgentRender($page_position) {
 					
 					wp_reset_query();
 					
-					// If the Agent is featured and in the sidebar, or the Company is featured and in the sidebar, do this
-					if( (($agent_args[ 'agent_display_type' ] == 'featured-agent') && ($page_position == 'sidebar')) || 
-						(($company_is_featured = true) && ($page_position == 'sidebar')) ) {
+					// If the Agent or Company is featured and in the sidebar do this
+					if( ($agent_args[ 'agent_display_type' ] == 'featured-agent') || $company_is_featured = true && ($page_position == 'sidebar') ) {
 							
-						// we only want to show featured agents in right rail JTG 1777
 						display_sidebar_agent_box( $agent_args );
 					  
 					// If the Agent is "not" featured and in the sidebar do this
