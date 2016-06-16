@@ -15,7 +15,7 @@ $tour_video_image = $tour_video_image_src[0];
                 ?><span class="video-label"><?php echo $property_video_title; ?></span><?php
             }
             ?>
-            <a href="<?php echo $tour_video_url; ?>" class="pretty-photo" title="Video">
+            <a href="<?php echo $tour_video_url; ?>" class="property-video-link" target="_blank" title="Video">
                 <div class="play-btn"></div>
                 <?php echo '<img src="'.$tour_video_image.'" alt="'.get_the_title($post->ID).'">'; ?>
             </a>
