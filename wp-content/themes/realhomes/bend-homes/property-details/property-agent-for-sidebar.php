@@ -131,6 +131,8 @@ function bhAgentRender($page_position) {
 								  $agent_args[ 'agent_title_text' ], brokerageBlock( $agent_args[ 'agent_id' ], 'large' ) 
 						);
 					  
+					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') || ($company_is_featured == true) && ($page_position == 'body') ) {
+						// Do nothing for body area
 					}
 				}
 			}
