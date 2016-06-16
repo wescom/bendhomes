@@ -92,6 +92,7 @@ function bhAgentRender($page_position) {
 						while( $company_post->have_posts() ) : $company_post->the_post();
 							
 							$company_is_featured = get_field( 'company_featured_company' );
+							var_dump( $company_is_featured );
 							if($company_is_featured) {
 								$company_featured = 'yes';
 							} else {
