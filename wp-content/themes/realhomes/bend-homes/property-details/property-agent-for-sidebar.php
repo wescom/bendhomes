@@ -134,6 +134,11 @@ function bhAgentRender($page_position) {
 					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured == true) && ($page_position == 'body') ) {
 						
 						// Do nothing for body area
+						
+					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured != true) && ($page_position == 'body') ) {
+						
+						// Do nothing for body area
+						
 					}
 				}
 			}
