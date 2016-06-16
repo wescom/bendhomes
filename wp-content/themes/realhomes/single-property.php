@@ -166,7 +166,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							foreach ( $property_agents as $agent ) {
 								if ( 0 < intval( $agent ) ) {
 									$agent_args = array();
-									intval( $agent_id ) = $agent_args[ 'agent_id' ];
+									$agent_args[ 'agent_id' ] = intval( $agent );
 								}
 							}
 						}
@@ -175,7 +175,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						
 						$agent_args = array(
 							'post_type' => 'agent',
-							'p' => $agent_id
+							'p' => $agent_args[ 'agent_id' ]
 						);
 						
 						$agent_post = new WP_Query( $agent_args );
