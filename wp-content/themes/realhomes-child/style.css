@@ -24,9 +24,9 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 #overview .share-networks .add-to-fav a, #overview .share-networks .add-to-fav a i { color: #394041; }
 #overview .share-networks .add-to-fav a:hover, #overview .share-networks .add-to-fav a:hover i { color: #f60; }
 
-#home-flexslider .slide-description .brokerage-label { float: right; }
+#home-flexslider .slide-description .brokerage-label { border-top: 1px solid #dedede; padding-top: 5px; margin-top: 7px; }
 #home-flexslider .slide-description .brokerage-label p { margin-bottom: 0; line-height: 1; }
-#home-flexslider .slides .slide-description img { width: 40px; height: auto; margin: 3px 0 0; }
+#home-flexslider .slides .slide-description img { width: 40px; height: auto; margin: 3px 0 0; float: right; }
 
 
 /*--- Custom Posts Shortcode Styles --- */
