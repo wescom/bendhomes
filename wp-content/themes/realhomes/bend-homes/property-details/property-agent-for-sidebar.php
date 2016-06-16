@@ -124,7 +124,7 @@ function bhAgentRender($page_position) {
 						echo '<div class="agent-'. $agent_args[ 'agent_display_type' ] .' company-featured-'. $company_featured .' position-'. $page_position .'">
 								  <div class="rail-standard-agent-wrapper">
 									<p class="listing-agent"><strong>Listing Agent: </strong><br/>'. $agent_args[ 'agent_title_text' ] .'</p>';
-									brokerageBlock( $agent_args[ 'agent_id' ], 'large' );
+									echo brokerageBlock( $agent_args[ 'agent_id' ], 'large' );
 									echo '<br style="clear: both;"/>
 								  </div>
 							  </div>  
