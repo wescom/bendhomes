@@ -1,6 +1,6 @@
 <?php
 /*
-*  Template Name: My Properties Template
+*  Template Name: My Properties Template 
 */
 
 get_header();

@@ -1,4 +1,4 @@
-<?php
+<?php 
 get_header();
 
 $theme_property_detail_variation = get_option('theme_property_detail_variation');

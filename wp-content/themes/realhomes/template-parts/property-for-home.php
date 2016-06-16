@@ -4,7 +4,7 @@
 
         <figure>
             <a href="<?php the_permalink(); ?>">
-                <?php
+                <?php 
                 global $post;
                 if( has_post_thumbnail( $post->ID ) ) {
                     the_post_thumbnail( 'property-thumb-image' );

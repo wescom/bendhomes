@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 $number_of_slides = intval(get_option('theme_number_of_slides'));
 if(!$number_of_slides){

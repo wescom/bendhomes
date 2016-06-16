@@ -1,4 +1,4 @@
-<?php
+<?php 
 /* Featured Properties Query Arguments */
 $featured_properties_args = array(
     'post_type' => 'property',

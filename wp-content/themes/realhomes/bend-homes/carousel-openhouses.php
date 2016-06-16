@@ -1,4 +1,4 @@
-<?php
+<?php 
 /* Featured Properties Query Arguments */
 $openhouse_properties_args = array(
     'post_type' => 'property',

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /**
  * Display or retrieve the current post title with alternate title

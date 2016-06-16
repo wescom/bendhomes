@@ -1,4 +1,4 @@
-<?php
+<?php 
 global $post;
 
 $property_children_args = array(
