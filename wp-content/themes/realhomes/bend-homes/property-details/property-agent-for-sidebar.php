@@ -92,7 +92,7 @@ function bhAgentRender($page_position) {
 						while( $company_post->have_posts() ) : $company_post->the_post();
 							
 							$company_is_featured = get_field( 'company_featured_company' );
-							//$is_featured = $company_is_featured == true ? 'Yes' : 'No';
+							$company_featured = $company_is_featured == true ? 'Yes' : 'No';
 							//echo '<p>Is Featured: '. $is_featured .'</p>';
 							
 						endwhile;
@@ -101,9 +101,11 @@ function bhAgentRender($page_position) {
 					wp_reset_query();
 					
 					// If the Agent or Company is featured and in the sidebar do this
-					if( ($agent_args[ 'agent_display_type' ] == 'featured-agent') || $company_is_featured = true && ($page_position == 'sidebar') ) {
+					if( ($agent_args[ 'agent_display_type' ] == 'featured-agent') || $company_featured = 'Yes' && ($page_position == 'sidebar') ) {
 							
-						display_sidebar_agent_box( $agent_args );
+						echo '<div class="agent-'. $agent_args[ 'agent_display_type' ] .' company-featured-'. $company_featured .' position-'. $page_position .'">';
+							display_sidebar_agent_box( $agent_args );
+						echo '</div>';
 					  
 					// If the Agent is "not" featured and in the sidebar do this
 					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($page_position == 'sidebar') ) {
