@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * Slider for slides custom post type
  */

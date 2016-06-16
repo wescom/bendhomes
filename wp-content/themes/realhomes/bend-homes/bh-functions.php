@@ -1,4 +1,41 @@
-<?php
+<?php 
+
+/**
+ * Display or retrieve the current post title with alternate title
+ * if 'show_address_to_public' flag is set to 'no' as an alternate
+ * field in the property post type
+ *
+ * pull is the global $post variable to get needed post data
+ *
+ * @param string $before Optional. Content to prepend to the title.
+ * @param string $after  Optional. Content to append to the title.
+ * @param bool   $echo   Optional, default to true.Whether to display or return.
+ * @return string|void String if $echo parameter is false.
+ */
+function bh_the_title( $before = '', $after = '', $echo = true ) {
+  global $post;
+  $addressflag = get_post_meta($post->ID, 'show_address_to_public',true);
+  $addressflag = strtolower($addressflag);
+  // if the show_address_to_public field is empty or not equal to 'no', then show address
+  if($addressflag == 'no') {
+    // only make sentence if no address shown, regex got to first punctuation mark, and return that string
+    $sentence = preg_replace('/([^?!.]*.).*/', '\\1', $post->post_content);
+    $title = $sentence;
+  } else {
+    // if any value other than 'no', show standard title
+    $title = get_the_title();
+  }
+
+	if ( strlen($title) == 0 )
+		return;
+
+	$title = $before . $title . $after;
+
+	if ( $echo )
+		echo $title;
+	else
+		return $title;
+}
 
 function brokerageBlock($my_id,$size) {
   $brokerage = array(
@@ -143,7 +180,7 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
 
     //if($diff->h < 1){
       // if date stamp of last update is less than one day, use 'ago' language
-      //$showdate = '<span class="time-ago">'.time_ago($showdate).'</span>'; 
+      //$showdate = '<span class="time-ago">'.time_ago($showdate).'</span>';
     //}
     echo $showdate;
 	}

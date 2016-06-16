@@ -1,4 +1,4 @@
-<?php
+<?php 
 global $post;
 
 $property_children_args = array(
@@ -52,7 +52,7 @@ if ( $child_properties_query->have_posts() ) :
 
 
             <div class="summary">
-                <h4><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h4>
+                <h4><a href="<?php the_permalink() ?>"><?php bh_the_title(); ?></a></h4>
                 <h5 class="price">
                     <?php
                     // price

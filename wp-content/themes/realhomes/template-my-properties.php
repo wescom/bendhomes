@@ -1,6 +1,6 @@
 <?php
 /*
-*  Template Name: My Properties Template
+*  Template Name: My Properties Template 
 */
 
 get_header();
@@ -82,7 +82,7 @@ get_header();
                                     </div>
 
                                     <div class="property-title cell">
-                                        <h5><?php the_title(); ?></h5>
+                                        <h5><?php bh_the_title(); ?></h5>
                                     </div>
 
                                     <div class="property-date cell">

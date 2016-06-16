@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
 *  Template Name: Import RETS Properties
 */
@@ -26,6 +26,8 @@ function dataPreProc($proparr,$scenarioset) {
     $mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
     $bhpropertyid = $mlsposts[0];
     $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
+
+    $postaction = 'update_property';
     // // end use cases
     // add_property
     // skip_property
@@ -47,6 +49,16 @@ function dataPreProc($proparr,$scenarioset) {
       $bhagentfullname = $agentposts[0];
       $bhagentfullname = $bhagentfullname->{post_title};
 
+      echo '<h2 style="color: red;">';
+      echo $propitem['ShowAddressToPublic'];
+      echo '</h2>';
+
+      if($propitem['ShowAddressToPublic'] == '0') {
+        $bhpublicaddressflag = 'no';
+      } else {
+        $bhpublicaddressflag = 'yes';
+      }
+
       $bhagentdisplayoption = 'agent_info'; // my_profile_info, agent_info, none
       // $bhmarketingremarks = $propitem['MarketingRemarks'].'<br/><br/><strong>Listing Agent: </strong><br/>'.$bhagentfullname.'<br/>'.$propitem['ListingOfficeName'];
       $bhmarketingremarks = $propitem['MarketingRemarks'];
@@ -64,6 +76,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_BUSI import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
+            'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['BUSITYPE']),
             'status' => 34,
@@ -86,6 +99,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_COMM import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
+            'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['COMMTYPE']),
             'status' => 34,
@@ -108,6 +122,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_FARM import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
+            'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertyType']),
             'status' => 34,
@@ -136,6 +151,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_LAND import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
+            'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
             'status' => 34,
@@ -158,6 +174,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_MULT import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
+            'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
             'status' => 34,
@@ -185,6 +202,7 @@ function dataPreProc($proparr,$scenarioset) {
           // START Property_RESI import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
+            'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertyType']),
             'status' => 34,
@@ -290,7 +308,7 @@ function dataPropertyWPinsert($myproperty) {
             $property_id = wp_update_post( $new_property ); // Update Property and get Property ID
             if( $property_id > 0 ){
                 $updated_successfully = true;
-                echo '<h1 style="background-color: orange;">'.$updated_successfully.' - '.$property_id.'</h1>';
+                echo '<h1 style="background-color: cyan;">'.$updated_successfully.' - '.$property_id.'</h1>';
             }
         } else if( $action == "delete_property" ) {
             $del_property['ID'] = intval( $myproperty['property_id'] );
@@ -389,6 +407,11 @@ function dataPropertyWPinsert($myproperty) {
                 if( isset( $myproperty['agent_id'] ) ){
                     update_post_meta( $property_id, 'REAL_HOMES_agents', $myproperty['agent_id'] );
                 }
+            }
+
+            // Show address to public toggle
+            if( isset ( $myproperty['show_address_to_public'] ) && ! empty ( $myproperty['show_address_to_public'] ) ) {
+                update_post_meta( $property_id, 'show_address_to_public', $myproperty['show_address_to_public']);
             }
 
             // Attach Property ID Post Meta
