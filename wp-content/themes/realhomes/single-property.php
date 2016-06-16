@@ -199,7 +199,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							while( $company_post->have_posts() ) : $company_post->the_post();
 								
 								$company_is_featured = get_field( 'company_featured_company' );
-								echo '<p>Is Featured: '. $company_is_featured .'</p>';
+								$is_featured = $company_is_featured == true ? 'Yes' : 'No';
+								echo '<p>Is Featured: '. $is_featured .'</p>';
 								
 							endwhile;
 						endif;
