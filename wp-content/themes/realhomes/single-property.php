@@ -174,8 +174,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						
 						$agent_post = new WP_Query( array(
 							'post_type' => 'agent',
-							'p' => $property_agents )
-						);
+							'p' => $property_agents 
+						) );
 						
 						if( $agent_post->have_posts() ) :
 							while( $agent_post->have_posts() ) : $agent_post->the_post();
@@ -191,10 +191,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						$company_post = new WP_Query( array(
 							'post_type' => 'company',
 							'name' => $agent_brokerage_office
+							//'post_status' => 'publish',
+  							//'numberposts' => 1
 						) );
 						
 						if( $company_post->have_posts() ) :
-							while( $compan_post->have_posts() ) : $company_post->the_post();
+							while( $company_post->have_posts() ) : $company_post->the_post();
 								
 								$company_is_featured = get_field( 'company_featured_company' );
 								echo '<p>Is Featured: '. $company_is_featured .'</p>';
