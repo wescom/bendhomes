@@ -62,7 +62,7 @@ if ( $featured_properties_query->have_posts() ) :
                                 echo '<span class="price">'.$price.'</span>';
                             }
 							?>
-                            <p><a href="<?php the_permalink() ?>"> <?php _e('Know More','framework'); ?> </a> </p>
+                            <p><a href="<?php the_permalink() ?>"> <?php _e('More Details <i class="fa fa-caret-right"></i>','framework'); ?> </a> </p>
                             <?php
                             brokerage_label( $post->ID, 'small' );
                             ?>
