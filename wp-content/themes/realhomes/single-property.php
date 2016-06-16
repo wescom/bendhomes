@@ -152,7 +152,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                 <div class="span3 sidebar-wrap">
                     <!-- Sidebar -->
                     <aside class="sidebar">
-                        <?php
+                    	
+                        <?php 
+						echo '<!-- Test ID: '. $post->ID .'-->';
+                    
+                    
+                        
                         bhAgentRender('sidebar');
                         if ( ! dynamic_sidebar( 'property-sidebar' ) ) :
                         endif;
