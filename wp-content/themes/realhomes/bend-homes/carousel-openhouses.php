@@ -57,13 +57,20 @@ if ( $openhouse_properties_query->have_posts() ) :
                                     ?>
                                 </a>
                             </figure>
+<<<<<<< HEAD
                             <h4><a href="<?php the_permalink(); ?>"><?php bh_the_title(); ?></a></h4>
                             <p><?php framework_excerpt(8); ?> <a href="<?php the_permalink() ?>"> <?php _e('Know More','framework'); ?> </a> </p>
+=======
+                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+>>>>>>> development
                             <?php
                             $price = get_property_price();
                             if ( $price ){
                                 echo '<span class="price">'.$price.'</span>';
                             }
+							?>
+                            <p><?php //framework_excerpt(8); ?> <a href="<?php the_permalink() ?>"> <?php _e('Know More','framework'); ?> </a> </p>
+                            <?php
                             brokerage_label( $post->ID, 'small' );
                             ?>
                         </li>
