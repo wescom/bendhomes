@@ -154,7 +154,28 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                     <aside class="sidebar">
                     	
                         <?php 
-						echo '<!-- Test ID: '. $post->ID .'-->';
+						$property_ID = $post->ID;
+						$property_agent = sanitize_title( get_post_meta( $property_ID, 'REAL_HOMES_agents' ) );
+						
+						wp_reset_query();
+						
+						$agent_args = array(
+							'post_type' => 'agent',
+							'name' => $agent_name
+						);
+						
+						$agent_post = new WP_Query( $agent_args );
+						
+						if ( $agent_post->have_posts() ) :
+							while ( $agent_post->have_posts() ) : $agent_post->the_post();
+						
+								$agent_brokerage_office = get_post_meta( get_the_ID(), 'brk_office_name' );
+								echo '<!-- Agent Brokerage Office: '. $agent_brokerage_office .' -->';
+							
+							endwhile;
+						endif;
+						
+						wp_reset_query();
                     
                     
                         
