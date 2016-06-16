@@ -155,8 +155,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                     	
                         <?php 
 						$property_ID = $post->ID;
-						echo $property_ID;
-						$property_agents = sanitize_title( get_post_meta( $property_ID, 'REAL_HOMES_agents' ) );
+						$property_agents = sanitize_title( get_field( 'REAL_HOMES_agents' ) );
 						echo $property_agents;
 						/*$property_agents = array_unique( $property_agents );
 						if ( ! empty( $property_agents ) ) {
