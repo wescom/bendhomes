@@ -177,20 +177,29 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							'p' => $property_agents )
 						);
 						
-						if ( $agent_post->have_posts() ) :
-							while ( $agent_post->have_posts() ) : $agent_post->the_post();
+						if( $agent_post->have_posts() ) :
+							while( $agent_post->have_posts() ) : $agent_post->the_post();
 						
 								$agent_brokerage_office = sanitize_title( get_field( 'brk_office_name' ) );
-								echo '<p>Agent Brokerage Office: '. $agent_brokerage_office .'</p>';
+								echo '<p>Brokerage Office: '. $agent_brokerage_office .'</p>';
 							
 							endwhile;
 						endif;
 						
 						wp_reset_query();
 						
-						/*$company_post = new WP_Query( array(
+						$company_post = new WP_Query( array(
 							'post_type' => 'company'
-						) );*/
+						) );
+						
+						if( $company_post->have_posts() ) :
+							while( $compan_post->have_posts() ) : $company_post->the_post();
+								
+								$company_is_featured = get_field( 'company_featured_company' );
+								echo '<p>Is Featured: '. $company_is_featured .'</p>';
+								
+							endwhile;
+						endif;
                     
                     
                         
