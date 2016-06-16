@@ -29,6 +29,8 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 #home-flexslider .slide-description .brokerage-label p { color: #777; margin-bottom: 0; line-height: 1; }
 #home-flexslider .slides .slide-description img { width: 30px; height: auto; margin: 3px 0 0; float: right; }
 
+.Featured_Properties_Widget { background: #fff; }
+
 
 /*--- Custom Posts Shortcode Styles --- */
 .custom-posts-wrapper {}
@@ -88,6 +90,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	#property-detail-flexslider, #property-detail-flexslider .flex-viewport, #property-detail-flexslider .flex-direction-nav { width: 100%; }
 	#property-detail-flexslider .jcarousel-container-vertical { display: none !important; }
 	#overview .property-item .title { padding: 0; float: none; text-align: center; }
-	.property-grid .property-item { width: auto; }
+	.property-grid .list-container { margin-left: 0; }
+	.property-grid .property-item { width: 100%; margin: 0 0 30px; }
 }
 
