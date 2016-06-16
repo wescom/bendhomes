@@ -21,7 +21,7 @@
                     ?>
 
                     <div class="list-container clearfix">
-                        <p>Updated: <?php properties_updated_timestamp(); ?></p>
+                        <p>Listings updated:  <?php properties_updated_timestamp(); ?></p>
                         <?php
                         get_template_part('template-parts/sort-controls');
 

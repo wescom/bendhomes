@@ -7301,6 +7301,23 @@ input[type=text].ui-autocomplete-loading {
   color: #333333;
 }
 
+.bl-xsmall {
+  display: block;
+  border-top: 1px solid #dedede;
+  padding: 7px 0 3px 0;
+  margin: 7px 0 0 0;
+}
+
+.bl-xsmall p {
+  width: 74%;
+  line-height: 1.2em;
+}
+
+.bl-xsmall img {
+  margin-left: 5px;
+  width: 30%;
+}
+
 .brokerage-label.bl-small {
   display: block;
   border-top: 1px solid #dedede;
