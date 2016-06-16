@@ -56,7 +56,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                         <?php
                         // 1777
                         echo '<h1 class="property-title">';
-                        the_title();
+                        bh_the_title();
                         echo '</h1>';
 
                         if ( have_posts() ) :

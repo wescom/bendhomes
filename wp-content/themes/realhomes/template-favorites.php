@@ -80,7 +80,7 @@ get_template_part('banners/default_page_banner');
                                                 <span class="loader"><i class="fa fa-spinner fa-spin"></i></span>
                                             </figure>
 
-                                            <h4><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h4>
+                                            <h4><a href="<?php the_permalink() ?>"><?php bh_the_title(); ?></a></h4>
                                             <p><?php framework_excerpt(10); ?> <a class="more-details" href="<?php the_permalink() ?>"><?php _e('More Details ','framework'); ?><i class="fa fa-caret-right"></i></a></p>
                                             <?php
                                             $price = get_property_price();

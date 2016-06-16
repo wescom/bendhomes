@@ -1,6 +1,6 @@
 <div class="span6 ">
     <article class="property-item clearfix">
-        <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+        <h4><a href="<?php the_permalink(); ?>"><?php bh_the_title(); ?></a></h4>
 
         <figure>
             <a href="<?php the_permalink(); ?>">

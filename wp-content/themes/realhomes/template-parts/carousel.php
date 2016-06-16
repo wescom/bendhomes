@@ -45,7 +45,7 @@ if ( $featured_properties_query->have_posts() ) :
                         ?>
                         <li>
                             <figure>
-                                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                <a href="<?php the_permalink(); ?>" title="<?php bh_the_title(); ?>">
                                     <?php
                                     if( has_post_thumbnail() ){
                                         the_post_thumbnail( 'property-thumb-image' );
@@ -55,7 +55,7 @@ if ( $featured_properties_query->have_posts() ) :
                                     ?>
                                 </a>
                             </figure>
-                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                            <h4><a href="<?php the_permalink(); ?>"><?php bh_the_title(); ?></a></h4>
                             <p><?php framework_excerpt(8); ?> <a href="<?php the_permalink() ?>"> <?php _e('Know More','framework'); ?> </a> </p>
                             <?php
                             $price = get_property_price();

@@ -35,7 +35,7 @@ if($slider_query->have_posts()){
                         <li>
                             <div class="desc-wrap">
                                 <div class="slide-description">
-                                    <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                                    <h3><a href="<?php the_permalink(); ?>"><?php bh_the_title(); ?></a></h3>
                                     <p><?php framework_excerpt(15); ?></p>
                                     <?php
                                     $price = get_property_price();
