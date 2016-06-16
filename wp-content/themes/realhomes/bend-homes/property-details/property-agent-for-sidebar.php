@@ -118,8 +118,8 @@ function bhAgentRender($page_position) {
 							echo '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
 						echo '</div>';
 					  
-					// If the Agent is "not" featured and "not" in the sidebar do this
-					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($page_position == 'body') ) {
+					// If the Agent or Company is "not" featured and "not" in the sidebar do this
+					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') || ($company_is_featured != true) && ($page_position == 'body') ) {
 						
 						sprintf( '<div class="agent-%s company-featured-%s position-%s">
 								  <div class="rail-standard-agent-wrapper">
