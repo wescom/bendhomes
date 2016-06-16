@@ -104,13 +104,14 @@ function bhAgentRender($page_position) {
 					
 					wp_reset_query();
 					
-					// If the Agent or Company is featured and in the sidebar do this
-					if( ($agent_args[ 'agent_display_type' ] == 'featured-agent') || ($company_is_featured == true) && ($page_position == 'sidebar') ) {
-							
-						echo '<div class="agent-'. $agent_args[ 'agent_display_type' ] .' company-featured-'. $company_featured .' position-'. $page_position .'">';
-							display_sidebar_agent_box( $agent_args );
-						echo '</div>';
-					  
+					if( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured == true) && ($page_position == 'body') ) {
+						
+						// Do nothing for body area
+						
+					} elseif( ($agent_args[ 'agent_display_type' ] == 'featured-agent') && ($company_is_featured != true) && ($page_position == 'body') ) {
+						
+						// Do nothing for body area
+						
 					// If the Agent is "not" featured and in the sidebar do this
 					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured != true) && ($page_position == 'sidebar') ) {
 					  
@@ -118,8 +119,14 @@ function bhAgentRender($page_position) {
 							echo '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
 						echo '</div>';
 					  
-					// If the Agent or Company is "not" featured and "not" in the sidebar do this
-					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured != true) && ($page_position == 'body') ) {
+					// If the Agent or Company is featured and in the sidebar do this
+					} elseif( ($agent_args[ 'agent_display_type' ] == 'featured-agent') || ($company_is_featured == true) && ($page_position == 'sidebar') ) {
+							
+						echo '<div class="agent-'. $agent_args[ 'agent_display_type' ] .' company-featured-'. $company_featured .' position-'. $page_position .'">';
+							display_sidebar_agent_box( $agent_args );
+						echo '</div>';
+					  
+					}elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured != true) && ($page_position == 'body') ) {
 						
 						echo '<div class="agent-'. $agent_args[ 'agent_display_type' ] .' company-featured-'. $company_featured .' position-'. $page_position .'">
 								  <div class="rail-standard-agent-wrapper">
@@ -130,14 +137,6 @@ function bhAgentRender($page_position) {
 							  </div>  
 						';
 					  
-					} elseif( ($agent_args[ 'agent_display_type' ] != 'featured-agent') && ($company_is_featured == true) && ($page_position == 'body') ) {
-						
-						// Do nothing for body area
-						
-					} elseif( ($agent_args[ 'agent_display_type' ] == 'featured-agent') && ($company_is_featured != true) && ($page_position == 'body') ) {
-						
-						// Do nothing for body area
-						
 					}
 				}
 			}
