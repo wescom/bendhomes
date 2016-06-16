@@ -156,10 +156,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                         <?php 
 						$property_ID = $post->ID;
 						$property_agents = sanitize_title( get_post_meta( $property_ID, 'REAL_HOMES_agents' ) );
-						$property_agents = array_filter( $property_agents, function($v){
-							return ( $v > 0 );
-						});
-						$property_agents = array_unique( $property_agents );
+						print_r($property_agents);
+						/*$property_agents = array_unique( $property_agents );
 						if ( ! empty( $property_agents ) ) {
 							$i = 0;
 							foreach ( $property_agents as $agent ) {
@@ -170,7 +168,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 									echo '<!-- Agent ID: '. $agent_args[ 'agent_id' ] .' -->';
 								//}
 							}
-						}
+						}*/
 						
 						/*wp_reset_query();
 						
