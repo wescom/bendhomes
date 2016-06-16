@@ -155,8 +155,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                     	
                         <?php 
 						$property_ID = $post->ID;
-						$property_agents = sanitize_title( get_field( 'REAL_HOMES_agents' ) );
-						echo $property_agents;
+						$property_agents = get_field( 'REAL_HOMES_agents' );
+						
 						/*$property_agents = array_unique( $property_agents );
 						if ( ! empty( $property_agents ) ) {
 							$i = 0;
@@ -170,11 +170,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							}
 						}*/
 						
-						/*wp_reset_query();
+						wp_reset_query();
 						
 						$agent_args = array(
 							'post_type' => 'agent',
-							'p' => $agent_args[ 'agent_id' ]
+							'p' => $property_agents
 						);
 						
 						$agent_post = new WP_Query( $agent_args );
@@ -182,13 +182,13 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						if ( $agent_post->have_posts() ) :
 							while ( $agent_post->have_posts() ) : $agent_post->the_post();
 						
-								$agent_brokerage_office = get_post_meta( get_the_ID(), 'brk_office_name' );
-								echo '<!-- Agent Brokerage Office: '. $agent_brokerage_office .' -->';
+								$agent_brokerage_office = get_field( 'brk_office_name' );
+								echo '<p>Agent Brokerage Office: '. $agent_brokerage_office .'</p>';
 							
 							endwhile;
 						endif;
 						
-						wp_reset_query();*/
+						wp_reset_query();
                     
                     
                         
