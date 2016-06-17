@@ -154,7 +154,43 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                     <aside class="sidebar">
                     	
                         <?php 
-						echo '<!-- Test ID: '. $post->ID .'-->';
+						/*$property_ID = $post->ID;
+						$property_agents = get_field( 'REAL_HOMES_agents' );
+						
+						wp_reset_query();
+						
+						$agent_post = new WP_Query( array(
+							'post_type' => 'agent',
+							'p' => $property_agents 
+						) );
+						
+						if( $agent_post->have_posts() ) :
+							while( $agent_post->have_posts() ) : $agent_post->the_post();
+						
+								$agent_brokerage_office = sanitize_title( get_field( 'brk_office_name' ) );
+								echo '<p>Brokerage Office: '. $agent_brokerage_office .'</p>';
+							
+							endwhile;
+						endif;
+						
+						wp_reset_query();
+						
+						$company_post = new WP_Query( array(
+							'post_type' => 'company',
+							'name' => $agent_brokerage_office
+							//'post_status' => 'publish',
+  							//'numberposts' => 1
+						) );
+						
+						if( $company_post->have_posts() ) :
+							while( $company_post->have_posts() ) : $company_post->the_post();
+								
+								$company_is_featured = get_field( 'company_featured_company' );
+								$is_featured = $company_is_featured == true ? 'Yes' : 'No';
+								echo '<p>Is Featured: '. $is_featured .'</p>';
+								
+							endwhile;
+						endif;*/
                     
                     
                         
