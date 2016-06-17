@@ -395,7 +395,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sf-active, #mobile-menu {}
 
 
-.menu { height: 50px; visibility: hidden; margin: 0 auto; }
+.menu { height: 50px; margin: 0 auto; }
 .menu > ul { margin: 0; }
 .menu.fit { visibility: visible; }
 
