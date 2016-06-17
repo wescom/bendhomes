@@ -21,7 +21,7 @@
 
 
         /*-----------------------------------------------------------------------------------*/
-        /* Main Menu Dropdown Control
+        /* Main Menu Dropdown Control and Mobile Sidr Menu
         /*-----------------------------------------------------------------------------------*/
 		var navWrap = $('#sidr'),
 			navMobileControl = $('#menu-toggle');
@@ -74,98 +74,6 @@
         $('.responsive-nav').on('change', function() {
             window.location = $(this).val();
         });*/
-		
-		
-		/*-----------------------------------------------------------------------------------*/
-        /*	Jarel's new menu for desktop and mobile
-        /*-----------------------------------------------------------------------------------*/
-		/*var sfActive = true,
-			sfSettings = {
-				cssArrows: true,
-				onInit: function() { $(this).find('.children').css({display: 'none'}); }	
-			},
-			nav = $('#nav'),
-			navParent = nav.parent(),
-			navWrap = nav.closest('.nav-wrap'),
-			navMobileControl = $('.menu-control', '#mobile-menu');
-		
-		nav.superfish();
-		
-		function setNavigationState() {
-			var winWidth = $(window).width();
-			if(winWidth < 980 && sfActive)
-			{
-				sfActive = false;
-				nav.superfish('destroy');
-				navWrap.removeClass('sf-active');
-			} else if(winWidth > 979 && !sfActive) {
-				sfActive = true;
-				nav.superfish(sfSettings);
-				navWrap.addClass('sf-active');
-				$.sidr('close');
-			}
-		}
-		
-		setNavigationState();
-		$(window).resize(function(){
-			setNavigationState();
-		});
-		nav.superfish(sfSettings);
-		navMobileControl.sidr();
-		
-		nav.find('a:not(.sf-with-ul)').hover(
-			function() { if(sfActive) { $(this).parent().superfish('show'); } },
-            function() { if(sfActive) { $(this).parent().superfish('hide'); } }
-		);
-		
-		navParent.menuFit();*/
-		
-		/*function menuFit() {
-            navParent.menuFit();
-        }
-		menuFit();
-		$(window).resize(function(){
-			menuFit();
-		});*/
-		
-		
-		
-		//  Start: Main Navigation Controls
-        /*PbhsTheme.sfActive = true;
-        //  Superfish parameters
-        PbhsTheme.sfSettings = {
-            cssArrows:  true,
-            onInit: function() { $(this).find('.children').css({display: 'none'}); }
-        };
-        PbhsTheme.nav = $('#nav');
-        PbhsTheme.navParent = PbhsTheme.nav.parent();
-        PbhsTheme.navWrap = PbhsTheme.nav.closest('.nav-wrap');
-        PbhsTheme.navMobileControl = $('.menu-control', '#mobile-menu');
-        //  Change between Desktop and Mobile Style Menus
-        PbhsTheme.setNavigationState = function() {
-            if(this.viewPort.width < 768 && this.sfActive)
-            {
-                this.sfActive = false;
-                this.nav.superfish('destroy');
-                this.navWrap.removeClass('sf-active');
-            } else if(this.viewPort.width > 767 && !this.sfActive) {
-                this.sfActive = true;
-                this.nav.superfish(this.sfSettings);
-                this.navWrap.addClass('sf-active');
-                $.sidr('close');
-            }
-        };
-        PbhsTheme.addAction('responsive', 'setNavigationState');
-        //  Initialize Superfish
-        PbhsTheme.nav.superfish(PbhsTheme.sfSettings);
-        //  Initialize Mobile Size Menu
-        PbhsTheme.navMobileControl.sidr();
-        //  Force .sfHover class for menu items without submenues
-        PbhsTheme.nav.find('a:not(.sf-with-ul)').hover(
-            function() { if(PbhsTheme.sfActive) { $(this).parent().superfish('show'); } },
-            function() { if(PbhsTheme.sfActive) { $(this).parent().superfish('hide'); } }
-        );*/
-    //  End: Main Navigation Controls
 
 
         /*-----------------------------------------------------------------------------------*/
