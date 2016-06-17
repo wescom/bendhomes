@@ -28,7 +28,9 @@ if ( has_post_thumbnail() ){
 } else {
     ?>
     <figure>
-    	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bh-placeholder.jpg" alt="" />
+    	<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+    		<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bh-placeholder.jpg" alt="" />
+        </a>
     </figure>
     <?php
 }

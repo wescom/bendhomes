@@ -94,3 +94,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	.property-grid .property-item { width: 100%; margin: 0 0 30px; }
 }
 
+@media(min-width: 1200px) {
+	.home-recent-posts figure { min-height: 163px; }	
+}
+
