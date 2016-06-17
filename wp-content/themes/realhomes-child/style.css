@@ -217,7 +217,9 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 .sidr ul li ul li ul li {
 	background: #333;
-	padding-left: 40px;
+}
+.sidr ul li ul li ul li a {
+	padding-left: 25px;
 }
 .sidr ul li ul li:last-child {
   border-bottom: 0;
