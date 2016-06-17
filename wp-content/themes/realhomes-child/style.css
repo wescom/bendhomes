@@ -23,6 +23,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .share-facebook { background: #3F589B; } .share-twitter { background: #00ACED; } .share-googleplus { background: #D84533; }
 #overview .share-networks .add-to-fav a, #overview .share-networks .add-to-fav a i { color: #394041; }
 #overview .share-networks .add-to-fav a:hover, #overview .share-networks .add-to-fav a:hover i { color: #f60; }
+.post-meta.standard-meta.thumb-not-exist { margin-bottom: 30px; }
 
 #home-flexslider .slide-description .brokerage-label { border: none; border-top: 1px solid #dedede; padding: 5px 0 0; margin-top: 7px; display: block; float: none; }
 #home-flexslider .slide-description .brokerage-label:after { display: table; content: ""; line-height: 0; clear: both; }
