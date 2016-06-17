@@ -2,17 +2,6 @@
 
     "use strict";
 	
-	$(document).ready(function () {
-      $('#menu-toggle').sidr({
-        timing: 'ease-in-out',
-        speed: 500
-      });
-    });
-	
-	$( window ).resize(function () {
-      $.sidr('close', 'sidr');
-    });
-
     $(document).ready(function() {
 
         /*-----------------------------------------------------------------------------------*/
@@ -34,27 +23,27 @@
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control
         /*-----------------------------------------------------------------------------------*/
-		/*function setNavigationState() {
+		var navMobileControl = $('#menu-toggle', '#mobile-menu');
+		
+		function setNavigationState() {
 			var winWdth = $(window).width();
-			if(winWdth > 980) {
+			if(winWdth > 979) {
 				$('.main-menu ul li').hover(function(){
 					$(this).children('ul').stop(true, true).slideDown(200);
 				},function(){
 					$(this).children('ul').stop(true, true).delay(50).slideUp(750);
 				});
-			} else if(winWdth < 980) {
-				$('#mobile-menu').sidr({
-					timing: 'ease-in-out',
-					speed: 500
-				});
+			} else {
+				$.sidr('close');
 			}
 		}
 		
 		setNavigationState();
 		$( window ).resize(function () {
 			setNavigationState();
-			//$.sidr('close', 'sidr');
-		});*/
+		});
+		
+		navMobileControl.sidr();
 
 
         /*-----------------------------------------------------------------------------------*/
