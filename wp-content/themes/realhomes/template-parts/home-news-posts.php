@@ -69,6 +69,7 @@
                 ?>
                 <article <?php post_class('span4 clearfix'); ?>>
                     <?php get_template_part( "post-formats/$format" ); ?>
+                    <!-- testing -->
                     <h4 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                     <div class="post-meta">
                         <span class="date"> <?php the_time('M j, Y g:iA'); ?></span>
