@@ -267,6 +267,7 @@
 		
 		if($.fn.touchwipe)
         {
+			console.log('Yes touchwipe is available');
             ///find lists with child lists and add special class
             $('ul#nav li').find('ul.children').parent('li').addClass('touch-with-ul');
             var touch_window = $(window),
