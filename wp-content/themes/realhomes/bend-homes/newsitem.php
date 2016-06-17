@@ -25,7 +25,7 @@ if ( has_post_thumbnail() ){ ?>
 <?php } else { ?>
   
 	<figure>
-    	<img src="<?php echo get_template_directory_uri(); ?>/images/bh-placeholder.jpg" alt="" />
+    	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bh-placeholder.jpg" alt="" />
     </figure>
   
 <?php } ?>
