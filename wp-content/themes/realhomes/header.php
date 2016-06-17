@@ -90,6 +90,7 @@
                         if( $enable_user_nav == "true" ){
                             ?>
                             <div class="user-nav clearfix">
+                            	<div class="mobile-controller"><i class="fa fa-bars"></i></div>
                                 <?php
                                 if(is_user_logged_in()){
 
