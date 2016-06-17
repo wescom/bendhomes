@@ -23,11 +23,27 @@
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control
         /*-----------------------------------------------------------------------------------*/
-        /*$('.main-menu ul li').hover(function(){
-            $(this).children('ul').stop(true, true).slideDown(200);
-        },function(){
-            $(this).children('ul').stop(true, true).delay(50).slideUp(750);
-        });*/
+		function setNavigationState() {
+			var winWdth = $(window).width();
+			if(winWdth > 980) {
+				$('.main-menu ul li').hover(function(){
+					$(this).children('ul').stop(true, true).slideDown(200);
+				},function(){
+					$(this).children('ul').stop(true, true).delay(50).slideUp(750);
+				});
+			} else {
+				$('#mobile-menu').sidr({
+					timing: 'ease-in-out',
+					speed: 500
+				});
+			}
+		}
+		
+		setNavigationState();
+		$( window ).resize(function () {
+			setNavigationState();
+			$.sidr('close', 'sidr');
+		});
 
 
         /*-----------------------------------------------------------------------------------*/
@@ -59,7 +75,7 @@
 		/*-----------------------------------------------------------------------------------*/
         /*	Jarel's new menu for desktop and mobile
         /*-----------------------------------------------------------------------------------*/
-		var sfActive = true,
+		/*var sfActive = true,
 			sfSettings = {
 				cssArrows: true,
 				onInit: function() { $(this).find('.children').css({display: 'none'}); }	
@@ -71,7 +87,7 @@
 		
 		nav.superfish();
 		
-		/*function setNavigationState() {
+		function setNavigationState() {
 			var winWidth = $(window).width();
 			if(winWidth < 980 && sfActive)
 			{
