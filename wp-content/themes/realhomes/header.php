@@ -192,14 +192,16 @@
                         ?>
 
                         <!-- Start Main Menu-->
-                        <nav class="main-menu">
-                            <?php
-                            wp_nav_menu( array(
-                                'theme_location' => 'main-menu',
-                                'menu_class' => 'clearfix'
-                            ));
-                            ?>
-                        </nav>
+                        <div id="sidr">
+                            <nav class="main-menu">
+                                <?php
+                                wp_nav_menu( array(
+                                    'theme_location' => 'main-menu',
+                                    'menu_class' => 'clearfix'
+                                ));
+                                ?>
+                            </nav>
+                        </div>
                         <!-- End Main Menu -->
                     </div>
 
