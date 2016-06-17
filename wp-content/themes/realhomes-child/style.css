@@ -194,7 +194,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sidr ul li:hover > span, .sidr ul li.active > a,
 .sidr ul li.active > span, .sidr ul li.sidr-class-active > a,
 .sidr ul li.sidr-class-active > span {
-  box-shadow: 0 0 15px 3px #222 inset;
+  /*box-shadow: 0 0 15px 3px #222 inset;*/
 }
 .sidr ul li a,
 .sidr ul li span {
