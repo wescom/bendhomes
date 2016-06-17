@@ -23,7 +23,7 @@
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control
         /*-----------------------------------------------------------------------------------*/
-		function setNavigationState() {
+		/*function setNavigationState() {
 			var winWdth = $(window).width();
 			if(winWdth > 980) {
 				$('.main-menu ul li').hover(function(){
@@ -43,7 +43,13 @@
 		$( window ).resize(function () {
 			setNavigationState();
 			//$.sidr('close', 'sidr');
-		});
+		});*/
+		
+		
+		$('#mobile-menu').sidr({
+					timing: 'ease-in-out',
+					speed: 500
+				});
 
 
         /*-----------------------------------------------------------------------------------*/
