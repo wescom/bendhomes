@@ -755,7 +755,8 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             }
 
             // Finally enqueue theme's main script
-            wp_enqueue_script('custom');
+			// Enqueue this in the child theme instead
+            //wp_enqueue_script('custom');
 
             // Responsive menu title
             $localized_array = array(
