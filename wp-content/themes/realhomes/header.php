@@ -199,7 +199,7 @@
                                 <?php
                                 wp_nav_menu( array(
                                     'theme_location' => 'main-menu',
-                                    'menu_class' => 'clearfix'
+                                    'menu_class' => 'main-menu sf-menu'
                                 ));
                                 ?>
                             </nav>
