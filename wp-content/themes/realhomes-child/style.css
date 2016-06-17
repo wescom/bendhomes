@@ -84,7 +84,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	.property-items .span6 { width: auto; margin-right: 2%; }
 	.property-item .detail { float: none; }
 	.home-recent-posts { background: #f5f5f5; border-top: 1px solid #dedede; padding: 0 2%; }
-	.home-recent-posts article { border: 1px solid #dedede; padding: 0 15px; margin-bottom: 10px; background: #fff; }
+	.home-recent-posts article { border: 1px solid #dedede; padding: 0 15px; margin-bottom: 10px; background: #fff; text-align: center; }
 	.home-recent-posts article img { margin-top: 15px; }
 	#footer-wrapper, .page-breadcrumbs { padding: 0 2%; }
 	.property-title { font-size: 1.75em; }
