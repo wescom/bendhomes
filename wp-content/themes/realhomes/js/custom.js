@@ -45,8 +45,11 @@
 			//$.sidr('close', 'sidr');
 		});*/
 		
-		var navMobileControl = $('.menu-control', '#mobile-menu');
-		navMobileControl.sidr();
+		
+		$('#menu-toggle').sidr({
+			timing: 'ease-in-out',
+			speed: 500
+		});
 
 
         /*-----------------------------------------------------------------------------------*/
