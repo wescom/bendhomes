@@ -194,12 +194,12 @@
                         ?>
 
                         <!-- Start Main Menu-->
-                        <div id="sidr" class="nav-wrap sf-active">
-                            <nav class="menu clearfix">
+                        <div id="sidr">
+                            <nav class="main-menu">
                                 <?php
                                 wp_nav_menu( array(
                                     'theme_location' => 'main-menu',
-                                    'menu_class' => 'main-menu sf-menu'
+                                    'menu_class' => 'clearfix'
                                 ));
                                 ?>
                             </nav>
