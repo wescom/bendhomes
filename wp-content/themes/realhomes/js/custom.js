@@ -69,7 +69,9 @@
 			navWrap = nav.closest('.nav-wrap'),
 			navMobileControl = $('.menu-control', '#mobile-menu');
 		
-		function setNavigationState() {
+		nav.superfish();
+		
+		/*function setNavigationState() {
 			var winWidth = $(window).width();
 			if(winWidth < 980 && sfActive)
 			{
@@ -96,7 +98,7 @@
             function() { if(sfActive) { $(this).parent().superfish('hide'); } }
 		);
 		
-		navParent.menuFit();
+		navParent.menuFit();*/
 		
 		/*function menuFit() {
             navParent.menuFit();
