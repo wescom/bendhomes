@@ -66,7 +66,6 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	#header-top { float: none; }
 	.user-nav, #logo { float: none; width: auto; text-align: center; }
 	.user-nav { text-align: right; }
-	#mobile-toggle { display: inline-block; }
 	.menu-and-contact-wrap { position: static; width: auto; }
 	.main-menu { float: none; width: auto; margin: 5px 15px 10px; }
 	.view-type { display: none; }
@@ -220,7 +219,6 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 
 
-#mobile-toggle { display: none; }
 .sidr {
   display: block;
   position: fixed;
@@ -389,6 +387,8 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 /**
  * Superfish and Mobile Menu Styling Overrides
  */
+ 
+ #mobile-menu { display: none; }
 
 .sf-active, #mobile-menu {}
 
@@ -500,6 +500,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
         display: none;
     }
     /* --- Mobile Menu Styles --- */
+	#mobile-menu { display: block; }
     #mobile-menu,
     #mobile-menu > a {
         font-size: 24px;
