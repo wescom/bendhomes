@@ -392,7 +392,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
  
 #mobile-menu { display: none; }
 
-/*.sf-active, #mobile-menu {}
+.sf-active, #mobile-menu {}
 
 
 .menu { height: 50px; visibility: hidden; margin: 0 auto; }
@@ -412,7 +412,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 
 /* --- global link styles --- */
-/*.sf-active a {
+.sf-active a {
     font-size: 14px;
     text-align: center;
 }
@@ -424,12 +424,12 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 
 /* --- Level One Only Styles --- */
-/*.sf-active .sf-menu > li.sfHover > a {
+.sf-active .sf-menu > li.sfHover > a {
 	color: #FFF;
 }
 
 /* --- Disable first level superfish arrows --- */
-/*.sf-active .sf-menu > li > a.sf-with-ul:after {
+.sf-active .sf-menu > li > a.sf-with-ul:after {
 	border: none !important;
 }
 .sf-active .sf-menu.sf-arrows > li > a {
@@ -437,14 +437,14 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 
 /* --- Child Menu Styles --- */
-/*.sf-active ul ul li a {
+.sf-active ul ul li a {
     padding: 0.8em 3.5em 0.8em 1.5em;
     font-size: 16px;
     text-align: left;
 }
 
 /* --- Level 2 Menu Styles --- */
-/*.sf-active ul ul li {
+.sf-active ul ul li {
 	text-align: left;
 	background: #4E4E4E;
 	white-space: nowrap;
@@ -459,7 +459,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 
 /* --- Level 3 Menu Styles --- */
 
-/*.sf-active ul ul ul li {
+.sf-active ul ul ul li {
 	background: #222;
 	z-index: 1;
 }
@@ -470,7 +470,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 
 
 /* --- Swap menu position for last dropdown --- */
-/*.sf-active li.last ul {
+.sf-active li.last ul {
 	left: auto;
 	right: 0;
 }
@@ -483,7 +483,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
     padding: 0.8em 1.5em 0.8em 3.5em;
 }
 /* styling for right-facing arrows */
-/*.sf-arrows .last ul .sf-with-ul:after {
+.sf-arrows .last ul .sf-with-ul:after {
     margin-left: -3px;
     right: auto;
     left: 1em;
@@ -495,7 +495,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sf-arrows .last  ul .sfHover > .sf-with-ul:after {
     border-color: transparent;
     border-right-color: white;
-}*/
+}
 
 @media only screen and (max-width: 979px) {
     #sidr:not(.sidr) {
