@@ -25,82 +25,6 @@
         /*-----------------------------------------------------------------------------------*/
 		var navWrap = $('#sidr'),
 			navMobileControl = $('#menu-toggle');
-			
-		// Jarel Edit, auto enable touch open/close if touchwipe script is available
-		function tbb_addons(sidebar, settings) {
-			
-			if($.fn.touchwipe)
-			{
-				console.log('Yes touchwipe is available');
-				///find lists with child lists and add special class
-				$('ul#nav li').find('ul.children').parent('li').addClass('touch-with-ul');
-				var touch_window = $(window),
-					el = sidebar.get(0),
-					sidebar_open = false,
-					has_scrollbar = false,
-					startY = 0,
-					endY = 0,
-					startScroll = 0,
-					dY = 0;
-	
-				var sidebar_dropdown_links = $('.menu li.touch-with-ul > a', sidebar);
-	
-				touch_window.touchwipe({
-					min_move_x: 60,
-					wipeLeft: function(e) {
-						// Close
-						$.sidr('close', settings.name);
-					},
-					wipeRight: function(e) {
-						// Open
-						if(Math.abs(startY - endY) < 15) $.sidr('open', settings.name);
-					},
-					preventDefaultEvents: false
-				}).on('touchstart', function(e) {
-					// Store some information for later
-					has_scrollbar = el.scrollHeight > el.clientHeight;
-					startY = e.originalEvent.touches[0].pageY;
-					startScroll = el.scrollTop;
-				}).on('touchmove', function(e) {
-					// Disable Window Scroll
-					if(sidebar.is(':visible') && touch_window.width() < 768) e.preventDefault();
-					endY = e.originalEvent.touches[0].pageY;
-					// Manually Scroll the sidebar
-					if(has_scrollbar)
-						el.scrollTop = startScroll + (startY - endY);
-				});
-	
-			}
-	
-			/**
-			 *	Enable opening a closing menues using the right
-			 *	paddinging area as the clickable region
-			 **/
-			sidebar_dropdown_links.on('click', function(e) {
-				if($('#menu-toggle').is(':visible'))
-				{
-					var el = $(this), parent = el.parent();
-					parent.addClass('touch-hover');
-					//$('body').scrollTo(el);
-	
-					var siblings = el.parent('li').siblings('.touch-with-ul'),
-						right_pad = parseInt(el.css('padding-left')),
-						width = el.innerWidth();
-	
-					// If the menu is expanded and the user clicks outside of the dropdown arrow area, follow the link
-					if( e.offsetX < (width - right_pad - 5) && parent.children( "ul.children" ).hasClass('show-touch-menu'))
-					{
-						window.location.href = el.attr('href');
-						return;
-					} else {
-						e.preventDefault();
-					}
-	
-					siblings.children( "ul.children" ).removeClass( "show-touch-menu" );
-					parent.children( "ul.children" ).toggleClass( "show-touch-menu" );
-				}
-			});
-		}
 		
 		navWrap.removeClass('sidr');
 		function setNavigationState() {
@@ -114,12 +38,7 @@
 				});
 			} else {
 				navWrap.addClass('sidr active');
-				$.sidr(
-					'close',
-					onOpenEnd: function () {
-						tbb_addons($sideMenu, settings);
-					}
-				);
+				$.sidr('close');
 			}
 		}
 		
