@@ -225,12 +225,12 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sidr ul li ul li.sidr-class-active > span {
   /*box-shadow: 0 0 15px 3px #222 inset;*/
 }
-.sidr ul li ul li a,
+.sidr-open .sidr ul li ul li a,
 .sidr ul li ul li span {
   color: rgba(255, 255, 255, 0.8);
   padding: 0px 10px 0px 30px;
 }
-.sidr ul li ul li ul li a {
+.sidr-open .sidr ul li ul li ul li a {
 	padding-left: 50px;
 }
 .sidr form {
