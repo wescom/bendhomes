@@ -1,6 +1,6 @@
 <?php
-if ( has_post_thumbnail() ){
-    ?>
+if ( has_post_thumbnail() ){ ?>
+
     <figure>
         <span class="format-icon image"></span>
         <?php
@@ -21,8 +21,11 @@ if ( has_post_thumbnail() ){
         ?>
         </a>
     </figure>
-    <?php
-} else {
+    
+<?php } else { ?>
   
-}
-?>
+	<figure>
+    	<img src="<?php echo get_template_directory_uri(); ?>/images/bh-placeholder.jpg" alt="" />
+    </figure>
+  
+<?php } ?>
