@@ -106,7 +106,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 
 /*#mobile-menu { display: none; }*/
 
-@media(max-width:980px) {
+
 	/*#mobile-menu { display: block; }*/
 	
 .sidr {
@@ -272,7 +272,6 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sidr input[type=button]:hover,
 .sidr input[type=submit]:hover {
   background: rgba(255, 255, 255, 0.9);
-}
 }
 
 
