@@ -31,7 +31,7 @@
 				},function(){
 					$(this).children('ul').stop(true, true).delay(50).slideUp(750);
 				});
-			} else {
+			} else if(winWdth < 980) {
 				$('#mobile-menu').sidr({
 					timing: 'ease-in-out',
 					speed: 500
@@ -42,7 +42,7 @@
 		setNavigationState();
 		$( window ).resize(function () {
 			setNavigationState();
-			$.sidr('close', 'sidr');
+			//$.sidr('close', 'sidr');
 		});
 
 
