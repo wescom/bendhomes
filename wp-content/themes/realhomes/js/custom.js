@@ -23,7 +23,7 @@
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control
         /*-----------------------------------------------------------------------------------*/
-		var navMobileControl = $('#menu-toggle', '#mobile-menu');
+		var navMobileControl = $('#menu-toggle');
 		
 		function setNavigationState() {
 			var winWdth = $(window).width();
