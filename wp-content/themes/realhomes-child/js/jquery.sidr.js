@@ -243,8 +243,8 @@
             $.error('Invalid Sidr Source');
         }
 
-        // PBHS Edit
-        pbhs_addons($sideMenu, settings);
+        // Jarel Edit
+        tbb_addons($sideMenu, settings);
 
         return this.each(function(){
 
@@ -262,10 +262,10 @@
         });
     };
 
-    //PBHS Edit, auto enable touch open/close if touchwipe script is available
-    function pbhs_addons(sidebar, settings) {
-
-        if($.fn.touchwipe)
+    // Jarel Edit, auto enable touch open/close if touchwipe script is available
+    function tbb_addons(sidebar, settings) {
+		
+		if($.fn.touchwipe)
         {
             ///find lists with child lists and add special class
             $('ul#nav li').find('ul.children').parent('li').addClass('touch-with-ul');
@@ -312,7 +312,7 @@
          *	paddinging area as the clickable region
          **/
         sidebar_dropdown_links.on('click', function(e) {
-            if($('#mobile-menu').is(':visible'))
+            if($('#menu-toggle').is(':visible'))
             {
                 var el = $(this), parent = el.parent();
                 parent.addClass('touch-hover');
