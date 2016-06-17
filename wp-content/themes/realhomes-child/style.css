@@ -200,6 +200,9 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
   text-decoration: none;
   color: #fff;
 }
+.sidr-open .sidr > .main-menu > div > ul > li > a {
+	background: #88b22b;
+}
 .sidr ul li ul {
   border-bottom: 0;
   margin: 0;
