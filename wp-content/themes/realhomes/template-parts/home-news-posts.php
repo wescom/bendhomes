@@ -20,39 +20,15 @@
         <?php
         $recent_posts_args = array(
             'post_type' => 'post',
-            // 'cat' => '68',
-            'posts_per_page' => 3,
+            'posts_per_page' => 4,
             'ignore_sticky_posts' => 1,
             'tax_query' => array(
                 array(
                   'taxonomy' => 'category',
                   'field'    => 'slug',
                   'terms'    => array( 'real-estate-news' )
-                  /*
-                  'taxonomy' => 'post_format',
-                  'field' => 'slug',
-                  'terms' => array('post-format-quote', 'post-format-link', 'post-format-audio'),
-                  'operator' => 'NOT IN'
-                  */
                 )
             )
-            /*
-            'meta_query' => array(
-                'relation' => 'OR',
-                array(
-                    'key' => '_thumbnail_id',
-                    'compare' => 'EXISTS'
-                ),
-                array(
-                    'key' => 'REAL_HOMES_embed_code',
-                    'compare' => 'EXISTS'
-                ),
-                array(
-                    'key' => 'REAL_HOMES_gallery',
-                    'compare' => 'EXISTS'
-                )
-            )
-            */
         );
 
         // The Query
@@ -67,15 +43,15 @@
                     $format = 'standard';
                 }
                 ?>
-                <article <?php post_class('span4 clearfix'); ?>>
+                <article <?php post_class('span3 clearfix'); ?>>
                     <?php get_template_part( "post-formats/$format" ); ?>
                     <h4 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                     <div class="post-meta">
                         <span class="date"> <?php the_time('M j, Y g:iA'); ?></span>
                         <?php /* <span><?php _e('by', 'framework'); ?> <span class="author-link"><?php the_author() ?></span></span> */ ?>
                     </div>
-                    <p><?php framework_excerpt(20);  ?></p>
-                    <a class="more-details" href="<?php the_permalink() ?>"><?php _e('Read More ','framework'); ?><i class="fa fa-caret-right"></i></a>
+                    <p><?php //framework_excerpt(20);  ?></p>
+                    <?php /*<a class="more-details" href="<?php the_permalink() ?>"><?php _e('Read More ','framework'); ?><i class="fa fa-caret-right"></i></a>*/ ?>
                 </article>
                 <?php
             }
