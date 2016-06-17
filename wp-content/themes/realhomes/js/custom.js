@@ -70,13 +70,13 @@
 			navMobileControl = $('.menu-control', '#mobile-menu');
 		
 		function setNavigationState() {
-			var $w_width = $(window).width();
-			if($w_width < 980)
+			var winWidth = $(window).width();
+			if(winWidth < 980 && sfActive)
 			{
 				sfActive = false;
 				nav.superfish('destroy');
 				navWrap.removeClass('sf-active');
-			} else if($w_width > 979) {
+			} else if(winWidth > 979 && !sfActive) {
 				sfActive = true;
 				nav.superfish(sfSettings);
 				navWrap.addClass('sf-active');
@@ -95,6 +95,8 @@
 			function() { if(sfActive) { $(this).parent().superfish('show'); } },
             function() { if(sfActive) { $(this).parent().superfish('hide'); } }
 		);
+		
+		navParent.menuFit();
 		
 		/*function menuFit() {
             navParent.menuFit();
