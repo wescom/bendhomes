@@ -196,7 +196,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sidr ul li.sidr-class-active > span {
   /*box-shadow: 0 0 15px 3px #222 inset;*/
 }
-.sidr ul li a,
+.sidr-open .sidr ul li a,
 .sidr ul li span {
   padding: 0 15px;
   display: block;
@@ -215,9 +215,6 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
   font-size: 13px;
   background: #333;
 }
-.sidr ul li ul li a {
-	padding-left: 25px;
-}
 .sidr ul li ul li:last-child {
   border-bottom: 0;
 }
@@ -234,7 +231,10 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sidr ul li ul li a,
 .sidr ul li ul li span {
   color: rgba(255, 255, 255, 0.8);
-  padding: 0px 10px 0px 25px;
+  padding: 0px 10px 0px 30px;
+}
+.sidr ul li ul li ul li a {
+	padding-left: 50px;
 }
 .sidr form {
   margin: 0 15px;
