@@ -104,11 +104,6 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 
 
-/*#mobile-menu { display: none; }*/
-
-
-	/*#mobile-menu { display: block; }*/
-	
 .sidr {
   display: block;
   position: fixed;
@@ -118,6 +113,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
   width: 260px;
   overflow-x: hidden;
   overflow-y: auto;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   font-size: 15px;
   background: #333;
   color: #fff;
@@ -178,7 +174,6 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 .sidr ul li {
   display: block;
-  float: none;
   margin: 0;
   line-height: 48px;
   border-top: 1px solid #4d4d4d;
@@ -273,7 +268,3 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sidr input[type=submit]:hover {
   background: rgba(255, 255, 255, 0.9);
 }
-
-
-
-
