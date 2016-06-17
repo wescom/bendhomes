@@ -1,6 +1,17 @@
 (function($){
 
     "use strict";
+	
+	$(document).ready(function () {
+      $('#menu-toggle').sidr({
+        timing: 'ease-in-out',
+        speed: 500
+      });
+    });
+	
+	$( window ).resize(function () {
+      $.sidr('close', 'sidr');
+    });
 
     $(document).ready(function() {
 
@@ -44,12 +55,6 @@
 			setNavigationState();
 			//$.sidr('close', 'sidr');
 		});*/
-		
-		
-		$('#menu-toggle').sidr({
-			timing: 'ease-in-out',
-			speed: 500
-		});
 
 
         /*-----------------------------------------------------------------------------------*/
