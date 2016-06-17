@@ -44,6 +44,9 @@
         <!-- Start Header -->
 
         <div class="header-wrapper">
+        
+        	<?php // Mobile Nagigation bar
+			get_template_part( 'bend-homes/template-parts/navigation', 'mobile' ); ?>
 
             <div class="container"><!-- Start Header Container -->
 
@@ -90,7 +93,6 @@
                         if( $enable_user_nav == "true" ){
                             ?>
                             <div class="user-nav clearfix">
-                            	<a href="#sidr" id="mobile-toggle" class="mobile-controller"><i class="fa fa-bars"></i></a>
                                 <?php
                                 if(is_user_logged_in()){
 
@@ -180,7 +182,7 @@
 
                       <!-- Social Navigation -->
                       <?php
-                        get_template_part('template-parts/social-nav') ;
+                        //get_template_part('template-parts/social-nav') ;
 
                         // $header_phone = get_option('theme_header_phone');
                         $header_phone = NULL;
@@ -192,8 +194,8 @@
                         ?>
 
                         <!-- Start Main Menu-->
-                        <div id="sidr">
-                            <nav class="main-menu">
+                        <div id="sidr" class="nav-wrap sf-active">
+                            <nav class="menu clearfix">
                                 <?php
                                 wp_nav_menu( array(
                                     'theme_location' => 'main-menu',

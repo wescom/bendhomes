@@ -62,6 +62,164 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
 .custom-post .property-price small { color: #fff; }
 
+@media(max-width:980px) {
+	#header-top { float: none; }
+	.user-nav, #logo { float: none; width: auto; text-align: center; }
+	.user-nav { text-align: right; }
+	#mobile-toggle { display: inline-block; }
+	.menu-and-contact-wrap { position: static; width: auto; }
+	.main-menu { float: none; width: auto; margin: 5px 15px 10px; }
+	.view-type { display: none; }
+	.main-menu .responsive-nav { display: none !important; }
+	.property-item figure, .property-item figure img { float: none; width: 100%; margin-bottom: 0; }
+	.property-item .detail, .listing-layout .property-item .detail { width: auto; float: none; }
+	.container.listing-grid-layout { width: auto; margin-left: 2%; margin-right: 2%; }
+	.listing-grid-layout .span9.main-wrap, .listing-grid-layout .span3.sidebar-wrap { width: auto; float: none; }
+	.widget ul.featured-properties li { padding: 15px; background: #fff; border: 1px solid #dedede !important; margin-bottom: 10px; }
+}
+
+@media(max-width: 767px) {
+	.page-spacer { height: 20px; }
+	#home-flexslider .flexslider { height: auto; }
+	#home-flexslider .desc-wrap, #overview .property-item .printer-icon { display: none; }
+	#home-flexslider .flexslider .slides img { margin-top: 0; }
+	.property-items .span6 { width: auto; margin-right: 2%; }
+	.property-item .detail { float: none; }
+	.home-recent-posts { background: #f5f5f5; border-top: 1px solid #dedede; padding: 0 2%; }
+	.home-recent-posts article { border: 1px solid #dedede; padding: 0 15px; margin-bottom: 10px; background: #fff; text-align: center; }
+	.home-recent-posts article img { margin-top: 15px; }
+	#footer-wrapper, .page-breadcrumbs { padding: 0 2%; }
+	.property-title { font-size: 1.75em; }
+	#property-detail-flexslider, #property-detail-flexslider .flex-viewport, #property-detail-flexslider .flex-direction-nav { width: 100%; }
+	#property-detail-flexslider .jcarousel-container-vertical { display: none !important; }
+	#overview .property-item .title { padding: 0; float: none; text-align: center; }
+	.property-grid .list-container { margin-left: 0; }
+	.property-grid .property-item { width: 100%; margin: 0 0 30px; }
+	.rail-standard-agent-wrapper .listing-agent { float: none; display: block; }
+	.rail-standard-agent-wrapper .brokerage-label.bl-large { float: none; display: block; border: none; padding-left: 0; }
+	.rail-standard-agent-wrapper .brokerage-label.bl-large img { margin-top: 8px; }
+}
+
+@media(min-width: 1200px) {
+	.home-recent-posts figure { min-height: 163px; }	
+}
+
+
+/*** ESSENTIAL STYLES ***/
+.sf-menu, .sf-menu * {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sf-menu li {
+	position: relative;
+}
+.sf-menu ul {
+	position: absolute;
+	display: none;
+	top: 100%;
+	left: 0;
+	z-index: 99;
+}
+.sf-menu > li {
+	float: left;
+}
+
+.sf-menu li.sfHover > ul {
+	display: block;
+}
+
+.sf-menu a {
+	display: block;
+	position: relative;
+}
+.sf-menu ul ul {
+	top: 0;
+	left: 100%;
+}
+
+
+/*** DEMO SKIN ***/
+.sf-menu {
+	float: left;
+	margin-bottom: 1em;
+}
+.sf-menu ul {
+	box-shadow: 2px 2px 6px rgba(0,0,0,.2);
+	min-width: 12em; /* allow long menu items to determine submenu width */
+	*width: 12em; /* no auto sub width for IE7, see white-space comment below */
+}
+.sf-menu a {
+	border-left: 1px solid #fff;
+	border-top: 1px solid #dFeEFF; /* fallback colour must use full shorthand */
+	border-top: 1px solid rgba(255,255,255,.5);
+	padding: .75em 1em;
+	text-decoration: none;
+	zoom: 1; /* IE7 */
+}
+.sf-menu a {
+	color: #13a;
+}
+.sf-menu li {
+	background: #BDD2FF;
+	white-space: nowrap; /* no need for Supersubs plugin */
+	*white-space: normal; /* ...unless you support IE7 (let it wrap) */
+	-webkit-transition: background .2s;
+	transition: background .2s;
+}
+.sf-menu ul li {
+	background: #AABDE6;
+}
+.sf-menu ul ul li {
+	background: #9AAEDB;
+}
+.sf-menu li:hover,
+.sf-menu li.sfHover {
+	background: #CFDEFF;
+	/* only transition out, not in */
+	-webkit-transition: none;
+	transition: none;
+}
+
+/*** arrows (for all except IE7) **/
+.sf-arrows .sf-with-ul {
+	padding-right: 2.5em;
+	*padding-right: 1em; /* no CSS arrows for IE7 (lack pseudo-elements) */
+}
+/* styling for both css and generated arrows */
+.sf-arrows .sf-with-ul:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: 1em;
+	margin-top: -3px;
+	height: 0;
+	width: 0;
+	/* order of following 3 rules important for fallbacks to work */
+	border: 5px solid transparent;
+	border-top-color: #dFeEFF; /* edit this to suit design (no rgba in IE8) */
+	border-top-color: rgba(255,255,255,.5);
+}
+.sf-arrows > li > .sf-with-ul:focus:after,
+.sf-arrows > li:hover > .sf-with-ul:after,
+.sf-arrows > .sfHover > .sf-with-ul:after {
+	border-top-color: white; /* IE8 fallback colour */
+}
+/* styling for right-facing arrows */
+.sf-arrows ul .sf-with-ul:after {
+	margin-top: -5px;
+	margin-right: -3px;
+	border-color: transparent;
+	border-left-color: #dFeEFF; /* edit this to suit design (no rgba in IE8) */
+	border-left-color: rgba(255,255,255,.5);
+}
+.sf-arrows ul li > .sf-with-ul:focus:after,
+.sf-arrows ul li:hover > .sf-with-ul:after,
+.sf-arrows ul .sfHover > .sf-with-ul:after {
+	border-left-color: white;
+}
+
+
 #mobile-toggle { display: none; }
 .sidr {
   display: block;
@@ -132,6 +290,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 .sidr ul li {
   display: block;
+  float: none;
   margin: 0;
   line-height: 48px;
   border-top: 1px solid #4d4d4d;
@@ -227,45 +386,171 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
   background: rgba(255, 255, 255, 0.9);
 }
 
-@media(max-width:980px) {
-	#header-top { float: none; }
-	.user-nav, #logo { float: none; width: auto; text-align: center; }
-	.user-nav { text-align: right; }
-	#mobile-toggle { display: inline-block; }
-	.menu-and-contact-wrap { position: static; width: auto; }
-	.main-menu { float: none; width: auto; margin: 5px 15px 10px; }
-	.main-menu #menu-main-menu, .view-type { display: none; }
-	.main-menu .responsive-nav { display: block; }
-	.property-item figure, .property-item figure img { float: none; width: 100%; margin-bottom: 0; }
-	.property-item .detail, .listing-layout .property-item .detail { width: auto; float: none; }
-	.container.listing-grid-layout { width: auto; margin-left: 2%; margin-right: 2%; }
-	.listing-grid-layout .span9.main-wrap, .listing-grid-layout .span3.sidebar-wrap { width: auto; float: none; }
-	.widget ul.featured-properties li { padding: 15px; background: #fff; border: 1px solid #dedede !important; margin-bottom: 10px; }
+/**
+ * Superfish and Mobile Menu Styling Overrides
+ */
+
+.sf-active, #mobile-menu {}
+
+
+.menu { height: 50px; visibility: hidden; margin: 0 auto; }
+.menu > ul { margin: 0; }
+.menu.fit { visibility: visible; }
+
+.sf-active { margin: 0; clear: both; }
+.sf-active li {
+    z-index: 20;
+    height: inherit;
+    line-height: 16px;
+    white-space: normal;
+    background: transparent;
+}
+.sf-active li.sfHover {
+	background: #4E4E4E;
 }
 
-@media(max-width: 767px) {
-	.page-spacer { height: 20px; }
-	#home-flexslider .flexslider { height: auto; }
-	#home-flexslider .desc-wrap, #overview .property-item .printer-icon { display: none; }
-	#home-flexslider .flexslider .slides img { margin-top: 0; }
-	.property-items .span6 { width: auto; margin-right: 2%; }
-	.property-item .detail { float: none; }
-	.home-recent-posts { background: #f5f5f5; border-top: 1px solid #dedede; padding: 0 2%; }
-	.home-recent-posts article { border: 1px solid #dedede; padding: 0 15px; margin-bottom: 10px; background: #fff; text-align: center; }
-	.home-recent-posts article img { margin-top: 15px; }
-	#footer-wrapper, .page-breadcrumbs { padding: 0 2%; }
-	.property-title { font-size: 1.75em; }
-	#property-detail-flexslider, #property-detail-flexslider .flex-viewport, #property-detail-flexslider .flex-direction-nav { width: 100%; }
-	#property-detail-flexslider .jcarousel-container-vertical { display: none !important; }
-	#overview .property-item .title { padding: 0; float: none; text-align: center; }
-	.property-grid .list-container { margin-left: 0; }
-	.property-grid .property-item { width: 100%; margin: 0 0 30px; }
-	.rail-standard-agent-wrapper .listing-agent { float: none; display: block; }
-	.rail-standard-agent-wrapper .brokerage-label.bl-large { float: none; display: block; border: none; padding-left: 0; }
-	.rail-standard-agent-wrapper .brokerage-label.bl-large img { margin-top: 8px; }
+/* --- global link styles --- */
+.sf-active a {
+    font-size: 14px;
+    text-align: center;
+}
+.sf-active a,
+.sf-active li.sfHover a {
+	color: #FFF;
+	border-left: none;
+	border-top: none;
 }
 
-@media(min-width: 1200px) {
-	.home-recent-posts figure { min-height: 163px; }	
+/* --- Level One Only Styles --- */
+.sf-active .sf-menu > li.sfHover > a {
+	color: #FFF;
+}
+
+/* --- Disable first level superfish arrows --- */
+.sf-active .sf-menu > li > a.sf-with-ul:after {
+	border: none !important;
+}
+.sf-active .sf-menu.sf-arrows > li > a {
+	padding-right: 0.75em;
+}
+
+/* --- Child Menu Styles --- */
+.sf-active ul ul li a {
+    padding: 0.8em 3.5em 0.8em 1.5em;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* --- Level 2 Menu Styles --- */
+.sf-active ul ul li {
+	text-align: left;
+	background: #4E4E4E;
+	white-space: nowrap;
+	z-index: 2;
+}
+
+.sf-active ul ul li.sfHover {
+	background: #222;
+}
+
+
+
+/* --- Level 3 Menu Styles --- */
+
+.sf-active ul ul ul li {
+	background: #222;
+	z-index: 1;
+}
+
+.sf-active ul ul ul li.sfHover {
+	background: #4E4E4E;
+}
+
+
+/* --- Swap menu position for last dropdown --- */
+.sf-active li.last ul {
+	left: auto;
+	right: 0;
+}
+.sf-active li.last ul ul {
+	right: 100%;
+}
+.sf-active .last ul a,
+.sf-active li.last ul .sfHover a {
+    text-align:  right;
+    padding: 0.8em 1.5em 0.8em 3.5em;
+}
+/* styling for right-facing arrows */
+.sf-arrows .last ul .sf-with-ul:after {
+    margin-left: -3px;
+    right: auto;
+    left: 1em;
+    border-color: transparent;
+    border-right-color: #dFeEFF; /* edit this to suit design (no rgba in IE8) */
+    border-right-color: rgba(255,255,255,.5);
+}
+.sf-arrows .last  ul li > .sf-with-ul:focus:after,
+.sf-arrows .last  ul .sfHover > .sf-with-ul:after {
+    border-color: transparent;
+    border-right-color: white;
+}
+
+@media only screen and (max-width: 979px) {
+    #sidr:not(.sidr) {
+        display: none;
+    }
+    /* --- Mobile Menu Styles --- */
+    #mobile-menu,
+    #mobile-menu > a {
+        font-size: 24px;
+        color: #333;
+    }
+    #mobile-menu > a {
+        float: left;
+        display: block;
+        padding: 5px 10px;
+    }
+    #mobile-menu > a:hover {
+        text-decoration: none;
+    }
+    #mobile-menu a.practice-link {
+        float: none;
+        font-size: 16px;
+        line-height: 34px;
+        text-align: center;
+    }
+	/* --- Slideout Menu Styles --- */
+	.sidr li a { 
+		color: #FFF;
+		text-align: left;
+		padding-right: 36px; /* Area for arrow icon and the width for the menu expand/contract clickable region on mobile devices */
+	}
+	.sidr li li a { color: #ccc; }
+	
+	/* --- Search Form --- */
+	.sidr .sidebar-search {
+		position: relative;
+		padding: 10px 0;
+		border: none;
+	}
+	.sidebar-search .input-medium { width: 184px; padding-right: 28px; }
+	.sidebar-search button {
+		line-height: 1em;
+		margin-left: -40px;
+		position: absolute;
+		right: 5px;
+		top: 16px;
+		
+		background: none;
+		border: none;
+		border-left: 1px solid #CCC;
+	}
+	ul.children{
+		display:none;
+	}
+	ul.show-touch-menu {
+		position: static !important;
+		display:block;
+	}
 }
 

@@ -594,7 +594,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             // Theme's main script
             wp_register_script(
                 'custom',
-                $js_directory_uri . 'custom.min.js',
+                $js_directory_uri . 'custom.js',
                 array( 'jquery' ),
                 INSPIRY_THEME_VERSION,
                 true
