@@ -104,6 +104,10 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 }
 
 
+#menu-toggle { float: left; }
+#menu-toggle i { font-size: 22px; }
+#menu-toggle a:after { content: normal; }
+
 .sidr {
   display: block;
   position: fixed;

@@ -46,7 +46,7 @@
         <div class="header-wrapper">
         
         	<?php // Mobile Nagigation bar
-			get_template_part( 'bend-homes/template-parts/navigation', 'mobile' ); ?>
+			//get_template_part( 'bend-homes/template-parts/navigation', 'mobile' ); ?>
 
             <div class="container"><!-- Start Header Container -->
 
@@ -93,6 +93,9 @@
                         if( $enable_user_nav == "true" ){
                             ?>
                             <div class="user-nav clearfix">
+                            
+                            	<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
+                                
                                 <?php
                                 if(is_user_logged_in()){
 
