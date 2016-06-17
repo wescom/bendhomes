@@ -71,12 +71,12 @@
 		
 		function setNavigationState() {
 			var $w_width = $(window).width();
-			if($w_width < 980 && sfActive)
+			if($w_width < 980)
 			{
 				sfActive = false;
 				nav.superfish('destroy');
 				navWrap.removeClass('sf-active');
-			} else if($w_width > 979 && !sfActive) {
+			} else if($w_width > 979) {
 				sfActive = true;
 				nav.superfish(sfSettings);
 				navWrap.addClass('sf-active');
@@ -96,13 +96,13 @@
             function() { if(sfActive) { $(this).parent().superfish('hide'); } }
 		);
 		
-		function menuFit() {
+		/*function menuFit() {
             navParent.menuFit();
         }
 		menuFit();
 		$(window).resize(function(){
 			menuFit();
-		});
+		});*/
 		
 		
 		
