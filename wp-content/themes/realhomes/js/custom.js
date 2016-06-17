@@ -23,17 +23,20 @@
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control
         /*-----------------------------------------------------------------------------------*/
-		var navMobileControl = $('#menu-toggle');
+		var navWrap = $('#sidr'),
+			navMobileControl = $('#menu-toggle');
 		
 		function setNavigationState() {
 			var winWdth = $(window).width();
 			if(winWdth > 979) {
+				navWrap.removeClass('sidr');
 				$('.main-menu ul li').hover(function(){
 					$(this).children('ul').stop(true, true).slideDown(200);
 				},function(){
 					$(this).children('ul').stop(true, true).delay(50).slideUp(750);
 				});
 			} else {
+				navWrap.addClass('sidr');
 				$.sidr('close');
 			}
 		}

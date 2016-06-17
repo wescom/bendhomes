@@ -62,14 +62,18 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
 .custom-post .property-price small { color: #fff; }
 
+#menu-toggle { float: left; display: none; padding: 0 10px; border: 1px solid #999; text-align: center; border-radius: 2px; line-height: 1; }
+#menu-toggle i { font-size: 22px; margin: 0; line-height: 30px; }
+#menu-toggle:after { content: normal; }
+
 @media(max-width:980px) {
+	#menu-toggle { display: block; }
 	#header-top { float: none; }
 	.user-nav, #logo { float: none; width: auto; text-align: center; }
 	.user-nav { text-align: right; }
 	.menu-and-contact-wrap { position: static; width: auto; }
 	.main-menu { float: none; width: auto; margin: 5px 15px 10px; }
 	.view-type { display: none; }
-	.main-menu .responsive-nav { display: none !important; }
 	.property-item figure, .property-item figure img { float: none; width: 100%; margin-bottom: 0; }
 	.property-item .detail, .listing-layout .property-item .detail { width: auto; float: none; }
 	.container.listing-grid-layout { width: auto; margin-left: 2%; margin-right: 2%; }
@@ -102,11 +106,6 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 @media(min-width: 1200px) {
 	.home-recent-posts figure { min-height: 163px; }	
 }
-
-
-#menu-toggle { float: left; display: block; padding: 0 10px; border: 1px solid #999; text-align: center; border-radius: 2px; line-height: 1; }
-#menu-toggle i { font-size: 22px; margin: 0; line-height: 30px; }
-#menu-toggle:after { content: normal; }
 
 .sidr-open .main-menu { margin: 0 0 10px; }
 
