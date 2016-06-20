@@ -4,20 +4,11 @@
 	
 	var $window = $(window),
 		$navWrap = $('#sidr'),
-		$navMobileControl = $('#menu-toggle'),
 		$mainMenu = $('.main-menu');
-		
-	$mainMenu.addClass('is-viewable');
 	
 	function setNavigationState() {
-        if ($window.width() < 980) {
-            $navWrap.addClass('sidr left active');
-			$mainMenu.removeClass('is-viewable');
-			$navMobileControl.sidr();
-			$.sidr('close');
-        }
-
         $navWrap.removeClass('sidr left active');
+		$mainMenu.addClass('is-viewable');
 		
 		$('.main-menu.is-viewable ul li').hover(function(){
 			$(this).children('ul').stop(true, true).slideDown(200);
@@ -25,12 +16,20 @@
 			$(this).children('ul').stop(true, true).delay(50).slideUp(750);
 		});
 		
+		if ($window.width() < 980) {
+            $navWrap.addClass('sidr left active');
+			$mainMenu.removeClass('is-viewable');
+			$('#menu-toggle').sidr();
+        }
+		
 		//navMobileControl.sidr();
     }
 
-    $window
-        .resize(setNavigationState)
-        .trigger('resize');
+	setNavigationState();
+    $window.resize(function () {
+		setNavigationState();
+		$.sidr('close');
+	});
 		
 	
 	
