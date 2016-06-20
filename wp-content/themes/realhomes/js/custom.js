@@ -2,6 +2,36 @@
 
     "use strict";
 	
+	var $window = $(window),
+		navWrap = $('#sidr'),
+		navMobileControl = $('#menu-toggle'),
+		mainMenu = $('.main-menu');
+		
+	function setNavigationState() {
+        if ($window.width() < 980) {
+            navWrap.addClass('sidr left active');
+			mainMenu.removeClass('is-viewable');
+			$.sidr('close');
+        }
+
+        navWrap.removeClass('sidr left active');
+		mainMenu.addClass('is-viewable');
+		
+		$('.main-menu.is-viewable ul li').hover(function(){
+			$(this).children('ul').stop(true, true).slideDown(200);
+		},function(){
+			$(this).children('ul').stop(true, true).delay(50).slideUp(750);
+		});
+		
+		navMobileControl.sidr();
+    }
+
+    $window
+        .resize(setNavigationState)
+        .trigger('resize');
+		
+	
+	
     $(document).ready(function() {
 
         /*-----------------------------------------------------------------------------------*/
@@ -23,7 +53,7 @@
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control and Mobile Sidr Menu
         /*-----------------------------------------------------------------------------------*/
-		var navWrap = $('#sidr'),
+		/*var navWrap = $('#sidr'),
 			navMobileControl = $('#menu-toggle'),
 			winWdth = $(window).width();
 		
@@ -48,7 +78,7 @@
 			$.sidr('close');
 		});
 		
-		navMobileControl.sidr();
+		navMobileControl.sidr();*/
 		
 
         /*-----------------------------------------------------------------------------------*/
