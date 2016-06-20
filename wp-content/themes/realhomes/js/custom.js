@@ -15,7 +15,6 @@
         }
 
         navWrap.removeClass('sidr left active');
-		mainMenu.addClass('is-viewable');
 		
 		$('.main-menu.is-viewable ul li').hover(function(){
 			$(this).children('ul').stop(true, true).slideDown(200);
@@ -25,6 +24,8 @@
 		
 		navMobileControl.sidr();
     }
+	
+	mainMenu.addClass('is-viewable');
 
     $window
         .resize(setNavigationState)
