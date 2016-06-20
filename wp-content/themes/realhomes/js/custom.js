@@ -37,7 +37,7 @@
 				});
 			} else if(winWdth < 980) {
 				navWrap.addClass('sidr left active');
-				navMobileControl.sidr();
+				//navMobileControl.sidr();
 				
 			}
 		}
@@ -48,7 +48,7 @@
 			$.sidr('close');
 		});
 		
-		//navMobileControl.sidr();
+		navMobileControl.sidr();
 		
 
         /*-----------------------------------------------------------------------------------*/
