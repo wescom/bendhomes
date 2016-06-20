@@ -35,21 +35,21 @@
 				},function(){
 					$(this).children('ul').stop(true, true).delay(50).slideUp(750);
 				});
-			} else {
+			} else if(winWdth < 980) {
 				navWrap.addClass('sidr left active');
-				$.sidr('close');
+				navMobileControl.sidr();
+				
 			}
 		}
 		
 		setNavigationState();
 		$( window ).resize(function () {
 			setNavigationState();
+			$.sidr('close');
 		});
 		
-		navMobileControl.sidr();
+		//navMobileControl.sidr();
 		
-		$('#sidr').removeClass('sidr left');
-
 
         /*-----------------------------------------------------------------------------------*/
         /*	Responsive Nav
