@@ -24,11 +24,13 @@
         /* Main Menu Dropdown Control and Mobile Sidr Menu
         /*-----------------------------------------------------------------------------------*/
 		var navWrap = $('#sidr'),
-			navMobileControl = $('#menu-toggle');
+			navMobileControl = $('#menu-toggle'),
+			winWdth = $(window).width();
 		
-		navWrap.removeClass('sidr left');
+		if(winWdth > 979) {
+			navWrap.removeClass('sidr left');
+		}
 		function setNavigationState() {
-			var winWdth = $(window).width();
 			if(winWdth > 979) {
 				navWrap.removeClass('sidr left active');
 				$('.main-menu ul li').hover(function(){
