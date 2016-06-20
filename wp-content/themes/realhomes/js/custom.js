@@ -26,7 +26,6 @@
 		var navWrap = $('#sidr'),
 			navMobileControl = $('#menu-toggle');
 		
-		navWrap.removeClass('sidr');
 		function setNavigationState() {
 			var winWdth = $(window).width();
 			if(winWdth > 979) {
@@ -42,6 +41,7 @@
 			}
 		}
 		
+		navWrap.removeClass('sidr');
 		setNavigationState();
 		$( window ).resize(function () {
 			setNavigationState();
