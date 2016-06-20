@@ -26,23 +26,23 @@
 		var navWrap = $('#sidr'),
 			navMobileControl = $('#menu-toggle');
 		
+		navWrap.removeClass('sidr left');
 		function setNavigationState() {
 			var winWdth = $(window).width();
 			if(winWdth > 979) {
-				navWrap.removeClass('sidr active');
+				navWrap.removeClass('sidr left active');
 				$('.main-menu ul li').hover(function(){
 					$(this).children('ul').stop(true, true).slideDown(200);
 				},function(){
 					$(this).children('ul').stop(true, true).delay(50).slideUp(750);
 				});
 			} else {
-				navWrap.addClass('sidr active');
+				navWrap.addClass('sidr left active');
 				$.sidr('close');
 			}
 		}
 		
 		setNavigationState();
-		navWrap.removeClass('sidr');
 		$( window ).resize(function () {
 			setNavigationState();
 		});
