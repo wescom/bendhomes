@@ -7,6 +7,8 @@
 		navMobileControl = $('#menu-toggle'),
 		mainMenu = $('.main-menu');
 		
+	mainMenu.addClass('is-viewable');
+	
 	function setNavigationState() {
         if ($window.width() < 980) {
             navWrap.addClass('sidr left active');
@@ -22,10 +24,8 @@
 			$(this).children('ul').stop(true, true).delay(50).slideUp(750);
 		});
 		
-		navMobileControl.sidr();
+		//navMobileControl.sidr();
     }
-	
-	mainMenu.addClass('is-viewable');
 
     $window
         .resize(setNavigationState)
