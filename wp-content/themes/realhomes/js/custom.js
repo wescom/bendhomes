@@ -27,9 +27,7 @@
 			navMobileControl = $('#menu-toggle'),
 			winWdth = $(window).width();
 		
-		if(winWdth > 979) {
-			navWrap.removeClass('sidr left');
-		}
+		navWrap.removeClass('sidr left');
 		function setNavigationState() {
 			if(winWdth > 979) {
 				navWrap.removeClass('sidr left active');
@@ -49,7 +47,7 @@
 			setNavigationState();
 		});
 		
-		navMobileControl.sidr();
+		//navMobileControl.sidr();
 
 
         /*-----------------------------------------------------------------------------------*/
