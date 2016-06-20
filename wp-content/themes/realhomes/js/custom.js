@@ -27,7 +27,9 @@
 			navMobileControl = $('#menu-toggle'),
 			winWdth = $(window).width();
 		
-		navWrap.removeClass('sidr left');
+		if(winWdth > 979) {
+			navWrap.removeClass('sidr left');
+		}
 		function setNavigationState() {
 			if(winWdth > 979) {
 				navWrap.removeClass('sidr left active');
@@ -38,6 +40,7 @@
 				});
 			} else {
 				navWrap.addClass('sidr left active');
+				navMobileControl.sidr();
 				$.sidr('close');
 			}
 		}
@@ -46,8 +49,6 @@
 		$( window ).resize(function () {
 			setNavigationState();
 		});
-		
-		//navMobileControl.sidr();
 
 
         /*-----------------------------------------------------------------------------------*/
