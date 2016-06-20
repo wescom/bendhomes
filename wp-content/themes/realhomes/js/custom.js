@@ -3,20 +3,21 @@
     "use strict";
 	
 	var $window = $(window),
-		navWrap = $('#sidr'),
-		navMobileControl = $('#menu-toggle'),
-		mainMenu = $('.main-menu');
+		$navWrap = $('#sidr'),
+		$navMobileControl = $('#menu-toggle'),
+		$mainMenu = $('.main-menu');
 		
-	mainMenu.addClass('is-viewable');
+	$mainMenu.addClass('is-viewable');
 	
 	function setNavigationState() {
         if ($window.width() < 980) {
-            navWrap.addClass('sidr left active');
-			mainMenu.removeClass('is-viewable');
+            $navWrap.addClass('sidr left active');
+			$mainMenu.removeClass('is-viewable');
+			$navMobileControl.sidr();
 			$.sidr('close');
         }
 
-        navWrap.removeClass('sidr left active');
+        $navWrap.removeClass('sidr left active');
 		
 		$('.main-menu.is-viewable ul li').hover(function(){
 			$(this).children('ul').stop(true, true).slideDown(200);
