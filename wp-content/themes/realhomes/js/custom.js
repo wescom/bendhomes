@@ -41,8 +41,8 @@
 			}
 		}
 		
-		navWrap.removeClass('sidr');
 		setNavigationState();
+		navWrap.removeClass('sidr');
 		$( window ).resize(function () {
 			setNavigationState();
 		});
