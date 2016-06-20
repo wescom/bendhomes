@@ -48,9 +48,7 @@
 		
 		navMobileControl.sidr();
 		
-		$( window ).load( function(){
-			$('#sidr').removeClass('sidr left');
-		});
+		$('#sidr').removeClass('sidr left');
 
 
         /*-----------------------------------------------------------------------------------*/
