@@ -77,6 +77,11 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 
 .Featured_Properties_Widget { background: #fff; }
 
+.advance-search .more-options-wrapper .option-bar { display: block; height: auto; width: 21%; }
+.advance-search .more-options-wrapper input[type=checkbox] { margin-top: -2px; }
+.advance-search .more-options-wrapper label { display: inline-block; margin-right: 20px; margin-bottom: 15px; }
+.advance-search .more-options-wrapper label small { color: #598F28; }
+
 /*--- Custom Posts Shortcode Styles --- */
 .custom-posts-wrapper {}
 .custom-post-container { margin-left: -2%; margin-right: -2%; }
