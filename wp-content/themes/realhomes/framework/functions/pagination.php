@@ -89,11 +89,11 @@ if ( ! function_exists( 'theme_ajax_pagination' ) ) {
 			echo "<div class='pagination'>";
 
 			if ( ( $paged > 2 ) && ( $paged > $range + 1 ) && ( $pages_to_show < $pages ) ) {
-				echo "<a href='" . get_pagenum_link( 1 ) . "?page=1' class='real-btn'>&laquo; " . __( 'First', 'framework' ) . "</a> "; // First Page
+				echo "<a href='" . get_pagenum_link( 1 ) . "' class='real-btn'>&laquo; " . __( 'First', 'framework' ) . "</a> "; // First Page
 			}
 
 			if ( ( $paged > 1 ) && ( $pages_to_show < $pages ) ) {
-				echo "<a href='" . get_pagenum_link( $prev ) . "?page=". $prev ."' class='real-btn'>&laquo; " . __( 'Previous', 'framework' ) . "</a> "; // Previous Page
+				echo "<a href='" . get_pagenum_link( $prev ) . "' class='real-btn'>&laquo; " . __( 'Previous', 'framework' ) . "</a> "; // Previous Page
 			}
 
 			$min_page_number = $paged - $range - 1;
@@ -103,16 +103,16 @@ if ( ! function_exists( 'theme_ajax_pagination' ) ) {
 				if ( ( ( $i > $min_page_number ) && ( $i < $max_page_number ) ) || ( $pages <= $pages_to_show ) ) {
 					$current_class = 'real-btn';
 					$current_class .= ( $paged == $i ) ? ' current' : '';
-					echo "<a href='" . get_pagenum_link( $i ) . "?page=". $i ."' class='" . $current_class . "' >" . $i . "</a> ";
+					echo "<a href='" . get_pagenum_link( $i ) . "' class='" . $current_class . "' >" . $i . "</a> ";
 				}
 			}
 
 			if ( ( $paged < $pages ) && ( $pages_to_show < $pages ) ) {
-				echo "<a href='" . get_pagenum_link( $next ) . "?page=". $next ."' class='real-btn'>" . __( 'Next', 'framework' ) . " &raquo;</a> "; // Next Page
+				echo "<a href='" . get_pagenum_link( $next ) . "' class='real-btn'>" . __( 'Next', 'framework' ) . " &raquo;</a> "; // Next Page
 			}
 
 			if ( ( $paged < $pages - 1 ) && ( $paged + $range - 1 < $pages ) && ( $pages_to_show < $pages ) ) {
-				echo "<a href='" . get_pagenum_link( $pages ) . "?page=". $pages ."' class='real-btn'>" . __( 'Last', 'framework' ) . " &raquo;</a> "; // Last Page
+				echo "<a href='" . get_pagenum_link( $pages ) . "' class='real-btn'>" . __( 'Last', 'framework' ) . " &raquo;</a> "; // Last Page
 			}
 
 			echo "</div>";
