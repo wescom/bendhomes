@@ -2,44 +2,6 @@
 
     "use strict";
 	
-	var $window = $(window),
-		$navWrap = $('#sidr'),
-		$mainMenu = $('.main-menu');
-	
-	function setNavigationState() {
-        $navWrap.removeClass('sidr left active');
-		$mainMenu.addClass('is-viewable');
-		
-		$('.main-menu.is-viewable ul li').hover(function(){
-			$(this).children('ul').stop(true, true).slideDown(200);
-		},function(){
-			$(this).children('ul').stop(true, true).delay(50).slideUp(750);
-		});
-		
-		if ($window.width() < 980) {
-            $navWrap.addClass('sidr left active');
-			$mainMenu.removeClass('is-viewable');
-			$('#menu-toggle').sidr({
-				onOpen: function() {
-					$('#menu-toggle').addClass('is-open');
-				},
-				onClose: function() {
-					$('#menu-toggle').removeClass('is-open');
-				}
-			});
-        }
-		
-		//navMobileControl.sidr();
-    }
-
-	setNavigationState();
-    $window.resize(function () {
-		setNavigationState();
-		$.sidr('close');
-	});
-		
-	
-	
     $(document).ready(function() {
 
         /*-----------------------------------------------------------------------------------*/
@@ -61,6 +23,42 @@
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control and Mobile Sidr Menu
         /*-----------------------------------------------------------------------------------*/
+		var $window = $(window),
+			$navWrap = $('#sidr'),
+			$mainMenu = $('.main-menu');
+		
+		function setNavigationState() {
+			$navWrap.removeClass('sidr left active');
+			$mainMenu.addClass('is-viewable');
+			
+			$('.main-menu.is-viewable ul li').hover(function(){
+				$(this).children('ul').stop(true, true).slideDown(200);
+			},function(){
+				$(this).children('ul').stop(true, true).delay(50).slideUp(750);
+			});
+			
+			if ($window.width() < 980) {
+				$navWrap.addClass('sidr left active');
+				$mainMenu.removeClass('is-viewable');
+				$('#menu-toggle').sidr({
+					onOpen: function() {
+						$('#menu-toggle').addClass('is-open');
+					},
+					onClose: function() {
+						$('#menu-toggle').removeClass('is-open');
+					}
+				});
+			}
+			
+			//navMobileControl.sidr();
+		}
+	
+		setNavigationState();
+		$window.resize(function () {
+			setNavigationState();
+			$.sidr('close');
+		});
+		
 		/*var navWrap = $('#sidr'),
 			navMobileControl = $('#menu-toggle'),
 			winWdth = $(window).width();
