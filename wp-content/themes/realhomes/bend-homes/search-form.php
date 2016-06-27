@@ -160,15 +160,6 @@ if( !empty($theme_search_fields) ):
                 <?php
             }
 
-            if ( in_array ( 'property-id', $theme_search_fields ) ) {
-                ?>
-                <div class="option-bar large">
-                    <label for="property-id-txt"><?php /* _e('Property ID', 'framework'); */ echo 'MLS#'?></label>
-                    <input type="text" name="property-id" id="property-id-txt" value="<?php echo isset($_GET['property-id'])?$_GET['property-id']:''; ?>" placeholder="<?php _e('Any', 'framework'); ?>" />
-                </div>
-                <?php
-            }
-
             if ( in_array ( 'min-max-area', $theme_search_fields ) ) {
                 $area_unit = get_option("theme_area_unit");
                 ?>
@@ -180,6 +171,15 @@ if( !empty($theme_search_fields) ):
                 <div class="option-bar small">
                     <label for="max-area"><?php _e('Max Area', 'framework'); ?> <span><?php if($area_unit){ echo "($area_unit)"; } ?></span></label>
                     <input type="text" name="max-area" id="max-area" pattern="[0-9]+" value="<?php echo isset($_GET['max-area'])?$_GET['max-area']:''; ?>" placeholder="<?php _e('Any', 'framework'); ?>" title="<?php _e('Please only provide digits!','framework'); ?>" />
+                </div>
+                <?php
+            }
+			
+			if ( in_array ( 'property-id', $theme_search_fields ) ) {
+                ?>
+                <div class="option-bar large">
+                    <label for="property-id-txt"><?php /* _e('Property ID', 'framework'); */ echo 'MLS#'?></label>
+                    <input type="text" name="property-id" id="property-id-txt" value="<?php echo isset($_GET['property-id'])?$_GET['property-id']:''; ?>" placeholder="<?php _e('Any', 'framework'); ?>" />
                 </div>
                 <?php
             }
