@@ -976,10 +976,7 @@
               //  currentButton.addClass('current');
                 homePropertiesContainer.load(
                     currentButton.attr('href') + ' ' + '#home-properties-section-inner',
-					{
-						first: "My",
-						last: "Test"
-					},
+					{ "choices[]": [ "Jon", "Susan" ] },
                     function( response, status, xhr ) {
                         if ( status == 'success' ) {
                             homePropertiesContainer.fadeTo('slow',1);
