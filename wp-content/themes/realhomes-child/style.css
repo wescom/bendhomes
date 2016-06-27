@@ -73,6 +73,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sidr.right { left: auto; right: -260px; }
 .sidr.left { left: -260px; right: auto; }
 .sidr ul { display: block; margin: 0 0 15px; padding: 0; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #4d4d4d; }
+.sidr ul, .sidr ul:hover, .sidr ul li ul, .sidr ul li ul:hover, .sidr ul li ul li ul, .sidr ul li ul li ul:hover { transition: none; }
 .sidr ul li { display: block; margin: 0; line-height: 48px; border-top: 1px solid #4d4d4d; border-bottom: 1px solid #1a1a1a; float: none; }
 .sidr ul li:hover, .sidr ul li.active, .sidr ul li.sidr-class-active { border-top: 0; line-height: 49px; }
 .sidr.active ul li a, .sidr ul li span { padding: 0 15px; display: block; text-decoration: none; color: #fff; }
