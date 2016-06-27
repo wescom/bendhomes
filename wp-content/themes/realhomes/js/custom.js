@@ -19,7 +19,14 @@
 		if ($window.width() < 980) {
             $navWrap.addClass('sidr left active');
 			$mainMenu.removeClass('is-viewable');
-			$('#menu-toggle').sidr();
+			$('#menu-toggle').sidr({
+				onOpen: function() {
+					$('#menu-toggle').addClass('is-open');
+				},
+				onClose: function() {
+					$('#menu-toggle').removeClass('is-open');
+				}
+			});
         }
 		
 		//navMobileControl.sidr();
