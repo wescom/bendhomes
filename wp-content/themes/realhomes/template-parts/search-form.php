@@ -18,7 +18,7 @@ if( !empty($theme_search_fields) ):
     if ( in_array ( 'property-id', $theme_search_fields ) ) {
         ?>
         <div class="option-bar large">
-            <label for="property-id-txt"><?php _e('Property ID', 'framework'); ?></label>
+            <label for="property-id-txt"><?php //_e('Property ID', 'framework'); ?>MLS#</label>
             <input type="text" name="property-id" id="property-id-txt" value="<?php echo isset($_GET['property-id'])?$_GET['property-id']:''; ?>" placeholder="<?php _e('Any', 'framework'); ?>" />
         </div>
         <?php
