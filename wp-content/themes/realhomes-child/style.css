@@ -37,6 +37,8 @@ Version: 1.3
 .sidr ul li { display: block; margin: 0; line-height: 48px; border-top: 1px solid #4d4d4d; border-bottom: 1px solid #1a1a1a; float: none; }
 .sidr ul li:hover, .sidr ul li.active, .sidr ul li.sidr-class-active { border-top: 0; line-height: 49px; }
 .sidr.active ul li a, .sidr ul li span { padding: 0 15px; display: block; text-decoration: none; color: #fff; }
+.sidr ul li.current-menu-ancestor > a, .sidr ul li.current-menu-parent > a, .sidr ul li.current-menu-item > a, 
+.sidr ul li.current_page_item > a, .sidr ul li:hover > a { background: #333; }
 /*.sidr.active > .main-menu > div > ul > li > a { background: #88b22b; }*/
 .sidr ul li ul { border-bottom: 0; margin: 0; position: static; width: auto; display: block !important; height: auto !important; }
 .sidr ul li ul li { line-height: 40px; font-size: 13px; background: #333; }
