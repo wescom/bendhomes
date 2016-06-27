@@ -43,7 +43,7 @@ if ( ! function_exists( 'theme_pagination' ) ) {
 
 			for ( $i = 1; $i <= $pages; $i++ ) {
 				if ( 1 != $pages && ( ! ( $i >= $paged + $range + 1 || $i <= $paged - $range - 1 ) || $pages <= $show_items ) ) {
-					echo ( $paged == $i ) ? "<a href='" . get_pagenum_link( $i ) . "#". $jump_link ."' class='real-btn current' >" . $i . "</a> " : "<a href='" . get_pagenum_link( $i ) . "' class='real-btn'>" . $i . "</a> ";
+					echo ( $paged == $i ) ? "<a href='" . get_pagenum_link( $i ) . "#". $jump_link ."' class='real-btn current' >" . $i . "</a> " : "<a href='" . get_pagenum_link( $i ) . "#". $jump_link ."' class='real-btn'>" . $i . "</a> ";
 				}
 			}
 
