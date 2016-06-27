@@ -62,6 +62,18 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
 .custom-post .property-price small { color: #fff; }
 
+.main-menu { margin:0 20px 0 0; float:right }
+.main-menu ul { list-style:none; margin:0 }
+.main-menu ul li { float:left; position:relative }
+.main-menu.is-viewable ul li.current-menu-ancestor>a,.main-menu.is-viewable ul li.current-menu-item>a,.main-menu.is-viewable ul li.current-menu-parent>a,.main-menu.is-viewable ul li.current_page_item>a,.main-menu.is-viewable ul li:hover>a{ color:#fff; background-color:#ec894d }
+.main-menu ul li a{ color:#afb4b5; font-size:14px; display:block; padding:14px 10px }
+.main-menu ul li ul{ display:none; background-color:#ec894d; width:220px; padding:0; position:absolute; top:48px; left:0; z-index:888 }
+.main-menu ul li ul li{ float:none; margin:0 }
+.main-menu.is-viewable ul li ul li:hover>a{ background-color:#dc7d44 }
+.main-menu ul li ul li a{ font-size:13px; padding:10px 10px 12px; color:#fff }
+.main-menu ul li ul li ul{ background-color:#dc7d44; top:0; left:220px }
+.main-menu.is-viewable ul li ul li ul li:hover>a{ background-color:#d0743d }
+
 #menu-toggle { float: left; display: none; padding: 0 0 0 10px; border: 1px solid #999; text-align: center; border-radius: 2px; line-height: 1; }
 #menu-toggle i { font-size: 22px; margin: 0; line-height: 30px; }
 #menu-toggle:after { content: "Menu"; font-family: "Open Sans", sans-serif; font-size: 14px; font-weight: 400; }
@@ -77,7 +89,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .sidr ul li { display: block; margin: 0; line-height: 48px; border-top: 1px solid #4d4d4d; border-bottom: 1px solid #1a1a1a; float: none; }
 .sidr ul li:hover, .sidr ul li.active, .sidr ul li.sidr-class-active { border-top: 0; line-height: 49px; }
 .sidr.active ul li a, .sidr ul li span { padding: 0 15px; display: block; text-decoration: none; color: #fff; }
-.sidr.active > .main-menu > div > ul > li > a { background: #88b22b; }
+/*.sidr.active > .main-menu > div > ul > li > a { background: #88b22b; }*/
 .sidr ul li ul { border-bottom: 0; margin: 0; position: static; width: auto; display: block !important; height: auto !important; }
 .sidr ul li ul li { line-height: 40px; font-size: 13px; background: #333; }
 .sidr ul li ul li:last-child { border-bottom: 0; }
