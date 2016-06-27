@@ -48,9 +48,7 @@
 						$('#menu-toggle').removeClass('is-open');
 					}
 				});
-			}
-			
-			//navMobileControl.sidr();
+			}		
 		}
 	
 		setNavigationState();
@@ -58,59 +56,6 @@
 			setNavigationState();
 			$.sidr('close');
 		});
-		
-		/*var navWrap = $('#sidr'),
-			navMobileControl = $('#menu-toggle'),
-			winWdth = $(window).width();
-		
-		function setNavigationState() {
-			if(winWdth > 979) {
-				navWrap.removeClass('sidr left active');
-				$('.main-menu ul li').hover(function(){
-					$(this).children('ul').stop(true, true).slideDown(200);
-				},function(){
-					$(this).children('ul').stop(true, true).delay(50).slideUp(750);
-				});
-			} else if(winWdth < 980) {
-				navWrap.addClass('sidr left active');
-				//navMobileControl.sidr();
-				
-			}
-		}
-		
-		setNavigationState();
-		$( window ).resize(function () {
-			setNavigationState();
-			$.sidr('close');
-		});
-		
-		navMobileControl.sidr();*/
-		
-
-        /*-----------------------------------------------------------------------------------*/
-        /*	Responsive Nav
-        /*-----------------------------------------------------------------------------------*/
-        /*var $mainNav    = $('.main-menu > div > ul');
-        var optionsList = '<option value="" selected>'+ localized.nav_title +'</option>';
-
-        $mainNav.find('li').each(function() {
-            var $this   = $(this),
-                $anchor = $this.children('a'),
-                depth   = $this.parents('ul').length - 1,
-                indent  = '';
-            if( depth ) {
-                while( depth > 0 ) {
-                    indent += ' - ';
-                    depth--;
-                }
-            }
-            optionsList += '<option value="' + $anchor.attr('href') + '">' + indent + ' ' + $anchor.text() + '</option>';
-        }).end().last()
-            .after('<select class="responsive-nav">' + optionsList + '</select>');
-
-        $('.responsive-nav').on('change', function() {
-            window.location = $(this).val();
-        });*/
 
 
         /*-----------------------------------------------------------------------------------*/
@@ -1035,6 +980,11 @@
                         if ( status == 'success' ) {
                             homePropertiesContainer.fadeTo('slow',1);
                             svgLoader.slideUp('fast');
+							
+							var loc = location.href;        
+							loc += loc.indexOf("?") === -1 ? "?" : "&";
+						
+							location.href = loc + "ts=true";
 
                             // $('html, body').animate( { scrollTop: homePropertiesContainer.offset().top - 60 }, 'slow' );
                         } else {
