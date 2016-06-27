@@ -976,15 +976,14 @@
               //  currentButton.addClass('current');
                 homePropertiesContainer.load(
                     currentButton.attr('href') + ' ' + '#home-properties-section-inner',
+					{
+						first: "My",
+						last: "Test"
+					},
                     function( response, status, xhr ) {
                         if ( status == 'success' ) {
                             homePropertiesContainer.fadeTo('slow',1);
                             svgLoader.slideUp('fast');
-							
-							var loc = location.href;        
-							loc += loc.indexOf("?") === -1 ? "?" : "&";
-						
-							location.href = loc + "ts=true";
 
                             // $('html, body').animate( { scrollTop: homePropertiesContainer.offset().top - 60 }, 'slow' );
                         } else {
