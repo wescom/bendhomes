@@ -355,7 +355,7 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 			// TODO: update google fonts enqueue code
 			// enqueue required fonts
 			$protocol = is_ssl() ? 'https' : 'http';
-			//wp_enqueue_style( 'theme-roboto', "$protocol://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic&subset=latin,cyrillic" );
+			wp_enqueue_style( 'theme-roboto', "$protocol://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic" );
 			//wp_enqueue_style( 'theme-lato', "$protocol://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" );
 
 			// register styles
