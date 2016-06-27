@@ -113,6 +113,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	.menu-and-contact-wrap { position: static; width: auto; }
 	.main-menu { float: none; width: auto; margin: 5px 15px 10px; }
 	.view-type { display: none; }
+	article figure { text-align: center; }
 	.property-item figure, .property-item figure img { float: none; width: 100%; margin-bottom: 0; }
 	.property-item .detail, .listing-layout .property-item .detail { width: auto; float: none; }
 	.container.listing-grid-layout { width: auto; margin-left: 2%; margin-right: 2%; }
