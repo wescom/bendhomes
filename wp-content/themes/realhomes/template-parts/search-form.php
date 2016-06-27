@@ -76,34 +76,8 @@ if( !empty($theme_search_fields) ):
         </div>
         <?php
     }
-
-    if ( in_array( 'min-beds', $theme_search_fields ) ) {
-        ?>
-        <div class="option-bar small">
-            <label for="select-bedrooms"><?php _e('Min Beds', 'framework'); ?></label>
-            <span class="selectwrap">
-                <select name="bedrooms" id="select-bedrooms" class="search-select">
-                    <?php numbers_list('bedrooms'); ?>
-                </select>
-            </span>
-        </div>
-        <?php
-    }
-
-    if ( in_array ( 'min-baths', $theme_search_fields ) ) {
-        ?>
-        <div class="option-bar small">
-            <label for="select-bathrooms"><?php _e('Min Baths', 'framework'); ?></label>
-            <span class="selectwrap">
-                <select name="bathrooms" id="select-bathrooms" class="search-select">
-                    <?php numbers_list('bathrooms'); ?>
-                </select>
-            </span>
-        </div>
-        <?php
-    }
-
-    if ( in_array( 'min-max-price', $theme_search_fields ) ) {
+	
+	if ( in_array( 'min-max-price', $theme_search_fields ) ) {
         ?>
         <div class="option-bar small price-for-others">
             <label for="select-min-price"><?php _e('Min Price', 'framework'); ?></label>
@@ -137,6 +111,32 @@ if( !empty($theme_search_fields) ):
             <span class="selectwrap">
                 <select name="max-price" id="select-max-price-for-rent" class="search-select" disabled="disabled">
                     <?php max_prices_for_rent_list(); ?>
+                </select>
+            </span>
+        </div>
+        <?php
+    }
+
+    if ( in_array( 'min-beds', $theme_search_fields ) ) {
+        ?>
+        <div class="option-bar small">
+            <label for="select-bedrooms"><?php _e('Min Beds', 'framework'); ?></label>
+            <span class="selectwrap">
+                <select name="bedrooms" id="select-bedrooms" class="search-select">
+                    <?php numbers_list('bedrooms'); ?>
+                </select>
+            </span>
+        </div>
+        <?php
+    }
+
+    if ( in_array ( 'min-baths', $theme_search_fields ) ) {
+        ?>
+        <div class="option-bar small">
+            <label for="select-bathrooms"><?php _e('Min Baths', 'framework'); ?></label>
+            <span class="selectwrap">
+                <select name="bathrooms" id="select-bathrooms" class="search-select">
+                    <?php numbers_list('bathrooms'); ?>
                 </select>
             </span>
         </div>
