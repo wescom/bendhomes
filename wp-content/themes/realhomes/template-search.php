@@ -56,8 +56,8 @@ switch($theme_search_module){
 						?>
 
                         <div class="search-header clearfix">
-                        	<?php
-							echo '<h3>'. $total_count .' '. $text .'</h3>';
+                        	<?php global $wp_query;
+							echo '<h3>'. $wp_query->found_posts .' Results Found</h3>';
 							get_template_part('template-parts/sort-controls'); 
 							?>
                         </div>
