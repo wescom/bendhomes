@@ -37,9 +37,6 @@ switch($theme_search_module){
                     <section class="property-items">
                     
                     	<?php
-						global $wp_query;
-						print_r($wp_query);
-						
 						$search_args = array(
 							'post_type' => 'property',
 							'posts_per_page' => $number_of_properties,
@@ -53,14 +50,15 @@ switch($theme_search_module){
 
 						$search_query = new WP_Query( $search_args );
 						
-						$total_count = $search_query->post_count;
+						$total_count = $search_query->found_posts;
 						
 						$text = $total_count == 1 ? 'Search Result' : 'Search Results';
 						?>
 
                         <div class="search-header clearfix">
-                        	<?php //global $wp_query;
-							//echo '<h3>'. $wp_query->found_posts .' Results Found</h3>';
+                        	<?php
+							echo '<h3>'. $total_count .' '. $text .'</h3>';
+							
 							get_template_part('template-parts/sort-controls'); 
 							?>
                         </div>
