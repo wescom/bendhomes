@@ -30,6 +30,8 @@ switch($theme_search_module){
                 <!-- Main Content -->
                 <div class="main">
                     <?php
+					global $wp_query;
+							echo '<h3>'. $wp_query->found_posts .' Results Found</h3>';
                     /* Advance Search Form */
                     get_template_part('template-parts/advance-search');
                     ?>
@@ -56,8 +58,7 @@ switch($theme_search_module){
 						?>
 
                         <div class="search-header clearfix">
-                        	<?php global $wp_query;
-							echo '<h3>'. $wp_query->found_posts .' Results Found</h3>';
+                        	<?php 
 							get_template_part('template-parts/sort-controls'); 
 							?>
                         </div>
