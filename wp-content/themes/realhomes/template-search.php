@@ -36,7 +36,10 @@ switch($theme_search_module){
 
                     <section class="property-items">
 
-                        <div class="search-header">
+                        <div class="search-header clearfix">
+                        	<?php global $wp_query;
+							echo '<h3>'. $wp_query->found_posts.' results found.</h3>';
+							?>
                             <?php get_template_part('template-parts/sort-controls'); ?>
                         </div>
 
