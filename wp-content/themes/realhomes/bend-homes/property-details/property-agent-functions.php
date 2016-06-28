@@ -25,7 +25,7 @@ function display_sidebar_agent_box( $args ) {
 	<section class="widget">
 		<?php
 		if ( isset( $args[ 'agent_title_text' ] ) && ! empty( $args[ 'agent_title_text' ] ) ) {
-			?><h3 class="title"><?php echo $args[ 'agent_title_text' ] ?></h3><?php
+			?><h3 class="title"><div><small>Listing Agent:</small></div><?php echo $args[ 'agent_title_text' ] ?></h3><?php
 		}
 		?>
 		<div class="agent-info">
