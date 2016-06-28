@@ -151,6 +151,8 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 	.rail-standard-agent-wrapper .brokerage-label.bl-large { float: none; display: block; border: none; padding-left: 0; }
 	.rail-standard-agent-wrapper .brokerage-label.bl-large img { margin-top: 8px; }
 	.advance-search .option-bar { margin-left: 5%; width: 45%; }
+	.large .selectwrap input, .small .selectwrap input, .large input[type=text], .small input[type=text] { width: auto; padding-right: 0; }
+	.advance-search .real-btn { margin-top: 10px; }
 }
 
 @media(min-width: 1200px) {
