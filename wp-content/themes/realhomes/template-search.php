@@ -35,12 +35,31 @@ switch($theme_search_module){
                     ?>
 
                     <section class="property-items">
+                    
+                    	<?php
+						$search_args = array(
+							'post_type' => 'property',
+							'posts_per_page' => $number_of_properties,
+							'paged' => $paged
+						);
+						
+						// Apply Search Filter
+						$search_args = apply_filters('real_homes_search_parameters',$search_args);
+
+						$search_args = sort_properties($search_args);
+
+						$search_query = new WP_Query( $search_args );
+						
+						$total_count = $search_query->post_count;
+						
+						$text = $total_count == 1 ? 'Search Result' : 'Search Results';
+						?>
 
                         <div class="search-header clearfix">
-                        	<?php global $wp_query;
-							echo '<h3>'. $wp_query->found_posts.' results found.</h3>';
+                        	<?php
+							echo '<h3>'. $total_count .' '. $text .'</h3>';
+							get_template_part('template-parts/sort-controls'); 
 							?>
-                            <?php get_template_part('template-parts/sort-controls'); ?>
                         </div>
 
                         <div class="property-items-container clearfix">
@@ -51,18 +70,9 @@ switch($theme_search_module){
                                 $number_of_properties = 4;
                             }
 
-                            $search_args = array(
-                                'post_type' => 'property',
-                                'posts_per_page' => $number_of_properties,
-                                'paged' => $paged
-                            );
+                           
 
-                            // Apply Search Filter
-                            $search_args = apply_filters('real_homes_search_parameters',$search_args);
-
-                            $search_args = sort_properties($search_args);
-
-                            $search_query = new WP_Query( $search_args );
+                            
                             if ( $search_query->have_posts() ) :
                                 $post_count = 0;
                                 while ( $search_query->have_posts() ) :
