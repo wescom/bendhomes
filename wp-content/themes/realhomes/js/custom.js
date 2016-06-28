@@ -1,7 +1,7 @@
 (function($){
 
     "use strict";
-
+	
     $(document).ready(function() {
 
         /*-----------------------------------------------------------------------------------*/
@@ -21,39 +21,41 @@
 
 
         /*-----------------------------------------------------------------------------------*/
-        /* Main Menu Dropdown Control
+        /* Main Menu Dropdown Control and Mobile Sidr Menu
         /*-----------------------------------------------------------------------------------*/
-        $('.main-menu ul li').hover(function(){
-            $(this).children('ul').stop(true, true).slideDown(200);
-        },function(){
-            $(this).children('ul').stop(true, true).delay(50).slideUp(750);
-        });
-
-
-        /*-----------------------------------------------------------------------------------*/
-        /*	Responsive Nav
-        /*-----------------------------------------------------------------------------------*/
-        var $mainNav    = $('.main-menu > div > ul');
-        var optionsList = '<option value="" selected>'+ localized.nav_title +'</option>';
-
-        $mainNav.find('li').each(function() {
-            var $this   = $(this),
-                $anchor = $this.children('a'),
-                depth   = $this.parents('ul').length - 1,
-                indent  = '';
-            if( depth ) {
-                while( depth > 0 ) {
-                    indent += ' - ';
-                    depth--;
-                }
-            }
-            optionsList += '<option value="' + $anchor.attr('href') + '">' + indent + ' ' + $anchor.text() + '</option>';
-        }).end().last()
-            .after('<select class="responsive-nav">' + optionsList + '</select>');
-
-        $('.responsive-nav').on('change', function() {
-            window.location = $(this).val();
-        });
+		var $window = $(window),
+			$navWrap = $('#sidr'),
+			$mainMenu = $('.main-menu');
+		
+		function setNavigationState() {
+			$navWrap.removeClass('sidr left active');
+			$mainMenu.addClass('is-viewable');
+			
+			$('.main-menu.is-viewable ul li').hover(function(){
+				$(this).children('ul').stop(true, true).slideDown(200);
+			},function(){
+				$(this).children('ul').stop(true, true).delay(50).slideUp(750);
+			});
+			
+			if ($window.width() < 980) {
+				$navWrap.addClass('sidr left active');
+				$mainMenu.removeClass('is-viewable');
+				$('#menu-toggle').sidr({
+					onOpen: function() {
+						$('#menu-toggle').addClass('is-open');
+					},
+					onClose: function() {
+						$('#menu-toggle').removeClass('is-open');
+					}
+				});
+			}		
+		}
+	
+		setNavigationState();
+		$window.resize(function () {
+			setNavigationState();
+			$.sidr('close');
+		});
 
 
         /*-----------------------------------------------------------------------------------*/
@@ -974,6 +976,7 @@
               //  currentButton.addClass('current');
                 homePropertiesContainer.load(
                     currentButton.attr('href') + ' ' + '#home-properties-section-inner',
+					{ "choices[]": [ "Jon", "Susan" ] },
                     function( response, status, xhr ) {
                         if ( status == 'success' ) {
                             homePropertiesContainer.fadeTo('slow',1);
@@ -994,7 +997,7 @@
         /* Sticky Header
         /*-----------------------------------------------------------------*/
 
-        if( $('body').hasClass('sticky-header') ){
+        /*if( $('body').hasClass('sticky-header') ){
 
 
             $(window).scroll(function(){
@@ -1029,7 +1032,7 @@
 
             });
 
-        }
+        }*/
 
 
         /*-----------------------------------------------------------------*/

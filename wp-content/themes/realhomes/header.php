@@ -44,6 +44,9 @@
         <!-- Start Header -->
 
         <div class="header-wrapper">
+        
+        	<?php // Mobile Nagigation bar
+			//get_template_part( 'bend-homes/template-parts/navigation', 'mobile' ); ?>
 
             <div class="container"><!-- Start Header Container -->
 
@@ -90,6 +93,9 @@
                         if( $enable_user_nav == "true" ){
                             ?>
                             <div class="user-nav clearfix">
+                            
+                            	<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
+                                
                                 <?php
                                 if(is_user_logged_in()){
 
@@ -179,7 +185,7 @@
 
                       <!-- Social Navigation -->
                       <?php
-                        get_template_part('template-parts/social-nav') ;
+                        //get_template_part('template-parts/social-nav') ;
 
                         // $header_phone = get_option('theme_header_phone');
                         $header_phone = NULL;
@@ -191,14 +197,16 @@
                         ?>
 
                         <!-- Start Main Menu-->
-                        <nav class="main-menu">
-                            <?php
-                            wp_nav_menu( array(
-                                'theme_location' => 'main-menu',
-                                'menu_class' => 'clearfix'
-                            ));
-                            ?>
-                        </nav>
+                        <div id="sidr">
+                            <nav class="main-menu">
+                                <?php
+                                wp_nav_menu( array(
+                                    'theme_location' => 'main-menu',
+                                    'menu_class' => 'clearfix'
+                                ));
+                                ?>
+                            </nav>
+                        </div>
                         <!-- End Main Menu -->
                     </div>
 

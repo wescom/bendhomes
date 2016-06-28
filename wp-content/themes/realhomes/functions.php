@@ -355,7 +355,7 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 			// TODO: update google fonts enqueue code
 			// enqueue required fonts
 			$protocol = is_ssl() ? 'https' : 'http';
-			//wp_enqueue_style( 'theme-roboto', "$protocol://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic&subset=latin,cyrillic" );
+			wp_enqueue_style( 'theme-roboto', "$protocol://fonts.googleapis.com/css?family=Roboto+Slab" );
 			//wp_enqueue_style( 'theme-lato', "$protocol://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" );
 
 			// register styles
@@ -594,7 +594,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             // Theme's main script
             wp_register_script(
                 'custom',
-                $js_directory_uri . 'custom.min.js',
+                $js_directory_uri . 'custom.js',
                 array( 'jquery' ),
                 INSPIRY_THEME_VERSION,
                 true
@@ -755,7 +755,8 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             }
 
             // Finally enqueue theme's main script
-            wp_enqueue_script('custom');
+			// Enqueue this in the child theme instead
+            //wp_enqueue_script('custom');
 
             // Responsive menu title
             $localized_array = array(
