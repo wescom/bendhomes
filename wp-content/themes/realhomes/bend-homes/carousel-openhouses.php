@@ -16,7 +16,7 @@ $openhouse_properties_query = new WP_Query( $openhouse_properties_args );
 
 if ( $openhouse_properties_query->have_posts() ) :
     ?>
-    <section class="featured-properties-carousel clearfix">
+    <section class="featured-properties-carousel open-houses clearfix">
         <?php
         $openhouse_prop_title = get_option('theme_openhouse_prop_title');
         $openhouse_prop_text = get_option('theme_openhouse_prop_text');

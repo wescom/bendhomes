@@ -17,7 +17,7 @@ $featured_properties_query = new WP_Query( $featured_properties_args );
 
 if ( $featured_properties_query->have_posts() ) :
     ?>
-    <section class="featured-properties-carousel clearfix">
+    <section class="featured-properties-carousel featured-properties clearfix">
         <?php
         $featured_prop_title = get_option('theme_featured_prop_title');
         $featured_prop_text = get_option('theme_featured_prop_text');
