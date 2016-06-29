@@ -49,19 +49,23 @@ if($show_partners == 'true'){
         </div>
     </div>
 
-    <div class="container page-carousel">x
+    <div class="container page-carousel">
         <div class="row">
-            <div class="span3">
-                <?php do_action('dfp_ad_spot','partners1'); ?>
+            <div class="span6">
+                <div class="span6">
+                    <?php do_action('dfp_ad_spot','partners1'); ?>
+                </div>
+                <div class="span6">
+                    <?php do_action('dfp_ad_spot','partners2'); ?>
+                </div>
             </div>
-            <div class="span3">
-                <?php do_action('dfp_ad_spot','partners2'); ?>
-            </div>
-            <div class="span3">
-                <?php do_action('dfp_ad_spot','partners3'); ?>
-            </div>
-            <div class="span3">
-                <?php do_action('dfp_ad_spot','partners4'); ?>
+            <div class="span6">
+                <div class="span6">
+                    <?php do_action('dfp_ad_spot','partners3'); ?>
+                </div>
+                <div class="span6">
+                    <?php do_action('dfp_ad_spot','partners4'); ?>
+                </div>
             </div>
         </div>
     </div>
