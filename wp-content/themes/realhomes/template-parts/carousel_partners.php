@@ -50,24 +50,28 @@ if($show_partners == 'true'){
     </div>
 
     <div class="container page-carousel">
-        <div class="row">
-            <div class="span6">
-                <div class="span6">
-                    <?php do_action('dfp_ad_spot','partners1'); ?>
+        <section class="brands-carousel  clearfix">
+            <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
+                <div class="row">
+                    <div class="span6">
+                        <div class="span6">
+                            <?php do_action('dfp_ad_spot','partners1'); ?>
+                        </div>
+                        <div class="span6">
+                            <?php do_action('dfp_ad_spot','partners2'); ?>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="span6">
+                            <?php do_action('dfp_ad_spot','partners3'); ?>
+                        </div>
+                        <div class="span6">
+                            <?php do_action('dfp_ad_spot','partners4'); ?>
+                        </div>
+                    </div>
                 </div>
-                <div class="span6">
-                    <?php do_action('dfp_ad_spot','partners2'); ?>
-                </div>
-            </div>
-            <div class="span6">
-                <div class="span6">
-                    <?php do_action('dfp_ad_spot','partners3'); ?>
-                </div>
-                <div class="span6">
-                    <?php do_action('dfp_ad_spot','partners4'); ?>
-                </div>
-            </div>
-        </div>
+            </h3>
+        </section>
     </div>
     <?php
 }
