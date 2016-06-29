@@ -39,7 +39,7 @@ switch($theme_search_module){
                     	<?php
 						$search_args = array(
 							'post_type' => 'property',
-							'posts_per_page' => '200',
+							'posts_per_page' => $number_of_properties,
 							'paged' => $paged
 						);
 						
@@ -56,10 +56,13 @@ switch($theme_search_module){
 						?>
 
                         <div class="search-header clearfix">
-                        	<?php
-							echo '<h3 class="search-results-header">'. $total_count .' '. $text .'</h3>';
-							
-							get_template_part('template-parts/sort-controls'); 
+                        	<?php if( $total_count > 200 ) {
+								echo '<h3>Oops.</h3><p>Looks like there\'s over 200 results in your search. Please narrow your criteria and try again.</p>';
+							} else {
+								echo '<h3 class="search-results-header">'. $total_count .' '. $text .'</h3>';
+								
+								get_template_part('template-parts/sort-controls');
+							} 
 							?>
                         </div>
 
@@ -71,30 +74,31 @@ switch($theme_search_module){
                                 $number_of_properties = 4;
                             }
 
-                           
-
+							if( $total_count < 201 ) {
                             
-                            if ( $search_query->have_posts() ) :
-                                $post_count = 0;
-                                while ( $search_query->have_posts() ) :
-                                    $search_query->the_post();
-
-                                    /* Display Property for Search Page */
-                                    get_template_part('template-parts/property-for-home');
-
-                                    $post_count++;
-                                    if(0 == ($post_count % 2)){
-                                        echo '<div class="clearfix"></div>';
-                                    }
-                                endwhile;
-                                wp_reset_query();
-                            else:
-                                ?><div class="alert-wrapper"><h4><?php _e('No Properties Found!', 'framework') ?></h4></div><?php
-                            endif;
+								if ( $search_query->have_posts() ) :
+									$post_count = 0;
+									while ( $search_query->have_posts() ) :
+										$search_query->the_post();
+	
+										/* Display Property for Search Page */
+										get_template_part('template-parts/property-for-home');
+	
+										$post_count++;
+										if(0 == ($post_count % 2)){
+											echo '<div class="clearfix"></div>';
+										}
+									endwhile;
+									wp_reset_query();
+								else:
+									?><div class="alert-wrapper"><h4><?php _e('No Properties Found!', 'framework') ?></h4></div><?php
+								endif;
+							
+							}
                             ?>
                         </div>
 
-                        <?php theme_pagination( $search_query->max_num_pages); ?>
+                        <?php  if( $total_count < 201 ) theme_pagination( $search_query->max_num_pages); ?>
 
                     </section>
 
