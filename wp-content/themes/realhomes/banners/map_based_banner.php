@@ -276,8 +276,8 @@ if( $total_count < 200 ) {
 
 	<div class="container">
 		<div style="text-align: center; padding: 15px 0 80px;">
-        	<h2>Oops.</h2>
-            <h4>Looks like there's over 200 results in your search. Please narrow your criteria and try again.</h4>
+        	<h2 style="color: #971D20;">Oops.</h2>
+            <h4 style="color: #971D20;">Looks like there's over 200 results in your search. Please narrow your criteria and try again.</h4>
         </div>
 	</div>
 
