@@ -49,8 +49,7 @@ if($show_partners == 'true'){
         </div>
     </div>
 
-    <div class="container page-carousel">
-        <section class="brands-carousel  clearfix">
+    <div class="partnerWrap">
             <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
                 <div class="row">
                         <div class="span3">
@@ -67,8 +66,7 @@ if($show_partners == 'true'){
                             <?php do_action('dfp_ad_spot','partners4'); ?>
                         </div>
                 </div>
-            </h3>
-        </section>
+
     </div>
     <?php
 }
