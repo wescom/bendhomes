@@ -274,10 +274,10 @@ if( $total_count < 200 ) {
 
 }  else { // end if total count < 200 ?>
 
-	<div id="map-head">
-		<div id="listing-map" style="height: auto; background: #dedede;">
+	<div class="container">
+		<div style="text-align: center; padding: 15px 0 80px;">
         	<h2>Oops.</h2>
-            <h4>Looks like there\'s over 200 results in your search. Please narrow your criteria and try again.</h4>
+            <h4>Looks like there's over 200 results in your search. Please narrow your criteria and try again.</h4>
         </div>
 	</div>
 
