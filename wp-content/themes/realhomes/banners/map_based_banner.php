@@ -44,12 +44,12 @@ if( is_page_template('template-search.php') || is_page_template('template-search
     global $wp_query;
     /* Taxonomy Query */
     $properties_for_map['tax_query'] = array(
-                                            array(
-                                                'taxonomy' => $wp_query->query_vars['taxonomy'],
-                                                'field' => 'slug',
-                                                'terms' => $wp_query->query_vars['term']
-                                            )
-                                        );
+		array(
+			'taxonomy' => $wp_query->query_vars['taxonomy'],
+			'field' => 'slug',
+			'terms' => $wp_query->query_vars['term']
+		)
+	);
 
 }
 
@@ -57,7 +57,7 @@ $properties_for_map_query = new WP_Query( $properties_for_map );
 
 $total_count = $properties_for_map_query->found_posts;
 
-if( $total_count < 201 ) {
+if( $total_count < 200 ) {
 
 	$properties_data = array();
 	
@@ -272,13 +272,13 @@ if( $total_count < 201 ) {
 		}
 	endif;
 
-}  else { // end if total count < 201
+}  else { // end if total count < 200 ?>
 
-	echo '
 	<div id="map-head">
-		<div id="listing-map"></div>
+		<div id="listing-map" style="height: auto; background: #dedede;">
+        	<h2>Oops.</h2>
+            <h4>Looks like there\'s over 200 results in your search. Please narrow your criteria and try again.</h4>
+        </div>
 	</div>
-	';
 
-}
-?>
+<?php }
