@@ -55,7 +55,7 @@ if($show_partners == 'true'){
                 <!-- /38749147/BendHomes-Partners1 -->
                 <div id='div-gpt-ad-1467225384735-0' style='height:200px; width:200px;'>
                     <script type='text/javascript'>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1467225384735-0'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1467225384735-5'); });
                     </script>
                 </div>
             </div>
@@ -63,7 +63,7 @@ if($show_partners == 'true'){
                 <!-- /38749147/BendHomes-Partners2 -->
                 <div id='div-gpt-ad-1467226437999-0' style='height:200px; width:200px;'>
                     <script type='text/javascript'>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1467226437999-0'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1467226437999-6'); });
                     </script>
                 </div>
             </div>
@@ -71,7 +71,7 @@ if($show_partners == 'true'){
                 <!-- /38749147/BendHomes-Partners3 -->
                 <div id='div-gpt-ad-1467226482158-0' style='height:200px; width:200px;'>
                     <script type='text/javascript'>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1467226482158-0'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1467226482158-7'); });
                     </script>
                 </div>
             </div>
@@ -79,7 +79,7 @@ if($show_partners == 'true'){
                 <!-- /38749147/BendHomes-Partners4 -->
                 <div id='div-gpt-ad-1467226518460-0' style='height:200px; width:200px;'>
                     <script type='text/javascript'>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1467226518460-0'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1467226518460-8'); });
                     </script>
                 </div>
             </div>
