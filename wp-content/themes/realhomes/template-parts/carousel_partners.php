@@ -49,7 +49,7 @@ if($show_partners == 'true'){
         </div>
     </div>
 
-    <div class="container page-carousel">
+    <div class="container page-carousel">x
         <div class="row">
             <div class="col-md-3">
                 <!-- /38749147/BendHomes-Partners1 -->
