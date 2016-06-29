@@ -272,5 +272,13 @@ if( $total_count < 201 ) {
 		}
 	endif;
 
-} // end if total count < 201
+}  else { // end if total count < 201
+
+	echo '
+	<div id="map-head">
+		<div id="listing-map"></div>
+	</div>
+	';
+
+}
 ?>
