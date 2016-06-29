@@ -151,7 +151,11 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
       'leadheader' => 0,
       'leadmid' => 1,
       'leadfooter' => 3,
-      'siderail' => 4
+      'siderail' => 4,
+      'partners1' => 5,
+      'partners2' => 6,
+      'partners3' => 7,
+      'partners4' => 8,
     );
 
     $dispid = 'div-gpt-ad-1459980402618-'.$posid[$position];
