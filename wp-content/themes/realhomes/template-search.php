@@ -39,7 +39,7 @@ switch($theme_search_module){
                     	<?php
 						$search_args = array(
 							'post_type' => 'property',
-							'posts_per_page' => $number_of_properties,
+							'posts_per_page' => '200',
 							'paged' => $paged
 						);
 						
@@ -57,7 +57,7 @@ switch($theme_search_module){
 
                         <div class="search-header clearfix">
                         	<?php
-							echo '<h3 class="search-results-header">'. $total_count .' '. $text .' ('. $number_of_properties .')</h3>';
+							echo '<h3 class="search-results-header">'. $total_count .' '. $text .'</h3>';
 							
 							get_template_part('template-parts/sort-controls'); 
 							?>
