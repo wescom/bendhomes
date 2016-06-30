@@ -85,6 +85,10 @@ h3.search-results-header { float: left; margin: 0; }
 .page-template-template-search .advance-search .more-options-wrapper label { display: inline-block; margin-right: 20px; margin-bottom: 15px; }
 .page-template-template-search .advance-search .more-options-wrapper label small { color: #598F28; }
 
+#mc_embed_signup .mc-first, #mc_embed_signup .mc-last { float: left; width: 49%; }
+#mc_embed_signup .mc-first { margin-right: 2%; }
+#mc_embed_signup .mc-field-group input[type=text], #mc_embed_signup .mc-field-group input[type=email] { width: 100%; padding-left: 0; padding-right: 0; border-color: #fff; text-indent: 10px; }
+
 /*--- Custom Posts Shortcode Styles --- */
 .custom-posts-wrapper {}
 .custom-post-container { margin-left: -2%; margin-right: -2%; }
