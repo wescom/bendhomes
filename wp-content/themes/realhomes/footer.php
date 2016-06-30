@@ -51,7 +51,7 @@
                             </ul>
                         </div>
 
-                        <div class="span4 logocol">
+                        <div class="span4">
                         	<h4>Bend Homes Newsletter</h4>
                           <!--a title="Bend Homes &amp; Real Estate" href="<?php //site_url(); ?>">
                             <img src="/wp-content/uploads/2016/06/bendhomeslogo475x169.png" alt="Bend Homes &amp; Real Estate">
