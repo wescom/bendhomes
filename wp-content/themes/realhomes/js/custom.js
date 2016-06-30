@@ -256,14 +256,6 @@
                     $(form).ajaxSubmit( formOptions );
                 }
             } );
-			
-			// Newsletter Signup in footer
-			$('#mc-embedded-subscribe-form').validate({
-				errorLabelContainer: errorContainer,
-                submitHandler: function(form) {
-                    $(form).ajaxSubmit( formOptions );
-                }
-			});
 
         }
 

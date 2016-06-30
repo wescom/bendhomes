@@ -57,9 +57,12 @@
                           </a>
                           <!-- <h3>Find your dream home in Central Oregon</h3> -->
                           <!--p style="font-size: 18px; color: #fff; font-weight: 300; line-height: 140%;">Sign up today to receive special alerts, listings, and knowledge articles about real estate in Central Oregon.</p-->
-                          <?php get_template_part("bend-homes/template-parts/gform-signup"); ?>
-                          <?php /*<p style="font-size: 18px; color: #fff; font-weight: 300; line-height: 140%;">Sign up today to receive special alerts, listings, and knowledge articles about real estate in Central Oregon.</p>
-                          <?php echo do_shortcode('[mc4wp_form id="280784"]');*/ ?>
+                          
+						  <?php //get_template_part("bend-homes/template-parts/gform-signup"); ?>
+                          
+						  <?php get_template_part("bend-homes/template-parts/mailchimp_embed_form"); ?>
+                          
+						  <?php //echo do_shortcode('[mc4wp_form id="280784"]'); ?>
                         </div>
 
                 </div>
