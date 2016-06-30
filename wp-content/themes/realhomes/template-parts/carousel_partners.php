@@ -42,15 +42,14 @@ if($show_partners == 'true'){
                                     endwhile;
                                     wp_reset_query();
                                 endif;*/
-								
-								$a = array( 1, 2, 3, 4 );
-								
-								foreach( $a as $v ) {
-									echo '<li>';
-										do_action('dfp_ad_spot','partners{$v}');
-									echo '</li>';	
-								}
                                 ?>
+                                <li><?php do_action('dfp_ad_spot','partners1'); ?></li>
+                                
+                                <li><?php do_action('dfp_ad_spot','partners2'); ?></li>
+                                
+                                <li><?php do_action('dfp_ad_spot','partners3'); ?></li>
+                                
+                                <li><?php do_action('dfp_ad_spot','partners4'); ?></li>
                             </ul>
                 </section>
             </div>
