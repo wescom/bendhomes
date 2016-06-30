@@ -3,12 +3,12 @@ $show_partners = get_option('theme_show_partners');
 
 if($show_partners == 'true'){
     ?>
-    <div class="container page-carousel">
+    <div class="container partners-wrap">
         <div class="row">
             <div class="span12">
-                <section class="brands-carousel  clearfix">
+                <section class="partners clearfix">
                     <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
-                            <ul class="brands-carousel-list clearfix">
+                            <div class="row">
                                 <?php
                                 /*$partners_query_args = array(
                                     'post_type' => 'partners',
@@ -43,14 +43,14 @@ if($show_partners == 'true'){
                                     wp_reset_query();
                                 endif;*/
                                 ?>
-                                <li><?php do_action('dfp_ad_spot','partners1'); ?></li>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners1'); ?></div>
                                 
-                                <li><?php do_action('dfp_ad_spot','partners2'); ?></li>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners2'); ?></div>
                                 
-                                <li><?php do_action('dfp_ad_spot','partners3'); ?></li>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners3'); ?></div>
                                 
-                                <li><?php do_action('dfp_ad_spot','partners4'); ?></li>
-                            </ul>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners4'); ?></div>
+                            </div>
                 </section>
             </div>
         </div>
