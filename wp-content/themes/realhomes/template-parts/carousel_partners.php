@@ -10,7 +10,7 @@ if($show_partners == 'true'){
                     <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
                             <ul class="brands-carousel-list clearfix">
                                 <?php
-                                $partners_query_args = array(
+                                /*$partners_query_args = array(
                                     'post_type' => 'partners',
                                     'posts_per_page' => -1,
 									'orderby' => 'rand'
@@ -41,7 +41,15 @@ if($show_partners == 'true'){
                                         <?php
                                     endwhile;
                                     wp_reset_query();
-                                endif;
+                                endif;*/
+								
+								$a = array( 1, 2, 3, 4 );
+								
+								foreach( $a as $v ) {
+									echo '<li>';
+										do_action('dfp_ad_spot','partners{$v}');
+									echo '</li>';	
+								}
                                 ?>
                             </ul>
                 </section>
@@ -49,6 +57,7 @@ if($show_partners == 'true'){
         </div>
     </div>
 
+	<?php /*
     <div class="partnerWrap">
         <section class="property-items">
             <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
@@ -68,7 +77,6 @@ if($show_partners == 'true'){
                 </div>
             </div>
         </section>
-    </div>
-    <?php
+    </div> 
+    <?php*/
 }
-?>
