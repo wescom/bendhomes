@@ -24,7 +24,7 @@
                 <div class="row">
 
                         <div class="span4">
-                          <h4>Connect with Bend Homes</h3>
+                          <h4>Connect with Bend Homes</h4>
                             <div class="socialicons">
                               <a target="_blank" href="https://www.facebook.com/BendHomescom-774527582683047/"><span class="fa fa-facebook chiclet-facebook"></span></a>
                               <a target="_blank" href="https://twitter.com/BendHomes541"><span class="fa fa-twitter chiclet-twitter"></span></a>
@@ -52,17 +52,16 @@
                         </div>
 
                         <div class="span4 logocol">
-                          <a title="Bend Homes &amp; Real Estate" href="<?php site_url(); ?>">
+                        	<h4>Bend Homes Newsletter</h4>
+                          <!--a title="Bend Homes &amp; Real Estate" href="<?php //site_url(); ?>">
                             <img src="/wp-content/uploads/2016/06/bendhomeslogo475x169.png" alt="Bend Homes &amp; Real Estate">
                           </a>
                           <!-- <h3>Find your dream home in Central Oregon</h3> -->
-                          <!--p style="font-size: 18px; color: #fff; font-weight: 300; line-height: 140%;">Sign up today to receive special alerts, listings, and knowledge articles about real estate in Central Oregon.</p-->
+                          <p>Sign up today to receive special alerts, listings, and knowledge articles about real estate in Central Oregon.</p>
                           
 						  <?php //get_template_part("bend-homes/template-parts/gform-signup"); ?>
                           
-						  <?php get_template_part("bend-homes/template-parts/mailchimp_embed_form"); ?>
-                          
-						  <?php //echo do_shortcode('[mc4wp_form id="280784"]'); ?>
+						  <?php get_template_part("bend-homes/template-parts/mailchimp_embed_form"); ?>                          
                         </div>
 
                 </div>
