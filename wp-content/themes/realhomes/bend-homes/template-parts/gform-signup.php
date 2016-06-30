@@ -8,7 +8,7 @@ $posturl = "//bendbulletin.us1.list-manage.com/subscribe/post-json?u=a5d36976165
       <p>Sign up today to receive special alerts, listings, and knowledge articles about real estate in Central Oregon</p>
     </div>
     <div id="mc_embed_signup" class="clearfix bv-form" novalidate="novalidate">
-        <form action="<?php echo $posturl; ?>" method="get" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
+        <form action="<?php echo $posturl; ?>" method="get" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
 
             <input type="hidden" name="u" value="a5d36976165603b3ce7485798">
             <input type="hidden" name="amp;id" value="5e8299d4c6">
@@ -39,6 +39,9 @@ $posturl = "//bendbulletin.us1.list-manage.com/subscribe/post-json?u=a5d36976165
             </div>
 
             <button type="submit" class="bh-form-button" id="mc_sub_button" name="sub_button">Sign Me Up</button>
+            
+            <div id="error-container"></div>
+            <div id="message-container">&nbsp;</div>
 
         </form>
         <input type="hidden" name="sub_button" value="">
