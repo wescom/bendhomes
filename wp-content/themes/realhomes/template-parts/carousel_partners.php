@@ -3,12 +3,12 @@ $show_partners = get_option('theme_show_partners');
 
 if($show_partners == 'true'){
     ?>
-    <div class="container partners-wrap">
+    <div class="container page-carousel">
         <div class="row">
             <div class="span12">
-                <section class="partners clearfix">
+                <section class="brands-carousel clearfix">
                     <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
-                            <div class="row">
+                            <div class="row-fluid clearfix">
                                 <?php
                                 /*$partners_query_args = array(
                                     'post_type' => 'partners',
