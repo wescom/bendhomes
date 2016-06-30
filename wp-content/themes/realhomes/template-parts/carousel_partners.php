@@ -6,11 +6,11 @@ if($show_partners == 'true'){
     <div class="container page-carousel">
         <div class="row">
             <div class="span12">
-                <section class="brands-carousel  clearfix">
+                <section class="brands-carousel clearfix">
                     <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
-                            <ul class="brands-carousel-list clearfix">
+                            <div class="row-fluid clearfix">
                                 <?php
-                                $partners_query_args = array(
+                                /*$partners_query_args = array(
                                     'post_type' => 'partners',
                                     'posts_per_page' => -1,
 									'orderby' => 'rand'
@@ -41,14 +41,22 @@ if($show_partners == 'true'){
                                         <?php
                                     endwhile;
                                     wp_reset_query();
-                                endif;
+                                endif;*/
                                 ?>
-                            </ul>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners1'); ?></div>
+                                
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners2'); ?></div>
+                                
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners3'); ?></div>
+                                
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners4'); ?></div>
+                            </div>
                 </section>
             </div>
         </div>
     </div>
 
+	<?php /*
     <div class="partnerWrap">
         <section class="property-items">
             <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
@@ -68,7 +76,6 @@ if($show_partners == 'true'){
                 </div>
             </div>
         </section>
-    </div>
-    <?php
+    </div> 
+    <?php*/
 }
-?>
