@@ -251,8 +251,8 @@ function tbb_custom_posts( $defaults ) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
-					$address = get_field( 'company_office_address' );
-					$phone = get_field( 'REAL_HOMES_office_number' );
+					$address = get_field( 'brk_office_address' );
+					$phone = get_field( 'brk_office_phone' );
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					$additional_meta = sprintf( '
