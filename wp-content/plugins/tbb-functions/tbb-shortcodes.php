@@ -250,6 +250,14 @@ function tbb_custom_posts( $defaults ) {
 					
 				case "agent" :
 					$image_size = 'agent-image';
+					$brokerage = get_field( 'brk_office_name' );
+					$address = get_field( 'company_office_address' );
+					$phone = get_field( 'REAL_HOMES_office_number' );
+					if( $phone )
+						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
+					$additional_meta = sprintf( '
+						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
+							$brokerage, $address, $phone );
 					break;
 					
 				case "company" :
@@ -296,7 +304,7 @@ function tbb_custom_posts( $defaults ) {
 					$output .= sprintf( '<h4 class="custom-post-title">%s</h4>', $title );
 				}
 				
-				if( $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
+				if( $defaults['type'] == 'property' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
 					
 					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', get_framework_excerpt( $defaults['excerpt_length'] ) );
 				
