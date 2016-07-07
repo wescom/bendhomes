@@ -101,23 +101,28 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.five { width: 20%; }
 .custom-post.six { width: 16.66667%; }
 .custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 50px; border: 1px solid #dedede; background: #fff; position: relative; }
+.custom-post.four .custom-post-item { padding-bottom: 30px; }
 .custom-post h4 { font-weight: 400; text-transform: capitalize; margin: 0 0 10px; font-size: 18px; }
 .inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; }
 .custom-post a { color: #394041; }
 .custom-post a:hover { color: #02888f; }
 .custom-post a.more-details { display: inline-block; margin: 0 0 -1px 0; padding: 8px 15px; background: #02888f; color: #fff; position: absolute; right: 0; bottom: 0; }
 .custom-post.one a.more-details { position: absolute; right: -1px; bottom: 0; margin-right: 0; }
+.custom-post.four a.more-details { font-size: 14px; padding: 1px 10px; }
 .custom-post a.more-details:hover { background: #006267; }
 .inner-wrapper .custom-post .custom-post-excerpt { line-height: 22px; margin-bottom: 10px; }
 .custom-post .extra-meta { margin-bottom: 10px; font-size: 16px; line-height: 150%; }
+.custom-post.four .extra-meta { font-size: 14px; }
 .custom-post .extra-meta i { width: 15px; text-align: center; margin-right: 7px; }
 .custom-post .extra-meta i.fa-mobile { font-size: 1.25em; }
 .custom-post .custom-post-image { margin-bottom: 20px; }
 .custom-post.one .custom-post-image, .custom-post.two .custom-post-image { float: left; width: 35%; max-width: 180px; margin-right: 5%; }
+.custom-post.two .custom-post-image { width: 50%; margin-right: 3%; }
 .custom-post.one.with-image .custom-post-title, .custom-post.one.with-image .custom-post-excerpt, .custom-post.one.with-image .extra-meta, .custom-post.two.with-image .custom-post-title, .custom-post.two.with-image .custom-post-excerpt, .custom-post.two.with-image .extra-meta { float: right; width: 60%; }
+.custom-post.two.with-image .custom-post-title { width: 47%; }
 .post-property .custom-post .custom-post-image { margin-bottom: 0; margin-right: 0; float: none; width: 100%; max-width: 100%; }
 .post-property .custom-post.one.with-image .custom-post-title, .post-property .custom-post.two.with-image .custom-post-title, .post-property .custom-post.one.with-image .custom-post-excerpt, .post-property .custom-post.two.with-image .custom-post-excerpt, .post-property .custom-post.one.with-image .extra-meta, .post-property .custom-post.two.with-image .extra-meta { float: none; width: 100%; }
-.custom-post img { width: 100%; height: auto; }
+.custom-post img { width: 100%; height: auto; max-height: 200px; }
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
 .custom-post .property-price small { color: #fff; }
 
