@@ -271,6 +271,7 @@ function tbb_custom_posts( $defaults ) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
+					$ft_agent_class = get_field( 'agent_types' );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
 					if( $phone )
@@ -302,7 +303,8 @@ function tbb_custom_posts( $defaults ) {
 			
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
-			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', $count, $cols, $classes, $has_image_class );
+			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
+							$count, $cols, $classes, $has_image_class, $ft_agent_class );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
 					
