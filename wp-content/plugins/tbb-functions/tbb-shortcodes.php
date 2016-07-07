@@ -229,7 +229,7 @@ function tbb_custom_posts( $defaults ) {
 	
 	// Create merged array to display Featured Agents then Standard Agents all inside 1 loop with pagination
 	// http://wordpress.stackexchange.com/questions/39483/broken-pagination
-	if( !empty( $defaults['featured_agents'] ) ) {
+	/*if( !empty( $defaults['featured_agents'] ) ) {
 		$terms = array(
           'featured-agent' => array(
             'class' => 'featured-agent-type',
@@ -256,7 +256,7 @@ foreach($terms as $term_key => $term_val) {
 				'operator' => 'IN'
 			)
 		);	
-	}
+	}*/
 	
 
 	$custom_posts = new WP_Query( $args );
@@ -374,7 +374,7 @@ foreach($terms as $term_key => $term_val) {
 	
 	endif;
 	
-	$queried_post_count = $custom_posts->found_posts;
+	/*$queried_post_count = $custom_posts->found_posts;
 	$next_loop_count = ($number_of_posts - $queried_post_count);
 	if($next_loop_count < 0) {
 		$number_of_posts = 0;
@@ -382,7 +382,7 @@ foreach($terms as $term_key => $term_val) {
 		$number_of_posts = $next_loop_count;
 	}
 	
-} // end $terms foreach statement
+} // end $terms foreach statement*/
 			
 	return $output;
 	
