@@ -363,7 +363,7 @@ foreach($terms as $term_key => $term_val) {
 			
 		endwhile;
 	
-	//$output .= sprintf( '</div>%s</div>', get_theme_pagination( $custom_posts->max_num_pages) );
+	$output .= sprintf( '</div>%s</div>', get_theme_pagination( $custom_posts->max_num_pages) );
 	
 	endif;
 	
