@@ -347,12 +347,10 @@ function tbb_custom_posts( $defaults ) {
 			
 		endwhile;
 	
-	$output .= '</div></div>';
+	$output .= sprintf( '</div>%s</div>', get_theme_pagination( $custom_posts->max_num_pages) );
 	
 	endif;
-		
-	$output .= get_theme_pagination( $custom_posts->max_num_pages);
-	
+			
 	return $output;
 	
 	wp_reset_query();
