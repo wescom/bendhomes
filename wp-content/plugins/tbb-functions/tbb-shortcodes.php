@@ -351,7 +351,7 @@ function tbb_custom_posts( $defaults ) {
 	
 	endif;
 		
-	$output .= jc_return_echo( theme_pagination( $custom_posts->max_num_pages) );
+	$output .= get_theme_pagination( $custom_posts->max_num_pages);
 	
 	return $output;
 	
