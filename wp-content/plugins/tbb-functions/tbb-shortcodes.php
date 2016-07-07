@@ -271,9 +271,14 @@ function tbb_custom_posts( $defaults ) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
-					//$agent_terms = get_the_terms( get_the_ID(), 'agent' );
 					
-					$category_classes = bhLookupTaxonomy( get_the_ID(), 'agent_types' );
+					$category_classes = wp_get_post_terms( $custom_posts->ID, 'agent_types');
+					/*$agent_terms = get_the_terms( get_the_ID(), 'agent' );
+					foreach( $terms as $term ) {
+						
+					}*/
+					
+					//$category_classes = bhLookupTaxonomy( get_the_ID(), 'agent_types' );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
 					if( $phone )
