@@ -118,13 +118,6 @@ function add_autofocus_shortcode( $atts ) {
 }
 
 
-function jc_return_echo($func) {
-    ob_start();
-    $func;
-    return ob_get_clean();
-}
-
-
 // Display any post type in a 1-6 column grid
 add_shortcode('BH_CUSTOM_POSTS', 'tbb_custom_posts');
 function tbb_custom_posts( $defaults ) {
@@ -370,7 +363,7 @@ foreach($terms as $term_key => $term_val) {
 			
 		endwhile;
 	
-	$output .= sprintf( '</div>%s</div>', get_theme_pagination( $custom_posts->max_num_pages) );
+	//$output .= sprintf( '</div>%s</div>', get_theme_pagination( $custom_posts->max_num_pages) );
 	
 	endif;
 	
