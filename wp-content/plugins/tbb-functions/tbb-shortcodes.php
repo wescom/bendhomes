@@ -253,6 +253,8 @@ function tbb_custom_posts( $defaults ) {
 			
 			$title = get_the_title();
 			
+			$categories = get_the_category();
+			
 			// Show additional meta fields based on post type chosen
 			$property_price = '';
 			$additional_meta = '';
@@ -271,9 +273,6 @@ function tbb_custom_posts( $defaults ) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
-					foreach(get_the_category() as $category) {
-						$ft_agent_class = $category->slug . ' ';
-					}
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
 					if( $phone )
@@ -306,7 +305,7 @@ function tbb_custom_posts( $defaults ) {
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
 			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
-							$count, $cols, $classes, $has_image_class, $ft_agent_class );
+							$count, $cols, $classes, $has_image_class, $categories );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
 					
