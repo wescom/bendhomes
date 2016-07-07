@@ -228,13 +228,20 @@ function tbb_custom_posts( $defaults ) {
 	}
 	
 	// Create merged array to display Featured Agents then Standard Agents all inside 1 loop with pagination
+	// http://wordpress.stackexchange.com/questions/39483/broken-pagination
 	if ( !empty( $defaults['featured_agents'] ) ) {
-		$featured = get_option();
+		$featured = get_option('sticky_posts');
 		$featured_agents = new WP_Query( array(
 			'post__in' => $featured,
 			'ignore_sticky_posts' => 1,
 			'posts_per_page' => -1
 		) );
+		
+		$args['posts__not_in'] = get_option('sticky_posts');
+		
+		global $wp_query;
+		
+		$custom_posts = array_merge( $wp_query->query, $featured_agents );
 	}
 	
 
@@ -254,8 +261,8 @@ function tbb_custom_posts( $defaults ) {
 			$title = get_the_title();
 			
 			// Show additional meta fields based on post type chosen
-			$property_price = '';
-			$additional_meta = '';
+			$property_price = ''; $additional_meta = ''; $category_classes = '';
+			
 			switch( $defaults['type'] ) {
 				
 				case "property" :
@@ -271,15 +278,7 @@ function tbb_custom_posts( $defaults ) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
-					
 					$category_classes = sanitize_title( strip_tags( get_the_term_list( $custom_posts->ID, 'agent_types', '', ' ', '' ) ) );
-					
-					/*$agent_terms = get_the_terms( get_the_ID(), 'agent' );
-					foreach( $terms as $term ) {
-						
-					}*/
-					
-					//$category_classes = bhLookupTaxonomy( get_the_ID(), 'agent_types' );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
 					if( $phone )
