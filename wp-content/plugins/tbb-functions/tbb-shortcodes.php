@@ -229,19 +229,33 @@ function tbb_custom_posts( $defaults ) {
 	
 	// Create merged array to display Featured Agents then Standard Agents all inside 1 loop with pagination
 	// http://wordpress.stackexchange.com/questions/39483/broken-pagination
-	if ( !empty( $defaults['featured_agents'] ) ) {
-		$featured = get_option('sticky_posts');
-		$featured_agents = new WP_Query( array(
-			'post__in' => $featured,
-			'ignore_sticky_posts' => 1,
-			'posts_per_page' => -1
-		) );
+	if( !empty( $defaults['featured_agents'] ) ) {
+		$terms = array(
+          'featured-agent' => array(
+            'class' => 'featured-agent-type',
+            'title' => 'Featured Agents',
+            'title_label' => 'Featured Agent'
+          ),
+          'standard-agent' => array(
+            'class' => 'standard-agent-type',
+            'title' => 'Standard Agents',
+            'title_label' => 'Standard Agent'
+          )
+        );
+	}
+	
+foreach($terms as $term_key => $term_val) {
 		
-		$args['posts__not_in'] = get_option('sticky_posts');
-		
-		global $wp_query;
-		
-		$custom_posts = array_merge( $wp_query->query, $featured_agents );
+	if( !empty( $defaults['featured_agents'] ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'agent_types',
+				'terms' => $term_key,
+				'field' => 'slug',
+				'include_children' => false,
+				'operator' => 'IN'
+			)
+		);	
 	}
 	
 
@@ -359,6 +373,8 @@ function tbb_custom_posts( $defaults ) {
 	$output .= sprintf( '</div>%s</div>', get_theme_pagination( $custom_posts->max_num_pages) );
 	
 	endif;
+	
+} // end $terms foreach statement
 			
 	return $output;
 	
