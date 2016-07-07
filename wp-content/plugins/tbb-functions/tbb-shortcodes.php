@@ -253,7 +253,10 @@ function tbb_custom_posts( $defaults ) {
 			
 			$title = get_the_title();
 			
-			$categories = get_the_category();
+			$post_categories = get_the_category();
+			foreach( $post_categories as $post_category ) {
+				$category_classes = $post_category->slug .' ';
+			}
 			
 			// Show additional meta fields based on post type chosen
 			$property_price = '';
@@ -305,7 +308,7 @@ function tbb_custom_posts( $defaults ) {
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
 			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
-							$count, $cols, $classes, $has_image_class, $categories );
+							$count, $cols, $classes, $has_image_class, $category_classes );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
 					
