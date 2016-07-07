@@ -91,6 +91,7 @@ h3.search-results-header { float: left; margin: 0; }
 
 /*--- Custom Posts Shortcode Styles --- */
 .custom-posts-wrapper {}
+.custom-posts-wrapper .pagination { border-top: none; margin-top: 0; }
 .custom-post-container { margin-left: -2%; margin-right: -2%; }
 .custom-post { float: left; }
 .custom-post.one { width: 100%; }
@@ -99,12 +100,12 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.four { width: 25%; }
 .custom-post.five { width: 20%; }
 .custom-post.six { width: 16.66667%; }
-.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 0; border: 1px solid #dedede; background: #fff; position: relative; }
+.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 50px; border: 1px solid #dedede; background: #fff; position: relative; }
 .custom-post h4 { font-weight: 400; text-transform: capitalize; margin: 0 0 10px; font-size: 18px; }
 .inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; }
 .custom-post a { color: #394041; }
 .custom-post a:hover { color: #02888f; }
-.custom-post a.more-details { display: inline-block; margin: 0 -11px -1px 0; float: right; padding: 8px 15px; background: #02888f; color: #fff; }
+.custom-post a.more-details { display: inline-block; margin: 0 0 -1px 0; padding: 8px 15px; background: #02888f; color: #fff; position: absolute; right: 0; bottom: 0; }
 .custom-post.one a.more-details { position: absolute; right: -1px; bottom: 0; margin-right: 0; }
 .custom-post a.more-details:hover { background: #006267; }
 .inner-wrapper .custom-post .custom-post-excerpt { line-height: 22px; margin-bottom: 10px; }
