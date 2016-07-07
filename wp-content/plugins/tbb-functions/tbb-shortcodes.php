@@ -253,11 +253,6 @@ function tbb_custom_posts( $defaults ) {
 			
 			$title = get_the_title();
 			
-			$post_categories = get_the_category();
-			foreach( $post_categories as $post_category ) {
-				$category_classes = $post_category->slug .' ';
-			}
-			
 			// Show additional meta fields based on post type chosen
 			$property_price = '';
 			$additional_meta = '';
@@ -276,6 +271,7 @@ function tbb_custom_posts( $defaults ) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
+					$category_classes = bhLookupTaxonomy($custom_posts,'agent_types');
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
 					if( $phone )
