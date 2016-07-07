@@ -176,7 +176,7 @@ function tbb_custom_posts( $defaults ) {
 	
 	// Transform categories to array
 	if ( $defaults['category_type'] && $defaults['categories'] ) {
-		$cat_slugs = preg_replace( '/\s+/', '', $defaults['categories'] );
+		//$cat_slugs = preg_replace( '/\s+/', '', $defaults['categories'] );
 		$cat_slugs = explode( ',', $defaults['categories'] );
 	} else {
 		$cat_slugs = array();
