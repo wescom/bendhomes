@@ -374,6 +374,14 @@ foreach($terms as $term_key => $term_val) {
 	
 	endif;
 	
+	$queried_post_count = $custom_posts->found_posts;
+	$next_loop_count = ($number_of_posts - $queried_post_count);
+	if($next_loop_count < 0) {
+		$number_of_posts = 0;
+	} else {
+		$number_of_posts = $next_loop_count;
+	}
+	
 } // end $terms foreach statement
 			
 	return $output;
