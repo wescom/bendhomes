@@ -128,6 +128,7 @@ function tbb_custom_posts( $defaults ) {
 		'category_type' => '',
 		'categories' => '',
 		'featured_image' => '',
+		'featured_agents' => '',
 		'excerpt_length' => '12',
 		'meta_key' => '',
 		'meta_value' => '',
@@ -217,6 +218,17 @@ function tbb_custom_posts( $defaults ) {
 			)
 		);
 	}
+	
+	// Create merged array to display Featured Agents then Standard Agents all inside 1 loop with pagination
+	if ( !empty( $defaults['featured_agents'] ) ) {
+		$featured = get_option();
+		$featured_agents = new WP_Query( array(
+			'post__in' => $featured,
+			'ignore_sticky_posts' => 1,
+			'posts_per_page' => -1
+		) );
+	}
+	
 
 	$custom_posts = new WP_Query( $args );
 	
@@ -330,6 +342,8 @@ function tbb_custom_posts( $defaults ) {
 	$output .= '</div></div>';
 	
 	endif;
+	
+	$output .= theme_pagination( $custom_posts->max_num_pages);
 	
 	return $output;
 	
