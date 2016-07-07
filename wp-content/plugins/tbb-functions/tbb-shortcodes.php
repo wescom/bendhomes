@@ -271,7 +271,9 @@ function tbb_custom_posts( $defaults ) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
-					$category_classes = bhLookupTaxonomy($custom_posts,'agent_types');
+					//$agent_terms = get_the_terms( get_the_ID(), 'agent' );
+					
+					$category_classes = bhLookupTaxonomy( get_the_ID(), 'agent_types' );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
 					if( $phone )
