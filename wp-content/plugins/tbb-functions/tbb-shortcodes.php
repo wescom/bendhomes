@@ -272,7 +272,8 @@ function tbb_custom_posts( $defaults ) {
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
 					
-					$category_classes = wp_get_post_terms( $custom_posts->ID, 'agent_types');
+					$category_classes = get_the_term_list( $custom_posts->ID, 'agent_types', '', ' ', '' );
+					
 					/*$agent_terms = get_the_terms( get_the_ID(), 'agent' );
 					foreach( $terms as $term ) {
 						
