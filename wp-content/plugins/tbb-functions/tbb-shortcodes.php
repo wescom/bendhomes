@@ -118,6 +118,13 @@ function add_autofocus_shortcode( $atts ) {
 }
 
 
+function jc_return_echo($func) {
+    ob_start();
+    $func;
+    return ob_get_clean();
+}
+
+
 // Display any post type in a 1-6 column grid
 add_shortcode('BH_CUSTOM_POSTS', 'tbb_custom_posts');
 function tbb_custom_posts( $defaults ) {
@@ -183,11 +190,12 @@ function tbb_custom_posts( $defaults ) {
 	}
 	
 	// Initialize the query array
+	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
-		'post_type' 		=> $defaults['type'],
-		'paged' 			=> 1,
-		'posts_per_page'	=> $defaults['limit'],
-		'has_password' 		=> false,
+		'post_type' 	=> $defaults['type'],
+		'posts_per_page' => $defaults['limit'],
+		'paged' 	=> $paged,
+		'has_password' => false,
 		'order' => $defaults['order'],
 		'orderby' => $defaults['orderby']
 	);
@@ -342,8 +350,8 @@ function tbb_custom_posts( $defaults ) {
 	$output .= '</div></div>';
 	
 	endif;
-	
-	$output .= theme_pagination( $custom_posts->max_num_pages);
+		
+	$output .= jc_return_echo( theme_pagination( $custom_posts->max_num_pages) );
 	
 	return $output;
 	
