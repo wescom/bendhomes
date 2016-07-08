@@ -75,10 +75,10 @@
     $OHdata = openHouseGetData($post->ID,10);
     if(!empty($OHdata)) {		
       echo '<div class="property-openhouse clearfix">';
-		  echo '<span class="oh_header">Open house scheduled for: </span>';
+		  echo '<span class="oh_header">Open house scheduled for:</span>';
 		  foreach($OHdata as $entry) {
 			echo '<span class="oh_timeblock">';
-				echo '<span class="oh_time">'.$entry['startdate'].' | '.$entry['timecomments'].'</span>';
+				echo '<span class="oh_time"> '.$entry['startdate'].' | '.$entry['timecomments'].'</span>';
 				echo '<span class="oh_agent"> by '.$entry['agentfirst'].' '.$entry['agentlast'].'</span>';
 			echo '</span>';
 		  }
