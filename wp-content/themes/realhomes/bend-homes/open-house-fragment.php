@@ -79,7 +79,7 @@
 		  foreach($OHdata as $entry) {
 			echo '<span class="oh_timeblock">';
 				echo '<span class="oh_time">'.$entry['startdate'].' | '.$entry['timecomments'].'</span>';
-				echo '<span class="oh_agent">by '.$entry['agentfirst'].' '.$entry['agentlast'].'</span>';
+				echo '<span class="oh_agent"> by '.$entry['agentfirst'].' '.$entry['agentlast'].'</span>';
 			echo '</span>';
 		  }
       echo '</div>';
