@@ -1,5 +1,5 @@
 <?php
-$size = 'property-detail-slider-image';
+$size = 'property-detail-slider-image-two';
 $properties_images = rwmb_meta( 'REAL_HOMES_property_images', 'type=plupload_image&size='.$size, $post->ID );
 if( !empty($properties_images) ){
     ?>

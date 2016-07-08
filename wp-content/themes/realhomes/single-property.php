@@ -63,13 +63,38 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                             while ( have_posts() ) :
                                 the_post();
 
-                                if ( ! post_password_required() ) {
-
+                                if ( ! post_password_required() ) { 
+								
+									$mls_number = get_field( 'REAL_HOMES_property_id' );
+									if(!empty($mls_number)) $mls = sprintf( 'MLS #: <span class="font-roboto">%s</span>', $mls_number );
+									
+									$status_terms = get_the_terms( get_the_ID(), 'property-status' );
+									if ( $status_terms && !is_wp_error( $status_terms ) ) :
+										$term_links = array();
+										foreach( $status_terms as $status ) {
+											$term_links[] = $status->name;
+										}
+										$on_status = join( ', ', $term_links );
+										$status_list = sprintf( '<span class="header-status">Status: %s</span>', esc_html( $on_status ) );
+									endif;
+									?>
+									
+                                    <div class="quick-header-info clearfix">
+                                    	<span class="header-price font-roboto text-green"><?php property_price(); ?></span>
+                                        <span class="header-mls"><?php echo $mls; ?></span>
+                                        <?php echo $status_list; ?>
+                                        
+                                        <?php // open house info, if array_change_key_case
+								        get_template_part('bend-homes/open-house-fragment');
+										?>
+                                    </div>
+									
+									<?php
                                     /*
                                     * 1. Property Images Slider
                                     */
-                                    $gallery_slider_type = get_post_meta($post->ID, 'REAL_HOMES_gallery_slider_type', true);
-                                    /* For demo purpose only */
+                                    /*$gallery_slider_type = get_post_meta($post->ID, 'REAL_HOMES_gallery_slider_type', true);
+                                    // For demo purpose only
                                     if(isset($_GET['slider-type'])){
                                         $gallery_slider_type = $_GET['slider-type'];
                                     }
@@ -77,7 +102,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                                         get_template_part('property-details/property-slider-two');
                                     }else{
                                         get_template_part('property-details/property-slider');
-                                    }
+                                    }*/
+									
+									// Use this slider style instead of regular /property-slider because it looks better.
+									get_template_part('property-details/property-slider-two');
 
 
                                     /*

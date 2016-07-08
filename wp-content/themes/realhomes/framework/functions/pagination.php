@@ -55,6 +55,62 @@ if ( ! function_exists( 'theme_pagination' ) ) {
 }
 
 
+// Return theme pagination instead of echoing it
+if ( ! function_exists( 'get_theme_pagination' ) ) {
+	/**
+	 * Pagination
+	 *
+	 * @param string $pages
+	 */
+	function get_theme_pagination( $pages = '' ) {
+
+		global $paged;
+
+		if ( is_page_template( 'template-home.php' ) ) {
+			$paged = intval( get_query_var( 'page' ) );
+		}
+
+		if ( empty( $paged ) ) {
+			$paged = 1;
+		}
+
+		$prev = $paged - 1;
+		$next = $paged + 1;
+		$range = 2; // only change it to show more links
+		$show_items = ( $range * 2 ) + 1;
+		$jump_link = '';
+		$output = '';
+
+		if ( $pages == '' ) {
+			global $wp_query;
+			$pages = $wp_query->max_num_pages;
+			if ( ! $pages ) {
+				$pages = 1;
+			}
+		}
+
+		if ( 1 != $pages ) {
+			
+			$output .= "<div class='pagination'>";
+			$output .= ( $paged > 2 && $paged > $range + 1 && $show_items < $pages ) ? "<a href='" . get_pagenum_link( 1 ) . "". $jump_link ."' class='real-btn'>&laquo; " . __( 'First', 'framework' ) . "</a> " : "";
+			$output .= ( $paged > 1 && $show_items < $pages ) ? "<a href='" . get_pagenum_link( $prev ) . "". $jump_link ."' class='real-btn' >&laquo; " . __( 'Previous', 'framework' ) . "</a> " : "";
+
+			for ( $i = 1; $i <= $pages; $i++ ) {
+				if ( 1 != $pages && ( ! ( $i >= $paged + $range + 1 || $i <= $paged - $range - 1 ) || $pages <= $show_items ) ) {
+					$output .= ( $paged == $i ) ? "<a href='" . get_pagenum_link( $i ) . "". $jump_link ."' class='real-btn current' >" . $i . "</a> " : "<a href='" . get_pagenum_link( $i ) . "". $jump_link ."' class='real-btn'>" . $i . "</a> ";
+				}
+			}
+
+			$output .= ( $paged < $pages && $show_items < $pages ) ? "<a href='" . get_pagenum_link( $next ) . "". $jump_link ."' class='real-btn' >" . __( 'Next', 'framework' ) . " &raquo;</a> " : "";
+			$output .= ( $paged < $pages - 1 && $paged + $range - 1 < $pages && $show_items < $pages ) ? "<a href='" . get_pagenum_link( $pages ) . "". $jump_link ."' class='real-btn' >" . __( 'Last', 'framework' ) . " &raquo;</a> " : "";
+			$output .= "</div>";
+		}
+		
+		return $output;
+	}
+}
+
+
 if ( ! function_exists( 'theme_ajax_pagination' ) ) {
 	/**
 	 * Pagination function form homepage AJAX pagination
@@ -118,6 +174,77 @@ if ( ! function_exists( 'theme_ajax_pagination' ) ) {
 
 			echo "</div>";
 		}
+	}
+}
+
+
+// Get ajax pagination instead of echoing it
+if ( ! function_exists( 'get_theme_ajax_pagination' ) ) {
+	/**
+	 * Pagination function form homepage AJAX pagination
+	 *
+	 * @param string $pages
+	 */
+	function get_theme_ajax_pagination( $pages = '' ) {
+
+		global $paged;
+		global $wp_query;
+
+		if ( is_page_template( 'template-home.php' ) ) {
+			$paged = intval( get_query_var( 'page' ) );
+		}
+
+		if ( empty( $paged ) ) {
+			$paged = 1;
+		}
+
+		$prev = $paged - 1;
+		$next = $paged + 1;
+		$range = 2;                             // change it to show more links
+		$pages_to_show = ( $range * 2 ) + 1;
+		$output = '';
+
+		if ( $pages == '' ) {
+			$pages = $wp_query->max_num_pages;
+			if ( ! $pages ) {
+				$pages = 1;
+			}
+		}
+
+		if ( 1 != $pages ) {
+			$output .= "<div class='pagination'>";
+
+			if ( ( $paged > 2 ) && ( $paged > $range + 1 ) && ( $pages_to_show < $pages ) ) {
+				$output .= "<a href='" . get_pagenum_link( 1 ) . "' class='real-btn'>&laquo; " . __( 'First', 'framework' ) . "</a> "; // First Page
+			}
+
+			if ( ( $paged > 1 ) && ( $pages_to_show < $pages ) ) {
+				$output .= "<a href='" . get_pagenum_link( $prev ) . "' class='real-btn'>&laquo; " . __( 'Previous', 'framework' ) . "</a> "; // Previous Page
+			}
+
+			$min_page_number = $paged - $range - 1;
+			$max_page_number = $paged + $range + 1;
+
+			for ( $i = 1; $i <= $pages; $i++ ) {
+				if ( ( ( $i > $min_page_number ) && ( $i < $max_page_number ) ) || ( $pages <= $pages_to_show ) ) {
+					$current_class = 'real-btn';
+					$current_class .= ( $paged == $i ) ? ' current' : '';
+					$output .= "<a href='" . get_pagenum_link( $i ) . "' class='" . $current_class . "' >" . $i . "</a> ";
+				}
+			}
+
+			if ( ( $paged < $pages ) && ( $pages_to_show < $pages ) ) {
+				$output .= "<a href='" . get_pagenum_link( $next ) . "' class='real-btn'>" . __( 'Next', 'framework' ) . " &raquo;</a> "; // Next Page
+			}
+
+			if ( ( $paged < $pages - 1 ) && ( $paged + $range - 1 < $pages ) && ( $pages_to_show < $pages ) ) {
+				$output .= "<a href='" . get_pagenum_link( $pages ) . "' class='real-btn'>" . __( 'Last', 'framework' ) . " &raquo;</a> "; // Last Page
+			}
+
+			$output .= "</div>";
+		}
+		
+		return $output;
 	}
 }
 

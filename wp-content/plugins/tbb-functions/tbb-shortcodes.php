@@ -128,6 +128,7 @@ function tbb_custom_posts( $defaults ) {
 		'category_type' => '',
 		'categories' => '',
 		'featured_image' => '',
+		'featured_agents' => '',
 		'excerpt_length' => '12',
 		'meta_key' => '',
 		'meta_value' => '',
@@ -175,18 +176,19 @@ function tbb_custom_posts( $defaults ) {
 	
 	// Transform categories to array
 	if ( $defaults['category_type'] && $defaults['categories'] ) {
-		$cat_slugs = preg_replace( '/\s+/', '', $defaults['categories'] );
+		//$cat_slugs = preg_replace( '/\s+/', '', $defaults['categories'] );
 		$cat_slugs = explode( ',', $defaults['categories'] );
 	} else {
 		$cat_slugs = array();
 	}
 	
 	// Initialize the query array
+	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
-		'post_type' 		=> $defaults['type'],
-		'paged' 			=> 1,
-		'posts_per_page'	=> $defaults['limit'],
-		'has_password' 		=> false,
+		'post_type' 	=> $defaults['type'],
+		'posts_per_page' => $defaults['limit'],
+		'paged' 	=> $paged,
+		'has_password' => false,
 		'order' => $defaults['order'],
 		'orderby' => $defaults['orderby']
 	);
@@ -217,6 +219,38 @@ function tbb_custom_posts( $defaults ) {
 			)
 		);
 	}
+	
+	// Create merged array to display Featured Agents then Standard Agents all inside 1 loop with pagination
+	// http://wordpress.stackexchange.com/questions/39483/broken-pagination
+	/*if( !empty( $defaults['featured_agents'] ) ) {
+		$terms = array(
+          'featured-agent' => array(
+            'class' => 'featured-agent-type',
+            'title' => 'Featured Agents',
+            'title_label' => 'Featured Agent'
+          ),
+          'standard-agent' => array(
+            'class' => 'standard-agent-type',
+            'title' => 'Standard Agents',
+            'title_label' => 'Standard Agent'
+          )
+        );
+	}
+	
+foreach($terms as $term_key => $term_val) {
+		
+	if( !empty( $defaults['featured_agents'] ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'agent_types',
+				'terms' => $term_key,
+				'field' => 'slug',
+				'include_children' => false,
+				'operator' => 'IN'
+			)
+		);	
+	}*/
+	
 
 	$custom_posts = new WP_Query( $args );
 	
@@ -234,8 +268,8 @@ function tbb_custom_posts( $defaults ) {
 			$title = get_the_title();
 			
 			// Show additional meta fields based on post type chosen
-			$property_price = '';
-			$additional_meta = '';
+			$property_price = ''; $additional_meta = ''; $category_classes = '';
+			
 			switch( $defaults['type'] ) {
 				
 				case "property" :
@@ -250,6 +284,15 @@ function tbb_custom_posts( $defaults ) {
 					
 				case "agent" :
 					$image_size = 'agent-image';
+					$brokerage = get_field( 'brk_office_name' );
+					$category_classes = sanitize_title( strip_tags( get_the_term_list( $custom_posts->ID, 'agent_types', '', ' ', '' ) ) );
+					$address = get_field( 'brk_office_address' );
+					$phone = get_field( 'brk_office_phone' );
+					if( $phone )
+						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
+					$additional_meta = sprintf( '
+						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
+							$brokerage, $address, $phone );
 					break;
 					
 				case "company" :
@@ -274,7 +317,8 @@ function tbb_custom_posts( $defaults ) {
 			
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
-			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', $count, $cols, $classes, $has_image_class );
+			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
+							$count, $cols, $classes, $has_image_class, $category_classes );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
 					
@@ -296,7 +340,7 @@ function tbb_custom_posts( $defaults ) {
 					$output .= sprintf( '<h4 class="custom-post-title">%s</h4>', $title );
 				}
 				
-				if( $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
+				if( $defaults['type'] == 'property' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
 					
 					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', get_framework_excerpt( $defaults['excerpt_length'] ) );
 				
@@ -319,10 +363,20 @@ function tbb_custom_posts( $defaults ) {
 			
 		endwhile;
 	
-	$output .= '</div></div>';
+	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $custom_posts->max_num_pages) );
 	
 	endif;
 	
+	/*$queried_post_count = $custom_posts->found_posts;
+	$next_loop_count = ($number_of_posts - $queried_post_count);
+	if($next_loop_count < 0) {
+		$number_of_posts = 0;
+	} else {
+		$number_of_posts = $next_loop_count;
+	}
+	
+} // end $terms foreach statement*/
+			
 	return $output;
 	
 	wp_reset_query();

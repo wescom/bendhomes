@@ -73,15 +73,15 @@
     }
 
     $OHdata = openHouseGetData($post->ID,10);
-    if(!empty($OHdata)) {
+    if(!empty($OHdata)) {		
       echo '<div class="property-openhouse clearfix">';
-      echo '<p class="oh_header">This home is open soon:</p>';
-      foreach($OHdata as $entry) {
-        echo '<div class="oh_timeblock clearfix">';
-        echo '<p class="oh_time">'.$entry['startdate'].' | '.$entry['timecomments'].'</p>';
-        echo '<p class="oh_agent">by '.$entry['agentfirst'].' '.$entry['agentlast'].'</p>';
-        echo '</div>';
-      }
+		  echo '<span class="oh_header">Open house scheduled for: </span>';
+		  foreach($OHdata as $entry) {
+			echo '<span class="oh_timeblock">';
+				echo '<span class="oh_time">'.$entry['startdate'].' | '.$entry['timecomments'].'</span>';
+				echo '<span class="oh_agent"> by '.$entry['agentfirst'].' '.$entry['agentlast'].'</span>';
+			echo '</span>';
+		  }
       echo '</div>';
     }
 

@@ -32,7 +32,6 @@ get_header();
 
                     <!-- Main Content -->
                     <div class="main">
-                      TEST1999
                         <section class="listing-layout">
                             <?php
                             $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
@@ -57,21 +56,67 @@ get_header();
                                   // echo '<h2>class: '.$term_val['class'].'</h2>';
 
                                   $agents_query = array(
-                                                      'post_type' => 'agent',
-                                                      'posts_per_page' => $number_of_posts,
-                                                      'paged' => $paged,
-                                                      'tax_query' => array(
-                                                          array(
-                                                              'taxonomy' => 'agent_types',
-                                                              'terms' => $term_key,
-                                                              'field' => 'slug',
-                                                              'include_children' => false,
-                                                              'operator' => 'IN'
-                                                          )
-                                                      ),
-                                                  );
+									  'post_type' => 'agent',
+									  'posts_per_page' => $number_of_posts,
+									  'paged' => $paged,
+									  'tax_query' => array(
+										  array(
+											  'taxonomy' => 'agent_types',
+											  'terms' => $term_key,
+											  'field' => 'slug',
+											  'include_children' => false,
+											  'operator' => 'IN'
+										  )
+									  ),
+								  );
 
-                                  if($number_of_posts > 0) {
+								
+								
+								// Jarel is working on this still
+								/*if($number_of_posts > 0) {
+									$agents = new WP_Query( $agents_query );
+								  
+									if ( $agents->have_posts() ) :
+										while ( $agents->have_posts() ) :
+										
+											$agent_display_type = bhLookupTaxonomy( $agents->ID, 'agent_types' );
+											$agent_office = get_field( 'brk_office_name' );
+										
+											wp_reset_query();
+											
+											$company_post = new WP_Query( array(
+												'post_type' => 'company',
+												'name' => sanitize_title( $agent_office )
+											) );
+											
+											if( $company_post->have_posts() ) :
+												while( $company_post->have_posts() ) : $company_post->the_post();
+													
+													$company_is_featured = get_field( 'company_featured_company' );
+													
+												endwhile;
+											endif;
+											
+											wp_reset_query();
+											
+											if( $agent_display_type == 'featured-agent' || $company_is_featured == true ) {
+												
+												include(locate_template('bend-homes/template-parts/agent-listing-loop.php' ));
+													
+											}
+										
+										endwhile;
+									endif;
+									
+								}*/
+								  
+								  
+								  
+								  
+								  
+								  
+								  
+								  if($number_of_posts > 0) {
                                     $agent_listing_query = new WP_Query( $agents_query );
 
                                     // echo "<h2>Found: $agent_listing_query->found_posts</h2>";

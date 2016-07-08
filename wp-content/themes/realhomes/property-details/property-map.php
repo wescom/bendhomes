@@ -51,9 +51,10 @@ global $post;
                     ?><span class="map-label"><?php echo $property_map_title; ?></span><?php
                 }
                 ?>
+                
                 <div id="property_map"></div>
                 <script>
-                    /* Property Detail Page - Google Map for Property Location */
+                    // Property Detail Page - Google Map for Property Location
 
                     <?php /* Unminified JS. Minified js located below
 					
@@ -95,24 +96,19 @@ global $post;
                         });
                     }
 
-                    window.onload = initialize_property_map(); */ ?>
+                    window.onload = initialize_property_map();*/ ?>
 					
 					function initialize_property_map(){var e=<?php echo json_encode( $property_marker ); ?>,o=e.icon,n=new google.maps.Size(42,57);window.devicePixelRatio>1.5&&e.retinaIcon&&(o=e.retinaIcon,n=new google.maps.Size(83,113));var a={url:o,size:n,scaledSize:new google.maps.Size(42,57),origin:new google.maps.Point(0,0),anchor:new google.maps.Point(21,56)},i=new google.maps.LatLng(e.lat,e.lang),p={center:i,zoom:15,mapTypeId:google.maps.MapTypeId.ROADMAP,scrollwheel:!1},g=new google.maps.Map(document.getElementById("property_map"),p);new google.maps.Marker({position:i,map:g,icon:a})}window.onload=initialize_property_map();
                 </script>
-
+                
+                <form id="map-directions-form" method="get" action="http://maps.google.com/maps" target="_blank">
+                    <input class="start-addr" type="text" name="saddr" placeholder="Get Directions. Enter Your Starting Address Here" />
+                    <input class="end-addr" type="hidden" name="daddr" value="<?php echo $property_address; ?>" />
+                    <input class="btn real-btn map-btn" type="submit" value="Get Directions" />
+                </form>
+                
                 <?php
             }
-
-            /*if ( $display_social_share == 'true' ) {
-                ?>
-                <div class="share-networks clearfix">
-                    <span class="share-label"><?php _e('Share this', 'framework'); ?></span>
-                    <span><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>"><i class="fa fa-facebook fa-lg"></i><?php _e('Facebook','framework'); ?></a></span>
-                    <span><a target="_blank" href="https://twitter.com/share?url=<?php the_permalink(); ?>" ><i class="fa fa-twitter fa-lg"></i><?php _e('Twitter','framework'); ?></a></span>
-                    <span><a target="_blank" href="https://plus.google.com/share?url={<?php the_permalink(); ?>}" onclick="javascript:window.open(this.href,  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes')"><i class="fa fa-google-plus fa-lg"></i><?php _e('Google','framework'); ?></a></span>
-                </div>
-                <?php
-            }*/
         ?>
 
     </div>
