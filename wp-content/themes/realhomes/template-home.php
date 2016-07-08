@@ -86,19 +86,19 @@ switch($theme_homepage_module){
                             }
                         endwhile;
                     endif;
-
-                    /* Homepage Properties */
-                    $show_home_properties = get_option('theme_show_home_properties');
-                    if( $show_home_properties == 'true' ){
-                        get_template_part("template-parts/home-properties") ;
+					
+					/* Featured Properties */
+                    $show_featured_properties = get_option('theme_show_featured_properties');
+                    if($show_featured_properties == 'true'){
+                        get_template_part("template-parts/carousel") ;
                     }
 
                     get_template_part("bend-homes/midadwrap") ;
 
-                    /* Featured Properties */
-                    $show_featured_properties = get_option('theme_show_featured_properties');
-                    if($show_featured_properties == 'true'){
-                        get_template_part("template-parts/carousel") ;
+                    /* Recent Properties */
+                    $show_home_properties = get_option('theme_show_home_properties');
+                    if( $show_home_properties == 'true' ){
+                        get_template_part("template-parts/home-properties") ;
                     }
 
                     /* Open House Properties */
