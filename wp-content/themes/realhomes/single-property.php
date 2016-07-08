@@ -83,6 +83,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                                     	<span class="header-price font-roboto text-green"><?php property_price(); ?></span>
                                         <span class="header-mls"><?php echo $mls; ?></span>
                                         <?php echo $status_list; ?>
+                                        
+                                        <?php // open house info, if array_change_key_case
+								        get_template_part('bend-homes/open-house-fragment');
+										?>
                                     </div>
 									
 									<?php

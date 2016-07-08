@@ -75,9 +75,7 @@
 
     <div class="content clearfix">
         <?php
-        // open house info, if array_change_key_case
-        get_template_part('bend-homes/open-house-fragment');
-
+		
         // contents from WordPress editor
         the_content();
 
