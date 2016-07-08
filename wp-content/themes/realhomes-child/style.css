@@ -16,6 +16,9 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .quick-header-info > span { display: inline-block; margin-right: 2em; }
 .quick-header-info .header-price { font-size: 1.2em; }
 
+#property-slider-two.flexslider .slides { max-height: 460px; overflow: hidden; }
+#property-slider-two.flexslider .slides li img { width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
+
 .main-menu { margin:0 20px 0 0; float:right }
 .main-menu ul { list-style:none; margin:0 }
 .main-menu ul li { float:left; position:relative }
