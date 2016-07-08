@@ -44,7 +44,7 @@
             $startdate = get_post_meta($posid, $val, true);
             if(!empty($startdate)) {
               $startdate = strtotime($startdate);
-              $data[$count]['startdate'] = date('l, M jS',$startdate);
+              $data[$count]['startdate'] = date('l, F jS',$startdate);
             }
           }
           if(strpos($val,'AgentFirstName') == true) {
