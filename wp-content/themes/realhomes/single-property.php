@@ -97,7 +97,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                                     if( $gallery_slider_type == 'thumb-on-bottom' ){
                                         get_template_part('property-details/property-slider-two');
                                     }else{
-                                        get_template_part('property-details/property-slider');
+                                        get_template_part('property-details/property-slider-two');
                                     }
 
 
