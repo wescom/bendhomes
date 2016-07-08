@@ -154,6 +154,7 @@ h3.search-results-header { float: left; margin: 0; }
 	.widget ul.featured-properties li { padding: 15px; background: #fff; border: 1px solid #dedede !important; margin-bottom: 10px; }
 	.page-template-template-search .advance-search .more-options-wrapper .option-bar { margin-left: 5%; width: 45%; }
 	.advance-search .as-form-wrap { padding-left: 5%; padding-right: 5%; }
+	#map-directions-form .start-addr, #map-directions-form .real-btn.map-btn { float: none; width: 100%; }
 }
 
 @media(max-width: 767px) {
