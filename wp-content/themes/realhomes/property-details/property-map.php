@@ -101,7 +101,7 @@ global $post;
 					function initialize_property_map(){var e=<?php echo json_encode( $property_marker ); ?>,o=e.icon,n=new google.maps.Size(42,57);window.devicePixelRatio>1.5&&e.retinaIcon&&(o=e.retinaIcon,n=new google.maps.Size(83,113));var a={url:o,size:n,scaledSize:new google.maps.Size(42,57),origin:new google.maps.Point(0,0),anchor:new google.maps.Point(21,56)},i=new google.maps.LatLng(e.lat,e.lang),p={center:i,zoom:15,mapTypeId:google.maps.MapTypeId.ROADMAP,scrollwheel:!1},g=new google.maps.Map(document.getElementById("property_map"),p);new google.maps.Marker({position:i,map:g,icon:a})}window.onload=initialize_property_map();
                 </script>
                 
-                <form id="map-directions-form" method="get" action="http://maps.google.com/maps" target="_blank">
+                <form id="map-directions-form" method="get" action="http://maps.google.com/maps?dirflg=d" target="_blank">
                     <input class="start-addr" type="text" name="saddr" placeholder="Get Directions. Enter Your Starting Address Here" />
                     <input class="end-addr" type="hidden" name="daddr" value="<?php echo $property_address; ?>" />
                     <input class="btn real-btn map-btn" type="submit" value="Get Directions" />
