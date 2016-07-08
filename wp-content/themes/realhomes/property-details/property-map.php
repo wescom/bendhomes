@@ -6,6 +6,10 @@ if($display_google_map == 'true'){
 global $post;
 
     ?>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA8EncSAhKkbYnf0txTDxwGxTFgP_vIm-2wYPBky6y1LAhjOnrGRSb-EbA2u31k_ZTl9y6o9tLpImoHw" type="text/javascript"></script>
+    <script src="http://www.wrightcontracting.com/jquery.gMap.js" type="text/javascript"></script>
+    <script src="http://www.wrightcontracting.com/jquery.gps.js" type="text/javascript"></script>
+
     <div class="map-wrap clearfix">
         <?php
             $property_location = get_post_meta($post->ID,'REAL_HOMES_property_location',true);
@@ -51,11 +55,38 @@ global $post;
                     ?><span class="map-label"><?php echo $property_map_title; ?></span><?php
                 }
                 ?>
-                <div id="property_map"></div>
+                
+                <div class="embedMap">
+					<script type="text/javascript">
+                        $(function(){
+                            $("#map_canvas").googleMap({
+                                zoomLevel: 15,
+                                center: '<?php echo $property_address; ?>',
+                                tooltip: true,
+                                image: '<?php echo $property_marker['icon']; ?>',
+                                imagewidth: 40,
+                                imageheight: 33
+                            }).load();
+                        });
+                    </script>
+                    
+                    <div id="map_canvas" style="width:350px; height:280px;"></div>
+                    
+                    <form action="" method="post" id="directions_form">
+                        <p><strong>Get Directions:</strong></p>
+                        <li><label>From: </label><input id="start" type="text" size="38" /></li>
+                        <li><label>To: </label><input id="end" type="text" readonly="readonly" size="38" value="<?php echo $property_address; ?>" /></li>
+                        <input name="submit" id="getdirections" type="submit" value="Get Directions" />
+                    </form>
+                    
+                    <div id="directions"></div>
+                </div>
+                
+                <?php /*<div id="property_map"></div>
                 <script>
-                    /* Property Detail Page - Google Map for Property Location */
+                    // Property Detail Page - Google Map for Property Location
 
-                    <?php /* Unminified JS. Minified js located below
+                    <?php // Unminified JS. Minified js located below
 					
 						function initialize_property_map(){
 
@@ -95,7 +126,7 @@ global $post;
                         });
                     }
 
-                    window.onload = initialize_property_map(); */ ?>
+                    window.onload = initialize_property_map(); ?>
 					
 					function initialize_property_map(){var e=<?php echo json_encode( $property_marker ); ?>,o=e.icon,n=new google.maps.Size(42,57);window.devicePixelRatio>1.5&&e.retinaIcon&&(o=e.retinaIcon,n=new google.maps.Size(83,113));var a={url:o,size:n,scaledSize:new google.maps.Size(42,57),origin:new google.maps.Point(0,0),anchor:new google.maps.Point(21,56)},i=new google.maps.LatLng(e.lat,e.lang),p={center:i,zoom:15,mapTypeId:google.maps.MapTypeId.ROADMAP,scrollwheel:!1},g=new google.maps.Map(document.getElementById("property_map"),p);new google.maps.Marker({position:i,map:g,icon:a})}window.onload=initialize_property_map();
                 </script>
@@ -109,7 +140,7 @@ global $post;
                 
                 <div id="print-directions"></div>
 
-                <?php
+                <?php */ // end commented original code
             }
 
             /*if ( $display_social_share == 'true' ) {
