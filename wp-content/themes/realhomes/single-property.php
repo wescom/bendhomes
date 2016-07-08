@@ -79,7 +79,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 									endif;
 									?>
 									
-                                    <div class="quick-header-info">
+                                    <div class="quick-header-info clearfix">
                                     	<span class="header-price font-roboto text-green"><?php property_price(); ?></span>
                                         <span class="header-mls"><?php echo $mls; ?></span>
                                         <?php echo $status_list; ?>
