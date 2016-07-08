@@ -72,7 +72,7 @@ global $post;
                     
                     <div id="map_canvas" style="width:350px; height:280px;"></div>
                     
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="directions_form">
+                    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" id="directions_form">
                         <p><strong>Get Directions:</strong></p>
                         <li><label>From: </label><input id="start" type="text" size="38" /></li>
                         <li><label>To: </label><input id="end" type="text" readonly="readonly" size="38" value="<?php echo $property_address; ?>" /></li>
