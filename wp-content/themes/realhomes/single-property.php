@@ -89,16 +89,19 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                                     /*
                                     * 1. Property Images Slider
                                     */
-                                    $gallery_slider_type = get_post_meta($post->ID, 'REAL_HOMES_gallery_slider_type', true);
-                                    /* For demo purpose only */
+                                    /*$gallery_slider_type = get_post_meta($post->ID, 'REAL_HOMES_gallery_slider_type', true);
+                                    // For demo purpose only
                                     if(isset($_GET['slider-type'])){
                                         $gallery_slider_type = $_GET['slider-type'];
                                     }
                                     if( $gallery_slider_type == 'thumb-on-bottom' ){
                                         get_template_part('property-details/property-slider-two');
                                     }else{
-                                        get_template_part('property-details/property-slider-two');
-                                    }
+                                        get_template_part('property-details/property-slider');
+                                    }*/
+									
+									// Use this slider style instead of regular /property-slider because it looks better.
+									get_template_part('property-details/property-slider-two');
 
 
                                     /*
