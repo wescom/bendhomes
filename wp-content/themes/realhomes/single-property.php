@@ -66,7 +66,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                                 if ( ! post_password_required() ) { 
 								
 									$mls_number = get_field( 'REAL_HOMES_property_id' );
-									if(!empty($mls_number)) $mls = sprintf( 'MLS #: <span class="font-roboto text-green">%s</span>', $mls_number );
+									if(!empty($mls_number)) $mls = sprintf( 'MLS #: <span class="font-roboto">%s</span>', $mls_number );
 									
 									$status_terms = get_the_terms( get_the_ID(), 'property-status' );
 									if ( $status_terms && !is_wp_error( $status_terms ) ) :
@@ -80,7 +80,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 									?>
 									
                                     <div class="quick-header-info">
-                                    	<span class="header-price font-roboto"><?php property_price(); ?></span>
+                                    	<span class="header-price font-roboto text-green"><?php property_price(); ?></span>
                                         <span class="header-mls"><?php echo $mls; ?></span>
                                         <?php echo $status_list; ?>
                                     </div>
