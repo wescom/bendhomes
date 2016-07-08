@@ -102,7 +102,7 @@ global $post;
                 </script>
                 
                 <form id="map-directions-form" method="get" action="http://maps.google.com/maps" target="_blank">
-                    <input class="start-addr" type="text" name="saddr" placeholder="Get Directions. Enter Your Starting Address Here" />
+                    <input class="start-addr" type="text" name="saddr" placeholder="Enter Your Starting Address Here" />
                     <input class="end-addr" type="hidden" name="daddr" value="<?php echo $property_address; ?>" />
                     <input class="btn real-btn map-btn" type="submit" value="Get Directions" />
                 </form>
