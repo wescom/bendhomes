@@ -63,8 +63,17 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                             while ( have_posts() ) :
                                 the_post();
 
-                                if ( ! post_password_required() ) {
-
+                                if ( ! post_password_required() ) { 
+								
+									$mls_number = get_field( 'REAL_HOMES_property_id' );
+									if(!empty($mls_number)) {
+										$mls_number = 'MLS #: '. $mls_number;
+									}
+									?>
+									
+                                    <div><span class="header-price"><?php property_price(); ?></span><span class="header-mls"><?php echo $mls_number; ?></span></div>
+									
+									<?php
                                     /*
                                     * 1. Property Images Slider
                                     */
