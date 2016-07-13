@@ -57,7 +57,7 @@ $properties_for_map_query = new WP_Query( $properties_for_map );
 
 $total_count = $properties_for_map_query->found_posts;
 
-if( $total_count < 500 ) {
+if( $total_count < 500 || is_page_template('template-property-listing.php') ) {
 
 	$properties_data = array();
 	
@@ -272,7 +272,7 @@ if( $total_count < 500 ) {
 		}
 	endif;
 
-}  else { // end if total count < 200 ?>
+}  else { // end if total count < 500 ?>
 
 	<div class="container">
 		<div style="text-align: center; padding: 15px 0 80px;">
