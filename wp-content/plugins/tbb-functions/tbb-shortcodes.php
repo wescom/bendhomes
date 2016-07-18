@@ -288,12 +288,15 @@ foreach($terms as $term_key => $term_val) {
 					$category_classes = sanitize_title( strip_tags( get_the_term_list( $custom_posts->ID, 'agent_types', '', ' ', '' ) ) );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
+					$agent_type = bhLookupTaxonomy( $custom_posts->ID,'agent_types' );
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					$additional_meta = sprintf( '
-						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
-							$brokerage, $address, $phone );
+						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
+							$brokerage, $address, $phone, $agent_type );
 					break;
+					
+					
 					
 				case "company" :
 					$image_size = 'medium';
