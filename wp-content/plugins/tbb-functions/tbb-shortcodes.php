@@ -294,7 +294,7 @@ foreach($terms as $term_key => $term_val) {
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					
 							
-					if( $defaults['featured_agents'] == 'yes' ) {
+					//if( $defaults['featured_agents'] == 'yes' ) {
 						wp_reset_query();
 								
 						// Query the Company of this Agent and see if the company is featured
@@ -318,7 +318,7 @@ foreach($terms as $term_key => $term_val) {
 						endif;
 						
 						wp_reset_query();
-					}
+					//}
 					
 					if( $agent_type == 'featured-agent' || $company_featured == 'yes' ) {
 						$check = 'Yes';	
