@@ -267,6 +267,8 @@ foreach($terms as $term_key => $term_val) {
 			
 			$title = get_the_title();
 			
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
+			
 			// Show additional meta fields based on post type chosen
 			$property_price = ''; $additional_meta = ''; $category_classes = '';
 			
@@ -349,8 +351,6 @@ foreach($terms as $term_key => $term_val) {
 					break;
 					
 			}
-			
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
 			
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
