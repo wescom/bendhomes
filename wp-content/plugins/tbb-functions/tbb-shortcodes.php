@@ -288,7 +288,10 @@ foreach($terms as $term_key => $term_val) {
 					$category_classes = sanitize_title( strip_tags( get_the_term_list( $custom_posts->ID, 'agent_types', '', ' ', '' ) ) );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
-					$agent_type = bhLookupTaxonomy( get_the_ID(), 'agent_types' );
+					$agent_types = wp_get_post_terms( get_the_ID(), 'agent_types', array("fields" => "names"));
+					foreach( $agent_types as $agent_type ) {
+						$agent_type = $agent_type->slug;	
+					}
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					$additional_meta = sprintf( '
