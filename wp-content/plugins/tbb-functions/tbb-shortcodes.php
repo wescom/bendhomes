@@ -292,12 +292,45 @@ foreach($terms as $term_key => $term_val) {
 					$agent_type = $agent_types[0]->slug;	
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
+					
+							
+					if( $defaults['featured_agents'] == 'yes' ) {
+						wp_reset_query();
+								
+						// Query the Company of this Agent and see if the company is featured
+						$company_post = new WP_Query( array(
+							'post_type' => 'company',
+							'name' => sanitize_title( $brokerage )
+						) );
+						
+						if( $company_post->have_posts() ) :
+							while( $company_post->have_posts() ) : $company_post->the_post();
+								
+								$company_is_featured = get_field( 'company_featured_company' );
+								$company_featured = '';
+								if($company_is_featured == true) {
+									$company_featured = 'yes';
+								} else {
+									$company_featured = 'no';
+								}
+								
+							endwhile;
+						endif;
+						
+						wp_reset_query();
+					}
+					
+					if( $agent_type == 'featured-agent' && $company_featured == 'yes' ) {
+						$check = 'Yes';	
+					} else {
+						$check = 'No';
+					}
+					
 					$additional_meta = sprintf( '
 						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
-							$brokerage, $address, $phone, $agent_type );
+							$brokerage, $address, $phone, $check );
+					
 					break;
-					
-					
 					
 				case "company" :
 					$image_size = 'medium';
