@@ -290,12 +290,12 @@ foreach($terms as $term_key => $term_val) {
 					$category_classes = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
-					$agent_types = wp_get_post_terms( $id, 'agent_types', array("fields" => "all"));
-					$agent_type = $agent_types[0]->slug;	
+					//$agent_types = wp_get_post_terms( $id, 'agent_types', array("fields" => "all"));
+					//$agent_type = $agent_types[0]->slug;	
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					
-							
+					/*		
 					//if( $defaults['featured_agents'] == 'yes' ) {
 						wp_reset_query();
 								
@@ -321,6 +321,7 @@ foreach($terms as $term_key => $term_val) {
 						
 						wp_reset_query();
 					//}
+					*/
 					
 					if( $agent_type == 'featured-agent' || $company_featured == 'yes' ) {
 						$check = 'Yes';	
@@ -419,4 +420,15 @@ foreach($terms as $term_key => $term_val) {
 	return $output;
 	
 	wp_reset_query();
+}
+
+
+function agents_company_is_featured( $query ) {
+	
+	$company_post = new WP_Query( array(
+		'post_type' => 'company',
+		'meta_key' => 'company_featured_company',
+		'meta_value' => true,
+		'posts_per_page' => -1
+	) );
 }

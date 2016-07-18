@@ -129,30 +129,18 @@ class CompanySettingsPage {
 					);
 				
 					$new_office_id = wp_insert_post($new_office);
-					$company_agents_list = get_field( 'company_agents', $new_office_id );
-					$new_agent = get_post( $agent_id );
+					$field_key = 'field_57572e625ce58';
+					$values = array(
+						array( $agent_id )
+					);
 					
-					if( !is_array( $company_agents_list ) ) $company_agents_list = array();
-					
-					array_push( $company_agents_list, $new_agent );
-					
-					//update_field( 'field_57572e625ce58', $company_agents_list, $new_office_id ); // Devsite field ID.
-					update_post_meta( $new_office_id, 'field_57572e625ce58', $company_agents_list );
 					update_post_meta( $new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta( $new_office_id, 'company_office_address', $company_address );
 				
 				} else {
 				
 					$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
-					$company_agents_list = get_field( 'company_agents', $new_office_id );
-					$new_agent = get_post( $agent_id );
 					
-					if( !is_array( $company_agents_list ) ) $company_agents_list = array();
-					
-					array_push( $company_agents_list, $new_agent );
-					
-					//update_field( 'field_57572e625ce58', $company_agents_list, $new_office_id ); // Devsite field ID.
-					update_post_meta( $company_check->ID, 'company_agents', $company_agents_list );
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
 					
