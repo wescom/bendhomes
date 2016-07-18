@@ -262,12 +262,12 @@ foreach($terms as $term_key => $term_val) {
 		// Loop through returned posts
 		// Setup the inner HTML for each elements
 		while ( $custom_posts->have_posts() ) : $custom_posts->the_post();
+		
+			$id = get_the_ID();
 			
 			$permalink = get_permalink();
 			
 			$title = get_the_title();
-			
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
 			
 			// Show additional meta fields based on post type chosen
 			$property_price = ''; $additional_meta = ''; $category_classes = '';
@@ -287,10 +287,10 @@ foreach($terms as $term_key => $term_val) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
-					$category_classes = sanitize_title( strip_tags( get_the_term_list( $custom_posts->ID, 'agent_types', '', ' ', '' ) ) );
+					$category_classes = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
-					$agent_types = wp_get_post_terms( get_the_ID(), 'agent_types', array("fields" => "all"));
+					$agent_types = wp_get_post_terms( $id, 'agent_types', array("fields" => "all"));
 					$agent_type = $agent_types[0]->slug;	
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
@@ -351,6 +351,8 @@ foreach($terms as $term_key => $term_val) {
 					break;
 					
 			}
+			
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), $image_size, true);
 			
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
