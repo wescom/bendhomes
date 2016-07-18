@@ -289,14 +289,14 @@ foreach($terms as $term_key => $term_val) {
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
 					$agent_types = wp_get_post_terms( get_the_ID(), 'agent_types', array("fields" => "names"));
-					foreach( $agent_types as $agent_type ) {
-						$agent_type = $agent_type->slug;	
+					foreach( $agent_types as $a_type ) {
+						$agent_type = $a_type[0]->slug;	
 					}
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					$additional_meta = sprintf( '
 						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
-							$brokerage, $address, $phone, print_r($agent_types) );
+							$brokerage, $address, $phone, $agent_type );
 					break;
 					
 					
