@@ -136,10 +136,10 @@ class CompanySettingsPage {
 					
 					array_push( $company_agents_list, $new_agent );
 					
-					update_field( 'field_57572e625ce58', $company_agents_list, $new_office_id ); // Devsite field ID.
-					
-					update_post_meta($new_office_id, 'company_office_phone', $company_phone );
-					update_post_meta($new_office_id, 'company_office_address', $company_address );
+					//update_field( 'field_57572e625ce58', $company_agents_list, $new_office_id ); // Devsite field ID.
+					update_post_meta( $new_office_id, 'field_57572e625ce58', $company_agents_list );
+					update_post_meta( $new_office_id, 'company_office_phone', $company_phone );
+					update_post_meta( $new_office_id, 'company_office_address', $company_address );
 				
 				} else {
 				
@@ -151,8 +151,8 @@ class CompanySettingsPage {
 					
 					array_push( $company_agents_list, $new_agent );
 					
-					update_field( 'field_57572e625ce58', $company_agents_list, $new_office_id ); // Devsite field ID.
-					
+					//update_field( 'field_57572e625ce58', $company_agents_list, $new_office_id ); // Devsite field ID.
+					update_post_meta( $company_check->ID, 'company_agents', $company_agents_list );
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
 					
