@@ -320,7 +320,7 @@ foreach($terms as $term_key => $term_val) {
 						wp_reset_query();
 					}
 					
-					if( $agent_type == 'featured-agent' && $company_featured == 'yes' ) {
+					if( $agent_type == 'featured-agent' || $company_featured == 'yes' ) {
 						$check = 'Yes';	
 					} else {
 						$check = 'No';
