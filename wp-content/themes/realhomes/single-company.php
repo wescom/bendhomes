@@ -91,7 +91,7 @@ get_header();
                                     
                                         <h2><?php the_title(); ?> Realtors</h2>
                                         
-                                        <div class="row-fluid agents-list-wrap">
+                                        <div class="agents-list-wrap">
                                                                                         
                                             <?php foreach( $agents as $post ) :
                                                 setup_postdata( $post );
@@ -101,19 +101,20 @@ get_header();
                                                 $agent_image = wp_get_attachment_image_src( $image_id, 'thumbnail', true );											
                                             ?>
                                                 
-                                                <div class="span3 company-agent">
-                                                    
-                                                    <figure class="agent-image">
-                                                        <?php if(!empty( $image_id )) { ?>
-                                                        <a href="<?php echo get_permalink( $agent_id ); ?>"><img src="<?php echo $agent_image[0]; ?>" alt="" /></a>
-                                                        <?php } else {
-															echo '<div class="no-agent-image"></div>';
-														} ?>
-                                                    </figure>
-                                                    
-                                                    <a href="<?php echo get_permalink( $agent_id ); ?>">
-                                                        <?php echo get_the_title( $agent_id ); ?>
-                                                    </a>
+                                                <div class="company-agent">
+                                                    <div class="company-agent-inner">
+                                                        <figure class="agent-image">
+                                                            <?php if(!empty( $image_id )) { ?>
+                                                            <a href="<?php echo get_permalink( $agent_id ); ?>"><img src="<?php echo $agent_image[0]; ?>" alt="" /></a>
+                                                            <?php } else {
+                                                                echo '<div class="no-agent-image"></div>';
+                                                            } ?>
+                                                        </figure>
+                                                        
+                                                        <a href="<?php echo get_permalink( $agent_id ); ?>">
+                                                            <?php echo get_the_title( $agent_id ); ?>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                                 
                                             <?php endforeach; ?>
