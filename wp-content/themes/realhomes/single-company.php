@@ -85,9 +85,11 @@ get_header();
                                     </div><!-- end .row-fluid -->
                                     
                                     <?php
-									$agents = array_diff( get_field( 'company_agents' ), array('') );
+									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 																			
-									if( $agents ) { 
+									if( $agents_array ) { 
+									
+									$agents = asort( $agents_array );
 									
 									print_r($agents);
 																			
