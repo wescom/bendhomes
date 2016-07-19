@@ -87,9 +87,13 @@ get_header();
                                     <?php
 									$agents = get_field( 'company_agents' );
 																			
-									if( $agents ) { ?>
+									if( $agents ) { 
+										
+										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
+										
+										?>
                                     
-                                        <h2><?php the_title(); ?> Realtors</h2>
+                                        <h2><?php echo $agent_heading; ?></h2>
                                         
                                         <div class="agents-list-wrap">
                                                                                         
