@@ -103,9 +103,11 @@ h3.search-results-header { float: left; margin: 0; }
 #mc_embed_signup .mc-field-group input[type=text], #mc_embed_signup .mc-field-group input[type=email] { width: 100%; padding-left: 0; padding-right: 0; border-color: #fff; text-indent: 10px; }
 
 /* --- Single Company Template Styles --- */
-.agents-list-wrap figure.agent-image { min-height: 150px; }
+.agents-list-wrap figure.agent-image { min-height: 150px; position: relative; width: 100%; }
+.company-agent { text-align: center; }
 .agents-list-wrap figure.agent-image .no-agent-image { position: absolute; left: 0; top: 0; bottom: 0; right: 0; background: #e8e8e8; }
 .agents-list-wrap figure.agent-image .no-agent-image:before { content: "No Image"; position: absolute; top: 50%; left: 50%; margin-top: -10px; margin-left: -30px; color: #fff; font-size: 14px; text-align: center; }
+.company-agent a { display: block; min-height: 40px; }
 
 
 /*--- Custom Posts Shortcode Styles --- */

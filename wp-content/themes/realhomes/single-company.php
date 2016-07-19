@@ -101,7 +101,7 @@ get_header();
                                                 $agent_image = wp_get_attachment_image_src( $image_id, 'thumbnail', true );											
                                             ?>
                                                 
-                                                <div class="span3">
+                                                <div class="span3 company-agent">
                                                     
                                                     <figure class="agent-image">
                                                         <?php if(!empty( $image_id )) { ?>
