@@ -130,7 +130,8 @@ class CompanySettingsPage {
 				
 					$new_office_id = wp_insert_post($new_office);
 					//$field_key = 'field_57572e625ce58';
-					$agents_array = array( $agent_id );
+					$agents_array = get_post_meta( $new_office_id, 'company_agents' );
+					$agents_array[] = $agent_id;
 					
 					update_post_meta( $new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta( $new_office_id, 'company_office_address', $company_address );
