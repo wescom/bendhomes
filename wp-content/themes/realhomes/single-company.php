@@ -2,11 +2,9 @@
 get_header();
 ?>
 
-<h1>laksfj salkfjsdfklsdjklsd</h1>
-
     <!-- Page Head -->
-    <?php //get_template_part("banners/default_page_banner"); ?>
-<?php /*
+    <?php get_template_part("banners/default_page_banner"); ?>
+
     <!-- Content -->
     <div class="container contents listing-grid-layout">
 
@@ -134,6 +132,6 @@ get_header();
 
         </div><!-- End contents row -->
 
-    </div><!-- End Content --> */ ?>
+    </div><!-- End Content -->
 
 <?php get_footer(); ?>
