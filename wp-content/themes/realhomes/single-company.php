@@ -92,6 +92,8 @@ get_header();
                                                 <?php
 												$agents = get_field( 'company_agents' );
 												
+												print_r( $agents );
+												
 												if( $agents ) { ?>
                                                 
                                                 	<ul>
