@@ -129,20 +129,23 @@ class CompanySettingsPage {
 					);
 				
 					$new_office_id = wp_insert_post($new_office);
-					$field_key = 'field_57572e625ce58';
-					$values = array(
-						array( $agent_id )
-					);
+					//$field_key = 'field_57572e625ce58';
+					$agents_array = array( $agent_id );
 					
 					update_post_meta( $new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta( $new_office_id, 'company_office_address', $company_address );
+					
+					update_post_meta( $new_office_id, 'company_agents', $agents_array );
 				
 				} else {
 				
 					$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
+					$agents_array = array( $agent_id );
 					
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
+					
+					update_post_meta( $company_check->ID, 'company_agents', $agents_array );
 					
 				}
 			
