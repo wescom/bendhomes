@@ -101,8 +101,8 @@ get_header();
 													<?php foreach( $agents as $agent ) { ?>
 														
                                                         <li>
-                                                        	<a href="<?php echo get_permalink( $agent->ID ); ?>">
-																<?php echo get_the_title( $agent->ID ); ?>
+                                                        	<a href="<?php echo get_permalink( $agent ); ?>">
+																<?php echo get_the_title( $agent ); ?>
                                                             </a>
                                                         </li>
                                                         
