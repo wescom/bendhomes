@@ -119,6 +119,8 @@ class CompanySettingsPage {
 				$company_phone = get_field( 'brk_office_phone' );
 				$company_address = str_replace( '<br />', '', get_field( 'brk_office_address' ) );
 				
+				$agents_array = array();
+				
 				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) {
 				
 					$new_office = array(
@@ -130,7 +132,6 @@ class CompanySettingsPage {
 				
 					$new_office_id = wp_insert_post($new_office);
 					//$field_key = 'field_57572e625ce58';
-					$agents_array = array();
 					$agents_array[] = get_post_meta( $new_office_id, 'company_agents' );
 					$agents_array[] = $agent_id;
 					
