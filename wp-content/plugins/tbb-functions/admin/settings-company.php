@@ -130,7 +130,7 @@ class CompanySettingsPage {
 				
 					$new_office_id = wp_insert_post($new_office);
 					//$field_key = 'field_57572e625ce58';
-					$agent_array = array( $agent_id );
+					$agent_array = array_unique( array( $agent_id ) );
 					
 					update_post_meta( $new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta( $new_office_id, 'company_office_address', $company_address );
@@ -143,11 +143,12 @@ class CompanySettingsPage {
 					$agents_list = get_post_meta( $company_check->ID, 'company_agents', true );
 					if( !array( $agents_list ) ) $agents_list = array();
 					$agents_list[] = $agent_id;
+					$full_list = array_unique( $agents_list );
 					
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
 					
-					update_post_meta( $company_check->ID, 'company_agents', $agents_list );
+					update_post_meta( $company_check->ID, 'company_agents', $full_list );
 					
 				}
 			
