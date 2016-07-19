@@ -111,7 +111,7 @@ get_header();
                                                             } ?>
                                                         </figure>
                                                         
-                                                        <a href="<?php echo get_permalink( $agent_id ); ?>">
+                                                        <a class="agent-name" href="<?php echo get_permalink( $agent_id ); ?>">
                                                             <?php echo get_the_title( $agent_id ); ?>
                                                         </a>
                                                     </div>
