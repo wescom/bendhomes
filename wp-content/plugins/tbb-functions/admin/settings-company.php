@@ -143,11 +143,12 @@ class CompanySettingsPage {
 					$agents_list = get_post_meta( $company_check->ID, 'company_agents', true );
 					if( !array( $agents_list ) ) $agents_list = array();
 					$agents_list[] = $agent_id;
+					$final_list = array_unique( $agents_list );
 					
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
 					
-					update_post_meta( $company_check->ID, 'company_agents', $agents_list );
+					update_post_meta( $company_check->ID, 'company_agents', $final_list );
 					
 				}
 			
