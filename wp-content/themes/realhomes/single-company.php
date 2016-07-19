@@ -85,7 +85,7 @@ get_header();
                                     </div><!-- end .row-fluid -->
                                     
                                     <?php
-									$agents = get_field( 'company_agents' );
+									$agents = array_filter( get_field( 'company_agents' ) );
 																			
 									if( $agents ) { 
 									
