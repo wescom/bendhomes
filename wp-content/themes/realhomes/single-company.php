@@ -102,19 +102,16 @@ get_header();
                                             ?>
                                                 
                                                 <div class="company-agent">
-                                                    <div class="company-agent-inner">
+                                                    <a class="company-agent-inner" href="<?php echo get_permalink( $agent_id ); ?>">
                                                         <figure class="agent-image">
                                                             <?php if(!empty( $image_id )) { ?>
                                                             <a href="<?php echo get_permalink( $agent_id ); ?>"><img src="<?php echo $agent_image[0]; ?>" alt="" /></a>
                                                             <?php } else {
                                                                 echo '<div class="no-agent-image"></div>';
                                                             } ?>
-                                                        </figure>
-                                                        
-                                                        <a class="agent-name" href="<?php echo get_permalink( $agent_id ); ?>">
-                                                            <?php echo get_the_title( $agent_id ); ?>
-                                                        </a>
-                                                    </div>
+                                                        </figure>                                                        
+                                                        <div class="agent-name"><?php echo get_the_title( $agent_id ); ?></div>
+                                                    </a>
                                                 </div>
                                                 
                                             <?php endforeach; ?>
