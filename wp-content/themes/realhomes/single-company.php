@@ -4,7 +4,7 @@ get_header();
 
     <!-- Page Head -->
     <?php //get_template_part("banners/default_page_banner"); ?>
-
+<?php /*
     <!-- Content -->
     <div class="container contents listing-grid-layout">
 
@@ -50,7 +50,7 @@ get_header();
                                                     </div>
                                                     <?php
 
-                                                    /* Company Contact Info */
+                                                    // Company Contact Info
                                                     $company_office_phone = get_post_meta($post->ID, 'company_office_phone',true);
                                                     $company_office_fax = get_post_meta($post->ID, 'company_office_fax',true);
 													$company_office_address = get_post_meta($post->ID, 'company_office_address', true);
@@ -132,6 +132,6 @@ get_header();
 
         </div><!-- End contents row -->
 
-    </div><!-- End Content -->
+    </div><!-- End Content --> */ ?>
 
 <?php get_footer(); ?>
