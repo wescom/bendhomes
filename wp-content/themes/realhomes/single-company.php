@@ -2,6 +2,8 @@
 get_header();
 ?>
 
+<h1>laksfj salkfjsdfklsdjklsd</h1>
+
     <!-- Page Head -->
     <?php //get_template_part("banners/default_page_banner"); ?>
 <?php /*
