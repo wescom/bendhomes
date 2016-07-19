@@ -85,7 +85,34 @@ get_header();
 
                                                 </div>
 
-                                            </div><!-- end of .row-fluid -->
+                                            </div><!-- end .row-fluid -->
+                                            
+                                            <div class="row-fluid">
+                                            	
+                                                <?php
+												$agents = get_field( 'company_agents' );
+												
+												if( $agents ) { ?>
+                                                
+                                                	<ul>
+													
+													<?php foreach( $agents as $agent ) { ?>
+														
+                                                        <li>
+                                                        	<a href="<?php echo get_permalink( $agent->ID ); ?>">
+																<?php echo get_the_title( $agent->ID ); ?>
+                                                            </a>
+                                                        </li>
+                                                        
+													<?php } ?>
+                                                    
+                                                    </ul>
+                                                    
+												<?php
+												}
+												?>
+                                                
+                                            </div><!-- end .row-fluid -->
 
                                         </div>
 
