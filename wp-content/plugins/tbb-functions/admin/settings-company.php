@@ -118,7 +118,7 @@ class CompanySettingsPage {
 				$company_name = get_field( 'brk_office_name' );
 				$company_phone = get_field( 'brk_office_phone' );
 				$company_address = str_replace( '<br />', '', get_field( 'brk_office_address' ) );
-				
+								
 				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) {
 				
 					$new_office = array(
@@ -130,23 +130,24 @@ class CompanySettingsPage {
 				
 					$new_office_id = wp_insert_post($new_office);
 					//$field_key = 'field_57572e625ce58';
-					$new_agent = array( $agent_id );
+					$agent_array = array( $agent_id );
 					
 					update_post_meta( $new_office_id, 'company_office_phone', $company_phone );
 					update_post_meta( $new_office_id, 'company_office_address', $company_address );
 					
-					update_post_meta( $new_office_id, 'company_agents', $new_agent );
+					update_post_meta( $new_office_id, 'company_agents', $agent_array );
 				
 				} else {
 				
 					$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
-					$agents_array = get_post_meta( $company_check->ID, 'company_agents' );
-					$updated_agents_array = array_push( $agents_array, $agent_id );
+					$agents_list = get_post_meta( $company_check->ID, 'company_agents', false );
+					if( !array( $agents_list ) ) $agents_list = array();
+					$agents_list[] = $agent_id;
 					
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
 					
-					update_post_meta( $company_check->ID, 'company_agents', $updated_agents_array );
+					update_post_meta( $company_check->ID, 'company_agents', $agents_list );
 					
 				}
 			
