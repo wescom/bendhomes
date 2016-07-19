@@ -90,9 +90,7 @@ get_header();
 									if( $agents ) { 
 									
 									print_r($agents);
-									
-										if( $agents[0] == 'Sample Page' ) array_shift( $agents );
-										
+																			
 										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
 										
 										?>
@@ -105,7 +103,7 @@ get_header();
 											foreach( $agents as $post ) :
                                                 setup_postdata( $post );
 												
-												//if( get_the_title( $post->ID ) != 'Sample Page' ) {
+												if( get_the_title( $post->ID ) != 'Sample Page' ) {
                                                 
                                                 $agent_id = $post->ID;
                                                 $image_id = get_post_thumbnail_id( $agent_id );
@@ -124,7 +122,7 @@ get_header();
                                                     </a>
                                                 </div>
                                                 
-                                            <?php //}
+                                            <?php }
 											
 											endforeach; ?>
                                             
