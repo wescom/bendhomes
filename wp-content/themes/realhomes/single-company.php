@@ -88,6 +88,8 @@ get_header();
 									$agents = get_field( 'company_agents' );
 																			
 									if( $agents ) { 
+									
+										if( $agents[0] == 'Sample Page' ) array_shift( $agents );
 										
 										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
 										
@@ -97,13 +99,15 @@ get_header();
                                         
                                         <div class="agents-list-wrap">
                                                                                         
-                                            <?php foreach( $agents as $post ) :
+                                            <?php 
+											foreach( $agents as $post ) :
                                                 setup_postdata( $post );
+												
+												//if( get_the_title( $post->ID ) != 'Sample Page' ) {
                                                 
                                                 $agent_id = $post->ID;
                                                 $image_id = get_post_thumbnail_id( $agent_id );
-                                                $agent_image = wp_get_attachment_image_src( $image_id, 'thumbnail', true );											
-                                            ?>
+                                                $agent_image = wp_get_attachment_image_src( $image_id, 'thumbnail', true ); ?>
                                                 
                                                 <div class="company-agent">
                                                     <a class="company-agent-inner" href="<?php echo get_permalink( $agent_id ); ?>">
@@ -118,7 +122,9 @@ get_header();
                                                     </a>
                                                 </div>
                                                 
-                                            <?php endforeach; ?>
+                                            <?php //}
+											
+											endforeach; ?>
                                             
                                         </div><!-- end .row-fluid -->
                                     
