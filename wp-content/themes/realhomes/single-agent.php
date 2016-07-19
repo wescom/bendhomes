@@ -10,7 +10,7 @@ get_header();
 
         <div class="row">
 
-            <div class="span9 main-wrap is-this-page-working">
+            <div class="span9 main-wrap">
 
                 <!-- Main Content -->
                 <div class="main">
