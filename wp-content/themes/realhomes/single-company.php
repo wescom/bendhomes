@@ -98,7 +98,7 @@ get_header();
                                                 
                                                 $agent_id = $post->ID;
                                                 $image_id = get_post_thumbnail_id( $agent_id );
-                                                $agent_image = wp_get_attachment_image_src( $image_id, 'agent-image', true );											
+                                                $agent_image = wp_get_attachment_image_src( $image_id, 'thumbnail', true );											
                                             ?>
                                                 
                                                 <div class="span3">
@@ -106,7 +106,9 @@ get_header();
                                                     <figure class="agent-image">
                                                         <?php if(!empty( $image_id )) { ?>
                                                         <a href="<?php echo get_permalink( $agent_id ); ?>"><img src="<?php echo $agent_image[0]; ?>" alt="" /></a>
-                                                        <?php } ?>
+                                                        <?php } else {
+															echo '<div class="no-agent-image"></div>';
+														} ?>
                                                     </figure>
                                                     
                                                     <a href="<?php echo get_permalink( $agent_id ); ?>">
