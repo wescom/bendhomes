@@ -89,6 +89,8 @@ get_header();
 																			
 									if( $agents ) { 
 									
+									print_r($agents);
+									
 										if( $agents[0] == 'Sample Page' ) array_shift( $agents );
 										
 										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
