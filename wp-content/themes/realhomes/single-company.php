@@ -105,7 +105,7 @@ get_header();
                                                     <a class="company-agent-inner" href="<?php echo get_permalink( $agent_id ); ?>">
                                                         <figure class="agent-image">
                                                             <?php if(!empty( $image_id )) { ?>
-                                                            <a href="<?php echo get_permalink( $agent_id ); ?>"><img src="<?php echo $agent_image[0]; ?>" alt="" /></a>
+                                                            	<img src="<?php echo $agent_image[0]; ?>" alt="" />
                                                             <?php } else {
                                                                 echo '<div class="no-agent-image"></div>';
                                                             } ?>
