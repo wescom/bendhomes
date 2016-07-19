@@ -93,7 +93,7 @@ get_header();
 										
 										?>
                                     
-                                        <h2><?php echo $agent_heading; ?></h2>
+                                        <h3><?php echo $agent_heading; ?></h3>
                                         
                                         <div class="agents-list-wrap">
                                                                                         
