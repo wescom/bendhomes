@@ -89,7 +89,7 @@ get_header();
 																			
 									if( $agents_array ) { 
 									
-									$agents = asort( $agents_array );
+									$agents = sort( $agents_array );
 									
 									print_r($agents);
 																			
