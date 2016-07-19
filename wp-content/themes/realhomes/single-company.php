@@ -103,11 +103,11 @@ get_header();
                                                 
                                                 <div class="span3">
                                                     
-                                                    <?php if(!empty( $image_id )) { ?>
-                                                        <figure class="agent-image">
-                                                        	<a href="<?php echo get_permalink( $agent_id ); ?>"><img src="<?php echo $agent_image[0]; ?>" alt="" /></a>
-                                                        </figure>
-                                                    <?php } ?>
+                                                    <figure class="agent-image">
+                                                        <?php if(!empty( $image_id )) { ?>
+                                                        <a href="<?php echo get_permalink( $agent_id ); ?>"><img src="<?php echo $agent_image[0]; ?>" alt="" /></a>
+                                                        <?php } ?>
+                                                    </figure>
                                                     
                                                     <a href="<?php echo get_permalink( $agent_id ); ?>">
                                                         <?php echo get_the_title( $agent_id ); ?>
