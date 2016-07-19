@@ -27,21 +27,20 @@ get_header();
 
                                     <div class="row-fluid">
 
+										<?php if(has_post_thumbnail()){ ?>
                                         <div class="span3">
-                                            <?php
-                                            if(has_post_thumbnail()){
-                                                ?>
-                                                <figure class="agent-pic">
-                                                    <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
-                                                        <?php the_post_thumbnail('medium'); ?>
-                                                    </a>
-                                                </figure>
-                                                <?php
-                                            }
-                                            ?>
+                                            <figure class="agent-pic">
+                                                <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
+                                                    <?php the_post_thumbnail('medium'); ?>
+                                                </a>
+                                            </figure>
                                         </div>
 
                                         <div class="span9">
+                                        <?php } else { ?>
+                                        
+                                        <div class="span12">
+										<?php } ?>
 
                                             <div class="agent-content">
                                                 <?php the_content(); ?>
@@ -85,36 +84,41 @@ get_header();
 
                                     </div><!-- end .row-fluid -->
                                     
-                                    <div class="row-fluid">
+                                    <?php
+									$agents = get_field( 'company_agents' );
+																			
+									if( $agents ) { ?>
+                                    
+                                        <h2><?php the_title(); ?> Realtors</h2>
                                         
-                                        <?php
-                                        $agents = get_field( 'company_agents' );
-                                        
-                                        print_r( $agents );
-                                        
-                                        if( $agents ) { ?>
-                                        
-                                            <ul>
-                                            
-                                            <?php foreach( $agents as $post ) { 
-												setup_postdata( $post );
-											?>
+                                        <div class="row-fluid agents-list-wrap">
+                                                                                        
+                                            <?php foreach( $agents as $post ) :
+                                                setup_postdata( $post );
                                                 
-                                                <li>
-                                                    <a href="<?php echo get_permalink( $post->ID ); ?>">
-                                                        <?php echo get_the_title( $post->ID ); ?>
+                                                $agent_id = $post->ID;
+                                                $image_id = get_post_thumbnail_id( $agent_id );
+                                                $agent_image = wp_get_attachment_image_src( $image_id, 'agent-image', true );											
+                                            ?>
+                                                
+                                                <div class="span3">
+                                                    
+                                                    <?php if(!empty( $image_id )) { ?>
+                                                        <figure class="agent-image">
+                                                        	<a href="<?php echo get_permalink( $agent_id ); ?>"><img src="<?php echo $agent_image[0]; ?>" alt="" /></a>
+                                                        </figure>
+                                                    <?php } ?>
+                                                    
+                                                    <a href="<?php echo get_permalink( $agent_id ); ?>">
+                                                        <?php echo get_the_title( $agent_id ); ?>
                                                     </a>
-                                                </li>
+                                                </div>
                                                 
-                                            <?php } ?>
+                                            <?php endforeach; ?>
                                             
-                                            </ul>
-                                            
-                                        <?php
-                                        }
-                                        ?>
-                                        
-                                    </div><!-- end .row-fluid -->
+                                        </div><!-- end .row-fluid -->
+                                    
+                                    <?php } ?>
 
                                 </div>
 
