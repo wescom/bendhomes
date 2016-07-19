@@ -3,7 +3,7 @@ get_header();
 ?>
 
     <!-- Page Head -->
-    <?php get_template_part("banners/default_page_banner"); ?>
+    <?php //get_template_part("banners/default_page_banner"); ?>
 
     <!-- Content -->
     <div class="container contents listing-grid-layout">
