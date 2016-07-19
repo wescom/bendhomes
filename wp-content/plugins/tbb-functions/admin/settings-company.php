@@ -140,7 +140,8 @@ class CompanySettingsPage {
 				} else {
 				
 					$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
-					$agents_array = array( $agent_id );
+					$agents_array = get_post_meta( $company_check->ID, 'company_agents' );
+					$agents_array[] = $agent_id;
 					
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
