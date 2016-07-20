@@ -128,7 +128,6 @@ function tbb_custom_posts( $defaults ) {
 		'category_type' => '',
 		'categories' => '',
 		'featured_image' => '',
-		'featured_agents' => '',
 		'excerpt_length' => '12',
 		'meta_key' => '',
 		'meta_value' => '',
@@ -137,7 +136,8 @@ function tbb_custom_posts( $defaults ) {
 		'columns' => '3',
 		'order' => 'ASC',
 		'orderby' => 'name',
-		'show_search' => ''
+		'show_search' => '',
+		'all_featured_agents' => ''
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
@@ -310,8 +310,8 @@ foreach($terms as $term_key => $term_val) {
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					
-					/*		
-					//if( $defaults['featured_agents'] == 'yes' ) {
+							
+					if( $defaults['all_featured_agents'] == 'yes' ) {
 						wp_reset_query();
 								
 						// Query the Company of this Agent and see if the company is featured
@@ -324,28 +324,21 @@ foreach($terms as $term_key => $term_val) {
 							while( $company_post->have_posts() ) : $company_post->the_post();
 								
 								$company_is_featured = get_field( 'company_featured_company' );
-								$company_featured = '';
-								if($company_is_featured == true) {
-									$company_featured = 'yes';
-								} else {
-									$company_featured = 'no';
-								}
-								
+																
 							endwhile;
 						endif;
 						
 						wp_reset_query();
-					//}
-					*/
+					}
 					
-					if( $agent_type == 'featured-agent' || $company_featured == 'yes' ) {
+					if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
 						$check = 'Yes';	
 					} else {
 						$check = 'No';
 					}
 					
 					$additional_meta = sprintf( '
-						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
+						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s ( %s )</div>', 
 							$brokerage, $address, $phone, $check );
 					
 					break;
