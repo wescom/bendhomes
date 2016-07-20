@@ -470,9 +470,9 @@ function tbb_featured_agents( $defaults ) {
 	
 	$featured_agents = new WP_Query( $args );
 	
-	print_r($featured_agents);
+	$agents_array = $featured_agents['posts'];
 	
-	$agents_array = array();
+	print_r($agents_array);
 	
 	// Start new stuff
 	if( $featured_agents->have_posts() ) :
