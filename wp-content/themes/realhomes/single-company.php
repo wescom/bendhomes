@@ -98,6 +98,11 @@ get_header();
 									$agents = new WP_Query( $agent_args );
 									
 									if( $agents->have_posts() ) :
+									
+										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
+										
+										echo '<h3>'. $agent_heading .'</h3>';
+									
 										while( $agents->have_posts() ) :
 											$agents->the_post();
 									
@@ -109,11 +114,11 @@ get_header();
 									
 									//print_r($agents);
 																			
-										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
+										
 										
 										?>
                                     
-                                        <h3><?php echo $agent_heading; ?></h3>
+                                        
                                         
                                         <div class="agents-list-wrap">
                                                                                         
