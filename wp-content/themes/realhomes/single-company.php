@@ -97,7 +97,7 @@ get_header();
 									
 									$agents = new WP_Query( $agent_args );
 									
-									print_r($agents);
+									$unique_agents = array();
 									
 									if( $agents->have_posts() ) : ?>
 																			
@@ -108,8 +108,11 @@ get_header();
 											<?php
                                             while( $agents->have_posts() ) :
                                                 $agents->the_post(); 
+												
+													$agent_name = get_the_title();
                                                     
-                                                    if( get_the_title() != 'Sample Page' ) { ?>
+                                                    if( !in_array($agent_name, $unique_agents) ) {
+													array_push($unique_agents, $agent_name); ?>
                                                     
                                                     <div class="company-agent">
                                                         <a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
