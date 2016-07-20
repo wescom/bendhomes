@@ -103,7 +103,7 @@ get_header();
 										
 										echo '<h3>'. $agent_heading .'</h3>'; ?>
                                         
-                                        <div class="agents-list-wrap">
+                                        <div class="agents-list-wrap clearfix">
 									
 										<?php
                                         while( $agents->have_posts() ) :
@@ -156,7 +156,6 @@ get_header();
 											
 											//endforeach; ?>
                                             
-                                        </div><!-- end .row-fluid -->
                                     
                                     <?php //} ?>
                                     
