@@ -468,9 +468,9 @@ function tbb_featured_agents( $defaults ) {
 		'orderby' => $defaults['orderby']
 	);
 	
-	$featured_agents = get_posts( $args );
+	$featured_agents = new WP_Query( $args );
 	
-	if ( $featured_agents ) :
+	if ( $featured_agents->have_posts() ) :
 	
 	$output = '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 	
@@ -491,8 +491,7 @@ function tbb_featured_agents( $defaults ) {
 		$count = 1;
 		// Loop through returned posts
 		// Setup the inner HTML for each elements
-		foreach ( $featured_agents as $post ) :
-			setup_postdata( $post );
+		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
 		
 			$id = get_the_ID();
 			$permalink = get_permalink();
@@ -510,21 +509,20 @@ function tbb_featured_agents( $defaults ) {
 			if( $image_parts['filename'] == 'default' ) $image = '';
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
-			/*wp_reset_postdata();				
+			/*wp_reset_query();				
 			// Query the Company of this Agent and see if the company is featured
-			$company_post = get_posts( array(
+			$company_post = new WP_Query( array(
 				'post_type' => 'company',
 				'name' => sanitize_title( $brokerage )
 			) );
-			if( $company_post ) :
-				foreach( $company_post as $post ) :
-					setup_postdata( $post );
+			if( $company_post->have_posts() ) :
+				while( $company_post->have_posts() ) : $company_post->the_post();
 					
 					$company_is_featured = get_field( 'company_featured_company' );
 													
-				endforeach;
+				endwhile;
 			endif;
-			wp_reset_postdata();*/
+			wp_reset_query();*/
 			
 			// If the company OR the agent is featured then display them
 			//if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
@@ -561,7 +559,7 @@ function tbb_featured_agents( $defaults ) {
 			
 			$count++;
 		
-		endforeach;
+		endwhile;
 	
 	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $featured_agents->max_num_pages) );
 	
@@ -569,5 +567,5 @@ function tbb_featured_agents( $defaults ) {
 			
 	return $output;
 	
-	wp_reset_postdata();
+	wp_reset_query();
 }
