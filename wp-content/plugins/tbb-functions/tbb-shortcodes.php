@@ -358,27 +358,27 @@ foreach($terms as $term_key => $term_val) {
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
 			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
-							$count, $cols, $classes, $has_image_class, $category_classes );
+								$count, $cols, $classes, $has_image_class, $category_classes );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
 					
-					if( $defaults['type'] != 'company' ) {
+					//if( $defaults['type'] != 'company' ) {
 						$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
-								$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
-					} else {
-						$output .= sprintf( '<figure class="custom-post-image image-%s %s"><img src="%s" width="%s" height="%s" /></figure>', 
-								$count, $image_size, $image[0], $image[1], $image[2] );	
-					}
+										$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
+					//} else {
+						//$output .= sprintf( '<figure class="custom-post-image image-%s %s"><img src="%s" width="%s" height="%s" /></figure>', 
+								//$count, $image_size, $image[0], $image[1], $image[2] );	
+					//}
 			
 				}
 				
 				$output .= $property_price;
 				
-				if( $defaults['type'] != 'company' ) {
+				//if( $defaults['type'] != 'company' ) {
 					$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $title );
-				} else {
-					$output .= sprintf( '<h4 class="custom-post-title">%s</h4>', $title );
-				}
+				//} else {
+					//$output .= sprintf( '<h4 class="custom-post-title">%s</h4>', $title );
+				//}
 				
 				if( $defaults['type'] == 'property' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
 					
@@ -388,9 +388,9 @@ foreach($terms as $term_key => $term_val) {
 				
 				$output .= $additional_meta;
 				
-				if( $defaults['type'] != 'company' ) {
+				//if( $defaults['type'] != 'company' ) {
 					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
-				}
+				//}
 			
 			$output .= '</div></div>';
 			

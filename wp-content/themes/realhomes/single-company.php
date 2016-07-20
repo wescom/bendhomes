@@ -85,13 +85,29 @@ get_header();
                                     </div><!-- end .row-fluid -->
                                     
                                     <?php
-									$agents = array_diff( get_field( 'company_agents' ), array('') );
+									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
+									
+									$agent_args = array(
+										'post_type' => 'agent',
+										'post__in' => $agents_array,
+										'posts_per_page' => -1,
+										'order' => 'ASC',
+										'orderby' => 'title'
+									);
+									
+									$agents = new WP_Query( $agent_args );
+									
+									if( $agents->have_posts() ) :
+										while( $agents->have_posts() ) :
+											$agents->the_post();
+									
+									//$agents = array_diff( get_field( 'company_agents' ), array('') );
 																			
-									if( $agents ) { 
+									//if( $agents ) { 
 									
-									asort( $agents );
+									//asort( $agents );
 									
-									print_r($agents);
+									//print_r($agents);
 																			
 										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
 										
@@ -102,35 +118,41 @@ get_header();
                                         <div class="agents-list-wrap">
                                                                                         
                                             <?php 
-											foreach( $agents as $post ) :
-                                                setup_postdata( $post );
+											//foreach( $agents as $post ) :
+                                                //setup_postdata( $post );
 												
-												if( get_the_title( $post->ID ) != 'Sample Page' ) {
+												if( get_the_title() != 'Sample Page' ) {
                                                 
-                                                $agent_id = $post->ID;
-                                                $image_id = get_post_thumbnail_id( $agent_id );
-                                                $agent_image = wp_get_attachment_image_src( $image_id, 'thumbnail', true ); ?>
+                                                //$agent_id = $post->ID;
+                                                //$image_id = get_post_thumbnail_id( $agent_id );
+                                                //$agent_image = wp_get_attachment_image_src( $image_id, 'thumbnail', true ); ?>
                                                 
                                                 <div class="company-agent">
-                                                    <a class="company-agent-inner" href="<?php echo get_permalink( $agent_id ); ?>">
+                                                    <a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
                                                         <figure class="agent-image">
-                                                            <?php if(!empty( $image_id )) { ?>
+                                                            <?php  if(has_post_thumbnail()){
+																the_post_thumbnail('thumbnail');
+															} ?>
+															
+															<?php /*if(!empty( $image_id )) { ?>
                                                             	<img src="<?php echo $agent_image[0]; ?>" alt="" />
                                                             <?php } else {
                                                                 echo '<div class="no-agent-image"></div>';
-                                                            } ?>
+                                                            }*/ ?>
                                                         </figure>                                                        
-                                                        <div class="agent-name"><?php echo get_the_title( $agent_id ); ?></div>
+                                                        <div class="agent-name"><?php echo get_the_title(); ?></div>
                                                     </a>
                                                 </div>
                                                 
                                             <?php }
 											
-											endforeach; ?>
+											//endforeach; ?>
                                             
                                         </div><!-- end .row-fluid -->
                                     
-                                    <?php } ?>
+                                    <?php //} ?>
+                                    
+                                    <?php endwhile; endif; ?>
 
                                 </div>
 
