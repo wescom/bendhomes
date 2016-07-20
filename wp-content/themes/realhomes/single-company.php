@@ -112,7 +112,7 @@ get_header();
 													$agent_name = get_the_title();
                                                     
                                                     if( !in_array($agent_name, $unique_agents) ) {
-													array_push($unique_agents, $agent_name); ?>
+													array_push($unique_agents, $agent_name); print_r($unique_agents); ?>
                                                     
                                                     <div class="company-agent">
                                                         <a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
