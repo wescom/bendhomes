@@ -66,10 +66,16 @@ get_header();
                                                         <ul class="contacts-list">
                                                             <?php
                                                             if(!empty($agent_office_phone)){
-                                                                ?><li class="office"><?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : <?php echo $agent_office_phone; ?></li><?php
+                                                                ?><li class="office">
+																<?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : 
+																<?php echo '<a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>'; ?>
+                                                                </li><?php
                                                             }
                                                             if(!empty($agent_mobile)){
-                                                                ?><li class="mobile"><?php include( get_template_directory() . '/images/icon-mobile.svg' ); _e('Mobile', 'framework'); ?> : <?php echo $agent_mobile; ?></li><?php
+                                                                ?><li class="mobile">
+																<?php include( get_template_directory() . '/images/icon-mobile.svg' ); _e('Mobile', 'framework'); ?> : 
+																<?php echo '<a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
+                                                                </li><?php
                                                             }
                                                             if(!empty($agent_office_fax)){
                                                                 ?><li class="fax"><?php include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework'); ?>  : <?php echo $agent_office_fax; ?></li><?php
