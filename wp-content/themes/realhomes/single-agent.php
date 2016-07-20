@@ -145,10 +145,10 @@ get_header();
                             /**
                              * Agent properties
                              */
-                            $number_of_properties = intval(get_option('theme_number_of_properties_agent'));
+                            /*$number_of_properties = intval(get_option('theme_number_of_properties_agent'));
                             if(!$number_of_properties){
                                 $number_of_properties = 6;
-                            }
+                            }*/
 
                             $agent_id = $post->ID;
 
@@ -156,7 +156,7 @@ get_header();
 
                             $agent_properties_args = array(
                                 'post_type' => 'property',
-                                'posts_per_page' => $number_of_properties,
+                                'posts_per_page' => 10,
                                 'meta_query' => array(
                                     array(
                                         'key' => 'REAL_HOMES_agents',
