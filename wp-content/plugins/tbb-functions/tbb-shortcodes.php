@@ -264,9 +264,9 @@ foreach($terms as $term_key => $term_val) {
 			$output .= '<div class="custom-search-wrap">';
 				$output .= '
 					<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
-						<input type="text" name="s" placeholder="Find a '. $defaults['type'] .'"/>
+						<input type="text" class="search-field" name="s" placeholder="Find a '. $defaults['type'] .'"/>
 						<input type="hidden" name="post_type" value="'. $defaults['type'] .'" />
-						<input type="submit" alt="Search" value="Search" />
+						<input type="submit" class="btn real-btn" alt="Search" value="Search" />
 					</form>
 				';
 			$output .= '</div>';
