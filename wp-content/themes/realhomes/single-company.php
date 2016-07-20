@@ -97,73 +97,40 @@ get_header();
 									
 									$agents = new WP_Query( $agent_args );
 									
-									if( $agents->have_posts() ) :
+									print_r($agents);
 									
-										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
-										
-										echo '<h3>'. $agent_heading .'</h3>'; ?>
+									if( $agents->have_posts() ) : ?>
+																			
+										<h3>Agents</h3>
                                         
                                         <div class="agents-list-wrap clearfix">
 									
-										<?php
-                                        while( $agents->have_posts() ) :
-											$agents->the_post();
-									
-									//$agents = array_diff( get_field( 'company_agents' ), array('') );
-																			
-									//if( $agents ) { 
-									
-									//asort( $agents );
-									
-									//print_r($agents);
-																			
-										
-										
-										?>
-                                    
+											<?php
+                                            while( $agents->have_posts() ) :
+                                                $agents->the_post(); 
+                                                    
+                                                    if( get_the_title() != 'Sample Page' ) { ?>
+                                                    
+                                                    <div class="company-agent">
+                                                        <a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
+                                                            <figure class="agent-image">
+                                                                <?php  if(has_post_thumbnail()){
+                                                                    the_post_thumbnail('thumbnail');
+                                                                } ?>
+                                                            </figure>                                                        
+                                                            <div class="agent-name"><?php echo get_the_title(); ?></div>
+                                                        </a>
+                                                    </div>
+                                                    
+                                                <?php }
+                                                                                  
+                                            endwhile; ?>
                                         
-                                        
-                                        
-                                                                                        
-                                            <?php 
-											//foreach( $agents as $post ) :
-                                                //setup_postdata( $post );
-												
-												if( get_the_title() != 'Sample Page' ) {
-                                                
-                                                //$agent_id = $post->ID;
-                                                //$image_id = get_post_thumbnail_id( $agent_id );
-                                                //$agent_image = wp_get_attachment_image_src( $image_id, 'thumbnail', true ); ?>
-                                                
-                                                <div class="company-agent">
-                                                    <a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
-                                                        <figure class="agent-image">
-                                                            <?php  if(has_post_thumbnail()){
-																the_post_thumbnail('thumbnail');
-															} ?>
-															
-															<?php /*if(!empty( $image_id )) { ?>
-                                                            	<img src="<?php echo $agent_image[0]; ?>" alt="" />
-                                                            <?php } else {
-                                                                echo '<div class="no-agent-image"></div>';
-                                                            }*/ ?>
-                                                        </figure>                                                        
-                                                        <div class="agent-name"><?php echo get_the_title(); ?></div>
-                                                    </a>
-                                                </div>
-                                                
-                                            <?php }
-											
-											//endforeach; ?>
-                                            
-                                    
-                                    <?php //} ?>
-                                    
-                                    	<?php endwhile; ?>
                                     	</div>
-                                    <?php endif; ?>
+                                        
+                                    <?php endif; // end agents query ?>
 
-                                </div>
+                                </div><!-- end .detail -->
 
                             </article>
                         <?php
