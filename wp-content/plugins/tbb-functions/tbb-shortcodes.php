@@ -516,6 +516,8 @@ function tbb_featured_agents( $defaults ) {
 			$output .= '<li><a href="'.get_permalink().'">'.get_the_title().' Tel: '.$phone.'</a></li>';
 		endwhile;
 		$output .= '</ul>';
+		
+		$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $agents->max_num_pages) );
 	endif;
 		
 	// End new stuff
