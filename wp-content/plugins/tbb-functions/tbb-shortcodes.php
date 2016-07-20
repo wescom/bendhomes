@@ -509,7 +509,7 @@ function tbb_featured_agents( $defaults ) {
 			if( $image_parts['filename'] == 'default' ) $image = '';
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
-			wp_reset_query();				
+			//wp_reset_query();				
 			// Query the Company of this Agent and see if the company is featured
 			$company_post = new WP_Query( array(
 				'post_type' => 'company',
@@ -522,7 +522,7 @@ function tbb_featured_agents( $defaults ) {
 													
 				endwhile;
 			endif;
-			wp_reset_query();
+			//wp_reset_query();
 			
 			// If the company OR the agent is featured then display them
 			if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
