@@ -498,13 +498,23 @@ function tbb_featured_agents( $defaults ) {
 	endif;
 	//print_r($agents_array);
 	
-	$agents = get_posts( $agents_array );
-	if( $agents ) :
+	$agent_args = array(
+		'post_type' => 'agent',
+		'post__in' => $agents_array,
+		'posts_per_page' => $defaults['limit'],
+		'paged' 	=> $paged,
+		'has_password' => false,
+		'order' => $defaults['order'],
+		'orderby' => $defaults['orderby']
+	);
+	$agents = new WP_Query( $agent_args );
+	if( $agents->have_posts() ) :
 		$output = '<ul>';
-		foreach( $agents as $post ) {
-			setup_postdata( $post );
-			$output .= '<li><a href="'.get_permalink().'">'.get_the_title().'</a></li>';
-		}
+		while( $agents->have_posts() ) : $agents->the_post();
+			$agent_id = get_the_ID();
+			$phone = get_field( 'brk_office_phone' );
+			$output .= '<li><a href="'.get_permalink().'">'.get_the_title().' Tel: '.$phone.'</a></li>';
+		endwhile;
 		$output .= '</ul>';
 	endif;
 		
