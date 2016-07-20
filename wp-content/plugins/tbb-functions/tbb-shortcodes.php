@@ -136,7 +136,8 @@ function tbb_custom_posts( $defaults ) {
 		'classes' => '',
 		'columns' => '3',
 		'order' => 'ASC',
-		'orderby' => 'name'
+		'orderby' => 'name',
+		'show_search' => ''
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
@@ -257,6 +258,20 @@ foreach($terms as $term_key => $term_val) {
 	if ( $custom_posts->have_posts() ) :
 	
 	$output = '<div class="custom-posts-wrapper post-'. $defaults['type'] .'"><div class="custom-posts-container clearfix">';
+	
+		if( !empty( $defaults['show_search'] ) ) {
+			
+			$output .= '<div class="custom-search-wrap">';
+				$output .= '
+					<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
+						<input type="text" name="s" placeholder="Find a '. $defaults['type'] .'"/>
+						<input type="hidden" name="post_type" value="'. $defaults['type'] .'" />
+						<input type="submit" alt="Search" value="Search" />
+					</form>
+				';
+			$output .= '</div>';
+			
+		}
 	
 		$count = 1;
 		// Loop through returned posts
