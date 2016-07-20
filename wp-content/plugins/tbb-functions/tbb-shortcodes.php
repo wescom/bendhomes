@@ -3,6 +3,7 @@
 
 
 function agents_company_is_featured( $company_name ) {
+	wp_reset_query();
 								
 	// Query the Company of this Agent and see if the company is featured
 	$company_post = new WP_Query( array(
@@ -17,7 +18,9 @@ function agents_company_is_featured( $company_name ) {
 											
 		endwhile;
 	endif;
-		
+	
+	wp_reset_query();
+	
 	return $company_is_featured;
 }
 
