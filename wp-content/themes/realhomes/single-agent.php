@@ -13,11 +13,9 @@ get_header();
             <div class="span9 main-wrap">
 
                 <!-- Main Content -->
-                <div class="main">
+                <div class="main" style="margin-top: 0;">
 
                     <section class="listing-layout">
-                        <h3 class="title-heading"><?php the_title(); ?></h3>
-
                         <div class="list-container">
                             <?php
 
