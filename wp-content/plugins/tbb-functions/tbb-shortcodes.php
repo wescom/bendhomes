@@ -525,7 +525,7 @@ function tbb_featured_agents( $defaults ) {
 			//wp_reset_query();
 			
 			// If the company OR the agent is featured then display them
-			if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
+			if( $category_classes == 'featured-agent' ) {
 				$check = agents_company_is_featured( $brokerage );
 			
 			
