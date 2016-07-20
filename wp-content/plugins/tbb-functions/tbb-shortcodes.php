@@ -462,7 +462,7 @@ function tbb_featured_agents( $defaults ) {
 	$args = array(
 		'post_type' 	=> 'agent',
 		//'posts_per_page' => $defaults['limit'],
-		'post_per_page' -1,
+		'posts_per_page' => -1,
 		'fields' => 'ids',
 		'paged' 	=> $paged,
 		'has_password' => false,
@@ -558,8 +558,12 @@ function tbb_featured_agents( $defaults ) {
 			endif;
 			wp_reset_query();
 			
+			if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
+				
+			}
+			
 			// If the company OR the agent is featured then display them
-			if( $category_classes == 'featured-agent' || $company_is_featured == '1' ) {
+			//if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
 			
 			
 				// Begin item output
@@ -584,7 +588,7 @@ function tbb_featured_agents( $defaults ) {
 				// End item ouput
 			
 			
-			}
+			//}
 			
 			$clearfix_test = $count / $cols_per_row;
 			if( is_int( $clearfix_test ) ) {
