@@ -532,6 +532,21 @@ function tbb_featured_agents( $defaults ) {
 			if( $image_parts['filename'] == 'default' ) $image = '';
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
+			wp_reset_query();				
+			// Query the Company of this Agent and see if the company is featured
+			$company_post = new WP_Query( array(
+				'post_type' => 'company',
+				'name' => sanitize_title( $brokerage )
+			) );
+			if( $company_post->have_posts() ) :
+				while( $company_post->have_posts() ) : $company_post->the_post();
+					
+					$company_is_featured = get_field( 'company_featured_company' );
+													
+				endwhile;
+			endif;
+			wp_reset_query();
+			
 			//if( $category_classes == 'featured-agent' || agents_company_is_featured( $brokerage ) == 1 ) {
 				$check = agents_company_is_featured( $brokerage );
 			
@@ -549,7 +564,7 @@ function tbb_featured_agents( $defaults ) {
 									$permalink, $title );
 					
 					$output .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
-										$brokerage, $address, $phone, print_r($check) );
+										$brokerage, $address, $phone, $company_is_featured );
 					
 					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
 									$permalink );
