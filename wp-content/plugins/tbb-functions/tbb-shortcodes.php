@@ -470,7 +470,24 @@ function tbb_featured_agents( $defaults ) {
 	
 	$featured_agents = new WP_Query( $args );
 	
-	if ( $featured_agents->have_posts() ) :
+	$agents_array = array();
+	
+	// Start new stuff
+	if( $featured_agents->have_posts() ) :
+		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
+			$agents_array[] = get_the_ID();
+			
+			print_r($agents_array);
+		endwhile;
+	endif;
+	// End new stuff
+	
+	
+	
+	
+	
+	
+	/*if ( $featured_agents->have_posts() ) :
 	
 	$output = '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 	
@@ -524,6 +541,10 @@ function tbb_featured_agents( $defaults ) {
 			endif;
 			wp_reset_query();
 			
+			if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
+				
+			}
+			
 			// If the company OR the agent is featured then display them
 			//if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
 			
@@ -563,7 +584,7 @@ function tbb_featured_agents( $defaults ) {
 	
 	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $featured_agents->max_num_pages) );
 	
-	endif;
+	endif;*/
 			
 	return $output;
 	
