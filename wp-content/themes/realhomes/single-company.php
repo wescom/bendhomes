@@ -105,32 +105,34 @@ get_header();
                                         <div class="agents-list-wrap clearfix">
 									
 											<?php
-                                            while( $agents->have_posts() ) :
-                                                $agents->the_post(); 
+                                            while( $agents->have_posts() ) : $agents->the_post(); 
 												
-												$agent_name = get_the_title();
-												$agent_categories = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
+											$agent_name = get_the_title();
+											$agent_category = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
+											
+											// Make sure there's no duplicate agents in the list
+											if( !in_array($agent_name, $unique_agents) ) {
 												
-												// Make sure there's no duplicate agents in the list
-												if( !in_array($agent_name, $unique_agents) ) {
-													
-													array_push($unique_agents, $agent_name); ?>
-													
-													<div class="company-agent">
-														<a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
-															<figure class="agent-image">
-																<?php  if(has_post_thumbnail()){
-																	the_post_thumbnail('thumbnail');
-																} else {
-																	echo '<div class="no-agent-image"></div>';	
-																}?>
-															</figure>                                                        
-															<div class="agent-name"><?php echo $agent_name; ?></div>
-                                                            <div><?php print_r($agent_categories); ?></div>
-														</a>
-													</div>
+												array_push($unique_agents, $agent_name); 
 												
-											<?php }
+												if( $agent_category == 'featured-agent' || $agent_category == 'standard-agent' ) { ?>
+												
+												<div class="company-agent">
+													<a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
+														<figure class="agent-image">
+															<?php  if(has_post_thumbnail()){
+																the_post_thumbnail('thumbnail');
+															} else {
+																echo '<div class="no-agent-image"></div>';	
+															}?>
+														</figure>                                                        
+														<div class="agent-name"><?php echo $agent_name; ?></div>
+														<div><?php print_r($agent_categories); ?></div>
+													</a>
+												</div>
+												
+												<?php }
+											}
                                                                                   
                                             endwhile; ?>
                                         
