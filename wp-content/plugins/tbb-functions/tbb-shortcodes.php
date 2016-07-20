@@ -478,7 +478,22 @@ function tbb_featured_agents( $defaults ) {
 	if( $featured_agents->have_posts() ) :
 		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
 			$id = get_the_ID();
-			if( !in_array( $id, $agents_array ) ) $agents_array[] = $id;
+			$company_name = get_field('brk_office_name');
+			wp_reset_query();
+			$company_post = new WP_Query( array(
+				'post_type' => 'company',
+				'name' => sanitize_title( $company_name )
+			) );
+			if( $company_post->have_posts() ) :
+				while( $company_post->have_posts() ) : $company_post->the_post();
+					
+					$company_is_featured = get_field( 'company_featured_company' );
+													
+				endwhile;
+			endif;
+			wp_reset_query();
+						
+			if( !in_array( $id, $agents_array ) && $company_is_featured == '1' ) $agents_array[] = $id;
 		endwhile;
 	endif;
 	print_r($agents_array);
