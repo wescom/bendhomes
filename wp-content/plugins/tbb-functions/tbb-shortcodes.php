@@ -461,7 +461,8 @@ function tbb_featured_agents( $defaults ) {
 	
 	$args = array(
 		'post_type' 	=> 'agent',
-		'posts_per_page' => $defaults['limit'],
+		//'posts_per_page' => $defaults['limit'],
+		'posts_per_page' => -1,
 		'fields' => 'ids',
 		'paged' 	=> $paged,
 		'has_password' => false,
