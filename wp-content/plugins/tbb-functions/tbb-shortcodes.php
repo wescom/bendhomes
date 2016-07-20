@@ -461,7 +461,8 @@ function tbb_featured_agents( $defaults ) {
 	
 	$args = array(
 		'post_type' 	=> 'agent',
-		'posts_per_page' => $defaults['limit'],
+		//'posts_per_page' => $defaults['limit'],
+		'post_per_page' -1,
 		'fields' => 'ids',
 		'paged' 	=> $paged,
 		'has_password' => false,
@@ -471,10 +472,10 @@ function tbb_featured_agents( $defaults ) {
 	
 	$featured_agents = new WP_Query( $args );
 	
-	//$agents_array = array();
+	$agents_array = array();
 	
 	// Start new stuff
-	/*if( $featured_agents->have_posts() ) :
+	if( $featured_agents->have_posts() ) :
 		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
 			$id = get_the_ID();
 			$company_name = get_field('brk_office_name');
@@ -495,7 +496,7 @@ function tbb_featured_agents( $defaults ) {
 			if( !in_array( $id, $agents_array ) && $company_is_featured == '1' ) $agents_array[] = $id;
 		endwhile;
 	endif;
-	print_r($agents_array);*/
+	print_r($agents_array);
 	// End new stuff
 	
 	
@@ -503,7 +504,7 @@ function tbb_featured_agents( $defaults ) {
 	
 	
 	
-	if ( $featured_agents->have_posts() ) :
+	/*if ( $featured_agents->have_posts() ) :
 	
 	$output = '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 	
@@ -596,7 +597,7 @@ function tbb_featured_agents( $defaults ) {
 	
 	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $featured_agents->max_num_pages) );
 	
-	endif;
+	endif;*/
 			
 	return $output;
 	
