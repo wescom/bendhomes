@@ -112,7 +112,7 @@ get_header();
 													$agent_name = get_the_title();
                                                     
                                                     if( !in_array($agent_name, $unique_agents) ) {
-													array_push($unique_agents, $agent_name); print_r($unique_agents); ?>
+													array_push($unique_agents, $agent_name); ?>
                                                     
                                                     <div class="company-agent">
                                                         <a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
@@ -123,7 +123,7 @@ get_header();
 																	echo '<div class="no-agent-image"></div>';	
 																}?>
                                                             </figure>                                                        
-                                                            <div class="agent-name"><?php echo get_the_title(); ?></div>
+                                                            <div class="agent-name"><?php echo $agent_name; ?></div>
                                                         </a>
                                                     </div>
                                                     
