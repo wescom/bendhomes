@@ -462,6 +462,7 @@ function tbb_featured_agents( $defaults ) {
 	$args = array(
 		'post_type' 	=> 'agent',
 		'posts_per_page' => $defaults['limit'],
+		'fields' => 'ids',
 		'paged' 	=> $paged,
 		'has_password' => false,
 		'order' => $defaults['order'],
@@ -469,10 +470,8 @@ function tbb_featured_agents( $defaults ) {
 	);
 	
 	$featured_agents = new WP_Query( $args );
-	
-	$agents_array = $featured_agents['posts'];
-	
-	print_r($agents_array);
+		
+	print_r($featured_agents);
 	
 	// Start new stuff
 	if( $featured_agents->have_posts() ) :
