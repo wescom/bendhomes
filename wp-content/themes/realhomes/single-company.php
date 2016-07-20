@@ -116,7 +116,9 @@ get_header();
                                                             <figure class="agent-image">
                                                                 <?php  if(has_post_thumbnail()){
                                                                     the_post_thumbnail('thumbnail');
-                                                                } ?>
+                                                                } else {
+																	echo '<div class="no-agent-image"></div>';	
+																}?>
                                                             </figure>                                                        
                                                             <div class="agent-name"><?php echo get_the_title(); ?></div>
                                                         </a>
