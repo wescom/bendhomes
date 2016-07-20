@@ -65,7 +65,10 @@ get_header();
                                                 <ul class="contacts-list">
                                                     <?php
                                                     if(!empty($company_office_phone)){
-                                                        ?><li class="office"><?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : <?php echo $company_office_phone; ?></li><?php
+                                                        ?><li class="office">
+														<?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : 
+														<?php echo '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>'; ?>
+                                                        </li><?php
                                                     }
                                                     if(!empty($company_office_fax)){
                                                         ?><li class="fax"><?php include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework'); ?>  : <?php echo $company_office_fax; ?></li><?php
