@@ -532,7 +532,8 @@ function tbb_featured_agents( $defaults ) {
 			if( $image_parts['filename'] == 'default' ) $image = '';
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
-			if( $category_classes == 'featured-agent' || agents_company_is_featured( $brokerage ) == 1 ) {
+			//if( $category_classes == 'featured-agent' || agents_company_is_featured( $brokerage ) == 1 ) {
+				$check = agents_company_is_featured( $brokerage );
 			
 			
 				// Begin item output
@@ -547,8 +548,8 @@ function tbb_featured_agents( $defaults ) {
 					$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 									$permalink, $title );
 					
-					$output .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
-										$brokerage, $address, $phone );
+					$output .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
+										$brokerage, $address, $phone, $check );
 					
 					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
 									$permalink );
@@ -557,7 +558,7 @@ function tbb_featured_agents( $defaults ) {
 				// End item ouput
 			
 			
-			}
+			//}
 			
 			$clearfix_test = $count / $cols_per_row;
 			if( is_int( $clearfix_test ) ) {
