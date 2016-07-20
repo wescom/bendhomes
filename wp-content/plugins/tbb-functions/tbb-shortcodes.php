@@ -463,26 +463,22 @@ function tbb_featured_agents( $defaults ) {
 		'post_type' 	=> 'agent',
 		//'posts_per_page' => $defaults['limit'],
 		'posts_per_page' => -1,
-		'fields' => 'ids',
-		'paged' 	=> $paged,
-		'has_password' => false,
 		'order' => $defaults['order'],
 		'orderby' => $defaults['orderby']
 	);
 	
-	$featured_agents = new WP_Query( $args );
+	$featured_agents = get_posts( $args );
 	
 	$agents_array = array();
 	
 	// Start new stuff
-	if( $featured_agents->have_posts() ) :
-		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
+	if( $featured_agents ) :
+		foreach ( $featured_agents as $post ) : setup_postdata( $post );
 			$id = get_the_ID();
-			$company_name = get_field('brk_office_name');
-			wp_reset_query();
+			$company_name = sanitize_title( get_field('brk_office_name') );
 			$company_post = new WP_Query( array(
 				'post_type' => 'company',
-				'name' => sanitize_title( $company_name )
+				'name' => $company_name
 			) );
 			if( $company_post->have_posts() ) :
 				while( $company_post->have_posts() ) : $company_post->the_post();
@@ -494,9 +490,11 @@ function tbb_featured_agents( $defaults ) {
 			wp_reset_query();
 						
 			if( !in_array( $id, $agents_array ) && $company_is_featured == '1' ) $agents_array[] = $id;
-		endwhile;
+		endforeach;
+		wp_reset_postdata();
 	endif;
 	print_r($agents_array);
+	
 	// End new stuff
 	
 	
