@@ -102,7 +102,8 @@ h3.search-results-header { float: left; margin: 0; }
 #mc_embed_signup .mc-first { margin-right: 2%; }
 #mc_embed_signup .mc-field-group input[type=text], #mc_embed_signup .mc-field-group input[type=email] { width: 100%; padding-left: 0; padding-right: 0; border-color: #fff; text-indent: 10px; }
 
-.custom-search-wrap { margin: 10px 2%; position: relative; }
+.custom-search-wrap { margin: 10px 2% 20px; background: #F5F5F5; padding: 10px; border: 1px solid #d2d2d2; }
+.custom-search-wrap form { position: relative; margin: 0; }
 .custom-search-wrap .search-field { margin: 0; height: 34px; font-size: 18px; font-weight: 300; text-indent: 10px; width: 98%; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }
 .custom-search-wrap .btn { position: absolute; top: 0; right: 0; height: 44px; }
 
