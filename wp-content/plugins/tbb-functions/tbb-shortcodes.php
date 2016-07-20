@@ -2,29 +2,6 @@
 // Shortcodes
 
 
-function agents_company_is_featured( $company_name ) {
-	wp_reset_query();
-								
-	// Query the Company of this Agent and see if the company is featured
-	$company_post = new WP_Query( array(
-		'post_type' => 'company',
-		'name' => sanitize_title( $company_name )
-	) );
-	
-	if( $company_post->have_posts() ) :
-		while( $company_post->have_posts() ) : $company_post->the_post();
-			
-			$company_is_featured = get_field( 'company_featured_company' );
-											
-		endwhile;
-	endif;
-	
-	wp_reset_query();
-	
-	return $company_is_featured;
-}
-
-
 add_shortcode('SCHEMA_ADDRESS', 'tbb_schema_address');
 function tbb_schema_address( $atts ) {
 	$atts = shortcode_atts( array(
@@ -547,7 +524,8 @@ function tbb_featured_agents( $defaults ) {
 			endif;
 			wp_reset_query();
 			
-			//if( $category_classes == 'featured-agent' || agents_company_is_featured( $brokerage ) == 1 ) {
+			// If the company OR the agent is featured then display them
+			if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
 				$check = agents_company_is_featured( $brokerage );
 			
 			
@@ -573,7 +551,7 @@ function tbb_featured_agents( $defaults ) {
 				// End item ouput
 			
 			
-			//}
+			}
 			
 			$clearfix_test = $count / $cols_per_row;
 			if( is_int( $clearfix_test ) ) {
