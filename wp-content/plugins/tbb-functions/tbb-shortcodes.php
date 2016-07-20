@@ -87,7 +87,7 @@ function tbb_map_link($atts, $content = null) {
 	$classes = explode(' ', $opts['class']);
 	$classes[] = 'google-map-link';
 
-	return '<a href="'. $link .'" class="'. implode(' ', $classes) .'">'. $content .'</a>' . $mobile_script;
+	return '<a href="'. $link .'" target="_blank" class="'. implode(' ', $classes) .'">'. $content .'</a>' . $mobile_script;
 }
 
 

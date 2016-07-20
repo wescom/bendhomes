@@ -58,7 +58,7 @@ get_header();
                                                 
                                                 <?php
                                                 if(!empty($company_office_address)){
-                                                    echo do_shortcode('[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]');
+                                                    echo do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
                                                 }
                                                 ?>
                                                 
