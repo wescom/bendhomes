@@ -54,8 +54,7 @@ get_header();
 
                                             if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
                                                 ?>
-                                                <hr/>
-                                                <h5><?php _e('Contact Details', 'framework'); ?></h5>
+                                                <h5><?php the_title(); ?></h5>
                                                 
                                                 <?php
                                                 if(!empty($company_office_address)){
