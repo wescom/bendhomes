@@ -476,7 +476,8 @@ function tbb_featured_agents( $defaults ) {
 	// Start new stuff
 	if( $featured_agents->have_posts() ) :
 		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
-			$agents_array[] = get_the_ID();
+			$id = get_the_ID();
+			if( !in_array( $id, $agents_array ) ) array_push( $agents_array, $id );
 		endwhile;
 	endif;
 	print_r($agents_array);
