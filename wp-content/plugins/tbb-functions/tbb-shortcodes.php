@@ -354,6 +354,8 @@ foreach($terms as $term_key => $term_val) {
 			}
 			
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), $image_size, true);
+			$image_parts = pathinfo( $image[0] );
+			if( $image_parts['filename'] == 'default' ) $image = '';
 			
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			

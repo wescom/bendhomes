@@ -127,7 +127,6 @@ get_header();
 															}?>
 														</figure>                                                        
 														<div class="agent-name"><?php echo $agent_name; ?></div>
-														<div><?php print_r($agent_categories); ?></div>
 													</a>
 												</div>
 												
