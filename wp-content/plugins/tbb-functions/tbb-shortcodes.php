@@ -496,7 +496,7 @@ function tbb_featured_agents( $defaults ) {
 			if( !in_array( $id, $agents_array ) && $company_is_featured == '1' ) $agents_array[] = $id;
 		endwhile;
 	endif;
-	print_r($agents_array);
+	//print_r($agents_array);
 	
 	$agents = get_posts( $agents_array );
 	if( $agents ) :
@@ -505,9 +505,9 @@ function tbb_featured_agents( $defaults ) {
 			setup_postdata( $post );
 			$output .= '<li><a href="'.get_permalink().'">'.get_the_title().'</a></li>';
 		}
-		$output = '</ul>';
+		$output .= '</ul>';
 	endif;
-	
+		
 	// End new stuff
 	
 	
