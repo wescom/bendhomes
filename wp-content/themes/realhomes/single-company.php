@@ -101,9 +101,12 @@ get_header();
 									
 										$agent_heading = count($agents) === 1 ? 'Agent' : 'Agents';
 										
-										echo '<h3>'. $agent_heading .'</h3>';
+										echo '<h3>'. $agent_heading .'</h3>'; ?>
+                                        
+                                        <div class="agents-list-wrap">
 									
-										while( $agents->have_posts() ) :
+										<?php
+                                        while( $agents->have_posts() ) :
 											$agents->the_post();
 									
 									//$agents = array_diff( get_field( 'company_agents' ), array('') );
@@ -120,7 +123,7 @@ get_header();
                                     
                                         
                                         
-                                        <div class="agents-list-wrap">
+                                        
                                                                                         
                                             <?php 
 											//foreach( $agents as $post ) :
@@ -157,7 +160,9 @@ get_header();
                                     
                                     <?php //} ?>
                                     
-                                    <?php endwhile; endif; ?>
+                                    	<?php endwhile; ?>
+                                    	</div>
+                                    <?php endif; ?>
 
                                 </div>
 
