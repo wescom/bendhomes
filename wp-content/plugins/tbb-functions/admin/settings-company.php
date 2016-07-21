@@ -236,7 +236,6 @@ class CompanySettingsPage {
             
             <div class="company-wrap">
             
-                <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                 	<h2 class="nav-tab-wrapper" id="tbb-company-tabs">
                     	<a class="nav-tab nav-tab-active" id="tbb-company-tab" href="#top#company">Companies</a>
                         <a class="nav-tab" id="tbb-shortcodes-tab" href="#top#shortcodes">Shortcodes</a>
@@ -246,10 +245,12 @@ class CompanySettingsPage {
                         <section id="company" class="tbb-tab active">
                             <h3>Companies Settings</h3>
                             <p>Create companies imported from Agents meta fields. To create company posts click the button below.</p>
+                            <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
                                 <input id="company-submit" class="button-primary" type="submit" value="<?php _e( 'Create/Update Companies', 'tbb_company' ); ?>" />
                             </p>
+                            </form>
                         </section>
                         
                         <section id="shortcodes" class="tbb-tab">
@@ -258,7 +259,6 @@ class CompanySettingsPage {
                             <p><strong>Shortcode: [BH_CUSTOM_POSTS]</strong></p>
                         </section>
                     </div>
-                </form>
             
             </div>
         </div>
