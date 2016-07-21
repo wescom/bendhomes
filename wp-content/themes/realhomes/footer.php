@@ -72,7 +72,6 @@
         <div id="footer-bottom" class="container">
 			<div class="row">
             	<div class="span12">
-                	<p><a href="#mortgage-calculator" role="button" class="btn" data-toggle="modal">Launch this demo modal</a></p>
                 	<p style="text-align: center;">The content relating to real estate for sale on this website is from the MSL of Central Oregon. ©MLSCO. All information provided is deemed reliable but is not guaranteed and should be independently verified. All content displayed on this website is restricted to personal, non-commercial use, and only for ascertaining information regarding real property for sale. The consumer will not copy, retransmit nor redistribute any of the content from this website. The consumer is reminded that all listing content provided by automatic transmission by MLSCO is © Multiple Listing Service of Central Oregon (MLSCO).</p>
                     <?php
                     $copyright_text = get_option('theme_copyright_text');
@@ -110,7 +109,12 @@ if ( ! is_user_logged_in() ) {
     </div>
     <div class="modal-body">
     
-    	<div style="width:370px;overflow:hidden;margin: 0 auto;text-align:center;font-family:verdana,arial,sans-serif;font-size:8pt;line-height:13x;background-color:#dbdbdb;letter-spacing:0;text-transform:none;border-radius: 5px;webkit-border-radius:5px;" id="horizontalWidget"><div style="margin:6px 0;"><a href="https://www.zillow.com/mortgage-calculator/" target="_blank" rel="nofollow" style="font-family:Arial;font-size:15px;text-decoration:none;font-weight:bold;@@_BACKGROUND_TEXT_COLOR_@@;cursor: pointer;display: block;text-align: center;text-shadow: 0 1px #@@_HEADER_TEXT_SHADOW_@@;" title="Mortgage Calculators on Zillow">Monthly Payment</a></div><div style="width:352px;margin:0 auto;text-align:left; font-size:8pt;border-radius: 5px; solid;webkit-border-radius: 5px;padding: 0 1px;background-color:#f4f4f4"><iframe scrolling="no" src="http://www.zillow.com/mortgage/SmallMortgageLoanCalculatorWidget.htm?widgetOrientationType=horizontalWidget" width="352px" frameborder="0" style="float:left;" title="Mortgage Calculator" height="235px"></iframe><div style="clear:both;"></div></div><div style="height:20px;"></div></div>
+    	<div style="width:100%;overflow:hidden;padding: 15px 0 20px;" id="horizontalWidget">
+            <div style="width:352px;margin:0 auto;border-radius: 5px; solid;webkit-border-radius: 5px;padding: 0 1px;background-color:#f4f4f4; border: 1px solid #e8e8e8;">
+            	<iframe scrolling="no" src="http://www.zillow.com/mortgage/SmallMortgageLoanCalculatorWidget.htm?widgetOrientationType=horizontalWidget" width="352px" frameborder="0" style="float:left;" title="Mortgage Calculator" height="235px"></iframe>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
         
     </div>
 </div>
