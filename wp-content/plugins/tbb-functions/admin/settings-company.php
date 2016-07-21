@@ -222,6 +222,12 @@ class CompanySettingsPage {
 		//print_r($_POST);
 		exit();
 	}
+	
+	function featured_agents_admin_action() {
+		wp_redirect( $_SERVER['HTTP_REFERER'] .'&featured-agents="true' );
+		//print_r($_POST);
+		exit();
+	}
 
 	function company_settings_do_page() { ?>
 		
