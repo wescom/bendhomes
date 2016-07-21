@@ -243,12 +243,21 @@ class CompanySettingsPage {
                     
                     <div id="sections">
                         <section id="company" class="tbb-tab active">
-                            <h3>Companies Settings</h3>
+                            <h3>Create/Update Companies</h3>
                             <p>Create companies imported from Agents meta fields. To create company posts click the button below.</p>
                             <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
-                                <input id="company-submit" class="button-primary" type="submit" value="<?php _e( 'Create/Update Companies', 'tbb_company' ); ?>" />
+                                <input id="company-submit" class="button" type="submit" value="<?php _e( 'Create/Update Companies', 'tbb_company' ); ?>" />
+                            </p>
+                            </form>
+                            <br>
+                            <h3>Featured Agents from Companies</h3>
+                            <p>This button below sets the "Company is Featured" checkbox for all agents whose company is checked as "Featured".</p>
+                            <form id="featured-agents" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
+                            <p>
+                                <input type="hidden" name="action" value="featured_agents" />
+                                <input id="agents-submit" class="button" type="submit" value="<?php _e( 'Set Agents', 'tbb_company' ); ?>" />
                             </p>
                             </form>
                         </section>
