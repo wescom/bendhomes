@@ -30,6 +30,8 @@ class CompanySettingsPage {
 	function companies_created_admin_action() {
 		// Do posting function here that creates/updates the companies.
 		$this->create_company_posts();
+		// Loop thru companies to feature agents whose company is featured
+		$this->feature_agents_from_company();
 	
 		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created="true' );
 		//print_r($_POST);
@@ -152,6 +154,52 @@ class CompanySettingsPage {
 					
 				}
 			
+			endwhile;
+		endif;
+		
+		return;
+		
+		wp_reset_query();
+	}
+	
+	function feature_agents_from_company() {
+		$company_args = array(
+			'post_type' => 'company',
+			'posts_per_page' => '-1'
+		);
+		
+		$company = new WP_Query( $company_args );
+		
+		if ( $company->have_posts() ) :	
+			while ( $company->have_posts() ) : $company->the_post();
+			
+				$company_featured = get_field( 'company_featured_company' );
+				
+				if( $company_featured == '1' ) {
+					
+					$agents_array = get_field( 'company_agents' );
+					
+					$agent_args = array(
+						'post_type' => 'agent',
+						'post__in' => $agents_array
+					);
+					
+					wp_reset_query();
+					
+					$agents = new WP_Query( $agent_args );
+					
+					if ( $agents->have_posts() ) :	
+						while ( $agents->have_posts() ) : $agents->the_post();
+						
+							update_post_meta( get_the_ID(), 'brk_office_is_featured', $company_featured );
+						
+						endwhile;
+					endif;
+				
+					wp_reset_query();
+					
+				}
+				
 			endwhile;
 		endif;
 		
