@@ -17,7 +17,6 @@ class CompanySettingsPage {
 		add_submenu_page(
 			'edit.php?post_type=company',
 			'Company Settings',
-			'Settings',
 			'manage_options',
 			'company-settings',
 			array( $this, 'create_plugin_settings_page' )
@@ -176,7 +175,7 @@ class CompanySettingsPage {
 
 }
 
-$companySettings = new CompanySettingsPage;
+new CompanySettingsPage;
 
 
 
