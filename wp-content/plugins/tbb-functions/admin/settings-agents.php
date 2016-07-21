@@ -50,7 +50,7 @@ class AgentsSettingsPage {
             <div class="company-wrap">
             
                 	<h2 class="nav-tab-wrapper" id="tbb-agents-tabs">
-                    	<a class="nav-tab nav-tab-active" id="tbb-agents-tab" href="#top#agents">Companies</a>
+                    	<a class="nav-tab nav-tab-active" id="tbb-agents-tab" href="#top#agents">Agents</a>
                         <!--a class="nav-tab" id="tbb-shortcodes-tab" href="#top#shortcodes">Shortcodes</a-->
                     </h2>
                     
