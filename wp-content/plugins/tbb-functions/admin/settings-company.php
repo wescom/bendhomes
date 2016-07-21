@@ -339,13 +339,13 @@ class CompanySettingsPage {
 					
 					update_post_meta( $company_check->ID, 'company_agents', $agents_list );
 											
-					foreach( $agents_list as $agent_item ) {
+					/*foreach( $agents_list as $agent_item ) {
 						query_posts( 'p='. $agent_item );
 						while (have_posts()) : the_post();
 							update_post_meta( get_the_ID(), 'brk_office_is_featured', $company_is_featured );
 						endwhile;
 						wp_reset_query();
-					}
+					}*/
 											
 				}
 			
