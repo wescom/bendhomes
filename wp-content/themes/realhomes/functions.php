@@ -360,7 +360,8 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 
 			// register styles
 			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '2.2.2', 'all' );
-			wp_register_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.1.0', 'all' );
+			//wp_register_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.1.0', 'all' );
+			wp_register_style( 'font-awesome', 'https://use.fontawesome.com/585a9bf085.js' );
 			wp_register_style( 'pretty-photo-css', get_template_directory_uri() . '/js/prettyphoto/css/prettyPhoto.min.css', array(), '3.1.6', 'all' );
 			wp_register_style( 'swipebox', get_template_directory_uri() . '/js/swipebox/css/swipebox.min.css', array(), '1.3.0', 'all' );
 			wp_register_style( 'main-css', get_template_directory_uri() . '/css/main.min.css', array(), INSPIRY_THEME_VERSION, 'all' );
