@@ -31,6 +31,7 @@ require_once('admin/dashboard_widget.php');
 require_once('admin/pages-metabox.php');
 require_once('post-types/post-type-company.php');
 require_once('admin/settings-company.php');
+require_once('admin/settings-agents.php');
 require_once('tbb-shortcodes.php');
 
 
