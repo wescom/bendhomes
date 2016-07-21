@@ -1,5 +1,5 @@
 <?php
-class CompanySettingsPage {
+/*class CompanySettingsPage {
 
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_plugin_settings_menu' ) );
@@ -92,7 +92,7 @@ class CompanySettingsPage {
 			}
 		});
 	})( jQuery );
-</script> */  ?>
+</script> */ /* ?>
 <script type="text/javascript">
 !function(a){a(document).on("click",".nav-tab-wrapper a",function(){return a("section").hide().removeClass("active"),a(".nav-tab-wrapper a").removeClass("nav-tab-active"),a(".nav-tab-wrapper a").eq(a(this).index()).addClass("nav-tab-active"),a("section").eq(a(this).index()).show().addClass("active"),!1}),a("#company-submit").click(function(e){e.preventDefault(),a(this).attr("disabled","disabled"),confirm("If you're sure, click OK to continue. This may take a few minutes.")?(a("#create-companies").submit(),a("#company-submit").after('<span class="holdon">Please hold on, we\'re creating/updating all companies.</span>')):a(this).removeAttr("disabled")})}(jQuery);
 </script>
@@ -175,7 +175,7 @@ class CompanySettingsPage {
 
 }
 
-new CompanySettingsPage;
+new CompanySettingsPage;*/
 
 
 
@@ -186,7 +186,7 @@ new CompanySettingsPage;
 
 // Settings page under Company Post Type
 
-class CompanySettingsPage_old {
+class CompanySettingsPage {
 
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
@@ -328,10 +328,9 @@ class CompanySettingsPage_old {
 				
 					$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
 					$agents_list = get_post_meta( $company_check->ID, 'company_agents', true );
-					$company_is_featured = get_post_meta( $company_check->ID, 'company_featured_company', true );
+					//$company_is_featured = get_post_meta( $company_check->ID, 'company_featured_company', true );
 					if( !array( $agents_list ) ) $agents_list = array();
 					if( !in_array( $agent_id, $agents_list ) ) $agents_list[] = $agent_id;
-					//$final_list = array_values( array_unique( $agents_list ) );
 					
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
@@ -405,4 +404,4 @@ class CompanySettingsPage_old {
 	
 }
 
-//new CompanySettingsPage;
+new CompanySettingsPage;
