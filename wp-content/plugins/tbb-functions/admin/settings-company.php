@@ -1,4 +1,131 @@
 <?php
+class Test_Options {
+
+	function __construct() {
+		add_action( 'admin_menu', array( $this, 'add_plugin_settings_menu' ) );
+		add_action( 'admin_init', array( $this, 'register_settings' ) );
+	}
+
+	function add_plugin_settings_menu() {
+		// add_options_page( $page_title, $menu_title, $capability, $menu_slug, $function )
+		add_options_page( 'Test Plugin', 'Test', 'manage_options', 'test-plugin', array($this, 'create_plugin_settings_page') );
+	}
+
+	function create_plugin_settings_page() {
+	?>
+<div class="wrap">
+	<?php screen_icon(); ?>
+    <h2>Settings</h2>
+
+    <form method="post" action="options.php">
+    <?php
+		// This prints out all hidden setting fields
+		// settings_fields( $option_group )
+		settings_fields( 'main-settings-group' );
+		// do_settings_sections( $page )
+		do_settings_sections( 'test-plugin-main-settings-section' );
+    ?>
+    <?php submit_button('Save Changes'); ?>
+    </form>
+
+    <form method="post" action="options.php">
+    <?php
+		// This prints out all hidden setting fields
+		// settings_fields( $option_group )
+		settings_fields( 'additional-settings-group' );
+		// do_settings_sections( $page )	
+		do_settings_sections( 'test-plugin-additional-settings-section' );
+    ?>
+    <?php submit_button('Save Changes'); ?>
+    </form>
+</div>
+	<?php
+	}
+
+	function register_settings() {
+
+		// add_settings_section( $id, $title, $callback, $page )
+		add_settings_section(
+			'main-settings-section',
+			'Main Settings',
+			array($this, 'print_main_settings_section_info'),
+			'test-plugin-main-settings-section'
+		);
+
+		// add_settings_field( $id, $title, $callback, $page, $section, $args )
+		add_settings_field(
+			'some-setting', 
+			'Some Setting', 
+			array($this, 'create_input_some_setting'), 
+			'test-plugin-main-settings-section', 
+			'main-settings-section'
+		);
+
+		// register_setting( $option_group, $option_name, $sanitize_callback )
+		register_setting( 'main-settings-group', 'test_plugin_main_settings_arraykey', array($this, 'plugin_main_settings_validate') );
+
+		// add_settings_section( $id, $title, $callback, $page )
+		add_settings_section(
+			'additional-settings-section',
+			'Additional Settings',
+			array($this, 'print_additional_settings_section_info'),
+			'test-plugin-additional-settings-section'
+		);
+
+		// add_settings_field( $id, $title, $callback, $page, $section, $args )
+		add_settings_field(
+			'another-setting', 
+			'Another Setting', 
+			array($this, 'create_input_another_setting'), 
+			'test-plugin-additional-settings-section', 
+			'additional-settings-section'
+		);
+
+		// register_setting( $option_group, $option_name, $sanitize_callback )
+		register_setting( 'additional-settings-group', 'test_plugin_additonal_settings_arraykey', array($this, 'plugin_additional_settings_validate') );
+	}
+
+	function print_main_settings_section_info() {
+		echo '<p>Main Settings Description.</p>';
+	}
+
+	function create_input_some_setting() {
+		$options = get_option('test_plugin_main_settings_arraykey');
+        ?><input type="text" name="test_plugin_main_settings_arraykey[some-setting]" value="<?php echo $options['some-setting']; ?>" /><?php
+	}
+
+	function plugin_main_settings_validate($arr_input) {
+		$options = get_option('test_plugin_main_settings_arraykey');
+		$options['some-setting'] = trim( $arr_input['some-setting'] );
+		return $options;
+	}
+
+	function print_additional_settings_section_info() {
+		echo '<p>Additional Settings Description.</p>';
+	}
+
+	function create_input_another_setting() {
+		$options = get_option('test_plugin_additonal_settings_arraykey');
+        ?><input type="text" name="test_plugin_additonal_settings_arraykey[another-setting]" value="<?php echo $options['another-setting']; ?>" /><?php
+	}
+
+	function plugin_additional_settings_validate($arr_input) {
+		$options = get_option('test_plugin_additonal_settings_arraykey');
+		$options['another-setting'] = trim( $arr_input['another-setting'] );
+		return $options;
+	}
+
+}
+
+$test_options = new Test_Options;
+
+
+
+
+
+
+
+
 // Settings page under Company Post Type
 
 class CompanySettingsPage {
@@ -181,7 +308,8 @@ class CompanySettingsPage {
 					
 					$agent_args = array(
 						'post_type' => 'agent',
-						'post__in' => $agents_array
+						'post__in' => $agents_array,
+						'posts_per_page' => -1
 					);
 					
 					wp_reset_query();
