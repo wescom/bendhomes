@@ -103,17 +103,16 @@ if ( ! is_user_logged_in() ) {
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
 
 <!-- Modal -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn real-btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  </div>
+<div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
+    <div class="modal-header">
+    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    	<h3 id="mortgageCalculator">Mortgage Calculator</h3>
+    </div>
+    <div class="modal-body">
+    
+    	<div style="width:100%;overflow:hidden;margin: 0 auto;text-align:center;background-color:#dbdbdb;letter-spacing:0;text-transform:none;border-radius: 5px;webkit-border-radius:5px;" id="verticalWidget"><div style="margin:6px 0;"><a href="https://www.zillow.com/mortgage-calculator/" target="_blank" rel="nofollow" style="font-family:Arial;font-size:15px;text-decoration:none;font-weight:bold;@@_BACKGROUND_TEXT_COLOR_@@;cursor: pointer;display: block;text-align: center;text-shadow: 0 1px #@@_HEADER_TEXT_SHADOW_@@;" title="Mortgage Calculators on Zillow">Monthly Payment</a></div><div style="width:176px;margin:0 auto;text-align:left; font-size:8pt;border-radius: 5px; solid;webkit-border-radius: 5px;padding: 0 1px;background-color:#f4f4f4"><iframe scrolling="no" src="http://www.zillow.com/mortgage/SmallMortgageLoanCalculatorWidget.htm?widgetOrientationType=verticalWidget" width="176px" frameborder="0" style="float:left;" title="Mortgage Calculator" height="470px"></iframe><div style="clear:both;"></div></div><div style="height:20px;"></div></div>
+        
+    </div>
 </div>
 
 <?php wp_footer(); ?>
