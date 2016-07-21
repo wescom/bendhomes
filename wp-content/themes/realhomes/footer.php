@@ -72,6 +72,7 @@
         <div id="footer-bottom" class="container">
 			<div class="row">
             	<div class="span12">
+                	<p><a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a></p>
                 	<p style="text-align: center;">The content relating to real estate for sale on this website is from the MSL of Central Oregon. ©MLSCO. All information provided is deemed reliable but is not guaranteed and should be independently verified. All content displayed on this website is restricted to personal, non-commercial use, and only for ascertaining information regarding real property for sale. The consumer will not copy, retransmit nor redistribute any of the content from this website. The consumer is reminded that all listing content provided by automatic transmission by MLSCO is © Multiple Listing Service of Central Oregon (MLSCO).</p>
                     <?php
                     $copyright_text = get_option('theme_copyright_text');
@@ -100,6 +101,20 @@ if ( ! is_user_logged_in() ) {
 ?>
 
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn real-btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
 
 <?php wp_footer(); ?>
 </body>
