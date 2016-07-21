@@ -80,9 +80,9 @@ function tbb_remove_admin_menus() {
 		remove_submenu_page( 'themes.php', 'customize.php' );
 		remove_submenu_page( 'themes.php', 'multiple_sidebars' );
 	}
-	remove_submenu_page( 'themes.php', 'customize.php?return=%2Fwp-admin%2F' );
-	remove_submenu_page( 'themes.php', 'customize.php?return=%2Fwp-admin%2Findex.php' );
-	remove_submenu_page( 'themes.php', 'customize.php' );
+	//remove_submenu_page( 'themes.php', 'customize.php?return=%2Fwp-admin%2F' );
+	//remove_submenu_page( 'themes.php', 'customize.php?return=%2Fwp-admin%2Findex.php' );
+	//remove_submenu_page( 'themes.php', 'customize.php' );
 }
 
 
