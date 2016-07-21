@@ -61,7 +61,7 @@ class AgentsSettingsPage {
                             <form id="featured-agents" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                             <p>
                                 <input type="hidden" name="action" value="featured_agents" />
-                                <input id="agent-submit" class="button-primary" type="submit" value="<?php _e( 'Make Agents Featured', 'tbb_company' ); ?>" />
+                                <input id="agent-submit" class="button-primary" type="submit" value="<?php _e( 'Generate Featured Agents', 'tbb_company' ); ?>" />
                             </p>
                             </form>
                         </section>
