@@ -72,7 +72,7 @@
         <div id="footer-bottom" class="container">
 			<div class="row">
             	<div class="span12">
-                	<p><a href="#myModal" role="button" class="btn" data-toggle="modal">Launch this demo modal</a></p>
+                	<p><a href="#mortgage-calculator" role="button" class="btn" data-toggle="modal">Launch this demo modal</a></p>
                 	<p style="text-align: center;">The content relating to real estate for sale on this website is from the MSL of Central Oregon. ©MLSCO. All information provided is deemed reliable but is not guaranteed and should be independently verified. All content displayed on this website is restricted to personal, non-commercial use, and only for ascertaining information regarding real property for sale. The consumer will not copy, retransmit nor redistribute any of the content from this website. The consumer is reminded that all listing content provided by automatic transmission by MLSCO is © Multiple Listing Service of Central Oregon (MLSCO).</p>
                     <?php
                     $copyright_text = get_option('theme_copyright_text');
