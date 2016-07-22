@@ -105,7 +105,7 @@ class AgentsSettingsPage {
 	function feature_agents_from_company() {
 		$company_args = array(
 			'post_type' => 'company',
-			'posts_per_page' => '-1',
+			'posts_per_page' => -1,
 		);
 		
 		$company = new WP_Query( $company_args );
@@ -113,13 +113,13 @@ class AgentsSettingsPage {
 		if ( $company->have_posts() ) :	
 			while ( $company->have_posts() ) : $company->the_post();
 			
-				/*$company_featured = get_field( 'company_featured_company' );		
+				$company_featured = get_field( 'company_featured_company' );		
 				$agents_array = get_field( 'company_agents' );
 								
-				$agent_args = array(
+				/*$agent_args = array(
 					'post_type' => 'agent',
-					'post__in' => $agents_array,
-					'posts_per_page' => -1
+					//'post__in' => $agents_array,
+					//'posts_per_page' => -1
 				);
 				
 				$agents = new WP_Query( $agent_args );
@@ -134,6 +134,20 @@ class AgentsSettingsPage {
 				endif;
 			
 				wp_reset_query();*/
+				
+				$agents = get_posts( array(
+					'post_type' => 'agent',
+					'include'   => $agents_array,
+					'orderby'   => 'post__in',
+				) );
+				
+				if($agents) {
+					foreach( $agents as $post ) {
+						setup_postdata( $post );	
+						update_post_meta( $post->ID, 'brk_office_is_featured', $company_featured );
+					}
+					wp_reset_postdata();
+				}
 									
 			endwhile;
 		endif;
