@@ -91,7 +91,7 @@ get_header();
 									
 									$agents_test = get_field( 'company_agents' );
 									
-									print_r($agents_test);
+									print_r($agents_array);
 									
 									$agent_args = array(
 										'post_type' => 'agent',
