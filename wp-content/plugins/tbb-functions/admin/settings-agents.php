@@ -103,61 +103,6 @@ class AgentsSettingsPage {
 	<?php }
 	
 	function feature_agents_from_company() {
-		$company_args = array(
-			'post_type' => 'company',
-			'posts_per_page' => -1,
-		);
-		
-		$company = new WP_Query( $company_args );
-		
-		if ( $company->have_posts() ) :	
-			while ( $company->have_posts() ) : $company->the_post();
-			
-				$company_featured = get_field( 'company_featured_company' );		
-				$agents_array = get_field( 'company_agents' );
-								
-				/*$agent_args = array(
-					'post_type' => 'agent',
-					//'post__in' => $agents_array,
-					//'posts_per_page' => -1
-				);
-				
-				$agents = new WP_Query( $agent_args );
-				
-				if ( $agents->have_posts() ) :	
-					while ( $agents->have_posts() ) : $agents->the_post();
-					
-						$agent_id = get_the_ID();
-						update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
-					
-					endwhile;
-				endif;
-			
-				wp_reset_query();*/
-				
-				$agents = get_posts( array(
-					'post_type' => 'agent',
-					'include'   => $agents_array,
-					'orderby'   => 'post__in',
-				) );
-				
-				if($agents) {
-					foreach( $agents as $post ) {
-						setup_postdata( $post );	
-						update_post_meta( $post->ID, 'brk_office_is_featured', $company_featured );
-					}
-					wp_reset_postdata();
-				}
-									
-			endwhile;
-		endif;
-		
-		return;
-		
-		wp_reset_query();
-	}
-	
-	function feature_agents_from_company() {
 		$args = array(
 			'post_type' => 'company',
 			'posts_per_page' => '-1'
@@ -197,6 +142,26 @@ class AgentsSettingsPage {
 					 endwhile;
 				endif;
 				
+				wp_reset_query();*/
+				
+				
+				/*$agent_args = array(
+					'post_type' => 'agent',
+					//'post__in' => $agents_array,
+					//'posts_per_page' => -1
+				);
+				
+				$agents = new WP_Query( $agent_args );
+				
+				if ( $agents->have_posts() ) :	
+					while ( $agents->have_posts() ) : $agents->the_post();
+					
+						$agent_id = get_the_ID();
+						update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+					
+					endwhile;
+				endif;
+			
 				wp_reset_query();*/
 			
 			endwhile;
