@@ -31,7 +31,7 @@ class CompanySettingsPage {
 		// Do posting function here that creates/updates the companies.
 		$this->create_company_posts();
 	
-		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created="true' );
+		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created=true' );
 		//print_r($_POST);
 		exit();
 	}
