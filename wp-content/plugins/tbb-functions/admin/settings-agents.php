@@ -116,10 +116,10 @@ class AgentsSettingsPage {
 				$company_featured = get_field( 'company_featured_company' );		
 				$agents_array = get_field( 'company_agents' );
 								
-				/*$agent_args = array(
+				$agent_args = array(
 					'post_type' => 'agent',
-					//'post__in' => $agents_array,
-					//'posts_per_page' => -1
+					'post__in' => $agents_array,
+					'posts_per_page' => -1
 				);
 				
 				$agents = new WP_Query( $agent_args );
@@ -133,21 +133,7 @@ class AgentsSettingsPage {
 					endwhile;
 				endif;
 			
-				wp_reset_query();*/
-				
-				$agents = get_posts( array(
-					'post_type' => 'agent',
-					'include'   => $agents_array,
-					'orderby'   => 'post__in',
-				) );
-				
-				if($agents) {
-					foreach( $agents as $post ) {
-						setup_postdata( $post );	
-						update_post_meta( $post->ID, 'brk_office_is_featured', $company_featured );
-					}
-					wp_reset_postdata();
-				}
+				wp_reset_query();
 									
 			endwhile;
 		endif;
