@@ -1,5 +1,5 @@
 <?php
-// Settings page under Company Post Type
+// Settings page under Agent Post Type
 
 class AgentsSettingsPage {
 
