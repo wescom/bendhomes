@@ -47,7 +47,7 @@ class AgentSettingsPage {
                 </div>
             <?php } ?> 
             
-            <div class="agent-wrap">
+            <div class="company-wrap">
             
                 	<h2 class="nav-tab-wrapper" id="tbb-agent-tabs">
                     	<a class="nav-tab nav-tab-active" id="tbb-agent-tab" href="#top#agent">Featured Agents</a>
