@@ -89,6 +89,10 @@ get_header();
                                     <?php
 									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 									
+									$agents_test = get_field( 'company_agents' );
+									
+									print_r($agents_test);
+									
 									$agent_args = array(
 										'post_type' => 'agent',
 										'post__in' => $agents_array,
