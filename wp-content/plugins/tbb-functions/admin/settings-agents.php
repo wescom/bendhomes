@@ -157,6 +157,56 @@ class AgentsSettingsPage {
 		wp_reset_query();
 	}
 	
+	function feature_agents_from_company() {
+		$args = array(
+			'post_type' => 'company',
+			'posts_per_page' => '-1'
+		);
+		
+		$company = new WP_Query( $args );
+		
+		if ( $company->have_posts() ) :	
+			while ( $company->have_posts() ) : $company->the_post();
+			
+				$company_featured = get_field( 'company_featured_company' );		
+				$agents_array = array_diff( get_field( 'company_agents' ), array('') );
+							
+				$agent_args = array(
+					'post_type' => 'agent',
+					'post__in' => $agents_array,
+					'posts_per_page' => -1
+				);
+				
+				$agents = new WP_Query( $agent_args );
+				
+				$unique_agents = array();
+				
+				if( $agents->have_posts() ) :
+					 while( $agents->have_posts() ) : $agents->the_post(); 
+					 	
+						$agent_id = get_the_ID();
+						
+						if( !in_array($agent_id, $unique_agents) ) {
+												
+							array_push($unique_agents, $agent_id);
+							
+							update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+												
+						}
+						
+					 endwhile;
+				endif;
+				
+				wp_reset_query();
+			
+			endwhile;
+		endif;
+		
+		return;
+		
+		wp_reset_query();
+	}
+	
 }
 
 new AgentsSettingsPage;
