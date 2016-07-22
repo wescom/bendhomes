@@ -113,7 +113,7 @@ class AgentsSettingsPage {
 		if ( $company->have_posts() ) :	
 			while ( $company->have_posts() ) : $company->the_post();
 			
-				/*$company_featured = get_field( 'company_featured_company' );		
+				$company_featured = get_field( 'company_featured_company' );		
 				$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 							
 				$agent_args = array(
@@ -142,7 +142,7 @@ class AgentsSettingsPage {
 					 endwhile;
 				endif;
 				
-				wp_reset_query();*/
+				wp_reset_query();
 				
 				
 				/*$agent_args = array(
