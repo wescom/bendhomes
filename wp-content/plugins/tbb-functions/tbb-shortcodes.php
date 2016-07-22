@@ -134,11 +134,10 @@ function tbb_custom_posts( $defaults ) {
 		'meta_value' => '',
 		'meta_compare' => '=',
 		'classes' => '',
-		'columns' => '3',
+		'columns' => '2',
 		'order' => 'ASC',
 		'orderby' => 'name',
-		'show_search' => '',
-		'all_featured_agents' => ''
+		'show_search' => ''
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
@@ -309,37 +308,9 @@ foreach($terms as $term_key => $term_val) {
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
 					
-							
-					if( $defaults['all_featured_agents'] == 'yes' ) {
-						wp_reset_query();
-								
-						// Query the Company of this Agent and see if the company is featured
-						$company_post = new WP_Query( array(
-							'post_type' => 'company',
-							'name' => sanitize_title( $brokerage )
-						) );
-						
-						if( $company_post->have_posts() ) :
-							while( $company_post->have_posts() ) : $company_post->the_post();
-								
-								$company_is_featured = get_field( 'company_featured_company' );
-																
-							endwhile;
-						endif;
-						
-						wp_reset_query();
-					}
-					
-					// If the agent OR the agent's company is featured return Yes.
-					if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
-						$check = 'Yes';	
-					} else {
-						$check = 'No';
-					}
-					
 					$additional_meta = sprintf( '
-						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s ( %s )</div>', 
-							$brokerage, $address, $phone, $check );
+						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
+							$brokerage, $address, $phone );
 					
 					break;
 					
@@ -416,10 +387,11 @@ foreach($terms as $term_key => $term_val) {
 
 
 // Shortcode to display featured agents by featured-company and featured-agent
-add_shortcode('FEATURED_AGENTS', 'tbb_featured_agents');
-function tbb_featured_agents( $defaults ) {
+add_shortcode('BH_AGENTS', 'tbb_display_agents');
+function tbb_display_agents( $defaults ) {
 	$defaults = shortcode_atts( array(
 		'limit' => '12',
+		'offset' => '',
 		'classes' => '',
 		'columns' => '2',
 		'order' => 'ASC',
@@ -458,76 +430,39 @@ function tbb_featured_agents( $defaults ) {
 	
 	// Initialize the query array
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-	
 	$args = array(
 		'post_type' 	=> 'agent',
-		//'posts_per_page' => $defaults['limit'],
-		'posts_per_page' => -1,
-		'fields' => 'ids',
-		'paged' 	=> $paged,
-		'has_password' => false,
-		'order' => $defaults['order'],
-		'orderby' => $defaults['orderby']
-	);
-	
-	$featured_agents = new WP_Query( $args );
-	
-	$agents_array = array();
-	
-	// Start new stuff
-	if( $featured_agents->have_posts() ) :
-		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
-			$id = get_the_ID();
-			$company_name = get_field('brk_office_name');
-			wp_reset_query();
-			$company_post = new WP_Query( array(
-				'post_type' => 'company',
-				'name' => sanitize_title( $company_name )
-			) );
-			if( $company_post->have_posts() ) :
-				while( $company_post->have_posts() ) : $company_post->the_post();
-					
-					$company_is_featured = get_field( 'company_featured_company' );
-													
-				endwhile;
-			endif;
-			wp_reset_query();
-						
-			if( !in_array( $id, $agents_array ) && $company_is_featured == '1' ) $agents_array[] = $id;
-		endwhile;
-	endif;
-	//print_r($agents_array);
-	
-	$agent_args = array(
-		'post_type' => 'agent',
-		'post__in' => $agents_array,
 		'posts_per_page' => $defaults['limit'],
 		'paged' 	=> $paged,
 		'has_password' => false,
 		'order' => $defaults['order'],
-		'orderby' => $defaults['orderby']
+		'orderby' => $defaults['orderby'],
+		'filter' => ''
 	);
-	$agents = new WP_Query( $agent_args );
-	if( $agents->have_posts() ) :
-		$output = '<ul>';
-		while( $agents->have_posts() ) : $agents->the_post();
-			$agent_id = get_the_ID();
-			$phone = get_field( 'brk_office_phone' );
-			$output .= '<li><a href="'.get_permalink().'">'.get_the_title().' Tel: '.$phone.'</a></li>';
-		endwhile;
-		$output .= '</ul>';
+	
+	// Adds offset to query
+	if ( $defaults['offset'] ) {
+		$args['offset'] =  $defaults['offset'];
+	}
+	
+	switch( $defaults['filter'] ) {
+		case "standard-agent" :
+			// Display only standard agents in "agent_type"
+			break;
+		case "featured-agent" :	
+			// Display only featured agents in "agent_type"
+			break;
+		case "company" :
+			// Display only agents whose company is featured
+			break;
+		case "featured" :
+			// Display all agents whose company or agent_type is featured
+			break;
+	}
+	
+	$featured_agents = new WP_Query( $args );
 		
-		$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $agents->max_num_pages) );
-	endif;
-		
-	// End new stuff
-	
-	
-	
-	
-	
-	
-	/*if ( $featured_agents->have_posts() ) :
+	if ( $featured_agents->have_posts() ) :
 	
 	$output = '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 	
@@ -546,7 +481,7 @@ function tbb_featured_agents( $defaults ) {
 		}
 	
 		$count = 1;
-		// Loop through returned posts
+		// Loop through returned agents
 		// Setup the inner HTML for each elements
 		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
 		
@@ -566,52 +501,28 @@ function tbb_featured_agents( $defaults ) {
 			if( $image_parts['filename'] == 'default' ) $image = '';
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
-			wp_reset_query();				
-			// Query the Company of this Agent and see if the company is featured
-			$company_post = new WP_Query( array(
-				'post_type' => 'company',
-				'name' => sanitize_title( $brokerage )
-			) );
-			if( $company_post->have_posts() ) :
-				while( $company_post->have_posts() ) : $company_post->the_post();
-					
-					$company_is_featured = get_field( 'company_featured_company' );
-													
-				endwhile;
-			endif;
-			wp_reset_query();
 			
-			if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
+			// Begin item output
+			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
+							$count, $cols, $classes, $has_image_class, $category_classes );
+			
+				if( !empty( $image ) ) {
+					$output .= sprintf( '<figure class="custom-post-image image-agent-image %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
+									$count, $permalink, $image[0], $image[1], $image[2] );
+				}
+								
+				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
+								$permalink, $title );
 				
-			}
-			
-			// If the company OR the agent is featured then display them
-			//if( $category_classes == 'featured-agent' || $company_is_featured == 1 ) {
-			
-			
-				// Begin item output
-				$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
-								$count, $cols, $classes, $has_image_class, $category_classes );
+				$output .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
+									$brokerage, $address, $phone, $company_is_featured );
 				
-					if( !empty( $image ) ) {
-						$output .= sprintf( '<figure class="custom-post-image image-agent-image %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
-										$count, $permalink, $image[0], $image[1], $image[2] );
-					}
-									
-					$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
-									$permalink, $title );
-					
-					$output .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
-										$brokerage, $address, $phone, $company_is_featured );
-					
-					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
-									$permalink );
-				
-				$output .= '</div></div>';
-				// End item ouput
+				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
+								$permalink );
 			
+			$output .= '</div></div>';
+			// End item ouput
 			
-			//}
 			
 			$clearfix_test = $count / $cols_per_row;
 			if( is_int( $clearfix_test ) ) {
@@ -624,7 +535,7 @@ function tbb_featured_agents( $defaults ) {
 	
 	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $featured_agents->max_num_pages) );
 	
-	endif;*/
+	endif;
 			
 	return $output;
 	

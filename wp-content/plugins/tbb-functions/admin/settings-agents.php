@@ -138,26 +138,6 @@ class AgentSettingsPage {
 				endif;
 				
 				wp_reset_query();
-				
-				
-				/*$agent_args = array(
-					'post_type' => 'agent',
-					//'post__in' => $agents_array,
-					//'posts_per_page' => -1
-				);
-				
-				$agents = new WP_Query( $agent_args );
-				
-				if ( $agents->have_posts() ) :	
-					while ( $agents->have_posts() ) : $agents->the_post();
-					
-						$agent_id = get_the_ID();
-						update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
-					
-					endwhile;
-				endif;
-			
-				wp_reset_query();*/
 			
 			endwhile;
 		endif;
