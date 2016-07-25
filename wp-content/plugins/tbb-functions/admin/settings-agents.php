@@ -131,8 +131,19 @@ class AgentSettingsPage {
 					 while( $agents->have_posts() ) : $agents->the_post(); 
 					 	
 						$agent_id = get_the_ID();
+						$agent_types = wp_get_post_terms( $agent_id, 'agent_types', array("fields" => "all"));
+						$agent_type = $agent_types[0]->slug;
+						
+						if( $company_featured == '1' && $agent_type != 'featured-agent' && $agent_type != 'unpublished-agent' ) {
 							
-						update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+							//update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+							update_post_meta( $agent_id, 'agent_type', 'company-featured-agent' );
+						
+						} else {
+							
+							update_post_meta( $agent_id, 'agent_type', 'standard-agent' );
+								
+						}
 						
 					 endwhile;
 				endif;
