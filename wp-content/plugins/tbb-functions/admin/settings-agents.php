@@ -147,6 +147,7 @@ class AgentSettingsPage {
 							
 							//update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
 							wp_set_object_terms( 254, $agent_categories, 'agent_types', true );
+							wp_update_post( array('post_category' => array() ) );
 						
 						} else {
 							

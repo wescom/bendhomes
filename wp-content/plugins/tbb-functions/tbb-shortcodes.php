@@ -396,7 +396,8 @@ function tbb_display_agents( $defaults ) {
 		'columns' => '2',
 		'order' => 'ASC',
 		'orderby' => 'name',
-		'show_search' => ''
+		'show_search' => '',
+		'filter' => ''
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
@@ -436,8 +437,7 @@ function tbb_display_agents( $defaults ) {
 		'paged' 	=> $paged,
 		'has_password' => false,
 		'order' => $defaults['order'],
-		'orderby' => $defaults['orderby'],
-		'filter' => ''
+		'orderby' => $defaults['orderby']
 	);
 	
 	// Adds offset to query
@@ -446,21 +446,72 @@ function tbb_display_agents( $defaults ) {
 	}
 	
 	switch( $defaults['filter'] ) {
+		
 		case "standard-agent" :
+		
 			// Display only standard agents in "agent_type"
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' 	=> 'agent_type',
+					'field' 	=> 'slug',
+					'terms' 	=> 'standard-agent'
+				)
+			);
+			
 			break;
 		case "featured-agent" :	
+		
 			// Display only featured agents in "agent_type"
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'agent_type',
+					'field' 	=> 'slug',
+					'terms' 	=> 'featured-agent'
+				)
+			);
+			
 			break;
 		case "company" :
+		
 			// Display only agents whose company is featured
+			$args['meta_query'] = array(
+				array(
+					'key' => 'brk_office_is_featured',
+					'value' => '1',
+					'compare' => '=',
+				)
+			);
+			
 			break;
-		case "featured" :
+		case "any-featured" :
+		
 			// Display all agents whose company or agent_type is featured
+			/*$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'agent_tsype',
+					'field' => 'slug',
+					'terms' => 'featured-agent',
+					'operator' => 'IN'
+				),
+			);
+			$args['relation'] = 'OR';
+			$args['meta_query'] = array(
+				array(
+					'key' => 'brk_office_is_featured',
+					'value' => '1',
+					'compare' => '=',
+				)
+			);*/
+			
 			break;
-	}
+			
+	} // end switch
 	
 	$featured_agents = new WP_Query( $args );
+	
+	if( $defaults['filter'] == 'any-featured' ) {
+			
+	}
 		
 	if ( $featured_agents->have_posts() ) :
 	
