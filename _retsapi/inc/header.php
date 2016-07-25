@@ -35,6 +35,8 @@ $connect = $rets->Login();
 function universalqueries($pulltime) {
   // used for initial pull, nuclear option to get all data
   // $pulltime = '1970-01-01T08:50Z';
+  
+  $manual_mls = $_GET['mls'];
 
   $universalqueries = array(
     'Property' => array(
@@ -44,6 +46,7 @@ function universalqueries($pulltime) {
       'LAND' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'MULT' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'RESI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)'
+       //'RESI' => '(MLNumber=201606691)'
     ),
     'ActiveAgent' => array(
       'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
@@ -66,6 +69,12 @@ function universalqueries($pulltime) {
       'OPEN' => '(OpenHouseRid=0+)',
     ),
   );
+  /*$manual_mls = $_GET['mls'];
+  if(!empty($manual_mls)) {
+	$universalqueries['Property']['RESI'] = '(MLNumber='. $manual_mls .')';
+  } else {
+	$universalqueries['Property']['RESI'] = '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)';
+  }*/
   return $universalqueries;
 }
 
