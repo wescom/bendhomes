@@ -101,6 +101,7 @@ if ( ! is_user_logged_in() ) {
 
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
 
+<?php /*
 <!-- Modal -->
 <div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
     <div class="modal-header">
@@ -118,6 +119,7 @@ if ( ! is_user_logged_in() ) {
         
     </div>
 </div>
+*/ ?>
 
 <?php wp_footer(); ?>
 </body>
