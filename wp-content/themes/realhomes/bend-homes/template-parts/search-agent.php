@@ -27,12 +27,12 @@ $has_image_class = !empty( $image ) ? 'with-image' : '';
 
 	<?php
 	// Begin item output
-	$output = sprintf( '<article class="custom-post %s"><div class="custom-post-item clearfix">', 
-					get_post_class(array($cols, $classes, $has_image_class, $category_classes)) );
+	$output = sprintf( '<article class="custom-post one %s %s %s"><div class="custom-post-item clearfix">', 
+					$classes, $has_image_class, $category_classes );
 	
 		if( !empty( $image ) ) {
-			$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
-							$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
+			$output .= sprintf( '<figure class="custom-post-image %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
+							$image_size, $permalink, $image[0], $image[1], $image[2] );
 		}
 				
 		$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
