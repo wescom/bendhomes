@@ -175,7 +175,7 @@ function populate_agent_admin_column($column_name, $term_id) {
 function __search_by_title_only( $search, &$wp_query )
 {
      /*my solution */
-     if($_GET['post_type'] != 'attorney' )
+     if($_GET['post_type'] != 'agent' )
         return $search;
      /*my solution*/
 
