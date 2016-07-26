@@ -176,8 +176,8 @@ function tbb_company_save_post( $post_id ) {
 			return;
 	}
 	
-	$company_featured = get_field( 'company_featured_company' );
-	$agents_array = array_diff( get_field( 'company_agents' ), array('') );
+	$company_featured = isset( $_REQUEST['company_featured_company'] ) ? '1' : '';
+	$agents_array = array_diff( $_REQUEST['company_agents'], array('') );
 	
 	$agent_args = array(
 		'post_type' => 'agent',
@@ -194,6 +194,15 @@ function tbb_company_save_post( $post_id ) {
 		 	$agent_id = get_the_ID();
 
 			update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+			
+			$agent_types = wp_get_post_terms( $agent_id, 'agent_types', array("fields" => "all"));
+			$agent_type = $agent_types[0]->slug;
+			
+			if( $agent_type == 'featured-agent' || $company_featured == '1' ) {
+				update_post_meta( $agent_id, 'agent_is_featured', '1' );
+			} else {
+				update_post_meta( $agent_id, 'agent_is_featured', '' );
+			}
 		 
 		 endwhile;
 	endif;
