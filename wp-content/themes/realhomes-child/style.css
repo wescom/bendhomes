@@ -130,13 +130,14 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.four { width: 25%; }
 .custom-post.five { width: 20%; }
 .custom-post.six { width: 16.66667%; }
-.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 50px; border: 1px solid #dedede; background: #fff; position: relative; }
+.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 20px; border: 1px solid #dedede; background: #fff; position: relative; }
+.custom-post.one .custom-post-item, .custom-post.two .custom-post-item { min-height: 210px; }
 .custom-post.four .custom-post-item { padding-bottom: 30px; }
 .custom-post h4 { font-weight: 400; text-transform: capitalize; margin: 0 0 10px; font-size: 18px; }
 .inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; }
 .custom-post a { color: #394041; }
 .custom-post a:hover { color: #02888f; }
-.custom-post a.more-details { display: inline-block; margin: 0 0 -1px 0; padding: 8px 15px; background: #02888f; color: #fff; position: absolute; right: 0; bottom: 0; }
+.custom-post a.more-details { display: inline-block; font-size: 14px; margin: 0 0 -1px 0; padding: 0 10px; background: #02888f; color: #fff; position: absolute; right: 0; bottom: 0; }
 .custom-post.one a.more-details { position: absolute; right: -1px; bottom: 0; margin-right: 0; }
 .custom-post.four a.more-details { font-size: 14px; padding: 1px 10px; }
 .custom-post a.more-details:hover { background: #006267; }
@@ -206,6 +207,7 @@ h3.search-results-header { float: left; margin: 0; }
 	.large .selectwrap input, .small .selectwrap input, .large input[type=text], .small input[type=text] { width: auto; padding-right: 0; }
 	.advance-search .real-btn { margin-top: 10px; }
 	.company-agent { width: 25%; }
+	.custom-post.one .custom-post-item, .custom-post.two .custom-post-item { min-height: 0; }
 }
 
 @media(max-width:480px) {
