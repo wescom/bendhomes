@@ -170,28 +170,29 @@ function populate_agent_admin_column($column_name, $term_id) {
 
 
 // Filter to only search Agents by name, ie post_title.
-//add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
+add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
 function tbb_search_by_title_only( $search, &$wp_query ) {
 
-     if($_GET['post_type'] == 'agent' )
-        return $search;
+    if($_GET['post_type'] == 'agent' ) {
 
-	if ( ! empty( $search ) && ! empty( $wp_query->query_vars['search_terms'] ) ) {
-        global $wpdb;
-
-        $q = $wp_query->query_vars;
-        $n = ! empty( $q['exact'] ) ? '' : '%';
-
-        $search = array();
-
-        foreach ( ( array ) $q['search_terms'] as $term )
-            $search[] = $wpdb->prepare( "$wpdb->posts.post_title LIKE %s", $n . $wpdb->esc_like( $term ) . $n );
-
-        if ( !is_user_logged_in() )
-            $search[] = "$wpdb->posts.post_password = ''";
-
-        $search = ' AND ' . implode( ' AND ', $search );
-    }
-
-    return $search;
+		if ( ! empty( $search ) && ! empty( $wp_query->query_vars['search_terms'] ) ) {
+			global $wpdb;
+	
+			$q = $wp_query->query_vars;
+			$n = ! empty( $q['exact'] ) ? '' : '%';
+	
+			$search = array();
+	
+			foreach ( ( array ) $q['search_terms'] as $term )
+				$search[] = $wpdb->prepare( "$wpdb->posts.post_title LIKE %s", $n . $wpdb->esc_like( $term ) . $n );
+	
+			if ( !is_user_logged_in() )
+				$search[] = "$wpdb->posts.post_password = ''";
+	
+			$search = ' AND ' . implode( ' AND ', $search );
+		}
+	
+		return $search;
+		
+	}
 }
