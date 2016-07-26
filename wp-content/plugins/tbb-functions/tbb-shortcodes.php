@@ -220,38 +220,6 @@ function tbb_custom_posts( $defaults ) {
 			)
 		);
 	}
-	
-	// Create merged array to display Featured Agents then Standard Agents all inside 1 loop with pagination
-	// http://wordpress.stackexchange.com/questions/39483/broken-pagination
-	/*if( !empty( $defaults['featured_agents'] ) ) {
-		$terms = array(
-          'featured-agent' => array(
-            'class' => 'featured-agent-type',
-            'title' => 'Featured Agents',
-            'title_label' => 'Featured Agent'
-          ),
-          'standard-agent' => array(
-            'class' => 'standard-agent-type',
-            'title' => 'Standard Agents',
-            'title_label' => 'Standard Agent'
-          )
-        );
-	}
-	
-foreach($terms as $term_key => $term_val) {
-		
-	if( !empty( $defaults['featured_agents'] ) ) {
-		$args['tax_query'] = array(
-			array(
-				'taxonomy' => 'agent_types',
-				'terms' => $term_key,
-				'field' => 'slug',
-				'include_children' => false,
-				'operator' => 'IN'
-			)
-		);	
-	}*/
-	
 
 	$custom_posts = new WP_Query( $args );
 	

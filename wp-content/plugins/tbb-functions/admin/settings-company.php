@@ -162,7 +162,7 @@ new CompanySettingsPage;
 
 
 // Custom Save Post function that runs every time a Company post is saved/updated
-add_action( 'save_post_company', 'tbb_company_save_post' );
+/*add_action( 'save_post_company', 'tbb_company_save_post' );
 function tbb_company_save_post( $post_id ) {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 		return;
@@ -212,4 +212,4 @@ function tbb_company_save_post( $post_id ) {
 	endif;
 	
 	wp_reset_query();
-}
+}*/
