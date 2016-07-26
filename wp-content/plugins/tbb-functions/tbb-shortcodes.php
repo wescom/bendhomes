@@ -452,7 +452,7 @@ function tbb_display_agents( $defaults ) {
 			// Display only standard agents in "agent_type"
 			$args['tax_query'] = array(
 				array(
-					'taxonomy' 	=> 'agent_type',
+					'taxonomy' 	=> 'agent_types',
 					'field' 	=> 'slug',
 					'terms' 	=> 'standard-agent'
 				)
@@ -464,7 +464,7 @@ function tbb_display_agents( $defaults ) {
 			// Display only featured agents in "agent_type"
 			$args['tax_query'] = array(
 				array(
-					'taxonomy' => 'agent_type',
+					'taxonomy' => 'agent_types',
 					'field' 	=> 'slug',
 					'terms' 	=> 'featured-agent'
 				)
@@ -483,45 +483,23 @@ function tbb_display_agents( $defaults ) {
 			);
 			
 			break;
-		case "any-featured" :
+		case "all-featured" :
 		
 			// Display all agents whose company or agent_type is featured
-			$args['tax_query'] = array(
+			$args['meta_query'] = array(
 				array(
-					'taxonomy' => 'agent_types',
-					'field' => 'slug',
-					'terms' => 'featured-agent',
-					'operator' => 'IN'
-				),
+					'key' => 'agent_is_featured',
+					'value' => '1',
+					'compare' => '=',
+				)
 			);
-			//$args['relation'] = 'OR';
-			$args2 = array(
-				'post_type' 	=> 'agent',
-				'posts_per_page' => -1,
-				'meta_query' => array(
-					array(
-					   'key' => 'brk_office_is_featured',
-					   'value' => '1'
-					)
-				),
-			);
-			
-			$agents1 = new WP_Query( $args );
-			
-			$agents2 = new WP_Query( $args2 );
 			
 			break;
 			
 	} // end switch
 	
-	if( $defaults['filter'] == 'any-featured' ) {
-		$featured_agents->posts = array_merge( $agents1->posts, $agents2->posts );
-		$featured_agents->posts = array_unique( $featured_agents->posts );
-		$featured_agents->post_count = count( $featured_agents->posts );
-	} else {
-		$featured_agents = new WP_Query( $args );
-	}
-		
+	$featured_agents = new WP_Query( $args );
+				
 	if ( $featured_agents->have_posts() ) :
 	
 	$output = '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';

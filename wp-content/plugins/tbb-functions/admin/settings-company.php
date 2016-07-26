@@ -159,3 +159,44 @@ class CompanySettingsPage {
 }
 
 new CompanySettingsPage;
+
+
+// Custom Save Post function that runs every time a Company post is saved/updated
+add_action( 'save_post_company', 'tbb_company_save_post' );
+function tbb_company_save_post( $post_id ) {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+		return;
+		
+	// Check permissions
+	if ( $post->post_type == 'company' ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+			return;
+		} else {
+		if ( !current_user_can( 'edit_post', $post_id ) )
+			return;
+	}
+	
+	$company_featured = get_field( 'company_featured_company' );
+	$agents_array = array_diff( get_field( 'company_agents' ), array('') );
+	
+	$agent_args = array(
+		'post_type' => 'agent',
+		'post__in' => $agents_array,
+		'posts_per_page' => -1,
+		'ignore_sticky_posts' => true
+	);
+	
+	$agents = new WP_Query( $agent_args );
+					
+	if( $agents->have_posts() ) :
+		 while( $agents->have_posts() ) : $agents->the_post();
+		 
+		 	$agent_id = get_the_ID();
+
+			update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+		 
+		 endwhile;
+	endif;
+	
+	wp_reset_query();
+}
