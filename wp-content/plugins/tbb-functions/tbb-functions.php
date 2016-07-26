@@ -191,8 +191,7 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 	
 			$search = ' AND ' . implode( ' AND ', $search );
 		}
-	
-		return $search;
-		
 	}
+	
+	return $search;
 }
