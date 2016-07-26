@@ -167,3 +167,35 @@ function populate_agent_admin_column($column_name, $term_id) {
 		echo $brokerage;
 	}
 }
+
+
+/**
+ * Search SQL filter for matching against post title only.
+ */
+function __search_by_title_only( $search, &$wp_query )
+{
+     /*my solution */
+     if($_GET['post_type'] != 'attorney' )
+        return $search;
+     /*my solution*/
+
+	if ( ! empty( $search ) && ! empty( $wp_query->query_vars['search_terms'] ) ) {
+        global $wpdb;
+
+        $q = $wp_query->query_vars;
+        $n = ! empty( $q['exact'] ) ? '' : '%';
+
+        $search = array();
+
+        foreach ( ( array ) $q['search_terms'] as $term )
+            $search[] = $wpdb->prepare( "$wpdb->posts.post_title LIKE %s", $n . $wpdb->esc_like( $term ) . $n );
+
+        if ( ! is_user_logged_in() )
+            $search[] = "$wpdb->posts.post_password = ''";
+
+        $search = ' AND ' . implode( ' AND ', $search );
+    }
+
+    return $search;
+}
+add_filter( 'posts_search', '__search_by_title_only', 500, 2 );
