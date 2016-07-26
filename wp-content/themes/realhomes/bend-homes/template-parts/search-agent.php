@@ -28,7 +28,7 @@ $has_image_class = !empty( $image ) ? 'with-image' : '';
 	<?php
 	// Begin item output
 	$output = sprintf( '<article class="custom-post %s"><div class="custom-post-item clearfix">', 
-					post_class(array($cols, $classes, $has_image_class, $category_classes)) );
+					get_post_class(array($cols, $classes, $has_image_class, $category_classes)) );
 	
 		if( !empty( $image ) ) {
 			$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
