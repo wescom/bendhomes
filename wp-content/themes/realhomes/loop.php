@@ -1,6 +1,3 @@
-
-<div class="custom-posts-wrapper post-agent">
-<div class="custom-posts-container clearfix">
 <?php
 if ( have_posts() ) :
     while ( have_posts() ) :
@@ -26,6 +23,3 @@ if ( have_posts() ) :
 else :
     ?><p class="nothing-found"><?php _e('No Posts Found!', 'framework'); ?></p><?php
 endif;
-?>
-</div>
-</div>
