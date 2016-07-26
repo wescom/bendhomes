@@ -28,7 +28,7 @@
                 <!-- Main Content -->
                 <div class="main">
 
-                    <div class="inner-wrapper">
+                    <div class="inner-wrapper clearfix" style="margin-bottom: 0;">
                         <?php  get_template_part("loop");  ?>
                     </div>
 
