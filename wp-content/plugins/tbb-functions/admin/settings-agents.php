@@ -131,8 +131,19 @@ class AgentSettingsPage {
 					 while( $agents->have_posts() ) : $agents->the_post(); 
 					 	
 						$agent_id = get_the_ID();
+
+						update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
 						
-						$agent_categories = array();
+						$agent_types = wp_get_post_terms( $agent_id, 'agent_types', array("fields" => "all"));
+						$agent_type = $agent_types[0]->slug;
+						
+						if( $agent_type == 'featured-agent' || $company_featured == '1' ) {
+							update_post_meta( $agent_id, 'agent_is_featured', '1' );
+						} else {
+							update_post_meta( $agent_id, 'agent_is_featured', '' );
+						}
+						
+						/*$agent_categories = array();
 						$categories = get_categories();
 						foreach( $categories as $category ) {
 							$agent_categories[] = $category->cat_ID;
@@ -145,7 +156,6 @@ class AgentSettingsPage {
 						
 						if( $company_featured == '1' && $agent_type != 'featured-agent' && $agent_type != 'unpublished-agent' ) {
 							
-							//update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
 							wp_set_object_terms( 254, $agent_categories, 'agent_types', true );
 							wp_update_post( array('post_category' => array() ) );
 						
@@ -153,7 +163,9 @@ class AgentSettingsPage {
 							
 							wp_set_object_terms( 241, $agent_categories, 'agent_types', true );
 							
-						}
+						}*/
+						
+						
 						
 					 endwhile;
 				endif;
@@ -167,6 +179,30 @@ class AgentSettingsPage {
 		
 		wp_reset_query();
 	}
+	
+	/*function set_agent_featured_checkbox() {
+		$agent_args = array(
+			'post_type' => 'agent',
+			'posts_per_page' => -1,
+			'ignore_sticky_posts' => true
+		);
+		
+		$agents = new WP_Query( $agent_args );
+		
+		if( $agents->have_posts() ) :
+			 while( $agents->have_posts() ) : $agents->the_post();
+			 	$agent_id = get_the_ID();
+				$agent_types = wp_get_post_terms( $agent_id, 'agent_types', array("fields" => "all"));
+				$agent_type = $agent_types[0]->slug;
+				
+				if( $agent_type == 'featured-agent' ) {
+					update_post_meta( $agent_id, 'agent_is_featured', '1' );
+				} else {
+					update_post_meta( $agent_id, 'agent_is_featured', '' );		
+				}
+			 endwhile;
+		endif;
+	}*/
 	
 }
 
