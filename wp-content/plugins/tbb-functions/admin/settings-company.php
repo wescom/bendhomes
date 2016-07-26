@@ -176,12 +176,12 @@ function tbb_company_save_post( $post_id ) {
 			return;
 	}
 	
-	if( isset( $_REQUEST['company_featured_company'] ) ) {
+	if( isset( $_POST['company_featured_company'] ) ) {
 		$company_featured = '1';
 	} else {
 		$company_featured = '';	
 	}
-	$agents_array = array_diff( $_REQUEST['company_agents'], array('') );
+	$agents_array = array_diff( $_POST['company_agents'], array('') );
 	
 	$agent_args = array(
 		'post_type' => 'agent',
