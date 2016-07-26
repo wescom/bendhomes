@@ -23,13 +23,12 @@ if( $image_parts['filename'] == 'default' ) $image = '';
 $has_image_class = !empty( $image ) ? 'with-image' : '';
 ?>
 
-<article <?php post_class( array('custom-post', 'one') ); ?>>
 
 
 	<?php
 	// Begin item output
-	$output = sprintf( '<div class="custom-post %s %s %s %s"><div class="custom-post-item clearfix">', 
-					$cols, $classes, $has_image_class, $category_classes );
+	$output = sprintf( '<article class="custom-post %s"><div class="custom-post-item clearfix">', 
+					post_class(array($cols, $classes, $has_image_class, $category_classes)) );
 	
 		if( !empty( $image ) ) {
 			$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
@@ -44,10 +43,9 @@ $has_image_class = !empty( $image ) ? 'with-image' : '';
 		$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
 						$permalink );
 	
-	$output .= '</div></div>';
+	$output .= '</div></article>';
 	// End item ouput
 	
 	echo $output;
 	?>
 
-</article>
