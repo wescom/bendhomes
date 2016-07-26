@@ -8,9 +8,15 @@
     <div class="page-head">
         <div class="container">
             <div class="wrap clearfix">
-                <h1 class="pagetitle">Search Result for <?php /* Search Count */ $allsearch = &new WP_Query("s=$s&showposts=-1"); $key = wp_specialchars($s, 1); $count = $allsearch->post_count; _e(''); _e('<span class="search-terms">'); echo $key; _e('</span>'); _e(' &mdash; '); echo $count . ' '; _e('articles'); wp_reset_query(); ?></h1>
-                
-                <p><?php the_search_query(); ?></p>
+                <h1 class="pagetitle">Search Result for 
+				<?php /* Search Count */
+				$post_type = $_GET['post_type'];
+				$allsearch = &new WP_Query("s=$s&post_type=$post_type&showposts=-1"); 
+				$key = wp_specialchars($s, 1); 
+				$count = $allsearch->post_count; _e(''); _e('<span class="search-terms">'); echo $key; _e('</span>'); _e(' &mdash; '); echo $count . ' '; _e('articles'); 
+				wp_reset_query(); 
+				?>
+                </h1>
             </div>
         </div>
     </div><!-- End Page Head -->
