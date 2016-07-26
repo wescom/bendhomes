@@ -261,10 +261,12 @@ foreach($terms as $term_key => $term_val) {
 	
 		if( !empty( $defaults['show_search'] ) ) {
 			
+			$find_text = $defaults['type'] == 'agent' ? 'Find an '. $defaults['type'] : 'Find a '. $defaults['type'];
+			
 			$output .= '<div class="custom-search-wrap">';
 				$output .= '
 					<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
-						<input type="text" class="search-field" name="s" placeholder="Find a '. $defaults['type'] .'"/>
+						<input type="text" class="search-field" name="s" placeholder="'. $find_text .'"/>
 						<input type="hidden" name="post_type" value="'. $defaults['type'] .'" />
 						<input type="submit" class="btn real-btn" alt="Search" value="Search" />
 					</form>
