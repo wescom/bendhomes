@@ -31,7 +31,7 @@ class CompanySettingsPage {
 		// Do posting function here that creates/updates the companies.
 		$this->create_company_posts();
 	
-		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created="true' );
+		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created=true' );
 		//print_r($_POST);
 		exit();
 	}
@@ -49,7 +49,6 @@ class CompanySettingsPage {
             
             <div class="company-wrap">
             
-                <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                 	<h2 class="nav-tab-wrapper" id="tbb-company-tabs">
                     	<a class="nav-tab nav-tab-active" id="tbb-company-tab" href="#top#company">Companies</a>
                         <a class="nav-tab" id="tbb-shortcodes-tab" href="#top#shortcodes">Shortcodes</a>
@@ -57,12 +56,14 @@ class CompanySettingsPage {
                     
                     <div id="sections">
                         <section id="company" class="tbb-tab active">
-                            <h3>Companies Settings</h3>
+                            <h3>Create/Update Companies</h3>
                             <p>Create companies imported from Agents meta fields. To create company posts click the button below.</p>
+                            <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
                                 <input id="company-submit" class="button-primary" type="submit" value="<?php _e( 'Create/Update Companies', 'tbb_company' ); ?>" />
                             </p>
+                            </form>
                         </section>
                         
                         <section id="shortcodes" class="tbb-tab">
@@ -71,7 +72,6 @@ class CompanySettingsPage {
                             <p><strong>Shortcode: [BH_CUSTOM_POSTS]</strong></p>
                         </section>
                     </div>
-                </form>
             
             </div>
         </div>
@@ -112,11 +112,13 @@ class CompanySettingsPage {
 		
 		if ( $agents->have_posts() ) :	
 			while ( $agents->have_posts() ) : $agents->the_post();
+			
+				$agent_id = get_the_ID();
 							
 				$company_name = get_field( 'brk_office_name' );
 				$company_phone = get_field( 'brk_office_phone' );
 				$company_address = str_replace( '<br />', '', get_field( 'brk_office_address' ) );
-				
+								
 				if ( !get_page_by_title($company_name, 'OBJECT', 'company')) {
 				
 					$new_office = array(
@@ -127,17 +129,23 @@ class CompanySettingsPage {
 					);
 				
 					$new_office_id = wp_insert_post($new_office);
+					$agent_array = array( $agent_id );
 					
-					update_post_meta($new_office_id, 'company_office_phone', $company_phone );
-					update_post_meta($new_office_id, 'company_office_address', $company_address );
+					update_post_meta( $new_office_id, 'company_office_phone', $company_phone );
+					update_post_meta( $new_office_id, 'company_office_address', $company_address );
+					update_post_meta( $new_office_id, 'company_agents', $agent_array );
 				
 				} else {
 				
 					$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
+					$agents_list = get_post_meta( $company_check->ID, 'company_agents', true );
+					if( !array( $agents_list ) ) $agents_list = array();
+					if( !in_array( $agent_id, $agents_list ) ) $agents_list[] = $agent_id;
 					
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
-					
+					update_post_meta( $company_check->ID, 'company_agents', $agents_list );
+											
 				}
 			
 			endwhile;
@@ -151,3 +159,57 @@ class CompanySettingsPage {
 }
 
 new CompanySettingsPage;
+
+
+// Custom Save Post function that runs every time a Company post is saved/updated
+/*add_action( 'save_post_company', 'tbb_company_save_post' );
+function tbb_company_save_post( $post_id ) {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+		return;
+		
+	// Check permissions
+	if ( $post->post_type == 'company' ) {
+		if ( !current_user_can( 'edit_page', $post_id ) )
+			return;
+		} else {
+		if ( !current_user_can( 'edit_post', $post_id ) )
+			return;
+	}
+	
+	if( isset( $_POST['company_featured_company'] ) ) {
+		$company_featured = '1';
+	} else {
+		$company_featured = '';	
+	}
+	$agents_array = array_diff( $_POST['company_agents'], array('') );
+	
+	$agent_args = array(
+		'post_type' => 'agent',
+		'post__in' => $agents_array,
+		'posts_per_page' => -1,
+		'ignore_sticky_posts' => true
+	);
+	
+	$agents = new WP_Query( $agent_args );
+					
+	if( $agents->have_posts() ) :
+		 while( $agents->have_posts() ) : $agents->the_post();
+		 
+		 	$agent_id = get_the_ID();
+
+			update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+			
+			$agent_types = wp_get_post_terms( $agent_id, 'agent_types', array("fields" => "all"));
+			$agent_type = $agent_types[0]->slug;
+			
+			if( $agent_type == 'featured-agent' || $company_featured == '1' ) {
+				update_post_meta( $agent_id, 'agent_is_featured', '1' );
+			} else {
+				update_post_meta( $agent_id, 'agent_is_featured', '' );
+			}
+		 
+		 endwhile;
+	endif;
+	
+	wp_reset_query();
+}*/

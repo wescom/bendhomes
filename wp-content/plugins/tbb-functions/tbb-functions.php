@@ -31,6 +31,7 @@ require_once('admin/dashboard_widget.php');
 require_once('admin/pages-metabox.php');
 require_once('post-types/post-type-company.php');
 require_once('admin/settings-company.php');
+require_once('admin/settings-agents.php');
 require_once('tbb-shortcodes.php');
 
 
@@ -80,9 +81,9 @@ function tbb_remove_admin_menus() {
 		remove_submenu_page( 'themes.php', 'customize.php' );
 		remove_submenu_page( 'themes.php', 'multiple_sidebars' );
 	}
-	remove_submenu_page( 'themes.php', 'customize.php?return=%2Fwp-admin%2F' );
-	remove_submenu_page( 'themes.php', 'customize.php?return=%2Fwp-admin%2Findex.php' );
-	remove_submenu_page( 'themes.php', 'customize.php' );
+	//remove_submenu_page( 'themes.php', 'customize.php?return=%2Fwp-admin%2F' );
+	//remove_submenu_page( 'themes.php', 'customize.php?return=%2Fwp-admin%2Findex.php' );
+	//remove_submenu_page( 'themes.php', 'customize.php' );
 }
 
 
@@ -165,4 +166,32 @@ function populate_agent_admin_column($column_name, $term_id) {
 		$brokerage = get_post_meta($term_id, 'brk_office_name', true);
 		echo $brokerage;
 	}
+}
+
+
+// Filter to only search Agents by name, ie post_title.
+add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
+function tbb_search_by_title_only( $search, &$wp_query ) {
+
+    if($_GET['post_type'] == 'agent' ) {
+
+		if ( ! empty( $search ) && ! empty( $wp_query->query_vars['search_terms'] ) ) {
+			global $wpdb;
+	
+			$q = $wp_query->query_vars;
+			$n = ! empty( $q['exact'] ) ? '' : '%';
+	
+			$search = array();
+	
+			foreach ( ( array ) $q['search_terms'] as $term )
+				$search[] = $wpdb->prepare( "$wpdb->posts.post_title LIKE %s", $n . $wpdb->esc_like( $term ) . $n );
+	
+			if ( !is_user_logged_in() )
+				$search[] = "$wpdb->posts.post_password = ''";
+	
+			$search = ' AND ' . implode( ' AND ', $search );
+		}
+	}
+	
+	return $search;
 }

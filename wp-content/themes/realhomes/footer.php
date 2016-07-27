@@ -101,6 +101,26 @@ if ( ! is_user_logged_in() ) {
 
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
 
+<?php /*
+<!-- Modal -->
+<div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
+    <div class="modal-header">
+    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    	<h3 id="mortgageCalculator">Mortgage Calculator</h3>
+    </div>
+    <div class="modal-body">
+    
+    	<div style="width:100%;overflow:hidden;padding: 15px 0 20px;" id="horizontalWidget">
+            <div style="width:352px;margin:0 auto;border-radius: 5px; solid;webkit-border-radius: 5px;padding: 0 1px;background-color:#f4f4f4; border: 1px solid #e8e8e8;">
+            	<iframe scrolling="no" src="http://www.zillow.com/mortgage/SmallMortgageLoanCalculatorWidget.htm?widgetOrientationType=horizontalWidget" width="352px" frameborder="0" style="float:left;" title="Mortgage Calculator" height="235px"></iframe>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+*/ ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>
