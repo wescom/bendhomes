@@ -36,6 +36,8 @@ function universalqueries($pulltime) {
   // used for initial pull, nuclear option to get all data
   // $pulltime = '1970-01-01T08:50Z';
 
+  $manual_mls = $_GET['mls'];
+
   $universalqueries = array(
     'Property' => array(
       'BUSI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
@@ -66,6 +68,7 @@ function universalqueries($pulltime) {
       'OPEN' => '(OpenHouseRid=0+)',
     ),
   );
+
   return $universalqueries;
 }
 
@@ -99,7 +102,5 @@ $universalkeys = array(
     'OPEN' => 'OpenHouseRid'
   ),
 );
-
-
 
 ?>

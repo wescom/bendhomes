@@ -22,7 +22,7 @@ echo '<h1 style="color: brown;">start time: '.date(DATE_RSS).'</h1>';
 
 /* $dupimgquery = "SELECT ID,post_title,post_name FROM $wpdb->posts wp LEFT JOIN $wpdb->postmeta pm ON wp.ID <> pm.meta_value WHERE pm.meta_key = 'REAL_HOMES_property_images' AND wp.post_type = 'attachment' AND wp.post_title LIKE 'property%-%-%-%' LIMIT 10"; */
 
-$dupimgquery = "SELECT DISTINCT(ID) FROM $wpdb->posts wp LEFT JOIN $wpdb->postmeta pm ON wp.ID <> pm.meta_value WHERE pm.meta_key = 'REAL_HOMES_property_images' AND wp.post_type = 'attachment' AND wp.post_title LIKE 'property%-%-%-%' LIMIT 50";
+$dupimgquery = "SELECT DISTINCT(ID) FROM $wpdb->posts wp LEFT JOIN $wpdb->postmeta pm ON wp.ID <> pm.meta_value WHERE pm.meta_key = 'REAL_HOMES_property_images' AND wp.post_type = 'attachment' AND wp.post_title LIKE 'property%-%-%-%' LIMIT 10";
 
 print_r($dupimgquery);
 echo '<hr/>';
@@ -49,9 +49,9 @@ function delete_duplicate_images($post_id) {
   global $wpdb;
   $imgdir = ABSPATH.'wp-content/uploads/';
 
-  $logpath = '/Users/justingrady/web_dev/bendhomes3/_logs/';
+  $logpath = $_SERVER['DOCUMENT_ROOT'].'/_logs/';
   // $logpath = '/var/www/logs/';
-  $logfile = $logpath.'deleted_images_'.date(DATE_RSS).'.txt';
+  $logfile = $logpath.'deleted_images_'.date('Y-m-d').'.txt';
 
   $imagecounter = 0;
   $delpostcount = 0;
@@ -79,23 +79,29 @@ function delete_duplicate_images($post_id) {
       $deletefile = $imgdir.$imgpostmeta['meta_value'];
       $froot = explode('.',$deletefile);
       $froot = $froot[0]; // we want of root of the filename with no extension
-      echo '<pre style="color: orange;">';
-      print_r($froot);
-      echo '</pre>';
+      echo '<pre style="color: red; border: 2px solid red; padding: 5px;">';
+      echo $deletefile;
+      unlink($deletefile);
+      echo '<br/>'."\n";
+      file_put_contents($logfile, $deletefile . PHP_EOL, FILE_APPEND | LOCK_EX);
 
+      // get all files by pattern and delete them
       foreach( glob($froot.'*') as $file ) {
+          $onlyfilename = array_pop(explode('/',$file));
+          $dash_count = substr_count($onlyfilename, '-');
+
           // this deletes all files with the orignal images name pattern, deletes WP versions
-          if(file_exists($file)) {
+          // we check for four dashes, as some other files we getting caught and deleted
+          if(file_exists($file) && (substr_count($onlyfilename, '-') >= 4) ) {
             echo $file;
             echo '<br/>'."\n";
             unlink($file);
             $imagecounter++;
-            // file_put_contents($logfile, $file . PHP_EOL, FILE_APPEND | LOCK_EX);
+            file_put_contents($logfile, $file . PHP_EOL, FILE_APPEND | LOCK_EX);
           }
       }
-
+      echo '</pre>';
     }
-
     delete_post_meta($post_id, $imgpostmeta['meta_key']);
   }
 
