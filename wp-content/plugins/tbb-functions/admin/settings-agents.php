@@ -109,7 +109,7 @@ class AgentSettingsPage {
                                     </tr>
                                     <tr>
                                     	<th>show_search</th>
-                                        <td>By default, the search box is not displayed.
+                                        <td>By default, the search box is not displayed.<br>
                                         	Default: empty<br>
                                         	Options: yes</td>
                                     </tr>
