@@ -1,6 +1,7 @@
 <?php
 // Shortcodes
 
+
 add_shortcode('SCHEMA_ADDRESS', 'tbb_schema_address');
 function tbb_schema_address( $atts ) {
 	$atts = shortcode_atts( array(
@@ -87,7 +88,7 @@ function tbb_map_link($atts, $content = null) {
 	$classes = explode(' ', $opts['class']);
 	$classes[] = 'google-map-link';
 
-	return '<a href="'. $link .'" class="'. implode(' ', $classes) .'">'. $content .'</a>' . $mobile_script;
+	return '<a href="'. $link .'" target="_blank" class="'. implode(' ', $classes) .'">'. $content .'</a>' . $mobile_script;
 }
 
 
@@ -128,15 +129,15 @@ function tbb_custom_posts( $defaults ) {
 		'category_type' => '',
 		'categories' => '',
 		'featured_image' => '',
-		'featured_agents' => '',
 		'excerpt_length' => '12',
 		'meta_key' => '',
 		'meta_value' => '',
 		'meta_compare' => '=',
 		'classes' => '',
-		'columns' => '3',
+		'columns' => '2',
 		'order' => 'ASC',
-		'orderby' => 'name'
+		'orderby' => 'name',
+		'show_search' => ''
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
@@ -219,38 +220,6 @@ function tbb_custom_posts( $defaults ) {
 			)
 		);
 	}
-	
-	// Create merged array to display Featured Agents then Standard Agents all inside 1 loop with pagination
-	// http://wordpress.stackexchange.com/questions/39483/broken-pagination
-	/*if( !empty( $defaults['featured_agents'] ) ) {
-		$terms = array(
-          'featured-agent' => array(
-            'class' => 'featured-agent-type',
-            'title' => 'Featured Agents',
-            'title_label' => 'Featured Agent'
-          ),
-          'standard-agent' => array(
-            'class' => 'standard-agent-type',
-            'title' => 'Standard Agents',
-            'title_label' => 'Standard Agent'
-          )
-        );
-	}
-	
-foreach($terms as $term_key => $term_val) {
-		
-	if( !empty( $defaults['featured_agents'] ) ) {
-		$args['tax_query'] = array(
-			array(
-				'taxonomy' => 'agent_types',
-				'terms' => $term_key,
-				'field' => 'slug',
-				'include_children' => false,
-				'operator' => 'IN'
-			)
-		);	
-	}*/
-	
 
 	$custom_posts = new WP_Query( $args );
 	
@@ -258,13 +227,29 @@ foreach($terms as $term_key => $term_val) {
 	
 	$output = '<div class="custom-posts-wrapper post-'. $defaults['type'] .'"><div class="custom-posts-container clearfix">';
 	
+		if( !empty( $defaults['show_search'] ) ) {
+			
+			$find_text = $defaults['type'] == 'agent' ? 'Find an '. $defaults['type'] : 'Find a '. $defaults['type'];
+			
+			$output .= '<div class="custom-search-wrap">';
+				$output .= '
+					<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
+						<input type="text" class="search-field" name="s" placeholder="'. $find_text .'"/>
+						<input type="hidden" name="post_type" value="'. $defaults['type'] .'" />
+						<input type="submit" class="btn real-btn" alt="Search" value="Search" />
+					</form>
+				';
+			$output .= '</div>';
+			
+		}
+	
 		$count = 1;
 		// Loop through returned posts
 		// Setup the inner HTML for each elements
 		while ( $custom_posts->have_posts() ) : $custom_posts->the_post();
-			
+		
+			$id = get_the_ID();
 			$permalink = get_permalink();
-			
 			$title = get_the_title();
 			
 			// Show additional meta fields based on post type chosen
@@ -285,14 +270,18 @@ foreach($terms as $term_key => $term_val) {
 				case "agent" :
 					$image_size = 'agent-image';
 					$brokerage = get_field( 'brk_office_name' );
-					$category_classes = sanitize_title( strip_tags( get_the_term_list( $custom_posts->ID, 'agent_types', '', ' ', '' ) ) );
+					$category_classes = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
 					$address = get_field( 'brk_office_address' );
 					$phone = get_field( 'brk_office_phone' );
+					//$agent_types = wp_get_post_terms( $id, 'agent_types', array("fields" => "all"));
+					//$agent_type = $agent_types[0]->slug;	
 					if( $phone )
 						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
+					
 					$additional_meta = sprintf( '
 						<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
 							$brokerage, $address, $phone );
+					
 					break;
 					
 				case "company" :
@@ -313,46 +302,40 @@ foreach($terms as $term_key => $term_val) {
 					
 			}
 			
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), $image_size, true);
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), $image_size, true);
+			$image_parts = pathinfo( $image[0] );
+			if( $image_parts['filename'] == 'default' ) $image = '';
 			
 			$has_image_class = !empty( $image ) ? 'with-image' : '';
 			
+			
+			// Begin item output
 			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $classes, $has_image_class, $category_classes );
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
-					
-					if( $defaults['type'] != 'company' ) {
-						$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
-								$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
-					} else {
-						$output .= sprintf( '<figure class="custom-post-image image-%s %s"><img src="%s" width="%s" height="%s" /></figure>', 
-								$count, $image_size, $image[0], $image[1], $image[2] );	
-					}
-			
+					$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
+									$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
 				}
 				
-				$output .= $property_price;
+				if( $defaults['type'] == 'property' ) $output .= $property_price;
 				
-				if( $defaults['type'] != 'company' ) {
-					$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $title );
-				} else {
-					$output .= sprintf( '<h4 class="custom-post-title">%s</h4>', $title );
-				}
+				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
+								$permalink, $title );
 				
 				if( $defaults['type'] == 'property' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
-					
-					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', get_framework_excerpt( $defaults['excerpt_length'] ) );
-				
+					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', 
+									get_framework_excerpt( $defaults['excerpt_length'] ) );
 				}
 				
 				$output .= $additional_meta;
 				
-				if( $defaults['type'] != 'company' ) {
-					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
-				}
+				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
+								$permalink );
 			
 			$output .= '</div></div>';
+			// End item ouput
+			
 			
 			$clearfix_test = $count / $cols_per_row;
 			if( is_int( $clearfix_test ) ) {
@@ -366,16 +349,201 @@ foreach($terms as $term_key => $term_val) {
 	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $custom_posts->max_num_pages) );
 	
 	endif;
+			
+	return $output;
 	
-	/*$queried_post_count = $custom_posts->found_posts;
-	$next_loop_count = ($number_of_posts - $queried_post_count);
-	if($next_loop_count < 0) {
-		$number_of_posts = 0;
-	} else {
-		$number_of_posts = $next_loop_count;
+	wp_reset_query();
+}
+
+
+// Shortcode to display featured agents by featured-company and featured-agent
+add_shortcode('BH_AGENTS', 'tbb_display_agents');
+function tbb_display_agents( $defaults ) {
+	$defaults = shortcode_atts( array(
+		'limit' => '12',
+		'offset' => '',
+		'classes' => '',
+		'columns' => '2',
+		'order' => 'ASC',
+		'orderby' => 'name',
+		'show_search' => '',
+		'filter' => ''
+	), $defaults );
+	
+	$classes = sanitize_text_field( $defaults['classes'] );
+	
+	switch( $defaults['columns'] ) {
+		case "6":
+			$cols_per_row = 6;
+			$cols = "six";
+			break;
+		case "5":
+			$cols_per_row = 5;
+			$cols = "five";
+			break;
+		case "4":
+			$cols_per_row = 4;
+			$cols = "four";
+			break;
+		case "3":
+			$cols_per_row = 3;
+			$cols = "three";
+			break;
+		case "2":
+			$cols_per_row = 2;
+			$cols = "two";
+			break;
+		case "1":
+			$cols_per_row = 1;
+			$cols = "one";
+			break;
 	}
 	
-} // end $terms foreach statement*/
+	// Initialize the query array
+	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+	$args = array(
+		'post_type' 	=> 'agent',
+		'posts_per_page' => $defaults['limit'],
+		'paged' 	=> $paged,
+		'has_password' => false,
+		'order' => $defaults['order'],
+		'orderby' => $defaults['orderby']
+	);
+	
+	// Adds offset to query
+	if ( $defaults['offset'] ) {
+		$args['offset'] =  $defaults['offset'];
+	}
+	
+	switch( $defaults['filter'] ) {
+		
+		case "standard-agent" :
+		
+			// Display only standard agents in "agent_type"
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' 	=> 'agent_types',
+					'field' 	=> 'slug',
+					'terms' 	=> 'standard-agent'
+				)
+			);
+			
+			break;
+		case "featured-agent" :	
+		
+			// Display only featured agents in "agent_type"
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'agent_types',
+					'field' 	=> 'slug',
+					'terms' 	=> 'featured-agent'
+				)
+			);
+			
+			break;
+		case "company" :
+		
+			// Display only agents whose company is featured
+			$args['meta_query'] = array(
+				array(
+					'key' => 'brk_office_is_featured',
+					'value' => '1',
+					'compare' => '=',
+				)
+			);
+			
+			break;
+		case "all-featured" :
+		
+			// Display all agents whose company or agent_type is featured
+			$args['meta_query'] = array(
+				array(
+					'key' => 'agent_is_featured',
+					'value' => '1',
+					'compare' => '=',
+				)
+			);
+			
+			break;
+			
+	} // end switch
+	
+	$featured_agents = new WP_Query( $args );
+				
+	if ( $featured_agents->have_posts() ) :
+	
+	$output = '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
+	
+		if( !empty( $defaults['show_search'] ) ) {
+			
+			$output .= '<div class="custom-search-wrap">';
+				$output .= '
+					<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
+						<input type="text" class="search-field" name="s" placeholder="Find an agent"/>
+						<input type="hidden" name="post_type" value="agent" />
+						<input type="submit" class="btn real-btn" alt="Search" value="Search" />
+					</form>
+				';
+			$output .= '</div>';
+			
+		}
+	
+		$count = 1;
+		// Loop through returned agents
+		// Setup the inner HTML for each elements
+		while ( $featured_agents->have_posts() ) : $featured_agents->the_post();
+		
+			$id = get_the_ID();
+			$permalink = get_permalink();
+			$title = get_the_title();
+			$brokerage = get_field( 'brk_office_name' );
+			$category_classes = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
+			$address = get_field( 'brk_office_address' );
+			
+			$phone = get_field( 'brk_office_phone' );
+			if( $phone ) $phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', 
+									preg_replace("/[^0-9]/", "", $phone), $phone );
+									
+			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'agent-image', true);
+			$image_parts = pathinfo( $image[0] );
+			if( $image_parts['filename'] == 'default' ) $image = '';
+			$has_image_class = !empty( $image ) ? 'with-image' : '';
+			
+			
+			// Begin item output
+			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
+							$count, $cols, $classes, $has_image_class, $category_classes );
+			
+				if( !empty( $image ) ) {
+					$output .= sprintf( '<figure class="custom-post-image image-agent-image %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
+									$count, $permalink, $image[0], $image[1], $image[2] );
+				}
+								
+				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
+								$permalink, $title );
+				
+				$output .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
+									$brokerage, $address, $phone, $company_is_featured );
+				
+				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
+								$permalink );
+			
+			$output .= '</div></div>';
+			// End item ouput
+			
+			
+			$clearfix_test = $count / $cols_per_row;
+			if( is_int( $clearfix_test ) ) {
+				$output .= '<div class="clearfix"></div>';
+			}
+			
+			$count++;
+		
+		endwhile;
+	
+	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $featured_agents->max_num_pages) );
+	
+	endif;
 			
 	return $output;
 	
