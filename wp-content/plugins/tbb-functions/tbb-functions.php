@@ -87,11 +87,11 @@ function tbb_remove_admin_menus() {
 }
 
 
-/*add_action( 'after_setup_theme','tbb_remove_header_and_background_menus', 100 );
+add_action( 'after_setup_theme','tbb_remove_header_and_background_menus', 100 );
 function tbb_remove_header_and_background_menus() {
-	remove_custom_background();
-	remove_custom_image_header();
-}*/
+	remove_theme_support( 'custom-background' );
+	remove_theme_support( 'custom-header' );
+}
 
 
 // Clean up admin bar 
