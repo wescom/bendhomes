@@ -27,7 +27,7 @@ get_header();
 
                                     <div class="row-fluid">
 
-										<?php if(has_post_thumbnail()){ ?>
+										<?php /*if(has_post_thumbnail()){ ?>
                                         <div class="span3">
                                             <figure class="agent-pic">
                                                 <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
@@ -40,7 +40,9 @@ get_header();
                                         <?php } else { ?>
                                         
                                         <div class="span12">
-										<?php } ?>
+										<?php }*/ ?>
+                                        
+                                        <div class="span12">
 
                                             <div class="agent-content">
                                                 <?php the_content(); ?>
@@ -48,9 +50,9 @@ get_header();
                                             <?php
 
                                             // Company Contact Info
-                                            $company_office_phone = get_post_meta($post->ID, 'company_office_phone',true);
-                                            $company_office_fax = get_post_meta($post->ID, 'company_office_fax',true);
-                                            $company_office_address = get_post_meta($post->ID, 'company_office_address', true);
+                                            $company_office_phone = get_field( 'company_office_phone' );
+                                            $company_office_fax = get_field( 'company_office_fax' );
+                                            $company_office_address = get_field( 'company_office_address' );
 
                                             if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
                                                 ?>
