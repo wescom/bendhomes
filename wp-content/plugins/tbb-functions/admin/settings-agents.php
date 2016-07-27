@@ -70,6 +70,7 @@ class AgentSettingsPage {
                             <h3>Shortcodes</h3>
                             <p>This section displays a list of available shortcodes to use with the Agents post type to display agents on the website.</p>
                             <p><strong>Shortcode: [BH_AGENTS]</strong></p>
+                            <div class="inside">
                             <table class="form-table" style="clear: none;">
                             	<thead>
                                 	<tr>
@@ -79,27 +80,25 @@ class AgentSettingsPage {
                                 </thead>
                             	<tbody>
                                 	<tr valign="top">
-                                    	<th>filter=""</th>
-                                        <td>Filters the type of agent to display.<br>
-                                        	Default: empty<br>
+                                    	<th>filter</th>
+                                        <td>Default: empty<br>
                                         	<strong>standard-agent</strong> - Displays all "Standard Agent" from Agent Type select field.<br>
                                         	<strong>featured-agent</strong> - Displays all "Featured Agent" from Agent Type select field.<br>
                                             <strong>company</strong> - Displays all agents whose "Office is Featured" checkbox is checked.<br>
                                             <strong>all-featured</strong> - Displays all featured agents from either the agent's company or the agent themself.</td>
                                     </tr>
                                     <tr valign="top">
-                                    	<th>limit=""</th>
-                                        <td>Number of agents to display per page.<br>
-                                        	Default: 12</td>
+                                    	<th>limit</th>
+                                        <td>Default: 12</td>
                                     </tr>
                                     <tr valign="top">
-                                    	<th>columns=""</th>
-                                        <td>Number of columns of agents.<br>
-                                        Default: 2<br>
-                                        Optional Number of Columns: 1-6
+                                    	<th>columns</th>
+                                        <td>Default: 2<br>
+                                        Option: 1-6</td>
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                         </section>
                     </div>
             
