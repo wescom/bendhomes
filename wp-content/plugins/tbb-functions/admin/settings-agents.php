@@ -94,7 +94,24 @@ class AgentSettingsPage {
                                     <tr class="alternate">
                                     	<th>columns</th>
                                         <td>Default: 2<br>
-                                        Option: 1-6</td>
+                                        	Options: 1-6</td>
+                                    </tr>
+                                    <tr>
+                                    	<th>order</th>
+                                        <td>Order agents in ascending or descending order.<br>
+                                        	Default: ASC<br>
+                                        	Options: ASC or DESC</td>
+                                    </tr>
+                                    <tr class="alternate">
+                                    	<th>orderby</th>
+                                        <td>Default: name<br>
+                                        	Options: type, name, date, modified, rand</td>
+                                    </tr>
+                                    <tr>
+                                    	<th>show_search</th>
+                                        <td>By default, the search box is not displayed.
+                                        	Default: empty<br>
+                                        	Options: yes</td>
                                     </tr>
                                 </tbody>
                             </table>

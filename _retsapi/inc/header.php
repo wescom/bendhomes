@@ -34,7 +34,7 @@ $connect = $rets->Login();
 
 function universalqueries($pulltime) {
   // used for initial pull, nuclear option to get all data
-  // $pulltime = '1970-01-01T08:50Z'; 
+  // $pulltime = '1970-01-01T08:50Z';
 
   $universalqueries = array(
     'Property' => array(
@@ -44,7 +44,7 @@ function universalqueries($pulltime) {
       'LAND' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'MULT' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'RESI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)'
-	  //'RESI' => '(MLNumber=201607308)'
+	  //'RESI' => '(MLNumber=201510589)'
     ),
     'ActiveAgent' => array(
       'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
