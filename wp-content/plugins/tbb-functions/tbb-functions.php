@@ -87,11 +87,11 @@ function tbb_remove_admin_menus() {
 }
 
 
-add_action( 'after_setup_theme','tbb_remove_header_and_background_menus', 100 );
+/*add_action( 'after_setup_theme','tbb_remove_header_and_background_menus', 100 );
 function tbb_remove_header_and_background_menus() {
 	remove_custom_background();
 	remove_custom_image_header();
-}
+}*/
 
 
 // Clean up admin bar 
@@ -173,7 +173,9 @@ function populate_agent_admin_column($column_name, $term_id) {
 add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
 function tbb_search_by_title_only( $search, &$wp_query ) {
 
-    if($_GET['post_type'] == 'agent' ) {
+	$type = $_GET['post_type'];
+	
+    if( $type == 'agent' ) {
 
 		if ( ! empty( $search ) && ! empty( $wp_query->query_vars['search_terms'] ) ) {
 			global $wpdb;
