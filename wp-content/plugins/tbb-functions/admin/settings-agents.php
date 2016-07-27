@@ -71,7 +71,7 @@ class AgentSettingsPage {
                             <p>This section displays a list of available shortcodes to use with the Agents post type to display agents on the website.</p>
                             <p><strong>Shortcode: [BH_AGENTS]</strong></p>
                             <div class="inside">
-                            <table class="form-table" style="clear: none;">
+                            <table class="widefat" style="clear: none;">
                             	<thead>
                                 	<tr>
                                     	<th>Parameters</th>
@@ -79,7 +79,7 @@ class AgentSettingsPage {
                                     </tr>
                                 </thead>
                             	<tbody>
-                                	<tr valign="top">
+                                	<tr class="alternate">
                                     	<th>filter</th>
                                         <td>Default: empty<br>
                                         	<strong>standard-agent</strong> - Displays all "Standard Agent" from Agent Type select field.<br>
@@ -87,11 +87,11 @@ class AgentSettingsPage {
                                             <strong>company</strong> - Displays all agents whose "Office is Featured" checkbox is checked.<br>
                                             <strong>all-featured</strong> - Displays all featured agents from either the agent's company or the agent themself.</td>
                                     </tr>
-                                    <tr valign="top">
+                                    <tr>
                                     	<th>limit</th>
                                         <td>Default: 12</td>
                                     </tr>
-                                    <tr valign="top">
+                                    <tr class="alternate">
                                     	<th>columns</th>
                                         <td>Default: 2<br>
                                         Option: 1-6</td>
