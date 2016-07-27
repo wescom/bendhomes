@@ -41,7 +41,9 @@ class AgentSettingsPage {
         <div class="wrap tbb-company-page agents-settings">
         	<h1>Agent Settings</h1>
             
-            <?php if ( $_GET['agents-created'] == 'true' ) { ?>
+            <?php 
+			$agents_created = $_GET['agents-created'];
+			if ( $agents_created == 'true' ) { ?>
                 <div class="updated">
                     <p>Featured agents generated successfully.</p>
                 </div>
