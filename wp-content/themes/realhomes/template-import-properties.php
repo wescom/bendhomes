@@ -27,7 +27,6 @@ function dataPreProc($proparr,$scenarioset) {
     $bhpropertyid = $mlsposts[0];
     $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
 
-    $postaction = 'update_property';
     // // end use cases
     // add_property
     // skip_property

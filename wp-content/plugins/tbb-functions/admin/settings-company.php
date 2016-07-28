@@ -145,6 +145,8 @@ class CompanySettingsPage {
 					update_post_meta($company_check->ID, 'company_office_phone', $company_phone );
 					update_post_meta($company_check->ID, 'company_office_address', str_replace('<br />', '', $company_address) );
 					update_post_meta( $company_check->ID, 'company_agents', $agents_list );
+					
+					//update_post_meta( $company_check->ID, 'company_featured_company', '' );
 											
 				}
 			
