@@ -180,6 +180,8 @@ class AgentSettingsPage {
 					 while( $agents->have_posts() ) : $agents->the_post(); 
 					 	
 						$agent_id = get_the_ID();
+						
+						echo '<p>'. $company_featured .'</p>';
 
 						//if($company_featured == '1') {
 							update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured_value );
