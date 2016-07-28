@@ -40,12 +40,7 @@ get_header();
                                         <?php } else { ?>
                                         
                                         <div class="span12">
-										<?php } ?>
-                                        
-                                            <div class="agent-content">
-                                                <?php the_content(); ?>
-                                            </div>
-                                            <?php
+										<?php }
 
                                             // Company Contact Info
                                             $company_office_phone = get_field( 'company_office_phone' );
@@ -84,6 +79,10 @@ get_header();
                                             // Agent contact form
                                             //get_template_part( 'template-parts/agent-contact-form' );
                                             ?>
+                                            
+                                            <div class="agent-content">
+												<?php the_content(); ?>
+                                            </div>
 
                                         </div>
 
