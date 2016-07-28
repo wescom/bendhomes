@@ -87,7 +87,10 @@ get_header();
                                     </div><!-- end .row-fluid -->
                                     
                                     <div class="testing"></div>
-                                    <?php									
+                                    <?php						
+									$agent_test = get_field( 'company_agents' );
+									print_r($agent_test);
+												
 									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 									
 									print_r($agents_array);
