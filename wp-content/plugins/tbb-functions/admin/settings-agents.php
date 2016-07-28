@@ -164,7 +164,6 @@ class AgentSettingsPage {
 				$company_id = get_the_ID();
 							
 				$company_featured = get_field( 'company_featured_company' );
-				$company_featured_value = !empty( $company_featured ) ? '1' : '';
 				$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 							
 				$agent_args = array(
@@ -194,12 +193,11 @@ class AgentSettingsPage {
 						$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
 						$agent_type = $agent_types[0]->slug;
 						
-						/*if( $company_featured_value == '1' ) {
+						if( $company_featured || $agent_type == 'featured-agent' ) {
 							update_post_meta( $agent_id, 'agent_is_featured', '1' );
 						} else {
 							update_post_meta( $agent_id, 'agent_is_featured', '' );
-						}*/
-						update_post_meta( $agent_id, 'agent_is_featured', $company_featured );
+						}
 						
 					 endwhile;
 				endif;
