@@ -32,7 +32,7 @@ class AgentSettingsPage {
 		$this->create_agent_posts();
 	
 		wp_redirect( $_SERVER['HTTP_REFERER'] .'&agents-created=true' );
-		//print_r($_POST);
+		print_r($_POST);
 		exit();
 	}
 
