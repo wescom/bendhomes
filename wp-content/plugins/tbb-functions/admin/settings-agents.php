@@ -153,7 +153,7 @@ class AgentSettingsPage {
 	function create_agent_posts() {
 		$args = array(
 			'post_type' => 'company',
-			'posts_per_page' => '-1'
+			'posts_per_page' => -1
 		);
 		
 		$companies = new WP_Query( $args );
