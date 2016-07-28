@@ -74,7 +74,7 @@ class AgentSettingsPage {
                             <p>This section displays a list of available shortcodes to use with the Agents post type to display agents on the website.</p>
                             <p><strong>Shortcode: [BH_AGENTS]</strong></p>
                             <div class="inside">
-                            <!--table class="widefat" style="clear: none;">
+                            <table class="widefat" style="clear: none;">
                             	<thead>
                                 	<tr>
                                     	<th>Parameters</th>
@@ -117,7 +117,7 @@ class AgentSettingsPage {
                                         	Options: yes</td>
                                     </tr>
                                 </tbody>
-                            </table-->
+                            </table>
                             </div>
                         </section>
                     </div>
@@ -150,6 +150,39 @@ class AgentSettingsPage {
 		!function(a){a(document).on("click",".nav-tab-wrapper a",function(){return a("section").hide().removeClass("active"),a(".nav-tab-wrapper a").removeClass("nav-tab-active"),a(".nav-tab-wrapper a").eq(a(this).index()).addClass("nav-tab-active"),a("section").eq(a(this).index()).show().addClass("active"),!1}),a("#agent-submit").click(function(e){e.preventDefault(),a(this).attr("disabled","disabled"),confirm("If you're sure, click OK to continue. This may take a few minutes.")?(a("#create-agents").submit(),a("#agent-submit").after('<span class="holdon">Please hold on, we\'re generating your featured agents.</span>')):a(this).removeAttr("disabled")})}(jQuery);
 		</script>
 	<?php }
+	
+	function create_featured_agents() {
+		$args = array(
+			'post_type' => 'agent',
+			'posts_per_page' => -1
+		);
+		
+		$agents = new WP_Query( $args );
+								
+		if( $agents->have_posts() ) :
+			 while( $agents->have_posts() ) : $agents->the_post(); 
+				
+				$agent_id = get_the_ID();
+				
+				$company_name = get_field( 'brk_office_name' );
+				$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
+				$company_id = $company_check->ID;
+				$company_featured = get_field( 'company_featured_company', $company_id );
+				
+				update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+				
+				$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
+				$agent_type = $agent_types[0]->slug;
+				
+				if( $company_featured || $agent_type == 'featured-agent' ) {
+					update_post_meta( $agent_id, 'agent_is_featured', '1' );
+				} else {
+					update_post_meta( $agent_id, 'agent_is_featured', '' );
+				}
+				
+			endwhile;
+		endif;
+	}
 	
 	/*function create_agent_posts() {
 		$args = array(
@@ -208,39 +241,6 @@ class AgentSettingsPage {
 		
 		wp_reset_query();
 	}*/
-	
-	function create_featured_agents() {
-		$args = array(
-			'post_type' => 'agent',
-			'posts_per_page' => -1
-		);
-		
-		$agents = new WP_Query( $args );
-								
-		if( $agents->have_posts() ) :
-			 while( $agents->have_posts() ) : $agents->the_post(); 
-				
-				$agent_id = get_the_ID();
-				
-				$company_name = get_field( 'brk_office_name' );
-				$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
-				$company_id = $company_check->ID;
-				$company_featured = get_field( 'company_featured_company', $company_id );
-				
-				update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
-				
-				$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
-				$agent_type = $agent_types[0]->slug;
-				
-				if( $company_featured || $agent_type == 'featured-agent' ) {
-					update_post_meta( $agent_id, 'agent_is_featured', '1' );
-				} else {
-					update_post_meta( $agent_id, 'agent_is_featured', '' );
-				}
-				
-			endwhile;
-		endif;
-	}
 	
 }
 
