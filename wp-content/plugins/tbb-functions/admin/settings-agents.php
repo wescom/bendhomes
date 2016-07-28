@@ -197,7 +197,7 @@ class AgentSettingsPage {
 						} else {
 							update_post_meta( $agent_id, 'agent_is_featured', '' );
 						}*/
-						update_post_meta( $agent_id, 'agent_is_featured', '1' );
+						update_post_meta( $agent_id, 'agent_is_featured', $company_featured );
 						
 					 endwhile;
 				endif;
