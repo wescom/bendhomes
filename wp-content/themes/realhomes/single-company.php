@@ -27,7 +27,7 @@ get_header();
 
                                     <div class="row-fluid">
 
-										<?php /*if(has_post_thumbnail()){ ?>
+										<?php if(has_post_thumbnail()){ ?>
                                         <div class="span3">
                                             <figure class="agent-pic">
                                                 <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
@@ -40,10 +40,8 @@ get_header();
                                         <?php } else { ?>
                                         
                                         <div class="span12">
-										<?php }*/ ?>
+										<?php } ?>
                                         
-                                        <div class="span12">
-
                                             <div class="agent-content">
                                                 <?php the_content(); ?>
                                             </div>
@@ -90,9 +88,7 @@ get_header();
                                     
                                     <?php
 									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
-									
-									print_r($agents_array);
-									
+																		
 									$agent_args = array(
 										'post_type' => 'agent',
 										'post__in' => $agents_array,
