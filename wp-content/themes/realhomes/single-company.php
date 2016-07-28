@@ -90,6 +90,8 @@ get_header();
 									wp_reset_query();
 									
 									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
+									
+									print_r($agents_array);
 																		
 									$agent_args = array(
 										'post_type' => 'agent',
