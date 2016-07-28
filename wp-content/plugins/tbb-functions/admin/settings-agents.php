@@ -29,7 +29,8 @@ class AgentSettingsPage {
 	
 	function agents_created_admin_action() {
 		// Do posting function here that sets agents to featured.
-		$this->create_agent_posts();
+		//$this->create_agent_posts();
+		$this->create_featured_agents();
 	
 		wp_redirect( $_SERVER['HTTP_REFERER'] .'&agents-created=true' );
 		print_r($_POST);
@@ -150,7 +151,7 @@ class AgentSettingsPage {
 		</script>
 	<?php }
 	
-	function create_agent_posts() {
+	/*function create_agent_posts() {
 		$args = array(
 			'post_type' => 'company',
 			'posts_per_page' => -1
@@ -206,6 +207,39 @@ class AgentSettingsPage {
 		return;
 		
 		wp_reset_query();
+	}*/
+	
+	function create_featured_agents() {
+		$args = array(
+			'post_type' => 'agent',
+			'posts_per_page' => -1
+		);
+		
+		$agents = new WP_Query( $args );
+								
+		if( $agents->have_posts() ) :
+			 while( $agents->have_posts() ) : $agents->the_post(); 
+				
+				$agent_id = get_the_ID();
+				
+				$company_name = get_field( 'brk_office_name' );
+				$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
+				$company_id = $company_check->ID;
+				$company_featured = get_field( 'company_featured_company', $company_id );
+				
+				update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+				
+				$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
+				$agent_type = $agent_types[0]->slug;
+				
+				if( $company_featured || $agent_type == 'featured-agent' ) {
+					update_post_meta( $agent_id, 'agent_is_featured', '1' );
+				} else {
+					update_post_meta( $agent_id, 'agent_is_featured', '' );
+				}
+				
+			endwhile;
+		endif;
 	}
 	
 }
