@@ -163,7 +163,7 @@ class AgentSettingsPage {
 			
 				$company_id = get_the_ID();
 							
-				$company_featured = (int)get_field( 'company_featured_company' );		
+				$company_featured = get_field( 'field_5757459e42e19' );		
 				$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 							
 				$agent_args = array(
@@ -181,25 +181,20 @@ class AgentSettingsPage {
 						$agent_id = get_the_ID();
 
 						//if($company_featured == '1') {
-							//update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+							update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
 							
 						//} else {
 							//update_post_meta( $agent_id, 'brk_office_is_featured', '' );
 						//}
-						
-						update_field( 'brk_office_is_featured', $company_featured );
-						
+												
 						$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
 						$agent_type = $agent_types[0]->slug;
 						
-						/*if( $agent_type == 'featured-agent' || $company_featured == 1 ) {
+						if( $agent_type == 'featured-agent' || $company_featured == '1' ) {
 							update_post_meta( $agent_id, 'agent_is_featured', '1' );
 						} else {
 							update_post_meta( $agent_id, 'agent_is_featured', '' );
-						}*/
-						
-						$agent_value = $agent_type == 'featured-agent' || $company_featured == 1 ? 1 : '';
-						update_field( 'agent_is_featured', $agent_value );
+						}
 						
 					 endwhile;
 				endif;
