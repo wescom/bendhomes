@@ -73,7 +73,7 @@ class AgentSettingsPage {
                             <p>This section displays a list of available shortcodes to use with the Agents post type to display agents on the website.</p>
                             <p><strong>Shortcode: [BH_AGENTS]</strong></p>
                             <div class="inside">
-                            <table class="widefat" style="clear: none;">
+                            <!--table class="widefat" style="clear: none;">
                             	<thead>
                                 	<tr>
                                     	<th>Parameters</th>
@@ -116,7 +116,7 @@ class AgentSettingsPage {
                                         	Options: yes</td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table-->
                             </div>
                         </section>
                     </div>
