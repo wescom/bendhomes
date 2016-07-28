@@ -522,8 +522,8 @@ function tbb_display_agents( $defaults ) {
 				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $title );
 				
-				$output .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s (%s)</div>', 
-									$brokerage, $address, $phone, $company_is_featured );
+				$output .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
+									$brokerage, $address, $phone );
 				
 				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
 								$permalink );
