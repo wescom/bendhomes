@@ -27,7 +27,7 @@ if ( has_post_thumbnail() ){ ?>
     
 <?php } else { ?>
     
-    <?php if( !is_single() ){ ?>
+    <?php if( !is_single() || !is_search() ){ ?>
         <figure>
             <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bh-placeholder.jpg" alt="" />
