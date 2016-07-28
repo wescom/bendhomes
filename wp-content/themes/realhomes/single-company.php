@@ -50,7 +50,6 @@ get_header();
 											$company_featured = get_field( 'company_featured_company' );	
 
                                             if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
-												print_r( $company_featured );
                                                 ?>
                                                 <h5 class="company-featured-<?php echo $company_featured; ?>"><?php the_title(); ?></h5>
                                                 
