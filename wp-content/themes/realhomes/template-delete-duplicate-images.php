@@ -22,7 +22,7 @@ echo '<h1 style="color: brown;">start time: '.date(DATE_RSS).'</h1>';
 
 /* $dupimgquery = "SELECT ID,post_title,post_name FROM $wpdb->posts wp LEFT JOIN $wpdb->postmeta pm ON wp.ID <> pm.meta_value WHERE pm.meta_key = 'REAL_HOMES_property_images' AND wp.post_type = 'attachment' AND wp.post_title LIKE 'property%-%-%-%' LIMIT 10"; */
 
-$dupimgquery = "SELECT DISTINCT(ID) FROM $wpdb->posts wp LEFT JOIN $wpdb->postmeta pm ON wp.ID <> pm.meta_value WHERE pm.meta_key = 'REAL_HOMES_property_images' AND wp.post_type = 'attachment' AND wp.post_title LIKE 'property%-%-%-%' LIMIT 10";
+$dupimgquery = "SELECT DISTINCT(ID) FROM $wpdb->posts wp LEFT JOIN $wpdb->postmeta pm ON wp.ID <> pm.meta_value WHERE pm.meta_key = 'REAL_HOMES_property_images' AND wp.post_type = 'attachment' AND wp.post_title LIKE 'property%-%-%-%' LIMIT 100";
 
 // print_r($dupimgquery);
 // echo '<hr/>';
