@@ -180,15 +180,11 @@ class AgentSettingsPage {
 					 	
 						$agent_id = get_the_ID();
 						
-						//echo '<p>'. $company_featured .'</p>';
-
-						//if($company_featured == '1') {
-							delete_post_meta( $agent_id, 'brk_office_is_featured' );
-							update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
-							
-						//} else {
-							//update_post_meta( $agent_id, 'brk_office_is_featured', '' );
-						//}
+						if( $company_featured ) {
+							update_post_meta( $agent_id, 'brk_office_is_featured', '1' );
+						} else {
+							update_post_meta( $agent_id, 'brk_office_is_featured', '' );
+						}
 												
 						$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
 						$agent_type = $agent_types[0]->slug;
