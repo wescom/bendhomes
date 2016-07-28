@@ -87,6 +87,8 @@ get_header();
                                     </div><!-- end .row-fluid -->
                                     
                                     <?php
+									wp_reset_query();
+									
 									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 																		
 									$agent_args = array(
@@ -134,6 +136,8 @@ get_header();
 												</div>
 												
 												<?php }
+												
+												wp_reset_query();
 											}
                                                                                   
                                             endwhile; ?>
