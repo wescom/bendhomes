@@ -163,8 +163,7 @@ class AgentSettingsPage {
 			
 				$company_id = get_the_ID();
 							
-				//$company_featured = get_field( 'company_featured_company' );
-				$company_featured = get_post_meta( $company_id, 'company_featured_company', true );
+				$company_featured = get_field( 'company_featured_company' );
 				$company_featured_value = !empty( $company_featured ) ? '1' : '';
 				$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 							
