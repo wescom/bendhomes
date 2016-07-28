@@ -181,10 +181,11 @@ class AgentSettingsPage {
 					 	
 						$agent_id = get_the_ID();
 						
-						echo '<p>'. $company_featured .'</p>';
+						//echo '<p>'. $company_featured .'</p>';
 
 						//if($company_featured == '1') {
-							update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured_value );
+							delete_post_meta( $agent_id, 'brk_office_is_featured' );
+							update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
 							
 						//} else {
 							//update_post_meta( $agent_id, 'brk_office_is_featured', '' );
