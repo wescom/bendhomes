@@ -51,10 +51,12 @@ get_header();
                                             $company_office_phone = get_field( 'company_office_phone' );
                                             $company_office_fax = get_field( 'company_office_fax' );
                                             $company_office_address = get_field( 'company_office_address' );
+											
+											$company_featured = get_field( 'company_featured_company' );	
 
                                             if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
                                                 ?>
-                                                <h5><?php the_title(); ?></h5>
+                                                <h5 class="company-featured-<?php echo $company_featured; ?>"><?php the_title(); ?></h5>
                                                 
                                                 <?php
                                                 if(!empty($company_office_address)){
