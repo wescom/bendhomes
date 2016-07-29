@@ -102,7 +102,7 @@ if ( ! is_user_logged_in() ) {
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
 
 <!-- Modal -->
-<div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
+<div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true" style="width: 580px;">
     <div class="modal-header">
     	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     	<h3 id="mortgageCalculator">Mortgage Calculator</h3>
