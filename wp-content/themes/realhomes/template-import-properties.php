@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 *  Template Name: Import RETS Properties
 */
@@ -257,7 +257,8 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  echo '<pre>';
+  echo '<pre style="background-color: yellow;">'; 
+  echo 'MY PROPERTY DATUM: ';
   print_r($myproperty);
   echo '</pre>';
 
@@ -300,6 +301,7 @@ function dataPropertyWPinsert($myproperty) {
             $property_id = wp_insert_post( $new_property ); // Insert Property and get Property ID
             if( $property_id > 0 ){
                 $submitted_successfully = true;
+                echo '<h1 style="background-color: green;">added yes: '.$updated_successfully.' - '.$property_id.'</h1>';
                 do_action( 'wp_insert_post', 'wp_insert_post' ); // Post the Post
             }
         } else if( $action == "update_property" ) {
@@ -307,7 +309,7 @@ function dataPropertyWPinsert($myproperty) {
             $property_id = wp_update_post( $new_property ); // Update Property and get Property ID
             if( $property_id > 0 ){
                 $updated_successfully = true;
-                echo '<h1 style="background-color: cyan;">'.$updated_successfully.' - '.$property_id.'</h1>';
+                echo '<h1 style="background-color: cyan;">updated yes: '.$updated_successfully.' - '.$property_id.'</h1>';
             }
         } else if( $action == "delete_property" ) {
             $del_property['ID'] = intval( $myproperty['property_id'] );
