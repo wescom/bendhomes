@@ -34,7 +34,7 @@ function dataPreProc($proparr,$scenarioset) {
   }
 
 
-
+/*
   foreach($proparr as $propitem) {
 
     // status use cases
@@ -263,6 +263,7 @@ function dataPreProc($proparr,$scenarioset) {
     unset($data_to_insert);
     $count++;
   } // end $propitem forach
+  */
   $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
   bh_write_to_log("\t".$log,'properties');
   return $retsproperties;
