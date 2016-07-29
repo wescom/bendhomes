@@ -20,6 +20,12 @@ function dataPreProc($proparr,$scenarioset) {
   /* #### PROPERTY DATA LOOP ##### */
   $retsproperties = array(); // first declaration
   foreach($proparr as $propitem) {
+
+    echo '<pre style="background-color: yellow;">';
+    echo 'raw propitem:<hr/>';
+    print_r($propitem);
+    echo '</pre>';
+
     // status use cases
     // DECIDE what to do with pre-existing records
     // update, delete
@@ -257,10 +263,10 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  echo '<pre style="background-color: yellow;">'; 
-  echo 'MY PROPERTY DATUM: ';
-  print_r($myproperty);
-  echo '</pre>';
+  // echo '<pre style="background-color: yellow;">';
+  // echo 'MY PROPERTY DATUM: ';
+  // print_r($myproperty);
+  // echo '</pre>';
 
   /* Check if action field is set  */
   if( isset( $myproperty['action'] ) ) {
