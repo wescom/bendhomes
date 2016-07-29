@@ -102,19 +102,22 @@ if ( ! is_user_logged_in() ) {
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
 
 <!-- Modal -->
-<div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true" style="width: 580px;">
+<div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
     <div class="modal-header">
     	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     	<h3 id="mortgageCalculator">Mortgage Calculator</h3>
     </div>
-    <div class="modal-body" style="max-height: 410px; padding: 15px 5px;">
+    <div class="modal-body">
     
     	<div align="center">
             <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
         </div>
+        
+        <?php /*
         <!--div class="iframe-window">
         	<iframe src="https://0814683845.mortgage-application.net/Calculators/Payment.aspx?oempage=1" width="100%" height="400" scrolling="no" frameborder="0"></iframe>
         </div-->
+		*/ ?>
         
     </div>
 </div>
