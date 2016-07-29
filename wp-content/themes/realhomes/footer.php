@@ -105,7 +105,7 @@ if ( ! is_user_logged_in() ) {
 <div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
     <div class="modal-header">
     	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    	<h3 id="mortgageCalculator">
+    	<h3 id="mortgageCalculator" style="text-align:center;">
         	<a href="https://www.evergreenhomeloans.com/bend/" target="_blank">
             	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
         	</a>   
