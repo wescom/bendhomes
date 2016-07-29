@@ -96,9 +96,7 @@
                             
                             	<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
                                 
-                                <?php /*
                                 <a href="#mortgage-calculator" data-toggle="modal"><i class="fa fa-calculator"></i>Mortgage Calculator</a>
-                                */ ?>
                                 
                                 <?php
                                 if(is_user_logged_in()){
