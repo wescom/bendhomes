@@ -107,7 +107,7 @@ if ( ! is_user_logged_in() ) {
     	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     	<h3 id="mortgageCalculator">
         	<a href="https://www.evergreenhomeloans.com/bend/" target="_blank">
-            	<img src="<?php get_bloginfo('template_directory'); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
+            	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
         	</a>   
         </h3>
     </div>
