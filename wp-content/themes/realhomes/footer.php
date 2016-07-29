@@ -110,7 +110,7 @@ if ( ! is_user_logged_in() ) {
     <div class="modal-body" style="max-height: 410px; padding: 15px 5px;">
     
     	<div align="center">
-            <iframe src ="http://www.mortgagecalculator.net/embeddable/?id=1" width="100%" frameborder=0 scrolling=no height=280></iframe>
+            <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
         </div>
         <!--div class="iframe-window">
         	<iframe src="https://0814683845.mortgage-application.net/Calculators/Payment.aspx?oempage=1" width="100%" height="400" scrolling="no" frameborder="0"></iframe>
