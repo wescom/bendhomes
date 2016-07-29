@@ -21,10 +21,10 @@ function dataPreProc($proparr,$scenarioset) {
   $retsproperties = array(); // first declaration
   foreach($proparr as $propitem) {
 
-    echo '<pre style="background-color: yellow;">';
-    echo 'raw propitem:<hr/>';
-    print_r($propitem);
-    echo '</pre>';
+    // echo '<pre style="background-color: yellow;">';
+    // echo 'raw propitem:<hr/>';
+    // print_r($propitem);
+    // echo '</pre>';
 
     // status use cases
     // DECIDE what to do with pre-existing records
@@ -512,12 +512,13 @@ function dataPropertyWPinsert($myproperty) {
 bh_write_to_log('import start: '.date(DATE_RSS),'properties');
 // echo 'import start: '.date(DATE_RSS)."<br/>\n";
 foreach($scenarios as $scenario) {
-  // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
-  // echo '<pre>';
-  // echo print_r($scenario);
-  // echo '</pre>';
+  echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
+  echo '<pre>';
+  echo print_r($scenario);
   // harvest raw rets database results, per table
   $retsApiResults = dbresult($scenario);
+  print_r($retsApiResults);
+  echo '</pre>';
 
   // preprocess results to prep data for WP API inserts
   $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
