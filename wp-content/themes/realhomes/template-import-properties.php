@@ -16,6 +16,12 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 function dataPreProc($proparr,$scenarioset) {
+
+  echo '<p style="background-color: red; color: #ffffff; padding: 0.25em;">'.$scenarioset.'</p>';
+  echo '<pre>';
+  print_r($proparr);
+  echo '</pre>';
+
   $count = 0;
   /* #### PROPERTY DATA LOOP ##### */
   $retsproperties = array(); // first declaration
@@ -512,13 +518,13 @@ function dataPropertyWPinsert($myproperty) {
 bh_write_to_log('import start: '.date(DATE_RSS),'properties');
 // echo 'import start: '.date(DATE_RSS)."<br/>\n";
 foreach($scenarios as $scenario) {
-  echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
-  echo '<pre>';
-  echo print_r($scenario);
+  // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
+  // echo '<pre>';
+  // echo print_r($scenario);
   // harvest raw rets database results, per table
   $retsApiResults = dbresult($scenario);
-  print_r($retsApiResults);
-  echo '</pre>';
+  // print_r($retsApiResults);
+  // echo '</pre>';
 
   // preprocess results to prep data for WP API inserts
   $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
