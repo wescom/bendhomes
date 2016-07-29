@@ -27,10 +27,10 @@ function dataPreProc($proparr,$scenarioset) {
   $retsproperties = array(); // first declaration
   foreach($proparr as $propitem) {
 
-    // echo '<pre style="background-color: yellow;">';
-    // echo 'raw propitem:<hr/>';
-    // print_r($propitem);
-    // echo '</pre>';
+    echo '<pre style="background-color: orange;">';
+    echo 'raw propitem:<hr/>';
+    print_r($propitem);
+    echo '</pre>';
 
     // status use cases
     // DECIDE what to do with pre-existing records
