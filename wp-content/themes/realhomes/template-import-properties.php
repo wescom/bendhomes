@@ -29,7 +29,7 @@ function dataPreProc($proparr,$scenarioset) {
 
     echo '<pre style="background-color: orange;">';
     echo 'raw propitem:<hr/>';
-    print_r($propitem);
+    print_r($propitem['MLNumber']);
     echo '</pre>';
 
     // status use cases
