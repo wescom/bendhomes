@@ -105,7 +105,7 @@ if ( ! is_user_logged_in() ) {
 <div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
     <div class="modal-header">
     	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    	<h3 id="mortgageCalculator">Mortgage Calculator</h3>
+    	<h3 id="mortgageCalculator"><img src="<?php get_template_directory(); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" /></h3>
     </div>
     <div class="modal-body">
     
