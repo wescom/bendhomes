@@ -25,12 +25,17 @@ function dataPreProc($proparr,$scenarioset) {
   $count = 0;
   /* #### PROPERTY DATA LOOP ##### */
   $retsproperties = array(); // first declaration
-  foreach($proparr as $propitem) {
 
-    echo '<pre style="background-color: orange;">';
-    echo 'raw propitem:<hr/>';
-    print_r($propitem['MLNumber']);
+  foreach($proparr as $ttitem) {
+    echo '<pre style="background-color: yellow;">';
+    echo 'raw propitem:<br/>';
+    print_r($ttitem['MLNumber']);
     echo '</pre>';
+  }
+
+
+
+  foreach($proparr as $propitem) {
 
     // status use cases
     // DECIDE what to do with pre-existing records
