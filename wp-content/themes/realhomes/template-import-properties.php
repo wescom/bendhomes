@@ -26,15 +26,15 @@ function dataPreProc($proparr,$scenarioset) {
   /* #### PROPERTY DATA LOOP ##### */
   $retsproperties = array(); // first declaration
 
+  /*
   foreach($proparr as $ttitem) {
     echo '<pre style="background-color: yellow;">';
     echo 'raw propitem:<br/>';
     print_r($ttitem['MLNumber']);
     echo '</pre>';
   }
+  */
 
-
-/*
   foreach($proparr as $propitem) {
 
     // status use cases
@@ -44,11 +44,19 @@ function dataPreProc($proparr,$scenarioset) {
     $bhpropertyid = $mlsposts[0];
     $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
 
+    echo '<pre style="background-color: yellow;">';
+    echo 'raw propitem:<br/>';
+    print_r($propitem['MLNumber']);
+    echo '</pre>';
+
     // // end use cases
     // add_property
     // skip_property
     // update_property
     // delete_property
+
+    /*
+
     if($postaction == 'delete_property' || $postaction == 'skip_property') {
       $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
       $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
@@ -252,6 +260,9 @@ function dataPreProc($proparr,$scenarioset) {
 
       unset($bhimgids,$mlsposts);
     } // end $postaction ifelse
+
+    */
+
     $data_to_insert = $retsproperties[$propitem['ListingRid']];
     // echo '<h1>'.$data_to_insert['action'].'</h1>';
     // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
@@ -263,7 +274,7 @@ function dataPreProc($proparr,$scenarioset) {
     unset($data_to_insert);
     $count++;
   } // end $propitem forach
-  */
+
   $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
   bh_write_to_log("\t".$log,'properties');
   return $retsproperties;
