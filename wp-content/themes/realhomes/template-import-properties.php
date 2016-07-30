@@ -273,7 +273,7 @@ function dataPreProc($proparr,$scenarioset) {
     // print_r($data_to_insert);
     // echo '</pre>';
     // usleep(500000); // 1/2 second sleep
-    dataPropertyWPinsert($data_to_insert);
+    // // dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
     $count++;
