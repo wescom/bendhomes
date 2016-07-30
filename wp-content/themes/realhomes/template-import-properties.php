@@ -44,9 +44,10 @@ function dataPreProc($proparr,$scenarioset) {
     $bhpropertyid = $mlsposts[0];
     $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
 
-    echo '<pre style="background-color: green;">';
+    echo '<pre style="background-color: #ececec;">';
     echo 'raw propitem:<br/>';
     print_r($propitem['MLNumber']);
+    echo '<p>postaction: '.$postaction.'</p>';
     echo '</pre>';
 
     // // end use cases
