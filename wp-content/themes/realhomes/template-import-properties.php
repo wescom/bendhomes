@@ -22,7 +22,7 @@ function dataPreProc($proparr,$scenarioset) {
 
   echo '<p style="background-color: red; color: #ffffff; padding: 0.25em;">'.$scenarioset.'</p>';
   echo '<pre>';
-  print_r($proparr);
+  // print_r($proparr);
   echo '</pre>';
 
   $count = 0;
