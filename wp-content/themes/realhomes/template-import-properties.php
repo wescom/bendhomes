@@ -56,6 +56,7 @@ function dataPreProc($proparr,$scenarioset) {
     // update_property
     // delete_property
 
+    /*
     if($postaction == 'delete_property' || $postaction == 'skip_property') {
 
       $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
@@ -95,6 +96,8 @@ function dataPreProc($proparr,$scenarioset) {
       print_r($propitem['MLNumber']);
       echo '<p>postaction: '.$postaction.'</p>';
       echo '</pre>';
+
+      */
 
       /*
       switch ($scenarioset['name']) {
