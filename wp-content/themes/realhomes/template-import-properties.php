@@ -48,7 +48,7 @@ function dataPreProc($proparr,$scenarioset) {
     $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
 
     echo '<pre style="background-color: #ececec;">';
-    echo 'raw propitem:<br/>';
+    echo 'raw propitem 177:<br/>';
     print_r($propitem['MLNumber']);
     echo '<p>postaction: '.$postaction.'</p>';
     echo '</pre>';
@@ -59,7 +59,7 @@ function dataPreProc($proparr,$scenarioset) {
     // update_property
     // delete_property
 
-    /*
+
 
     if($postaction == 'delete_property' || $postaction == 'skip_property') {
       $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
@@ -265,7 +265,7 @@ function dataPreProc($proparr,$scenarioset) {
       unset($bhimgids,$mlsposts);
     } // end $postaction ifelse
 
-    */
+
 
     $data_to_insert = $retsproperties[$propitem['ListingRid']];
     // echo '<h1>'.$data_to_insert['action'].'</h1>';
