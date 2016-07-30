@@ -9,6 +9,9 @@
 ini_set('max_execution_time', 0);
 date_default_timezone_set('America/Los_Angeles');
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 /* #### INCLUDES ##### */
 include_once ABSPATH . 'wp-admin/includes/media.php';
 include_once ABSPATH . 'wp-admin/includes/file.php';
