@@ -9,9 +9,6 @@
 ini_set('max_execution_time', 0);
 date_default_timezone_set('America/Los_Angeles');
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 /* #### INCLUDES ##### */
 include_once ABSPATH . 'wp-admin/includes/media.php';
 include_once ABSPATH . 'wp-admin/includes/file.php';
@@ -19,27 +16,10 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 function dataPreProc($proparr,$scenarioset) {
-
-  echo '<p style="background-color: red; color: #ffffff; padding: 0.25em;">'.$scenarioset.'</p>';
-  echo '<pre>';
-  // print_r($proparr);
-  echo '</pre>';
-
   $count = 0;
   /* #### PROPERTY DATA LOOP ##### */
   $retsproperties = array(); // first declaration
-
-  /*
-  foreach($proparr as $ttitem) {
-    echo '<pre style="background-color: yellow;">';
-    echo 'raw propitem:<br/>';
-    print_r($ttitem['MLNumber']);
-    echo '</pre>';
-  }
-  */
-
   foreach($proparr as $propitem) {
-
     // status use cases
     // DECIDE what to do with pre-existing records
     // update, delete
@@ -47,20 +27,11 @@ function dataPreProc($proparr,$scenarioset) {
     $bhpropertyid = $mlsposts[0];
     $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
 
-    echo '<pre style="background-color: #ececec;">';
-    echo 'raw propitem 177:<br/>';
-    print_r($propitem['MLNumber']);
-    echo '<p>postaction: '.$postaction.'</p>';
-    echo '</pre>';
-
     // // end use cases
     // add_property
     // skip_property
     // update_property
     // delete_property
-
-
-
     if($postaction == 'delete_property' || $postaction == 'skip_property') {
       $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
       $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
@@ -264,21 +235,17 @@ function dataPreProc($proparr,$scenarioset) {
 
       unset($bhimgids,$mlsposts);
     } // end $postaction ifelse
-
-
-
     $data_to_insert = $retsproperties[$propitem['ListingRid']];
     // echo '<h1>'.$data_to_insert['action'].'</h1>';
     // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
     // print_r($data_to_insert);
     // echo '</pre>';
     // usleep(500000); // 1/2 second sleep
-    // // dataPropertyWPinsert($data_to_insert);
+    dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
     $count++;
   } // end $propitem forach
-
   $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
   bh_write_to_log("\t".$log,'properties');
   return $retsproperties;
@@ -290,10 +257,9 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  // echo '<pre style="background-color: yellow;">';
-  // echo 'MY PROPERTY DATUM: ';
-  // print_r($myproperty);
-  // echo '</pre>';
+  echo '<pre>';
+  print_r($myproperty);
+  echo '</pre>';
 
   /* Check if action field is set  */
   if( isset( $myproperty['action'] ) ) {
@@ -334,7 +300,6 @@ function dataPropertyWPinsert($myproperty) {
             $property_id = wp_insert_post( $new_property ); // Insert Property and get Property ID
             if( $property_id > 0 ){
                 $submitted_successfully = true;
-                echo '<h1 style="background-color: green;">added yes: '.$updated_successfully.' - '.$property_id.'</h1>';
                 do_action( 'wp_insert_post', 'wp_insert_post' ); // Post the Post
             }
         } else if( $action == "update_property" ) {
@@ -342,7 +307,7 @@ function dataPropertyWPinsert($myproperty) {
             $property_id = wp_update_post( $new_property ); // Update Property and get Property ID
             if( $property_id > 0 ){
                 $updated_successfully = true;
-                echo '<h1 style="background-color: cyan;">updated yes: '.$updated_successfully.' - '.$property_id.'</h1>';
+                echo '<h1 style="background-color: cyan;">'.$updated_successfully.' - '.$property_id.'</h1>';
             }
         } else if( $action == "delete_property" ) {
             $del_property['ID'] = intval( $myproperty['property_id'] );
@@ -542,10 +507,9 @@ foreach($scenarios as $scenario) {
   // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
   // echo '<pre>';
   // echo print_r($scenario);
+  // echo '</pre>';
   // harvest raw rets database results, per table
   $retsApiResults = dbresult($scenario);
-  // print_r($retsApiResults);
-  // echo '</pre>';
 
   // preprocess results to prep data for WP API inserts
   $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
