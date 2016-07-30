@@ -57,11 +57,10 @@ function dataPreProc($proparr,$scenarioset) {
     // delete_property
 
     /*
-    if($postaction == 'delete_property' || $postaction == 'skip_property') {
 
+    if($postaction == 'delete_property' || $postaction == 'skip_property') {
       $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
       $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
-
     } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
       $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
       $propname = trim($propname);
@@ -74,6 +73,10 @@ function dataPreProc($proparr,$scenarioset) {
       $bhagentid = $bhagentid->{ID};
       $bhagentfullname = $agentposts[0];
       $bhagentfullname = $bhagentfullname->{post_title};
+
+      echo '<h2 style="color: red;">';
+      echo $propitem['ShowAddressToPublic'];
+      echo '</h2>';
 
       if($propitem['ShowAddressToPublic'] == '0') {
         $bhpublicaddressflag = 'no';
@@ -91,15 +94,6 @@ function dataPreProc($proparr,$scenarioset) {
         $bhcoordinates = $propitem['Latitude'].','.$propitem['Longitude'];
       }
 
-      echo '<pre style="background-color: #ececec; color: green;">';
-      echo 'inloop propitem:<br/>';
-      print_r($propitem['MLNumber']);
-      echo '<p>postaction: '.$postaction.'</p>';
-      echo '</pre>';
-
-      */
-
-      /*
       switch ($scenarioset['name']) {
       	case "OpenHouse_OPEN":
       		break;
@@ -259,18 +253,16 @@ function dataPreProc($proparr,$scenarioset) {
           // END Property_RESI import template
       		break;
       } // end swich statement
-      */
-      /*
       if($postaction == 'add_property') {
         $bhimgids = bhImageSet($propitem);
         $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
         $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
       }
-      */
 
       unset($bhimgids,$mlsposts);
     } // end $postaction ifelse
 
+    */
 
     $data_to_insert = $retsproperties[$propitem['ListingRid']];
     // echo '<h1>'.$data_to_insert['action'].'</h1>';
