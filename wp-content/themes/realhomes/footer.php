@@ -109,7 +109,8 @@ if ( ! is_user_logged_in() ) {
             <h3 id="mortgageCalculator" style="text-align:center;">
                 <a href="https://www.evergreenhomeloans.com/bend/" target="_blank">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
-                </a>   
+                </a>
+                <small>685 SE 3rd St., Bend OR, 97702<br><a href="tel:5413185500">(541) 318-5500</a></small>
             </h3>
         </div>
         <div class="modal-body">
