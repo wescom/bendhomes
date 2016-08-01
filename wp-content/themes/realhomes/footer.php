@@ -114,9 +114,7 @@ if ( ! is_user_logged_in() ) {
         </div>
         <div class="modal-body">
         
-            <div align="center">
-                <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
-            </div>
+            <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
             
             <?php /*
             <!--div class="iframe-window">

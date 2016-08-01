@@ -17,7 +17,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 #mortgage-calculator.in { position: absolute; top: 2%; margin-top: 0; }
 .admin-bar #mortgage-calculator.in { top: 50px; }
 #mortgage-calculator .modal-body { max-height: none; }
-#mortgage-calculator #acww-widgetwrapper { min-width: 0 !important; }
+#mortgage-calculator #acww-widgetwrapper { min-width: 0 !important; max-width: 80%; margin: 0 auto; }
 #mortgage-calculator h3 img { max-width: 80%; }
 
 .quick-header-info { padding: 10px 10px 15px; font-size: 1.1em; }
