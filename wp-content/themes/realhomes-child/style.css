@@ -207,7 +207,7 @@ h3.search-results-header { float: left; margin: 0; }
 	.property-title { font-size: 1.75em; }
 	#property-detail-flexslider, #property-detail-flexslider .flex-viewport, #property-detail-flexslider .flex-direction-nav { width: 100%; }
 	#property-detail-flexslider .jcarousel-container-vertical { display: none !important; }
-	#overview .property-item .title { padding: 0; float: none; text-align: center; }
+	#overview .property-item .price, #overview .property-item .title { padding: 0; float: none; text-align: center; }
 	.property-grid .list-container { margin-left: 0; }
 	.property-grid .property-item { width: 100%; margin: 0 0 30px; }
 	.rail-standard-agent-wrapper .listing-agent { float: none; display: block; }
