@@ -12,6 +12,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .featured-properties-carousel.open-houses { border-top: 1px solid #dedede; border-bottom: 1px solid #dedede; }#acww-more{display: none !important; }
 .text-green { color: #598F28; }
 #mortgage-calculator #acww-widgetwrapper { min-width: 0 !important; }
+#mortgage-calculator h3 img { max-width: 80%; }
 
 .quick-header-info { padding: 10px 10px 15px; font-size: 1.1em; }
 .quick-header-info > span { display: inline-block; margin-right: 2em; }
