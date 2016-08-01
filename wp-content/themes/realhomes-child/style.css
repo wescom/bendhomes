@@ -16,7 +16,8 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 #mortgage-calculator .modal-body { max-height: none; }
 #mortgage-calculator #acww-widgetwrapper { min-width: 0 !important; max-width: 100%; width: 100%; margin: 0 auto; }
 #mortgage-calculator #acww-widget-iframe { height: 850px !important; position: relative !important; min-width: 100%; width: 200px !important; max-width: 100%; }
-#mortgage-calculator h3 img { width: 250px; max-width: 80%; }
+#mortgage-calculator .modal-header { text-align: center; }
+#mortgage-calculator .modal-header img { width: 250px; max-width: 80%; }
 
 .quick-header-info { padding: 10px 10px 15px; font-size: 1.1em; }
 .quick-header-info > span { display: inline-block; margin-right: 2em; }
