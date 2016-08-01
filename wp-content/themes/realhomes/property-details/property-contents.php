@@ -2,18 +2,6 @@
 
 <article class="property-item clearfix">
     <div class="wrap clearfix">
-        <h4 class="title">
-            <?php
-
-            /* Property ID if exists */
-            $property_id = get_post_meta($post->ID, 'REAL_HOMES_property_id', true);
-            if(!empty($property_id)){
-                // echo __('Property ID','framework').' : '.$property_id;
-                echo 'MLS# : '.$property_id;
-            }
-
-            ?>
-        </h4>
         <h5 class="price">
             <span class="status-label">
                 <?php
@@ -43,6 +31,19 @@
                 ?>
             </span>
         </h5>
+        <h4 class="title">
+        	<a href="#mortgage-calculator" data-toggle="modal"><i class="fa fa-calculator"></i> Calculate Payment</a>
+            <?php
+
+            /* Property ID if exists */
+            /*$property_id = get_post_meta($post->ID, 'REAL_HOMES_property_id', true);
+            if(!empty($property_id)){
+                // echo __('Property ID','framework').' : '.$property_id;
+                echo 'MLS# : '.$property_id;
+            }*/
+
+            ?>
+        </h4>
     </div>
     
     <?php if ( $display_social_share == 'true' ) {
