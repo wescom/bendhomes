@@ -101,6 +101,7 @@ if ( ! is_user_logged_in() ) {
 
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
 
+<?php /*
 <!-- Modal -->
 <div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
 	<div class="modal-scrollable">
@@ -114,18 +115,11 @@ if ( ! is_user_logged_in() ) {
             </div>
         </div>
         <div class="modal-body">
-        
             <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
-            
-            <?php /*
-            <!--div class="iframe-window">
-                <iframe src="https://0814683845.mortgage-application.net/Calculators/Payment.aspx?oempage=1" width="100%" height="400" scrolling="no" frameborder="0"></iframe>
-            </div-->
-            */ ?>
-            
         </div>
     </div>
 </div>
+*/ ?>
 
 <?php wp_footer(); ?>
 </body>
