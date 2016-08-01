@@ -102,27 +102,29 @@ if ( ! is_user_logged_in() ) {
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
 
 <!-- Modal -->
-<div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
-    <div class="modal-header">
-    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    	<h3 id="mortgageCalculator" style="text-align:center;">
-        	<a href="https://www.evergreenhomeloans.com/bend/" target="_blank">
-            	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
-        	</a>   
-        </h3>
-    </div>
-    <div class="modal-body">
-    
-    	<div align="center">
-            <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
+<div class="modal-scrollable">
+    <div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="mortgageCalculator" style="text-align:center;">
+                <a href="https://www.evergreenhomeloans.com/bend/" target="_blank">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
+                </a>   
+            </h3>
         </div>
+        <div class="modal-body">
         
-        <?php /*
-        <!--div class="iframe-window">
-        	<iframe src="https://0814683845.mortgage-application.net/Calculators/Payment.aspx?oempage=1" width="100%" height="400" scrolling="no" frameborder="0"></iframe>
-        </div-->
-		*/ ?>
-        
+            <div align="center">
+                <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
+            </div>
+            
+            <?php /*
+            <!--div class="iframe-window">
+                <iframe src="https://0814683845.mortgage-application.net/Calculators/Payment.aspx?oempage=1" width="100%" height="400" scrolling="no" frameborder="0"></iframe>
+            </div-->
+            */ ?>
+            
+        </div>
     </div>
 </div>
 
