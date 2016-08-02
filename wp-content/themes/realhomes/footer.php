@@ -101,25 +101,24 @@ if ( ! is_user_logged_in() ) {
 
 <a href="#top" id="scroll-top"><i class="fa fa-chevron-up"></i></a>
 
-<?php /*
 <!-- Modal -->
 <div id="mortgage-calculator" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mortgageCalculator" aria-hidden="true">
-    <div class="modal-header">
-    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    	<h3 id="mortgageCalculator">Mortgage Calculator</h3>
-    </div>
-    <div class="modal-body">
-    
-    	<div style="width:100%;overflow:hidden;padding: 15px 0 20px;" id="horizontalWidget">
-            <div style="width:352px;margin:0 auto;border-radius: 5px; solid;webkit-border-radius: 5px;padding: 0 1px;background-color:#f4f4f4; border: 1px solid #e8e8e8;">
-            	<iframe scrolling="no" src="http://www.zillow.com/mortgage/SmallMortgageLoanCalculatorWidget.htm?widgetOrientationType=horizontalWidget" width="352px" frameborder="0" style="float:left;" title="Mortgage Calculator" height="235px"></iframe>
-                <div style="clear:both;"></div>
+	<div class="modal-scrollable">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <div id="mortgageCalculator">
+                <a href="https://www.evergreenhomeloans.com/bend/?ref=bh" target="_blank">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
+                </a>
+                <div class="modal-address"><i class="fa fa-map-marker"></i> 685 SE 3rd St., Bend OR, 97702<br><a href="tel:5413185500"><i class="fa fa-mobile-phone"></i> (541) 318-5500</a></div>
             </div>
         </div>
-        
+        <div class="modal-body">
+            <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
+            <div style="text-align: center; padding: 15px 0 0; border-top: 1px solid #eee;"><a href="https://www.evergreenhomeloans.com/bend/about-us/loan-officers/?ref=bh" class="btn btn-large real-btn" target="_blank" rel="nofollow"><i class="fa fa-home"></i> Find a Loan Consultant</a></div>
+        </div>
     </div>
 </div>
-*/ ?>
 
 <?php wp_footer(); ?>
 </body>

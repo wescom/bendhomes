@@ -27,7 +27,7 @@ get_header();
 
                                     <div class="row-fluid">
 
-										<?php /*if(has_post_thumbnail()){ ?>
+										<?php if(has_post_thumbnail()){ ?>
                                         <div class="span3">
                                             <figure class="agent-pic">
                                                 <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
@@ -40,23 +40,18 @@ get_header();
                                         <?php } else { ?>
                                         
                                         <div class="span12">
-										<?php }*/ ?>
-                                        
-                                        <div class="span12">
-
-                                            <div class="agent-content">
-                                                <?php the_content(); ?>
-                                            </div>
-                                            <?php
+										<?php }
 
                                             // Company Contact Info
                                             $company_office_phone = get_field( 'company_office_phone' );
                                             $company_office_fax = get_field( 'company_office_fax' );
                                             $company_office_address = get_field( 'company_office_address' );
+											
+											$company_featured = get_field( 'company_featured_company' );	
 
                                             if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
                                                 ?>
-                                                <h5><?php the_title(); ?></h5>
+                                                <h5 class="company-featured-<?php echo $company_featured; ?>"><?php the_title(); ?></h5>
                                                 
                                                 <?php
                                                 if(!empty($company_office_address)){
@@ -83,14 +78,18 @@ get_header();
                                             // Agent contact form
                                             //get_template_part( 'template-parts/agent-contact-form' );
                                             ?>
+                                            
+                                            <div class="agent-content">
+												<?php the_content(); ?>
+                                            </div>
 
                                         </div>
 
                                     </div><!-- end .row-fluid -->
                                     
-                                    <?php
+                                    <?php																	
 									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
-									
+																											
 									$agent_args = array(
 										'post_type' => 'agent',
 										'post__in' => $agents_array,
@@ -136,6 +135,7 @@ get_header();
 												</div>
 												
 												<?php }
+												
 											}
                                                                                   
                                             endwhile; ?>
