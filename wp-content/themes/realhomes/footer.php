@@ -114,15 +114,8 @@ if ( ! is_user_logged_in() ) {
             </div>
         </div>
         <div class="modal-body">
-        
             <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
-            
-            <?php /*
-            <!--div class="iframe-window">
-                <iframe src="https://0814683845.mortgage-application.net/Calculators/Payment.aspx?oempage=1" width="100%" height="400" scrolling="no" frameborder="0"></iframe>
-            </div-->
-            */ ?>
-            
+            <div style="text-align: center; padding: 15px 0 0; border-top: 1px solid #eee;"><a href="https://www.evergreenhomeloans.com/bend/about-us/loan-officers/" class="btn btn-large real-btn" target="_blank" rel="nofollow"><i class="fa fa-home"></i> Find a Loan Consultant</a></div>
         </div>
     </div>
 </div>

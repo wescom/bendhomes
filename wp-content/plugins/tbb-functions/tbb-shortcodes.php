@@ -124,6 +124,7 @@ add_shortcode('BH_CUSTOM_POSTS', 'tbb_custom_posts');
 function tbb_custom_posts( $defaults ) {
 	$defaults = shortcode_atts( array(
 		'type' => 'post',
+		'ids' => '',
 		'limit' => '12',
 		'offset' => '',
 		'category_type' => '',
@@ -175,6 +176,13 @@ function tbb_custom_posts( $defaults ) {
 			break;
 	}
 	
+	// Transform ids to array
+	if( $defaults['ids'] ) {
+		$post_ids = explode( ',', $defaults['ids'] );
+	} else {
+		$post_ids = array();	
+	}
+	
 	// Transform categories to array
 	if ( $defaults['category_type'] && $defaults['categories'] ) {
 		//$cat_slugs = preg_replace( '/\s+/', '', $defaults['categories'] );
@@ -193,6 +201,11 @@ function tbb_custom_posts( $defaults ) {
 		'order' => $defaults['order'],
 		'orderby' => $defaults['orderby']
 	);
+	
+	// Adds list of ids to query
+	if ( !empty( $post_ids ) ) {
+		$args['post__in'] = $post_ids;
+	}
 	
 	// Adds offset to query
 	if ( $defaults['offset'] ) {
