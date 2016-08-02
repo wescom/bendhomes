@@ -107,7 +107,7 @@ if ( ! is_user_logged_in() ) {
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <div id="mortgageCalculator">
-                <a href="https://www.evergreenhomeloans.com/bend/" target="_blank">
+                <a href="https://www.evergreenhomeloans.com/bend/?ref=bh" target="_blank">
                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
                 </a>
                 <div class="modal-address"><i class="fa fa-map-marker"></i> 685 SE 3rd St., Bend OR, 97702<br><a href="tel:5413185500"><i class="fa fa-mobile-phone"></i> (541) 318-5500</a></div>
@@ -115,7 +115,7 @@ if ( ! is_user_logged_in() ) {
         </div>
         <div class="modal-body">
             <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
-            <div style="text-align: center; padding: 15px 0 0; border-top: 1px solid #eee;"><a href="https://www.evergreenhomeloans.com/bend/about-us/loan-officers/" class="btn btn-large real-btn" target="_blank" rel="nofollow"><i class="fa fa-home"></i> Find a Loan Consultant</a></div>
+            <div style="text-align: center; padding: 15px 0 0; border-top: 1px solid #eee;"><a href="https://www.evergreenhomeloans.com/bend/about-us/loan-officers/?ref=bh" class="btn btn-large real-btn" target="_blank" rel="nofollow"><i class="fa fa-home"></i> Find a Loan Consultant</a></div>
         </div>
     </div>
 </div>
