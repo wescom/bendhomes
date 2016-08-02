@@ -111,7 +111,7 @@ function delete_duplicate_images($post_id) {
   echo '<strong>deleted post_id: '.$post_id.'</strong><br/>';
   print_r($delpost);
   echo '</pre>';
-  if($delpost > 0) {
+  if(!empty($delpost)) {
     $delpostcount++;
   }
 
