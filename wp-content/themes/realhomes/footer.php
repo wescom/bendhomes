@@ -115,6 +115,7 @@ if ( ! is_user_logged_in() ) {
         </div>
         <div class="modal-body">
             <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
+            <div><a href="https://www.evergreenhomeloans.com/bend/about-us/loan-officers/" class="btn real-btn" target="_blank" rel="nofollow"><i class="fa fa-home"></i> Find a Loan Consultant</a></div>
         </div>
     </div>
 </div>
