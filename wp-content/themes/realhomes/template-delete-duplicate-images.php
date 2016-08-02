@@ -81,7 +81,9 @@ function delete_duplicate_images($post_id) {
       $froot = $froot[0]; // we want of root of the filename with no extension
       echo '<pre style="color: red; border: 2px solid red; padding: 5px;">';
       echo $deletefile;
-      unlink($deletefile);
+      if(file_exists($deletefile) {
+        unlink($deletefile);
+      }
       echo '<br/>'."\n";
       file_put_contents($logfile, $deletefile . PHP_EOL, FILE_APPEND | LOCK_EX);
 
