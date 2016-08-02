@@ -8,6 +8,9 @@
 
 ini_set('max_execution_time', 0);
 date_default_timezone_set('America/Los_Angeles');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 /* #### INCLUDES ##### */
 include_once ABSPATH . 'wp-admin/includes/media.php';
@@ -17,15 +20,37 @@ include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 function dataPreProc($proparr,$scenarioset) {
   $count = 0;
+
+  $raw_property_count = count($proparr);
+  echo '<h1>raw property count: '.$raw_property_count.'</h1>';
   /* #### PROPERTY DATA LOOP ##### */
   $retsproperties = array(); // first declaration
+
   foreach($proparr as $propitem) {
+
+    echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
+    echo 'status: ';
+    print_r($propitem['Status']);
+    echo '<br/>';
+    echo 'count: '.$count.'<br/>';
+    echo 'ml number: ';
+    print_r($propitem['MLNumber']);
+    echo '</pre>';
+
     // status use cases
     // DECIDE what to do with pre-existing records
     // update, delete
+
+
+
     $mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
     $bhpropertyid = $mlsposts[0];
     $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
+
+    $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
+    $propname = trim($propname);
+
+    $retsproperties[$propitem['ListingRid']]['property-mlstatus'] = $propitem['Status'];
 
     // // end use cases
     // add_property
@@ -35,9 +60,10 @@ function dataPreProc($proparr,$scenarioset) {
     if($postaction == 'delete_property' || $postaction == 'skip_property') {
       $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
       $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
+      $retsproperties[$propitem['ListingRid']]['property-id'] = $propitem['MLNumber']; // this the the MLS ID
+      $retsproperties[$propitem['ListingRid']]['inspiry_property_title'] = $propname;
     } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
-      $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
-      $propname = trim($propname);
+
       $propprice = formatprice($propitem['ListingPrice']);
 
       $agentguid = 'agent_'.$propitem['ListingAgentNumber'];
@@ -48,9 +74,9 @@ function dataPreProc($proparr,$scenarioset) {
       $bhagentfullname = $agentposts[0];
       $bhagentfullname = $bhagentfullname->{post_title};
 
-      echo '<h2 style="color: red;">';
-      echo $propitem['ShowAddressToPublic'];
-      echo '</h2>';
+      // echo '<h2 style="color: red;">';
+      // echo $propitem['ShowAddressToPublic'];
+      // echo '</h2>';
 
       if($propitem['ShowAddressToPublic'] == '0') {
         $bhpublicaddressflag = 'no';
@@ -233,8 +259,9 @@ function dataPreProc($proparr,$scenarioset) {
         $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
       }
 
-      unset($bhimgids,$mlsposts);
+      unset($bhimgids);
     } // end $postaction ifelse
+
     $data_to_insert = $retsproperties[$propitem['ListingRid']];
     // echo '<h1>'.$data_to_insert['action'].'</h1>';
     // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
@@ -244,10 +271,13 @@ function dataPreProc($proparr,$scenarioset) {
     dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
+
+  
+
     $count++;
   } // end $propitem forach
-  $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
-  bh_write_to_log("\t".$log,'properties');
+  // $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
+  // bh_write_to_log("\t".$log,'properties');
   return $retsproperties;
 }
 
@@ -257,8 +287,11 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  echo '<pre>';
-  print_r($myproperty);
+  echo '<pre style="border: 1px solid #000; padding: 10px;">';
+  echo 'action: '.$myproperty['action']."<br/>\n";
+  echo 'title: '.$myproperty['inspiry_property_title']."<br/>\n";
+  echo 'MLS number: '.$myproperty['property-id']."<br/>\n";
+  echo 'ML status: '.$myproperty['property-mlstatus']."<br/>\n";
   echo '</pre>';
 
   /* Check if action field is set  */
@@ -307,7 +340,7 @@ function dataPropertyWPinsert($myproperty) {
             $property_id = wp_update_post( $new_property ); // Update Property and get Property ID
             if( $property_id > 0 ){
                 $updated_successfully = true;
-                echo '<h1 style="background-color: cyan;">'.$updated_successfully.' - '.$property_id.'</h1>';
+                // echo '<h1 style="background-color: cyan;">'.$updated_successfully.' - '.$property_id.'</h1>';
             }
         } else if( $action == "delete_property" ) {
             $del_property['ID'] = intval( $myproperty['property_id'] );
@@ -509,8 +542,9 @@ foreach($scenarios as $scenario) {
   // echo print_r($scenario);
   // echo '</pre>';
   // harvest raw rets database results, per table
-  $retsApiResults = dbresult($scenario);
 
+  $retsApiResults = dbresult($scenario);
+  // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
   $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
 
