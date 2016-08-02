@@ -87,7 +87,8 @@ function delete_duplicate_images($post_id) {
 
       // get all files by pattern and delete them
       foreach( glob($froot.'*') as $file ) {
-          $onlyfilename = array_pop(explode('/',$file));
+          $segments = explode('/',$file);
+          $onlyfilename = array_pop($segments);
           $dash_count = substr_count($onlyfilename, '-');
 
           // this deletes all files with the orignal images name pattern, deletes WP versions
