@@ -1,6 +1,9 @@
 <?php
 
 define('DONOTCACHEPAGE',1);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 /* ################################# */
 /* #### DATA TYPES - SCENARIOS ##### */
@@ -57,39 +60,46 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
     global $wpdb;
     $imgdir = ABSPATH.'wp-content/uploads/';
 
+    echo 'media post id';
+    print_r($post_id);
+
     // get post ids of all images
     $imageids = get_post_meta( $post_id, 'REAL_HOMES_property_images' );
 
-    if (empty($imageids)) return;
+    if (!empty($imageids)) {
 
-    // query the db and get image path and filename
-    foreach ($imageids as $imgid) {
-        if($imgid != NULL) {
-          $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
-          // echo $sqlquery;
-          $results = $wpdb->get_results( $sqlquery, ARRAY_A );
-        } else {
-          $results = NULL;
-        }
-
-        foreach($results as $result) {
-          if($result['meta_key'] == '_wp_attached_file' ) {
-            $deletefile = $imgdir.$result['meta_value'];
-            $froot = explode('.',$deletefile);
-            $froot = $froot[0]; // we want of root of the filename with no extension
-            foreach( glob($froot.'*') as $file )
-            {
-                // this deletes all files with the orignal images name pattern, deletes WP versions
-                unlink($file);
-            }
-
+      // query the db and get image path and filename
+      foreach ($imageids as $imgid) {
+          if($imgid != NULL) {
+            // $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
+            // echo $sqlquery;
+            // $results = $wpdb->get_results( $sqlquery, ARRAY_A );
+            $results = NULL;
+          } else {
+            $results = NULL;
           }
-          // delete the image post
-          $delpost = wp_delete_post( $imgid );
-        }
 
-        // wp_delete_attachment($attachment->ID);
-        // unlink(get_attached_file($file->ID));
+          if($results != NULL) {
+            foreach($results as $result) {
+              if($result['meta_key'] == '_wp_attached_file' ) {
+                $deletefile = $imgdir.$result['meta_value'];
+                $froot = explode('.',$deletefile);
+                $froot = $froot[0]; // we want of root of the filename with no extension
+                foreach( glob($froot.'*') as $file )
+                {
+                    // this deletes all files with the orignal images name pattern, deletes WP versions
+                    unlink($file);
+                }
+
+              }
+              // delete the image post
+              $delpost = wp_delete_post( $imgid );
+            }
+          }
+
+          // wp_delete_attachment($attachment->ID);
+          // unlink(get_attached_file($file->ID));
+      }
     }
   }
   add_action('before_delete_post', 'delete_associated_media', 10, 1);
@@ -412,7 +422,7 @@ function bhPostActions($status,$mlsid=NULL) {
 
   // insert from API use cases
   if($mlsaction == 'insert') {
-    if($status == 'Active') {
+    if($status == 'Active' || $status == 'Pending') {
       $apiaction = 'add_property'; // only add if insert/Active are true, skip everywhere else
     }
     else
@@ -436,7 +446,7 @@ function bhPostActions($status,$mlsid=NULL) {
 
   // $apiaction = 'delete_property';
 
-  // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>mlsid: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
+  echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>wordpress post id: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
   return $apiaction;
 }
 
@@ -548,7 +558,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
    if( (!empty($attachment_id['ID'])) && ($attachment_fname == $file_array['name'] ) ) {
      $myid = $attachment_id['ID'];
-     echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
+     // echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
    } else {
      if ( is_wp_error( $tmp ) ) {
          // @unlink( $file_array[ 'tmp_name' ] );
@@ -556,7 +566,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
          // echo '<p style="background-color: red; color: #fff;">'.$tmp.'</p>';
      }
      $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
-     echo '<p style="color: green;">new-id: '.$myid.'</p>';
+     // echo '<p style="color: green;">new-id: '.$myid.'</p>';
    }
 
    /* debugging
