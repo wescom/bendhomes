@@ -49,8 +49,8 @@ function delete_duplicate_images($post_id) {
   global $wpdb;
   $imgdir = ABSPATH.'wp-content/uploads/';
 
-  $logpath = $_SERVER['DOCUMENT_ROOT'].'/_logs/';
-  // $logpath = '/var/www/logs/';
+  /// $logpath = $_SERVER['DOCUMENT_ROOT'].'/_logs/';
+  $logpath = '/var/www/logs/';
   $logfile = $logpath.'deleted_images_'.date('Y-m-d').'.txt';
 
   $imagecounter = 0;
