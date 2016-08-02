@@ -161,7 +161,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post .custom-post-image { margin-bottom: 20px; }
 .custom-post.one .custom-post-image, .custom-post.two .custom-post-image { float: left; width: 30%; max-width: 180px; margin-right: 5%; }
 .custom-post.two .custom-post-image { width: 50%; margin-right: 3%; }
-.custom-post.one.with-image .custom-post-title, .custom-post.one.with-image .custom-post-excerpt, .custom-post.one.with-image .extra-meta { float: right; width: 70%; }
+.custom-post.one.with-image .custom-post-title, .custom-post.one.with-image .custom-post-excerpt, .custom-post.one.with-image .extra-meta { float: right; width: 65%; }
 .custom-post.two.with-image .custom-post-title, .custom-post.two.with-image .custom-post-excerpt, .custom-post.two.with-image .extra-meta { float: right; width: 47%; }
 .post-property .custom-post .custom-post-image { margin-bottom: 0; margin-right: 0; float: none; width: 100%; max-width: 100%; }
 .post-property .custom-post.one.with-image .custom-post-title, .post-property .custom-post.two.with-image .custom-post-title, .post-property .custom-post.one.with-image .custom-post-excerpt, .post-property .custom-post.two.with-image .custom-post-excerpt, .post-property .custom-post.one.with-image .extra-meta, .post-property .custom-post.two.with-image .extra-meta { float: none; width: 100%; }
