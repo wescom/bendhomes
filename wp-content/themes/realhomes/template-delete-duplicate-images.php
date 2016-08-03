@@ -8,6 +8,9 @@
 
 ini_set('max_execution_time', 0);
 date_default_timezone_set('America/Los_Angeles');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 /* #### INCLUDES ##### */
 include_once ABSPATH . 'wp-admin/includes/media.php';
@@ -49,7 +52,7 @@ function delete_duplicate_images($post_id) {
   global $wpdb;
   $imgdir = ABSPATH.'wp-content/uploads/';
 
-  /// $logpath = $_SERVER['DOCUMENT_ROOT'].'/_logs/';
+  // $logpath = $_SERVER['DOCUMENT_ROOT'].'/_logs/';
   $logpath = '/var/www/logs/';
   $logfile = $logpath.'deleted_images_'.date('Y-m-d').'.txt';
 
@@ -81,7 +84,7 @@ function delete_duplicate_images($post_id) {
       $froot = $froot[0]; // we want of root of the filename with no extension
       echo '<pre style="color: red; border: 2px solid red; padding: 5px;">';
       echo $deletefile;
-      if(file_exists($deletefile) {
+      if(file_exists($deletefile)) {
         unlink($deletefile);
       }
       echo '<br/>'."\n";
@@ -100,7 +103,7 @@ function delete_duplicate_images($post_id) {
             echo '<br/>'."\n";
             unlink($file);
             $imagecounter++;
-            file_put_contents($logfile, $file . PHP_EOL, FILE_APPEND | LOCK_EX);
+            // file_put_contents($logfile, $file . PHP_EOL, FILE_APPEND | LOCK_EX);
           }
       }
       echo '</pre>';
@@ -117,8 +120,6 @@ function delete_duplicate_images($post_id) {
     $delpostcount++;
   }
 
-  // file_put_contents($logfile, '-- deleted images count: '.$imagecounter . PHP_EOL, FILE_APPEND | LOCK_EX);
-  // file_put_contents($logfile, '-- deleted posts count : '.$delpostcount . PHP_EOL, FILE_APPEND | LOCK_EX);
   echo '<p style="color: green;">deleted images count: '.$imagecounter.'</p>';
   echo '<p style="color: green;">deleted posts count: '.$delpostcount.'</p>';
 
