@@ -71,7 +71,7 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
       // query the db and get image path and filename
       foreach ($imageids as $imgid) {
           if($imgid != NULL) {
-            // $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
+            //$sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
             // echo $sqlquery;
             // $results = $wpdb->get_results( $sqlquery, ARRAY_A );
             $results = NULL;
@@ -613,8 +613,8 @@ function bhImageSet($item) {
 
 function bh_write_to_log($string,$type) {
   // path from root of server to write logs
-  // $path = '/var/www/logs/';
-  $path = $_SERVER['DOCUMENT_ROOT'].'/_logs/';
+  $path = '/var/www/logs/';
+  // $path = $_SERVER['DOCUMENT_ROOT'].'/_logs/';
   $fdate = date("j.n.Y");
   $fname = $path.$type.'_'.$fdate.'.txt';
   $logdate = date("F j, Y, g:i a");
