@@ -71,10 +71,11 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
       // query the db and get image path and filename
       foreach ($imageids as $imgid) {
           if($imgid != NULL) {
-            //$sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
-            // echo $sqlquery;
-            // $results = $wpdb->get_results( $sqlquery, ARRAY_A );
-            $results = NULL;
+            echo '<h1 style="color: blue;">delete image here 177 - '.$imgid.'</h1>';
+            $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
+            echo $sqlquery;
+            $results = $wpdb->get_results( $sqlquery, ARRAY_A );
+            // $results = NULL;
           } else {
             $results = NULL;
           }
@@ -85,11 +86,14 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
                 $deletefile = $imgdir.$result['meta_value'];
                 $froot = explode('.',$deletefile);
                 $froot = $froot[0]; // we want of root of the filename with no extension
+                echo '<pre style="color: blue">';
                 foreach( glob($froot.'*') as $file )
                 {
                     // this deletes all files with the orignal images name pattern, deletes WP versions
+                    echo $file."<br/>\n";
                     unlink($file);
                 }
+                echo '<pre>';
 
               }
               // delete the image post
@@ -568,18 +572,6 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
      $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
      // echo '<p style="color: green;">new-id: '.$myid.'</p>';
    }
-
-   /* debugging
-   echo '<pre style="background-color: cyan;">';
-   echo 'post_name'.$post_name.'<br/>';
-   echo 'attachment_id:';
-   print_r($attachment_id);
-   echo '<br/>';
-   echo 'myid: '.$myid;
-   echo '<br/>';
-   print_r($file_array);
-   echo '</pre>';
-   */
 
    return $myid;
 
