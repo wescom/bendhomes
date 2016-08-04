@@ -32,7 +32,7 @@
             </span>
         </h5>
         <h4 class="title">
-        	<a href="#mortgage-calculator" data-toggle="modal"><i class="fa fa-calculator"></i> Calculate Payment</a>
+        	<a href="#mortgage-calculator" data-toggle="modal" onClick="ga('send', 'event', 'mortCalc', 'viewed');"><i class="fa fa-calculator"></i> Calculate Payment</a>
             <?php
 
             /* Property ID if exists */
