@@ -209,3 +209,13 @@ function tbb_admin_load_property_script() {
 		
     }
 }
+
+
+function current_url() {
+    $protocol = strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === FALSE ? 'http' : 'https';
+    $host     = $_SERVER['HTTP_HOST'];
+    $script   = $_SERVER['SCRIPT_NAME'];
+    $params   = $_SERVER['QUERY_STRING'];
+
+    return $protocol . '://' . $host . $script . '?' . $params;
+}
