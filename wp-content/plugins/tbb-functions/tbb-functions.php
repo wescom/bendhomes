@@ -173,7 +173,8 @@ function populate_agent_admin_column($column_name, $term_id) {
 add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
 function tbb_search_by_title_only( $search, &$wp_query ) {
 
-	$type = $_GET['post_type'];
+	$type = '';
+	if( isset( $_GET['post_type'] ) ) $type = $_GET['post_type'];
 	
     if( $type == 'agent' ) {
 
