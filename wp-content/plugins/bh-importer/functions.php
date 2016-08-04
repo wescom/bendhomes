@@ -310,7 +310,7 @@ function bhLookupPropertyType($typestring) {
     // echo '</pre>';
 
     // there is usually only one result, but if more, take the first key
-    $myid = $result[0]->{term_id};
+    $myid = $result[0]->{'term_id'};
     $myid = (int) $myid;
 
     $output[] = $myid;

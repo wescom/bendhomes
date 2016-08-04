@@ -70,9 +70,9 @@ function dataPreProc($proparr,$scenarioset) {
       $agentposts = bhLookupAgent($agentguid);
 
       $bhagentid = $agentposts[0];
-      $bhagentid = $bhagentid->{ID};
+      $bhagentid = $bhagentid->{'ID'};
       $bhagentfullname = $agentposts[0];
-      $bhagentfullname = $bhagentfullname->{post_title};
+      $bhagentfullname = $bhagentfullname->{'post_title'};
 
       // echo '<h2 style="color: red;">';
       // echo $propitem['ShowAddressToPublic'];
