@@ -55,6 +55,16 @@ $scenarios = array(
   )
 );
 
+if ( ! function_exists( 'delete_all_post_meta' ) ) {
+  function delete_all_post_meta($post_id) {
+    // get all post meta
+    $meta = get_post_meta( $post_id );
+    echo '<pre> jtg234B -- <br/>';
+    print_r($meta);
+    echo '</pre>';
+  }
+}
+
 if ( ! function_exists( 'delete_associated_media' ) ) {
   function delete_associated_media($post_id) {
     global $wpdb;
@@ -287,7 +297,7 @@ function bhLookupPropertyType($typestring) {
 
   $output = array();
   foreach($types as $type) {
-
+    echo '<pre style="background-color: orange;"> test322db -- ';
     // remove any spaces
     $type = trim($type);
 
@@ -298,20 +308,21 @@ function bhLookupPropertyType($typestring) {
 
     // need single quotes around string for correct mysql syntax
     $type = "'".$type."'";
-    $result = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$type);
+    $result = $wpdb->get_results("SELECT term_id FROM wp_terms WHERE name LIKE ".$type);
 
-    // for debugging
-    /* echo '<pre> test322db -- ';
-    print_r($type);
-    echo '<br/>';
-    print_r($result);
-    echo '</pre>'; */
+    if(!empty($result)) {
+      // for debugging
+      print_r($type);
+      echo '<br/>';
+      print_r($result);
 
-    // there is usually only one result, but if more, take the first key
-    $myid = $result[0]->{'term_id'};
-    $myid = (int) $myid;
+      // there is usually only one result, but if more, take the first key
+      $myid = $result[0]->{'term_id'};
+      $myid = (int) $myid;
 
-    $output[] = $myid;
+      $output[] = $myid;
+    }
+    echo '</pre>';
   }
   return $output;
 }

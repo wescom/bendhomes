@@ -92,12 +92,13 @@ function dataPreProc($proparr,$scenarioset) {
       	case "OpenHouse_OPEN":
       		break;
       	case "Property_BUSI":
+          $proptype = (!empty($propitem['BUSITYPE']) ? empty($propitem['BUSITYPE']) : $propitem['PropertyType']);
           // START Property_BUSI import template
           $retsproperties[$propitem['ListingRid']] = array(
             'inspiry_property_title' => $propname,
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
-            'type' => bhLookupPropertyType($propitem['BUSITYPE']),
+            'type' => bhLookupPropertyType($proptype),
             'status' => 34,
             'location' => $propitem['City'],
             'property-id' => $propitem['MLNumber'], // this the the MLS ID
@@ -342,11 +343,11 @@ function dataPropertyWPinsert($myproperty) {
             $del_property['ID'] = intval( $myproperty['property_id'] );
             echo '<h1>'.$action.' - '.$del_property['ID'].'</h1>';
             // delete (unlink) all images, and remove their posts and metadata
-            do_action( 'before_delete_post', $del_property['ID'] ); // Post th
+            do_action( 'before_delete_post', $del_property['ID'] );
             // delete all post metadata
-            delete_post_meta( $del_property['ID'] );
+            delete_all_post_meta( $del_property['ID'] );
             // delete the post itself
-            $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
+            // $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
         }
 
         if( $property_id > 0 ){
