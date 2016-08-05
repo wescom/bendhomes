@@ -70,7 +70,7 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
 
       // query the db and get image path and filename
       foreach ($imageids as $imgid) {
-          if($imgid != NULL) {
+          if(!empty($imgid) && is_string($imgid)) {
             $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
             echo $sqlquery;
             $results = $wpdb->get_results( $sqlquery, ARRAY_A );
