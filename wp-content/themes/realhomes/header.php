@@ -96,7 +96,18 @@
                             
                             	<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
                                 
-                                <a href="#mortgage-calculator" data-toggle="modal" onClick="ga('send', 'pageview', '<?php echo current_url().'&mortcalc=viewed'; ?>');"><i class="fa fa-calculator"></i>Mortgage Calculator</a>
+                                <?php
+								$url = $url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+								$query = parse_url($url, PHP_URL_QUERY);
+								// Returns a string if the URL has parameters or NULL if not
+								if ($query) {
+									$url .= '&mortcalc=viewed';
+								} else {
+									$url .= '?mortcalc=viewed';
+								}
+								?>
+                                
+                                <a href="#mortgage-calculator" data-toggle="modal" onClick="ga('send', 'pageview', '<?php echo $url; ?>');"><i class="fa fa-calculator"></i>Mortgage Calculator</a>
                                 
                                 <?php
                                 if(is_user_logged_in()){
