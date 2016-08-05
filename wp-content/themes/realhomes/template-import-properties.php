@@ -347,7 +347,7 @@ function dataPropertyWPinsert($myproperty) {
             // delete all post metadata
             delete_all_post_meta( $del_property['ID'] );
             // delete the post itself
-            // $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
+            $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
         }
 
         if( $property_id > 0 ){
