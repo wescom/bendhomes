@@ -46,7 +46,7 @@ function universalqueries($pulltime) {
       'LAND' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'MULT' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'RESI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)'
-	  //'RESI' => '(MLNumber=201510589)'
+	  //'RESI' => '(MLNumber=201601733)'
     ),
     'ActiveAgent' => array(
       'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',

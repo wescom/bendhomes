@@ -96,7 +96,7 @@
                             
                             	<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
                                 
-                                <a href="#mortgage-calculator" data-toggle="modal" onClick="ga('send', 'pageview', '<?php echo current_url().'&mortcalc=viewed'; ?>');"><i class="fa fa-calculator"></i>Mortgage Calculator</a>
+                                <a href="#mortgage-calculator" data-toggle="modal" onClick="ga('send', 'pageview', '<?php echo tbb_current_url( 'mortcalc=viewed' ); ?>');"><i class="fa fa-calculator"></i>Mortgage Calculator</a>
                                 
                                 <?php
                                 if(is_user_logged_in()){
