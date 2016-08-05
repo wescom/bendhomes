@@ -167,7 +167,7 @@ foreach($agentarr as $agentitem) {
   $guid = 'agent_'.$agentitem['MemberNumber'];
   $agentposts = bhLookupAgent($guid);
   $bhagentid = $agentposts[0];
-  $bhagentid = $bhagentid->{ID};
+  $bhagentid = $bhagentid->{'ID'};
   $postaction = bhAgentPostAction($agentitem['IsActive'],$bhagentid);
   $postcontent = $agentitem['OfficeName'].'<br/> '.$agentitem['StreetAddress'].'<br/> '.$agentitem['StreetCity'].', '.$agentitem['StreetState'].' '.$agentitem['StreetZipCode'];
   $mobilephone = getMobilePhone($agentitem);
@@ -196,7 +196,7 @@ foreach($agentarr as $agentitem) {
       'post_name' => $urlslug,
       'post_type' => 'agent',
       'images' => $agentitem['images'], // pipe delimited list of rets api images
-      'office_number' => $agentitem['OfficeNumber'], // MLS number of office
+      'office_number' => ( isset($agentitem['OfficeNumber']) ? $agentitem['OfficeNumber'] : NULL ) , // MLS number of office
       'REAL_HOMES_meta' => array(
         // 'agent_email' => '',
         'mobile_number' => $mobilephone,
@@ -228,14 +228,11 @@ foreach($agentarr as $agentitem) {
 }
 
 function dataAgentWPinsert($myagent) {
-
-    echo '<hr/>';
-    echo '<h1 class="'.$myagent['action'].'">'.$count.' - '.$myagent['action'].'</h1>';
-
-    echo '<pre>';
+    echo '<pre style="font-weight: bold;">';
+    echo '<span class="'.$myagent['action'].'">'.$myagent['action'].'</span><br/>';
     echo 'my agent: <br/>';
     print_r($myagent);
-    echo '<pre>';
+    echo '</pre>';
 
     $invalid_nonce = false;
     $submitted_successfully = false;
