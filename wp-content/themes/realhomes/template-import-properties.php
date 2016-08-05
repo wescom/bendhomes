@@ -22,12 +22,13 @@ function dataPreProc($proparr,$scenarioset) {
   $count = 0;
 
   $raw_property_count = count($proparr);
-  echo '<h1>raw property count: '.$raw_property_count.'</h1>';
+  // echo '<h1>raw property count: '.$raw_property_count.'</h1>';
   /* #### PROPERTY DATA LOOP ##### */
   $retsproperties = array(); // first declaration
 
   foreach($proparr as $propitem) {
 
+    /*
     echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
     echo 'status: ';
     print_r($propitem['Status']);
@@ -36,12 +37,11 @@ function dataPreProc($proparr,$scenarioset) {
     echo 'ml number: ';
     print_r($propitem['MLNumber']);
     echo '</pre>';
+    */
 
     // status use cases
     // DECIDE what to do with pre-existing records
     // update, delete
-
-
 
     $mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
     $bhpropertyid = $mlsposts[0];
@@ -49,8 +49,7 @@ function dataPreProc($proparr,$scenarioset) {
 
     $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
     $propname = trim($propname);
-
-    $retsproperties[$propitem['ListingRid']]['property-mlstatus'] = $propitem['Status'];
+    $propname = preg_replace('!\s+!', ' ', $propname); // if multiple spaces, replace with one space
 
     // // end use cases
     // add_property
@@ -63,7 +62,6 @@ function dataPreProc($proparr,$scenarioset) {
       $retsproperties[$propitem['ListingRid']]['property-id'] = $propitem['MLNumber']; // this the the MLS ID
       $retsproperties[$propitem['ListingRid']]['inspiry_property_title'] = $propname;
     } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
-
       $propprice = formatprice($propitem['ListingPrice']);
 
       $agentguid = 'agent_'.$propitem['ListingAgentNumber'];
@@ -73,10 +71,6 @@ function dataPreProc($proparr,$scenarioset) {
       $bhagentid = $bhagentid->{'ID'};
       $bhagentfullname = $agentposts[0];
       $bhagentfullname = $bhagentfullname->{'post_title'};
-
-      // echo '<h2 style="color: red;">';
-      // echo $propitem['ShowAddressToPublic'];
-      // echo '</h2>';
 
       if($propitem['ShowAddressToPublic'] == '0') {
         $bhpublicaddressflag = 'no';
@@ -262,11 +256,13 @@ function dataPreProc($proparr,$scenarioset) {
       unset($bhimgids);
     } // end $postaction ifelse
 
+    $retsproperties[$propitem['ListingRid']]['property-mlstatus'] = $propitem['Status'];
+
     $data_to_insert = $retsproperties[$propitem['ListingRid']];
     // echo '<h1>'.$data_to_insert['action'].'</h1>';
-    // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
-    // print_r($data_to_insert);
-    // echo '</pre>';
+    echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
+    print_r($data_to_insert);
+    echo '</pre>';
     // usleep(500000); // 1/2 second sleep
     dataPropertyWPinsert($data_to_insert);
     // sleep(1);
@@ -287,7 +283,7 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  echo '<pre style="border: 1px solid #000; padding: 10px;">';
+  echo '<pre style="border: 1px solid #cc0000; padding: 10px;">';
   echo 'action: '.$myproperty['action']."<br/>\n";
   echo 'title: '.$myproperty['inspiry_property_title']."<br/>\n";
   echo 'MLS number: '.$myproperty['property-id']."<br/>\n";
@@ -535,7 +531,7 @@ function dataPropertyWPinsert($myproperty) {
 } // end wp insert function
 
 bh_write_to_log('import start: '.date(DATE_RSS),'properties');
-// echo 'import start: '.date(DATE_RSS)."<br/>\n";
+echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import start - '.date(DATE_RSS).'</h1>';
 foreach($scenarios as $scenario) {
   // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
   // echo '<pre>';
@@ -552,7 +548,7 @@ foreach($scenarios as $scenario) {
   // $do = dataPropertyWPinsert($retsPreProcResults);
   echo '<hr/>';
 }
-// echo 'import complete: '.date(DATE_RSS)."<br/>\n";
+echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import end - '.date(DATE_RSS).'</h1>';
 bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
 
 ?>

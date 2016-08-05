@@ -71,11 +71,9 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
       // query the db and get image path and filename
       foreach ($imageids as $imgid) {
           if($imgid != NULL) {
-            echo '<h1 style="color: blue;">delete image here 177 - '.$imgid.'</h1>';
             $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
             echo $sqlquery;
             $results = $wpdb->get_results( $sqlquery, ARRAY_A );
-            // $results = NULL;
           } else {
             $results = NULL;
           }
@@ -100,9 +98,6 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
               $delpost = wp_delete_post( $imgid );
             }
           }
-
-          // wp_delete_attachment($attachment->ID);
-          // unlink(get_attached_file($file->ID));
       }
     }
   }
@@ -305,9 +300,12 @@ function bhLookupPropertyType($typestring) {
     $type = "'".$type."'";
     $result = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$type);
 
-    // echo '<pre> test322db -- ';
-    // print_r($result);
-    // echo '</pre>';
+    // for debugging
+    /* echo '<pre> test322db -- ';
+    print_r($type);
+    echo '<br/>';
+    print_r($result);
+    echo '</pre>'; */
 
     // there is usually only one result, but if more, take the first key
     $myid = $result[0]->{'term_id'};
@@ -319,7 +317,7 @@ function bhLookupPropertyType($typestring) {
 }
 
 function bhLookupFeatures($featlist_interior,$featlist_exterior) {
-  // this taked the
+  // this takes the
   // RESIINTE, RESIEXTE,
   // and does a like compare to property types in the Wordpress database
   // it then supplies the property type as an integer for feed ingestion
@@ -329,6 +327,10 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
   $fext = explode(',',$featlist_exterior);
   $features = array_merge($fint,$fext);
 
+  echo '<pre> jtg177dba -- ';
+  print_r($features);
+  echo '</pre>';
+
   foreach($features as $feature) {
     $feature = "'".$feature."'";
     $results[] = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$feature, OBJECT);
@@ -336,12 +338,11 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
 
   $output = array();
   foreach($results as $result) {
-    $output[] = $result[0]->{term_id};
+    if(!empty($result[0]->{'term_id'})) {
+      $output[] = $result[0]->{'term_id'};
+    }
   }
 
-  // strip empty keys from array
-  $output = array_filter($output);
-  // print_r($output);
   return $output;
 }
 
@@ -450,7 +451,7 @@ function bhPostActions($status,$mlsid=NULL) {
 
   // $apiaction = 'delete_property';
 
-  echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>wordpress post id: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
+  // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>wordpress post id: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
   return $apiaction;
 }
 
