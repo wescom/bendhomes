@@ -57,7 +57,7 @@ $properties_for_map_query = new WP_Query( $properties_for_map );
 
 $total_count = $properties_for_map_query->found_posts;
 
-if( $total_count < 500 || is_page_template('template-property-listing.php') ) {
+if( $total_count < 1000 || is_page_template('template-property-listing.php') ) {
 
 	$properties_data = array();
 	
@@ -272,12 +272,12 @@ if( $total_count < 500 || is_page_template('template-property-listing.php') ) {
 		}
 	endif;
 
-}  else { // end if total count < 500 ?>
+}  else { // end if total count < 100 ?>
 
 	<div class="container">
 		<div style="text-align: center; padding: 15px 0 80px;">
         	<h2 style="color: #971D20;">Oops.</h2>
-            <h4 style="color: #971D20;">Looks like there's over 500 results in your search. Please narrow your criteria and try again.</h4>
+            <h4 style="color: #971D20;">Looks like there's over 1000 results in your search. Please narrow your criteria and try again.</h4>
         </div>
 	</div>
 
