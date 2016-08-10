@@ -29,7 +29,24 @@
                 <div class="main">
 
                     <div class="inner-wrapper clearfix" style="margin-bottom: 0;">
-                        <?php  get_template_part("loop");  ?>
+                    	<?php 
+						if( $post_type == 'agent' || $post_type == 'company' ) {
+							
+							$output = '<div class="custom-search-wrap">';
+								$output .= '
+									<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
+										<input type="text" class="search-field" name="s" placeholder="Search..."/>
+										<input type="hidden" name="post_type" value="'. $post_type .'" />
+										<input type="submit" class="btn real-btn" alt="Search" value="Search" />
+									</form>
+								';
+							$output .= '</div>';
+							
+							echo $output;
+						}
+                        
+						get_template_part("loop");
+						?>
                     </div>
 
                 </div><!-- End Main Content -->
