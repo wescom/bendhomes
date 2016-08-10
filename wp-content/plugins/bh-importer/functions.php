@@ -94,15 +94,12 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
                 $deletefile = $imgdir.$result['meta_value'];
                 $froot = explode('.',$deletefile);
                 $froot = $froot[0]; // we want of root of the filename with no extension
-                echo '<pre style="color: blue">';
                 foreach( glob($froot.'*') as $file )
                 {
                     // this deletes all files with the orignal images name pattern, deletes WP versions
-                    echo $file."<br/>\n";
+                    // echo $file."<br/>\n";
                     unlink($file);
                 }
-                echo '<pre>';
-
               }
               // delete the image post
               $delpost = wp_delete_post( $imgid );
