@@ -277,7 +277,7 @@ if( $total_count < 1000 || is_page_template('template-property-listing.php') ) {
 	<div class="container">
 		<div style="text-align: center; padding: 15px 0 80px;">
         	<h2 style="color: #971D20;">Oops.</h2>
-            <h4 style="color: #971D20;">Looks like there's over 1000 results in your search. Please narrow your criteria and try again. We recommend choosing a Min and Max price to narrow results.</h4>
+            <h4 style="color: #971D20; max-width: 900px; margin: 0 auto;">Looks like there's over 1000 results in your search.<br>Please narrow your criteria and try again. We recommend choosing a Min and Max price to narrow results.</h4>
         </div>
 	</div>
 
