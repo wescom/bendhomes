@@ -93,7 +93,7 @@ footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding:
 .share-facebook { background: #3F589B; } .share-twitter { background: #00ACED; } .share-googleplus { background: #D84533; }
 #overview .share-networks .add-to-fav a, #overview .share-networks .add-to-fav a i { color: #394041; }
 #overview .share-networks .add-to-fav a:hover, #overview .share-networks .add-to-fav a:hover i { color: #f60; }
-.post-meta.standard-meta.thumb-not-exist { font-size: .75em; margin-bottom: 1em; }
+.post-meta.standard-meta.thumb-exist, .post-meta.standard-meta.thumb-not-exist { font-size: .75em; margin-bottom: 1em; }
 h3.search-results-header { float: left; margin: 0; }
 
 #home-flexslider .slide-description .brokerage-label { border: none; border-top: 1px solid #dedede; padding: 5px 0 0; margin-top: 7px; display: block; float: none; }
