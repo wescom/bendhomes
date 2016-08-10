@@ -32,11 +32,13 @@
                     	<?php 
 						if( $post_type == 'agent' || $post_type == 'company' ) {
 							
+							$find_text = $post_type == 'agent' ? 'Find an '. $post_type : 'Find a '. $post_type;
+							
 							$output = '<div class="custom-search-wrap">';
 								$output .= '
 									<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
 										<input type="text" class="search-field" name="s" placeholder="Search..."/>
-										<input type="hidden" name="post_type" value="'. $post_type .'" />
+										<input type="hidden" name="post_type" value="'. $find_text .'" />
 										<input type="submit" class="btn real-btn" alt="Search" value="Search" />
 									</form>
 								';
