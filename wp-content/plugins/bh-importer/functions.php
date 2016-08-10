@@ -294,7 +294,6 @@ function bhLookupPropertyType($typestring) {
 
   $output = array();
   foreach($types as $type) {
-    echo '<pre style="background-color: orange;"> test322db -- ';
     // remove any spaces
     $type = trim($type);
 
@@ -309,9 +308,9 @@ function bhLookupPropertyType($typestring) {
 
     if(!empty($result)) {
       // for debugging
-      print_r($type);
-      echo '<br/>';
-      print_r($result);
+      // print_r($type);
+      // echo '<br/>';
+      // print_r($result);
 
       // there is usually only one result, but if more, take the first key
       $myid = $result[0]->{'term_id'};
@@ -319,7 +318,6 @@ function bhLookupPropertyType($typestring) {
 
       $output[] = $myid;
     }
-    echo '</pre>';
   }
   return $output;
 }
