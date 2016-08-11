@@ -216,7 +216,7 @@ function runRetsQuery($qvars) {
           $photopreferred = $photo->getPreferred();
           if($photo->getObjectId() != '*') {
             $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
-            echo '<pre style="color: blue;">'.$photofilename.'</pre>';
+            // echo '<pre style="color: blue;">'.$photofilename.'</pre>';
             $photolist[] = $photofilename;
             $fname = RETSABSPATH.'/images/'.strtolower($qvars['resource']).'/'.$photofilename;
             $fnamebackup = RETSABSPATH.'/imagesbackup/'.strtolower($qvars['resource']).'/'.$photofilename;
