@@ -64,7 +64,7 @@ if ( ! function_exists( 'delete_all_post_meta' ) ) {
       echo 'deleted meta key: '.$meta_key."<br/>\n";
       echo 'deleted meta value: '.print_r($meta_value)."<br/>\n";
       echo '</pre>';
-      // delete_post_meta($post_id, $meta_key, $meta_value = '' )
+      // delete_post_meta($post_id, $meta_key);
     }
   }
 }

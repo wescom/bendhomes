@@ -36,7 +36,7 @@ function universalqueries($pulltime) {
   // used for initial pull, nuclear option to get all data
   // $pulltime = '2015-01-01T00:00Z';
 
-  $manual_mls = $_GET['mls'];
+  $manual_mls = (isset($_GET['mls']) ? isset($_GET['mls']) : NULL);
 
   $universalqueries = array(
     'Property' => array(
