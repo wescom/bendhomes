@@ -131,12 +131,12 @@ function dbpopulate($items,$dbtable) {
   );
   $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
   unset($db);
-  echo '<pre style="margin: 1em 0; border: 1px solid #333; background-color: #ececec;">';
+  // echo '<pre style="margin: 1em 0; border: 1px solid #333; background-color: #ececec;">';
   $reportout = '<h4>db table: '.$dbtable.'</h4>';
   $i = 0;
   foreach($items as $key => $array) {
-    echo 'count: '.$i.'<br/>';
-    echo '<p style="background-color: green; color: #fff;">'.$key.' --> '.print_r($array).'</p>';
+    // echo 'count: '.$i.'<br/>';
+    // echo '<p style="background-color: green; color: #fff;">'.$key.' --> '.print_r($array).'</p>';
 
     // escape the array for db username
     $escarray = array_map('mysql_real_escape_string', $array);

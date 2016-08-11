@@ -60,7 +60,8 @@ if ( ! function_exists( 'delete_all_post_meta' ) ) {
     // get all post meta
     $meta = get_post_meta( $post_id );
     foreach ($meta as $meta_key => $meta_value) {
-      echo '<pre> delete all post meta - jtg234BB -- <br/>';
+      echo '<pre> delete all post meta - jtg23C -- <br/>';
+      echo 'PRETEND delete meta from post_id: '.$post_id;
       echo 'deleted meta key: '.$meta_key."<br/>\n";
       echo 'deleted meta value: '.print_r($meta_value)."<br/>\n";
       echo '</pre>';
@@ -87,7 +88,7 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
       foreach ($imageids as $imgid) {
           if(!empty($imgid) && is_string($imgid)) {
             $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
-            echo $sqlquery.'<br/>';
+            // echo $sqlquery.'<br/>';
             $results = $wpdb->get_results( $sqlquery, ARRAY_A );
           } else {
             $results = NULL;
@@ -102,12 +103,14 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
                 foreach( glob($froot.'*') as $file )
                 {
                     // this deletes all files with the orignal images name pattern, deletes WP versions
-                    echo '<span style="color: red;">deleted image: '.$file.'</span><br/>'."\n";
+                    // echo '<span style="color: red;">deleted image: '.$file.'</span><br/>'."\n";
                     unlink($file);
                 }
               }
               // delete the image post
-              $delpost = wp_delete_post( $imgid );
+              echo '<span style="color: green;">post id that has postmeta and post deleted: '.$del_property['ID'].'</span><br/>';
+              delete_all_post_meta( $imgid );
+              wp_delete_post( $imgid );
             }
           }
       }

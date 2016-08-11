@@ -345,6 +345,7 @@ function dataPropertyWPinsert($myproperty) {
             // delete (unlink) all images, and remove their posts and metadata
             do_action( 'before_delete_post', $del_property['ID'] );
             // delete all post metadata
+            echo '<span style="color: blue;">post id that has postmeta and post deleted: '.$del_property['ID'].'</span><br/>';
             delete_all_post_meta( $del_property['ID'] );
             // delete the post itself
             $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
