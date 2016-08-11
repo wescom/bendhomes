@@ -60,12 +60,13 @@ if ( ! function_exists( 'delete_all_post_meta' ) ) {
     // get all post meta
     $meta = get_post_meta( $post_id );
     foreach ($meta as $meta_key => $meta_value) {
-      echo '<pre> delete all post meta - jtg23C -- <br/>';
-      echo 'PRETEND delete meta from post_id: '.$post_id;
+      echo '<hr/>';
+      echo '<pre> delete all post meta - jtg23D -- <br/>';
+      echo 'delete meta from post_id: '.$post_id;
       echo 'deleted meta key: '.$meta_key."<br/>\n";
       echo 'deleted meta value: '.print_r($meta_value)."<br/>\n";
       echo '</pre>';
-      // delete_post_meta($post_id, $meta_key);
+      delete_post_meta($post_id, $meta_key);
     }
   }
 }
