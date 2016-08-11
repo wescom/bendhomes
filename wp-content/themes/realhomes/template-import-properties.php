@@ -256,21 +256,17 @@ function dataPreProc($proparr,$scenarioset) {
 
       unset($bhimgids);
     } // end $postaction ifelse
-
+    
     $retsproperties[$propitem['ListingRid']]['property-mlstatus'] = $propitem['Status'];
-
     $data_to_insert = $retsproperties[$propitem['ListingRid']];
     // echo '<h1>'.$data_to_insert['action'].'</h1>';
-    echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
-    print_r($data_to_insert);
-    echo '</pre>';
+    // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
+    // print_r($data_to_insert);
+    // echo '</pre>';
     // usleep(500000); // 1/2 second sleep
     dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
-
-
-
     $count++;
   } // end $propitem forach
   // $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;

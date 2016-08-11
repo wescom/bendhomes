@@ -61,7 +61,7 @@ if ( ! function_exists( 'delete_all_post_meta' ) ) {
     $meta = get_post_meta( $post_id );
     foreach ($meta as $meta_key => $meta_value) {
       echo '<hr/>';
-      echo '<pre> delete all post meta - jtg23D -- <br/>';
+      echo '<pre> delete all post meta<br/>';
       echo 'delete meta from post_id: '.$post_id;
       echo 'deleted meta key: '.$meta_key."<br/>\n";
       echo 'deleted meta value: '.print_r($meta_value)."<br/>\n";
