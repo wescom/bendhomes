@@ -34,7 +34,7 @@ $connect = $rets->Login();
 
 function universalqueries($pulltime) {
   // used for initial pull, nuclear option to get all data
-  // $pulltime = '1970-01-01T08:50Z';
+  // $pulltime = '2015-01-01T00:00Z';
 
   $manual_mls = $_GET['mls'];
 

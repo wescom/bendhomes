@@ -59,9 +59,13 @@ if ( ! function_exists( 'delete_all_post_meta' ) ) {
   function delete_all_post_meta($post_id) {
     // get all post meta
     $meta = get_post_meta( $post_id );
-    echo '<pre> jtg234B -- <br/>';
-    print_r($meta);
-    echo '</pre>';
+    foreach ($meta as $meta_key => $meta_value) {
+      echo '<pre> delete all post meta - jtg234BB -- <br/>';
+      echo 'deleted meta key: '.$meta_key."<br/>\n";
+      echo 'deleted meta value: '.print_r($meta_value)."<br/>\n";
+      echo '</pre>';
+      // delete_post_meta($post_id, $meta_key, $meta_value = '' )
+    }
   }
 }
 
@@ -70,8 +74,9 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
     global $wpdb;
     $imgdir = ABSPATH.'wp-content/uploads/';
 
-    echo 'media post id';
+    echo 'delete associated media post id';
     print_r($post_id);
+    echo "<br/>\n";
 
     // get post ids of all images
     $imageids = get_post_meta( $post_id, 'REAL_HOMES_property_images' );
@@ -82,7 +87,7 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
       foreach ($imageids as $imgid) {
           if(!empty($imgid) && is_string($imgid)) {
             $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
-            echo $sqlquery;
+            echo $sqlquery.'<br/>';
             $results = $wpdb->get_results( $sqlquery, ARRAY_A );
           } else {
             $results = NULL;
@@ -97,7 +102,7 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
                 foreach( glob($froot.'*') as $file )
                 {
                     // this deletes all files with the orignal images name pattern, deletes WP versions
-                    // echo $file."<br/>\n";
+                    echo '<span style="color: red;">deleted image: '.$file.'</span><br/>'."\n";
                     unlink($file);
                 }
               }
@@ -262,27 +267,6 @@ function bhLookupAgent($guid) {
   return $result;
 }
 
-
-
-/* from agent importer */
-/*
-function bhLookupAgent($guid) {
-  if($guid != NULL) {
-    global $wpdb;
-    $guid = "'http://".$guid."'";
-    $sqlquery = "SELECT ID FROM $wpdb->posts WHERE guid = ".$guid;
-    // echo $sqlquery;
-    $result = $wpdb->get_results( $sqlquery );
-  } else {
-    $result = NULL;
-  }
-  // echo '<pre> test222';
-  // print_r($result);
-  // echo '</pre>';
-  return $result;
-}
-*/
-
 function bhLookupPropertyType($typestring) {
   // this taked the RESIPropertySubtype var from rets
   // and does a like compare to property types in the Wordpress database
@@ -333,9 +317,10 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
   $fext = explode(',',$featlist_exterior);
   $features = array_merge($fint,$fext);
 
-  echo '<pre> jtg177dba -- ';
+  // debugging
+  /* echo '<pre> jtg177dba -- ';
   print_r($features);
-  echo '</pre>';
+  echo '</pre>'; */
 
   foreach($features as $feature) {
     $feature = "'".$feature."'";
@@ -492,7 +477,7 @@ function dbresult($sset) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
     // $pulldate = strtotime('-730 days'); //'-6 hours' '-1 day' '-10 years'
-    $pulldate = strtotime("-2 days");
+    $pulldate = strtotime("-1 year");
   }
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
