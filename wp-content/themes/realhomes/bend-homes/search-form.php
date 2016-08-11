@@ -5,46 +5,24 @@ if( !empty($theme_search_fields) ):
 <div class="as-form-wrap">
     <form class="advance-search-form clearfix" action="<?php global $theme_search_url; echo $theme_search_url; ?>" method="get">
     <?php
-
-    if ( in_array ( 'type', $theme_search_fields ) ) {
+	
+	if ( in_array ( 'keyword-search', $theme_search_fields ) ) {
 		?>
 		<div class="option-bar large">
-			<label for="select-property-type"><?php _e('Property Type', 'framework'); ?></label>
-			<span class="selectwrap">
-				<select name="type" id="select-property-type" class="search-select">
-					<?php advance_hierarchical_options('property-type'); ?>
-				</select>
-			</span>
+			<label for="keyword-txt"><?php _e('Keyword', 'framework'); ?></label>
+			<input type="text" name="keyword" id="keyword-txt" value="<?php echo isset ( $_GET['keyword'] ) ? $_GET['keyword'] : ''; ?>" placeholder="<?php _e('Any', 'framework'); ?>" />
 		</div>
 		<?php
 	}
-
-    if ( in_array ( 'location', $theme_search_fields ) ) {
-
-        // number of locations chosen from theme options
-        $location_select_count = inspiry_get_locations_number();
-
-        // Variable that contains location select boxes names
-        $location_select_names = inspiry_get_location_select_names();;
-
-        // Default location select boxes titles
-        $location_select_titles = inspiry_get_location_titles();
-
-        // Generate required location select boxes
-        for ( $i=0; $i < $location_select_count; $i++ ) {
-            ?>
-            <div class="option-bar large">
-                <label for="<?php echo $location_select_names[$i];  ?>"><?php echo $location_select_titles[$i] ?></label>
-                <span class="selectwrap">
-                    <select name="<?php echo $location_select_names[$i]; ?>" id="<?php echo $location_select_names[$i];  ?>" class="search-select"></select>
-                </span>
-            </div>
-            <?php
-        }
-
-        // important action hook - related JS works based on it
-        do_action( 'after_location_fields' );
-    }
+	
+	if ( in_array ( 'property-id', $theme_search_fields ) ) {
+		?>
+		<div class="option-bar large">
+			<label for="property-id-txt"><?php /* _e('Property ID', 'framework'); */ echo 'MLS#'?></label>
+			<input type="text" name="property-id" id="property-id-txt" value="<?php echo isset($_GET['property-id'])?$_GET['property-id']:''; ?>" placeholder="<?php _e('Any', 'framework'); ?>" />
+		</div>
+		<?php
+	}
 
     if ( in_array( 'min-max-price', $theme_search_fields ) ) {
 		?>
@@ -146,6 +124,46 @@ if( !empty($theme_search_fields) ):
 				</div>
 				<?php
 			}
+			
+			if ( in_array ( 'type', $theme_search_fields ) ) {
+				?>
+				<div class="option-bar large">
+					<label for="select-property-type"><?php _e('Property Type', 'framework'); ?></label>
+					<span class="selectwrap">
+						<select name="type" id="select-property-type" class="search-select">
+							<?php advance_hierarchical_options('property-type'); ?>
+						</select>
+					</span>
+				</div>
+				<?php
+			}
+		
+			if ( in_array ( 'location', $theme_search_fields ) ) {
+		
+				// number of locations chosen from theme options
+				$location_select_count = inspiry_get_locations_number();
+		
+				// Variable that contains location select boxes names
+				$location_select_names = inspiry_get_location_select_names();;
+		
+				// Default location select boxes titles
+				$location_select_titles = inspiry_get_location_titles();
+		
+				// Generate required location select boxes
+				for ( $i=0; $i < $location_select_count; $i++ ) {
+					?>
+					<div class="option-bar large">
+						<label for="<?php echo $location_select_names[$i];  ?>"><?php echo $location_select_titles[$i] ?></label>
+						<span class="selectwrap">
+							<select name="<?php echo $location_select_names[$i]; ?>" id="<?php echo $location_select_names[$i];  ?>" class="search-select"></select>
+						</span>
+					</div>
+					<?php
+				}
+		
+				// important action hook - related JS works based on it
+				do_action( 'after_location_fields' );
+			}
 
             if ( in_array ( 'status', $theme_search_fields ) ) {
                 ?>
@@ -174,24 +192,6 @@ if( !empty($theme_search_fields) ):
                 </div>
                 <?php
             }
-			
-			if ( in_array ( 'property-id', $theme_search_fields ) ) {
-                ?>
-                <div class="option-bar large">
-                    <label for="property-id-txt"><?php /* _e('Property ID', 'framework'); */ echo 'MLS#'?></label>
-                    <input type="text" name="property-id" id="property-id-txt" value="<?php echo isset($_GET['property-id'])?$_GET['property-id']:''; ?>" placeholder="<?php _e('Any', 'framework'); ?>" />
-                </div>
-                <?php
-            }
-			
-			if ( in_array ( 'keyword-search', $theme_search_fields ) ) {
-				?>
-				<div class="option-bar large">
-					<label for="keyword-txt"><?php _e('Keyword', 'framework'); ?></label>
-					<input type="text" name="keyword" id="keyword-txt" value="<?php echo isset ( $_GET['keyword'] ) ? $_GET['keyword'] : ''; ?>" placeholder="<?php _e('Any', 'framework'); ?>" />
-				</div>
-				<?php
-			}
 
             echo '<div class="option-checkboxes clearfix">';
             foreach ($all_features as $feature ) {
