@@ -109,7 +109,7 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
                 }
               }
               // delete the image post
-              echo '<span style="color: green;">post id that has postmeta and post deleted: '.$del_property['ID'].'</span><br/>';
+              echo '<span style="color: green;">post id that has postmeta and post deleted: '.$imgid.'</span><br/>';
               delete_all_post_meta( $imgid );
               wp_delete_post( $imgid );
             }

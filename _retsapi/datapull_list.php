@@ -91,7 +91,7 @@ function buildRetsQuery($fqvars) {
     $pulldate['recent'] = file_get_contents($fnamerecent);
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
-    $pulldate['recent'] = strtotime("-1 day");
+    $pulldate['recent'] = strtotime("-5 years"); // 1 year, 2 years, 1 week, 2 weeks, etc
   }
 
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
@@ -135,7 +135,7 @@ function dbpopulate($items,$dbtable) {
   $reportout = '<h4>db table: '.$dbtable.'</h4>';
   $i = 0;
   foreach($items as $key => $array) {
-    // echo 'count: '.$i.'<br/>';
+    echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
     // echo '<p style="background-color: green; color: #fff;">'.$key.' --> '.print_r($array).'</p>';
 
     // escape the array for db username
@@ -216,7 +216,7 @@ function runRetsQuery($qvars) {
           $photopreferred = $photo->getPreferred();
           if($photo->getObjectId() != '*') {
             $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
-            // echo '<pre style="color: blue;">'.$photofilename.'</pre>';
+            echo '<pre style="color: blue;">'.$photofilename.'</pre>';
             $photolist[] = $photofilename;
             $fname = RETSABSPATH.'/images/'.strtolower($qvars['resource']).'/'.$photofilename;
             $fnamebackup = RETSABSPATH.'/imagesbackup/'.strtolower($qvars['resource']).'/'.$photofilename;
