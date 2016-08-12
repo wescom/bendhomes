@@ -30,7 +30,8 @@ if($slider_query->have_posts()){
                     $slider_query->the_post();
                     $slider_image_id = get_post_meta( $post->ID, 'REAL_HOMES_slider_image', true );
                     if($slider_image_id){
-                        $slider_image_url = wp_get_attachment_url($slider_image_id);
+                        //$slider_image_url = wp_get_attachment_url($slider_image_id);
+						$slider_image = wp_get_attachment_image_src( $slider_image_id, 'large', true);
                         ?>
                         <li>
                             <div class="desc-wrap">
@@ -47,7 +48,9 @@ if($slider_query->have_posts()){
                                     <a href="<?php the_permalink(); ?>" class="know-more"><?php _e('Know More','framework'); ?></a>
                                 </div>
                             </div>
-                            <a href="<?php the_permalink(); ?>"><img src="<?php echo $slider_image_url; ?>" alt="<?php the_title(); ?>"></a>
+                            <a href="<?php the_permalink(); ?>">
+                            	<img src="<?php echo $slider_image[0]; ?>" width="<?php echo $slider_image[1]; ?>" height="<?php echo $slider_image[2]; ?>" alt="<?php the_title(); ?>">
+                            </a>
                         </li>
                         <?php
                     }
