@@ -103,19 +103,3 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 }
 
 
-add_actions('wp_head', 'tbb_load_header_scripts');
-function tbb_load_header_scripts() {
-	ob_start(); ?>
-    
-<script type="text/javascript">
-var trackOutboundLink = function(url, type) {
-   ga('send', 'event', type, 'click', url, {
-	 'transport': 'beacon',
-	 'hitCallback': function(){document.location = url;}
-   });
-}
-</script>
-    
-    <?php
-	return ob_get_clean();
-}
