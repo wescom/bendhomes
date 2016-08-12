@@ -30,7 +30,6 @@ if($slider_query->have_posts()){
                     $slider_query->the_post();
                     $slider_image_id = get_post_meta( $post->ID, 'REAL_HOMES_slider_image', true );
                     if($slider_image_id){
-                        //$slider_image_url = wp_get_attachment_url($slider_image_id);
 						$slider_image = wp_get_attachment_image_src( $slider_image_id, 'large', true);
                         ?>
                         <li>
