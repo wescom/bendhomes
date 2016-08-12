@@ -4,6 +4,8 @@
 remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 // Remove wordpress Welcome panel
 remove_action('welcome_panel', 'wp_welcome_panel');
+// Remove wordpress generator meta tag that displays our wordpress version
+remove_action('wp_head', 'wp_generator');
 
 
 // Remove unneccesary menus from Admins (not Super Admins)
