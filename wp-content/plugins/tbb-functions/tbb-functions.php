@@ -53,6 +53,17 @@ function tbb_enqueue_additional_files() {
 }*/
 
 
+add_action('wp_footer', 'add_mailchimp_scripts_footer');
+function add_mailchimp_scripts_footer() {
+	ob_start(); ?>
+    
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+	<?php
+	$output = ob_get_clean();
+	echo $output;	
+}
+
+
 // Disable stupid emojicons scripts wordpress adds by default into the header.
 add_action( 'init', 'disable_wp_emojicons' );
 function disable_wp_emojicons() {
