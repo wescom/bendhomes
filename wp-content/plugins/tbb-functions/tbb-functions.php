@@ -106,9 +106,10 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 // Only show Mailchimp newsletter popup if user is not logged in or on the login page.
 add_filter( 'popmake_popup_is_loadable', 'tbb_popup_not_logged_in', 10, 2 );
 function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
-	if( $popup_id == 292579 ) {		
-		return ! is_user_logged_in();
-		return ! is_page( 'login-or-register' );
+	if( $popup_id == 292579 ) {	
+		if( !is_user_logged_in() || !is_page( 'login-or-register' ) ) return;	
+		//return ! is_user_logged_in();
+		//return ! is_page( 'login-or-register' );
 	}
 	return $is_loadable;
 }
