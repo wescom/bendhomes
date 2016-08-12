@@ -170,7 +170,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post .property-price small { color: #fff; }
 
 /* --- Mailchimp Form Modal --- */
-div#pum-292579.pum.pum-overlay.pum-theme-292573.popmake-overlay.1.pum-active { background: rgba(255,255,255,.7); }
+.pum-theme-292573, .pum-theme-default-theme { background: rgba(255,255,255,.7); }
 .pum-container.popmake { background: #fff; }
 .pum-theme-292573 .pum-container, .pum-theme-default-theme .pum-container { padding: 30px; }
 .pum-content h2 { text-align: center; font-size: 50px; margin-bottom: .5em; text-transform: uppercase; }
