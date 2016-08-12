@@ -107,7 +107,8 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 add_filter( 'popmake_popup_is_loadable', 'tbb_popup_not_logged_in', 10, 2 );
 function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
 	if( $popup_id == 292579 ) {		
-		return ! is_user_logged_in() || ! is_page( 171 );
+		if( ! is_user_logged_in() || ! is_page( 171 ) )
+			return;
 	}
 	return $is_loadable;
 }
