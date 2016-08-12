@@ -25,18 +25,12 @@ $config->setOption('disable_follow_location', false); // boolean
 // get a session ready using the configuration
 $rets = new \PHRETS\Session($config);
 
-// print_r($rets);
-
 // make the first request
 $connect = $rets->Login();
 
-// print_r($rets);
-
 function universalqueries($pulltime) {
-  // used for initial pull, nuclear option to get all data
-  // $pulltime = '2015-01-01T00:00Z';
 
-  $manual_mls = (isset($_GET['mls']) ? isset($_GET['mls']) : NULL);
+  $manual_mls = (isset($_GET['mls']) ? $_GET['mls'] : NULL);
 
   $universalqueries = array(
     'Property' => array(
