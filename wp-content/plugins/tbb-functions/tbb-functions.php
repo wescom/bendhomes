@@ -46,6 +46,7 @@ function tbb_enqueue_additional_files() {
 		wp_register_script('jquery-cookie', TBB_FUNCTIONS_URL .'js/jquery.cookie.min.js', array('jquery'), '', true);
         wp_enqueue_script('jquery');	
 		wp_enqueue_script('jquery-ui-core');
+		wp_enqueue_script('jquery-cookie');	
 	}
 	//wp_enqueue_script("mobile-check", TBB_FUNCTIONS_URL . "/js/mobile-check.js", array("jquery"));
 }
