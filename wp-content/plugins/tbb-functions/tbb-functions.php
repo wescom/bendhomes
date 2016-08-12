@@ -37,7 +37,7 @@ require_once('tbb-shortcodes.php');
 
 
 // Enqueue Additional Files
-add_action( 'wp_enqueue_scripts', 'tbb_enqueue_additional_files');
+/*add_action( 'wp_enqueue_scripts', 'tbb_enqueue_additional_files');
 function tbb_enqueue_additional_files() {
 	if (!is_admin() && $GLOBALS['pagenow'] != 'wp-login.php') {
 		wp_deregister_script('jquery');
@@ -50,7 +50,7 @@ function tbb_enqueue_additional_files() {
 		//wp_enqueue_script('jquery-cookie');	
 	}
 	//wp_enqueue_script("mobile-check", TBB_FUNCTIONS_URL . "/js/mobile-check.js", array("jquery"));
-}
+}*/
 
 
 // Disable stupid emojicons scripts wordpress adds by default into the header.
