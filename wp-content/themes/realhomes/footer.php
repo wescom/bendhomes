@@ -61,7 +61,9 @@
                           
 						  <?php //get_template_part("bend-homes/template-parts/gform-signup"); ?>
                           
-						  <?php get_template_part("bend-homes/template-parts/mailchimp_embed_form"); ?>                          
+						  <?php //get_template_part("bend-homes/template-parts/mailchimp_embed_form"); ?>
+                          
+                          <?php echo do_shortcode('[MAILCHIMP_FORM classes="footer" button_text="Subscribe Today"]'); ?>
                         </div>
 
                 </div>
