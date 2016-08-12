@@ -169,6 +169,15 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
 .custom-post .property-price small { color: #fff; }
 
+/* --- Mailchimp Form Modal --- */
+div#pum-292579.pum.pum-overlay.pum-theme-292573.popmake-overlay.1.pum-active { background: rgba(255,255,255,.7); }
+.pum-container.popmake { background: #fff; }
+.pum-content h2 { text-align: center; font-size: 50px; margin-bottom: .5em; text-transform: uppercase; }
+.pum-content h3 { text-align: center; font-size: 28px; line-height: 125%; margin-bottom: .5em; }
+.pum-content #mc_embed_signup .mc-field-group input[type=text], .pum-content #mc_embed_signup .mc-field-group input[type=email] { font-size: 18px; padding: 10px 5px; height: auto; border: 1px solid #C7C7C7; }
+.pum-content label { font-size: 18px; }
+.pum-content input#mc-embedded-subscribe.real-btn.btn { display: block; font-size: 20px; height: auto; float: none; padding: 16px 20px; width: 100%; text-transform: uppercase; font-weight: bold; }
+
 
 @media(max-width:1200px) {
 	.company-agent { width: 25%; }	
