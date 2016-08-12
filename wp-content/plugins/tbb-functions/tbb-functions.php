@@ -117,5 +117,5 @@ var trackOutboundLink = function(url, type) {
 </script>
     
     <?php
-	ob_get_clean();
+	return ob_get_clean();
 }
