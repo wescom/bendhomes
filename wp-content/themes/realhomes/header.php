@@ -159,10 +159,12 @@
 
                         <?php
                         $logo_path = get_option('theme_sitelogo');
+						list($width, $height) = getimagesize($logo_path);
+						
                         if(!empty($logo_path)){
                             ?>
                             <a title="<?php  bloginfo( 'name' ); ?>" href="<?php echo home_url(); ?>">
-                                <img src="<?php echo $logo_path; ?>" alt="<?php  bloginfo( 'name' ); ?>">
+                                <img src="<?php echo $logo_path; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="<?php  bloginfo( 'name' ); ?>">
                             </a>
                             <h2 class="logo-heading only-for-print">
                                 <a href="<?php echo home_url(); ?>"  title="<?php bloginfo( 'name' ); ?>">
