@@ -23,14 +23,6 @@
 
     wp_head();
     ?>
-	<script type="text/javascript">
-    var trackOutboundLink = function(url, type) {
-       ga('send', 'event', type, 'click', url, {
-         'transport': 'beacon',
-         'hitCallback': function(){document.location = url;}
-       });
-    }
-    </script>
 </head>
 <body <?php body_class(); ?>>
   
