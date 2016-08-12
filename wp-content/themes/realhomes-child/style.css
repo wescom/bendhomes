@@ -170,9 +170,9 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post .property-price small { color: #fff; }
 
 /* --- Mailchimp Form Modal --- */
-.pum-theme-353717, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
+.pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
 .pum-container.popmake { background: #fff; border-top: 8px solid #FF6600 !important; }
-.pum-theme-353717 .pum-container, .pum-theme-default-theme .pum-container { padding: 40px 50px 30px !important; }
+.pum-theme-353711 .pum-container, .pum-theme-default-theme .pum-container { padding: 40px 50px 30px !important; }
 .pum-content h2 { text-align: center; font-size: 50px; color: #006267; margin-bottom: .5em; text-transform: uppercase; }
 .pum-content h3 { text-align: center; font-size: 28px; line-height: 125%; margin-bottom: 1em; }
 .pum-content #mc_embed_signup .mc-field-group input[type=text], .pum-content #mc_embed_signup .mc-field-group input[type=email] { font-size: 18px; padding: 10px 5px; height: auto; border: 1px solid #C7C7C7; }
