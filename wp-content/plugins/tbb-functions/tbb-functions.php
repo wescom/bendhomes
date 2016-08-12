@@ -103,7 +103,7 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 }
 
 
-add_actions('wp_head', 'tbb_load_header_scripts');
+add_action('wp_head', 'tbb_load_header_scripts');
 function tbb_load_header_scripts() {
 	ob_start(); ?>
     
