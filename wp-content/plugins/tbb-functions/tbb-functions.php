@@ -43,6 +43,7 @@ function tbb_enqueue_additional_files() {
 		wp_deregister_script('jquery-ui-core');
         wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', false, '1.11.3');
 		wp_register_script('jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', array('jquery'), '1.11.4', true);
+		wp_register_script('jquery-cookie', TBB_FUNCTIONS_URL .'js/jquery.cookie.min.js', array('jquery'), '', true);
         wp_enqueue_script('jquery');	
 		wp_enqueue_script('jquery-ui-core');
 	}
@@ -54,6 +55,25 @@ function tbb_enqueue_additional_files() {
 remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 // Remove wordpress Welcome panel
 remove_action('welcome_panel', 'wp_welcome_panel');
+
+
+// Disable stupid emojicons scripts wordpress adds by default into the header.
+add_action( 'init', 'disable_wp_emojicons' );
+function disable_wp_emojicons() {
+  // all actions related to emojis
+  remove_action( 'admin_print_styles', 'print_emoji_styles' );
+  remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+  remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+  remove_action( 'wp_print_styles', 'print_emoji_styles' );
+  remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+  remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+  remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+  // filter to remove TinyMCE emojis
+  add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
+}
+function disable_emojicons_tinymce( $plugins ) {
+  if ( is_array( $plugins ) ) { return array_diff( $plugins, array( 'wpemoji' ) ); } else { return array(); }
+}
 
 
 // Remove unneccesary menus from Admins (not Super Admins)
