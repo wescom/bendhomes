@@ -25,18 +25,12 @@ $config->setOption('disable_follow_location', false); // boolean
 // get a session ready using the configuration
 $rets = new \PHRETS\Session($config);
 
-// print_r($rets);
-
 // make the first request
 $connect = $rets->Login();
 
-// print_r($rets);
-
 function universalqueries($pulltime) {
-  // used for initial pull, nuclear option to get all data
-  // $pulltime = '1970-01-01T08:50Z';
 
-  $manual_mls = $_GET['mls'];
+  $manual_mls = (isset($_GET['mls']) ? $_GET['mls'] : NULL);
 
   $universalqueries = array(
     'Property' => array(
@@ -46,7 +40,7 @@ function universalqueries($pulltime) {
       'LAND' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'MULT' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'RESI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)'
-	  //'RESI' => '(MLNumber=201601733)'
+	  //'RESI' => '(MLNumber=201604586)'
     ),
     'ActiveAgent' => array(
       'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
