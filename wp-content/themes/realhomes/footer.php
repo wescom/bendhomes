@@ -124,6 +124,9 @@ if ( ! is_user_logged_in() ) {
     </div>
 </div>
 
-<?php wp_footer(); ?>
+<?php 
+wp_footer();
+do_action('custom_footer_scripts');
+?>
 </body>
 </html>
