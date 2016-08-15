@@ -88,6 +88,7 @@ a { color: #37b3d9; } footer a { color: #8b9293; }
 footer .mc4wp-form-fields label { display: none; }
 footer .mc4wp-form-fields input[type=email] { width: 90%; height: 44px; padding: 0 4%; font-size: 18px; border: none; }
 form.validate label.error { color: #FACA2C; font-weight: 300; margin-top: -5px; }
+.popup form.validate label.error { color: #f60; }
 .property-breadcrumbs ul { margin-left: 0; list-style: none; }
 .property-breadcrumbs li { display: inline-block; }
 .property-breadcrumbs i { margin: 0 10px; }
