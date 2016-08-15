@@ -6,9 +6,16 @@ if($display_google_map == 'true') {
 	global $post;
 	
 	$property_address = get_post_meta($post->ID,'REAL_HOMES_property_address',true);
+	$property_map_title = get_option('theme_property_map_title');
 	?>
 
     <div class="map-wrap clearfix">
+    
+    	<?php
+		if( !empty($property_map_title) ){
+			?><span class="map-label"><?php echo $property_map_title; ?></span><?php
+		}
+		?>
         
         <div id="property_map"></div>
         
