@@ -368,7 +368,7 @@ function tbb_custom_posts( $defaults ) {
 			$image_parts = pathinfo( $image[0] );
 			if( $image_parts['filename'] == 'default' ) $image = '';
 			
-			$has_image_class = !empty( $image ) ? 'with-image' : '';
+			$has_image_class = !empty( $image ) ? 'with-image' : 'without-image';
 			
 			
 			// Begin item output
@@ -569,17 +569,26 @@ function tbb_display_agents( $defaults ) {
 			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'agent-image', true);
 			$image_parts = pathinfo( $image[0] );
 			if( $image_parts['filename'] == 'default' ) $image = '';
-			$has_image_class = !empty( $image ) ? 'with-image' : '';
+			
+			if( !empty( $image ) ) {
+				$has_image_class = 'with-image';
+				$image_url = $image[0];
+				$image_width = $image[1];
+				$image_height = $image[2];	
+			} else {
+				$has_image_class = 'without-image';
+				$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+				$image_width = '210';
+				$image_height = '210';		
+			}
 			
 			
 			// Begin item output
 			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $classes, $has_image_class, $category_classes );
 			
-				if( !empty( $image ) ) {
-					$output .= sprintf( '<figure class="custom-post-image image-agent-image %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
-									$count, $permalink, $image[0], $image[1], $image[2] );
-				}
+				$output .= sprintf( '<figure class="custom-post-image image-agent-image %s"><a href="%s"><img src="%s" width="%s" height="%s" alt="%s, for %s" /></a></figure>', 
+								$count, $permalink, $image_url, $image_width, $image_height, $title, str_replace( array('\'', '\"'), '', $brokerage) );
 								
 				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $title );
