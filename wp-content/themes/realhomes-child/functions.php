@@ -224,7 +224,7 @@ function tbb_current_url( $params ) {
 }
 
 
-add_action('custom_footer_scripts', 'load_maps_script_in_footer');
+add_action('wp_footer', 'load_maps_script_in_footer');
 function load_maps_script_in_footer() {
 	if(is_single('property')) {
 		global $post;
