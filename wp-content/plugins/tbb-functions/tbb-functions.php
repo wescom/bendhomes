@@ -59,7 +59,7 @@ function string_sanitize($s) {
 }
 
 
-add_action('wp_footer', 'add_mailchimp_scripts_footer');
+/*add_action('wp_footer', 'add_mailchimp_scripts_footer');
 function add_mailchimp_scripts_footer() {
 	ob_start(); ?>
     
@@ -67,7 +67,7 @@ function add_mailchimp_scripts_footer() {
 	<?php
 	$output = ob_get_clean();
 	echo $output;	
-}
+}*/
 
 
 // Disable stupid emojicons scripts wordpress adds by default into the header.

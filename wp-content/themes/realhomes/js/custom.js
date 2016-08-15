@@ -18,7 +18,16 @@
         $('.property-item .features span:last-child').css('border', 'none');
         $('.dsidx-prop-title').css('margin','0 0 15px 0');
         $('.dsidx-prop-summary a img').css('border','none');
-
+		
+		/*-----------------------------------------------------------------------------------*/
+        /* Generic Form Validation
+        /*-----------------------------------------------------------------------------------*/
+		$("form.validate").validate({
+			errorPlacement: function (error, element) {
+			  error.insertAfter($(element).parent());
+			  $(element).parent().addClass('error');
+			}
+		});
 
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control and Mobile Sidr Menu
