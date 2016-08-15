@@ -20,9 +20,9 @@
         $('.dsidx-prop-summary a img').css('border','none');
 		
 		/*-----------------------------------------------------------------------------------*/
-        /* Generic Form Validation
+        /* Mailchimp Form Validation
         /*-----------------------------------------------------------------------------------*/
-		$("form.validate").validate({
+		$(".popup form, .footer form").validate({
 			errorPlacement: function (error, element) {
 			  error.insertAfter($(element).parent());
 			  $(element).parent().addClass('error');
