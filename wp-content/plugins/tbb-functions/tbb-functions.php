@@ -53,6 +53,12 @@ function tbb_enqueue_additional_files() {
 }*/
 
 
+function string_sanitize($s) {
+    $result = preg_replace("/[^a-zA-Z0-9]+/", "", html_entity_decode($s, ENT_QUOTES));
+    return $result;
+}
+
+
 add_action('wp_footer', 'add_mailchimp_scripts_footer');
 function add_mailchimp_scripts_footer() {
 	ob_start(); ?>
