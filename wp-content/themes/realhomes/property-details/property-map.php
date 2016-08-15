@@ -2,14 +2,14 @@
 $display_google_map = get_option('theme_display_google_map');
 //$display_social_share = get_option('theme_display_social_share');
 //if($display_google_map == 'true' || $display_social_share == 'true'){
-if($display_google_map == 'true'){
-global $post; ?>
+if($display_google_map == 'true') { ?>
 
     <div class="map-wrap clearfix">
         
 		<?php
         add_action('custom_footer_scripts', 'load_maps_script_in_footer');
         function load_maps_script_in_footer() {
+			global $post;
             $property_location = get_post_meta($post->ID,'REAL_HOMES_property_location',true);
             // set a trap if we get zeroes for map lat long from MLS | 1777 JTG
             if($property_location == '0.000000,0.000000') {
@@ -58,10 +58,9 @@ global $post; ?>
                 </script>
                 
             <?php
-                $output = ob_get_clean();
             }
             
-            echo $output; 
+            echo ob_get_clean(); 
         } // end function ?>
         
         <div id="property_map"></div>
