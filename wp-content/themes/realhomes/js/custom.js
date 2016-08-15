@@ -22,11 +22,19 @@
 		/*-----------------------------------------------------------------------------------*/
         /* Mailchimp Form Validation
         /*-----------------------------------------------------------------------------------*/
-		$(".popup form, .footer form").validate({
+		/*$(".popup form, .footer form").validate({
 			errorPlacement: function (error, element) {
 			  error.insertAfter($(element).parent());
 			  $(element).parent().addClass('error');
 			}
+		});*/
+		$('form.validate').each(function() {
+			$(this).validate({
+				errorPlacement: function (error, element) {
+				  error.insertAfter($(element).parent());
+				  $(element).parent().addClass('error');
+				}
+			});
 		});
 
         /*-----------------------------------------------------------------------------------*/
