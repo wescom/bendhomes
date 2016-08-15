@@ -588,7 +588,7 @@ function tbb_display_agents( $defaults ) {
 							$count, $cols, $classes, $has_image_class, $category_classes );
 			
 				$output .= sprintf( '<figure class="custom-post-image image-agent-image %s"><a href="%s"><img src="%s" width="%s" height="%s" alt="%s, for %s" /></a></figure>', 
-								$count, $permalink, $image_url, $image_width, $image_height, $title, string_sanitize($brokerage) );
+								$count, $permalink, $image_url, $image_width, $image_height, $title, str_replace( array('\'', '\"'), $brokerage) );
 								
 				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $title );
