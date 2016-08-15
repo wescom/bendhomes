@@ -118,7 +118,7 @@
                 directionNav: true,
                 controlNav: false,
                 animationLoop: false,
-                slideshow: true,
+                slideshow: false, // Stops property slider from auto playing
                 sync: "#property-carousel-two",
                 start: function (slider) {
                     slider.removeClass('loading');
