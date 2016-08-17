@@ -163,6 +163,36 @@ if( !function_exists( 'build_taxonomies' ) ){
                 'rewrite' => array('slug' => __('property-status', 'framework'))
             )
         );
+		
+		$schools_labels = array(
+			'name' => __( 'Schools', 'framework' ),
+            'singular_name' => __( 'School', 'framework' ),
+            'search_items' =>  __( 'Search Schools', 'framework' ),
+            'popular_items' => __( 'Popular Schools', 'framework' ),
+            'all_items' => __( 'All Schools', 'framework' ),
+            'parent_item' => __( 'Parent School', 'framework' ),
+            'parent_item_colon' => __( 'Parent School:', 'framework' ),
+            'edit_item' => __( 'Edit School', 'framework' ),
+            'update_item' => __( 'Update School', 'framework' ),
+            'add_new_item' => __( 'Add New School', 'framework' ),
+            'new_item_name' => __( 'New School Name', 'framework' ),
+            'separate_items_with_commas' => __( 'Separate Schools with commas', 'framework' ),
+            'add_or_remove_items' => __( 'Add or remove School', 'framework' ),
+            'choose_from_most_used' => __( 'Choose from the most used Schools', 'framework' ),
+            'menu_name' => __( 'Schools', 'framework' )
+		);
+		
+		register_taxonomy(
+            'school',
+            array( 'property' ),
+            array(
+                'hierarchical' => true,
+                'labels' => $schools_labels,
+                'show_ui' => true,
+                'query_var' => true,
+                'rewrite' => array('slug' => __('school', 'framework'))
+            )
+        );
     }
 }
 add_action( 'init', 'build_taxonomies', 0 );
