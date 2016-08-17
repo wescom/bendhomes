@@ -531,7 +531,18 @@
             }
         });
         */
-
+		
+		/*-----------------------------------------------------------------------------------*/
+        /*	Advanced Search Icon
+        /*-----------------------------------------------------------------------------------*/
+		$(".advance-search-form").validate({
+			submitHandler:function(form){
+				if (this.valid()){
+				  $('.real-btn').addClass('submitting');
+				  form.submit();
+				} 
+			}  
+		});
 
         /* dsIDXpress */
         $('#dsidx-top-search #dsidx-search-form table td').removeClass('label');
