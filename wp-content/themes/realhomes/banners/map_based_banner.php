@@ -158,7 +158,7 @@ $total_count = $properties_for_map_query->found_posts;
 <?php }*/
 
 
-/* Uniminied script used above.
+/* Uniminied script used above. 
 <script type="text/javascript">
 function initializePropertiesMap() {
 
@@ -286,8 +286,6 @@ function initializePropertiesMap() {
 
 }
 
-jQuery('#map-modal').on('shown', function () {
-	google.maps.event.addDomListener( window, 'load', initializePropertiesMap );
-});
+google.maps.event.addDomListener(window,"load",initializePropertiesMap);
 
 </script>

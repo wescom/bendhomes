@@ -32,9 +32,11 @@ switch($theme_listing_module){
         $view_type = get_option('theme_listing_layout');
     }
 
-    if( $view_type == 'grid' ){
+    if( $view_type == 'grid' ) {
         get_template_part("template-parts/grid-listing-container");
-    }else{
+    } elseif( $view_type == 'map') {
+		get_template_part("bend-homes/template-parts/map-listing-container");
+	} else {
         get_template_part("template-parts/listing-container");
     }
     ?>
