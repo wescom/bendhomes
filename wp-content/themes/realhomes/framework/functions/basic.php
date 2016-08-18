@@ -505,6 +505,9 @@ if ( ! function_exists( 'google_map_needed' ) ) {
 			if ( $theme_listing_module == 'properties-map' ) {
 				return true;
 			}
+			if ( isset( $_GET['view'] ) && $_GET['view'] == 'map' ) {
+				return true;
+			}
 		}
 		return false;
 	}
