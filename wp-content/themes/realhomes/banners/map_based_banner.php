@@ -57,7 +57,7 @@ $properties_for_map_query = new WP_Query( $properties_for_map );
 
 $total_count = $properties_for_map_query->found_posts;
 
-if( $total_count < 2000 || is_page_template('template-property-listing.php') ) {
+//if( $total_count < 2000 || is_page_template('template-property-listing.php') ) {
 
 	$properties_data = array();
 	
@@ -146,7 +146,7 @@ if( $total_count < 2000 || is_page_template('template-property-listing.php') ) {
 		}
 	endif;
 
-}  else { // end if total count < 2000 ?>
+/*}  else { // end if total count < 2000 ?>
 
 	<div class="container">
 		<div style="text-align: center; padding: 15px 0 80px;">
@@ -155,10 +155,10 @@ if( $total_count < 2000 || is_page_template('template-property-listing.php') ) {
         </div>
 	</div>
 
-<?php }
+<?php }*/
 
 
-/** Uniminied script used above.
+/* Uniminied script used above.
 <script type="text/javascript">
 function initializePropertiesMap() {
 
@@ -286,6 +286,8 @@ function initializePropertiesMap() {
 
 }
 
-google.maps.event.addDomListener( window, 'load', initializePropertiesMap );
+jQuery('#map-modal').on('shown', function () {
+	google.maps.event.addDomListener( window, 'load', initializePropertiesMap );
+});
 
 </script>

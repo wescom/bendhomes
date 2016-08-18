@@ -51,7 +51,7 @@ $text = $total_count == 1 ? 'Search Result' : 'Search Results';
 
                     <section class="property-items">
                     
-                    	<?php if( $total_count < 2000 ) : ?>
+                    	<?php //if( $total_count < 2000 ) : ?>
                     
                             <div class="search-header clearfix">
                                 <?php
@@ -91,7 +91,7 @@ $text = $total_count == 1 ? 'Search Result' : 'Search Results';
     
                             <?php theme_pagination( $search_query->max_num_pages); ?>
                         
-                        <?php endif;  // end if < 2000 ?>
+                        <?php //endif;  // end if < 2000 ?>
 
                     </section>
 

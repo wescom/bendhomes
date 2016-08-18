@@ -115,8 +115,9 @@ if ( ! is_user_logged_in() ) {
                 <div class="modal-address"><i class="fa fa-map-marker"></i> 685 SE 3rd St., Bend OR, 97702<br><a href="tel:5413185500" onclick="trackOutboundLink('tel:5413185500', 'Evergreen Ph'); return false;"><i class="fa fa-mobile-phone"></i> (541) 318-5500</a></div>
             </div>
         </div>
-        <div class="modal-body">
-            <?php echo do_shortcode('[amortizationcalc format=”mobile-friendly”][/amortizationcalc]'); ?>
+        <div class="modal-body">            
+            <div id="acww-widgetwrapper" style="min-width:250px;width:100%;"><div id="acww-widget" style="position:relative;padding-top:0;height:0;overflow:hidden;padding-bottom:840px;"><iframe id="acww-widget-iframe" frameborder="0" scrolling="no" width="800px" height="280px" src="http://usmortgagecalculator.org/widget/2.0/widget.html" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div></div>
+            
             <div style="text-align: center; padding: 15px 0 0; border-top: 1px solid #eee;">
             	<a href="https://www.evergreenhomeloans.com/bend/about-us/loan-officers/?ref=bh" onclick="trackOutboundLink('https://www.evergreenhomeloans.com/bend/about-us/loan-officers/?ref=bh', 'Evergreen 2'); return false;" class="btn btn-large real-btn" target="_blank" rel="nofollow"><i class="fa fa-home"></i> Find a Loan Consultant</a>
             </div>
@@ -127,6 +128,12 @@ if ( ! is_user_logged_in() ) {
 <?php 
 wp_footer();
 do_action('custom_footer_scripts');
+
+/* Theme Listing Page Module */
+/*$theme_listing_module = get_option('theme_listing_module');
+if($theme_listing_module != 'properties-map') {
+	get_template_part("bend-homes/template-parts/map-modal");	
+}*/
 ?>
 </body>
 </html>

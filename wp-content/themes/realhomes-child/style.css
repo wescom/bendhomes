@@ -110,6 +110,7 @@ h3.search-results-header { float: left; margin: 0; }
 .featured-properties-carousel.featured-properties { background: #EDF4F5; border-top: 1px solid #dedede; border-bottom: 1px solid #dedede; }
 .featured-properties-carousel.featured-properties h3 { color: #006267; }
 
+.page-template-template-search .advance-search .search-heading { display: none; }
 .page-template-template-search .advance-search .more-options-wrapper .option-bar { display: block; height: auto; width: 21%; }
 .page-template-template-search .advance-search .more-options-wrapper input[type=checkbox] { margin-top: -2px; }
 .page-template-template-search .advance-search .more-options-wrapper label { display: inline-block; margin-right: 20px; margin-bottom: 15px; }

@@ -31,6 +31,7 @@
             <div class="wrap clearfix">
                 <h1 class="page-title"><?php
                   echo $banner_title;
+				  if(isset($_GET['type'])) $banner_sub_title = ucfirst($_GET['type']);
                   if(!empty($banner_sub_title)) {
                     echo ' | ';
                     echo $banner_sub_title;

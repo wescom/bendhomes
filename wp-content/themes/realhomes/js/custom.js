@@ -36,6 +36,14 @@
 				}
 			});
 		});
+		
+		/*-----------------------------------------------------------------------------------*/
+        /* Map Modal
+        /*-----------------------------------------------------------------------------------*/
+		/*$('#map-modal').on('shown', function () {
+			initialize(new google.maps);
+			google.maps.event.addDomListener( window, 'load', initializePropertiesMap );
+		});*/
 
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control and Mobile Sidr Menu

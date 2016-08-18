@@ -8,17 +8,12 @@
                 <section class="listing-layout property-grid">
 
                     <?php
-                    $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
-                    if( $title_display != 'hide' ){
-                        ?><h3 class="title-heading"><?php the_title(); ?></h3><?php
-                    }
-
                     // listing view type
                     get_template_part( 'template-parts/listing-view-type' );
                     ?>
 
                     <div class="list-container clearfix">
-                        <p style="margin-left: 30px;">Updated: <?php properties_updated_timestamp(); ?></p>
+                        <p>Listings updated:  <?php properties_updated_timestamp(); ?></p>
                         <?php
                         get_template_part('template-parts/sort-controls');
 
