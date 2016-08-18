@@ -39,7 +39,7 @@ if(isset($_GET['view'])){
 	$view_type = $_GET['view'];
 }else{
 	/* Theme Options Listing Layout */
-	$view_type = get_option('theme_listing_layout');
+	$view_type = 'grid';
 }
 ?>
 
