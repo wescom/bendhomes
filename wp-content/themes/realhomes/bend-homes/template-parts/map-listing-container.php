@@ -133,9 +133,6 @@ if( is_page_template('template-search.php') || is_page_template('template-search
     // Apply properties filter settings from properties list templates
     $properties_for_map = apply_filters( 'inspiry_properties_filter', $properties_for_map );
 
-    // Apply sorting
-    $properties_for_map = sort_properties( $properties_for_map );
-
 }elseif( is_tax() ) {
 
     global $wp_query;
@@ -157,7 +154,7 @@ $properties_for_map = sort_properties( $properties_for_map );
 
 $properties_for_map_query = new WP_Query( $properties_for_map );
 
-$total_count = $properties_for_map_query->found_posts;
+//$total_count = $properties_for_map_query->found_posts;
 
 $properties_data = array();
 
