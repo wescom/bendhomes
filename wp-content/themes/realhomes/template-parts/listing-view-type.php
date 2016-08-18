@@ -24,10 +24,15 @@
         }
     }
     ?>
+    <a class="list <?php echo ( $view_type == 'map' )?'active':''; ?>" href="">
+    	<i class="fa fa-map-marker"></i>
+    </a>
     <a class="list <?php echo ( $view_type == 'list' )?'active':''; ?>" href="<?php echo $page_url . $separator . 'view=list'; ?>">
-        <?php include( get_template_directory() . '/images/list-view.svg' ); ?>
+        <?php //include( get_template_directory() . '/images/list-view.svg' ); ?>
+        <i class="fa fa-list"></i>
     </a>
     <a class="grid <?php echo ( $view_type == 'grid' )?'active':''; ?>" href="<?php echo $page_url . $separator . 'view=grid'; ?>">
-        <?php include( get_template_directory() . '/images/grid-view.svg' ); ?>
+        <?php //include( get_template_directory() . '/images/grid-view.svg' ); ?>
+        <i class="fa fa-th"></i>
     </a>
 </div>
