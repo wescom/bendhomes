@@ -109,7 +109,9 @@ if(isset($_GET['view'])){
                                 ?>
                             </div>
     
-                            <?php theme_pagination( $search_query->max_num_pages); ?>
+                            <?php if( $view_type != 'map' ) {
+								theme_pagination( $search_query->max_num_pages);
+							} ?>
                         
                         <?php //endif;  // end if < 2000 ?>
 
