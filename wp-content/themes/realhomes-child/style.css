@@ -101,6 +101,7 @@ form.validate label.error { color: #FACA2C; font-weight: 300; margin-top: -5px; 
 .post-meta.standard-meta.thumb-exist, .post-meta.standard-meta.thumb-not-exist { font-size: .75em; margin-bottom: 1em; }
 h3.search-results-header { float: left; margin: 0; }
 .search-header .view-type { position: static; float: right; margin-left: 20px; }
+.search-header .view-type a.list { display: none; }
 .search-header .sort-controls { margin-top: 7px; }
 .search-map-container { padding: 0 20px; }
 
