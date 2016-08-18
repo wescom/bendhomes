@@ -81,19 +81,28 @@ if(isset($_GET['view'])){
                                 }
                                 
                                 if ( $search_query->have_posts() ) :
-                                    $post_count = 0;
-                                    while ( $search_query->have_posts() ) :
-                                        $search_query->the_post();
-    
-                                        /* Display Property for Search Page */
-                                        get_template_part('template-parts/property-for-home');
-    
-                                        $post_count++;
-                                        if(0 == ($post_count % 2)){
-                                            echo '<div class="clearfix"></div>';
-                                        }
-                                    endwhile;
-                                    wp_reset_query();
+								
+									if( $view_type == 'map' ) {
+										
+										get_template_part("bend-homes/template-parts/map-listing-container");
+										
+									} else {
+										
+										$post_count = 0;
+										while ( $search_query->have_posts() ) :
+											$search_query->the_post();
+		
+											/* Display Property for Search Page */
+											get_template_part('template-parts/property-for-home');
+		
+											$post_count++;
+											if(0 == ($post_count % 2)){
+												echo '<div class="clearfix"></div>';
+											}
+										endwhile;
+										wp_reset_query();
+										
+									}
                                 else:
                                     ?><div class="alert-wrapper"><h4><?php _e('No Properties Found!', 'framework') ?></h4></div><?php
                                 endif;
