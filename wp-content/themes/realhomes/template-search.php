@@ -54,6 +54,12 @@ $text = $total_count == 1 ? 'Search Result' : 'Search Results';
                     	<?php //if( $total_count < 2000 ) : ?>
                     
                             <div class="search-header clearfix">
+                            
+                            	<?php
+								// listing view type
+								get_template_part( 'template-parts/listing-view-type' );
+								?>
+								
                                 <?php
                                 echo '<h3 class="search-results-header">'. $total_count .' '. $text .'</h3>';
                                 
