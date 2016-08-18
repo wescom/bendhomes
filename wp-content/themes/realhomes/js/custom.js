@@ -22,12 +22,6 @@
 		/*-----------------------------------------------------------------------------------*/
         /* Mailchimp Form Validation
         /*-----------------------------------------------------------------------------------*/
-		/*$(".popup form, .footer form").validate({
-			errorPlacement: function (error, element) {
-			  error.insertAfter($(element).parent());
-			  $(element).parent().addClass('error');
-			}
-		});*/
 		$('form.validate').each(function() {
 			$(this).validate({
 				errorPlacement: function (error, element) {
@@ -40,10 +34,7 @@
 		/*-----------------------------------------------------------------------------------*/
         /* Map Modal
         /*-----------------------------------------------------------------------------------*/
-		/*$('#map-modal').on('shown', function () {
-			initialize(new google.maps);
-			google.maps.event.addDomListener( window, 'load', initializePropertiesMap );
-		});*/
+		
 
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control and Mobile Sidr Menu

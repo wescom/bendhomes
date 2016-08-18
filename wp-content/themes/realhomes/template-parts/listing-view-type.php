@@ -24,9 +24,9 @@
         }
     }
     ?>
-    <?php /*<a class="map <?php echo ( $view_type == 'map' )?'active':''; ?>" data-toggle="modal" href="#map-modal">
+    <a class="map <?php echo ( $view_type == 'map' )?'active':''; ?>" data-toggle="modal" href="#map-modal">
     	<i class="fa fa-map-marker"></i>
-    </a>*/ ?>
+    </a>
     <a class="list <?php echo ( $view_type == 'list' )?'active':''; ?>" href="<?php echo $page_url . $separator . 'view=list'; ?>">
         <i class="fa fa-list"></i>
     </a>
