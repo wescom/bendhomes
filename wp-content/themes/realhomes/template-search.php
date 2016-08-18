@@ -61,10 +61,10 @@ if(isset($_GET['view'])){
                         <div class="search-header clearfix">
                         
                             <?php
-                            echo '<h3 class="search-results-header">'. $total_count .' '. $text .'</h3>';
-                            
-                            // listing view type
+							// listing view type
                             get_template_part( 'template-parts/listing-view-type' );
+							
+                            echo '<h3 class="search-results-header">'. $total_count .' '. $text .'</h3>';
                             
                             get_template_part('template-parts/sort-controls');
                             ?>
