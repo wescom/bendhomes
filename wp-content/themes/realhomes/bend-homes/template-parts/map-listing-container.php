@@ -24,6 +24,7 @@ if(!$number_of_properties){
 $properties_for_map = array(
     'post_type' => 'property',
     'posts_per_page' => -1,
+	'nopaging' => true,
     'meta_query' => array(
         array(
             'key' => 'REAL_HOMES_property_address',
