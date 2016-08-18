@@ -34,6 +34,15 @@ $search_query = new WP_Query( $search_args );
 $total_count = $search_query->found_posts;
 
 $text = $total_count == 1 ? 'Search Result' : 'Search Results';
+
+$current_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+if(isset($_GET['view'])){
+	$view_type = $_GET['view'];
+}else{
+	/* Theme Options Listing Layout */
+	$view_type = get_option('theme_listing_layout');
+}
 ?>
 
     <!-- Content -->
@@ -55,6 +64,17 @@ $text = $total_count == 1 ? 'Search Result' : 'Search Results';
                     
                             <div class="search-header clearfix">
                             
+                            	<div class="view-type clearfix">
+                                	<a class="map <?php echo ( $view_type == 'map' )?'active':''; ?>" href="<?php echo $current_link . '&view=map'; ?>">
+                                        <i class="fa fa-map-marker"></i>
+                                    </a>
+                                    <a class="list <?php echo ( $view_type == 'list' )?'active':''; ?>" href="<?php echo $current_link '&view=list'; ?>">
+                                        <i class="fa fa-list"></i>
+                                    </a>
+                                    <a class="grid <?php echo ( $view_type == 'grid' )?'active':''; ?>" href="<?php echo $current_link . '&view=grid'; ?>">
+                                        <i class="fa fa-th"></i>
+                                    </a>
+                                </div>
                             	<?php
 								// listing view type
 								get_template_part( 'template-parts/listing-view-type' );
