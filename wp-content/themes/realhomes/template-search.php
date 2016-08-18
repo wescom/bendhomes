@@ -84,7 +84,7 @@ if(isset($_GET['view'])){
 								
 									if( $view_type == 'map' ) {
 										
-										get_template_part("bend-homes/template-parts/map-listing-container");
+										get_template_part("bend-homes/template-parts/map-search-container");
 										
 									} else {
 										
