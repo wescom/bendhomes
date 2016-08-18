@@ -37,10 +37,6 @@ switch($theme_listing_module){
     }else{
         get_template_part("template-parts/listing-container");
     }
-	
-	if($theme_listing_module != 'properties-map') {
-		get_template_part("bend-homes/template-parts/map-modal");
-	}
     ?>
     <!-- End Content -->
 

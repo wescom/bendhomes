@@ -127,6 +127,12 @@ if ( ! is_user_logged_in() ) {
 <?php 
 wp_footer();
 do_action('custom_footer_scripts');
+
+/* Theme Listing Page Module */
+$theme_listing_module = get_option('theme_listing_module');
+if($theme_listing_module != 'properties-map') {
+	get_template_part("bend-homes/template-parts/map-modal");	
+}
 ?>
 </body>
 </html>
