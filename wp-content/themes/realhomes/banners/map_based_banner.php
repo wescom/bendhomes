@@ -158,7 +158,7 @@ $total_count = $properties_for_map_query->found_posts;
 <?php }*/
 
 
-// Uniminied script used above. ?>
+/* Uniminied script used above.
 <script type="text/javascript">
 function initializePropertiesMap() {
 
