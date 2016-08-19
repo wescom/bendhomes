@@ -685,7 +685,7 @@
         /*-----------------------------------------------------------------------------------*/
 		$('.view-type a').click(function(e){
             e.preventDefault();
-			var $link = $(this).href;
+			var $link = $(this).attr('href');
             var $spinner = $(this).find('i');
 			$spinner.removeAttr('class').addClass('fa fa-spinner fa-spin');
 			window.location.href = $link;
