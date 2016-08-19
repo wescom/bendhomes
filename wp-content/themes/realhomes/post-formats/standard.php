@@ -31,7 +31,7 @@ if ( has_post_thumbnail() ){ ?>
     <?php if( !is_single() || !is_search() ){ ?>
         <figure>
             <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bh-placeholder.jpg" alt="" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bh-placeholder.jpg" alt="<?php the_title(); ?>" width="244" height="163" />
             </a>
         </figure>
     <?php } ?>
