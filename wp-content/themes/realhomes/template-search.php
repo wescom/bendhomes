@@ -31,7 +31,7 @@ $search_args = sort_properties($search_args);
 
 $search_query = new WP_Query( $search_args );
 
-$total_count = $search_query->found_posts;
+$total_count = number_format( $search_query->found_posts );
 
 $text = $total_count == 1 ? 'Search Result' : 'Search Results';
 
