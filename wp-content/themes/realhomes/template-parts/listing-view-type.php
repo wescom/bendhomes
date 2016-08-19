@@ -20,6 +20,7 @@
         $view_type = get_option('theme_listing_layout');
     }
     ?>
+    <span>View Style:</span>
     <a class="map <?php echo ( $view_type == 'map' )?'active':''; ?>" href="<?php echo tbb_current_url( 'view=map' ); ?>" data-toggle="tooltip" title="Map View">
     	<i class="fa fa-map-marker"></i>
     </a>
