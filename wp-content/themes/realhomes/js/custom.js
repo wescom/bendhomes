@@ -679,6 +679,16 @@
                 ajax_response.text( "Request failed: " + textStatus );
             });
         });
+		
+		/*-----------------------------------------------------------------------------------*/
+        /* Listing View Buttons
+        /*-----------------------------------------------------------------------------------*/
+		$('.view-type a').click(function(e){
+            e.preventDefault();
+            var $spinner = $(this).find('i');
+			$spinner.removeAttr('class').addClass('fa fa-spinner fa-spin');
+			
+		});
 
         /*-----------------------------------------------------------------------------------*/
         /* Search Location Select Boxes
