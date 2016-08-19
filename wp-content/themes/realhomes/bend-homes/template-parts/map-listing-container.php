@@ -80,7 +80,11 @@ $properties_for_map = sort_properties( $properties_for_map );
 
 $properties_for_map_query = new WP_Query( $properties_for_map );
 
-//$total_count = $properties_for_map_query->found_posts;
+$total_properties = $properties_for_map_query->found_posts;
+						
+$property_text = $total_properties == 1 ? 'Property' : 'Properties';
+
+echo '<h3 class="number-properties">'. $total_properties .' '. $property_text .'</h3>';
 
 $properties_data = array();
 
