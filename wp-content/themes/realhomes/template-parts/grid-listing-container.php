@@ -40,7 +40,7 @@
 
                         $property_listing_query = new WP_Query( $property_listing_args );
 						
-						$total_properties = $property_listing_query->found_posts;
+						$total_properties = number_format( $property_listing_query->found_posts );
 						
 						$property_text = $total_properties == 1 ? 'Property' : 'Properties';
 						

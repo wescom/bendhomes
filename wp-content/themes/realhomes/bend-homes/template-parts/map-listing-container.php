@@ -80,7 +80,7 @@ $properties_for_map = sort_properties( $properties_for_map );
 
 $properties_for_map_query = new WP_Query( $properties_for_map );
 
-$total_properties = $properties_for_map_query->found_posts;
+$total_properties = number_format( $properties_for_map_query->found_posts );
 						
 $property_text = $total_properties == 1 ? 'Property' : 'Properties';
 
