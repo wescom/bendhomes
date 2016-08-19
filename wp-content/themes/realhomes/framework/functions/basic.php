@@ -493,6 +493,8 @@ if ( ! function_exists( 'google_map_needed' ) ) {
 			}
 		} else if ( is_page_template( 'template-search.php' ) && ( get_option( 'theme_search_module' ) == 'properties-map' ) ) {
 			return true;
+		} else if( is_page_template( 'template-search.php' ) && isset( $_GET['view'] ) && $_GET['view'] == 'map' ) {
+			return true;
 		} else if ( is_page_template( 'template-search-sidebar.php' ) && ( get_option( 'theme_search_module' ) == 'properties-map' ) ) {
 			return true;
 		} else if ( is_page_template( 'template-property-listing.php' ) || is_page_template( 'template-property-grid-listing.php' ) || is_tax( 'property-city' ) || is_tax( 'property-status' ) || is_tax( 'property-type' ) || is_tax( 'property-feature' ) ) {
@@ -503,6 +505,9 @@ if ( ! function_exists( 'google_map_needed' ) ) {
 				$theme_listing_module = $_GET[ 'module' ];
 			}
 			if ( $theme_listing_module == 'properties-map' ) {
+				return true;
+			}
+			if ( isset( $_GET['view'] ) && $_GET['view'] == 'map' ) {
 				return true;
 			}
 		}

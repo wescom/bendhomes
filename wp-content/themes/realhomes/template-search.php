@@ -34,6 +34,13 @@ $search_query = new WP_Query( $search_args );
 $total_count = $search_query->found_posts;
 
 $text = $total_count == 1 ? 'Search Result' : 'Search Results';
+
+if(isset($_GET['view'])){
+	$view_type = $_GET['view'];
+}else{
+	/* Theme Options Listing Layout */
+	$view_type = get_option('theme_listing_layout');
+}
 ?>
 
     <!-- Content -->
@@ -50,26 +57,35 @@ $text = $total_count == 1 ? 'Search Result' : 'Search Results';
                     ?>
 
                     <section class="property-items">
-                    
-                    	<?php //if( $total_count < 2000 ) : ?>
-                    
-                            <div class="search-header clearfix">
-                                <?php
-                                echo '<h3 class="search-results-header">'. $total_count .' '. $text .'</h3>';
-                                
-                                get_template_part('template-parts/sort-controls');
-                                ?>
-                            </div>
-    
-                            <div class="property-items-container clearfix">
-                                <?php
-                                /* List of Properties on Homepage */
-                                $number_of_properties = intval(get_option('theme_properties_on_search'));
-                                if(!$number_of_properties){
-                                    $number_of_properties = 4;
-                                }
-                                
-                                if ( $search_query->have_posts() ) :
+                                        
+                        <div class="search-header clearfix">
+                        
+                            <?php
+							// listing view type
+                            get_template_part( 'template-parts/listing-view-type' );
+							
+                            echo '<h3 class="search-results-header">'. $total_count .' '. $text .'</h3>';
+                            
+                            get_template_part('template-parts/sort-controls');
+                            ?>
+                        </div>
+
+                        <div class="property-items-container clearfix">
+                            <?php
+                            /* List of Properties on Homepage */
+                            $number_of_properties = intval(get_option('theme_properties_on_search'));
+                            if(!$number_of_properties){
+                                $number_of_properties = 4;
+                            }
+                            
+                            if ( $search_query->have_posts() ) :
+                            
+                                if( $view_type == 'map' ) {
+                                    
+                                    get_template_part("bend-homes/template-parts/map-search-container");
+                                    
+                                } else {
+                                    
                                     $post_count = 0;
                                     while ( $search_query->have_posts() ) :
                                         $search_query->the_post();
@@ -83,16 +99,18 @@ $text = $total_count == 1 ? 'Search Result' : 'Search Results';
                                         }
                                     endwhile;
                                     wp_reset_query();
-                                else:
-                                    ?><div class="alert-wrapper"><h4><?php _e('No Properties Found!', 'framework') ?></h4></div><?php
-                                endif;
-                                ?>
-                            </div>
-    
-                            <?php theme_pagination( $search_query->max_num_pages); ?>
-                        
-                        <?php //endif;  // end if < 2000 ?>
+                                    
+                                }
+                            else:
+                                ?><div class="alert-wrapper"><h4><?php _e('No Properties Found!', 'framework') ?></h4></div><?php
+                            endif;
+                            ?>
+                        </div>
 
+                        <?php if( $view_type != 'map' ) {
+                            theme_pagination( $search_query->max_num_pages);
+                        } ?>
+                        
                     </section>
 
                 </div><!-- End Main Content -->

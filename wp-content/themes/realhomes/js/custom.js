@@ -22,12 +22,6 @@
 		/*-----------------------------------------------------------------------------------*/
         /* Mailchimp Form Validation
         /*-----------------------------------------------------------------------------------*/
-		/*$(".popup form, .footer form").validate({
-			errorPlacement: function (error, element) {
-			  error.insertAfter($(element).parent());
-			  $(element).parent().addClass('error');
-			}
-		});*/
 		$('form.validate').each(function() {
 			$(this).validate({
 				errorPlacement: function (error, element) {
@@ -38,12 +32,9 @@
 		});
 		
 		/*-----------------------------------------------------------------------------------*/
-        /* Map Modal
+        /* Tooltips
         /*-----------------------------------------------------------------------------------*/
-		/*$('#map-modal').on('shown', function () {
-			initialize(new google.maps);
-			google.maps.event.addDomListener( window, 'load', initializePropertiesMap );
-		});*/
+		$('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
 
         /*-----------------------------------------------------------------------------------*/
         /* Main Menu Dropdown Control and Mobile Sidr Menu
@@ -688,6 +679,17 @@
                 ajax_response.text( "Request failed: " + textStatus );
             });
         });
+		
+		/*-----------------------------------------------------------------------------------*/
+        /* Listing View Buttons
+        /*-----------------------------------------------------------------------------------*/
+		$('.view-type a').click(function(e){
+            e.preventDefault();
+			var $link = $(this).attr('href');
+            var $spinner = $(this).find('i');
+			$spinner.removeAttr('class').addClass('fa fa-spinner fa-spin');
+			window.location.href = $link;
+		});
 
         /*-----------------------------------------------------------------------------------*/
         /* Search Location Select Boxes

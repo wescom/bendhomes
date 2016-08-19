@@ -39,6 +39,12 @@
                         $property_listing_args = sort_properties( $property_listing_args );
 
                         $property_listing_query = new WP_Query( $property_listing_args );
+						
+						$total_properties = number_format( $property_listing_query->found_posts );
+						
+						$property_text = $total_properties == 1 ? 'Property' : 'Properties';
+						
+						echo '<h3 class="number-properties">'. $total_properties .' '. $property_text .'</h3>';
 
                         if ( $property_listing_query->have_posts() ) :
                             while ( $property_listing_query->have_posts() ) :

@@ -31,12 +31,20 @@ switch($theme_listing_module){
         /* Theme Options Listing Layout */
         $view_type = get_option('theme_listing_layout');
     }
-
-    if( $view_type == 'grid' ){
-        get_template_part("template-parts/grid-listing-container");
-    }else{
-        get_template_part("template-parts/listing-container");
-    }
+	
+	switch( $view_type ) {
+		case 'grid':
+			get_template_part("template-parts/grid-listing-container");
+			break;
+			
+		case 'map':
+			get_template_part("bend-homes/template-parts/map-listing-container");
+			break;
+			
+		default:
+			get_template_part("template-parts/listing-container");
+			break;
+	}
     ?>
     <!-- End Content -->
 
