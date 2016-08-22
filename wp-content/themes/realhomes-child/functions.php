@@ -346,7 +346,7 @@ class PropertySettingsPage {
 
         add_settings_section(
             'setting_section_1', // ID
-            'Property Settings', // Title
+            'Banner Images', // Title
             array( $this, 'print_section_info' ), // Callback
             'property-settings-admin' // Page
         );  
@@ -377,7 +377,7 @@ class PropertySettingsPage {
      * Print the Section text
      */
     public function print_section_info() {
-        print 'Separate MLS numbers with a comma.';
+        print 'Separate MLS numbers with commas.';
     }
 
     /** 
