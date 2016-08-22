@@ -357,13 +357,13 @@ class PropertySettingsPage {
                 	<table class="widefat">
 			
                         <tr valign="top">
-                            <th class="row-title"><h3>Homepage Banner</h3></th>
+                            <th class="row-title" colspan="2"><h3 style="margin-bottom: 0;">Homepage Banner</h3></th>
                         </tr>
                     
-                        <tr valign="top" class="alternate">
-                            <th scope="row"><label>MLS Number(s) for Banner:</label></th>
+                        <tr valign="top" style="background: #fff;">
+                            <th scope="row" width="25%"><label>MLS Number(s) for Banner:</label></th>
                             <td>
-                                <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" class="regular-text"> 
+                                <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" class="large-text"> 
                             </td>
                         </tr>
                 	</table>
