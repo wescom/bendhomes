@@ -302,8 +302,9 @@ class PropertySettingsPage {
     {
         // This page will be under "Settings"
         add_options_page(
+			'edit.php?post_type=company',
             'Property Settings', 
-            'Settings', 
+            'Property Settings', 
             'edit_posts', 
             'property-settings', 
             array( $this, 'create_admin_page' )
