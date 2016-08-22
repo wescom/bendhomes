@@ -485,8 +485,8 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
 			 
 			wp_deregister_script('jquery');
 			wp_deregister_script('jquery-ui-core');
-			wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', false, '1.11.3', true);
-			wp_register_script('jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', array('jquery'), '1.11.4', true);
+			wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', false, '', true);
+			wp_register_script('jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', array('jquery'), '', true);
 
             // flexslider
 	        wp_dequeue_script( 'flexslider' );      // dequeue flexslider if it is enqueue by some plugin
