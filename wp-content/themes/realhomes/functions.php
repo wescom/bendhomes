@@ -783,6 +783,15 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
 }
 
 
+add_action( 'admin_enqueue_scripts', 'tbb_load_admin_scripts' );
+function tbb_load_admin_scripts() {
+	wp_deregister_script('jquery');
+	wp_deregister_script('jquery-ui-core');
+	wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', false, '', true);
+	wp_register_script('jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', array('jquery'), '', true);
+}
+
+
 function remove_cssjs_ver( $src ) {
     if( strpos( $src, '?ver=' ) )
         $src = remove_query_arg( 'ver', $src );
