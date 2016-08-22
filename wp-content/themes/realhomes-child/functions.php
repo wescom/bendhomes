@@ -277,3 +277,117 @@ function load_maps_script_in_footer() {
 		}	
 	}
 }
+
+
+// Settings page under Properties Post Type
+class PropertySettingsPage {
+    /**
+     * Holds the values to be used in the fields callbacks
+     */
+    private $options;
+
+    /**
+     * Start up
+     */
+    public function __construct()
+    {
+        add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
+        add_action( 'admin_init', array( $this, 'page_init' ) );
+    }
+
+    /**
+     * Add options page
+     */
+    public function add_plugin_page()
+    {
+        // This page will be under "Settings"
+        add_options_page(
+            'Property Settings', 
+            'Settings', 
+            'edit_posts', 
+            'property-settings', 
+            array( $this, 'create_admin_page' )
+        );
+    }
+
+    /**
+     * Options page callback
+     */
+    public function create_admin_page()
+    {
+        // Set class property
+        $this->options = get_option( 'property' );
+        ?>
+        <div class="wrap">
+            <h1>Property Settings</h1>
+            <form method="post" action="options.php">
+            <?php
+                // This prints out all hidden setting fields
+                settings_fields( 'property_settings_grp' );
+                do_settings_sections( 'property-settings-admin' );
+                submit_button();
+            ?>
+            </form>
+        </div>
+        <?php
+    }
+
+    /**
+     * Register and add settings
+     */
+    public function page_init()
+    {        
+        register_setting(
+            'property_settings_grp', // Option group
+            'banner_property_images', // Option name
+            array( $this, 'sanitize' ) // Sanitize
+        );
+
+        add_settings_section(
+            'setting_section_1', // ID
+            'Property Settings', // Title
+            array( $this, 'print_section_info' ), // Callback
+            'property-settings-admin' // Page
+        );  
+
+        add_settings_field(
+            'mls_numbers', // ID
+            'MLS Numbers', // Title 
+            array( $this, 'mls_numbers_callback' ), // Callback
+            'property-settings-admin', // Page
+            'setting_section_1' // Section           
+        );            
+    }
+
+    /**
+     * Sanitize each setting field as needed
+     *
+     * @param array $input Contains all settings fields as array keys
+     */
+    public function sanitize( $input ) {
+        $new_input = array();
+        if( isset( $input['mls_numbers'] ) )
+            $new_input['mls_numbers'] = absint( $input['mls_numbers'] );
+
+        return $new_input;
+    }
+
+    /** 
+     * Print the Section text
+     */
+    public function print_section_info() {
+        print 'Separate MLS numbers with a comma.';
+    }
+
+    /** 
+     * Get the settings option array and print one of its values
+     */
+    public function mls_numbers_callback() {
+        printf(
+            '<input type="text" id="mls_numbers" class="regular-text" name="property[mls_numbers]" value="%s" />',
+            isset( $this->options['mls_numbers'] ) ? esc_attr( $this->options['mls_numbers']) : ''
+        );
+    }
+}
+
+if( is_admin() ) $my_settings_page = new PropertySettingsPage();
