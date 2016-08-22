@@ -9,7 +9,7 @@ $banner_mls_nums = get_option('banner_mls_numbers');
 $mls_numbers = explode( ',', $banner_mls_nums );
 
 $slider_args = array(
-    'post_type' => 'property',
+    /*'post_type' => 'property',
     'posts_per_page' => -1,
     'meta_query' => array(
         array(
@@ -17,7 +17,11 @@ $slider_args = array(
             'value' => $mls_numbers,
             'compare' => 'IN'
         )
-    )
+    )*/
+	'post_type' => 'property',
+	'posts_per_page' => -1,
+	'meta_key' => 'REAL_HOMES_property_id',
+	'meta_value' => $mls_numbers
 );
 
 $slider_query = new WP_Query( $slider_args );
