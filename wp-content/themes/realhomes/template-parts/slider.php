@@ -22,6 +22,7 @@ $slider_query = new WP_Query( $slider_args );
 if($slider_query->have_posts()){
     ?>
     <!-- Slider -->
+    <!-- <?php print_r($slider_query); ?> -->
     <div id="home-flexslider" class="clearfix">
         <div class="flexslider loading">
             <ul class="slides">
