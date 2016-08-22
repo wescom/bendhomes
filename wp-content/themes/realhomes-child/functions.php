@@ -369,9 +369,10 @@ class PropertySettingsPage {
                         </tr>
                     
                         <tr valign="top" style="background: #fff;">
-                            <th scope="row" width="25%"><label>MLS Number(s) for Banner:<br>(Separate each MLS# with a comma)</label></th>
+                            <th scope="row" width="25%"><label>MLS Number(s) for Banner:</label></th>
                             <td>
                                 <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" class="large-text"> 
+                                <div>(Separate each MLS# with a comma)</div>
                             </td>
                         </tr>
                 	</table>
