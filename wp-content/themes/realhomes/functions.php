@@ -355,20 +355,20 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 			// TODO: update google fonts enqueue code
 			// enqueue required fonts
 			$protocol = is_ssl() ? 'https' : 'http';
-			wp_enqueue_style( 'theme-roboto', "$protocol://fonts.googleapis.com/css?family=Roboto+Slab" );
+			wp_enqueue_style( 'theme-roboto', "$protocol://fonts.googleapis.com/css?family=Roboto+Slab", '', '', '' );
 			//wp_enqueue_style( 'theme-lato', "$protocol://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" );
 
 			// register styles
-			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '2.2.2', 'all' );
-			wp_register_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.1.0', 'all' );
-			wp_register_style( 'pretty-photo-css', get_template_directory_uri() . '/js/prettyphoto/css/prettyPhoto.min.css', array(), '3.1.6', 'all' );
-			wp_register_style( 'swipebox', get_template_directory_uri() . '/js/swipebox/css/swipebox.min.css', array(), '1.3.0', 'all' );
-			wp_register_style( 'main-css', get_template_directory_uri() . '/css/main.min.css', array(), INSPIRY_THEME_VERSION, 'all' );
-			wp_register_style( 'rtl-main-css', get_template_directory_uri() . '/css/rtl-main.css', array(), INSPIRY_THEME_VERSION, 'all' );
+			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '', 'all' );
+			wp_register_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '', 'all' );
+			wp_register_style( 'pretty-photo-css', get_template_directory_uri() . '/js/prettyphoto/css/prettyPhoto.min.css', array(), '', 'all' );
+			wp_register_style( 'swipebox', get_template_directory_uri() . '/js/swipebox/css/swipebox.min.css', array(), '', 'all' );
+			wp_register_style( 'main-css', get_template_directory_uri() . '/css/main.min.css', array(), '', 'all' );
+			wp_register_style( 'rtl-main-css', get_template_directory_uri() . '/css/rtl-main.css', array(), '', 'all' );
 			//wp_register_style( 'custom-responsive-css', get_template_directory_uri() . '/css/custom-responsive.min.css', array(), INSPIRY_THEME_VERSION, 'all' );
-			wp_register_style( 'rtl-custom-responsive-css', get_template_directory_uri() . '/css/rtl-custom-responsive.css', array(), INSPIRY_THEME_VERSION, 'all' );
-			wp_register_style( 'vc-css', get_template_directory_uri() . '/css/visual-composer.css', array(), INSPIRY_THEME_VERSION, 'all' );
-			wp_register_style( 'parent-default', get_stylesheet_uri(), array(), INSPIRY_THEME_VERSION, 'all' );
+			wp_register_style( 'rtl-custom-responsive-css', get_template_directory_uri() . '/css/rtl-custom-responsive.css', array(), '', 'all' );
+			wp_register_style( 'vc-css', get_template_directory_uri() . '/css/visual-composer.css', array(), '', 'all' );
+			wp_register_style( 'parent-default', get_stylesheet_uri(), array(), '', 'all' );
 			//wp_register_style( 'parent-custom', get_template_directory_uri() . '/css/custom.min.css', array(), INSPIRY_THEME_VERSION, 'all' );
 
 			// enqueue bootstrap styles
@@ -390,7 +390,7 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 				'flexslider',
 				get_template_directory_uri() . '/js/flexslider/flexslider.min.css',
 				array(),
-				'2.6.0',
+				'',
 				'all'
 			);
 
@@ -485,8 +485,8 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
 			 
 			wp_deregister_script('jquery');
 			wp_deregister_script('jquery-ui-core');
-			wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', false, '1.11.3', true);
-			wp_register_script('jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', array('jquery'), '1.11.4', true);
+			wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', false, '', true);
+			wp_register_script('jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', array('jquery'), '', true);
 
             // flexslider
 	        wp_dequeue_script( 'flexslider' );      // dequeue flexslider if it is enqueue by some plugin
@@ -781,3 +781,12 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
     }
     add_action('wp_enqueue_scripts', 'load_theme_scripts');
 }
+
+
+function remove_cssjs_ver( $src ) {
+    if( strpos( $src, '?ver=' ) )
+        $src = remove_query_arg( 'ver', $src );
+    return $src;
+}
+add_filter( 'style_loader_src', 'remove_cssjs_ver', 10, 2 );
+add_filter( 'script_loader_src', 'remove_cssjs_ver', 10, 2 );
