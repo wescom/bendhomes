@@ -337,6 +337,14 @@ class PropertySettingsPage {
             	<?php
             
             }
+			?>
+            
+            <style type="text/css">
+			.wrap h1 { margin-bottom: 30px; }
+			.widefat.white tr { background: #fff !important; }
+			</style>
+            
+			<?php
             
                 // Now display the settings editing screen
             
@@ -349,9 +357,6 @@ class PropertySettingsPage {
                 // settings form
                 
                 ?>
-                <style type="text/css">
-				.widefat.white tr { background: #fff !important; }
-				</style>
             
                 <form name="form1" method="post" action="">
                 
@@ -364,7 +369,7 @@ class PropertySettingsPage {
                         </tr>
                     
                         <tr valign="top" style="background: #fff;">
-                            <th scope="row" width="25%"><label>MLS Number(s) for Banner:</label></th>
+                            <th scope="row" width="25%"><label>MLS Number(s) for Banner:<br>(Separate each MLS# with a comma)</label></th>
                             <td>
                                 <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" class="large-text"> 
                             </td>
