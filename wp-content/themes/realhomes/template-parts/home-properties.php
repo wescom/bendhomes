@@ -87,9 +87,13 @@
 
     </div><!-- end of #home-properties-wrapper -->
 
-    <div class="svg-loader">
-        <img src="<?php echo get_template_directory_uri(); ?>/images/loading-bars.svg" width="32" height="32">
-    </div>
+	<?php 
+	if( 'true' == get_option('theme_ajax_pagination_home') ) {
+		echo '<div class="svg-loader">
+			<img src="'. get_template_directory_uri() .'/images/loading-bars.svg" width="32" height="32">
+		</div>';
+	} 
+	?>
 
     <?php
     if( 'true' == get_option('theme_ajax_pagination_home') ) {
