@@ -23,14 +23,16 @@
 
     wp_head();
     ?>
-	<script type="text/javascript">
-    var trackOutboundLink = function(url, type) {
-       ga('send', 'event', type, 'click', url, {
-         'transport': 'beacon',
-         'hitCallback': function(){document.location = url;}
-       });
-    }
-    </script>
+<script type="text/javascript">
+<?php /* Unminified
+var trackOutboundLink = function(url, type) {
+   ga('send', 'event', type, 'click', url, {
+	 'transport': 'beacon',
+	 'hitCallback': function(){document.location = url;}
+   });
+}*/ ?>
+var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"beacon",hitCallback:function(){document.location=n}})};
+</script>
 </head>
 <body <?php body_class(); ?>>
   
