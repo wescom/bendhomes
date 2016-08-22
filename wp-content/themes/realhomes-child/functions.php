@@ -301,8 +301,8 @@ class PropertySettingsPage {
     public function add_plugin_page()
     {
         // This page will be under "Settings"
-        add_options_page(
-			'edit.php?post_type=company',
+        add_submenu_page(
+			'edit.php?post_type=property',
             'Property Settings', 
             'Property Settings', 
             'edit_posts', 
