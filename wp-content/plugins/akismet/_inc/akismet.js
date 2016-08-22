@@ -45,7 +45,7 @@ jQuery( function ( $ ) {
 				);
 		}
 	});
-	$('.remove_url').live('click', function () {
+	$('.remove_url').on('click', function () {
 		var thisId = $(this).attr('commentid');
 		var data = {
 			action: 'comment_author_deurl',
@@ -83,7 +83,7 @@ jQuery( function ( $ ) {
 
 		return false;
 	});
-	$('.akismet_undo_link_removal').live('click', function () {
+	$('.akismet_undo_link_removal').on('click', function () {
 		var thisId = $(this).attr('cid');
 		var thisUrl = $(this).attr('href');
 		var data = {
