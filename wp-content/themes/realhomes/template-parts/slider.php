@@ -7,7 +7,7 @@ if(!$number_of_slides){
 
 $slider_args = array(
     'post_type' => 'property',
-    'posts_per_page' => $number_of_slides,
+    'posts_per_page' => -1,
     'meta_query' => array(
         array(
             'key' => 'REAL_HOMES_add_in_slider',
