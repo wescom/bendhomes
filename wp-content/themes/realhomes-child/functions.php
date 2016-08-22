@@ -349,12 +349,15 @@ class PropertySettingsPage {
                 // settings form
                 
                 ?>
+                <style type="text/css">
+				.widefat.white tr { background: #fff !important; }
+				</style>
             
                 <form name="form1" method="post" action="">
                 
                 	<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
                     
-                	<table class="widefat">
+                	<table class="widefat white">
 			
                         <tr valign="top">
                             <th class="row-title" colspan="2"><h3 style="margin-bottom: 0;">Homepage Banner</h3></th>
