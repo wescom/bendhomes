@@ -783,7 +783,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
 }
 
 
-add_action( 'admin_enqueue_scripts', 'tbb_load_admin_scripts' );
+//add_action( 'admin_enqueue_scripts', 'tbb_load_admin_scripts' );
 function tbb_load_admin_scripts() {
 	wp_deregister_script('jquery');
 	wp_deregister_script('jquery-ui-core');
