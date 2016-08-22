@@ -314,7 +314,7 @@ class PropertySettingsPage {
               wp_die( __('You do not have sufficient permissions to access this page.') ); }
         
             // variables for the field and option names 
-            $opt_name = 'property_settings';
+            $opt_name = 'banner_mls_numbers';
             $hidden_field_name = 'property_settings_hidden';
             $data_field_name = 'property_settings';
         
