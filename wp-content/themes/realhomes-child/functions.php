@@ -344,20 +344,29 @@ class PropertySettingsPage {
             
                 // header
             
-                echo "<h2>'Homepage Banner Images by MLS#</h2>";
-                
-                echo "<p>Add your property MLS number here. Separate each MLS# with a comma.</p>";
-            
+                echo "<h1>Property Settings</h1>";
+                            
                 // settings form
                 
                 ?>
             
                 <form name="form1" method="post" action="">
-                    <input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+                
+                	<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
                     
-                    <p>MLS Number(s): 
-                    <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" class="regular-text">
-                    </p><hr />
+                	<table class="widefat">
+			
+                        <tr valign="top">
+                            <th class="row-title"><h3>Homepage Banner</h3></th>
+                        </tr>
+                    
+                        <tr valign="top" class="alternate">
+                            <th scope="row"><label>MLS Number(s) for Banner:</label></th>
+                            <td>
+                                <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" class="regular-text"> 
+                            </td>
+                        </tr>
+                	</table>
                     
                     <p class="submit">
                     <input type="submit" name="Submit" class="button-primary" value="Save Settings" />
