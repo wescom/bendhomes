@@ -281,114 +281,92 @@ function load_maps_script_in_footer() {
 
 // Settings page under Properties Post Type
 class PropertySettingsPage {
-    /**
-     * Holds the values to be used in the fields callbacks
-     */
-    private $options;
 
-    /**
-     * Start up
-     */
-    public function __construct()
-    {
-        add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
-        add_action( 'admin_init', array( $this, 'page_init' ) );
-    }
+	function __construct() {
+		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		add_action( 'admin_action_property_settings', array( $this, 'property_settings_admin_action' ) );
+	}
 
-    /**
-     * Add options page
-     */
-    public function add_plugin_page()
-    {
-        // This page will be under "Settings"
-        add_submenu_page(
+	function admin_menu() {
+		add_submenu_page(
 			'edit.php?post_type=property',
-            'Property Settings', 
-            'Property Settings', 
-            'edit_posts', 
-            'property-settings', 
-            array( $this, 'create_admin_page' )
-        );
-    }
+			'Settings',
+			'Property Settings',
+			'edit_posts',
+			'property-settings',
+			array(
+				$this,
+				'property_settings_do_page'
+			)
+		);
+	}
+	
+	function property_settings_admin_action() {
+		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created=true' );
+		//print_r($_POST);
+		exit();
+	}
 
-    /**
-     * Options page callback
-     */
-    public function create_admin_page()
-    {
-        // Set class property
-        $this->options = get_option( 'property' );
-        ?>
-        <div class="wrap">
-            <h1>Property Settings</h1>
-            <form method="post" action="options.php">
-            <?php
-                // This prints out all hidden setting fields
-                settings_fields( 'property_settings_grp' );
-                do_settings_sections( 'property-settings-admin' );
-                submit_button();
-            ?>
-            </form>
-        </div>
-        <?php
-    }
-
-    /**
-     * Register and add settings
-     */
-    public function page_init()
-    {        
-        register_setting(
-            'property_settings_grp', // Option group
-            'banner_property_images', // Option name
-            array( $this, 'sanitize' ) // Sanitize
-        );
-
-        add_settings_section(
-            'setting_section_1', // ID
-            'Banner Images', // Title
-            array( $this, 'print_section_info' ), // Callback
-            'property-settings-admin' // Page
-        );  
-
-        add_settings_field(
-            'mls_numbers', // ID
-            'MLS Numbers', // Title 
-            array( $this, 'mls_numbers_callback' ), // Callback
-            'property-settings-admin', // Page
-            'setting_section_1' // Section           
-        );            
-    }
-
-    /**
-     * Sanitize each setting field as needed
-     *
-     * @param array $input Contains all settings fields as array keys
-     */
-    public function sanitize( $input ) {
-        $new_input = array();
-        if( isset( $input['mls_numbers'] ) )
-            $new_input['mls_numbers'] = absint( $input['mls_numbers'] );
-
-        return $new_input;
-    }
-
-    /** 
-     * Print the Section text
-     */
-    public function print_section_info() {
-        print 'Separate MLS numbers with commas.';
-    }
-
-    /** 
-     * Get the settings option array and print one of its values
-     */
-    public function mls_numbers_callback() {
-        printf(
-            '<input type="text" id="mls_numbers" class="regular-text" name="property[mls_numbers]" value="%s" />',
-            isset( $this->options['mls_numbers'] ) ? esc_attr( $this->options['mls_numbers']) : ''
-        );
-    }
+	function property_settings_do_page() {
+    
+    	//must check that the user has the required capability 
+        if (!current_user_can('edit_posts')) {
+              wp_die( __('You do not have sufficient permissions to access this page.') ); }
+        
+            // variables for the field and option names 
+            $opt_name = 'property_settings';
+            $hidden_field_name = 'property_settings_hidden';
+            $data_field_name = 'property_settings';
+        
+            // Read in existing option value from database
+            $opt_val = get_option( $opt_name );
+        
+            // See if the user has posted us some information
+            // If they did, this hidden field will be set to 'Y'
+            if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
+                // Read their posted value
+                $opt_val = $_POST[ $data_field_name ];
+        
+                // Save the posted value in the database
+                update_option( $opt_name, $opt_val );
+        
+                // Put a settings updated message on the screen
+        
+        		?>
+            	<div class="updated"><p><strong>Settings saved.</strong></p></div>
+            	<?php
+            
+            }
+            
+                // Now display the settings editing screen
+            
+                echo '<div class="wrap">';
+            
+                // header
+            
+                echo "<h2>'Homepage Banner Images by MLS#</h2>";
+                
+                echo "<p>Add your property MLS number here. Separate each MLS# with a comma.</p>";
+            
+                // settings form
+                
+                ?>
+            
+                <form name="form1" method="post" action="">
+                    <input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+                    
+                    <p>MLS Number(s): 
+                    <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" class="regular-text">
+                    </p><hr />
+                    
+                    <p class="submit">
+                    <input type="submit" name="Submit" class="button-primary" value="Save Settings" />
+                    </p>
+                </form>
+            </div>
+	
+    <?php }
+	
 }
 
-if( is_admin() ) $my_settings_page = new PropertySettingsPage();
+if(is_admin()) new PropertySettingsPage;
