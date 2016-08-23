@@ -38,8 +38,8 @@ if ( $slider_query->have_posts() ) { ?>
 				
 				$image_id = get_post_meta( $post->ID, 'REAL_HOMES_slider_image', true );
 				$image_parts = pathinfo( $image_id[0] );
-				if( $image_parts['filename'] == 'default' ) $image_id = '';				
-				if( empty($image_id) ) $image_id = get_post_thumbnail_id();
+				if( empty($image_id) || $image_parts['filename'] == 'default' ) 
+					$image_id = get_post_thumbnail_id();				
 				
 				$slider_image = wp_get_attachment_image_src( $image_id, 'large', true);
 				?>
