@@ -32,15 +32,15 @@ foreach( $mls_numbers as $k => $v ) {
 	$mls_query[$k]['compare'] = '=';
 }
 
-$slider_args['meta_query']['relation'] = 'OR';
 $slider_args['meta_query'] = $mls_query;
+$slider_args['meta_query']['relation'] = 'OR';
 
 print_r($slider_args);
 
 
-$slider_query = new WP_Query( $slider_args );
+//$slider_query = new WP_Query( $slider_args );
 
-$the_query = new WP_Query( $args );
+$the_query = new WP_Query( $slider_args );
 
 // The Loop
 if ( $the_query->have_posts() ) {
@@ -56,7 +56,7 @@ if ( $the_query->have_posts() ) {
 	// no posts found
 }
 
-if($slider_query->have_posts()){
+/*if($slider_query->have_posts()){
     ?>
     <!-- Slider -->
     <!-- <?php print_r($slider_query); ?> -->
@@ -100,5 +100,5 @@ if($slider_query->have_posts()){
     <?php
 }else{
     get_template_part('banners/default_page_banner');
-}
+}*/
 ?>
