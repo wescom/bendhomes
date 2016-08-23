@@ -380,7 +380,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                 ),
 
                 // Homepage Slider
-                array(
+                /*array(
                     'name' => __('Do you want to add this property in Homepage Slider ?', 'framework'),
                     'desc' => __('If Yes, Then you need to provide a slider image below.', 'framework'),
                     'id' => "{$prefix}add_in_slider",
@@ -392,7 +392,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     ),
                     'columns' => 12,
                     'tab' => 'home-slider',
-                ),
+                ),*/
                 array(
                     'name' => __('Slider Image', 'framework'),
                     'id' => "{$prefix}slider_image",
@@ -404,7 +404,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                 ),
 
                 // Top Banner
-                array(
+                /*array(
                     'name' => __('Top Banner Image', 'framework'),
                     'id' => "{$prefix}page_banner_image",
                     'desc' => __('Upload the banner image, If you want to change it for this property. Otherwise default banner image uploaded from theme options will be displayed. Image should have minimum width of 2000px and minimum height of 230px.', 'framework'),
@@ -412,7 +412,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'max_file_uploads' => 1,
                     'columns' => 12,
                     'tab' => 'banner',
-                )
+                )*/
 
             )
         );
