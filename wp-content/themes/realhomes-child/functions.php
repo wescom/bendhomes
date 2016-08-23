@@ -341,10 +341,11 @@ class PropertySettingsPage {
             
             <style type="text/css">
 			.wrap h1 { margin-bottom: 30px; }
+			.wrap.property-settings .dashicons-building:before { line-height: 30px; color: #0073AA; }
 			.widefat.white tr { background: #fff !important; }
 			</style>
             
-			<div class="wrap">
+			<div class="wrap property-settings">
                 <h1><i class="dashicons-before dashicons-building"></i> Property Settings</h1>
             
                 <form name="form1" method="post" action="">
