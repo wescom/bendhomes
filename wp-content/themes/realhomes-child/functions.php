@@ -277,3 +277,106 @@ function load_maps_script_in_footer() {
 		}	
 	}
 }
+
+
+// Settings page under Properties Post Type
+class PropertySettingsPage {
+
+	function __construct() {
+		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+		add_action( 'admin_action_property_settings', array( $this, 'property_settings_admin_action' ) );
+	}
+
+	function admin_menu() {
+		add_submenu_page(
+			'edit.php?post_type=property',
+			'Settings',
+			'Property Settings',
+			'edit_posts',
+			'property-settings',
+			array(
+				$this,
+				'property_settings_do_page'
+			)
+		);
+	}
+	
+	function property_settings_admin_action() {
+		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created=true' );
+		//print_r($_POST);
+		exit();
+	}
+
+	function property_settings_do_page() {
+    
+    	//must check that the user has the required capability 
+        if (!current_user_can('edit_posts')) {
+              wp_die( __('You do not have sufficient permissions to access this page.') ); }
+        
+            // variables for the field and option names 
+            $banner_mls_nums = 'banner_mls_numbers';
+			
+            $hidden_field_name = 'property_settings_hidden';
+            $data_field_name = 'property_settings';
+        
+            // Read in existing option value from database
+            $banner_mls_val = get_option( $banner_mls_nums );
+        
+            // See if the user has posted us some information
+            // If they did, this hidden field will be set to 'Y'
+            if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
+                // Read their posted value
+                $banner_mls_val = $_POST[ $data_field_name ];
+        
+                // Save the posted value in the database
+                update_option( $banner_mls_nums, $banner_mls_val );
+        
+                // Put a settings updated message on the screen
+        		?>
+            	<div class="updated"><p><strong>Settings saved.</strong></p></div>
+            	<?php
+            
+            }
+			?>
+            
+            <style type="text/css">
+			.wrap h1 { margin-bottom: 30px; }
+			.wrap.property-settings .dashicons-building:before { line-height: 30px; color: #0073AA; }
+			.widefat.white tr { background: #fff !important; }
+			</style>
+            
+			<div class="wrap property-settings">
+                <h1><i class="dashicons-before dashicons-building"></i> Property Settings</h1>
+            
+                <form name="form1" method="post" action="">
+                
+                	<input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+                    
+                	<table class="widefat white">
+			
+                        <tr valign="top">
+                            <th class="row-title" colspan="2"><h3 style="margin-bottom: 0;">Homepage Banner</h3></th>
+                        </tr>
+                    
+                        <tr valign="top" style="background: #fff;">
+                            <th scope="row" width="25%"><label>MLS Number(s) for Banner:</label></th>
+                            <td>
+                                <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $banner_mls_val; ?>" class="large-text"> 
+                                <div>(Separate each MLS# with a comma)</div>
+                            </td>
+                        </tr>
+                	</table>
+                    
+                    <p class="submit">
+                    <input type="submit" name="Submit" class="button-primary" value="Save Settings" />
+                    </p>
+                </form>
+            </div>
+	
+    <?php }
+	
+	
+	
+}
+
+if(is_admin()) new PropertySettingsPage;
