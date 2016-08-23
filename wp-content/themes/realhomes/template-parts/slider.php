@@ -5,6 +5,8 @@
 $banner_mls_nums = get_option('banner_mls_numbers');
 $mls_numbers = explode( ',', $banner_mls_nums );
 
+$meta_key = 'REAL_HOMES_property_id';
+
 $slider_args = array(
 	'post_type' => 'property',
 	'posts_per_page' => -1,
@@ -15,7 +17,7 @@ $slider_args = array(
 $mls_query = array();
 
 foreach( $mls_numbers as $k => $v ) {
-	$mls_query[$k]['key'] = 'REAL_HOMES_property_id';
+	$mls_query[$k]['key'] = $meta_key;
 	$mls_query[$k]['value'] = $v;
 	$mls_query[$k]['compare'] = '=';
 }
@@ -24,6 +26,21 @@ $slider_args['meta_query'] = $mls_query;
 $slider_args['meta_query']['relation'] = 'OR';
 
 $slider_query = new WP_Query( $slider_args );
+
+$slider_ids = $slider_query->get_results();
+
+function tbb_sort_slider_by_meta_key( array $ids, $meta_key ) {
+    $user_order = array();
+    foreach( $ids as $id ) {
+        $user_order[$id] = intval( get_post_meta( $id, $meta_key, true ) );
+    }
+    asort( $user_order );
+
+    return array_keys( $user_order );
+}
+
+return tbb_sort_slider_by_meta_key( $slider_ids, $meta_key );
+
 
 // The Loop
 if ( $slider_query->have_posts() ) { ?>
