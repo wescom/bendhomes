@@ -302,7 +302,6 @@ class PropertySettingsPage {
 	}
 	
 	function property_settings_admin_action() {
-		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created=true' );
 		//print_r($_POST);
 		exit();
 	}
