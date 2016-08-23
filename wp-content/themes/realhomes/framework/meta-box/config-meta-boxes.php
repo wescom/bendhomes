@@ -92,10 +92,10 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'label' => __('Homepage Slider', 'framework'),
                     'icon' => 'dashicons-images-alt',
                 ),
-                'banner' => array(
+                /*'banner' => array(
                     'label' => __('Top Banner', 'framework'),
                     'icon' => 'dashicons-format-image',
-                ),
+                ),*/
             ),
             'tab_style' => 'left',
             'fields' => array(
