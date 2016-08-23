@@ -40,23 +40,59 @@ print_r($slider_args);
 
 //$slider_query = new WP_Query( $slider_args );
 
-$the_query = new WP_Query( $slider_args );
+$slider_query = new WP_Query( $slider_args );
 
 // The Loop
-if ( $the_query->have_posts() ) {
-	echo '<ul>';
-	while ( $the_query->have_posts() ) {
-		$the_query->the_post();
-		echo '<li>' . get_the_title() . '</li>';
-	}
-	echo '</ul>';
-	/* Restore original Post Data */
-	wp_reset_postdata();
-} else {
+if ( $slider_query->have_posts() ) { ?>
+
+<div id="home-flexslider" class="clearfix">
+    <div class="flexslider loading">
+        <ul class="slides">
+
+		<?php
+			while ( $slider_query->have_posts() ) {
+				$slider_query->the_post();
+				
+				$image_id = get_post_meta( $post->ID, 'REAL_HOMES_slider_image', true );
+				if( !$image_id ) $image_id = get_post_thumbnail_id();
+				$slider_image = wp_get_attachment_image_src( $image_id, 'large', true);
+				?>
+				<li>
+                	<div class="desc-wrap">
+                        <div class="slide-description">
+                            <h3><a href="<?php the_permalink(); ?>"><?php bh_the_title(); ?></a></h3>
+                            <p><?php framework_excerpt(15); ?></p>
+                            <?php
+                            $price = get_property_price();
+                            if ( $price ){
+                                echo '<span>'.$price.'</span>';
+                            }
+                            brokerage_label( $post->ID, 'large' );
+                            ?>
+                            <a href="<?php the_permalink(); ?>" class="know-more">View Property</a>
+                        </div>
+                    </div>
+                    <a href="<?php the_permalink(); ?>">
+                        <img src="<?php echo $slider_image[0]; ?>" width="<?php echo $slider_image[1]; ?>" height="<?php echo $slider_image[2]; ?>" alt="<?php the_title(); ?>">
+                    </a>
+                </li>
+                <?php
+			}
+		
+			/* Restore original Post Data */
+			wp_reset_postdata();
+	
+		?>
+    
+        </ul>
+    </div>
+</div><!-- End Slider -->
+
+<?php } else {
 	// no posts found
 }
 
-/*if($slider_query->have_posts()){
+if($slider_query->have_posts()){
     ?>
     <!-- Slider -->
     <!-- <?php print_r($slider_query); ?> -->
@@ -100,5 +136,5 @@ if ( $the_query->have_posts() ) {
     <?php
 }else{
     get_template_part('banners/default_page_banner');
-}*/
+}
 ?>
