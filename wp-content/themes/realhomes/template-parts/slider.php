@@ -22,13 +22,27 @@ $slider_args = array(
     )*/
 	'post_type' => 'property',
 	'posts_per_page' => -1,
-	'meta_query' => array(
+	'nopaging' => true,
+	/*'meta_query' => array(
         array(
             'key' => 'REAL_HOMES_property_id',
-            'value' => $mls_numbers
+            'value' => $mls_numbers,
+			'compare' =>'EXITSTS'
         )
-    )
+    )*/
 );
+
+$mls_query = array();
+foreach( $mls_numbers as $k => $v ) {
+	$mls_query[$k]['key'] = 'REAL_HOMES_property_id';
+	$mls_query[$k]['value'] = $v;
+	$mls_query[$k]['compare'] = '=';
+}
+
+$slider_args['meta_query'] = $mls_query;
+
+print_r($slider_args);
+
 
 $slider_query = new WP_Query( $slider_args );
 
