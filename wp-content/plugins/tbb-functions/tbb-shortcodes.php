@@ -50,6 +50,8 @@ function tbb_schema_address( $atts ) {
 // Creates map link to open native maps app on mobile devices.
 add_shortcode('MAP_LINK', 'tbb_map_link');
 function tbb_map_link($atts, $content = null) {
+	
+	wp_enqueue_script("mobile-check", TBB_FUNCTIONS_URL . "/js/mobile-check.js", array("jquery"));
 
 	static $count = 0;
 
