@@ -45,7 +45,7 @@ if ( $slider_query->have_posts() ) { ?>
 					$slider_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large', true);
 				?>
                 
-				<li class="<?php echo $image_parts['filename']; ?>">
+				<li>
                 	<div class="desc-wrap">
                         <div class="slide-description">
                             <h3><a href="<?php the_permalink(); ?>"><?php bh_the_title(); ?></a></h3>
