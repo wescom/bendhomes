@@ -27,7 +27,10 @@ $slider_args['meta_query']['relation'] = 'OR';
 
 $slider_query = new WP_Query( $slider_args );
 
-$slider_ids = $slider_query->get_results();
+$slider_ids = array();
+while (have_posts()) : the_post();
+  $slider_ids[] = get_the_ID();
+endwhile;
 
 function tbb_sort_slider_by_meta_key( array $ids, $meta_key ) {
     $user_order = array();
