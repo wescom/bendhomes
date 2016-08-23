@@ -40,6 +40,7 @@ foreach( $mls_numbers as $k => $v ) {
 }
 
 $slider_args['meta_query'] = $mls_query;
+$slider_args['meta_query']['relation'] = 'OR';
 
 print_r($slider_args);
 
