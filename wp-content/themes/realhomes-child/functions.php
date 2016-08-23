@@ -314,24 +314,24 @@ class PropertySettingsPage {
               wp_die( __('You do not have sufficient permissions to access this page.') ); }
         
             // variables for the field and option names 
-            $opt_name = 'banner_mls_numbers';
+            $banner_mls_nums = 'banner_mls_numbers';
+			
             $hidden_field_name = 'property_settings_hidden';
             $data_field_name = 'property_settings';
         
             // Read in existing option value from database
-            $opt_val = get_option( $opt_name );
+            $banner_mls_val = get_option( $banner_mls_nums );
         
             // See if the user has posted us some information
             // If they did, this hidden field will be set to 'Y'
             if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
                 // Read their posted value
-                $opt_val = $_POST[ $data_field_name ];
+                $banner_mls_val = $_POST[ $data_field_name ];
         
                 // Save the posted value in the database
-                update_option( $opt_name, $opt_val );
+                update_option( $banner_mls_nums, $banner_mls_val );
         
                 // Put a settings updated message on the screen
-        
         		?>
             	<div class="updated"><p><strong>Settings saved.</strong></p></div>
             	<?php
@@ -344,19 +344,8 @@ class PropertySettingsPage {
 			.widefat.white tr { background: #fff !important; }
 			</style>
             
-			<?php
-            
-                // Now display the settings editing screen
-            
-                echo '<div class="wrap">';
-            
-                // header
-            
-                echo "<h1>Property Settings</h1>";
-                            
-                // settings form
-                
-                ?>
+			<div class="wrap">';
+                <h1>Property Settings</h1>
             
                 <form name="form1" method="post" action="">
                 
@@ -371,7 +360,7 @@ class PropertySettingsPage {
                         <tr valign="top" style="background: #fff;">
                             <th scope="row" width="25%"><label>MLS Number(s) for Banner:</label></th>
                             <td>
-                                <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $opt_val; ?>" class="large-text"> 
+                                <input type="text" name="<?php echo $data_field_name; ?>" value="<?php echo $banner_mls_val; ?>" class="large-text"> 
                                 <div>(Separate each MLS# with a comma)</div>
                             </td>
                         </tr>
@@ -384,6 +373,8 @@ class PropertySettingsPage {
             </div>
 	
     <?php }
+	
+	
 	
 }
 
