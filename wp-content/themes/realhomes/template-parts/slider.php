@@ -1,31 +1,15 @@
 <?php 
-
-$number_of_slides = intval(get_option('theme_number_of_slides'));
-if(!$number_of_slides){
-    $number_of_slides = -1;
-}
-
 $banner_mls_nums = get_option('banner_mls_numbers');
 $mls_numbers = explode( ',', $banner_mls_nums );
 
-print_r($mls_numbers);
-
 $slider_args = array(
-    /*'post_type' => 'property',
-    'posts_per_page' => -1,
-    'meta_query' => array(
-        array(
-            'key' => 'REAL_HOMES_property_id',
-            'value' => $mls_numbers,
-            'compare' => 'IN'
-        )
-    )*/
 	'post_type' => 'property',
 	'posts_per_page' => -1,
 	'nopaging' => true
 );
 
 $mls_query = array();
+
 foreach( $mls_numbers as $k => $v ) {
 	$mls_query[$k]['key'] = 'REAL_HOMES_property_id';
 	$mls_query[$k]['value'] = $v;
@@ -34,11 +18,6 @@ foreach( $mls_numbers as $k => $v ) {
 
 $slider_args['meta_query'] = $mls_query;
 $slider_args['meta_query']['relation'] = 'OR';
-
-print_r($slider_args);
-
-
-//$slider_query = new WP_Query( $slider_args );
 
 $slider_query = new WP_Query( $slider_args );
 
@@ -57,6 +36,7 @@ if ( $slider_query->have_posts() ) { ?>
 				if( !$image_id ) $image_id = get_post_thumbnail_id();
 				$slider_image = wp_get_attachment_image_src( $image_id, 'large', true);
 				?>
+                
 				<li>
                 	<div class="desc-wrap">
                         <div class="slide-description">
@@ -76,12 +56,12 @@ if ( $slider_query->have_posts() ) { ?>
                         <img src="<?php echo $slider_image[0]; ?>" width="<?php echo $slider_image[1]; ?>" height="<?php echo $slider_image[2]; ?>" alt="<?php the_title(); ?>">
                     </a>
                 </li>
+                
                 <?php
+				
 			}
-		
 			/* Restore original Post Data */
 			wp_reset_postdata();
-	
 		?>
     
         </ul>
@@ -89,10 +69,12 @@ if ( $slider_query->have_posts() ) { ?>
 </div><!-- End Slider -->
 
 <?php } else {
-	// no posts found
+	get_template_part('banners/default_page_banner');
 }
 
-if($slider_query->have_posts()){
+
+
+/*if($slider_query->have_posts()){
     ?>
     <!-- Slider -->
     <!-- <?php print_r($slider_query); ?> -->
@@ -136,5 +118,4 @@ if($slider_query->have_posts()){
     <?php
 }else{
     get_template_part('banners/default_page_banner');
-}
-?>
+}*/
