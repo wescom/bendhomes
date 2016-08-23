@@ -344,8 +344,8 @@ class PropertySettingsPage {
 			.widefat.white tr { background: #fff !important; }
 			</style>
             
-			<div class="wrap">';
-                <h1>Property Settings</h1>
+			<div class="wrap">
+                <h1><i class="dashicons-before dashicons-building"></i> Property Settings</h1>
             
                 <form name="form1" method="post" action="">
                 
