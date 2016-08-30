@@ -10,7 +10,7 @@ if($show_partners == 'true'){
                     <h3><span><?php echo $partners_title = get_option('theme_partners_title'); ?></span></h3>
                             <div class="row-fluid clearfix">
                                 <?php
-                                $partners_query_args = array(
+                                /*$partners_query_args = array(
                                     'post_type' => 'partners',
                                     'posts_per_page' => -1,
 									'orderby' => 'rand'
@@ -41,15 +41,15 @@ if($show_partners == 'true'){
                                         <?php
                                     endwhile;
                                     wp_reset_query();
-                                endif;
+                                endif;*/
                                 ?>
-                                <div class="span3"><?php //do_action('dfp_ad_spot','partners1'); ?></div>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners1'); ?></div>
                                 
-                                <div class="span3"><?php //do_action('dfp_ad_spot','partners2'); ?></div>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners2'); ?></div>
                                 
-                                <div class="span3"><?php //do_action('dfp_ad_spot','partners3'); ?></div>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners3'); ?></div>
                                 
-                                <div class="span3"><?php //do_action('dfp_ad_spot','partners4'); ?></div>
+                                <div class="span3"><?php do_action('dfp_ad_spot','partners4'); ?></div>
                             </div>
                 </section>
             </div>
