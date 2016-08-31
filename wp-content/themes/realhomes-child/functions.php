@@ -158,6 +158,7 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
       'partners2' => 6,
       'partners3' => 7,
       'partners4' => 8,
+	  'partners5' => 9
     );
 
     $dispid = 'div-gpt-ad-1459980402618-'.$posid[$position];
