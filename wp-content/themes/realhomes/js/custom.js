@@ -969,19 +969,6 @@
                 moreOptionsWrapper.addClass( 'collapsed' );
             }
         });
-		
-		/*-------------------------------------------------------*/
-        /*	Expand Search Widget Toggle
-        /* -----------------------------------------------------*/
-		var searchWidget = $('.widget.advance-search .as-form-wrap');
-		searchWidget.css({'height': '123px', 'overflow': 'hidden'});
-		searchWidget.insertAfter('<a id="widget-expand"><span>Expand</span><i class="fa fa-arrow-down"></i></a>"');
-		
-		$('#widget-expand').on('click', function(e){
-			e.preventDefault();
-			searchWidget.css('height', 'auto');
-		});
-		
 
         /*-----------------------------------------------------------------------------------*/
         /*	Scroll to Top
