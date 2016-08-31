@@ -30,7 +30,8 @@ class Advance_Search_Widget extends WP_Widget {
         $theme_search_fields= get_option('theme_search_fields');
 
         if( !empty($theme_search_url) && !empty($theme_search_fields) && is_array($theme_search_fields) ):
-            get_template_part('template-parts/search-form');
+            //get_template_part('template-parts/search-form');
+			get_template_part('bend-homes/advance-search');
         endif;
 
         echo $after_widget;

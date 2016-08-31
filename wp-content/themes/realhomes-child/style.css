@@ -117,11 +117,14 @@ h3.search-results-header { float: left; margin: 0; }
 .featured-properties-carousel.featured-properties { background: #EDF4F5; border-top: 1px solid #dedede; border-bottom: 1px solid #dedede; }
 .featured-properties-carousel.featured-properties h3 { color: #006267; }
 
-.page-template-template-search .advance-search .search-heading { display: none; }
+.page-template-template-search .advance-search .search-heading, .widget.advance-search .advance-search h3.search-heading { display: none; }
 .page-template-template-search .advance-search .more-options-wrapper .option-bar { display: block; height: auto; width: 21%; }
 .page-template-template-search .advance-search .more-options-wrapper input[type=checkbox] { margin-top: -2px; }
 .page-template-template-search .advance-search .more-options-wrapper label { display: inline-block; margin-right: 20px; margin-bottom: 15px; }
 .page-template-template-search .advance-search .more-options-wrapper label small { color: #598F28; }
+.widget.advance-search .advance-search .more-option-trigger { margin: 15px 20px 0 20px; line-height: 150%; }
+.widget.advance-search .advance-search .more-option-trigger i.fa { margin: 6px 8px 10px 0; display: block; float: left; }
+.widget.advance-search .advance-search .more-options-wrapper .option-checkboxes .option-bar { width: auto; }
 
 #mc_embed_signup .mc-first, #mc_embed_signup .mc-last { float: left; width: 49%; }
 #mc_embed_signup .mc-first { margin-right: 2%; }
