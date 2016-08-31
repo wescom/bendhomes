@@ -87,13 +87,13 @@ switch($theme_homepage_module){
                         endwhile;
                     endif;
 					
+					get_template_part("bend-homes/midadwrap") ;
+					
 					/* Featured Properties */
                     $show_featured_properties = get_option('theme_show_featured_properties');
                     if($show_featured_properties == 'true'){
                         get_template_part("template-parts/carousel") ;
                     }
-
-                    get_template_part("bend-homes/midadwrap") ;
 
                     /* Recent Properties */
                     $show_home_properties = get_option('theme_show_home_properties');

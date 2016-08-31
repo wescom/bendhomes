@@ -184,6 +184,7 @@ function tbb_custom_posts( $defaults ) {
 		'excerpt_length' => '12',
 		'meta_key' => '',
 		'meta_value' => '',
+		'meta_value_type' => 'CHAR',
 		'meta_compare' => '=',
 		'classes' => '',
 		'columns' => '2',
@@ -281,6 +282,7 @@ function tbb_custom_posts( $defaults ) {
 				'key' => $defaults['meta_key'],
 				'value' => $defaults['meta_value'],
 				'compare' => $defaults['meta_compare'],
+				'type' => $defaults['meta_value_type']
 			)
 		);
 	}
