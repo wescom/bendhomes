@@ -122,6 +122,8 @@ h3.search-results-header { float: left; margin: 0; }
 .page-template-template-search .advance-search .more-options-wrapper input[type=checkbox] { margin-top: -2px; }
 .page-template-template-search .advance-search .more-options-wrapper label { display: inline-block; margin-right: 20px; margin-bottom: 15px; }
 .page-template-template-search .advance-search .more-options-wrapper label small { color: #598F28; }
+.widget.advance-search .advance-search .more-option-trigger { margin: 15px 20px 0 20px; line-height: 150%; }
+.widget.advance-search .advance-search .more-option-trigger i.fa { margin: 6px 8px 10px 0; display: block; float: left; }
 
 #mc_embed_signup .mc-first, #mc_embed_signup .mc-last { float: left; width: 49%; }
 #mc_embed_signup .mc-first { margin-right: 2%; }
