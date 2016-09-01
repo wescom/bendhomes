@@ -67,6 +67,45 @@ function universalqueries($pulltime) {
   return $universalqueries;
 }
 
+function universalqueriesPic($pulltime) {
+
+  $manual_mls = (isset($_GET['mls']) ? $_GET['mls'] : NULL);
+
+  $universalqueries = array(
+    'Property' => array(
+      'BUSI' => '(ListingRid=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+      'COMM' => '(ListingRid=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+      'FARM' => '(ListingRid=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+      'LAND' => '(ListingRid=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+      'MULT' => '(ListingRid=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+      'RESI' => '(ListingRid=0+), (PictureModifiedDateTime='.$pulltime.'+)'
+    //'RESI' => '(MLNumber=201604586)'
+    ),
+    'ActiveAgent' => array(
+      'MEMB' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+      // 'MEMB' => '(IsActive=1)'
+    ),
+    'Agent' => array(
+      'MEMB' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+      // 'MEMB' => '(IsActive=1)'
+    ),
+    'MemberAssociation' => array(
+      'ASSC' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+    ),
+    'Office' => array(
+      'OFFI' => '(OfficeNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+    ),
+    'OfficeAssociation' => array(
+      'ASSC' => '(OfficeAssociationKey=0+), (PictureModifiedDateTime='.$pulltime.'+)',
+    ),
+    'OpenHouse' => array(
+      'OPEN' => '(OpenHouseRid=0+)',
+    ),
+  );
+
+  return $universalqueries;
+}
+
 $universalkeys = array(
   'Property' => array(
     'BUSI' => 'ListingRid',
