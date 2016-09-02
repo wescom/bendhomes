@@ -219,7 +219,7 @@ function runRetsQuery($qvars) {
             $fnamebackup = RETSABSPATH.'/imagesbackup/'.strtolower($qvars['resource']).'/'.$photofilename;
             // array_push($itemsarr[$prop['ListingRid']]['images'], $photometa);
             if (file_exists($fname)) {
-              echo "file exists, last pic mod: ".$itemsarr[$prop[$puid]]['PictureModifiedDateTime']
+              echo "file exists, last pic mod: ".$itemsarr[$prop[$puid]]['PictureModifiedDateTime'];
               // echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
               // skip
             } else {
