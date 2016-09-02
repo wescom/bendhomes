@@ -226,9 +226,11 @@ function runRetsQuery($qvars) {
               $newFileSize = filesize($photobinary);
               if ($curFileSize != $newFileSize) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
+                echo "<p style='margin: 0; color: green;'>photo file: ".$fname." has been updated.</p>";
+              } else {
+                echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
+                // skip
               }
-              // echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
-              // skip
             } else {
               $photobinary = $photo->getContent();
               // file_put_contents($fname, $photobinary, LOCK_EX);
