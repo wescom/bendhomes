@@ -588,12 +588,9 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 }
 
 function bhImageSet($item) {
-  echo "In bhImageSet!";
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
-
-  echo "img: ".$item['images']."\n\r";
   if($item['images'] != '') {
     $tmpimages = explode('|',$item['images']);
     $bhimgids = array(); // predeclare wp images id array for use
