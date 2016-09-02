@@ -254,19 +254,10 @@ function dataPreProc($proparr,$scenarioset) {
       		break;
       } // end swich statement
 
-      // if property is being updated, clean up the old meta information related to images
-      echo "deleting images if 'update'";
-      if( $postaction == "update_property" ){
-        echo "i am update...".$property_id;
-        delete_post_meta( $property_id, 'REAL_HOMES_property_images' );
-        delete_post_meta( $property_id, '_thumbnail_id' );
-      }
-
       if(($postaction == 'add_property') || ($postaction == 'update_property')) {
-        /*$bhimgids = bhImageSet($propitem);
-        var_dump($bhimgids);
+        $bhimgids = bhImageSet($propitem);
         $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
-        $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];*/
+        $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
       }
 
       unset($bhimgids);
@@ -508,12 +499,12 @@ function dataPropertyWPinsert($myproperty) {
             }
 
             // if property is being updated, clean up the old meta information related to images
-            /*
+          
             if( $action == "update_property" ){
                 delete_post_meta( $property_id, 'REAL_HOMES_property_images' );
                 delete_post_meta( $property_id, '_thumbnail_id' );
             }
-            */
+            
 
             // Attach gallery images with newly created property
             if ( isset( $myproperty['gallery_image_ids'] ) ) {
