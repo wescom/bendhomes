@@ -559,7 +559,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
    if( (!empty($attachment_id['ID'])) && ($attachment_fname == $file_array['name'] ) ) {
      $myid = $attachment_id['ID'];
-     wp_delete_attachment( $attachmentid, $force_delete );
+     wp_delete_attachment( $myid, $force_delete );
      // echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
    } //else {
      if ( is_wp_error( $tmp ) ) {
