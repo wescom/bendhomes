@@ -263,10 +263,10 @@ function dataPreProc($proparr,$scenarioset) {
       }
 
       if(($postaction == 'add_property') || ($postaction == 'update_property')) {
-        $bhimgids = bhImageSet($propitem);
+        /*$bhimgids = bhImageSet($propitem);
         var_dump($bhimgids);
         $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
-        $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
+        $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];*/
       }
 
       unset($bhimgids);
