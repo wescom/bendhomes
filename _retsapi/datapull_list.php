@@ -218,15 +218,15 @@ function runRetsQuery($qvars) {
             $fname = RETSABSPATH.'/images/'.strtolower($qvars['resource']).'/'.$photofilename;
             $fnamebackup = RETSABSPATH.'/imagesbackup/'.strtolower($qvars['resource']).'/'.$photofilename;
             // array_push($itemsarr[$prop['ListingRid']]['images'], $photometa);
-            if (file_exists($fname)) {
+            //if (file_exists($fname)) {
               // echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
               // skip
-            } else {
+            //} else {
               $photobinary = $photo->getContent();
               // file_put_contents($fname, $photobinary, LOCK_EX);
               file_put_contents($fnamebackup, $photobinary, LOCK_EX);
               // echo "<p style='margin: 0; color: green;'>photo file: ".$fname." written to filesystem.</p>";
-            }
+            //}
           }
         }
 
