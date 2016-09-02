@@ -228,7 +228,7 @@ function runRetsQuery($qvars) {
               $photobinary = $photo->getContent();
               $modDay = strtotime($itemsarr[$prop[$puid]]['PictureModifiedDateTime']);
               echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
-              if ($modDay <= $lastDatePulled) {
+              if ($modDay >= $lastDatePulled) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
                 echo "<p style='margin: 0; color: green;'>photo file: ".$fname." has been updated.</p>";
               } else {
