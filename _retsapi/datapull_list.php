@@ -222,11 +222,10 @@ function runRetsQuery($qvars) {
               //echo "file ".$photofilename." exists, last pic mod: ".$itemsarr[$prop[$puid]]['PictureModifiedDateTime'];
 
               $photobinary = $photo->getContent();
-              $curFileSize = filesize($fname);
-              $newFileSize = filesize($photobinary);
-              //if ((filesize($fname) != filesize($phtotbinary)) {
+              if ((filesize($fname) != filesize($photobinary)) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
-              //}
+                // files are different sizes, so replace old with new
+              }
               // echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
               // skip
             } else {
