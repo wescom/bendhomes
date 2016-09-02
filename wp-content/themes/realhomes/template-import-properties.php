@@ -253,6 +253,13 @@ function dataPreProc($proparr,$scenarioset) {
           // END Property_RESI import template
       		break;
       } // end swich statement
+
+      // if property is being updated, clean up the old meta information related to images
+      if( $action == "update_property" ){
+        delete_post_meta( $property_id, 'REAL_HOMES_property_images' );
+        delete_post_meta( $property_id, '_thumbnail_id' );
+      }
+
       if(($postaction == 'add_property') || ($postaction == 'update_property')) {
         $bhimgids = bhImageSet($propitem);
         $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;

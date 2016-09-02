@@ -34,11 +34,11 @@ function universalqueries($pulltime) {
 
   $universalqueries = array(
     'Property' => array(
-      'BUSI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
-      'COMM' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
-      'FARM' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
-      'LAND' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
-      'MULT' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      //'BUSI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      //'COMM' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      //'FARM' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      //'LAND' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      //'MULT' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       //'RESI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)'
 	    'RESI' => '(MLNumber=201600659)'
     ),
