@@ -226,7 +226,7 @@ function runRetsQuery($qvars) {
               //echo "file ".$photofilename." exists, last pic mod: ".$itemsarr[$prop[$puid]]['PictureModifiedDateTime'];
 
               $photobinary = $photo->getContent();
-              $modDay = $itemsarr[$prop[$puid]]['PictureModifiedDateTime'];
+              $modDay = strtotime($itemsarr[$prop[$puid]]['PictureModifiedDateTime']);
               echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
               if ($modDay <= $lastDatePulled) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
