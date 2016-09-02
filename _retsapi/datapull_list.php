@@ -96,7 +96,7 @@ function buildRetsQuery($fqvars) {
     // $pulldate['recent'] = strtotime('-2 days');
     $pulldate['recent'] = strtotime("-2 day");
   }
-  $lastDatePulled = pulldate['recent'];
+  $lastDatePulled = $pulldate['recent'];
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
   $funiversalqueries = universalqueries($pulldate['retsquery']);
 
