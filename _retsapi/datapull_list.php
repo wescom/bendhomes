@@ -224,16 +224,15 @@ function runRetsQuery($qvars) {
               $photobinary = $photo->getContent();
               if ((filesize($fname) != filesize($phtotbinary)) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
-                 echo "<p style='margin: 0; color: green;'>photo file: ".$fname." replaced.</p>";
               } else {
-                 echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
+                // echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
                 // skip since same photo
               }
             } else {
               $photobinary = $photo->getContent();
               // file_put_contents($fname, $photobinary, LOCK_EX);
               file_put_contents($fnamebackup, $photobinary, LOCK_EX);
-               echo "<p style='margin: 0; color: green;'>photo file: ".$fname." written to filesystem.</p>";
+              // echo "<p style='margin: 0; color: green;'>photo file: ".$fname." written to filesystem.</p>";
             }
           }
         }
