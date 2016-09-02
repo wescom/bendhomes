@@ -5,6 +5,7 @@ include(RETSABSPATH."/inc/header.php");
 ini_set('max_execution_time', 0);
 
 $centralcount = 999999;
+$lastDatePulled = 0;
 
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
@@ -75,6 +76,7 @@ $scenarios = array(
 
 /* ##### Build RETS db query ##### */
 function buildRetsQuery($fqvars) {
+  global $lastDatePulled;
   $resource = $fqvars['resource'];
   $class = $fqvars['class'];
 
@@ -94,7 +96,7 @@ function buildRetsQuery($fqvars) {
     // $pulldate['recent'] = strtotime('-2 days');
     $pulldate['recent'] = strtotime("-2 day");
   }
-
+  $lastDatePulled = pulldate['recent'];
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
   $funiversalqueries = universalqueries($pulldate['retsquery']);
 
@@ -161,6 +163,7 @@ function dbpopulate($items,$dbtable) {
 function runRetsQuery($qvars) {
   global $universalkeys;
   global $rets;
+  global $lastDatePulled;
 
   $query = buildRetsQuery($qvars);
 
@@ -223,10 +226,9 @@ function runRetsQuery($qvars) {
               //echo "file ".$photofilename." exists, last pic mod: ".$itemsarr[$prop[$puid]]['PictureModifiedDateTime'];
 
               $photobinary = $photo->getContent();
-              $curFileSize = filesize($fname);
-              $newFileSize = $photo->getimagesize();
-              echo "cur size: ".$curFileSize. " new size: ".$newFileSize."\n\r";
-              if ($curFileSize != $newFileSize) {
+              $modDay = $itemsarr[$prop[$puid]]['PictureModifiedDateTime'];
+              echo "last pulled: ".$modDay." last mod: ".$modDay;
+              if ($modDay <= $lastDatePulled) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
                 echo "<p style='margin: 0; color: green;'>photo file: ".$fname." has been updated.</p>";
               } else {
