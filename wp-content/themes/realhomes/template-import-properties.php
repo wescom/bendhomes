@@ -257,7 +257,7 @@ function dataPreProc($proparr,$scenarioset) {
       // if property is being updated, clean up the old meta information related to images
       echo "deleting images if 'update'";
       if( $postaction == "update_property" ){
-        echo "i am update...";
+        echo "i am update...".$property_id;
         delete_post_meta( $property_id, 'REAL_HOMES_property_images' );
         delete_post_meta( $property_id, '_thumbnail_id' );
       }
