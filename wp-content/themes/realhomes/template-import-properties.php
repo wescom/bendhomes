@@ -272,7 +272,7 @@ function dataPreProc($proparr,$scenarioset) {
     // sleep(1);
     unset($data_to_insert);
 
-  
+
 
     $count++;
   } // end $propitem forach
@@ -315,7 +315,6 @@ function dataPropertyWPinsert($myproperty) {
 
         // Author
         global $current_user;
-        get_currentuserinfo();
         $new_property['post_author'] = $current_user->ID;
 
         /* check the type of action */
