@@ -592,6 +592,8 @@ function bhImageSet($item) {
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
+
+  echo "img: ".$item['images']."\n\r";
   if($item['images'] != '') {
     $tmpimages = explode('|',$item['images']);
     $bhimgids = array(); // predeclare wp images id array for use
