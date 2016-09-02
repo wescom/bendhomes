@@ -223,16 +223,14 @@ function runRetsQuery($qvars) {
             $fnamebackup = RETSABSPATH.'/imagesbackup/'.strtolower($qvars['resource']).'/'.$photofilename;
             // array_push($itemsarr[$prop['ListingRid']]['images'], $photometa);
             if (file_exists($fname)) {
-              //echo "file ".$photofilename." exists, last pic mod: ".$itemsarr[$prop[$puid]]['PictureModifiedDateTime'];
-
               $photobinary = $photo->getContent();
               $modDay = strtotime($itemsarr[$prop[$puid]]['PictureModifiedDateTime']);
-              echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
+              //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
               if ($modDay >= $lastDatePulled) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
-                echo "<p style='margin: 0; color: green;'>photo file: ".$fname." has been updated.</p>";
+                //echo "<p style='margin: 0; color: green;'>photo file: ".$fname." has been updated.</p>";
               } else {
-                echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
+                //echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
                 // skip
               }
             } else {
