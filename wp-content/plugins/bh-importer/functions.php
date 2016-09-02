@@ -541,6 +541,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
  function bendhomes_image_upload($imagebase) {
 
+  echo "In image upload";
    $imagedir = ABSPATH.'_retsapi/images/property/';
    $ptmp = explode('.',$imagebase);
    $post_name = 'property-'.$ptmp[0];
