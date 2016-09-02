@@ -211,6 +211,7 @@ function runRetsQuery($qvars) {
         $photolist = array();
         foreach ($photos as $photo) {
           $photopreferred = $photo->getPreferred();
+
           if($photo->getObjectId() != '*') {
             $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
             // echo '<pre style="color: blue;">'.$photofilename.'</pre>';
@@ -223,7 +224,7 @@ function runRetsQuery($qvars) {
 
               $photobinary = $photo->getContent();
               $curFileSize = filesize($fname);
-              $newFileSize = filesize($photobinary);
+              $newFileSize = $photo->getImagesize;
               echo "cur size: ".$curFileSize. " new size: ".$newFileSize."\n\r";
               if ($curFileSize != $newFileSize) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
