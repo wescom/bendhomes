@@ -223,6 +223,7 @@ function runRetsQuery($qvars) {
 
               $photobinary = $photo->getContent();
               $curFileSize = filesize($fname);
+              $newFileSize = filesize($photobinary);
               //if ((filesize($fname) != filesize($phtotbinary)) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
               //}
