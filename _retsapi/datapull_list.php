@@ -222,6 +222,7 @@ function runRetsQuery($qvars) {
               //echo "file ".$photofilename." exists, last pic mod: ".$itemsarr[$prop[$puid]]['PictureModifiedDateTime'];
 
               $photobinary = $photo->getContent();
+              $curFileSize = filesize($fname);
               //if ((filesize($fname) != filesize($phtotbinary)) {
                 file_put_contents($fnamebackup, $photobinary, LOCK_EX);
               //}
