@@ -256,7 +256,7 @@ function dataPreProc($proparr,$scenarioset) {
 
       unset($bhimgids);
     } // end $postaction ifelse
-    
+
     $retsproperties[$propitem['ListingRid']]['property-mlstatus'] = $propitem['Status'];
     $data_to_insert = $retsproperties[$propitem['ListingRid']];
     // echo '<h1>'.$data_to_insert['action'].'</h1>';
@@ -308,7 +308,6 @@ function dataPropertyWPinsert($myproperty) {
 
         // Author
         global $current_user;
-        get_currentuserinfo();
         $new_property['post_author'] = $current_user->ID;
 
         /* check the type of action */
