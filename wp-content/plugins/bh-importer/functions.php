@@ -599,9 +599,15 @@ function bhImageSet($item) {
       // copies image from backup dir, to images dir, file is unlinked/deleted
       // upon processing. This will enable images to update and scripts to be rerun
       if(file_exists($imagesdir['source'].'/'.$img)) {
-        //if(!file_exists($imagesdir['tmpdest'].'/'.$img)) {
+        // if the file exists already in tmpdest, then check filesizes to see if they are the same, if not, copy it
+        if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
+          if (filesize($imagesdir['source'].'/'.$img) != filesize($imagesdir['tmpdest'].'/'.$img)) {
+            copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
+          }
+        } else {  // file didn't exist in tmpdest so put it there
           copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
-        //}
+        }
+       
         $tf = apply_filters( 'bendhomes_img_upload', $img );
         $bhimgids[] = $tf;
       }
