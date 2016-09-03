@@ -558,6 +558,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    $attachment_fname = basename($attachment_id['guid']);
 
    if( (!empty($attachment_id['ID'])) && ($attachment_fname == $file_array['name'] ) ) {
+    // need to ad a flag to the function to tell it to update or not - we don't want to do them all!!!!
      $myid = $attachment_id['ID'];
      wp_delete_attachment($myid);
      // echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
