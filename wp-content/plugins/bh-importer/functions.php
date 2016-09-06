@@ -602,7 +602,7 @@ function bhImageSet($item) {
     $bhimgids = array(); // predeclare wp images id array for use
     // let's upload our images and get our wp image ids for use later in array
     foreach($tmpimages as $img) {
-      $updateFlag = 5;
+      $updateFlag = 1;
       // copies image from backup dir, to images dir, file is unlinked/deleted
       // upon processing. This will enable images to update and scripts to be rerun
       if(file_exists($imagesdir['source'].'/'.$img)) {
@@ -610,6 +610,8 @@ function bhImageSet($item) {
         // pretty low ods that a replacement would have same filesize, but if this becomes issue, might have to do a 
         // hash on the file contents.
         if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
+          $oldFileSZ = filesize($imagesdir['source'].'/'.$img);
+          $newFileSZ = filesize($imagesdir['tmpdest'].'/'.$img);
           if (filesize($imagesdir['source'].'/'.$img) != filesize($imagesdir['tmpdest'].'/'.$img)) {
             copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
             $updateFlag = 1;
