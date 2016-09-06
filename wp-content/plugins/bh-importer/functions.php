@@ -565,6 +565,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
      $myid = $attachment_id['ID'];
      // the image already exists, but does it need updating?
      if ($needUpdate == 1) {
+      echo '<p style="color: orange;">update pre-existing-id: '.$myid.'</p>';
       delete_updated_images($myid);
       wp_delete_attachment($myid, true);
       $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
