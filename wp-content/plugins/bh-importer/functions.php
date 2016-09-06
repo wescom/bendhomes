@@ -612,7 +612,8 @@ function bhImageSet($item) {
         if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
           $oldFileSZ = filesize($imagesdir['source'].'/'.$img);
           $newFileSZ = filesize($imagesdir['tmpdest'].'/'.$img);
-          if (filesize($imagesdir['source'].'/'.$img) != filesize($imagesdir['tmpdest'].'/'.$img)) {
+          echo "oldFileSZ: ".$oldFileSZ."  newFileSZ: ".$newFileSZ;
+          if ($oldFileSZ != $newFileSZ) {
             copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
             $updateFlag = 1;
           }
