@@ -560,9 +560,12 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    if( (!empty($attachment_id['ID'])) && ($attachment_fname == $file_array['name'] ) ) {
     // need to ad a flag to the function to tell it to update or not - we don't want to do them all!!!!
      $myid = $attachment_id['ID'];
-     wp_delete_attachment($myid);
+     if ($needUpdate == 1) {
+      wp_delete_attachment($myid);
+      $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
+    }
      // echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
-   } //else {
+   } else {
      if ( is_wp_error( $tmp ) ) {
          // @unlink( $file_array[ 'tmp_name' ] );
          return $tmp;
@@ -570,7 +573,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
      }
      $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
      // echo '<p style="color: green;">new-id: '.$myid.'</p>';
-  // }
+   }
 
    /* debugging
    echo '<pre style="background-color: cyan;">';
