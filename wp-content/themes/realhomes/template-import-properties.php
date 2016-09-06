@@ -534,7 +534,7 @@ function dataPropertyWPinsert($myproperty) {
   }
 } // end wp insert function
 
-delete_duplicate_images(293944);
+delete_updated_images(293945);
 bh_write_to_log('import start: '.date(DATE_RSS),'properties');
 // echo 'import start: '.date(DATE_RSS)."<br/>\n";
 /*foreach($scenarios as $scenario) {

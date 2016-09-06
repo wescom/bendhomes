@@ -649,7 +649,7 @@ function bh_write_to_log($string,$type) {
   // file_put_contents($fname, $log, FILE_APPEND);
 }
 
-function delete_duplicate_images($post_id) {
+function delete_updated_images($post_id) {
   // presets
   global $wpdb;
   $imgdir = ABSPATH.'wp-content/uploads/';
@@ -692,7 +692,7 @@ function delete_duplicate_images($post_id) {
           $dash_count = substr_count($onlyfilename, '-');
           // this deletes all files with the orignal images name pattern, deletes WP versions
           // we check for four dashes, as some other files we getting caught and deleted
-          if(file_exists($file) && (substr_count($onlyfilename, '-') >= 4) ) {
+          if(file_exists($file)) {
             echo $file;
             echo '<br/>'."\n";
             unlink($file);
