@@ -616,6 +616,7 @@ function bhImageSet($item) {
         if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
           //$oldFileSZ = filesize($imagesdir['source'].'/'.$img);
           //$newFileSZ = filesize($imagesdir['tmpdest'].'/'.$img);
+          echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
           $modDay = strtotime($item['PictureModifiedDateTime']);
           //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
           if ($modDay >= $lastDatePulled) {
