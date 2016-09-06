@@ -562,8 +562,8 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    $attachment_fname = basename($attachment_id['guid']);
 
    if( (!empty($attachment_id['ID'])) && ($attachment_fname == $file_array['name'] ) ) {
-    // need to ad a flag to the function to tell it to update or not - we don't want to do them all!!!!
      $myid = $attachment_id['ID'];
+     // the image already exists, but does it need updating?
      if ($needUpdate == 1) {
       wp_delete_attachment($myid);
       $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
@@ -598,6 +598,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 }
 
 function bhImageSet($item) {
+  global $lastDatePulled;
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;

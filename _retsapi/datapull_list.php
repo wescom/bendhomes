@@ -135,8 +135,9 @@ function dbpopulate($items,$dbtable) {
   $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
   unset($db);
   $reportout = '<h4>db table: '.$dbtable.'</h4>';
+  $i = 0;
   foreach($items as $key => $array) {
-
+    echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
     // escape the array for db username
     $escarray = array_map('mysql_real_escape_string', $array);
 
@@ -152,7 +153,9 @@ function dbpopulate($items,$dbtable) {
     } else {
         $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
     }
+    $i++;
   }
+  echo '</pre>';
   return $reportout;
 }
 
