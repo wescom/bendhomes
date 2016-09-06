@@ -565,6 +565,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
      $myid = $attachment_id['ID'];
      // the image already exists, but does it need updating?
      if ($needUpdate == 1) {
+      delete_associated_media($myid);
       wp_delete_attachment($myid, true);
       $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
     }
@@ -647,73 +648,6 @@ function bh_write_to_log($string,$type) {
   $log  = $string.PHP_EOL;
   //Save string to log, use FILE_APPEND to append.
   // file_put_contents($fname, $log, FILE_APPEND);
-}
-
-function delete_updated_images($post_id) {
-  // presets
-  global $wpdb;
-  $imgdir = ABSPATH.'wp-content/uploads/';
-  // $logpath = $_SERVER['DOCUMENT_ROOT'].'/_logs/';
-  $logpath = '/var/www/logs/';
-  $logfile = $logpath.'deleted_images_'.date('Y-m-d').'.txt';
-  $imagecounter = 0;
-  $delpostcount = 0;
-  echo '<p style="color: green;">'.$post_id.'</p>';
-  if($post_id != NULL) {
-    $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$post_id;
-    // echo $sqlquery;
-    // echo '<br/>';
-    $imgpostmetas = $wpdb->get_results( $sqlquery, ARRAY_A );
-  } else {
-    $imgpostmetas = NULL;
-  }
-  unset($sqlquery);
-  // print_r($imgpostmetas);
-  echo '<pre style="background-color: #ececec; margin: 10px; border: 1px solid #cc0000; padding: 10px;">';
-  // echo "\n".'<strong style="color: #cc0000">imgage post id: '.$imgid.'</strong>'."\n";
-  print_r($imgpostmetas);
-  echo '</pre>';
-  foreach($imgpostmetas as $imgpostmeta) {
-    if($imgpostmeta['meta_key'] == '_wp_attached_file' ) {
-      $deletefile = $imgdir.$imgpostmeta['meta_value'];
-      $froot = explode('.',$deletefile);
-      $froot = $froot[0]; // we want of root of the filename with no extension
-      echo '<pre style="color: red; border: 2px solid red; padding: 5px;">';
-      echo $deletefile;
-      if(file_exists($deletefile)) {
-        unlink($deletefile);
-      }
-      echo '<br/>'."\n";
-      file_put_contents($logfile, $deletefile . PHP_EOL, FILE_APPEND | LOCK_EX);
-      // get all files by pattern and delete them
-      foreach( glob($froot.'*') as $file ) {
-          $segments = explode('/',$file);
-          $onlyfilename = array_pop($segments);
-          $dash_count = substr_count($onlyfilename, '-');
-          // this deletes all files with the orignal images name pattern, deletes WP versions
-          // we check for four dashes, as some other files we getting caught and deleted
-          if(file_exists($file)) {
-            echo $file;
-            echo '<br/>'."\n";
-            unlink($file);
-            $imagecounter++;
-            // file_put_contents($logfile, $file . PHP_EOL, FILE_APPEND | LOCK_EX);
-          }
-      }
-      echo '</pre>';
-    }
-    delete_post_meta($post_id, $imgpostmeta['meta_key']);
-  }
-  $delpost = wp_delete_post( $post_id );
-  echo '<pre style="color: blue;">';
-  echo '<strong>deleted post_id: '.$post_id.'</strong><br/>';
-  print_r($delpost);
-  echo '</pre>';
-  if(!empty($delpost)) {
-    $delpostcount++;
-  }
-  echo '<p style="color: green;">deleted images count: '.$imagecounter.'</p>';
-  echo '<p style="color: green;">deleted posts count: '.$delpostcount.'</p>';
 }
 
 ?>
