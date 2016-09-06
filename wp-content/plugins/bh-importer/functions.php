@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$lastDatePulled = 0;
+
 /* ################################# */
 /* #### DATA TYPES - SCENARIOS ##### */
 /* ################################# */
@@ -483,6 +485,8 @@ function dbresult($sset) {
     // $pulldate = strtotime('-730 days'); //'-6 hours' '-1 day' '-10 years'
     $pulldate = strtotime("-1 year");
   }
+  global $lastDatePulled;
+  $lastDatePulled = $pulldate;
 
   $querydate = date('Y-m-d H:i:s',$pulldate);
   // echo $pulldate;
@@ -539,8 +543,9 @@ function dbresult($sset) {
 /* ############################ */
 if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
- function bendhomes_image_upload($imagebase) {
+ function bendhomes_image_upload($imagebase, $needUpdate) {
 
+   //echo "In image upload - update = ".$needUpdate;
    $imagedir = ABSPATH.'_retsapi/images/property/';
    $ptmp = explode('.',$imagebase);
    $post_name = 'property-'.$ptmp[0];
@@ -558,6 +563,11 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
    if( (!empty($attachment_id['ID'])) && ($attachment_fname == $file_array['name'] ) ) {
      $myid = $attachment_id['ID'];
+     // the image already exists, but does it need updating?
+     if ($needUpdate == 1) {
+      wp_delete_attachment($myid);
+      $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
+    }
      // echo '<p style="color: orange;">pre-existing-id: '.$myid.'</p>';
    } else {
      if ( is_wp_error( $tmp ) ) {
@@ -572,10 +582,11 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    return $myid;
 
  }
- add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 1 );
+ add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 2 );
 }
 
 function bhImageSet($item) {
+  global $lastDatePulled;
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
@@ -584,13 +595,28 @@ function bhImageSet($item) {
     $bhimgids = array(); // predeclare wp images id array for use
     // let's upload our images and get our wp image ids for use later in array
     foreach($tmpimages as $img) {
+      $updateFlag = 0;
       // copies image from backup dir, to images dir, file is unlinked/deleted
       // upon processing. This will enable images to update and scripts to be rerun
       if(file_exists($imagesdir['source'].'/'.$img)) {
-        if(!file_exists($imagesdir['tmpdest'].'/'.$img)) {
+        // if the file exists already in tmpdest, then check filesizes to see if they are the same, if not, copy it.
+        // pretty low ods that a replacement would have same filesize, but if this becomes issue, might have to do a 
+        // hash on the file contents.
+        if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
+          //$oldFileSZ = filesize($imagesdir['source'].'/'.$img);
+          //$newFileSZ = filesize($imagesdir['tmpdest'].'/'.$img);
+          echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
+          $modDay = strtotime($item['PictureModifiedDateTime']);
+          //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
+          if ($modDay >= $lastDatePulled) {
+            copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
+            $updateFlag = 1; // lets bendhomes_img_upload know it needs updateing.
+          }
+        } else {  // file didn't exist in tmpdest so put it there
           copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
         }
-        $tf = apply_filters( 'bendhomes_img_upload', $img );
+       
+        $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
         $bhimgids[] = $tf;
       }
     }

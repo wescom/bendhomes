@@ -248,7 +248,8 @@ function dataPreProc($proparr,$scenarioset) {
           // END Property_RESI import template
       		break;
       } // end swich statement
-      if($postaction == 'add_property') {
+
+      if(($postaction == 'add_property') || ($postaction == 'update_property')) {
         $bhimgids = bhImageSet($propitem);
         $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
         $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
@@ -267,6 +268,7 @@ function dataPreProc($proparr,$scenarioset) {
     dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
+
     $count++;
   } // end $propitem forach
   // $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
@@ -346,6 +348,7 @@ function dataPropertyWPinsert($myproperty) {
             $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
         }
 
+<<<<<<< HEAD
         echo '<pre>';
         print_r($property_id);
         echo '<br/>';
@@ -531,6 +534,184 @@ function dataPropertyWPinsert($myproperty) {
                   }
               } // end gallery if
           }
+=======
+        if( $property_id > 0 ){
+
+            // Attach Property Type with Newly Created Property
+            if( isset( $myproperty['type'] ) && ( $myproperty['type'] != "-1" ) ) {
+                wp_set_object_terms( $property_id, $myproperty['type'], 'property-type' );
+            }
+
+            // Attach Property City with Newly Created Property
+            // If a city does not exist in the city table, it creates it
+            $location_select_names = inspiry_get_location_select_names();
+            $locations_count = count( $location_select_names );
+            for ( $l = $locations_count - 1; $l >= 0; $l-- ) {
+                if ( isset( $myproperty[ $location_select_names[$l] ] ) ) {
+                    $current_location = $myproperty[ $location_select_names[ $l ] ];
+                    if( ( ! empty ( $current_location ) ) && ( $current_location != 'any' ) ){
+                        wp_set_object_terms( $property_id, $current_location, 'property-city' );
+                        break;
+                    }
+                }
+            }
+
+            // Attach Property Status with Newly Created Property
+            if( isset( $myproperty['status'] ) && ( $myproperty['status'] != "-1" ) ) {
+                wp_set_object_terms( $property_id, intval( $myproperty['status'] ), 'property-status' );
+            }
+
+            // Attach Property Features with Newly Created Property
+            if( isset( $myproperty['features'] ) ) {
+                if( ! empty( $myproperty['features'] ) && is_array( $myproperty['features'] ) ) {
+                    $property_features = array();
+                    foreach( $myproperty['features'] as $property_feature_id ) {
+                        $property_features[] = intval( $property_feature_id );
+                    }
+                    wp_set_object_terms( $property_id , $property_features, 'property-feature' );
+                }
+            }
+
+            // Attach Price Post Meta
+            if( isset ( $myproperty['price'] ) && ! empty ( $myproperty['price'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_property_price', sanitize_text_field( $myproperty['price'] ) );
+
+                if( isset ( $myproperty['price-postfix'] ) && ! empty ( $myproperty['price-postfix'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_price_postfix', sanitize_text_field( $myproperty['price-postfix'] ) );
+                }
+            }
+
+            // Attach Size Post Meta
+            if( isset ( $myproperty['size'] ) && ! empty ( $myproperty['size'] ) ) {
+                update_post_meta($property_id, 'REAL_HOMES_property_size', sanitize_text_field ( $myproperty['size'] ) );
+
+                if( isset ( $myproperty['area-postfix'] ) && ! empty ( $myproperty['area-postfix'] ) ) {
+                    update_post_meta( $property_id, 'REAL_HOMES_property_size_postfix', sanitize_text_field( $myproperty['area-postfix'] ) );
+                }
+            }
+
+            // Attach Bedrooms Post Meta
+            if( isset ( $myproperty['bedrooms'] ) && ! empty ( $myproperty['bedrooms'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_property_bedrooms', floatval( $myproperty['bedrooms'] ) );
+            }
+
+            // Attach Bathrooms Post Meta
+            if( isset ( $myproperty['bathrooms'] ) && ! empty ( $myproperty['bathrooms'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_property_bathrooms', floatval( $myproperty['bathrooms'] ) );
+            }
+
+            // Attach Garages Post Meta
+            if( isset ( $myproperty['garages'] ) && ! empty ( $myproperty['garages'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_property_garage', floatval( $myproperty['garages'] ) );
+            }
+
+            // Attach Address Post Meta
+            if( isset ( $myproperty['address'] ) && ! empty ( $myproperty['address'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_property_address', sanitize_text_field( $myproperty['address'] ) );
+            }
+
+            // Attach Address Post Meta
+            if( isset ( $myproperty['coordinates'] ) && ! empty ( $myproperty['coordinates'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_property_location', $myproperty['coordinates'] );
+            }
+
+            // Agent Display Option
+            if( isset ( $myproperty['agent_display_option'] ) && ! empty ( $myproperty['agent_display_option'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_agent_display_option', $myproperty['agent_display_option']);
+                if( isset( $myproperty['agent_id'] ) ){
+                    update_post_meta( $property_id, 'REAL_HOMES_agents', $myproperty['agent_id'] );
+                }
+            }
+
+            // Show address to public toggle
+            if( isset ( $myproperty['show_address_to_public'] ) && ! empty ( $myproperty['show_address_to_public'] ) ) {
+                update_post_meta( $property_id, 'show_address_to_public', $myproperty['show_address_to_public']);
+            }
+
+            // Attach Property ID Post Meta
+            if( isset ( $myproperty['property-id'] ) && ! empty ( $myproperty['property-id'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_property_id', sanitize_text_field( $myproperty['property-id'] ) );
+            }
+
+            // Attach Virtual Tour Video URL Post Meta
+            if( isset ( $myproperty['video-url'] ) && ! empty ( $myproperty['video-url'] ) ) {
+                update_post_meta( $property_id, 'REAL_HOMES_tour_video_url', esc_url_raw( $myproperty['video-url'] ) );
+            }
+
+            // Attach additional details with property
+            if( isset( $myproperty['detail-titles'] ) && isset( $myproperty['detail-values'] ) ) {
+
+                $additional_details_titles = $myproperty['detail-titles'];
+                $additional_details_values = $myproperty['detail-values'];
+
+                $titles_count = count ( $additional_details_titles );
+                $values_count = count ( $additional_details_values );
+
+                // to skip empty values on submission
+                if ( $titles_count == 1 && $values_count == 1 && empty ( $additional_details_titles[0] ) && empty ( $additional_details_values[0] ) ) {
+                    // do nothing and let it go
+                } else {
+
+                    if( ! empty( $additional_details_titles ) && ! empty( $additional_details_values ) ) {
+                        $additional_details = array_combine( $additional_details_titles, $additional_details_values );
+                        update_post_meta( $property_id, 'REAL_HOMES_additional_details', $additional_details );
+                    }
+
+                }
+
+            }
+
+            // Attach Property as Featured Post Meta
+            /*
+            $featured = ( isset( $myproperty['featured'] ) ) ? $myproperty['featured'] : 0 ;
+            if ( $featured ) {
+                update_post_meta( $property_id, 'REAL_HOMES_featured', $featured );
+            }
+            */
+
+            // Tour video image - in case of update
+            $tour_video_image = "";
+            $tour_video_image_id = 0;
+            if( $action == "update_property" ) {
+                $tour_video_image_id = get_post_meta( $property_id, 'REAL_HOMES_tour_video_image', true );
+                if ( ! empty ( $tour_video_image_id ) ) {
+                    $tour_video_image_src = wp_get_attachment_image_src( $tour_video_image_id, 'property-detail-video-image' );
+                    $tour_video_image = $tour_video_image_src[0];
+                }
+            }
+
+            // if property is being updated, clean up the old meta information related to images
+          
+            if( $action == "update_property" ){
+                delete_post_meta( $property_id, 'REAL_HOMES_property_images' );
+                delete_post_meta( $property_id, '_thumbnail_id' );
+            }
+            
+
+            // Attach gallery images with newly created property
+            if ( isset( $myproperty['gallery_image_ids'] ) ) {
+                if( ! empty ( $myproperty['gallery_image_ids'] ) && is_array ( $myproperty['gallery_image_ids'] ) ) {
+                    $gallery_image_ids = array();
+                    foreach ( $myproperty['gallery_image_ids'] as $gallery_image_id ) {
+                        $gallery_image_ids[] = intval( $gallery_image_id );
+                        add_post_meta( $property_id, 'REAL_HOMES_property_images', $gallery_image_id );
+                    }
+                    if ( isset( $myproperty['featured_image_id'] ) ) {
+                        $featured_image_id = intval( $myproperty['featured_image_id'] );
+                        if ( in_array( $featured_image_id, $gallery_image_ids ) ) {     // validate featured image id
+                            update_post_meta ( $property_id, '_thumbnail_id', $featured_image_id );
+
+                            /* if video url is provided but there is no video image then use featured image as video image */
+                            if ( empty( $tour_video_image ) && !empty( $myproperty['video-url'] ) ) {
+                                update_post_meta( $property_id, 'REAL_HOMES_tour_video_image', $featured_image_id );
+                            }
+                        }
+                    } else if( ! empty ( $gallery_image_ids ) ) {
+                        update_post_meta ( $property_id, '_thumbnail_id', $gallery_image_ids[0] );
+                    }
+                }
+            } // end gallery if
+>>>>>>> development
         }
         echo '</pre>';
       }

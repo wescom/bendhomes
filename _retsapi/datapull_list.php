@@ -5,6 +5,7 @@ include(RETSABSPATH."/inc/header.php");
 ini_set('max_execution_time', 0);
 
 $centralcount = 999999;
+$lastDatePulled = 0;
 
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
@@ -75,6 +76,7 @@ $scenarios = array(
 
 /* ##### Build RETS db query ##### */
 function buildRetsQuery($fqvars) {
+  global $lastDatePulled;
   $resource = $fqvars['resource'];
   $class = $fqvars['class'];
 
@@ -93,7 +95,7 @@ function buildRetsQuery($fqvars) {
   } else {
     $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
   }
-
+  $lastDatePulled = $pulldate['recent'];
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
   $funiversalqueries = universalqueries($pulldate['retsquery']);
 
@@ -136,8 +138,7 @@ function dbpopulate($items,$dbtable) {
   $i = 0;
   foreach($items as $key => $array) {
     echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
-    // echo '<p style="background-color: green; color: #fff;">'.$key.' --> '.print_r($array).'</p>';
-
+    
     // escape the array for db username
     $escarray = array_map('mysql_real_escape_string', $array);
 
@@ -164,6 +165,7 @@ function dbpopulate($items,$dbtable) {
 function runRetsQuery($qvars) {
   global $universalkeys;
   global $rets;
+  global $lastDatePulled;
 
   $query = buildRetsQuery($qvars);
 
@@ -214,6 +216,7 @@ function runRetsQuery($qvars) {
         $photolist = array();
         foreach ($photos as $photo) {
           $photopreferred = $photo->getPreferred();
+
           if($photo->getObjectId() != '*') {
             $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
             // echo '<pre style="color: blue;">'.$photofilename.'</pre>';
@@ -222,8 +225,16 @@ function runRetsQuery($qvars) {
             $fnamebackup = RETSABSPATH.'/imagesbackup/'.strtolower($qvars['resource']).'/'.$photofilename;
             // array_push($itemsarr[$prop['ListingRid']]['images'], $photometa);
             if (file_exists($fname)) {
-              // echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
-              // skip
+              $photobinary = $photo->getContent();
+              $modDay = strtotime($itemsarr[$prop[$puid]]['PictureModifiedDateTime']);
+              //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
+              if ($modDay >= $lastDatePulled) {
+                file_put_contents($fnamebackup, $photobinary, LOCK_EX);
+                //echo "<p style='margin: 0; color: green;'>photo file: ".$fname." has been updated.</p>";
+              } else {
+                //echo "<p style='margin: 0; color: blue;'>photo file: ".$fname." already exists.</p>";
+                // skip
+              }
             } else {
               $photobinary = $photo->getContent();
               // file_put_contents($fname, $photobinary, LOCK_EX);
