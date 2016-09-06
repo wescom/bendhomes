@@ -587,7 +587,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
    return $myid;
 
  }
- add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 1 );
+ add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 2 );
 }
 
 function bhImageSet($item) {
