@@ -534,9 +534,10 @@ function dataPropertyWPinsert($myproperty) {
   }
 } // end wp insert function
 
+delete_duplicate_images(293944);
 bh_write_to_log('import start: '.date(DATE_RSS),'properties');
 // echo 'import start: '.date(DATE_RSS)."<br/>\n";
-foreach($scenarios as $scenario) {
+/*foreach($scenarios as $scenario) {
   // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
   // echo '<pre>';
   // echo print_r($scenario);
@@ -551,7 +552,7 @@ foreach($scenarios as $scenario) {
   // loop again to insert into WP posts
   // $do = dataPropertyWPinsert($retsPreProcResults);
   echo '<hr/>';
-}
+}*/
 // echo 'import complete: '.date(DATE_RSS)."<br/>\n";
 bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
 

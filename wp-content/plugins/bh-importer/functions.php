@@ -565,7 +565,6 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
      $myid = $attachment_id['ID'];
      // the image already exists, but does it need updating?
      if ($needUpdate == 1) {
-      delete_duplicate_images("293944");
       wp_delete_attachment($myid, true);
       $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
     }
