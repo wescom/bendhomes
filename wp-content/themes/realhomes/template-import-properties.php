@@ -28,7 +28,7 @@ function dataPreProc($proparr,$scenarioset) {
 
   foreach($proparr as $propitem) {
 
-    echo "ListingRid: ".$propitem['ListingRid']."\n\r";
+    echo "ListingRid: ".$propitem['ListingRid']." ";
     /*echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
     echo 'status: ';
     print_r($propitem['Status']);
@@ -546,7 +546,7 @@ foreach($scenarios as $scenario) {
 
   $retsApiResults = dbresult($scenario);
   
-  // print_r($retsApiResults);
+   print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
   $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
 
