@@ -24,7 +24,7 @@ function dataPreProc($proparr,$scenarioset) {
   $raw_property_count = count($proparr);
   echo '<h1>raw property count: '.$raw_property_count.'</h1>';
   /* #### PROPERTY DATA LOOP ##### */
-  $retsproperties = array(); // first declaration
+  $retsproperties = "stuff"; //array(); // first declaration
 
   foreach($proparr as $propitem) {
 
