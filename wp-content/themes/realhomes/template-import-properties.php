@@ -536,7 +536,7 @@ function dataPropertyWPinsert($myproperty) {
 } // end wp insert function
 
 bh_write_to_log('import start: '.date(DATE_RSS),'properties');
-// echo 'import start: '.date(DATE_RSS)."<br/>\n";
+ echo 'import start: '.date(DATE_RSS)."<br/>\n";
 foreach($scenarios as $scenario) {
   // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
   // echo '<pre>';
