@@ -269,6 +269,7 @@ function dataPreProc($proparr,$scenarioset) {
     // print_r($data_to_insert);
     // echo '</pre>';
     // usleep(500000); // 1/2 second sleep
+    bh_write_to_log('mls: '.$propitem['MLNumber'],'properties');
     dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
