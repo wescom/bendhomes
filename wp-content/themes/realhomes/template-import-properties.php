@@ -547,11 +547,11 @@ foreach($scenarios as $scenario) {
   $mlsArray = array();
   foreach($retsApiResults as $stuff) {
     //echo 'mls: '.$stuff['MLNumber']."\n\r";
-    if (in_array($stuff['MLNumber'])) {
+    if (in_array($mlsArray, $stuff['MLNumber'])) {
         echo " REPEAT!!! : ".$stuff['MLNumber'];
     }
     else
-      array_push($mslArray, $stuff['MLNumber']);
+      array_push($mlsArray, $stuff['MLNumber']);
   }
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
