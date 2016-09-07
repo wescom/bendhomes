@@ -545,7 +545,7 @@ foreach($scenarios as $scenario) {
 
   $retsApiResults = dbresult($scenario);
   foreach($retsApiResults as $stuff) {
-    var_dump($stuff['MLNumber']);
+    echo 'mls: '.$stuff['MLNumber'];
   }
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
