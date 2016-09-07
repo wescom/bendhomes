@@ -609,7 +609,7 @@ function bhImageSet($item) {
     $bhimgids = array(); // predeclare wp images id array for use
     // let's upload our images and get our wp image ids for use later in array
     foreach($tmpimages as $img) {
-      $updateFlag = 1;
+      $updateFlag = 0;
       // copies image from backup dir, to images dir, file is unlinked/deleted
       // upon processing. This will enable images to update and scripts to be rerun
       if(file_exists($imagesdir['source'].'/'.$img)) {
@@ -622,7 +622,7 @@ function bhImageSet($item) {
           echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
           $modDay = strtotime($item['PictureModifiedDateTime']);
           //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
-          if ($modDay >= $lastDatePulled) {
+          if (1/*$modDay >= $lastDatePulled*/) {
             copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
             $updateFlag = 1; // lets bendhomes_img_upload know it needs updateing.
           }
