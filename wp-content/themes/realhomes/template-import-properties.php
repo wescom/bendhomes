@@ -289,7 +289,7 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  bh_write_to_log('  dataPropertyWPinsert with: '.$myproperty['MLNumber'],'properties');
+  bh_write_to_log('  dataPropertyWPinsert with: '.$myproperty['property-id'].' status: '.$myproperty['property-mlstatus'],'properties');
 
   echo '<pre style="border: 1px solid #000; padding: 10px;">';
   echo 'action: '.$myproperty['action']."<br/>\n";
