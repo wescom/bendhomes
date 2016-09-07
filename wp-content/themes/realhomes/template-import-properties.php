@@ -289,6 +289,8 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
+  bh_write_to_log('  dataPropertyWPinsert with: '.$myproperty['MLNumber'],'properties');
+
   echo '<pre style="border: 1px solid #000; padding: 10px;">';
   echo 'action: '.$myproperty['action']."<br/>\n";
   echo 'title: '.$myproperty['inspiry_property_title']."<br/>\n";
