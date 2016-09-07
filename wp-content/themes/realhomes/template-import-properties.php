@@ -24,12 +24,11 @@ function dataPreProc($proparr,$scenarioset) {
   $raw_property_count = count($proparr);
   echo '<h1>raw property count: '.$raw_property_count.'</h1>';
   /* #### PROPERTY DATA LOOP ##### */
-  $retsproperties = "stuff"; //array(); // first declaration
+  $retsproperties = array(); // first declaration
 
   foreach($proparr as $propitem) {
 
-    echo "ListingRid: ".$propitem['ListingRid']." ";
-    /*echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
+    echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
     echo 'status: ';
     print_r($propitem['Status']);
     echo '<br/>';
@@ -277,7 +276,7 @@ function dataPreProc($proparr,$scenarioset) {
 
 
     $count++;
-  } // end $propitem forach */
+  } // end $propitem forach
   // $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
   // bh_write_to_log("\t".$log,'properties');
   return $retsproperties;
@@ -536,7 +535,7 @@ function dataPropertyWPinsert($myproperty) {
 } // end wp insert function
 
 bh_write_to_log('import start: '.date(DATE_RSS),'properties');
- echo 'import start: '.date(DATE_RSS)."<br/>\n";
+// echo 'import start: '.date(DATE_RSS)."<br/>\n";
 foreach($scenarios as $scenario) {
   // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
   // echo '<pre>';
@@ -545,8 +544,8 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
-  
-   print_r($retsApiResults);
+  var_dump($retsApiResults);
+  // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
   //$retsPreProcResults = dataPreProc($retsApiResults,$scenario);
 
