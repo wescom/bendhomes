@@ -622,7 +622,7 @@ function bhImageSet($item) {
           echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
           $modDay = strtotime($item['PictureModifiedDateTime']);
           //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
-          if (1/*$modDay >= $lastDatePulled*/) {
+          if ($modDay >= $lastDatePulled) {
             copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
             $updateFlag = 1; // lets bendhomes_img_upload know it needs updateing.
           }
