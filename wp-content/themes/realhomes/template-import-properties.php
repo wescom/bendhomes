@@ -544,9 +544,10 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
+  var_dump($retsApiResults);
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
-  $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
+  //$retsPreProcResults = dataPreProc($retsApiResults,$scenario);
 
   // loop again to insert into WP posts
   // $do = dataPropertyWPinsert($retsPreProcResults);
