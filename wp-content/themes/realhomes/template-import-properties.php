@@ -547,7 +547,7 @@ foreach($scenarios as $scenario) {
   $mlsArray = array();
   foreach($retsApiResults as $stuff) {
     //echo 'mls: '.$stuff['MLNumber']."\n\r";
-    if (in_array($mlsArray, $stuff['MLNumber'])) {
+    if (in_array($stuff['MLNumber'], $mlsArray)) {
         echo " REPEAT!!! : ".$stuff['MLNumber'];
     }
     else
