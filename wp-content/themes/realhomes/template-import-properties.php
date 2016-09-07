@@ -544,7 +544,9 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
-  var_dump($retsApiResults);
+  foreach($retsApiResults as $stuff) {
+    var_dump($stuf['MLNumber']);
+  }
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
   //$retsPreProcResults = dataPreProc($retsApiResults,$scenario);
