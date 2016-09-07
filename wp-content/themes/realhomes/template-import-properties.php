@@ -265,6 +265,7 @@ function dataPreProc($proparr,$scenarioset) {
     // print_r($data_to_insert);
     // echo '</pre>';
     // usleep(500000); // 1/2 second sleep
+    bh_write_to_log('mls: '.$propitem['MLNumber'],'properties');
     dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
@@ -282,7 +283,11 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  echo '<pre style="border: 1px solid #cc0000; padding: 10px;">';
+
+  bh_write_to_log('  dataPropertyWPinsert with: '.$myproperty['property-id'].' status: '.$myproperty['property-mlstatus'],'properties');
+
+  echo '<pre style="border: 1px solid #000; padding: 10px;">';
+
   echo 'action: '.$myproperty['action']."<br/>\n";
   echo 'title: '.$myproperty['inspiry_property_title']."<br/>\n";
   echo 'MLS number: '.$myproperty['property-id']."<br/>\n";
@@ -549,6 +554,15 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
+  /*$mlsArray = array();
+  foreach($retsApiResults as $stuff) {
+    //echo 'mls: '.$stuff['MLNumber']."\n\r";
+    if (in_array($stuff['MLNumber'], $mlsArray)) {
+        echo " REPEAT!!! : ".$stuff['MLNumber'];
+    }
+    else
+      array_push($mlsArray, $stuff['MLNumber']);
+  }*/
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
   $retsPreProcResults = dataPreProc($retsApiResults,$scenario);

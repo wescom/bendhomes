@@ -636,7 +636,7 @@ function bh_write_to_log($string,$type) {
   $logdate = date("F j, Y, g:i a");
   $log  = $string.PHP_EOL;
   //Save string to log, use FILE_APPEND to append.
-  // file_put_contents($fname, $log, FILE_APPEND);
+  file_put_contents($fname, $log, FILE_APPEND);
 }
 
 function delete_updated_images($post_id) {
