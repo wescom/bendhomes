@@ -544,7 +544,7 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
-  $mlsArray = array();
+  /*$mlsArray = array();
   foreach($retsApiResults as $stuff) {
     //echo 'mls: '.$stuff['MLNumber']."\n\r";
     if (in_array($stuff['MLNumber'], $mlsArray)) {
@@ -552,10 +552,10 @@ foreach($scenarios as $scenario) {
     }
     else
       array_push($mlsArray, $stuff['MLNumber']);
-  }
+  }*/
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
-  //$retsPreProcResults = dataPreProc($retsApiResults,$scenario);
+  $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
 
   // loop again to insert into WP posts
   // $do = dataPropertyWPinsert($retsPreProcResults);
