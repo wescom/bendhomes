@@ -28,7 +28,8 @@ function dataPreProc($proparr,$scenarioset) {
 
   foreach($proparr as $propitem) {
 
-    echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
+    echo "ListingRid: ".$propitem['ListingRid']."\n\r";
+    /*echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
     echo 'status: ';
     print_r($propitem['Status']);
     echo '<br/>';
@@ -276,7 +277,7 @@ function dataPreProc($proparr,$scenarioset) {
 
 
     $count++;
-  } // end $propitem forach
+  } // end $propitem forach */
   // $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
   // bh_write_to_log("\t".$log,'properties');
   return $retsproperties;
@@ -544,10 +545,10 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
-  var_dump($retsApiResults);
+  
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
-  //$retsPreProcResults = dataPreProc($retsApiResults,$scenario);
+  $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
 
   // loop again to insert into WP posts
   // $do = dataPropertyWPinsert($retsPreProcResults);
