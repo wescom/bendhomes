@@ -544,8 +544,13 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
+  $mlsArray = new array();
   foreach($retsApiResults as $stuff) {
     echo 'mls: '.$stuff['MLNumber']."\n\r";
+    if (in_array($stuff['MLNumber']))
+        echo " REPEAT!!! : ".$stuff['MLNumber'];
+    else
+      array_push($mslArray, $stuff['MLNumber']);
   }
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
