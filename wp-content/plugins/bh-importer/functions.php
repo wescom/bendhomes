@@ -536,10 +536,12 @@ function dbresult($sset) {
 
   $mysqli->close();
 
-  $mydump = print_r($data, true);
-  $tm = time();
-  bh_write_to_log("*************************  NEW DUMP ****************************", 'datadump'.$tm);
-  bh_write_to_log($data,'datadump'.$tm);
+  if ($rc == "Property_RESI"){
+    $mydump = print_r($data, true);
+    $tm = time();
+    bh_write_to_log("*************************  NEW DUMP ****************************", 'datadump'.$tm);
+    bh_write_to_log($mydump,'datadump'.$tm);
+  }
   return $data;
 }
 
