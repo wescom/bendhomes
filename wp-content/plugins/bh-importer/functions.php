@@ -535,6 +535,13 @@ function dbresult($sset) {
   }
 
   $mysqli->close();
+
+  if ($rc == "Property_RESI"){
+    $mydump = print_r($data, true);
+    $tm = time();
+    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadump'.$tm);
+    bh_write_to_log($mydump,'zdatadump'.$tm);
+  }
   return $data;
 }
 
