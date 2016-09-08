@@ -539,8 +539,8 @@ function dbresult($sset) {
   if ($rc == "Property_RESI"){
     $mydump = print_r($data, true);
     $tm = time();
-    bh_write_to_log("*************************  NEW DUMP ****************************", 'datadump'.$tm);
-    bh_write_to_log($mydump,'datadump'.$tm);
+    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadump'.$tm);
+    bh_write_to_log($mydump,'zdatadump'.$tm);
   }
   return $data;
 }
