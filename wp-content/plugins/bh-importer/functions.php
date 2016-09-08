@@ -535,6 +535,9 @@ function dbresult($sset) {
   }
 
   $mysqli->close();
+
+  $mydump = print_r($data, true);
+  bh_write_to_log($data,'datadump'.time());
   return $data;
 }
 
