@@ -544,7 +544,8 @@ function dataPropertyWPinsert($myproperty) {
   }
 } // end wp insert function
 
-bh_write_to_log('import start: '.date(DATE_RSS),'properties');
+$tm1 = time();
+bh_write_to_log('import start: '.date(DATE_RSS),'properties'."_".$tm1);
 echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import start - '.date(DATE_RSS).'</h1>';
 foreach($scenarios as $scenario) {
   // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
@@ -556,9 +557,9 @@ foreach($scenarios as $scenario) {
   $retsApiResults = dbresult($scenario);
   
     $mydump = print_r($retsApiResults, true);
-    $tm = time();
-    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadumpOUR'."_".$scenario['name']."_".$tm);
-    bh_write_to_log($mydump,'zdatadumpOUR'."_".$scenario['name']."_".$tm);
+    $tm2 = time();
+    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadumpOUR'."_".$scenario['name']."_".$tm2);
+    bh_write_to_log($mydump,'zdatadumpOUR'."_".$scenario['name']."_".$tm2);
 
   /*$mlsArray = array();
   foreach($retsApiResults as $stuff) {
@@ -578,6 +579,6 @@ foreach($scenarios as $scenario) {
   echo '<hr/>';
 }
 echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import end - '.date(DATE_RSS).'</h1>';
-bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
+bh_write_to_log('import complete: '.date(DATE_RSS),'properties'."_".$tm1);
 
 ?>
