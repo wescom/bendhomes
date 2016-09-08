@@ -557,7 +557,9 @@ foreach($scenarios as $scenario) {
   if ($rc == "Property_RESI"){
     $mydump = print_r($retsApiResults, true);
     $tm = time();
-    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadump'.$tm);
+
+    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadumpOUR'.$tm);
+
     bh_write_to_log($mydump,'zdatadumpOUR'.$tm);
   }
   /*$mlsArray = array();
