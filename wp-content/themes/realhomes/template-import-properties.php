@@ -557,9 +557,8 @@ foreach($scenarios as $scenario) {
   $retsApiResults = dbresult($scenario);
   
     $mydump = print_r($retsApiResults, true);
-    $tm2 = time();
-    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadumpOUR'."_".$scenario['name']."_".$tm2);
-    bh_write_to_log($mydump,'zdatadumpOUR'."_".$scenario['name']."_".$tm2);
+    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadumpOUR'."_".$scenario['name']."_".$tm1);
+    bh_write_to_log($mydump,'zdatadumpOUR'."_".$scenario['name']."_".$tm1);
 
   /*$mlsArray = array();
   foreach($retsApiResults as $stuff) {
