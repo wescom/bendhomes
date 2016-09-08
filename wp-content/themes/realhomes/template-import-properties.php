@@ -25,258 +25,265 @@ function dataPreProc($proparr,$scenarioset) {
   echo '<h1>raw property count: '.$raw_property_count.'</h1>';
   /* #### PROPERTY DATA LOOP ##### */
   $retsproperties = array(); // first declaration
+  $loopCurrMls = 0;
 
   foreach($proparr as $propitem) {
 
-    echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
-    echo 'status: ';
-    print_r($propitem['Status']);
-    echo '<br/>';
-    echo 'count: '.$count.'<br/>';
-    echo 'ml number: ';
-    print_r($propitem['MLNumber']);
-    echo '</pre>';
+    if ($loopCurrMls == $propitem['MLNumber']) {
+      bh_write_to_log('Repeat SKIP!!! mls: '.$propitem['MLNumber'],'properties');
+        // repeat loop - skip. 
+    } else {
 
-    // status use cases
-    // DECIDE what to do with pre-existing records
-    // update, delete
+      echo '<pre style="border: 1px solid #333; padding: 10px; background-color: #cad446; margin: 0;">';
+      echo 'status: ';
+      print_r($propitem['Status']);
+      echo '<br/>';
+      echo 'count: '.$count.'<br/>';
+      echo 'ml number: ';
+      print_r($propitem['MLNumber']);
+      echo '</pre>';
 
-
-
-    $mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
-    $bhpropertyid = $mlsposts[0];
-    $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
-
-    $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
-    $propname = trim($propname);
-
-    $retsproperties[$propitem['ListingRid']]['property-mlstatus'] = $propitem['Status'];
-
-    // // end use cases
-    // add_property
-    // skip_property
-    // update_property
-    // delete_property
-    if($postaction == 'delete_property' || $postaction == 'skip_property') {
-      $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
-      $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
-      $retsproperties[$propitem['ListingRid']]['property-id'] = $propitem['MLNumber']; // this the the MLS ID
-      $retsproperties[$propitem['ListingRid']]['inspiry_property_title'] = $propname;
-    } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
-
-      $propprice = formatprice($propitem['ListingPrice']);
-
-      $agentguid = 'agent_'.$propitem['ListingAgentNumber'];
-      $agentposts = bhLookupAgent($agentguid);
-
-      $bhagentid = $agentposts[0];
-      $bhagentid = $bhagentid->{ID};
-      $bhagentfullname = $agentposts[0];
-      $bhagentfullname = $bhagentfullname->{post_title};
-
-      // echo '<h2 style="color: red;">';
-      // echo $propitem['ShowAddressToPublic'];
-      // echo '</h2>';
-
-      if($propitem['ShowAddressToPublic'] == '0') {
-        $bhpublicaddressflag = 'no';
-      } else {
-        $bhpublicaddressflag = 'yes';
-      }
-
-      $bhagentdisplayoption = 'agent_info'; // my_profile_info, agent_info, none
-      // $bhmarketingremarks = $propitem['MarketingRemarks'].'<br/><br/><strong>Listing Agent: </strong><br/>'.$bhagentfullname.'<br/>'.$propitem['ListingOfficeName'];
-      $bhmarketingremarks = $propitem['MarketingRemarks'];
-      // if MLS give no coordinates, they set them to zeroes, trap that. Don't submit to importer
-      if(strpos($propitem['Latitude'],'0.0') === true || strpos($propitem['Latitude'],'0.0') === true) {
-        $bhcoordinates = NULL;
-      } else {
-        $bhcoordinates = $propitem['Latitude'].','.$propitem['Longitude'];
-      }
-
-      switch ($scenarioset['name']) {
-      	case "OpenHouse_OPEN":
-      		break;
-      	case "Property_BUSI":
-          // START Property_BUSI import template
-          $retsproperties[$propitem['ListingRid']] = array(
-            'inspiry_property_title' => $propname,
-            'show_address_to_public' => $bhpublicaddressflag,
-            'description' => $bhmarketingremarks,
-            'type' => bhLookupPropertyType($propitem['BUSITYPE']),
-            'status' => 34,
-            'location' => $propitem['City'],
-            'property-id' => $propitem['MLNumber'], // this the the MLS ID
-            'property_id' => $bhpropertyid, // this is the WP post id if there's record update
-            'price' => $propprice,
-            'price-postfix' => '',
-            'video-url' => $propitem['VirtualTourURL'],
-            'address' => $propname,
-            'coordinates' => $bhcoordinates,
-            // 'featured' => 0, // 0 == not featured, 1 == featured
-            'agent_display_option' => $bhagentdisplayoption,
-            'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
-          );
-          // END Property_BUSI import template
-      		break;
-      	case "Property_COMM":
-          // START Property_COMM import template
-          $retsproperties[$propitem['ListingRid']] = array(
-            'inspiry_property_title' => $propname,
-            'show_address_to_public' => $bhpublicaddressflag,
-            'description' => $bhmarketingremarks,
-            'type' => bhLookupPropertyType($propitem['COMMTYPE']),
-            'status' => 34,
-            'location' => $propitem['City'],
-            'property-id' => $propitem['MLNumber'], // this the the MLS ID
-            'property_id' => $bhpropertyid, // this is the WP post id if there's record update
-            'price' => $propprice,
-            'price-postfix' => '',
-            'video-url' => $propitem['VirtualTourURL'],
-            'address' => $propname,
-            'coordinates' => $bhcoordinates,
-            // 'featured' => 0, // 0 == not featured, 1 == featured
-            'agent_display_option' => $bhagentdisplayoption,
-            'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
-          );
-          // END Property_COMM import template
-      		break;
-      	case "Property_FARM":
-          // START Property_FARM import template
-          $retsproperties[$propitem['ListingRid']] = array(
-            'inspiry_property_title' => $propname,
-            'show_address_to_public' => $bhpublicaddressflag,
-            'description' => $bhmarketingremarks,
-            'type' => bhLookupPropertyType($propitem['PropertyType']),
-            'status' => 34,
-            'location' => $propitem['City'],
-            'bedrooms' => $propitem['Bedrooms'],
-            'bathrooms' => $propitem['Bathrooms'],
-            'garages' => $propitem['FARMGARA'],
-            'property-id' => $propitem['MLNumber'], // this the the MLS ID
-            'property_id' => $bhpropertyid, // this is the WP post id if there's record update
-            'price' => $propprice,
-            'price-postfix' => '',
-            'size' => $propitem['SquareFootage'],
-            'area-postfix' => 'Sq Ft',
-            'video-url' => $propitem['VirtualTourURL'],
-            'address' => $propname,
-            'coordinates' => $bhcoordinates,
-            // 'featured' => 0, // 0 == not featured, 1 == featured
-            'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
-            'agent_display_option' => $bhagentdisplayoption,
-            'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
-          );
-          // END Property_FARM import template
-      		break;
-      	case "Property_LAND":
-          // START Property_LAND import template
-          $retsproperties[$propitem['ListingRid']] = array(
-            'inspiry_property_title' => $propname,
-            'show_address_to_public' => $bhpublicaddressflag,
-            'description' => $bhmarketingremarks,
-            'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
-            'status' => 34,
-            'location' => $propitem['City'],
-            'property-id' => $propitem['MLNumber'], // this the the MLS ID
-            'property_id' => $bhpropertyid, // this is the WP post id if there's record update
-            'price' => $propprice,
-            'price-postfix' => '',
-            'video-url' => $propitem['VirtualTourURL'],
-            'address' => $propname,
-            'coordinates' => $bhcoordinates,
-            // 'featured' => 0, // 0 == not featured, 1 == featured
-            'agent_display_option' => $bhagentdisplayoption,
-            'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
-          );
-          // END Property_LAND import template
-      		break;
-        case "Property_MULT":
-          // START Property_MULT import template
-          $retsproperties[$propitem['ListingRid']] = array(
-            'inspiry_property_title' => $propname,
-            'show_address_to_public' => $bhpublicaddressflag,
-            'description' => $bhmarketingremarks,
-            'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
-            'status' => 34,
-            'location' => $propitem['City'],
-            'bedrooms' => $propitem['Bedrooms'],
-            'bathrooms' => $propitem['Bathrooms'],
-            'property-id' => $propitem['MLNumber'], // this the the MLS ID
-            'property_id' => $bhpropertyid, // this is the WP post id if there's record update
-            'price' => $propprice,
-            'price-postfix' => '',
-            'size' => $propitem['SquareFootage'],
-            'area-postfix' => 'Sq Ft',
-            'video-url' => $propitem['VirtualTourURL'],
-            'address' => $propname,
-            'coordinates' => $bhcoordinates,
-            // 'featured' => 0, // 0 == not featured, 1 == featured
-            'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
-            'agent_display_option' => $bhagentdisplayoption,
-            'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
-          );
-          // END Property_MULT import template
-      		break;
-        case "Property_RESI":
-          // START Property_RESI import template
-          $retsproperties[$propitem['ListingRid']] = array(
-            'inspiry_property_title' => $propname,
-            'show_address_to_public' => $bhpublicaddressflag,
-            'description' => $bhmarketingremarks,
-            'type' => bhLookupPropertyType($propitem['PropertyType']),
-            'status' => 34,
-            'location' => $propitem['City'],
-            'bedrooms' => $propitem['Bedrooms'],
-            'bathrooms' => $propitem['Bathrooms'],
-            'garages' => $propitem['RESIGARA'],
-            'property-id' => $propitem['MLNumber'], // this the the MLS ID
-            'property_id' => $bhpropertyid, // this is the WP post id if there's record update
-            'price' => $propprice,
-            'price-postfix' => '',
-            'size' => $propitem['SquareFootage'],
-            'area-postfix' => 'Sq Ft',
-            'video-url' => $propitem['VirtualTourURL'],
-            'address' => $propname,
-            'coordinates' => $bhcoordinates,
-            // 'featured' => 0, // 0 == not featured, 1 == featured
-            'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
-            'agent_display_option' => $bhagentdisplayoption,
-            'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
-          );
-          // END Property_RESI import template
-      		break;
-      } // end swich statement
-
-      if(($postaction == 'add_property') || ($postaction == 'update_property')) {
-        $bhimgids = bhImageSet($propitem);
-        $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
-        $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
-      }
-
-      unset($bhimgids);
-    } // end $postaction ifelse
-
-    $data_to_insert = $retsproperties[$propitem['ListingRid']];
-    // echo '<h1>'.$data_to_insert['action'].'</h1>';
-    // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
-    // print_r($data_to_insert);
-    // echo '</pre>';
-    // usleep(500000); // 1/2 second sleep
-    bh_write_to_log('mls: '.$propitem['MLNumber'],'properties');
-    dataPropertyWPinsert($data_to_insert);
-    // sleep(1);
-    unset($data_to_insert);
+      // status use cases
+      // DECIDE what to do with pre-existing records
+      // update, delete
 
 
 
-    $count++;
+      $mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
+      $bhpropertyid = $mlsposts[0];
+      $postaction = bhPostActions($propitem['Status'],$bhpropertyid);
+
+      $propname = $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'].', '.$propitem['City'].', '.$propitem['State'].' '.$propitem['ZipCode'];
+      $propname = trim($propname);
+
+      $retsproperties[$propitem['ListingRid']]['property-mlstatus'] = $propitem['Status'];
+
+      // // end use cases
+      // add_property
+      // skip_property
+      // update_property
+      // delete_property
+      if($postaction == 'delete_property' || $postaction == 'skip_property') {
+        $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
+        $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
+        $retsproperties[$propitem['ListingRid']]['property-id'] = $propitem['MLNumber']; // this the the MLS ID
+        $retsproperties[$propitem['ListingRid']]['inspiry_property_title'] = $propname;
+      } elseif ($postaction == 'add_property' || $postaction == 'update_property') {
+
+        $propprice = formatprice($propitem['ListingPrice']);
+
+        $agentguid = 'agent_'.$propitem['ListingAgentNumber'];
+        $agentposts = bhLookupAgent($agentguid);
+
+        $bhagentid = $agentposts[0];
+        $bhagentid = $bhagentid->{ID};
+        $bhagentfullname = $agentposts[0];
+        $bhagentfullname = $bhagentfullname->{post_title};
+
+        // echo '<h2 style="color: red;">';
+        // echo $propitem['ShowAddressToPublic'];
+        // echo '</h2>';
+
+        if($propitem['ShowAddressToPublic'] == '0') {
+          $bhpublicaddressflag = 'no';
+        } else {
+          $bhpublicaddressflag = 'yes';
+        }
+
+        $bhagentdisplayoption = 'agent_info'; // my_profile_info, agent_info, none
+        // $bhmarketingremarks = $propitem['MarketingRemarks'].'<br/><br/><strong>Listing Agent: </strong><br/>'.$bhagentfullname.'<br/>'.$propitem['ListingOfficeName'];
+        $bhmarketingremarks = $propitem['MarketingRemarks'];
+        // if MLS give no coordinates, they set them to zeroes, trap that. Don't submit to importer
+        if(strpos($propitem['Latitude'],'0.0') === true || strpos($propitem['Latitude'],'0.0') === true) {
+          $bhcoordinates = NULL;
+        } else {
+          $bhcoordinates = $propitem['Latitude'].','.$propitem['Longitude'];
+        }
+
+        switch ($scenarioset['name']) {
+        	case "OpenHouse_OPEN":
+        		break;
+        	case "Property_BUSI":
+            // START Property_BUSI import template
+            $retsproperties[$propitem['ListingRid']] = array(
+              'inspiry_property_title' => $propname,
+              'show_address_to_public' => $bhpublicaddressflag,
+              'description' => $bhmarketingremarks,
+              'type' => bhLookupPropertyType($propitem['BUSITYPE']),
+              'status' => 34,
+              'location' => $propitem['City'],
+              'property-id' => $propitem['MLNumber'], // this the the MLS ID
+              'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+              'price' => $propprice,
+              'price-postfix' => '',
+              'video-url' => $propitem['VirtualTourURL'],
+              'address' => $propname,
+              'coordinates' => $bhcoordinates,
+              // 'featured' => 0, // 0 == not featured, 1 == featured
+              'agent_display_option' => $bhagentdisplayoption,
+              'agent_id' => $bhagentid,
+              'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            );
+            // END Property_BUSI import template
+        		break;
+        	case "Property_COMM":
+            // START Property_COMM import template
+            $retsproperties[$propitem['ListingRid']] = array(
+              'inspiry_property_title' => $propname,
+              'show_address_to_public' => $bhpublicaddressflag,
+              'description' => $bhmarketingremarks,
+              'type' => bhLookupPropertyType($propitem['COMMTYPE']),
+              'status' => 34,
+              'location' => $propitem['City'],
+              'property-id' => $propitem['MLNumber'], // this the the MLS ID
+              'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+              'price' => $propprice,
+              'price-postfix' => '',
+              'video-url' => $propitem['VirtualTourURL'],
+              'address' => $propname,
+              'coordinates' => $bhcoordinates,
+              // 'featured' => 0, // 0 == not featured, 1 == featured
+              'agent_display_option' => $bhagentdisplayoption,
+              'agent_id' => $bhagentid,
+              'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            );
+            // END Property_COMM import template
+        		break;
+        	case "Property_FARM":
+            // START Property_FARM import template
+            $retsproperties[$propitem['ListingRid']] = array(
+              'inspiry_property_title' => $propname,
+              'show_address_to_public' => $bhpublicaddressflag,
+              'description' => $bhmarketingremarks,
+              'type' => bhLookupPropertyType($propitem['PropertyType']),
+              'status' => 34,
+              'location' => $propitem['City'],
+              'bedrooms' => $propitem['Bedrooms'],
+              'bathrooms' => $propitem['Bathrooms'],
+              'garages' => $propitem['FARMGARA'],
+              'property-id' => $propitem['MLNumber'], // this the the MLS ID
+              'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+              'price' => $propprice,
+              'price-postfix' => '',
+              'size' => $propitem['SquareFootage'],
+              'area-postfix' => 'Sq Ft',
+              'video-url' => $propitem['VirtualTourURL'],
+              'address' => $propname,
+              'coordinates' => $bhcoordinates,
+              // 'featured' => 0, // 0 == not featured, 1 == featured
+              'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
+              'agent_display_option' => $bhagentdisplayoption,
+              'agent_id' => $bhagentid,
+              'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            );
+            // END Property_FARM import template
+        		break;
+        	case "Property_LAND":
+            // START Property_LAND import template
+            $retsproperties[$propitem['ListingRid']] = array(
+              'inspiry_property_title' => $propname,
+              'show_address_to_public' => $bhpublicaddressflag,
+              'description' => $bhmarketingremarks,
+              'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
+              'status' => 34,
+              'location' => $propitem['City'],
+              'property-id' => $propitem['MLNumber'], // this the the MLS ID
+              'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+              'price' => $propprice,
+              'price-postfix' => '',
+              'video-url' => $propitem['VirtualTourURL'],
+              'address' => $propname,
+              'coordinates' => $bhcoordinates,
+              // 'featured' => 0, // 0 == not featured, 1 == featured
+              'agent_display_option' => $bhagentdisplayoption,
+              'agent_id' => $bhagentid,
+              'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            );
+            // END Property_LAND import template
+        		break;
+          case "Property_MULT":
+            // START Property_MULT import template
+            $retsproperties[$propitem['ListingRid']] = array(
+              'inspiry_property_title' => $propname,
+              'show_address_to_public' => $bhpublicaddressflag,
+              'description' => $bhmarketingremarks,
+              'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
+              'status' => 34,
+              'location' => $propitem['City'],
+              'bedrooms' => $propitem['Bedrooms'],
+              'bathrooms' => $propitem['Bathrooms'],
+              'property-id' => $propitem['MLNumber'], // this the the MLS ID
+              'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+              'price' => $propprice,
+              'price-postfix' => '',
+              'size' => $propitem['SquareFootage'],
+              'area-postfix' => 'Sq Ft',
+              'video-url' => $propitem['VirtualTourURL'],
+              'address' => $propname,
+              'coordinates' => $bhcoordinates,
+              // 'featured' => 0, // 0 == not featured, 1 == featured
+              'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
+              'agent_display_option' => $bhagentdisplayoption,
+              'agent_id' => $bhagentid,
+              'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            );
+            // END Property_MULT import template
+        		break;
+          case "Property_RESI":
+            // START Property_RESI import template
+            $retsproperties[$propitem['ListingRid']] = array(
+              'inspiry_property_title' => $propname,
+              'show_address_to_public' => $bhpublicaddressflag,
+              'description' => $bhmarketingremarks,
+              'type' => bhLookupPropertyType($propitem['PropertyType']),
+              'status' => 34,
+              'location' => $propitem['City'],
+              'bedrooms' => $propitem['Bedrooms'],
+              'bathrooms' => $propitem['Bathrooms'],
+              'garages' => $propitem['RESIGARA'],
+              'property-id' => $propitem['MLNumber'], // this the the MLS ID
+              'property_id' => $bhpropertyid, // this is the WP post id if there's record update
+              'price' => $propprice,
+              'price-postfix' => '',
+              'size' => $propitem['SquareFootage'],
+              'area-postfix' => 'Sq Ft',
+              'video-url' => $propitem['VirtualTourURL'],
+              'address' => $propname,
+              'coordinates' => $bhcoordinates,
+              // 'featured' => 0, // 0 == not featured, 1 == featured
+              'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
+              'agent_display_option' => $bhagentdisplayoption,
+              'agent_id' => $bhagentid,
+              'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            );
+            // END Property_RESI import template
+        		break;
+        } // end swich statement
+
+        if(($postaction == 'add_property') || ($postaction == 'update_property')) {
+          $bhimgids = bhImageSet($propitem);
+          $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
+          $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
+        }
+
+        unset($bhimgids);
+      } // end $postaction ifelse
+
+      $data_to_insert = $retsproperties[$propitem['ListingRid']];
+      // echo '<h1>'.$data_to_insert['action'].'</h1>';
+      // echo '<pre style="background-color: #ececec; padding: 0.25em; border-radius: 0.25em;">';
+      // print_r($data_to_insert);
+      // echo '</pre>';
+      // usleep(500000); // 1/2 second sleep
+      bh_write_to_log('mls: '.$propitem['MLNumber'],'properties');
+      dataPropertyWPinsert($data_to_insert);
+      // sleep(1);
+      unset($data_to_insert);
+
+
+
+      $count++;
+    } // end if repeat mls if stmnt
   } // end $propitem forach
   // $log = $scenarioset['name'].' - '.$count.' properties - '.$postaction;
   // bh_write_to_log("\t".$log,'properties');
