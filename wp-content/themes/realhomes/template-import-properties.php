@@ -554,14 +554,14 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
-  if ($rc == "Property_RESI"){
+  
     $mydump = print_r($retsApiResults, true);
     $tm = time();
 
     bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadumpOUR'.$tm);
 
     bh_write_to_log($mydump,'zdatadumpOUR'.$tm);
-  }
+
   /*$mlsArray = array();
   foreach($retsApiResults as $stuff) {
     //echo 'mls: '.$stuff['MLNumber']."\n\r";
