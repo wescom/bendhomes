@@ -18,6 +18,9 @@ include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
+$theTm = time();
+bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm);
+
 function dataPreProc($proparr,$scenarioset) {
   $count = 0;
 
