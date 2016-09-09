@@ -93,8 +93,7 @@ function buildRetsQuery($fqvars) {
     $pulldate['recent'] = file_get_contents($fnamerecent);
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
-    // $pulldate['recent'] = strtotime('-2 days');
-    $pulldate['recent'] = strtotime("-2 day");
+    $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
   }
   $lastDatePulled = $pulldate['recent'];
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
@@ -134,10 +133,12 @@ function dbpopulate($items,$dbtable) {
   );
   $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
   unset($db);
+  // echo '<pre style="margin: 1em 0; border: 1px solid #333; background-color: #ececec;">';
   $reportout = '<h4>db table: '.$dbtable.'</h4>';
   $i = 0;
   foreach($items as $key => $array) {
     echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
+    
     // escape the array for db username
     $escarray = array_map('mysql_real_escape_string', $array);
 
@@ -145,8 +146,6 @@ function dbpopulate($items,$dbtable) {
     $query  = "REPLACE INTO ".$dbtable;
     $query .= " (`".implode("`, `", array_keys($escarray))."`)";
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
-
-    // print_r($query);
 
     if (mysqli_query($dbConnection, $query)) {
         $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
@@ -303,42 +302,6 @@ foreach($scenarios as $qvars) {
   $do = dbpopulate($rets_data,$db_table);
   echo $do.' --- '.$db_table; // echo for db query debugging
 }
-
-/* ##### ######### ####### #### */
-/* ##### PULL DATA INTO WP #### */
-/* ##### ######### ####### #### */
-
-function pullWPdata() {
-  /* $get = array();
-  $msg = '<h4>WP import data</h4>';
-
-  $msg .= 'start: importing WP agents data '.date(DATE_RSS)."<br/>\n";
-  $get['agents'] = get_url('http://dev.bendhomes.com/bh-import-agents/');
-  $msg .= print_r($get['agents'],true);
-  $msg .= 'end: importing WP agents data '.date(DATE_RSS)."<br/>\n";
-
-  sleep(60); // sleep for 1 minutes
-
-  $msg .= 'start: importing WP property data '.date(DATE_RSS)."<br/>\n";
-  $get['properties'] = get_url('http://dev.bendhomes.com/bh-import-properties/');
-  $msg .= print_r($get['properties'],true);
-  $msg .= 'end: importing WP property data '.date(DATE_RSS)."<br/>\n";
-
-  sleep(60); // sleep for 1 minutes
-
-  $msg .= 'start: importing WP property data '.date(DATE_RSS)."<br/>\n";
-  $get['openhouses'] = get_url('http://dev.bendhomes.com/bh-import-opens/');
-  $msg .= print_r($get['openhouses'],true);
-  $msg .= 'end: importing WP property data '.date(DATE_RSS)."<br/>\n";
-
-  return $msg;
-  */
-}
-
-echo '<pre style="background-color: #ececec;">';
-// echo pullWPdata();
-echo '<hr/>';
-echo '</pre>';
 
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 

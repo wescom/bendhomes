@@ -544,45 +544,40 @@ function dataPropertyWPinsert($myproperty) {
   }
 } // end wp insert function
 
-// check if flag to run is available
-if (bhcheckAndAdjustFlag("take")){
-  bh_write_to_log('import start: '.date(DATE_RSS),'properties');
-  echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import start - '.date(DATE_RSS).'</h1>';
-  foreach($scenarios as $scenario) {
-    // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
-    // echo '<pre>';
-    // echo print_r($scenario);
-    // echo '</pre>';
-    // harvest raw rets database results, per table
 
-    $retsApiResults = dbresult($scenario);
+$tm1 = time();
+bh_write_to_log('import start: '.date(DATE_RSS),'properties');
+echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import start - '.date(DATE_RSS).'</h1>';
+foreach($scenarios as $scenario) {
+  // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
+  // echo '<pre>';
+  // echo print_r($scenario);
+  // echo '</pre>';
+  // harvest raw rets database results, per table
 
-    /*$mlsArray = array();
-    foreach($retsApiResults as $stuff) {
-      //echo 'mls: '.$stuff['MLNumber']."\n\r";
-      if (in_array($stuff['MLNumber'], $mlsArray)) {
-          echo " REPEAT!!! : ".$stuff['MLNumber'];
-      }
-      else
-        array_push($mlsArray, $stuff['MLNumber']);
-    }*/
-    // print_r($retsApiResults);
-    // preprocess results to prep data for WP API inserts
-    $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
+  $retsApiResults = dbresult($scenario);
+  
+    $mydump = print_r($retsApiResults, true);
+    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadumpOUR'."_".$scenario['name']."_".$tm1);
+    bh_write_to_log($mydump,'zdatadumpOUR'."_".$scenario['name']."_".$tm1);
 
-    // loop again to insert into WP posts
-    // $do = dataPropertyWPinsert($retsPreProcResults);
-    echo '<hr/>';
+  /*$mlsArray = array();
+  foreach($retsApiResults as $stuff) {
+    //echo 'mls: '.$stuff['MLNumber']."\n\r";
+    if (in_array($stuff['MLNumber'], $mlsArray)) {
+        echo " REPEAT!!! : ".$stuff['MLNumber'];
+    }
+    else
+      array_push($mlsArray, $stuff['MLNumber']);
+  }*/
+  // print_r($retsApiResults);
+  // preprocess results to prep data for WP API inserts
+  $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
 
-    
-  }
-  echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import end - '.date(DATE_RSS).'</h1>';
-  bhcheckAndAdjustFlag("giveup");
-  bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
+  // loop again to insert into WP posts
+  // $do = dataPropertyWPinsert($retsPreProcResults);
+  echo '<hr/>';
 
-} else {
-    bh_write_to_log('import complete: '.date(DATE_RSS),'flagAlreadyTaken');
-    // flag is already taken, so exit script without running
 }
 
 ?>

@@ -33,6 +33,9 @@ $dupimgquery = "SELECT DISTINCT(ID) FROM $wpdb->posts wp LEFT JOIN $wpdb->postme
 // get results from duplicate images query
 $dupimgresults = $wpdb->get_results( $dupimgquery, ARRAY_A );
 
+
+print_r($dupimgresults);
+
 function processImages($imagenames) {
   echo '<ol>';
   foreach($imagenames as $imagename) {
@@ -126,5 +129,4 @@ function delete_duplicate_images($post_id) {
 }
 
 echo '<h1 style="color: brown;">end time: '.date(DATE_RSS).'</h1>';
-
 ?>
