@@ -211,7 +211,7 @@ if( !function_exists( 'property_edit_columns' ) ){
             "city" => __( 'City','framework' ),
             "type" => __('Type','framework'),
             "status" => __('Status','framework'),
-            //"price" => __('Price','framework'),
+            "price" => __('Price','framework'),
             "id" => __( 'Property ID','framework' ),
             /*
             "agent" => __( 'Property Agent','framework' ),
