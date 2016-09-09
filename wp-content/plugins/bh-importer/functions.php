@@ -57,30 +57,13 @@ $scenarios = array(
   )
 );
 
-if ( ! function_exists( 'delete_all_post_meta' ) ) {
-  function delete_all_post_meta($post_id) {
-    // get all post meta
-    $meta = get_post_meta( $post_id );
-    foreach ($meta as $meta_key => $meta_value) {
-      /* echo '<hr/>';
-      echo '<p> delete all post meta<br/>';
-      echo 'delete meta from post_id: '.$post_id;
-      echo 'deleted meta key: '.$meta_key."<br/>\n";
-      echo 'deleted meta value: '.print_r($meta_value)."<br/>\n";
-      echo '</p>'; */
-      delete_post_meta($post_id, $meta_key);
-    }
-  }
-}
-
 if ( ! function_exists( 'delete_associated_media' ) ) {
   function delete_associated_media($post_id) {
     global $wpdb;
     $imgdir = ABSPATH.'wp-content/uploads/';
 
-    echo 'delete associated media post id';
+    echo 'media post id';
     print_r($post_id);
-    echo "<br/>\n";
 
     // get post ids of all images
     $imageids = get_post_meta( $post_id, 'REAL_HOMES_property_images' );
@@ -89,10 +72,11 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
 
       // query the db and get image path and filename
       foreach ($imageids as $imgid) {
-          if(!empty($imgid) && is_string($imgid)) {
-            $sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
-            // echo $sqlquery.'<br/>';
-            $results = $wpdb->get_results( $sqlquery, ARRAY_A );
+          if($imgid != NULL) {
+            //$sqlquery = "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id = ".$imgid;
+            // echo $sqlquery;
+            // $results = $wpdb->get_results( $sqlquery, ARRAY_A );
+            $results = NULL;
           } else {
             $results = NULL;
           }
@@ -106,16 +90,17 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
                 foreach( glob($froot.'*') as $file )
                 {
                     // this deletes all files with the orignal images name pattern, deletes WP versions
-                    // echo '<span style="color: red;">deleted image: '.$file.'</span><br/>'."\n";
                     unlink($file);
                 }
+
               }
               // delete the image post
-              echo '<span style="color: green;">post id that has postmeta and post deleted: '.$imgid.'</span><br/>';
-              delete_all_post_meta( $imgid );
-              wp_delete_post( $imgid );
+              $delpost = wp_delete_post( $imgid );
             }
           }
+
+          // wp_delete_attachment($attachment->ID);
+          // unlink(get_attached_file($file->ID));
       }
     }
   }
@@ -273,6 +258,27 @@ function bhLookupAgent($guid) {
   return $result;
 }
 
+
+
+/* from agent importer */
+/*
+function bhLookupAgent($guid) {
+  if($guid != NULL) {
+    global $wpdb;
+    $guid = "'http://".$guid."'";
+    $sqlquery = "SELECT ID FROM $wpdb->posts WHERE guid = ".$guid;
+    // echo $sqlquery;
+    $result = $wpdb->get_results( $sqlquery );
+  } else {
+    $result = NULL;
+  }
+  // echo '<pre> test222';
+  // print_r($result);
+  // echo '</pre>';
+  return $result;
+}
+*/
+
 function bhLookupPropertyType($typestring) {
   // this taked the RESIPropertySubtype var from rets
   // and does a like compare to property types in the Wordpress database
@@ -284,6 +290,7 @@ function bhLookupPropertyType($typestring) {
 
   $output = array();
   foreach($types as $type) {
+
     // remove any spaces
     $type = trim($type);
 
@@ -294,26 +301,23 @@ function bhLookupPropertyType($typestring) {
 
     // need single quotes around string for correct mysql syntax
     $type = "'".$type."'";
-    $result = $wpdb->get_results("SELECT term_id FROM wp_terms WHERE name LIKE ".$type);
+    $result = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$type);
 
-    if(!empty($result)) {
-      // for debugging
-      // print_r($type);
-      // echo '<br/>';
-      // print_r($result);
+    // echo '<pre> test322db -- ';
+    // print_r($result);
+    // echo '</pre>';
 
-      // there is usually only one result, but if more, take the first key
-      $myid = $result[0]->{'term_id'};
-      $myid = (int) $myid;
+    // there is usually only one result, but if more, take the first key
+    $myid = $result[0]->{term_id};
+    $myid = (int) $myid;
 
-      $output[] = $myid;
-    }
+    $output[] = $myid;
   }
   return $output;
 }
 
 function bhLookupFeatures($featlist_interior,$featlist_exterior) {
-  // this takes the
+  // this taked the
   // RESIINTE, RESIEXTE,
   // and does a like compare to property types in the Wordpress database
   // it then supplies the property type as an integer for feed ingestion
@@ -323,11 +327,6 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
   $fext = explode(',',$featlist_exterior);
   $features = array_merge($fint,$fext);
 
-  // debugging
-  /* echo '<pre> jtg177dba -- ';
-  print_r($features);
-  echo '</pre>'; */
-
   foreach($features as $feature) {
     $feature = "'".$feature."'";
     $results[] = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$feature, OBJECT);
@@ -335,11 +334,12 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
 
   $output = array();
   foreach($results as $result) {
-    if(!empty($result[0]->{'term_id'})) {
-      $output[] = $result[0]->{'term_id'};
-    }
+    $output[] = $result[0]->{term_id};
   }
 
+  // strip empty keys from array
+  $output = array_filter($output);
+  // print_r($output);
   return $output;
 }
 
@@ -448,7 +448,7 @@ function bhPostActions($status,$mlsid=NULL) {
 
   // $apiaction = 'delete_property';
 
-  // echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>wordpress post id: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
+  echo '<p style="color: darkgreen">apiaction: '.$apiaction.' <br/>wordpress post id: '.$mlsid.' <br/>apifeedstat: '.$status.'</p>';
   return $apiaction;
 }
 
@@ -483,7 +483,7 @@ function dbresult($sset) {
     $pulldate = file_get_contents($fnamerecent);
   } else {
     // $pulldate = strtotime('-730 days'); //'-6 hours' '-1 day' '-10 years'
-    $pulldate = strtotime("-1 year");
+    $pulldate = strtotime("-2 days");
   }
   global $lastDatePulled;
   $lastDatePulled = $pulldate;
@@ -536,11 +536,6 @@ function dbresult($sset) {
 
   $mysqli->close();
 
-    $mydump = print_r($data, true);
-    $tm = time();
-    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadump_'.$rc."_".$tm);
-    bh_write_to_log($mydump,'zdatadump_'.$rc."_".$tm);
-
   return $data;
 }
 
@@ -586,6 +581,18 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
      $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
      // echo '<p style="color: green;">new-id: '.$myid.'</p>';
    }
+
+   /* debugging
+   echo '<pre style="background-color: cyan;">';
+   echo 'post_name'.$post_name.'<br/>';
+   echo 'attachment_id:';
+   print_r($attachment_id);
+   echo '<br/>';
+   echo 'myid: '.$myid;
+   echo '<br/>';
+   print_r($file_array);
+   echo '</pre>';
+   */
 
    return $myid;
 
