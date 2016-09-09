@@ -85,6 +85,7 @@ if ( ! function_exists( 'delete_associated_media' ) ) {
             foreach($results as $result) {
               if($result['meta_key'] == '_wp_attached_file' ) {
                 $deletefile = $imgdir.$result['meta_value'];
+                echo '<p style="color:red;">Deleting: '.$deletefile.'</p>';
                 $froot = explode('.',$deletefile);
                 $froot = $froot[0]; // we want of root of the filename with no extension
                 foreach( glob($froot.'*') as $file )
