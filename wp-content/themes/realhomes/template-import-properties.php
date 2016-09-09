@@ -574,9 +574,10 @@ if (bhcheckAndAdjustFlag("take")){
     // $do = dataPropertyWPinsert($retsPreProcResults);
     echo '<hr/>';
 
-    bhcheckAndAdjustFlag("giveup");
+    
   }
   echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import end - '.date(DATE_RSS).'</h1>';
+  bhcheckAndAdjustFlag("giveup");
   bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
 
 } else {
