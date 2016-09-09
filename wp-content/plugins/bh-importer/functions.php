@@ -461,17 +461,21 @@ function bhcheckAndAdjustFlag($type) {
     if ($type = "take"){
       $checkFlag = file_get_contents($flagfname);
       if ($checkFlag == 1) {  // taking the flag - write 0 to the file
+        echo '<h1 style="color:white; background-color:green; padding 3px;">Took flag - ok to run!</h1>';
         file_put_contents($flagfname,"0");
         return true;
       } else {
+        echo '<h1 style="color:white; background-color:red; padding 3px;">Flag not available - cant run!</h1>';
         return false;
       }
 
     } else {  // 'giveup' give the flag up
       file_put_contents($flagfname,"1");
+      echo '<h1 style="color:white; background-color:green; padding 3px;">Gave flag back</h1>';
       return true;
     }
   } else {  // create flile and write 0 - we are taking it
+    echo '<h1 style="color:white; background-color:green; padding 3px;">File doesnt exist, create it and take flag - ok to run!</h1>';
     file_put_contents($flagfname,"0");
     return true;
   }
