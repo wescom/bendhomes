@@ -536,11 +536,6 @@ function dbresult($sset) {
 
   $mysqli->close();
 
-    $mydump = print_r($data, true);
-    $tm = time();
-    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadump_'.$rc."_".$tm);
-    bh_write_to_log($mydump,'zdatadump_'.$rc."_".$tm);
-
   return $data;
 }
 

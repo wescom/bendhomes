@@ -265,7 +265,7 @@ function dataPreProc($proparr,$scenarioset) {
     // print_r($data_to_insert);
     // echo '</pre>';
     // usleep(500000); // 1/2 second sleep
-    bh_write_to_log('mls: '.$propitem['MLNumber'],'properties');
+    //bh_write_to_log('mls: '.$propitem['MLNumber'],'properties');
     dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
@@ -545,7 +545,7 @@ function dataPropertyWPinsert($myproperty) {
 } // end wp insert function
 
 $tm1 = time();
-bh_write_to_log('import start: '.date(DATE_RSS),'properties'."_".$tm1);
+bh_write_to_log('import start: '.date(DATE_RSS),'properties');
 echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import start - '.date(DATE_RSS).'</h1>';
 foreach($scenarios as $scenario) {
   // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
@@ -555,10 +555,6 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
-  
-    $mydump = print_r($retsApiResults, true);
-    bh_write_to_log("*************************  NEW DUMP ****************************", 'zdatadumpOUR'."_".$scenario['name']."_".$tm1);
-    bh_write_to_log($mydump,'zdatadumpOUR'."_".$scenario['name']."_".$tm1);
 
   /*$mlsArray = array();
   foreach($retsApiResults as $stuff) {
@@ -578,6 +574,6 @@ foreach($scenarios as $scenario) {
   echo '<hr/>';
 }
 echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import end - '.date(DATE_RSS).'</h1>';
-bh_write_to_log('import complete: '.date(DATE_RSS),'properties'."_".$tm1);
+bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
 
 ?>
