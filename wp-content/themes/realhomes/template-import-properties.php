@@ -544,36 +544,45 @@ function dataPropertyWPinsert($myproperty) {
   }
 } // end wp insert function
 
-$tm1 = time();
-bh_write_to_log('import start: '.date(DATE_RSS),'properties');
-echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import start - '.date(DATE_RSS).'</h1>';
-foreach($scenarios as $scenario) {
-  // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
-  // echo '<pre>';
-  // echo print_r($scenario);
-  // echo '</pre>';
-  // harvest raw rets database results, per table
+// check if flag to run is available
+if (bhcheckAndAdjustFlag("take")){
 
-  $retsApiResults = dbresult($scenario);
+  bh_write_to_log('import start: '.date(DATE_RSS),'properties');
+  echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import start - '.date(DATE_RSS).'</h1>';
+  foreach($scenarios as $scenario) {
+    // echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$scenario['name'].'</p>';
+    // echo '<pre>';
+    // echo print_r($scenario);
+    // echo '</pre>';
+    // harvest raw rets database results, per table
 
-  /*$mlsArray = array();
-  foreach($retsApiResults as $stuff) {
-    //echo 'mls: '.$stuff['MLNumber']."\n\r";
-    if (in_array($stuff['MLNumber'], $mlsArray)) {
-        echo " REPEAT!!! : ".$stuff['MLNumber'];
-    }
-    else
-      array_push($mlsArray, $stuff['MLNumber']);
-  }*/
-  // print_r($retsApiResults);
-  // preprocess results to prep data for WP API inserts
-  $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
+    $retsApiResults = dbresult($scenario);
 
-  // loop again to insert into WP posts
-  // $do = dataPropertyWPinsert($retsPreProcResults);
-  echo '<hr/>';
+    /*$mlsArray = array();
+    foreach($retsApiResults as $stuff) {
+      //echo 'mls: '.$stuff['MLNumber']."\n\r";
+      if (in_array($stuff['MLNumber'], $mlsArray)) {
+          echo " REPEAT!!! : ".$stuff['MLNumber'];
+      }
+      else
+        array_push($mlsArray, $stuff['MLNumber']);
+    }*/
+    // print_r($retsApiResults);
+    // preprocess results to prep data for WP API inserts
+    $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
+
+    // loop again to insert into WP posts
+    // $do = dataPropertyWPinsert($retsPreProcResults);
+    echo '<hr/>';
+
+    bhcheckAndAdjustFlag("giveup");
+  }
+  echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import end - '.date(DATE_RSS).'</h1>';
+  bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
+
+} else {
+    bh_write_to_log('import complete: '.date(DATE_RSS),'flagAlreadyTaken');
+    // flag is already taken, so exit script without running
 }
-echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import end - '.date(DATE_RSS).'</h1>';
-bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
 
 ?>

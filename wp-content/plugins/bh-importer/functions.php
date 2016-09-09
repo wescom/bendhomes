@@ -452,6 +452,31 @@ function bhPostActions($status,$mlsid=NULL) {
   return $apiaction;
 }
 
+/* ############################################################ */
+/* #### CHECK FILE FOR FLAG - IF ALREADY TAKEN - CANT RUN ##### */
+/* ############################################################ */
+function bhcheckAndAdjustFlag($type) {
+  $flagfname = ABSPATH.'/_retsapi/pulldates/flagAvail.txt';
+  if(file_exists($flagfname)) {
+    if ($type = "take"){
+      $checkFlag = file_get_contents($flagfname);
+      if ($checkFlag == 1) {  // taking the flag - write 0 to the file
+        file_put_contents($flagfname,"0");
+        return true;
+      } else {
+        return false;
+      }
+
+    } else {  // 'giveup' give the flag up
+      file_put_contents($flagfname,"1");
+      return true;
+    }
+  } else {  // create flile and write 0 - we are taking it
+    file_put_contents($flagfname,"0");
+    return true;
+  }
+}
+
 /* ############################## */
 /* #### DATA SETUP and PULL ##### */
 /* ############################## */
