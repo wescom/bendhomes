@@ -546,7 +546,6 @@ function dataPropertyWPinsert($myproperty) {
 
 // check if flag to run is available
 if (bhcheckAndAdjustFlag("take")){
-  echo '<h1 style="color:white; background-color:green; padding 3px;">Took flag - ok to run!</h1>';
   bh_write_to_log('import start: '.date(DATE_RSS),'properties');
   echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import start - '.date(DATE_RSS).'</h1>';
   foreach($scenarios as $scenario) {
@@ -581,7 +580,6 @@ if (bhcheckAndAdjustFlag("take")){
   bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
 
 } else {
-    echo '<h1 style="color:white; background-color:red; padding 3px;">No flag available - cant run!</h1>';
     bh_write_to_log('import complete: '.date(DATE_RSS),'flagAlreadyTaken');
     // flag is already taken, so exit script without running
 }
