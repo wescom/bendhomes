@@ -19,7 +19,7 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 $theTm = time();
-bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm);
+bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
 
 function dataPreProc($proparr,$scenarioset) {
   $count = 0;
