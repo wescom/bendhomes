@@ -309,7 +309,7 @@ function bhLookupPropertyType($typestring) {
     // echo '</pre>';
 
     // there is usually only one result, but if more, take the first key
-    $myid = $result[0]->{term_id};
+    $myid = $result[0]->{'term_id'};
     $myid = (int) $myid;
 
     $output[] = $myid;
@@ -335,7 +335,7 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
 
   $output = array();
   foreach($results as $result) {
-    $output[] = $result[0]->{term_id};
+    $output[] = $result[0]->{'term_id'};
   }
 
   // strip empty keys from array
@@ -645,7 +645,7 @@ function bhImageSet($item) {
       // upon processing. This will enable images to update and scripts to be rerun
       if(file_exists($imagesdir['source'].'/'.$img)) {
         // if the file exists already in tmpdest, then check filesizes to see if they are the same, if not, copy it.
-        // pretty low ods that a replacement would have same filesize, but if this becomes issue, might have to do a 
+        // pretty low ods that a replacement would have same filesize, but if this becomes issue, might have to do a
         // hash on the file contents.
         if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
           //$oldFileSZ = filesize($imagesdir['source'].'/'.$img);
@@ -661,7 +661,7 @@ function bhImageSet($item) {
         } else {  // file didn't exist in tmpdest so put it there
           copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
         }
-       
+
         $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
         $bhimgids[] = $tf;
       }
