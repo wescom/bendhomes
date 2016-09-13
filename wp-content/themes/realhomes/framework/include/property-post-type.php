@@ -326,7 +326,7 @@ if( !function_exists( 'property_custom_columns' ) ){
         }
     }
 }
-add_action("manage_pages_custom_column", "property_custom_columns");
+add_filter("manage_pages_custom_column", "property_custom_columns");
 
 
 /*-----------------------------------------------------------------------------------*/

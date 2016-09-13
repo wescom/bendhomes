@@ -18,6 +18,9 @@ include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
+$theTm = time();
+bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
+
 function dataPreProc($proparr,$scenarioset) {
   $count = 0;
 
@@ -265,6 +268,7 @@ function dataPreProc($proparr,$scenarioset) {
     // print_r($data_to_insert);
     // echo '</pre>';
     // usleep(500000); // 1/2 second sleep
+    //bh_write_to_log('mls: '.$propitem['MLNumber'],'properties');
     dataPropertyWPinsert($data_to_insert);
     // sleep(1);
     unset($data_to_insert);
@@ -282,7 +286,11 @@ function dataPropertyWPinsert($myproperty) {
   $submitted_successfully = false;
   $updated_successfully = false;
 
-  echo '<pre style="border: 1px solid #cc0000; padding: 10px;">';
+
+  bh_write_to_log('  dataPropertyWPinsert with: '.$myproperty['property-id'].' status: '.$myproperty['property-mlstatus'],'properties');
+
+  echo '<pre style="border: 1px solid #000; padding: 10px;">';
+
   echo 'action: '.$myproperty['action']."<br/>\n";
   echo 'title: '.$myproperty['inspiry_property_title']."<br/>\n";
   echo 'MLS number: '.$myproperty['property-id']."<br/>\n";
@@ -343,7 +351,7 @@ function dataPropertyWPinsert($myproperty) {
             do_action( 'before_delete_post', $del_property['ID'] );
             // delete all post metadata
             echo '<span style="color: blue;">post id that has postmeta and post deleted: '.$del_property['ID'].'</span><br/>';
-            delete_all_post_meta( $del_property['ID'] );
+            // delete_all_post_meta( $del_property['ID'] );
             // delete the post itself
             $property_id = wp_delete_post( $del_property['ID'] ); // Delete Property with supplied property ID
         }
@@ -549,6 +557,16 @@ foreach($scenarios as $scenario) {
   // harvest raw rets database results, per table
 
   $retsApiResults = dbresult($scenario);
+
+  /*$mlsArray = array();
+  foreach($retsApiResults as $stuff) {
+    //echo 'mls: '.$stuff['MLNumber']."\n\r";
+    if (in_array($stuff['MLNumber'], $mlsArray)) {
+        echo " REPEAT!!! : ".$stuff['MLNumber'];
+    }
+    else
+      array_push($mlsArray, $stuff['MLNumber']);
+  }*/
   // print_r($retsApiResults);
   // preprocess results to prep data for WP API inserts
   $retsPreProcResults = dataPreProc($retsApiResults,$scenario);
@@ -556,8 +574,9 @@ foreach($scenarios as $scenario) {
   // loop again to insert into WP posts
   // $do = dataPropertyWPinsert($retsPreProcResults);
   echo '<hr/>';
+
 }
-echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import end - '.date(DATE_RSS).'</h1>';
-bh_write_to_log('import complete: '.date(DATE_RSS),'properties');
+
+bh_write_to_log('import end: '.date(DATE_RSS),'properties');
 
 ?>
