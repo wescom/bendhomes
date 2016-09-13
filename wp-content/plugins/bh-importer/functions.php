@@ -309,7 +309,7 @@ function bhLookupPropertyType($typestring) {
     // echo '</pre>';
 
     // there is usually only one result, but if more, take the first key
-    $myid = $result[0]->{term_id};
+    $myid = $result[0]->{'term_id'};
     $myid = (int) $myid;
 
     $output[] = $myid;
@@ -333,9 +333,10 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
     $results[] = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$feature, OBJECT);
   }
 
-  $output = array();
   foreach($results as $result) {
-    $output[] = $result[0]->{term_id};
+    if(!empty($result[0]->{'term_id'})) {
+      $output[] = $result[0]->{'term_id'};
+    }
   }
 
   // strip empty keys from array
