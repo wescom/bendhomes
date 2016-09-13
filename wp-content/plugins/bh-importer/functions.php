@@ -323,11 +323,6 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
   $fext = explode(',',$featlist_exterior);
   $features = array_merge($fint,$fext);
 
-  // debugging
-  /* echo '<pre> jtg177dba -- ';
-  print_r($features);
-  echo '</pre>'; */
-
   foreach($features as $feature) {
     $feature = "'".$feature."'";
     $results[] = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$feature, OBJECT);
@@ -602,7 +597,7 @@ function bhImageSet($item) {
       // upon processing. This will enable images to update and scripts to be rerun
       if(file_exists($imagesdir['source'].'/'.$img)) {
         // if the file exists already in tmpdest, then check filesizes to see if they are the same, if not, copy it.
-        // pretty low ods that a replacement would have same filesize, but if this becomes issue, might have to do a 
+        // pretty low ods that a replacement would have same filesize, but if this becomes issue, might have to do a
         // hash on the file contents.
         if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
           //$oldFileSZ = filesize($imagesdir['source'].'/'.$img);
@@ -617,7 +612,7 @@ function bhImageSet($item) {
         } else {  // file didn't exist in tmpdest so put it there
           copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
         }
-       
+
         $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
         $bhimgids[] = $tf;
       }
