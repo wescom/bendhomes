@@ -335,7 +335,9 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
 
   $output = array();
   foreach($results as $result) {
-    $output[] = $result[0]->{'term_id'};
+    if(!empty($result[0]->{'term_id'})) {
+      $output[] = $result[0]->{'term_id'};
+    }
   }
 
   // strip empty keys from array
