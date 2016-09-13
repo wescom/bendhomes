@@ -18,7 +18,7 @@ if($show_partners == 'true'){
                                 
                                 <div class="span3 partner"><?php do_action('dfp_ad_spot','partners4'); ?></div>
                                 
-                                <?php /*<div class="span3 partner"><?php do_action('dfp_ad_spot','partners5'); ?></div>*/ ?>
+                                <div class="span3 partner"><?php do_action('dfp_ad_spot','partners5'); ?></div>
                                 
                             </div>
                 </section>
