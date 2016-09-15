@@ -108,14 +108,11 @@ if ( ! is_user_logged_in() ) {
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <div id="mortgageCalculator">
-                <a href="https://www.evergreenhomeloans.com/bend/?ref=bh" target="_blank" onclick="trackOutboundLink('https://www.evergreenhomeloans.com/bend/?ref=bh', 'Evergreen 1'); return false;">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" width="325" height="103" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
-                </a>
-                <div class="modal-address"><i class="fa fa-map-marker"></i> 685 SE 3rd St., Bend OR, 97702<br><a href="tel:5413185500" onclick="trackOutboundLink('tel:5413185500', 'Evergreen Ph'); return false;"><i class="fa fa-mobile-phone"></i> (541) 318-5500</a></div>
+                <?php echo do_shortcode('[EVERGREEN_LOANS]'); ?>
             </div>
         </div>
         <div class="modal-body">            
-            <div id="acww-widgetwrapper" style="min-width:250px;width:100%;"><div id="acww-widget" style="position:relative;padding-top:0;height:0;overflow:hidden;padding-bottom:840px;"><iframe id="acww-widget-iframe" frameborder="0" scrolling="no" width="800px" height="280px" src="http://usmortgagecalculator.org/widget/2.0/widget.html" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div></div>
+            <?php echo do_shortcode('[MORTGAGE_CALCULATOR]'); ?>
             
             <div style="text-align: center; padding: 15px 0 0; border-top: 1px solid #eee;">
             	<a href="https://www.evergreenhomeloans.com/bend/about-us/loan-officers/?ref=bh" onclick="trackOutboundLink('https://www.evergreenhomeloans.com/bend/about-us/loan-officers/?ref=bh', 'Evergreen 2'); return false;" class="btn btn-large real-btn" target="_blank" rel="nofollow"><i class="fa fa-home"></i> Find a Loan Consultant</a>
