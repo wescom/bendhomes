@@ -24,12 +24,6 @@ get_header();
                 }
 
                 global $post;
-                $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
-                if( $title_display != 'hide' ){
-                    ?>
-                    <h3><span><?php the_title(); ?></span></h3>
-                    <?php
-                }
                 ?>
 
                 <!-- Main Content -->

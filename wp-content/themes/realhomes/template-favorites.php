@@ -17,15 +17,6 @@ get_template_part('banners/default_page_banner');
             <div class="main">
                 <section class="listing-layout property-grid">
 
-                    <?php
-                    $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
-                    if( $title_display != 'hide' ){
-                        ?>
-                        <h3 class="title-heading"><?php the_title(); ?></h3>
-                        <?php
-                    }
-                    ?>
-
                     <div class="list-container clearfix">
                         <?php
                         if( is_user_logged_in() ):

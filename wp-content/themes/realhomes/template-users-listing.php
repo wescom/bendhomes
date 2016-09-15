@@ -20,13 +20,6 @@ get_header();
 
                         <section class="listing-layout">
 
-                            <?php
-                            $title_display = get_post_meta( $post->ID, 'REAL_HOMES_page_title_display', true );
-                            if( $title_display != 'hide' ){
-                                ?><h3 class="title-heading"><?php the_title(); ?></h3><?php
-                            }
-                            ?>
-
                             <div class="list-container">
                                 <?php
                                 // Number of users to display based on number of agents from theme options
