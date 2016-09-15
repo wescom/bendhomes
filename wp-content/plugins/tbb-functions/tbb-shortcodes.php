@@ -47,6 +47,27 @@ function tbb_schema_address( $atts ) {
 }
 
 
+
+// Creates PlanIt events
+add_shortcode( 'PLANIT', 'tbb_render_planit' );
+function tbb_render_planit( $atts ) {
+	$atts = shortcode_atts( array(
+		'class' => 'planit-wrapper'
+	), $atts );
+	
+	$class = sanitize_text_field( $atts['class'] );
+	
+	ob_start(); ?>
+    
+    <div class="<?php echo $class; ?>">
+    <script type="text/javascript" src="//portal.CitySpark.com/PortalScripts/BendBulletin"></script>
+    </div>
+    
+    <?php
+	return ob_get_clean();
+}
+
+
 // Creates map link to open native maps app on mobile devices.
 add_shortcode('MAP_LINK', 'tbb_map_link');
 function tbb_map_link($atts, $content = null) {
