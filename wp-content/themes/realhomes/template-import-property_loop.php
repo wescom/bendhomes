@@ -865,7 +865,7 @@ function dataWPinsert($retsproperties) {
                     if( $action == "update_property" ) {
                         $tour_video_image_id = get_post_meta( $property_id, 'REAL_HOMES_tour_video_image', true );
                         if ( ! empty ( $tour_video_image_id ) ) {
-                            $tour_video_image_src = wp_get_attachment_image_src( $tour_video_image_id, 'property-detail-video-image' );
+                            $tour_video_image_src = wp_get_attachment_image_src( $tour_video_image_id, 'property-detail-slider-image-two' );
                             $tour_video_image = $tour_video_image_src[0];
                         }
                     }

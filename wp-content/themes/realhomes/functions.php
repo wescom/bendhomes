@@ -62,18 +62,21 @@ if ( ! function_exists( 'inspiry_theme_setup' ) ) {
 		 * Add Post Thumbnails Support and Related Image Sizes
 		 */
 		add_theme_support( 'post-thumbnails' );
-		set_post_thumbnail_size( 150, 150 );                            // default Post Thumbnail dimensions
-		// add_image_size( 'partners-logo', 200, 58, true );                // For partner carousel logos
-		add_image_size( 'partners-logo', 200, 200, true );                // For partner carousel logos
-		add_image_size( 'post-featured-image', 830, 323, true );         // For Standard Post Thumbnails
-		add_image_size( 'gallery-two-column-image', 536, 269, true );    // For Gallery Two Column property Thumbnails
-		add_image_size( 'property-thumb-image', 244, 163, true );        // For Home page posts thumbnails/Featured Properties carousels thumb
-		add_image_size( 'property-detail-slider-image', 770, 386, true );// For Property detail page slider image
-		add_image_size( 'property-detail-slider-image-two', 830, 460, true ); // For Property detail page slider image
-		add_image_size( 'property-detail-slider-thumb', 82, 60, true );  // For Property detail page slider thumb
-		add_image_size( 'property-detail-video-image', 818, 417, true ); // For Property detail page video image
-		add_image_size( 'agent-image', 210, 210, true );                 // For Agent Picture
-		add_image_size( 'grid-view-image', 246, 162, true );             // For Property Listing Grid view,  image
+		set_post_thumbnail_size( 150, 150 );                            			// default Post Thumbnail dimensions
+		add_image_size( 'agent-image', 210, 210, true );                 		// For Agent Picture
+		add_image_size( 'gallery-two-column-image', 536, 269, true );    		// For Gallery Two Column property Thumbnails
+		add_image_size( 'property-thumb-image', 244, 163, true );        		// For Home page posts thumbnails/Featured Properties carousels thumb
+		add_image_size( 'property-detail-slider-image-two', 830, 460, true ); 	// For Property detail page slider image
+		
+		// removed: add_image_size( 'partners-logo', 200, 200, true );                // For partner carousel logos
+		// removed: add_image_size( 'post-featured-image', 830, 323, true );         // For Standard Post Thumbnails
+		// removed: add_image_size( 'property-detail-slider-image', 770, 386, true );// For Property detail page slider image
+		// removed: add_image_size( 'property-detail-slider-thumb', 82, 60, true );  // For Property detail page slider thumb
+		// removed: add_image_size( 'property-detail-video-image', 818, 417, true ); // For Property detail page video image
+		// removed: add_image_size( 'grid-view-image', 246, 162, true );             // For Property Listing Grid view,  image
+		
+		remove_image_size( 'medium' );
+		remove_image_size( 'medium_large' );
 
 		/**
 		 * Let WordPress manage the document title.

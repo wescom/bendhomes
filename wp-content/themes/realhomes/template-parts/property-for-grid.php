@@ -5,9 +5,9 @@
             <?php 
             global $post;
             if( has_post_thumbnail( $post->ID ) ) {
-                the_post_thumbnail( 'grid-view-image' );
+                the_post_thumbnail( 'property-thumb-image' );
             } else {
-                inspiry_image_placeholder( 'grid-view-image' );
+                inspiry_image_placeholder( 'property-thumb-image' );
             }
             ?>
         </a>

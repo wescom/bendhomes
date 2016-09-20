@@ -249,17 +249,17 @@ function tbb_custom_posts( $defaults ) {
 		case "6":
 			$cols_per_row = 6;
 			$cols = "six";
-			$image_size = 'grid-view-image';
+			$image_size = 'property-thumb-image';
 			break;
 		case "5":
 			$cols_per_row = 5;
 			$cols = "five";
-			$image_size = 'grid-view-image';
+			$image_size = 'property-thumb-image';
 			break;
 		case "4":
 			$cols_per_row = 4;
 			$cols = "four";
-			$image_size = 'grid-view-image';
+			$image_size = 'property-thumb-image';
 			break;
 		case "3":
 			$cols_per_row = 3;
@@ -274,7 +274,7 @@ function tbb_custom_posts( $defaults ) {
 		case "1":
 			$cols_per_row = 1;
 			$cols = "one";
-			$image_size = 'post-featured-image';
+			$image_size = 'property-detail-slider-image-two';
 			break;
 	}
 	
@@ -401,7 +401,7 @@ function tbb_custom_posts( $defaults ) {
 					break;
 					
 				case "company" :
-					$image_size = 'medium';
+					$image_size = 'agent-image';
 					$phone = get_field( 'company_office_phone' );
 					$fax = get_field( 'company_office_fax' );
 					$address = get_field( 'company_office_address' );
