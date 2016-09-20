@@ -31,7 +31,7 @@ get_header();
                                         <div class="span3">
                                             <figure class="agent-pic">
                                                 <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
-                                                    <?php the_post_thumbnail('gallery-two-column-image'); ?>
+                                                    <?php the_post_thumbnail('agent-image'); ?>
                                                 </a>
                                             </figure>
                                         </div>
