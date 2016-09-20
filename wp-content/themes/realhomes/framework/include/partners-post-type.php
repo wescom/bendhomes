@@ -59,7 +59,7 @@ if( !function_exists( 'partners_custom_columns' ) ){
         switch ($column){
             case 'partner-thumb':
                 if(has_post_thumbnail($post->ID)){
-                    the_post_thumbnail( 'partners-logo' );
+                    the_post_thumbnail( 'thumbnail' );
                 }
                 else{
                     _e('No logo provided','framework');

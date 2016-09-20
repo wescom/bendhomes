@@ -33,7 +33,7 @@ get_header();
                                             $image_id = get_post_thumbnail_id();
                                             $image_url = wp_get_attachment_url($image_id);
                                             echo '<a class="'.get_lightbox_plugin_class() .'" href="'.$image_url.'" title="'.get_the_title().'" >';
-                                            the_post_thumbnail('post-featured-image');
+                                            the_post_thumbnail('property-detail-slider-image-two');
                                             echo '</a>';
                                         }
 

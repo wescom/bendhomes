@@ -3,7 +3,7 @@ $display_video = get_option('theme_display_video');
 if($display_video == 'true'){
 $tour_video_url = get_post_meta($post->ID, 'REAL_HOMES_tour_video_url', true );
 $tour_video_image_id = get_post_meta( $post->ID, 'REAL_HOMES_tour_video_image', true );
-$tour_video_image_src = wp_get_attachment_image_src($tour_video_image_id,'property-detail-video-image');
+$tour_video_image_src = wp_get_attachment_image_src($tour_video_image_id,'property-detail-slider-image-two');
 $tour_video_image = $tour_video_image_src[0];
 
     if( !empty($tour_video_image) && !empty($tour_video_url) ) {

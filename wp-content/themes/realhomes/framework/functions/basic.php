@@ -10,7 +10,7 @@ if ( ! function_exists( 'list_gallery_images' ) ) {
 	 *
 	 * @param string $size
 	 */
-	function list_gallery_images( $size = 'post-featured-image' ) {
+	function list_gallery_images( $size = 'property-detail-slider-image-two' ) {
 		global $post;
 
 		$gallery_images = rwmb_meta( 'REAL_HOMES_gallery', 'type=plupload_image&size=' . $size, $post->ID );
