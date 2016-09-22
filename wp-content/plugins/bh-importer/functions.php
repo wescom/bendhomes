@@ -439,7 +439,9 @@ function bhPostActions($status,$mlsid=NULL) {
   elseif($mlsaction == 'update') {
     if($status == 'Active' ||
         $status == 'Pending' ||
-        $status == 'ShrtSale-BringBckUps')
+        $status == 'ShrtSale-BringBckUps' ||
+        $status == 'Sold' ||
+        $status == 'Contingent Bumpable')
     {
       $apiaction = 'update_property';
     }
