@@ -393,7 +393,7 @@ function dataPropertyWPinsert($myproperty) {
 
               // Attach Property Status with Newly Created Property
               if( isset( $myproperty['status'] ) && ( $myproperty['status'] != "-1" ) ) {
-                  wp_set_object_terms( $property_id, intval( $myproperty['status'] ), 'property-status' );
+                  wp_set_object_terms( $property_id, $myproperty['status'], 'property-status' );
               }
 
               // Attach Property Features with Newly Created Property
