@@ -634,6 +634,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
 function bhImageSet($item) {
   global $lastDatePulled;
+  $lastPullAdjusted = $lastDatePulled - 3600;
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
@@ -655,8 +656,8 @@ function bhImageSet($item) {
           echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
           $modDay = strtotime($item['PictureModifiedDateTime']);
           //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
-          bh_write_to_log('PicMod: '.$modDay.'  lastPull: '.$lastDatePulled ,'properties');
-          if ($modDay >= $lastDatePulled) {
+          bh_write_to_log('PicMod: '.$modDay.'  lastPull: '.$lastPullAdjusted ,'properties');
+          if ($modDay >= $lastPullAdjusted) {
             bh_write_to_log('Updating photos here... ','properties');
             copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
             $updateFlag = 1; // lets bendhomes_img_upload know it needs updateing.
