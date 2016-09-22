@@ -647,12 +647,10 @@ function bhImageSet($item) {
       // copies image from backup dir, to images dir, file is unlinked/deleted
       // upon processing. This will enable images to update and scripts to be rerun
       if(file_exists($imagesdir['source'].'/'.$img)) {
-        // if the file exists already in tmpdest, then check filesizes to see if they are the same, if not, copy it.
-        // pretty low ods that a replacement would have same filesize, but if this becomes issue, might have to do a
-        // hash on the file contents.
+        // if the file exists already in tmpdest, then check the PictureModifiedDateTim to see if more
+        // recent than the last pull time.  We only want to do this if photos are updated - not just the
+        // listing being modified or updated.
         if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
-          //$oldFileSZ = filesize($imagesdir['source'].'/'.$img);
-          //$newFileSZ = filesize($imagesdir['tmpdest'].'/'.$img);
           echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
           $modDay = strtotime($item['PictureModifiedDateTime']);
           //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
