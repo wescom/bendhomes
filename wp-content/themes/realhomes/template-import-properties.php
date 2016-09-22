@@ -19,7 +19,7 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 $theTm = time();
-//bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
+bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
 
 function dataPreProc($proparr,$scenarioset) {
   $count = 0;
@@ -287,7 +287,7 @@ function dataPropertyWPinsert($myproperty) {
   $updated_successfully = false;
 
 
-  bh_write_to_log('  dataPropertyWPinsert with: '.$myproperty['property-id'].' status: '.$myproperty['property-mlstatus'],'properties');
+  bh_write_to_log('  dataPropertyWPinsert with: '.$myproperty['property-id'].' status: '.$myproperty['property-mlstatus'].' action: '.$myproperty['property-mlstatus'],'properties');
 
   echo '<pre style="border: 1px solid #000; padding: 10px;">';
 
@@ -504,7 +504,7 @@ function dataPropertyWPinsert($myproperty) {
               if( $action == "update_property" ) {
                   $tour_video_image_id = get_post_meta( $property_id, 'REAL_HOMES_tour_video_image', true );
                   if ( ! empty ( $tour_video_image_id ) ) {
-                      $tour_video_image_src = wp_get_attachment_image_src( $tour_video_image_id, 'property-detail-slider-image-two' );
+                      $tour_video_image_src = wp_get_attachment_image_src( $tour_video_image_id, 'property-detail-video-image' );
                       $tour_video_image = $tour_video_image_src[0];
                   }
               }
