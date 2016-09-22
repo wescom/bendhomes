@@ -655,6 +655,7 @@ function bhImageSet($item) {
           echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
           $modDay = strtotime($item['PictureModifiedDateTime']);
           //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
+          bh_write_to_log('PicMod: '.$modDay.'  lastPull: '.$lastDatePulled ,'properties');
           if ($modDay >= $lastDatePulled) {
             bh_write_to_log('Updating photos here... ','properties');
             copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
