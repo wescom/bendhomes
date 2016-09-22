@@ -59,6 +59,7 @@ function dataPreProc($proparr,$scenarioset) {
     // skip_property
     // update_property
     // delete_property
+    echo "\n\r"."postaction: ".$postaction."\n\r";
     if($postaction == 'delete_property' || $postaction == 'skip_property') {
       $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
       $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;

@@ -427,7 +427,7 @@ function bhPostActions($status,$mlsid=NULL) {
 
   // insert from API use cases
   if($mlsaction == 'insert') {
-    if($status == 'Active' || $status == 'Pending') {
+    if($status == 'Active' || $status == 'Pending' || $status == 'Sold' || $status == 'Contingent Bumpable') {
       $apiaction = 'add_property'; // only add if insert/Active are true, skip everywhere else
     }
     else
