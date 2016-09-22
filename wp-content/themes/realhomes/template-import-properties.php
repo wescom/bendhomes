@@ -92,6 +92,11 @@ function dataPreProc($proparr,$scenarioset) {
         $bhcoordinates = $propitem['Latitude'].','.$propitem['Longitude'];
       }
 
+      if ($propitem['Status'] == "Active")
+          $statusVal = "for-sale";
+      else 
+          $statusVal = $propitem['Status'];
+
       switch ($scenarioset['name']) {
       	case "OpenHouse_OPEN":
       		break;
@@ -103,7 +108,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($proptype),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'property-id' => $propitem['MLNumber'], // this the the MLS ID
             'property_id' => $bhpropertyid, // this is the WP post id if there's record update
@@ -126,7 +131,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['COMMTYPE']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'property-id' => $propitem['MLNumber'], // this the the MLS ID
             'property_id' => $bhpropertyid, // this is the WP post id if there's record update
@@ -149,7 +154,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertyType']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'bedrooms' => $propitem['Bedrooms'],
             'bathrooms' => $propitem['Bathrooms'],
@@ -178,7 +183,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'property-id' => $propitem['MLNumber'], // this the the MLS ID
             'property_id' => $bhpropertyid, // this is the WP post id if there's record update
@@ -201,7 +206,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'bedrooms' => $propitem['Bedrooms'],
             'bathrooms' => $propitem['Bathrooms'],
@@ -229,7 +234,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertyType']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'bedrooms' => $propitem['Bedrooms'],
             'bathrooms' => $propitem['Bathrooms'],
