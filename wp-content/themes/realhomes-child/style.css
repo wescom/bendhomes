@@ -152,6 +152,7 @@ h3.search-results-header { float: left; margin: 0; }
 .property-item figure figcaption.sold { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #f00 !important; }
 .quick-header-info .xFor-Sale { color: #598f28 !important;}
 .quick-header-info .xSold { color: #f00 !important; font-weight: bold;}
+.quick-header-info .xPending { color: #ff6600  !important; font-weight: bold;}
 
 /*--- Custom Posts Shortcode Styles --- */
 .custom-posts-wrapper {}
