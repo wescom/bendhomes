@@ -147,9 +147,9 @@ h3.search-results-header { float: left; margin: 0; }
 .single article ul.contacts-list { margin-left: 0; }
 
 /* --- Property status colors --- */
-.property-item figure figcaption.for-sale { background-color: #fff !important; font-weight: bold !important; color: #598f28 !important; }
-.property-item figure figcaption.pending { background-color: #fff !important; font-weight: bold !important; color: #ff6600 !important; }
-.property-item figure figcaption.sold { background-color: #fff !important; font-weight: bold !important; color: #f00 !important; }
+.property-item figure figcaption.for-sale { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #598f28 !important; }
+.property-item figure figcaption.pending { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #ff6600 !important; }
+.property-item figure figcaption.sold { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #f00 !important; }
 .quick-header-info .xFor-Sale { color: #598f28 !important;}
 .quick-header-info .xSold { color: #f00 !important; font-weight: bold;}
 
