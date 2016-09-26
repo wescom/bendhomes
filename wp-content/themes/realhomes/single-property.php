@@ -79,7 +79,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                                         //$statusClass = str_replace(",", " ", $statusClass );
                                         $statusClass = esc_html($on_status);
                                         echo "st: ".$statusClass;
-										$status_list = sprintf( '<span class="header-status %s">Status: %s</span>', esc_html($on_status), esc_html($on_status));
+										$status_list = sprintf( '<span class="header-status %s">xtatus: %s</span>', esc_html($on_status), esc_html($on_status));
 									endif;
 									?>
 									
