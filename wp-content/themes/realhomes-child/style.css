@@ -148,7 +148,7 @@ h3.search-results-header { float: left; margin: 0; }
 
 /* --- Property status colors --- */
 .property-item figure figcaption.for-sale { background-color: #fff !important; font-weight: bold !important; color: #598f28 !important; }
-.property-item figure figcaption.pending { background-color: #fff !important; font-weight: bold !important; color: #ddd !important; }
+.property-item figure figcaption.pending { background-color: #fff !important; font-weight: bold !important; color: #aaa !important; }
 .property-item figure figcaption.sold { background-color: #fff !important; font-weight: bold !important; color: #f00 !important; }
 
 /*--- Custom Posts Shortcode Styles --- */
