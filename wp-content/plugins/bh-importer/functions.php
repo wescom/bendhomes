@@ -593,7 +593,8 @@ function dbDeleteOldIdList() {
       exit();
   }
 
-  $querydate = new date();
+  $querydate = time();
+  //$querydate = date_create($querydate);
   date_sub($querydate, date_interval_create_from_date_string("365 days"));
   $querydate = date_format($querydate,"Y-m-d H:i:s");
 
