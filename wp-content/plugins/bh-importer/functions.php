@@ -594,7 +594,7 @@ function dbDeleteOldIdList() {
   }
 
   $yearAgo = new DateTime();
-  //$yearAgo = strtotime($yearAgo.' -1 year')
+  $yearAgo = strtotime($yearAgo);
   $querydate = date('Y-m-d H:i:s', $yearAgo);
 
   $sqlquery = "SELECT * FROM Property_RESI WHERE
