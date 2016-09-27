@@ -24,8 +24,11 @@ include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 echo "hello world";
 
- $idList = dbDeleteOldIdList();
+ $propList = dbDeleteOldIdList();
 
- echo $idList;
+foreach($propList as $propItem) {
+ 	$mlsposts = bhLookupPostByMLS($propitem['MLNumber']);
+    echo "mls: ".$propitem['MLNumber']." wp Id: ".$mlsposts." street: ".$propitem."\n\r";
+}
 
 ?>
