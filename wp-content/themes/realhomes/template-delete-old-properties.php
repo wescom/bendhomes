@@ -27,8 +27,8 @@ echo "hello world";
  $propList = dbDeleteOldIdList();
 
 foreach($propList as $propItem) {
- 	//$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
-    echo "<p>mls: ".$propItem['MLNumber']." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
+ 	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
+    echo "<p>mls: ".$propItem['MLNumber']."wpID: ".$mlposts." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
 }
 
 ?>
