@@ -588,7 +588,7 @@ function dbDeleteOldIdList() {
   $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
   /* check connection */
   if ($mysqli->connect_errno) {
-      echo "connect failed!"
+      echo "connect failed!";
       //printf("Connect failed: %s\n", $mysqli->connect_error);
       exit();
   }
