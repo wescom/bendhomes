@@ -40,6 +40,7 @@ echo "hello world";
       exit();
   }
 
+   echo "hello2";
   
   /*if ($result = $mysqli->query($sqlquery)) {
       // printf("Select returned %d rows.\n", $result->num_rows);
