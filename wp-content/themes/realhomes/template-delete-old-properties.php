@@ -28,7 +28,7 @@ echo "hello world";
 
 foreach($propList as $propItem) {
  	//$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
-    echo "mls: ".$propItem['MLNumber']." street: ".$propItem["StreetName"]."\n\r";
+    echo "mls: ".$propItem['MLNumber']."  \n\r";
 }
 
 ?>
