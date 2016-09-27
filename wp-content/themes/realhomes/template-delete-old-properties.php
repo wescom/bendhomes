@@ -16,8 +16,6 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 
 echo "hello world";
 
-function dbresult($sset) {
-
   $data = array();
   $db = array(
     'host' => 'localhost',
