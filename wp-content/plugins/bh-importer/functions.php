@@ -595,7 +595,7 @@ function dbDeleteOldIdList() {
 
   $yearAgo = new DateTime();
   //$yearAgo = strtotime($yearAgo.' -1 year')
-  $querydate = date('Y-m-d', $yearAgo);
+  $querydate = date('Y-m-d H:i:s', $yearAgo);
 
   $sqlquery = "SELECT * FROM Property_RESI WHERE
               LastModifiedDateTime <= '".$querydate." '
