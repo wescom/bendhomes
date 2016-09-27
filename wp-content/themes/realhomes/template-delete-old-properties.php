@@ -31,18 +31,12 @@ echo "hello world";
       exit();
   }
 
-  $resource = $sset['resource'];
-  $class = $sset['class'];
-  // $resource = 'Property';
-  // $class = 'RESI';
-  $rc = $resource.'_'.$class;
-
   $querydate = date('Y-m-d H:i:s -1 year');;
   // echo $pulldate;
   /* AND images IS NOT NULL */
   // AND Status = 'Active'
 
-  $sqlquery = "SELECT * FROM ".$rc." WHERE
+  $sqlquery = "SELECT * FROM Property_RESI WHERE
               PublishToInternet = 1
               AND lastUpdateTime <= '".$querydate."'
               AND Status = 'Sold'";
