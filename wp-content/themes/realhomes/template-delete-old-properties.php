@@ -28,7 +28,8 @@ echo "hello world";
 
 foreach($propList as $propItem) {
  	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
-    echo "<p>mls: ".$propItem['MLNumber']."wpID: ".$mlsposts." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
+ 	$bhpropertyid = $mlsposts[0];
+    echo "<p>mls: ".$propItem['MLNumber']."wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
 }
 
 ?>
