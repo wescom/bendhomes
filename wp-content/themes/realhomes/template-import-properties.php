@@ -258,7 +258,7 @@ function dataPreProc($proparr,$scenarioset) {
       		break;
       } // end swich statement
 
-      if(($postaction == 'add_property') || ($postaction == 'update_property')) {
+      if($postaction == 'add_property') {
         $bhimgids = bhImageSet($propitem);
         $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
         $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];

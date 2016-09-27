@@ -42,7 +42,7 @@ echo "hello world";
               AND lastUpdateTime <= '".$querydate."'
               AND Status = 'Sold'";
 
-  echo "\n\rquery: ".$sqlquery."\n\r"
+  echo "\n\rquery: ".$sqlquery."\n\r";
   /*if ($result = $mysqli->query($sqlquery)) {
       // printf("Select returned %d rows.\n", $result->num_rows);
       while($row = $result->fetch_assoc()) {
