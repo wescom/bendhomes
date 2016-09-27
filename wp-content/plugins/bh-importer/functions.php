@@ -573,6 +573,43 @@ function dbresult($sset) {
   return $data;
 }
 
+/* ##################################### */
+/* #### Get array of IDs to delete ##### */
+/* ##################################### */
+function dbDeleteOldIdList() {
+  $data = array();
+  $db = array(
+    'host' => 'localhost',
+    'username' => 'phrets',
+    'password' => 'hCqaQvMKW9wJKQwS',
+    'database' => 'bh_rets'
+  );
+
+  $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+  /* check connection */
+  if ($mysqli->connect_errno) {
+      echo "connect failed!"
+      //printf("Connect failed: %s\n", $mysqli->connect_error);
+      exit();
+  }
+
+   echo "hello2";
+  
+  /*if ($result = $mysqli->query($sqlquery)) {
+      // printf("Select returned %d rows.\n", $result->num_rows);
+      while($row = $result->fetch_assoc()) {
+          $data[] = $row;
+      }
+      // Frees the memory associated with a result
+      $result->free();
+  }*/
+
+  $mysqli->close();
+
+  return "stuff";
+
+}
+
 /* ############################ */
 /* #### IMAGES PROCESSING ##### */
 /* ############################ */
