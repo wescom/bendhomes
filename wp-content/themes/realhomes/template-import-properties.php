@@ -583,6 +583,8 @@ foreach($scenarios as $scenario) {
 
 }
 
+echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import Complete</h1>';
+
 bh_write_to_log('import end: '.date(DATE_RSS),'properties');
 
 ?>
