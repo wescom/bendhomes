@@ -353,6 +353,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 }
 
 function bhImageSet($item) {
+  bh_write_to_log('Inside bhImageSet in template-import-property ' ,'properties');
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
