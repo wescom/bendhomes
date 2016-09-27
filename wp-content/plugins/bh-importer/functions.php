@@ -593,7 +593,13 @@ function dbDeleteOldIdList() {
       exit();
   }
 
-   echo "hello2";
+  $querydate = date('Y-m-d H:i:s -1 year');
+
+  $sqlquery = "SELECT * FROM Property_RESI WHERE
+              LastModifiedDateTime <= '".$querydate." '
+              AND Status = 'Sold'";
+
+  echo "\n\rquery: ".$sqlquery;
   
   /*if ($result = $mysqli->query($sqlquery)) {
       // printf("Select returned %d rows.\n", $result->num_rows);
