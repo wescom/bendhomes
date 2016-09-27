@@ -44,6 +44,6 @@ echo "hello world";
       $result->free();
   }*/
 
-  $mysqli->close();
+  
 
 ?>
