@@ -615,7 +615,6 @@ function dbDeleteOldIdList() {
 
   $mysqli->close();
 
-  var_dump($data);
   return $data;
 
 }
