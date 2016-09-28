@@ -9,7 +9,7 @@ $slider_args = array(
 	'post_type' => 'property',
 	'posts_per_page' => -1,
 	'nopaging' => true,
-	'orderby' => 'none'
+	'orderby' => 'post__in'
 );
 
 $mls_query = array();
