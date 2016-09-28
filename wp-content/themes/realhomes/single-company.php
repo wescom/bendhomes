@@ -89,60 +89,64 @@ get_header();
                                     
                                     <?php																	
 									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
+									
+									if( !empty( $agents_array ) ) {
 																											
-									$agent_args = array(
-										'post_type' => 'agent',
-										'post__in' => $agents_array,
-										'posts_per_page' => -1,
-										'order' => 'ASC',
-										'orderby' => 'title'
-									);
-									
-									$agents = new WP_Query( $agent_args );
-									
-									$unique_agents = array();
-									
-									if( $agents->have_posts() ) : ?>
-																			
-										<h3>Agents</h3>
-                                        
-                                        <div class="agents-list-wrap clearfix">
-									
-											<?php
-                                            while( $agents->have_posts() ) : $agents->the_post(); 
-												
-											$agent_name = get_the_title();
-											$agent_category = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
+										$agent_args = array(
+											'post_type' => 'agent',
+											'post__in' => $agents_array,
+											'posts_per_page' => -1,
+											'order' => 'ASC',
+											'orderby' => 'title'
+										);
+										
+										$agents = new WP_Query( $agent_args );
+										
+										$unique_agents = array();
+										
+										if( $agents->have_posts() ) : ?>
+																				
+											<h3>Agents</h3>
 											
-											// Make sure there's no duplicate agents in the list
-											if( !in_array($agent_name, $unique_agents) ) {
+											<div class="agents-list-wrap clearfix">
+										
+												<?php
+												while( $agents->have_posts() ) : $agents->the_post(); 
+													
+												$agent_name = get_the_title();
+												$agent_category = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
 												
-												array_push($unique_agents, $agent_name); 
-												
-												if( $agent_category == 'featured-agent' || $agent_category == 'standard-agent' ) { ?>
-												
-												<div class="company-agent">
-													<a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
-														<figure class="agent-image">
-															<?php  if(has_post_thumbnail()){
-																the_post_thumbnail('thumbnail');
-															} else {
-																echo '<div class="no-agent-image"></div>';	
-															}?>
-														</figure>                                                        
-														<div class="agent-name"><?php echo $agent_name; ?></div>
-													</a>
-												</div>
-												
-												<?php }
-												
-											}
-                                                                                  
-                                            endwhile; ?>
-                                        
-                                    	</div>
-                                        
-                                    <?php endif; // end agents query ?>
+												// Make sure there's no duplicate agents in the list
+												if( !in_array($agent_name, $unique_agents) ) {
+													
+													array_push($unique_agents, $agent_name); 
+													
+													if( $agent_category == 'featured-agent' || $agent_category == 'standard-agent' ) { ?>
+													
+													<div class="company-agent">
+														<a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
+															<figure class="agent-image">
+																<?php  if(has_post_thumbnail()){
+																	the_post_thumbnail('thumbnail');
+																} else {
+																	echo '<div class="no-agent-image"></div>';	
+																}?>
+															</figure>                                                        
+															<div class="agent-name"><?php echo $agent_name; ?></div>
+														</a>
+													</div>
+													
+													<?php }
+													
+												}
+																					  
+												endwhile; ?>
+											
+											</div>
+											
+										<?php endif; // end agents query	
+									
+									} ?>
 
                                 </div><!-- end .detail -->
 
