@@ -11,14 +11,14 @@ $slider_args = array(
 	'nopaging' => true,
 	'orderby' => 'none',
 	'meta_key' => 'REAL_HOMES_property_id',
-	'meta_value' => $mls_numbers,
-	/*'meta_query' => array(
+	'meta_value' => array(),
+	'meta_query' => array(
 		array(
 			'key' => 'REAL_HOMES_property_id',
 			'value' => $mls_numbers,
-			'compare' => 'IN'
+			'compare' => 'OR'
 		)
-	)*/
+	)
 );
 
 /*$mls_query = array();
