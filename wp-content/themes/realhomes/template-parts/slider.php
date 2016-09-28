@@ -9,7 +9,8 @@ $slider_args = array(
 	'post_type' => 'property',
 	'posts_per_page' => -1,
 	'nopaging' => true,
-	'orderby' => 'meta_value',
+	'orderby' => 'meta_value_num',
+	'order' => 'DESC'
 );
 
 $mls_query = array();
