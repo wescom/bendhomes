@@ -16,7 +16,7 @@ $slider_args = array(
 		array(
 			'key' => 'REAL_HOMES_property_id',
 			'value' => $mls_numbers,
-			'compare' => '='
+			'compare' => 'IN'
 		)
 	)
 );
