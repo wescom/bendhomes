@@ -9,11 +9,17 @@ $slider_args = array(
 	'post_type' => 'property',
 	'posts_per_page' => -1,
 	'nopaging' => true,
-	'orderby' => 'meta_value_num',
-	'order' => 'DESC'
+	'orderby' => 'none',
+	'meta_query' => array(
+        array(
+            'key' => 'REAL_HOMES_property_id',
+            'value' => $mls_numbers,
+            'compare' => 'IN'
+        ),
+    )
 );
 
-$mls_query = array();
+/*$mls_query = array();
 
 foreach( $mls_numbers as $k => $v ) {
 	$mls_query[$k]['key'] = 'REAL_HOMES_property_id';
@@ -22,7 +28,7 @@ foreach( $mls_numbers as $k => $v ) {
 }
 
 $slider_args['meta_query'] = $mls_query;
-$slider_args['meta_query']['relation'] = 'OR';
+$slider_args['meta_query']['relation'] = 'OR';*/
 
 print_r( $slider_args );
 
