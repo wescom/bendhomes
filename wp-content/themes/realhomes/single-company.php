@@ -85,9 +85,11 @@ $company_featured = get_field( 'company_featured_company' );
                                             //get_template_part( 'template-parts/agent-contact-form' );
                                             ?>
                                             
+                                            <?php if( $company_featured == 1 ) { ?>
                                             <div class="agent-content">
 												<?php the_content(); ?>
                                             </div>
+                                            <?php } ?>
 
                                         </div>
 
