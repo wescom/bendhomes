@@ -101,8 +101,8 @@ form.validate label.error { color: #FACA2C; font-weight: 300; margin-top: -5px; 
 .share-facebook { background: #3F589B; } .share-twitter { background: #00ACED; } .share-googleplus { background: #D84533; }
 #overview .share-networks .add-to-fav a, #overview .share-networks .add-to-fav a i { color: #394041; }
 #overview .share-networks .add-to-fav a:hover, #overview .share-networks .add-to-fav a:hover i { color: #f60; }
-#overview .property-item .title a#mortgage-calculator { display: block; margin: 0 0 0 2px; padding: 0 15px; border: 1px solid #02888f; background: #02888f; border-left: none; color: #fff; }
-#overview .property-item .title a#mortgage-calculator:hover, #overview .property-item .title a#mortgage-calculator:active { color: #fff; background: #006267; }
+#overview .property-item h4.title a { display: block; margin: 0 0 0 2px; padding: 0 15px; border: 1px solid #02888f; background: #02888f; border-left: none; color: #fff; }
+#overview .property-item h4.title a:hover, #overview .property-item h4.title a:active { color: #fff; background: #006267; }
 .post-meta.standard-meta.thumb-exist, .post-meta.standard-meta.thumb-not-exist { font-size: .75em; margin-bottom: 1em; }
 h3.search-results-header { float: left; margin: 0; }
 .search-header .view-type { margin: 2px 5px 0 0; }
