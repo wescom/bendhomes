@@ -43,7 +43,7 @@ $has_image_class = !empty( $image ) ? 'with-image' : '';
 $output = sprintf( '<article class="custom-post one %s %s %s"><div class="custom-post-item clearfix">', 
 				$classes, $has_image_class, $category_classes );
 
-	if( !empty( $image ) ) {
+	if( !empty( $image ) && $company_featured == 1 ) {
 		$output .= sprintf( '<figure class="custom-post-image %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
 						$image_size, $permalink, $image[0], $image[1], $image[2] );
 	}
