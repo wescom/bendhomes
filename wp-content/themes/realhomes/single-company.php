@@ -66,7 +66,11 @@ $company_featured = get_field( 'company_featured_company' );
                                                     if(!empty($company_office_phone)){
                                                         ?><li class="office">
 														<?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : 
-														<?php echo '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>'; ?>
+														<?php if( $company_featured == 1 ) {
+															echo '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>';
+														} else {
+															echo $company_office_phone;
+														} ?>
                                                         </li><?php
                                                     }
                                                     if(!empty($company_office_fax)){
