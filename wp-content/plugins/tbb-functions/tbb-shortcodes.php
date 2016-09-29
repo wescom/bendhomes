@@ -405,10 +405,15 @@ function tbb_custom_posts( $defaults ) {
 					$phone = get_field( 'company_office_phone' );
 					$fax = get_field( 'company_office_fax' );
 					$address = get_field( 'company_office_address' );
+					$company_featured = get_field( 'company_featured_company' );
 					if( $address )
 						$address = sprintf( '<p class="address">%s</p>', $address );
 					if( $phone )
-						$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
+						if( $company_featured == 1 ) {
+							$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> <a href="tel:%s">%s</a></div>', preg_replace("/[^0-9]/", "", $phone), $phone );
+						} else {
+							$phone = sprintf( '<div class="phone"><i class="fa fa-mobile"></i> %s</div>', $phone );
+						}
 					if( $fax )
 						$fax = sprintf( '<div class="fax"><i class="fa fa-print"></i> %s</div>', $fax );
 					$additional_meta = sprintf( '
