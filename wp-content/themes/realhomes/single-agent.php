@@ -58,6 +58,7 @@ get_header();
                                                     $agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
                                                     $agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);
                                                     $agent_office_fax = get_post_meta($post->ID, 'REAL_HOMES_fax_number',true);
+													$featured_agent = get_field( 'agent_is_featured' );
 
                                                     if( !empty( $agent_office_phone ) || !empty( $agent_mobile ) || !empty( $agent_office_fax ) ) {
                                                         ?>
@@ -71,13 +72,13 @@ get_header();
 																<?php echo '<a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>'; ?>
                                                                 </li><?php
                                                             }
-                                                            if(!empty($agent_mobile)){
+                                                            if(!empty($agent_mobile) && $featured_agent == 1){
                                                                 ?><li class="mobile">
 																<?php include( get_template_directory() . '/images/icon-mobile.svg' ); _e('Mobile', 'framework'); ?> : 
 																<?php echo '<a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
                                                                 </li><?php
                                                             }
-                                                            if(!empty($agent_office_fax)){
+                                                            if(!empty($agent_office_fax) && $featured_agent == 1){
                                                                 ?><li class="fax"><?php include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework'); ?>  : <?php echo $agent_office_fax; ?></li><?php
                                                             }
                                                             ?>
