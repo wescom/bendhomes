@@ -36,6 +36,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 #property-slider-two.flexslider .slides { max-height: 460px; overflow: hidden; }
 #property-slider-two.flexslider .slides li img { width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
 
+
 #map-directions-form { padding: 10px 10px; background: #F5F5F5; border: 1px solid #dedede; }
 #map-directions-form .start-addr { background: #fff; font-size: 16px; height: 40px; line-height: 40px; width: 70%; text-indent: 20px; color: #555; margin: 0; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }
 #map-directions-form .real-btn.map-btn { height: 50px; font-size: 20px; width: 27%; float: right; }
@@ -100,6 +101,8 @@ form.validate label.error { color: #FACA2C; font-weight: 300; margin-top: -5px; 
 .share-facebook { background: #3F589B; } .share-twitter { background: #00ACED; } .share-googleplus { background: #D84533; }
 #overview .share-networks .add-to-fav a, #overview .share-networks .add-to-fav a i { color: #394041; }
 #overview .share-networks .add-to-fav a:hover, #overview .share-networks .add-to-fav a:hover i { color: #f60; }
+#overview .property-item .title a#mortgage-calculator { display: block; margin: 0 0 0 2px; padding: 0 15px; border: 1px solid #02888f; background: #02888f; border-left: none; color: #fff; }
+#overview .property-item .title a#mortgage-calculator:hover, #overview .property-item .title a#mortgage-calculator:active { color: #fff; background: #006267; }
 .post-meta.standard-meta.thumb-exist, .post-meta.standard-meta.thumb-not-exist { font-size: .75em; margin-bottom: 1em; }
 h3.search-results-header { float: left; margin: 0; }
 .search-header .view-type { margin: 2px 5px 0 0; }
