@@ -95,11 +95,19 @@ $company_featured = get_field( 'company_featured_company' );
 
                                     </div><!-- end .row-fluid -->
                                     
+<<<<<<< HEAD
+                                    <?php																	
+									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
+									
+									if( !empty( $agents_array ) ) {
+																											
+=======
                                     <?php			
 									if( $company_featured == 1 ) {	
 																						
 										$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 																												
+>>>>>>> master
 										$agent_args = array(
 											'post_type' => 'agent',
 											'post__in' => $agents_array,
@@ -152,7 +160,12 @@ $company_featured = get_field( 'company_featured_company' );
 											
 											</div>
 											
+<<<<<<< HEAD
+										<?php endif; // end agents query	
+									
+=======
 										<?php endif; // end agents query
+>>>>>>> master
 									} ?>
 
                                 </div><!-- end .detail -->

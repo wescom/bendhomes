@@ -426,7 +426,7 @@ function bhPostActions($status,$mlsid=NULL) {
 
   // insert from API use cases
   if($mlsaction == 'insert') {
-    if($status == 'Active' || $status == 'Pending') {
+    if($status == 'Active' || $status == 'Pending' || $status == 'Sold' || $status == 'Contingent Bumpable') {
       $apiaction = 'add_property'; // only add if insert/Active are true, skip everywhere else
     }
     else
@@ -438,7 +438,9 @@ function bhPostActions($status,$mlsid=NULL) {
   elseif($mlsaction == 'update') {
     if($status == 'Active' ||
         $status == 'Pending' ||
-        $status == 'ShrtSale-BringBckUps')
+        $status == 'ShrtSale-BringBckUps' ||
+        $status == 'Sold' ||
+        $status == 'Contingent Bumpable')
     {
       $apiaction = 'update_property';
     }
@@ -570,6 +572,52 @@ function dbresult($sset) {
   return $data;
 }
 
+/* ##################################### */
+/* #### Get array of IDs to delete ##### */
+/* ##################################### */
+function dbDeleteOldIdList() {
+  $data = array();
+  $db = array(
+    'host' => 'localhost',
+    'username' => 'phrets',
+    'password' => 'hCqaQvMKW9wJKQwS',
+    'database' => 'bh_rets'
+  );
+
+  $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+  /* check connection */
+  if ($mysqli->connect_errno) {
+      echo "connect failed!";
+      //printf("Connect failed: %s\n", $mysqli->connect_error);
+      exit();
+  }
+
+  $querydate = date("Y-m-d H:i:s");
+  $querydate = date_create($querydate);
+  date_sub($querydate, date_interval_create_from_date_string("365 days"));
+  $querydate = date_format($querydate,"Y-m-d H:i:s");
+
+  $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status FROM Property_RESI WHERE
+              LastModifiedDateTime <= '".$querydate." '
+              AND Status = 'Sold'";
+
+  echo "\n\rquery: ".$sqlquery;
+  
+  if ($result = $mysqli->query($sqlquery)) {
+      // printf("Select returned %d rows.\n", $result->num_rows);
+      while($row = $result->fetch_assoc()) {
+          $data[] = $row;
+      }
+      // Frees the memory associated with a result
+      $result->free();
+  }
+
+  $mysqli->close();
+
+  return $data;
+
+}
+
 /* ############################ */
 /* #### IMAGES PROCESSING ##### */
 /* ############################ */
@@ -633,6 +681,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
 function bhImageSet($item) {
   global $lastDatePulled;
+  $lastPullAdjusted = $lastDatePulled - 3600;
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
@@ -645,16 +694,15 @@ function bhImageSet($item) {
       // copies image from backup dir, to images dir, file is unlinked/deleted
       // upon processing. This will enable images to update and scripts to be rerun
       if(file_exists($imagesdir['source'].'/'.$img)) {
-        // if the file exists already in tmpdest, then check filesizes to see if they are the same, if not, copy it.
-        // pretty low ods that a replacement would have same filesize, but if this becomes issue, might have to do a
-        // hash on the file contents.
+        // if the file exists already in tmpdest, then check the PictureModifiedDateTim to see if more
+        // recent than the last pull time.  We only want to do this if photos are updated - not just the
+        // listing being modified or updated.
         if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
-          //$oldFileSZ = filesize($imagesdir['source'].'/'.$img);
-          //$newFileSZ = filesize($imagesdir['tmpdest'].'/'.$img);
           echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
           $modDay = strtotime($item['PictureModifiedDateTime']);
           //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
-          if ($modDay >= $lastDatePulled) {
+          bh_write_to_log('PicMod: '.$modDay.'  lastPull: '.$lastPullAdjusted ,'properties');
+          if ($modDay >= $lastPullAdjusted) {
             bh_write_to_log('Updating photos here... ','properties');
             copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
             $updateFlag = 1; // lets bendhomes_img_upload know it needs updateing.

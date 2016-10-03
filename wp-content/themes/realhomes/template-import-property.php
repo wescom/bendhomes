@@ -353,6 +353,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 }
 
 function bhImageSet($item) {
+  bh_write_to_log('Inside bhImageSet in template-import-property ' ,'properties');
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
@@ -568,7 +569,7 @@ foreach($proparr as $propitem) {
         // END Property_RESI import template
     		break;
     } // end swich statement
-    if($postaction == 'add_property') {
+    if(($postaction == 'add_property')|| $postaction == 'update_property')) {
       $bhimgids = bhImageSet($propitem);
       $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
       $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];

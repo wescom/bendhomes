@@ -19,7 +19,7 @@ include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 $theTm = time();
-//bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
+bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
 
 function dataPreProc($proparr,$scenarioset) {
   $count = 0;
@@ -59,6 +59,7 @@ function dataPreProc($proparr,$scenarioset) {
     // skip_property
     // update_property
     // delete_property
+    echo "\n\r"."postaction: ".$postaction."\n\r";
     if($postaction == 'delete_property' || $postaction == 'skip_property') {
       $retsproperties[$propitem['ListingRid']]['action'] = $postaction;
       $retsproperties[$propitem['ListingRid']]['property_id'] = $bhpropertyid;
@@ -91,6 +92,11 @@ function dataPreProc($proparr,$scenarioset) {
         $bhcoordinates = $propitem['Latitude'].','.$propitem['Longitude'];
       }
 
+      if ($propitem['Status'] == "Active")
+          $statusVal = "for-sale";
+      else 
+          $statusVal = $propitem['Status'];
+
       switch ($scenarioset['name']) {
       	case "OpenHouse_OPEN":
       		break;
@@ -102,7 +108,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($proptype),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'property-id' => $propitem['MLNumber'], // this the the MLS ID
             'property_id' => $bhpropertyid, // this is the WP post id if there's record update
@@ -125,7 +131,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['COMMTYPE']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'property-id' => $propitem['MLNumber'], // this the the MLS ID
             'property_id' => $bhpropertyid, // this is the WP post id if there's record update
@@ -148,7 +154,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertyType']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'bedrooms' => $propitem['Bedrooms'],
             'bathrooms' => $propitem['Bathrooms'],
@@ -177,7 +183,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'property-id' => $propitem['MLNumber'], // this the the MLS ID
             'property_id' => $bhpropertyid, // this is the WP post id if there's record update
@@ -200,7 +206,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertySubtype1']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'bedrooms' => $propitem['Bedrooms'],
             'bathrooms' => $propitem['Bathrooms'],
@@ -228,7 +234,7 @@ function dataPreProc($proparr,$scenarioset) {
             'show_address_to_public' => $bhpublicaddressflag,
             'description' => $bhmarketingremarks,
             'type' => bhLookupPropertyType($propitem['PropertyType']),
-            'status' => 34,
+            'status' => $statusVal,
             'location' => $propitem['City'],
             'bedrooms' => $propitem['Bedrooms'],
             'bathrooms' => $propitem['Bathrooms'],
@@ -252,7 +258,7 @@ function dataPreProc($proparr,$scenarioset) {
       		break;
       } // end swich statement
 
-      if(($postaction == 'add_property') || ($postaction == 'update_property')) {
+      if($postaction == 'add_property') {
         $bhimgids = bhImageSet($propitem);
         $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
         $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
@@ -387,7 +393,7 @@ function dataPropertyWPinsert($myproperty) {
 
               // Attach Property Status with Newly Created Property
               if( isset( $myproperty['status'] ) && ( $myproperty['status'] != "-1" ) ) {
-                  wp_set_object_terms( $property_id, intval( $myproperty['status'] ), 'property-status' );
+                  wp_set_object_terms( $property_id, $myproperty['status'], 'property-status' );
               }
 
               // Attach Property Features with Newly Created Property
@@ -504,7 +510,7 @@ function dataPropertyWPinsert($myproperty) {
               if( $action == "update_property" ) {
                   $tour_video_image_id = get_post_meta( $property_id, 'REAL_HOMES_tour_video_image', true );
                   if ( ! empty ( $tour_video_image_id ) ) {
-                      $tour_video_image_src = wp_get_attachment_image_src( $tour_video_image_id, 'property-detail-slider-image-two' );
+                      $tour_video_image_src = wp_get_attachment_image_src( $tour_video_image_id, 'property-detail-video-image' );
                       $tour_video_image = $tour_video_image_src[0];
                   }
               }
@@ -576,6 +582,8 @@ foreach($scenarios as $scenario) {
   echo '<hr/>';
 
 }
+
+echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import Complete</h1>';
 
 bh_write_to_log('import end: '.date(DATE_RSS),'properties');
 
