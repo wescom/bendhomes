@@ -174,10 +174,10 @@ class AgentSettingsPage {
 				$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
 				$agent_type = $agent_types[0]->slug;
 				
-				if( $company_featured == 1 || $agent_type == 'featured-agent' ) {
-					update_post_meta( $agent_id, 'agent_is_featured', 1 );
+				if( $company_featured || $agent_type == 'featured-agent' ) {
+					update_post_meta( $agent_id, 'agent_is_featured', true );
 				} else {
-					update_post_meta( $agent_id, 'agent_is_featured', '' );
+					update_post_meta( $agent_id, 'agent_is_featured', false );
 				}
 				
 			endwhile;

@@ -19,6 +19,11 @@ get_header();
 						the_post();
 						
 						$featured_agent = get_field( 'agent_is_featured' );
+						$office_name = get_field( 'brk_office_name' );
+						$office_address = get_field( 'brk_office_address' );
+						$agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);
+						$agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
+						$agent_office_fax = get_post_meta($post->ID, 'REAL_HOMES_fax_number',true);
 						?>
 
                 <!-- Main Content -->
@@ -31,7 +36,7 @@ get_header();
 
                                 <div class="detail">
 
-                                    <div class="row-fluid">
+                                    <div class="row-fluid" style="padding-bottom: 16px;">
 
                                         <div class="span3">
                                             <?php
@@ -48,20 +53,17 @@ get_header();
                                         </div>
 
                                         <div class="span9">
-
-                                            <div class="agent-content">
-                                                <?php the_content(); ?>
+                                        
+                                        	<div class="brokerage-address">
+                                            	<strong><?php echo $office_name; ?></strong><br>
+                                            	<?php echo $office_address; ?>
                                             </div>
+
                                             <?php
 
                                             /* Agent Brokerage Info */
-                                            brokerageBlock($post->ID);
-                                            // get_template_part( 'bend-homes/template-parts/brokerage-block' );
-
-                                            /* Agent Contact Info */
-                                            $agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
-                                            $agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);
-                                            $agent_office_fax = get_post_meta($post->ID, 'REAL_HOMES_fax_number',true);
+                                            //brokerageBlock($post->ID);
+                                            // get_template_part( 'bend-homes/template-parts/brokerage-block' );                                            
 
                                             if( !empty( $agent_office_phone ) || !empty( $agent_mobile ) || !empty( $agent_office_fax ) ) {
                                                 ?>
@@ -72,7 +74,7 @@ get_header();
                                                     if(!empty($agent_office_phone)){
                                                         ?><li class="office">
                                                         <?php 
-														if($featured_agent == 1) {
+														if($featured_agent) {
 															echo '<i class="fa fa-phone"></i> Office: <a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>';
                                                         } else {
                                                         	echo '<i class="fa fa-phone"></i> Office: '. $agent_office_phone;
@@ -80,20 +82,24 @@ get_header();
 														?>
                                                         </li><?php
                                                     }
-                                                    if(!empty($agent_mobile) && $featured_agent == 1){
+                                                    if(!empty($agent_mobile) && $featured_agent){
                                                         ?><li class="mobile">
                                                         <?php echo '<i class="fa fa-mobile"></i> Mobile: <a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
                                                         </li><?php
                                                     }
-                                                    if(!empty($agent_office_fax) && $featured_agent == 1){
+                                                    if(!empty($agent_office_fax) && $featured_agent){
                                                         ?><li class="fax"><i class="fa fa-printer"></i> Fax: <?php echo $agent_office_fax; ?></li><?php
                                                     }
                                                     ?>
                                                 </ul>
                                                 <?php
-                                            }
+                                            } ?>
+											
+											<div class="agent-content">
+                                                <?php //the_content(); ?>
+                                            </div>
 
-                                            // Agent contact form
+                                            <?php // Agent contact form
                                             get_template_part( 'template-parts/agent-contact-form' );
                                             ?>
 
@@ -161,7 +167,7 @@ get_header();
                                 $number_of_properties = 6;
                             }*/
 							
-							if( $featured_agent == 1 ) {
+							if( $featured_agent ) {
 
                             	$agent_id = $post->ID;
 							
