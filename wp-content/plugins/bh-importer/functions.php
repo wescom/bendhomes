@@ -594,10 +594,10 @@ function dbDeleteOldIdList() {
 
   $querydate = date("Y-m-d H:i:s");
   $querydate = date_create($querydate);
-  date_sub($querydate, date_interval_create_from_date_string("365 days"));
+  date_sub($querydate, date_interval_create_from_date_string("3650 days"));
   $querydate = date_format($querydate,"Y-m-d H:i:s");
 
-  $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status FROM Property_RESI WHERE
+  $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status, images FROM Property_RESI WHERE
               LastModifiedDateTime <= '".$querydate." '
               AND Status = 'Sold'";
 
@@ -616,6 +616,65 @@ function dbDeleteOldIdList() {
 
   return $data;
 
+}
+
+/* ################################################################################## */
+/* #### DELETING PROPERTIES AND PHOTOS FROM RHETS SIDE THAT ARE                 ##### */
+/* #### OLDER THAN X - SET IN TMPLATE-DELETE-OLD-PROPERTIES                     ##### */
+/* ################################################################################## */
+function bhDeleteProperty($propItem){
+  $db = array(
+    'host' => 'localhost',
+    'username' => 'phrets',
+    'password' => 'hCqaQvMKW9wJKQwS',
+    'database' => 'bh_rets'
+  );
+
+  $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+  /* check connection */
+  if ($mysqli->connect_errno) {
+      echo "connect failed!";
+      //printf("Connect failed: %s\n", $mysqli->connect_error);
+      exit();
+  }
+
+  $sqlquery = "DELETE FROM Property_RESI WHERE
+              MLNumber = ".$propItem['MLNumber'];
+
+  echo "<p>query: ".$sqlquery."</p>";
+  /*if ($result = $mysqli->query($sqlquery)) {
+      echo "<p> deleted from database! </p>";
+      // Frees the memory associated with a result
+  }*/
+
+  $mysqli->close();
+
+
+  echo "<p>Assoc images: ".$propItem['images'];
+  if ($propItem['images']) {
+    $photoArray = explode("|", $propItem['images']);
+    $fileStem = explode("-", $photoArray[0]);
+    
+    $imagePath = ABSPATH.'_retsapi/images/property/'.$fileStem[0];
+    echo " Delete image: ".$imagePath."</p>";
+    foreach( glob($imagePath.'*') as $file ) {
+      if(file_exists($file)) {
+        echo " found: ".$file;
+        //unlink($file);
+      }
+    }
+    $imagePath = ABSPATH.'_retsapi/imagesbackup/property/'.$fileStem[0];
+    echo " Delete image: ".$imagePath."</p>";
+    foreach( glob($imagePath.'*') as $file ) {
+      if(file_exists($file)) {
+        echo " found: ".$file;
+        //unlink($file);
+      }
+    }
+  } else {
+    echo "No photos for this listing.</p>";
+  }
+  return true;
 }
 
 /* ############################ */
