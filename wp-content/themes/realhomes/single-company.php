@@ -1,7 +1,5 @@
 <?php
 get_header();
-
-$company_featured = get_field( 'company_featured_company' );	
 ?>
 
 <!-- Page Head -->
@@ -14,15 +12,19 @@ $company_featured = get_field( 'company_featured_company' );
 
         <div class="span9 main-wrap">
 
+			<?php
+			while ( have_posts() ) :
+				the_post();
+				
+				$company_featured = get_field( 'company_featured_company' );	
+				?>
+                
             <!-- Main Content -->
             <div class="main" style="margin-top: 0;">
 
                 <section class="listing-layout">
                     <div class="list-container">
-                        <?php
-                        while ( have_posts() ) :
-                            the_post();
-                            ?>
+                        
                             <article class="about-company company-single clearfix">
 
                                 <div class="detail">
@@ -95,19 +97,11 @@ $company_featured = get_field( 'company_featured_company' );
 
                                     </div><!-- end .row-fluid -->
                                     
-<<<<<<< HEAD
-                                    <?php																	
-									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
-									
-									if( !empty( $agents_array ) ) {
-																											
-=======
                                     <?php			
 									if( $company_featured == 1 ) {	
 																						
 										$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 																												
->>>>>>> master
 										$agent_args = array(
 											'post_type' => 'agent',
 											'post__in' => $agents_array,
@@ -160,24 +154,22 @@ $company_featured = get_field( 'company_featured_company' );
 											
 											</div>
 											
-<<<<<<< HEAD
-										<?php endif; // end agents query	
-									
-=======
+
 										<?php endif; // end agents query
->>>>>>> master
+										
 									} ?>
 
                                 </div><!-- end .detail -->
 
                             </article>
-                        <?php
-                        endwhile;
-                        ?>
                     </div>
                 </section>
 
             </div><!-- End Main Content -->
+            
+            <?php
+			endwhile;
+			?>
 
         </div> <!-- End span9 -->
 
