@@ -642,6 +642,11 @@ function bhDeleteProperty($propItem){
               MLNumber = ".$propItem['MLNumber'];
 
   echo "<p>query: ".$sqlquery."</p>";
+  if ($result = $mysqli->query($sqlquery)) {
+      echo "<p> deleted RETS from database! </p>";
+      // Frees the memory associated with a result
+      $result->free();
+  }
   $mysqli->close();
 
 
