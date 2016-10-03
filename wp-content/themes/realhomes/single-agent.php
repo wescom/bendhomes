@@ -27,7 +27,7 @@ get_header();
                     <section class="listing-layout">
                         <div class="list-container">
                             
-                            <article class="about-agent agent-single clearfix">
+                            <article class="about-agent agent-single clearfix featured-<?php echo $featured_agent; ?>">
 
                                 <div class="detail">
 
@@ -75,7 +75,7 @@ get_header();
 														if($featured_agent == 1) {
 															echo '<i class="fa fa-phone"></i> Office: <a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>';
                                                         } else {
-                                                        	echo '<i class="fa fa-phone"></i> Office:'. $agent_office_phone;
+                                                        	echo '<i class="fa fa-phone"></i> Office: '. $agent_office_phone;
                                                         }
 														?>
                                                         </li><?php
@@ -86,7 +86,7 @@ get_header();
                                                         </li><?php
                                                     }
                                                     if(!empty($agent_office_fax) && $featured_agent == 1){
-                                                        ?><li class="fax"><?php include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework'); ?>  : <?php echo $agent_office_fax; ?></li><?php
+                                                        ?><li class="fax"><i class="fa fa-printer"></i> Fax: <?php echo $agent_office_fax; ?></li><?php
                                                     }
                                                     ?>
                                                 </ul>
