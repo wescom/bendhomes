@@ -18,6 +18,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .text-green { color: #598F28; }
 .user-nav .mort-calc { border: 1px solid #888; border-radius: 2px; padding: 3px 10px; }
 .user-nav .mort-calc:after { content: none; }
+.user-nav .mort-calc:hover, .user-nav .mort-calc:active { border-color: #eee; color: #eee; }
 #mortgage-calculator, #mortgage-calculator.in { width: 80%; }
 #mortgage-calculator, #mortgage-calculator.in { position: absolute; top: 2%; margin-top: 0; margin-left: -40%; }
 .admin-bar #mortgage-calculator.in { top: 50px; }
