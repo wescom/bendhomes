@@ -683,8 +683,8 @@ function bhDeleteWPImages($pstId) {
     $thumb_url = $thumb_url_array[0];
     echo "url: ".$thumb_url;
     $photoPathArray = explode(".", $thumb_url);
-    $photoPathArray = explode("wp-content", $photoPathArray[0]);
-    $photoPath = "/var/www/wp-content".$photoPathArray[1];
+    $photoPathArray = explode("wp-content", $photoPathArray[2]);
+    $photoPath = "/var/www/html/wp-content/".$photoPathArray[1];
     echo " photo path: ".$photoPath;
 }
 
