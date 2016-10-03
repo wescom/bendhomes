@@ -29,7 +29,11 @@ get_header();
                 <!-- Main Content -->
                 <div class="main" style="margin-top: 0;">
                 
-                	<!--<?php var_dump($_POST); ?>-->
+                	<!--<?php print_r($post). '<br/>';
+						$meta = get_post_meta($post_id); 
+						foreach($meta as $key=>$val){
+							echo $key . ' : ' . $val[0] . '<br/>';
+						} ?>-->
 
                     <section class="listing-layout">
                         <div class="list-container">
