@@ -594,7 +594,7 @@ function dbDeleteOldIdList() {
 
   $querydate = date("Y-m-d H:i:s");
   $querydate = date_create($querydate);
-  date_sub($querydate, date_interval_create_from_date_string("2920 days"));
+  date_sub($querydate, date_interval_create_from_date_string("4015 days"));
   $querydate = date_format($querydate,"Y-m-d H:i:s");
 
   $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status, images FROM Property_RESI WHERE
