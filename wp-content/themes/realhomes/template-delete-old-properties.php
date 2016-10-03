@@ -21,26 +21,26 @@ include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 //$theTm = time();
 //bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
 
+foreach($scenarios as $scenario) {
 
-echo "hello world";
+	echo "<h2>Starting: ".$scenario['resource'].$scenario['class']."</h2>";
+	$propList = dbDeleteOldIdList($scenario);
 
- /*$propList = dbDeleteOldIdList();
+	foreach($propList as $propItem) {
+	 	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
+	 	$bhpropertyid = $mlsposts[0];
+	    echo "<p>mls: ".$propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
 
-foreach($propList as $propItem) {
- 	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
- 	$bhpropertyid = $mlsposts[0];
-    echo "<p>mls: ".$propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
+	    /*$wasSuccess = bhDeleteProperty($propItem);
 
-    $wasSuccess = bhDeleteProperty($propItem);
-
-    if ($bhpropertyid > 0) { */
-    	bhDeleteWPImages(307810);
-    	//delete_updated_images(308003);
-    	wp_delete_post(307810);
-    	
-    /*} else {
-    	echo "<p>Property was not in wordpress database";
-    }
-}*/
+	    if ($bhpropertyid > 0) { 
+	    	bhDeleteWPImages($bhpropertyid);
+	    	wp_delete_post($bhpropertyid);
+	    	
+	    } else {
+	    	echo "<p>Property was not in wordpress database";
+	    }*/
+	}
+}
 
 ?>
