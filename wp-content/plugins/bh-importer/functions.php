@@ -642,11 +642,22 @@ function bhDeleteProperty($propItem){
               MLNumber = ".$propItem['MLNumber'];
 
   echo "<p>query: ".$sqlquery."</p>";
+  $mysqli->close();
+
+
   echo "<p>Assoc images: ".$propItem['images'];
   $photoArray = explode("|", $propItem['images']);
   $fileStem = explode("-", $photoArray[0]);
-  echo " Delte images starting with: ".$fileStem[0]."<p>";
-  $mysqli->close();
+  
+  $imagePath = ABSPATH.'_retsapi/images/property/'.$fileStem[0];
+  echo " Delte image: ".$imagePath;
+  foreach( glob($imagePath.'*') as $file ) {
+    if(file_exists($file)) {
+      echo " <span style='color:green'> Found it!</span></p>";
+      //unlink($file);
+    }
+  }
+  
   return true;
 }
 
