@@ -163,6 +163,16 @@ class AgentSettingsPage {
 			 while( $agents->have_posts() ) : $agents->the_post(); 
 				
 				$agent_id = get_the_ID();
+				
+				delete_post_meta( 'field_579668fc8f44d', $agent_id );
+				delete_post_meta( 'field_5799196416a37', $agent_id );
+				delete_post_meta( '_brk_office_is_featured', $agent_id );
+				delete_post_meta( '_agent_is_featured', $agent_id );
+				delete_post_meta( '_edit_lock', $agent_id );
+				delete_post_meta( '_edit_last', $agent_id );
+				delete_post_meta( '_brk_office_name', $agent_id );
+				delete_post_meta( '_brk_office_phone', $agent_id );
+				delete_post_meta( '_brk_office_address', $agent_id );
 								
 				// Look up company ID by agent brokerage name				
 				$company_name = get_post_meta( $agent_id, 'brk_office_name', true );
@@ -171,18 +181,15 @@ class AgentSettingsPage {
 				// Find out if the company is featured
 				$company_featured = get_post_meta( $company_id, 'company_featured_company', true );
 				
-				//update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured ); // brk_office_is_featured // field_579668fc8f44d
-				update_field( 'field_579668fc8f44d', $company_featured, $agent_id );
+				update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured ); // brk_office_is_featured // field_579668fc8f44d
 				
 				$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
 				$agent_type = $agent_types[0]->slug;
 				
 				if( $company_featured || $agent_type == 'featured-agent' ) {
-					//update_post_meta( $agent_id, 'agent_is_featured', 1 ); // agent_is_featured // field_5799196416a37
-					update_field( 'field_5799196416a37', 1, $agent_id );
+					update_post_meta( $agent_id, 'agent_is_featured', 1 ); // agent_is_featured // field_5799196416a37
 				} else {
-					//update_post_meta( $agent_id, 'agent_is_featured', '' ); // agent_is_featured // field_5799196416a37
-					update_field( 'field_5799196416a37', '', $agent_id );
+					update_post_meta( $agent_id, 'agent_is_featured', '' ); // agent_is_featured // field_5799196416a37
 				}
 				
 			endwhile;
