@@ -96,7 +96,7 @@ get_header();
                                             } ?>
 											
 											<div class="agent-content">
-                                                <?php the_content(); ?>
+                                                <?php //the_content(); ?>
                                             </div>
 
                                             <?php // Agent contact form
