@@ -31,6 +31,8 @@ foreach($propList as $propItem) {
  	$bhpropertyid = $mlsposts[0];
     echo "<p>mls: ".$propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
 
+    $wasSuccess = bhDeleteProperty($propItem);
+
     if ($bhpropertyid > 0) {
     	wp_delete_post($bhpropertyid);
     } else {
