@@ -646,26 +646,29 @@ function bhDeleteProperty($propItem){
 
 
   echo "<p>Assoc images: ".$propItem['images'];
-  $photoArray = explode("|", $propItem['images']);
-  $fileStem = explode("-", $photoArray[0]);
-  
-  $imagePath = ABSPATH.'_retsapi/images/property/'.$fileStem[0];
-  echo " Delete image: ".$imagePath."</p>";
-  /*foreach( glob($imagePath.'*') as $file ) {
-    if(file_exists($file)) {
-      echo $file;
-      //unlink($file);
-    }
-  }*/
-  $imagePath = ABSPATH.'_retsapi/imagesbackup/property/'.$fileStem[0];
-  echo " Delete image: ".$imagePath."</p>";
-  /*foreach( glob($imagePath.'*') as $file ) {
-    if(file_exists($file)) {
-      //echo $file;
-      //unlink($file);
-    }
-  }*/
-  
+  if ($propItem['images']) {
+    $photoArray = explode("|", $propItem['images']);
+    $fileStem = explode("-", $photoArray[0]);
+    
+    $imagePath = ABSPATH.'_retsapi/images/property/'.$fileStem[0];
+    echo " Delete image: ".$imagePath."</p>";
+    /*foreach( glob($imagePath.'*') as $file ) {
+      if(file_exists($file)) {
+        echo $file;
+        //unlink($file);
+      }
+    }*/
+    $imagePath = ABSPATH.'_retsapi/imagesbackup/property/'.$fileStem[0];
+    echo " Delete image: ".$imagePath."</p>";
+    /*foreach( glob($imagePath.'*') as $file ) {
+      if(file_exists($file)) {
+        //echo $file;
+        //unlink($file);
+      }
+    }*/
+  } else {
+    echo "No photos for this listing.</p>";
+  }
   return true;
 }
 
