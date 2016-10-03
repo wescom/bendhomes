@@ -30,6 +30,12 @@ foreach($propList as $propItem) {
  	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
  	$bhpropertyid = $mlsposts[0];
     echo "<p>mls: ".$propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
+
+    if ($bhpropertyid > 0) {
+    	wp_delete_post($bhpropertyid);
+    } else {
+    	echo "<p>Property was not in wordpress database";
+    }
 }
 
 ?>

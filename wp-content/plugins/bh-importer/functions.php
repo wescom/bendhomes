@@ -618,6 +618,35 @@ function dbDeleteOldIdList() {
 
 }
 
+/* ################################################################################## */
+/* #### DELETING PROPERTIES AND PHOTOS FROM RHETS SIDE THAT ARE                 ##### */
+/* #### OLDER THAN X - SET IN TMPLATE-DELETE-OLD-PROPERTIES                     ##### */
+/* ################################################################################## */
+function bhDeleteProperty($propItem){
+  $db = array(
+    'host' => 'localhost',
+    'username' => 'phrets',
+    'password' => 'hCqaQvMKW9wJKQwS',
+    'database' => 'bh_rets'
+  );
+
+  $mysqli = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+  /* check connection */
+  if ($mysqli->connect_errno) {
+      echo "connect failed!";
+      //printf("Connect failed: %s\n", $mysqli->connect_error);
+      exit();
+  }
+
+  $sqlquery = "DELETE FROM Property_RESI WHERE
+              MLNumber = ".$propItem['MLNumber'];
+
+  echo "<p>query: ".$sqlquery;
+  echo "<p>Now delete images: ".$propItem['images'];
+  $mysqli->close();
+  return true;
+}
+
 /* ############################ */
 /* #### IMAGES PROCESSING ##### */
 /* ############################ */
