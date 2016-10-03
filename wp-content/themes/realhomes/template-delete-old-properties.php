@@ -24,7 +24,7 @@ include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 echo "hello world";
 
- $propList = dbDeleteOldIdList();
+ /*$propList = dbDeleteOldIdList();
 
 foreach($propList as $propItem) {
  	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
@@ -33,11 +33,11 @@ foreach($propList as $propItem) {
 
     $wasSuccess = bhDeleteProperty($propItem);
 
-    if ($bhpropertyid > 0) {
-    	wp_delete_post($bhpropertyid);
-    } else {
+    if ($bhpropertyid > 0) { */
+    	wp_delete_post(307951);
+    /*} else {
     	echo "<p>Property was not in wordpress database";
     }
-}
+}*/
 
 ?>
