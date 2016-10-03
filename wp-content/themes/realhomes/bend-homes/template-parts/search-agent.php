@@ -5,7 +5,7 @@ global $post;
 $id = get_the_ID();
 $permalink = get_permalink();
 $title = get_the_title();
-$featured_agent = get_field( 'agent_is_featured' );
+$featured_agent = get_field( 'agent_featured' );
 $image_size = 'agent-image';
 $brokerage = get_field( 'brk_office_name' );
 $category_classes = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );

@@ -18,7 +18,7 @@ get_header();
 					while ( have_posts() ) :
 						the_post();
 						
-						$featured_agent = get_field( 'agent_is_featured' );
+						$featured_agent = get_field( 'agent_featured' );
 						$office_name = get_field( 'brk_office_name' );
 						$office_address = get_field( 'brk_office_address' );
 						$agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);
