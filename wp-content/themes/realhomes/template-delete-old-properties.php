@@ -37,13 +37,13 @@ foreach($scenarios as $scenario) {
 
 	    $wasSuccess = bhDeleteProperty($propItem, $rc);
 
-	    /*if ($bhpropertyid > 0) { 
+	    if ($bhpropertyid > 0) { 
 	    	bhDeleteWPImages($bhpropertyid);
 	    	wp_delete_post($bhpropertyid);
 	    	
 	    } else {
 	    	echo "<p>Property was not in wordpress database";
-	    }*/
+	    }
 	}
 }
 

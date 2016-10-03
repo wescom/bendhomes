@@ -660,7 +660,7 @@ function bhDeleteProperty($propItem, $rc){
     foreach( glob($imagePath.'*') as $file ) {
       if(file_exists($file)) {
         echo " found: ".$file;
-        //unlink($file);
+        unlink($file);
       }
     }
     $imagePath = ABSPATH.'_retsapi/imagesbackup/property/'.$fileStem[0];
@@ -668,7 +668,7 @@ function bhDeleteProperty($propItem, $rc){
     foreach( glob($imagePath.'*') as $file ) {
       if(file_exists($file)) {
         echo " found: ".$file;
-        //unlink($file);
+        unlink($file);
       }
     }
   } else {
@@ -677,6 +677,9 @@ function bhDeleteProperty($propItem, $rc){
   return true;
 }
 
+/* ################################################ */
+/* #### DELETE ACTUAL IMAGE FILES FROM FOLDER ##### */
+/* ################################################ */
 function bhDeleteWPImages($pstId) {
     $thumb_id = get_post_thumbnail_id($pstId);
     $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
