@@ -74,7 +74,7 @@ get_header();
                                                     if(!empty($agent_office_phone)){
                                                         ?><li class="office">
                                                         <?php 
-														if($featured_agent == 1) {
+														if($featured_agent) {
 															echo '<i class="fa fa-phone"></i> Office: <a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>';
                                                         } else {
                                                         	echo '<i class="fa fa-phone"></i> Office: '. $agent_office_phone;
@@ -82,12 +82,12 @@ get_header();
 														?>
                                                         </li><?php
                                                     }
-                                                    if(!empty($agent_mobile) && $featured_agent == 1){
+                                                    if(!empty($agent_mobile) && $featured_agent){
                                                         ?><li class="mobile">
                                                         <?php echo '<i class="fa fa-mobile"></i> Mobile: <a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
                                                         </li><?php
                                                     }
-                                                    if(!empty($agent_office_fax) && $featured_agent == 1){
+                                                    if(!empty($agent_office_fax) && $featured_agent){
                                                         ?><li class="fax"><i class="fa fa-printer"></i> Fax: <?php echo $agent_office_fax; ?></li><?php
                                                     }
                                                     ?>
@@ -167,7 +167,7 @@ get_header();
                                 $number_of_properties = 6;
                             }*/
 							
-							if( $featured_agent == 1 ) {
+							if( $featured_agent ) {
 
                             	$agent_id = $post->ID;
 							
