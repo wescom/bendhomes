@@ -34,12 +34,10 @@ foreach($propList as $propItem) {
     $wasSuccess = bhDeleteProperty($propItem);
 
     if ($bhpropertyid > 0) { */
+    	bhDeleteWPImages(307810)
     	//delete_updated_images(308003);
     	//wp_delete_post(308003);
-    	$thumb_id = get_post_thumbnail_id(307810);
-		$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
-		$thumb_url = $thumb_url_array[0];
-		echo "url: ".$thumb_url;
+    	
     /*} else {
     	echo "<p>Property was not in wordpress database";
     }
