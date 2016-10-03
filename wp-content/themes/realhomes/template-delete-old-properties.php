@@ -34,9 +34,9 @@ foreach($propList as $propItem) {
     $wasSuccess = bhDeleteProperty($propItem);
 
     if ($bhpropertyid > 0) { */
-    	bhDeleteWPImages(307810)
+    	bhDeleteWPImages(307810);
     	//delete_updated_images(308003);
-    	//wp_delete_post(308003);
+    	wp_delete_post(307810);
     	
     /*} else {
     	echo "<p>Property was not in wordpress database";
