@@ -23,17 +23,21 @@ include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 foreach($scenarios as $scenario) {
 
+	$resource = $scenario['resource'];
+  	$class = $scenario['class'];
+  	$rc = $resource.'_'.$class;  // ie:  Property_RESI
 	echo "<h2>Starting: ".$scenario['resource'].$scenario['class']."</h2>";
-	$propList = dbDeleteOldIdList($scenario);
+
+	$propList = dbDeleteOldIdList($scenario, $rc);
 
 	foreach($propList as $propItem) {
 	 	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
 	 	$bhpropertyid = $mlsposts[0];
 	    echo "<p>mls: ".$propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
 
-	    /*$wasSuccess = bhDeleteProperty($propItem);
+	    $wasSuccess = bhDeleteProperty($propItem, $rc);
 
-	    if ($bhpropertyid > 0) { 
+	    /*if ($bhpropertyid > 0) { 
 	    	bhDeleteWPImages($bhpropertyid);
 	    	wp_delete_post($bhpropertyid);
 	    	

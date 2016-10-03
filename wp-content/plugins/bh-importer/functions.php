@@ -575,7 +575,7 @@ function dbresult($sset) {
 /* ##################################### */
 /* #### Get array of IDs to delete ##### */
 /* ##################################### */
-function dbDeleteOldIdList($sset) {
+function dbDeleteOldIdList($sset, $rc) {
   $data = array();
   $db = array(
     'host' => 'localhost',
@@ -591,10 +591,6 @@ function dbDeleteOldIdList($sset) {
       //printf("Connect failed: %s\n", $mysqli->connect_error);
       exit();
   }
-
-  $resource = $sset['resource'];
-  $class = $sset['class'];
-  $rc = $resource.'_'.$class;  // ie:  Property_RESI
 
   $querydate = date("Y-m-d H:i:s");
   $querydate = date_create($querydate);
@@ -626,7 +622,7 @@ function dbDeleteOldIdList($sset) {
 /* #### DELETING PROPERTIES AND PHOTOS FROM RHETS SIDE THAT ARE                 ##### */
 /* #### OLDER THAN X - SET IN TMPLATE-DELETE-OLD-PROPERTIES                     ##### */
 /* ################################################################################## */
-function bhDeleteProperty($propItem){
+function bhDeleteProperty($propItem, $rc){
   $db = array(
     'host' => 'localhost',
     'username' => 'phrets',
@@ -642,14 +638,14 @@ function bhDeleteProperty($propItem){
       exit();
   }
 
-  $sqlquery = "DELETE FROM Property_RESI WHERE
+  $sqlquery = "DELETE FROM ".$rc." WHERE
               MLNumber = ".$propItem['MLNumber'];
 
   echo "<p>query: ".$sqlquery."</p>";
-  if ($result = $mysqli->query($sqlquery)) {
+  /*if ($result = $mysqli->query($sqlquery)) {
       echo "<p> deleted from database! </p>";
       // Frees the memory associated with a result
-  }
+  }*/
 
   $mysqli->close();
 
@@ -664,7 +660,7 @@ function bhDeleteProperty($propItem){
     foreach( glob($imagePath.'*') as $file ) {
       if(file_exists($file)) {
         echo " found: ".$file;
-        unlink($file);
+        //unlink($file);
       }
     }
     $imagePath = ABSPATH.'_retsapi/imagesbackup/property/'.$fileStem[0];
@@ -672,7 +668,7 @@ function bhDeleteProperty($propItem){
     foreach( glob($imagePath.'*') as $file ) {
       if(file_exists($file)) {
         echo " found: ".$file;
-        unlink($file);
+        //unlink($file);
       }
     }
   } else {
