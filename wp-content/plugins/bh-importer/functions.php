@@ -678,7 +678,7 @@ function bhDeleteProperty($propItem){
 }
 
 function bhDeleteWPImages($pstId) {
-    $thumb_id = get_post_thumbnail_id(307810);
+    $thumb_id = get_post_thumbnail_id($pstId);
     $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
     $thumb_url = $thumb_url_array[0];
     echo "url: ".$thumb_url;
@@ -686,8 +686,14 @@ function bhDeleteWPImages($pstId) {
     $photoPathArray = explode("wp-content", $photoPathArray[2]);
     $photoPath = "/var/www/html/wp-content".$photoPathArray[1];
     $photoPath = explode("-", $photoPath);
-    $photoPath = $photoPath[0]."-".$photoPath[1].$photoPath[2];
+    $photoPath = $photoPath[0]."-".$photoPath[1]."-".$photoPath[2];
     echo " photo path: ".$photoPath;
+    foreach( glob($photoPath.'*') as $file ) {
+      if(file_exists($file)) {
+        echo " found: ".$file;
+        //unlink($file);
+      }
+    }
 }
 
 /* ############################ */
