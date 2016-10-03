@@ -691,7 +691,7 @@ function bhDeleteWPImages($pstId) {
     foreach( glob($photoPath.'*') as $file ) {
       if(file_exists($file)) {
         echo " found: ".$file;
-        //unlink($file);
+        unlink($file);
       }
     }
 }
