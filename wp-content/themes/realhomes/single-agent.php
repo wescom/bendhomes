@@ -32,7 +32,7 @@ get_header();
                 	<!--<?php print_r($post). '<br/>';
 						$meta = get_post_meta($post->ID); 
 						foreach($meta as $key=>$val){
-							echo $key . ' : ' . $val[0] . '<br/>';
+							echo $key . ' : ' . $val[0] . '   ';
 						} ?>-->
 
                     <section class="listing-layout">
