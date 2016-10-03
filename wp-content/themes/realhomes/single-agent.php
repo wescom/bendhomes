@@ -71,20 +71,18 @@ get_header();
                                                     <?php
                                                     if(!empty($agent_office_phone)){
                                                         ?><li class="office">
-                                                        <?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : 
                                                         <?php 
 														if($featured_agent == 1) {
-															echo '<a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>';
+															echo '<i class="fa fa-phone"></i> Office: <a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>';
                                                         } else {
-                                                        	echo $agent_office_phone;
+                                                        	echo '<i class="fa fa-phone"></i> Office:'. $agent_office_phone;
                                                         }
 														?>
                                                         </li><?php
                                                     }
                                                     if(!empty($agent_mobile) && $featured_agent == 1){
                                                         ?><li class="mobile">
-                                                        <?php include( get_template_directory() . '/images/icon-mobile.svg' ); _e('Mobile', 'framework'); ?> : 
-                                                        <?php echo '<a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
+                                                        <?php echo '<i class="fa fa-mobile"></i> Mobile: <a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
                                                         </li><?php
                                                     }
                                                     if(!empty($agent_office_fax) && $featured_agent == 1){
