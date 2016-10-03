@@ -594,7 +594,7 @@ function dbDeleteOldIdList() {
 
   $querydate = date("Y-m-d H:i:s");
   $querydate = date_create($querydate);
-  date_sub($querydate, date_interval_create_from_date_string("4015 days"));
+  date_sub($querydate, date_interval_create_from_date_string("3650 days"));
   $querydate = date_format($querydate,"Y-m-d H:i:s");
 
   $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status, images FROM Property_RESI WHERE
@@ -642,11 +642,11 @@ function bhDeleteProperty($propItem){
               MLNumber = ".$propItem['MLNumber'];
 
   echo "<p>query: ".$sqlquery."</p>";
-  if ($result = $mysqli->query($sqlquery)) {
+  /*if ($result = $mysqli->query($sqlquery)) {
       echo "<p> deleted from database! </p>";
       // Frees the memory associated with a result
-  }
-  
+  }*/
+
   $mysqli->close();
 
 
