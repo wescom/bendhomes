@@ -164,7 +164,7 @@ class AgentSettingsPage {
 				
 				$agent_id = get_the_ID();
 				
-				delete_post_meta( $agent_id, 'agent_is_featured' );
+				//delete_post_meta( $agent_id, 'agent_is_featured' );
 				
 				$company_name = get_field( 'brk_office_name' );
 				$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
