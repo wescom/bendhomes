@@ -598,7 +598,7 @@ function dbDeleteOldIdList($sset, $rc) {
   $querydate = date_format($querydate,"Y-m-d H:i:s");
 
   $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status, images FROM ".$rc." WHERE
-              LastModifiedDateTime >= '".$querydate." '
+              LastModifiedDateTime <= '".$querydate." '
               AND Status = 'Sold'";
 
   echo "\n\rquery: ".$sqlquery;
