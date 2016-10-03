@@ -19,6 +19,7 @@ get_header();
 						the_post();
 						
 						$featured_agent = get_field( 'agent_is_featured' );
+						$office_name = get_field( 'brk_office_name' );
 						$office_address = get_field( 'brk_office_address' );
 						$agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);
 						$agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
@@ -54,6 +55,7 @@ get_header();
                                         <div class="span9">
                                         
                                         	<div class="brokerage-address">
+                                            	<strong><?php echo $office_name; ?></strong><br>
                                             	<?php echo $office_address; ?>
                                             </div>
 
