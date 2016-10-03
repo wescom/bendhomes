@@ -642,10 +642,10 @@ function bhDeleteProperty($propItem){
               MLNumber = ".$propItem['MLNumber'];
 
   echo "<p>query: ".$sqlquery."</p>";
-  /*if ($result = $mysqli->query($sqlquery)) {
+  if ($result = $mysqli->query($sqlquery)) {
       echo "<p> deleted from database! </p>";
       // Frees the memory associated with a result
-  }*/
+  }
 
   $mysqli->close();
 
@@ -660,7 +660,7 @@ function bhDeleteProperty($propItem){
     foreach( glob($imagePath.'*') as $file ) {
       if(file_exists($file)) {
         echo " found: ".$file;
-        //unlink($file);
+        unlink($file);
       }
     }
     $imagePath = ABSPATH.'_retsapi/imagesbackup/property/'.$fileStem[0];
@@ -668,7 +668,7 @@ function bhDeleteProperty($propItem){
     foreach( glob($imagePath.'*') as $file ) {
       if(file_exists($file)) {
         echo " found: ".$file;
-        //unlink($file);
+        unlink($file);
       }
     }
   } else {
