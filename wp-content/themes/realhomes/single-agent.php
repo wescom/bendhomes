@@ -29,7 +29,7 @@ get_header();
                 <!-- Main Content -->
                 <div class="main" style="margin-top: 0;">
                 
-                	<!--<?php print_r($_POST); ?>-->
+                	<!--<?php var_dump($_POST); ?>-->
 
                     <section class="listing-layout">
                         <div class="list-container">
