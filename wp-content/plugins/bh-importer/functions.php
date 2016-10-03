@@ -657,12 +657,12 @@ function bhDeleteProperty($propItem){
     
     $imagePath = ABSPATH.'_retsapi/images/property/'.$fileStem[0];
     echo " Delete image: ".$imagePath."</p>";
-    /*foreach( glob($imagePath.'*') as $file ) {
+    foreach( glob($imagePath.'*') as $file ) {
       if(file_exists($file)) {
-        echo $file;
+        echo " found: ".$file;
         //unlink($file);
       }
-    }*/
+    }
     $imagePath = ABSPATH.'_retsapi/imagesbackup/property/'.$fileStem[0];
     echo " Delete image: ".$imagePath."</p>";
     /*foreach( glob($imagePath.'*') as $file ) {
