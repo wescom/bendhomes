@@ -173,15 +173,15 @@ class AgentSettingsPage {
 				// Find out if the company is featured
 				$company_featured = get_post_meta( $company_id, 'company_featured_company', true );
 				
-				update_post_meta( $agent_id, 'brk_office_is_featured', $company_featured );
+				update_post_meta( $agent_id, 'field_579668fc8f44d', $company_featured ); // brk_office_is_featured
 				
 				$agent_types = wp_get_object_terms( $agent_id, 'agent_types' );
 				$agent_type = $agent_types[0]->slug;
 				
-				if( !empty( $company_featured ) || $agent_type == 'featured-agent' ) {
-					update_post_meta( $agent_id, 'agent_is_featured', 1 );
+				if( $company_featured || $agent_type == 'featured-agent' ) {
+					update_post_meta( $agent_id, 'field_5799196416a37', 1 ); // agent_is_featured
 				} else {
-					update_post_meta( $agent_id, 'agent_is_featured', '' );
+					update_post_meta( $agent_id, 'field_5799196416a37', '' ); // agent_is_featured
 				}
 				
 			endwhile;
