@@ -641,8 +641,11 @@ function bhDeleteProperty($propItem){
   $sqlquery = "DELETE FROM Property_RESI WHERE
               MLNumber = ".$propItem['MLNumber'];
 
-  echo "<p>query: ".$sqlquery;
-  echo "<p>Now delete images: ".$propItem['images'];
+  echo "<p>query: ".$sqlquery."</p>";
+  echo "<p>Assoc images: ".$propItem['images'];
+  $photoArray = explode("|", $propItem['images']);
+  $fileStem = explode("-", $photoArray[0]);
+  echo " Delte images starting with: ".$fileStem[0]."<p>";
   $mysqli->close();
   return true;
 }
