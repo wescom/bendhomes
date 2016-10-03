@@ -30,7 +30,7 @@ get_header();
                 <div class="main" style="margin-top: 0;">
                 
                 	<!--<?php print_r($post). '<br/>';
-						$meta = get_post_meta($post_id); 
+						$meta = get_post_meta($post->ID); 
 						foreach($meta as $key=>$val){
 							echo $key . ' : ' . $val[0] . '<br/>';
 						} ?>-->
