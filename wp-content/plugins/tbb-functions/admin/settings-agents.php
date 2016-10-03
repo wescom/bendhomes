@@ -164,7 +164,7 @@ class AgentSettingsPage {
 				
 				$agent_id = get_the_ID();
 				
-				delete_post_meta( 'field_579668fc8f44d', $agent_id );
+				/*delete_post_meta( 'field_579668fc8f44d', $agent_id );
 				delete_post_meta( 'field_5799196416a37', $agent_id );
 				delete_post_meta( '_brk_office_is_featured', $agent_id );
 				delete_post_meta( '_agent_is_featured', $agent_id );
@@ -172,7 +172,7 @@ class AgentSettingsPage {
 				delete_post_meta( '_edit_last', $agent_id );
 				delete_post_meta( '_brk_office_name', $agent_id );
 				delete_post_meta( '_brk_office_phone', $agent_id );
-				delete_post_meta( '_brk_office_address', $agent_id );
+				delete_post_meta( '_brk_office_address', $agent_id );*/
 								
 				// Look up company ID by agent brokerage name				
 				$company_name = get_post_meta( $agent_id, 'brk_office_name', true );
