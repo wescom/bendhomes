@@ -28,6 +28,8 @@ get_header();
 
                 <!-- Main Content -->
                 <div class="main" style="margin-top: 0;">
+                
+                	<!--<?php print_r($post); ?>-->
 
                     <section class="listing-layout">
                         <div class="list-container">

@@ -164,9 +164,9 @@ class AgentSettingsPage {
 				
 				$agent_id = get_the_ID();
 				
-				delete_post_meta( $agent_id, 'agent_is_featured' );
+				//delete_post_meta( $agent_id, 'agent_is_featured' );
 				
-				/*$company_name = get_field( 'brk_office_name' );
+				$company_name = get_field( 'brk_office_name' );
 				$company_check = get_page_by_title($company_name, 'OBJECT', 'company');
 				$company_id = $company_check->ID;
 				$company_featured = get_field( 'company_featured_company', $company_id );
@@ -180,7 +180,7 @@ class AgentSettingsPage {
 					update_post_meta( $agent_id, 'agent_is_featured', true );
 				} else {
 					update_post_meta( $agent_id, 'agent_is_featured', false );
-				}*/
+				}
 				
 			endwhile;
 		endif;
