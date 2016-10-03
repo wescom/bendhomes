@@ -677,6 +677,17 @@ function bhDeleteProperty($propItem){
   return true;
 }
 
+function bhDeleteWPImages($pstId) {
+    $thumb_id = get_post_thumbnail_id(307810);
+    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+    $thumb_url = $thumb_url_array[0];
+    echo "url: ".$thumb_url;
+    $photoPathArray = explode(".", $thumb_url);
+    $photoPathArray = explode("wp-content", $photoPathArray[0]);
+    $photoPath = "/var/www/wp-content".$photoPathArray[1];
+    echo " photo path: ".$photoPath;
+}
+
 /* ############################ */
 /* #### IMAGES PROCESSING ##### */
 /* ############################ */
@@ -857,5 +868,7 @@ function delete_updated_images($post_id) {
   echo '<p style="color: green;">deleted images count: '.$imagecounter.'</p>';
   echo '<p style="color: green;">deleted posts count: '.$delpostcount.'</p>';
 }
+
+
 
 ?>
