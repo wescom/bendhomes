@@ -36,7 +36,7 @@ get_header();
 
                                 <div class="detail">
 
-                                    <div class="row-fluid">
+                                    <div class="row-fluid" style="padding-bottom: 16px;">
 
                                         <div class="span3">
                                             <?php
