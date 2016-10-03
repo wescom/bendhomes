@@ -1,5 +1,7 @@
 <?php
 get_header();
+
+$featured_agent = get_field( 'agent_is_featured' );
 ?>
 
     <!-- Page Head -->
@@ -71,13 +73,13 @@ get_header();
 																<?php echo '<a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>'; ?>
                                                                 </li><?php
                                                             }
-                                                            if(!empty($agent_mobile)){
+                                                            if(!empty($agent_mobile) && $featured_agent == 1){
                                                                 ?><li class="mobile">
 																<?php include( get_template_directory() . '/images/icon-mobile.svg' ); _e('Mobile', 'framework'); ?> : 
 																<?php echo '<a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
                                                                 </li><?php
                                                             }
-                                                            if(!empty($agent_office_fax)){
+                                                            if(!empty($agent_office_fax) && $featured_agent == 1){
                                                                 ?><li class="fax"><?php include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework'); ?>  : <?php echo $agent_office_fax; ?></li><?php
                                                             }
                                                             ?>
@@ -155,39 +157,44 @@ get_header();
                             if(!$number_of_properties){
                                 $number_of_properties = 6;
                             }*/
+							
+							if( $featured_agent == 1 ) {
 
-                            $agent_id = $post->ID;
-
-                            global $paged;
-
-                            $agent_properties_args = array(
-                                'post_type' => 'property',
-                                'posts_per_page' => 10,
-                                'meta_query' => array(
-                                    array(
-                                        'key' => 'REAL_HOMES_agents',
-                                        'value' => $agent_id,
-                                        'compare' => '='
-                                    )
-                                ),
-                                'paged' => $paged
-                            );
-
-                            $agent_properties_listing_query = new WP_Query( $agent_properties_args );
-
-                            if ( $agent_properties_listing_query->have_posts() ) :
-                                while ( $agent_properties_listing_query->have_posts() ) :
-                                    $agent_properties_listing_query->the_post();
-
-                                    /* Display Property for Listing */
-                                    get_template_part('template-parts/property-for-listing');
-
-                                endwhile;
-                                wp_reset_postdata();
-                            endif;
+                            	$agent_id = $post->ID;
+							
+								global $paged;
+	
+								$agent_properties_args = array(
+									'post_type' => 'property',
+									'posts_per_page' => 10,
+									'meta_query' => array(
+										array(
+											'key' => 'REAL_HOMES_agents',
+											'value' => $agent_id,
+											'compare' => '='
+										)
+									),
+									'paged' => $paged
+								);
+	
+								$agent_properties_listing_query = new WP_Query( $agent_properties_args );
+	
+								if ( $agent_properties_listing_query->have_posts() ) :
+									while ( $agent_properties_listing_query->have_posts() ) :
+										$agent_properties_listing_query->the_post();
+	
+										/* Display Property for Listing */
+										get_template_part('template-parts/property-for-listing');
+	
+									endwhile;
+									wp_reset_postdata();
+								endif;
+								
+								theme_pagination( $agent_properties_listing_query->max_num_pages);
+							
+							}
                             ?>
                         </div>
-                        <?php theme_pagination( $agent_properties_listing_query->max_num_pages); ?>
                     </section>
 
                 </div><!-- End Main Content -->

@@ -1,5 +1,7 @@
 <?php
 get_header();
+
+$company_featured = get_field( 'company_featured_company' );	
 ?>
 
 <!-- Page Head -->
@@ -46,17 +48,17 @@ get_header();
                                             $company_office_phone = get_field( 'company_office_phone' );
                                             $company_office_fax = get_field( 'company_office_fax' );
                                             $company_office_address = get_field( 'company_office_address' );
-											
-											$company_featured = get_field( 'company_featured_company' );	
 
                                             if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
                                                 ?>
                                                 <h5 class="company-featured-<?php echo $company_featured; ?>"><?php the_title(); ?></h5>
                                                 
                                                 <?php
-                                                if(!empty($company_office_address)){
+                                                if(!empty($company_office_address) && $company_featured == 1){
                                                     echo do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
-                                                }
+                                                } else {
+													echo '<p>'. $company_office_address .'</p>';	
+												}
                                                 ?>
                                                 
                                                 <ul class="contacts-list">
@@ -64,7 +66,11 @@ get_header();
                                                     if(!empty($company_office_phone)){
                                                         ?><li class="office">
 														<?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : 
-														<?php echo '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>'; ?>
+														<?php if( $company_featured == 1 ) {
+															echo '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>';
+														} else {
+															echo $company_office_phone;
+														} ?>
                                                         </li><?php
                                                     }
                                                     if(!empty($company_office_fax)){
@@ -79,19 +85,29 @@ get_header();
                                             //get_template_part( 'template-parts/agent-contact-form' );
                                             ?>
                                             
+                                            <?php if( $company_featured == 1 ) { ?>
                                             <div class="agent-content">
 												<?php the_content(); ?>
                                             </div>
+                                            <?php } ?>
 
                                         </div>
 
                                     </div><!-- end .row-fluid -->
                                     
+<<<<<<< HEAD
                                     <?php																	
 									$agents_array = array_diff( get_field( 'company_agents' ), array('') );
 									
 									if( !empty( $agents_array ) ) {
 																											
+=======
+                                    <?php			
+									if( $company_featured == 1 ) {	
+																						
+										$agents_array = array_diff( get_field( 'company_agents' ), array('') );
+																												
+>>>>>>> master
 										$agent_args = array(
 											'post_type' => 'agent',
 											'post__in' => $agents_array,
@@ -144,8 +160,12 @@ get_header();
 											
 											</div>
 											
+<<<<<<< HEAD
 										<?php endif; // end agents query	
 									
+=======
+										<?php endif; // end agents query
+>>>>>>> master
 									} ?>
 
                                 </div><!-- end .detail -->

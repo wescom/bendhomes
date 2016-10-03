@@ -333,7 +333,6 @@ function bhLookupFeatures($featlist_interior,$featlist_exterior) {
     $results[] = $wpdb->get_results( "SELECT term_id FROM wp_terms WHERE name LIKE ".$feature, OBJECT);
   }
 
-  $output = array();
   foreach($results as $result) {
     if(!empty($result[0]->{'term_id'})) {
       $output[] = $result[0]->{'term_id'};
