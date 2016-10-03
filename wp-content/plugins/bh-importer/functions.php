@@ -598,7 +598,7 @@ function dbDeleteOldIdList() {
   $querydate = date_format($querydate,"Y-m-d H:i:s");
 
   $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status, images FROM Property_RESI WHERE
-              LastModifiedDateTime <= '".$querydate." '
+              LastModifiedDateTime >= '".$querydate." '
               AND Status = 'Sold'";
 
   echo "\n\rquery: ".$sqlquery;
