@@ -1,7 +1,5 @@
 <?php
 get_header();
-
-$featured_agent = get_field( 'agent_is_featured' );
 ?>
 
     <!-- Page Head -->
@@ -13,143 +11,148 @@ $featured_agent = get_field( 'agent_is_featured' );
         <div class="row">
 
             <div class="span9 main-wrap">
+            
+            	<?php
+
+				if ( have_posts() ) :
+					while ( have_posts() ) :
+						the_post();
+						
+						$featured_agent = get_field( 'agent_is_featured' );
+						?>
 
                 <!-- Main Content -->
                 <div class="main" style="margin-top: 0;">
 
                     <section class="listing-layout">
                         <div class="list-container">
-                            <?php
+                            
+                            <article class="about-agent agent-single clearfix featured-<?php echo $featured_agent; ?>">
 
-                            if ( have_posts() ) :
-                                while ( have_posts() ) :
-                                    the_post();
-                                    ?>
-                                    <article class="about-agent agent-single clearfix">
+                                <div class="detail">
 
-                                        <div class="detail">
+                                    <div class="row-fluid">
 
-                                            <div class="row-fluid">
-
-                                                <div class="span3">
-                                                    <?php
-                                                    if(has_post_thumbnail()){
-                                                        ?>
-                                                        <figure class="agent-pic">
-                                                            <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
-                                                                <?php the_post_thumbnail('agent-image'); ?>
-                                                            </a>
-                                                        </figure>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </div>
-
-                                                <div class="span9">
-
-                                                    <div class="agent-content">
-                                                        <?php the_content(); ?>
-                                                    </div>
-                                                    <?php
-
-                                                    /* Agent Brokerage Info */
-                                                    brokerageBlock($post->ID);
-                                                    // get_template_part( 'bend-homes/template-parts/brokerage-block' );
-
-                                                    /* Agent Contact Info */
-                                                    $agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
-                                                    $agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);
-                                                    $agent_office_fax = get_post_meta($post->ID, 'REAL_HOMES_fax_number',true);
-
-                                                    if( !empty( $agent_office_phone ) || !empty( $agent_mobile ) || !empty( $agent_office_fax ) ) {
-                                                        ?>
-                                                        <hr/>
-                                                        <h5><?php _e('Contact Details', 'framework'); ?></h5>
-                                                        <ul class="contacts-list">
-                                                            <?php
-                                                            if(!empty($agent_office_phone)){
-                                                                ?><li class="office">
-																<?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : 
-																<?php echo '<a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>'; ?>
-                                                                </li><?php
-                                                            }
-                                                            if(!empty($agent_mobile) && $featured_agent == 1){
-                                                                ?><li class="mobile">
-																<?php include( get_template_directory() . '/images/icon-mobile.svg' ); _e('Mobile', 'framework'); ?> : 
-																<?php echo '<a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
-                                                                </li><?php
-                                                            }
-                                                            if(!empty($agent_office_fax) && $featured_agent == 1){
-                                                                ?><li class="fax"><?php include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework'); ?>  : <?php echo $agent_office_fax; ?></li><?php
-                                                            }
-                                                            ?>
-                                                        </ul>
-                                                        <?php
-                                                    }
-
-                                                    // Agent contact form
-                                                    get_template_part( 'template-parts/agent-contact-form' );
-                                                    ?>
-
-                                                </div>
-
-                                            </div><!-- end of .row-fluid -->
-
-                                        </div>
-
-                                        <div class="follow-agent clearfix">
+                                        <div class="span3">
                                             <?php
-                                            $facebook_url = get_post_meta($post->ID, 'REAL_HOMES_facebook_url',true);
-                                            $twitter_url = get_post_meta($post->ID, 'REAL_HOMES_twitter_url',true);
-                                            $google_plus_url = get_post_meta($post->ID, 'REAL_HOMES_google_plus_url',true);
-                                            $linked_in_url = get_post_meta($post->ID, 'REAL_HOMES_linked_in_url',true);
-
-                                            if(!empty($facebook_url) || !empty($twitter_url) || !empty($google_plus_url) || !empty($linked_in_url)){
+                                            if(has_post_thumbnail()){
                                                 ?>
-                                                <!-- Agent's Social Navigation -->
-                                                <ul class="social_networks clearfix">
-                                                    <?php
-                                                    if(!empty($facebook_url)){
-                                                        ?>
-                                                        <li class="facebook">
-                                                            <a target="_blank" href="<?php echo $facebook_url; ?>"><i class="fa fa-facebook fa-lg"></i></a>
-                                                        </li>
-                                                    <?php
-                                                    }
-                                                    if(!empty($twitter_url)){
-                                                        ?>
-                                                        <li class="twitter">
-                                                            <a target="_blank" href="<?php echo $twitter_url; ?>" ><i class="fa fa-twitter fa-lg"></i></a>
-                                                        </li>
-                                                    <?php
-                                                    }
-                                                    if(!empty($linked_in_url)){
-                                                        ?>
-                                                        <li class="linkedin">
-                                                            <a target="_blank" href="<?php echo $linked_in_url; ?>"><i class="fa fa-linkedin fa-lg"></i></a>
-                                                        </li>
-                                                    <?php
-                                                    }
-
-                                                    if(!empty($google_plus_url)){
-                                                        ?>
-                                                        <li class="gplus">
-                                                            <a target="_blank" href="<?php echo $google_plus_url; ?>"><i class="fa fa-google-plus fa-lg"></i></a>
-                                                        </li>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </ul>
-                                            <?php
+                                                <figure class="agent-pic">
+                                                    <a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
+                                                        <?php the_post_thumbnail('agent-image'); ?>
+                                                    </a>
+                                                </figure>
+                                                <?php
                                             }
                                             ?>
                                         </div>
-                                    </article>
-                                <?php
-                                endwhile;
-                            endif;
 
+                                        <div class="span9">
 
+                                            <div class="agent-content">
+                                                <?php the_content(); ?>
+                                            </div>
+                                            <?php
+
+                                            /* Agent Brokerage Info */
+                                            brokerageBlock($post->ID);
+                                            // get_template_part( 'bend-homes/template-parts/brokerage-block' );
+
+                                            /* Agent Contact Info */
+                                            $agent_mobile = get_post_meta($post->ID, 'REAL_HOMES_mobile_number',true);
+                                            $agent_office_phone = get_post_meta($post->ID, 'REAL_HOMES_office_number',true);
+                                            $agent_office_fax = get_post_meta($post->ID, 'REAL_HOMES_fax_number',true);
+
+                                            if( !empty( $agent_office_phone ) || !empty( $agent_mobile ) || !empty( $agent_office_fax ) ) {
+                                                ?>
+                                                <hr/>
+                                                <h5><?php _e('Contact Details', 'framework'); ?></h5>
+                                                <ul class="contacts-list">
+                                                    <?php
+                                                    if(!empty($agent_office_phone)){
+                                                        ?><li class="office">
+                                                        <?php 
+														if($featured_agent == 1) {
+															echo '<i class="fa fa-phone"></i> Office: <a href="tel:'. str_replace("-", '', $agent_office_phone) .'">'. $agent_office_phone .'</a>';
+                                                        } else {
+                                                        	echo '<i class="fa fa-phone"></i> Office: '. $agent_office_phone;
+                                                        }
+														?>
+                                                        </li><?php
+                                                    }
+                                                    if(!empty($agent_mobile) && $featured_agent == 1){
+                                                        ?><li class="mobile">
+                                                        <?php echo '<i class="fa fa-mobile"></i> Mobile: <a href="tel:'. str_replace("-", '', $agent_mobile) .'">'. $agent_mobile .'</a>'; ?>
+                                                        </li><?php
+                                                    }
+                                                    if(!empty($agent_office_fax) && $featured_agent == 1){
+                                                        ?><li class="fax"><i class="fa fa-printer"></i> Fax: <?php echo $agent_office_fax; ?></li><?php
+                                                    }
+                                                    ?>
+                                                </ul>
+                                                <?php
+                                            }
+
+                                            // Agent contact form
+                                            get_template_part( 'template-parts/agent-contact-form' );
+                                            ?>
+
+                                        </div>
+
+                                    </div><!-- end of .row-fluid -->
+
+                                </div>
+
+                                <div class="follow-agent clearfix">
+                                    <?php
+                                    $facebook_url = get_post_meta($post->ID, 'REAL_HOMES_facebook_url',true);
+                                    $twitter_url = get_post_meta($post->ID, 'REAL_HOMES_twitter_url',true);
+                                    $google_plus_url = get_post_meta($post->ID, 'REAL_HOMES_google_plus_url',true);
+                                    $linked_in_url = get_post_meta($post->ID, 'REAL_HOMES_linked_in_url',true);
+
+                                    if(!empty($facebook_url) || !empty($twitter_url) || !empty($google_plus_url) || !empty($linked_in_url)){
+                                        ?>
+                                        <!-- Agent's Social Navigation -->
+                                        <ul class="social_networks clearfix">
+                                            <?php
+                                            if(!empty($facebook_url)){
+                                                ?>
+                                                <li class="facebook">
+                                                    <a target="_blank" href="<?php echo $facebook_url; ?>"><i class="fa fa-facebook fa-lg"></i></a>
+                                                </li>
+                                            <?php
+                                            }
+                                            if(!empty($twitter_url)){
+                                                ?>
+                                                <li class="twitter">
+                                                    <a target="_blank" href="<?php echo $twitter_url; ?>" ><i class="fa fa-twitter fa-lg"></i></a>
+                                                </li>
+                                            <?php
+                                            }
+                                            if(!empty($linked_in_url)){
+                                                ?>
+                                                <li class="linkedin">
+                                                    <a target="_blank" href="<?php echo $linked_in_url; ?>"><i class="fa fa-linkedin fa-lg"></i></a>
+                                                </li>
+                                            <?php
+                                            }
+
+                                            if(!empty($google_plus_url)){
+                                                ?>
+                                                <li class="gplus">
+                                                    <a target="_blank" href="<?php echo $google_plus_url; ?>"><i class="fa fa-google-plus fa-lg"></i></a>
+                                                </li>
+                                            <?php
+                                            }
+                                            ?>
+                                        </ul>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </article>
+
+							<?php
                             /**
                              * Agent properties
                              */
@@ -198,6 +201,10 @@ $featured_agent = get_field( 'agent_is_featured' );
                     </section>
 
                 </div><!-- End Main Content -->
+                
+                <?php
+					endwhile;
+				endif; ?>
 
             </div> <!-- End span9 -->
 
