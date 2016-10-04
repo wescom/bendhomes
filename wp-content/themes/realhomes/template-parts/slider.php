@@ -21,7 +21,7 @@ foreach( $mls_numbers as $num) {
     if( $getPosts->have_posts() ) {
         while( $getPosts->have_posts() ) {
           	$getPosts->the_post();
-          	echo "xx".get_the_ID();
+          	//echo "xx".get_the_ID();
           	array_push($wpIds, get_the_ID());
         } // end while
     } else {
