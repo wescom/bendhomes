@@ -2,7 +2,7 @@
 /* Featured Properties Query Arguments */
 $featured_properties_args = array(
     'post_type' => 'property',
-    'posts_per_page' => 12,
+    'posts_per_page' => 30,
     'meta_query' => array(
         array(
             'key' => 'REAL_HOMES_featured',
