@@ -57,6 +57,9 @@ if ( $slider_query->have_posts() ) { ?>
                             if ( $price ){
                                 echo '<span>'.$price.'</span>';
                             }
+                            $sliderMLS = get_post_meta( $post->ID, 'REAL_HOMES_property_id', true );
+                            echo '<span>'.$sliderMLS.'</span>';
+                            
                             brokerage_label( $post->ID, 'large' );
                             ?>
                             <a href="<?php the_permalink(); ?>" class="know-more">View Property</a>
