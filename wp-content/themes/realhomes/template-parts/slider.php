@@ -19,10 +19,10 @@ foreach( $mls_numbers as $num) {
     );
     $getPosts = new WP_Query($args);
     if( $getPosts->have_posts() ) {
-        while( $getPosts->have_posts() ) {
+        //while( $getPosts->have_posts() ) {
           	$getPosts->the_post();
           	array_push($wpIds, get_the_ID());
-        } // end while
+       // } // end while
     } else {
       	//skip.  MLS must not be correct;
     }
