@@ -31,8 +31,9 @@ foreach($scenarios as $scenario) {
 	echo "<h2>Starting: ".$scenario['resource'].$scenario['class']."</h2>";
 
 	$propList = dbDeleteOldIdList($scenario, $rc, $daysBack);
-
+	echo "<h3 style='color:green'>Found: ".count($propList)."</h3>";
 	foreach($propList as $propItem) {
+
 	 	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
 	 	$bhpropertyid = $mlsposts[0];
 	    echo "<p>mls: ".$propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
