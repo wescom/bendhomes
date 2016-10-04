@@ -46,6 +46,9 @@ if ( !function_exists( 'inspiry_load_translation_from_child' ) ) {
 }
 
 
+remove_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
+
+
 // Add scripts to wp_head()
 add_action( 'wp_head', 'child_theme_head_script' );
 function child_theme_head_script() { ?>
