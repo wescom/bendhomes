@@ -21,7 +21,6 @@ foreach( $mls_numbers as $num) {
     if( $getPosts->have_posts() ) {
         while( $getPosts->have_posts() ) {
           	$getPosts->the_post();
-          	//echo "xx".get_the_ID();
           	array_push($wpIds, get_the_ID());
         } // end while
     } else {
@@ -29,13 +28,12 @@ foreach( $mls_numbers as $num) {
     }
 	//
 }
-print_r($wpIds);
 
 $slider_args = array(
 	'post_type' => 'property',
 	'posts_per_page' => -1,
 	'nopaging' => true,
-	'post__in' => array(277494,267314,278921,277494,277785,277413),
+	'post__in' => $wpIds,
 	'orderby' => 'post__in'
 );
 
