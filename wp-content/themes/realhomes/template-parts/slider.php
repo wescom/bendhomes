@@ -9,7 +9,7 @@ $slider_args = array(
 	'post_type' => 'property',
 	'posts_per_page' => -1,
 	'nopaging' => true,
-	'post__in' => array(277494,267314,278921,277424,277785,277413),
+	'post__in' => array(277494,267314,278921,277494,277785,277413),
 	'orderby' => 'post__in'
 );
 
