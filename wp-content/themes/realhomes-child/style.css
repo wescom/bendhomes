@@ -16,9 +16,9 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .advance-search-form .real-btn.submitting { padding-right: 30px; background: url(images/loader.gif) no-repeat right center #006267; border-right: 10px solid #006267; }
 .featured-properties-carousel.open-houses { border-top: 1px solid #dedede; border-bottom: 1px solid #dedede; }#acww-more{display: none !important; }
 .text-green { color: #598F28; }
-.user-nav .mort-calc { border: 1px solid #888; border-radius: 2px; padding: 3px 10px; }
+.user-nav .mort-calc { color: #fff; border-radius: 2px; padding: 3px 10px; background: #919B1F; letter-spacing: .1em; font-weight: 400; margin-right: 10px; }
 .user-nav .mort-calc:after { content: none; }
-.user-nav .mort-calc:hover, .user-nav .mort-calc:active { border-color: #eee; color: #eee; }
+.user-nav .mort-calc:hover, .user-nav .mort-calc:active { color: #fff; background: #767c15; }
 #mortgage-calculator, #mortgage-calculator.in { width: 80%; }
 #mortgage-calculator, #mortgage-calculator.in { position: absolute; top: 2%; margin-top: 0; margin-left: -40%; }
 .admin-bar #mortgage-calculator.in { top: 50px; }
