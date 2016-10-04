@@ -123,32 +123,34 @@ get_header();
 												<?php
 												while( $agents->have_posts() ) : $agents->the_post(); 
 													
-												$agent_name = get_the_title();
-												$agent_category = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
-												
-												// Make sure there's no duplicate agents in the list
-												if( !in_array($agent_name, $unique_agents) ) {
+													$agent_name = get_the_title();
+													$agent_category = sanitize_title( strip_tags( get_the_term_list( $id, 'agent_types', '', ' ', '' ) ) );
 													
-													array_push($unique_agents, $agent_name); 
-													
-													if( $agent_category == 'featured-agent' || $agent_category == 'standard-agent' ) { ?>
-													
-													<div class="company-agent">
-														<a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
-															<figure class="agent-image">
-																<?php  if(has_post_thumbnail()){
-																	the_post_thumbnail('thumbnail');
-																} else {
-																	echo '<div class="no-agent-image"></div>';	
-																}?>
-															</figure>                                                        
-															<div class="agent-name"><?php echo $agent_name; ?></div>
-														</a>
-													</div>
-													
-													<?php }
-													
-												}
+													// Make sure there's no duplicate agents in the list
+													if( !in_array($agent_name, $unique_agents) ) {
+														
+														array_push($unique_agents, $agent_name); 
+														
+														if( $agent_category == 'featured-agent' || $agent_category == 'standard-agent' ) { ?>
+														
+														<div class="company-agent">
+															<a class="company-agent-inner" href="<?php echo get_permalink(); ?>">
+																<figure class="agent-image">
+																	<?php  if(has_post_thumbnail()){
+																		//the_post_thumbnail('thumbnail');
+																		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'thumbnail', true);
+																		echo sprintf('<img src="%s" alt="%s" width="%s" height="%s" />', $image[0], $agent_name, $image[1], $image[2] );
+																	} else {
+																		echo '<div class="no-agent-image"></div>';	
+																	}?>
+																</figure>                                                        
+																<div class="agent-name"><?php echo $agent_name; ?></div>
+															</a>
+														</div>
+														
+														<?php }
+														
+													}
 																					  
 												endwhile; ?>
 											
