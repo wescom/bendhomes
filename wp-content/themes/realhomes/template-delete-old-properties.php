@@ -31,7 +31,7 @@ foreach($scenarios as $scenario) {
 
 	$propList = dbDeleteOldIdList($scenario, $rc, $daysBack);
 	$log = $rc." Found ".count($propList);
-	//bh_write_to_log(." Found: ".count($propList),'propertiesDeleteEntry'.$theTm);
+	bh_write_to_log($log,'propertiesDeleteEntry'.$theTm);
 	echo "<h1 style='color:green'>".$log."</h3>";
 	foreach($propList as $propItem) {
 
