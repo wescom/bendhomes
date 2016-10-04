@@ -8,7 +8,8 @@ $mls_numbers = explode( ',', $banner_mls_nums );
 $wpIds = array();
 global $wpdb;
 foreach( $mls_numbers as $num) {
-	$results = bhLookupPostByMLS($num);
+	echo "xx".$num;
+	//$results = bhLookupPostByMLS($num);
 	//array_push($results, $wpIds);
 }
 print_r($wpIds);
