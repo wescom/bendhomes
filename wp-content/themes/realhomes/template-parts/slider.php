@@ -13,7 +13,7 @@ foreach( $mls_numbers as $num) {
         'meta_query' => array(
             array(
                 'key' => 'REAL_HOMES_property_id',
-                'value' => $num;
+                'value' => $num
             )
         )
     );
