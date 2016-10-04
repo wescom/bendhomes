@@ -575,7 +575,7 @@ function dbresult($sset) {
 /* ##################################### */
 /* #### Get array of IDs to delete ##### */
 /* ##################################### */
-function dbDeleteOldIdList() {
+function dbDeleteOldIdList($sset, $rc) {
   $data = array();
   $db = array(
     'host' => 'localhost',
@@ -594,11 +594,11 @@ function dbDeleteOldIdList() {
 
   $querydate = date("Y-m-d H:i:s");
   $querydate = date_create($querydate);
-  date_sub($querydate, date_interval_create_from_date_string("7 days"));
+  date_sub($querydate, date_interval_create_from_date_string("365 days"));
   $querydate = date_format($querydate,"Y-m-d H:i:s");
 
-  $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status, images FROM Property_RESI WHERE
-              LastModifiedDateTime >= '".$querydate." '
+  $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status, images FROM ".$rc." WHERE
+              LastModifiedDateTime <= '".$querydate." '
               AND Status = 'Sold'";
 
   echo "\n\rquery: ".$sqlquery;
@@ -622,7 +622,7 @@ function dbDeleteOldIdList() {
 /* #### DELETING PROPERTIES AND PHOTOS FROM RHETS SIDE THAT ARE                 ##### */
 /* #### OLDER THAN X - SET IN TMPLATE-DELETE-OLD-PROPERTIES                     ##### */
 /* ################################################################################## */
-function bhDeleteProperty($propItem){
+function bhDeleteProperty($propItem, $rc){
   $db = array(
     'host' => 'localhost',
     'username' => 'phrets',
@@ -638,14 +638,14 @@ function bhDeleteProperty($propItem){
       exit();
   }
 
-  $sqlquery = "DELETE FROM Property_RESI WHERE
+  $sqlquery = "DELETE FROM ".$rc." WHERE
               MLNumber = ".$propItem['MLNumber'];
 
   echo "<p>query: ".$sqlquery."</p>";
-  if ($result = $mysqli->query($sqlquery)) {
+  /*if ($result = $mysqli->query($sqlquery)) {
       echo "<p> deleted from database! </p>";
       // Frees the memory associated with a result
-  }
+  }*/
 
   $mysqli->close();
 
@@ -677,6 +677,9 @@ function bhDeleteProperty($propItem){
   return true;
 }
 
+/* ################################################ */
+/* #### DELETE ACTUAL IMAGE FILES FROM FOLDER ##### */
+/* ################################################ */
 function bhDeleteWPImages($pstId) {
     $thumb_id = get_post_thumbnail_id($pstId);
     $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
