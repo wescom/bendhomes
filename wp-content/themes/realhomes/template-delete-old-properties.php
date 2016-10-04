@@ -37,7 +37,8 @@ foreach($scenarios as $scenario) {
 
 	 	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
 	 	$bhpropertyid = $mlsposts[0];
-	    echo "<p>mls: ".$propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"]."</p>";
+	 	$log = $propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"];
+	    echo "<p>mls: ".$log."</p>";
 
 	    $wasSuccess = bhDeleteProperty($propItem, $rc);
 
