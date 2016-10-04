@@ -28,11 +28,11 @@ foreach($scenarios as $scenario) {
 	$resource = $scenario['resource'];
   	$class = $scenario['class'];
   	$rc = $resource.'_'.$class;  // ie:  Property_RESI
-	echo "<h2>Starting: ".$scenario['resource'].$scenario['class']."</h2>";
 
 	$propList = dbDeleteOldIdList($scenario, $rc, $daysBack);
-	//bh_write_to_log($scenario['resource']."_"$scenario['class']." Found: ".count($propList),'propertiesDeleteEntry'.$theTm);
-	echo "<h3 style='color:green'>Found: ".count($propList)."</h3>";
+	$log = $rc." Found ".count($propList);
+	//bh_write_to_log(." Found: ".count($propList),'propertiesDeleteEntry'.$theTm);
+	echo "<h1 style='color:green'>".$log."</h3>";
 	foreach($propList as $propItem) {
 
 	 	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
