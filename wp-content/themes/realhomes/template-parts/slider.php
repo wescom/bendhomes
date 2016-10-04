@@ -6,7 +6,7 @@ $banner_mls_nums = get_option('banner_mls_numbers');
 $mls_numbers = explode( ',', $banner_mls_nums );
 
 $wpIds = array();
-
+// need post ids to keep the sort order same as in string above
 foreach( $mls_numbers as $num) {
 	$args = array(
         'post_type' => 'property',
@@ -48,7 +48,7 @@ foreach( $mls_numbers as $k => $v ) {
 $slider_args['meta_query'] = $mls_query;
 $slider_args['meta_query']['relation'] = 'OR';
 
-print_r( $slider_args );
+//print_r( $slider_args );
 
 $slider_query = new WP_Query( $slider_args );
 
@@ -83,8 +83,8 @@ if ( $slider_query->have_posts() ) { ?>
                                 echo '<span>'.$price.'</span>';
                             }
                             $sliderMLS = get_post_meta( $post->ID, 'REAL_HOMES_property_id', true );
-                            echo ' - <span>'.$sliderMLS.'</span>';
-                            echo ' - <span>'.$post->ID.'</span>';
+                            //echo ' - <span>'.$sliderMLS.'</span>';
+                            //echo ' - <span>'.$post->ID.'</span>';
 
                             brokerage_label( $post->ID, 'large' );
                             ?>
