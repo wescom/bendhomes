@@ -22,11 +22,12 @@ foreach( $mls_numbers as $num) {
         while( $getPosts->have_posts() ) {
           	$getPosts->the_post();
           	echo "xx".get_the_ID();
+          	array_push($wpIds, get_the_ID());
         } // end while
     } else {
-      	$wpIds = NULL;
+      	//skip.  MLS must not be correct;
     }
-	//array_push($results, $wpIds);
+	//
 }
 print_r($wpIds);
 
