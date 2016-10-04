@@ -8,8 +8,8 @@ $mls_numbers = explode( ',', $banner_mls_nums );
 $wpIds = array();
 global $wpdb;
 foreach( $mls_numbers as $num) {
-	$results = $wpdb->get_results( "select post_id from $wpdb->postmeta where meta_value = ".$num , ARRAY_A );
-	array_push($results, $wpIds)
+	//$results = $wpdb->get_results( "select post_id from $wpdb->postmeta where meta_value = ".$num , ARRAY_A );
+	//array_push($results, $wpIds)
 }
 print_r($wpIds);
 
