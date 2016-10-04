@@ -6,10 +6,26 @@ $banner_mls_nums = get_option('banner_mls_numbers');
 $mls_numbers = explode( ',', $banner_mls_nums );
 
 $wpIds = array();
-global $wpdb;
+
 foreach( $mls_numbers as $num) {
-	echo "xx".$num;
-	//$results = bhLookupPostByMLS($num);
+	$args = array(
+        'post_type' => 'property',
+        'meta_query' => array(
+            array(
+                'key' => 'REAL_HOMES_property_id',
+                'value' => $num;
+            )
+        )
+    );
+    $getPosts = new WP_Query($args);
+    if( $getPosts->have_posts() ) {
+        while( $getPosts->have_posts() ) {
+          	$getPosts->the_post();
+          	echo "xx".get_the_ID();
+        } // end while
+    } else {
+      	$wpIds = NULL;
+    }
 	//array_push($results, $wpIds);
 }
 print_r($wpIds);
