@@ -20,8 +20,8 @@ include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
 $daysBack = 365;
 
-//$theTm = time();
-//bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
+$theTm = time();
+bh_write_to_log('Entered template-delete-old-properties.php ','propertiesDeleteEntry'.$theTm);
 
 foreach($scenarios as $scenario) {
 
@@ -31,6 +31,7 @@ foreach($scenarios as $scenario) {
 	echo "<h2>Starting: ".$scenario['resource'].$scenario['class']."</h2>";
 
 	$propList = dbDeleteOldIdList($scenario, $rc, $daysBack);
+	bh_write_to_log($scenario['resource']."_"$scenario['class']." Found: ".count($propList),'propertiesDeleteEntry'.$theTm);
 	echo "<h3 style='color:green'>Found: ".count($propList)."</h3>";
 	foreach($propList as $propItem) {
 
@@ -49,5 +50,7 @@ foreach($scenarios as $scenario) {
 	    }
 	}
 }
+
+bh_write_to_log('Completed template-delete-old-properties.php ','propertiesDeleteEntry'.$theTm);
 
 ?>
