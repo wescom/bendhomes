@@ -5,10 +5,35 @@
 $banner_mls_nums = get_option('banner_mls_numbers');
 $mls_numbers = explode( ',', $banner_mls_nums );
 
+$wpIds = array();
+// need post ids to keep the sort order same as in string above
+foreach( $mls_numbers as $num) {
+	$args = array(
+        'post_type' => 'property',
+        'meta_query' => array(
+            array(
+                'key' => 'REAL_HOMES_property_id',
+                'value' => $num
+            )
+        )
+    );
+    $getPosts = new WP_Query($args);
+    if( $getPosts->have_posts() ) {
+        while( $getPosts->have_posts() ) {
+          	$getPosts->the_post();
+          	array_push($wpIds, get_the_ID());
+        } // end while
+    } else {
+      	//skip.  MLS must not be correct;
+    }
+	//
+}
+
 $slider_args = array(
 	'post_type' => 'property',
 	'posts_per_page' => -1,
 	'nopaging' => true,
+	'post__in' => $wpIds,
 	'orderby' => 'post__in'
 );
 
@@ -23,7 +48,7 @@ foreach( $mls_numbers as $k => $v ) {
 $slider_args['meta_query'] = $mls_query;
 $slider_args['meta_query']['relation'] = 'OR';
 
-print_r( $slider_args );
+//print_r( $slider_args );
 
 $slider_query = new WP_Query( $slider_args );
 
@@ -57,6 +82,10 @@ if ( $slider_query->have_posts() ) { ?>
                             if ( $price ){
                                 echo '<span>'.$price.'</span>';
                             }
+                            $sliderMLS = get_post_meta( $post->ID, 'REAL_HOMES_property_id', true );
+                            //echo ' - <span>'.$sliderMLS.'</span>';
+                            //echo ' - <span>'.$post->ID.'</span>';
+
                             brokerage_label( $post->ID, 'large' );
                             ?>
                             <a href="<?php the_permalink(); ?>" class="know-more">View Property</a>
