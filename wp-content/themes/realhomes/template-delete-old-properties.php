@@ -18,6 +18,8 @@ include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
+$daysBack = 365;
+
 //$theTm = time();
 //bh_write_to_log('Entered template-import-properties.php ','propertiesUpdateEntry'.$theTm."_".$_SERVER['REMOTE_ADDR']);
 
@@ -28,7 +30,7 @@ foreach($scenarios as $scenario) {
   	$rc = $resource.'_'.$class;  // ie:  Property_RESI
 	echo "<h2>Starting: ".$scenario['resource'].$scenario['class']."</h2>";
 
-	$propList = dbDeleteOldIdList($scenario, $rc);
+	$propList = dbDeleteOldIdList($scenario, $rc, $daysBack);
 
 	foreach($propList as $propItem) {
 	 	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);

@@ -575,7 +575,7 @@ function dbresult($sset) {
 /* ##################################### */
 /* #### Get array of IDs to delete ##### */
 /* ##################################### */
-function dbDeleteOldIdList($sset, $rc) {
+function dbDeleteOldIdList($sset, $rc, $daysBack) {
   $data = array();
   $db = array(
     'host' => 'localhost',
@@ -594,7 +594,7 @@ function dbDeleteOldIdList($sset, $rc) {
 
   $querydate = date("Y-m-d H:i:s");
   $querydate = date_create($querydate);
-  date_sub($querydate, date_interval_create_from_date_string("365 days"));
+  date_sub($querydate, date_interval_create_from_date_string($daysBack." days"));
   $querydate = date_format($querydate,"Y-m-d H:i:s");
 
   $sqlquery = "SELECT MLNumber, LastModifiedDateTime, Status, images FROM ".$rc." WHERE
