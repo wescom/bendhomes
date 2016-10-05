@@ -375,9 +375,9 @@ function tbb_custom_posts( $defaults ) {
 				
 				case "property" :
 					$temp_dir = get_template_directory();
-					$bed_icon = include(	 $temp_dir .'/images/icon-bed.svg' );
-					$bath_icon = include( $temp_dir .'/images/icon-bath.svg' );
-					$sqft_icon = include( $temp_dir .'/images/icon-size.svg' );
+					$bed_icon = include $temp_dir .'/images/icon-bed.svg';
+					$bath_icon = include $temp_dir .'/images/icon-bath.svg';
+					$sqft_icon = include $temp_dir .'/images/icon-size.svg';
 					$property_agents = get_post_meta( $id, 'REAL_HOMES_agents' );
 					$property_agents = array_filter( $property_agents, function($v){
 					  return ( $v > 0 );
