@@ -199,6 +199,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.two.with-image .custom-post-title, .custom-post.two.with-image .custom-post-excerpt, .custom-post.two.with-image .extra-meta { float: right; width: 47%; }
 .post-property .custom-post .custom-post-image { margin-bottom: 0; margin-right: 0; float: none; width: 100%; max-width: 100%; }
 .post-property .custom-post.one.with-image .custom-post-title, .post-property .custom-post.two.with-image .custom-post-title, .post-property .custom-post.one.with-image .custom-post-excerpt, .post-property .custom-post.two.with-image .custom-post-excerpt, .post-property .custom-post.one.with-image .extra-meta, .post-property .custom-post.two.with-image .extra-meta { float: none; width: 100%; }
+.custom-post-excerpt { font-size: .85em; }
 .custom-post img { max-width: 100%; height: auto; max-height: 200px; display: block; margin: auto; }
 .custom-post.one img { max-height: none; }
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
