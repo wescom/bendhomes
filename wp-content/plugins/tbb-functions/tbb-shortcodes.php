@@ -393,7 +393,7 @@ function tbb_custom_posts( $defaults ) {
 						//if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span class="bd">%s <span>%s Bd</span></span>', $bed_icon, $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span class="ba">%s <span>%s Ba</span></span>', $bath_icon, $bathrooms ) : '';
-						$square_feet = $square_feet != 0 || !empty($square_feet) ? sprintf('<span class="sqft">%s %s SqFt</span>', $sqft_icon, $square_feet ) : '';
+						$square_feet = sprintf('<span class="sqft">%s %s SqFt</span>', $sqft_icon, $square_feet );
 					
 					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba">%s%s</span>%s</div>', 
 											$bedrooms, $bathrooms, $square_feet );
