@@ -374,6 +374,10 @@ function tbb_custom_posts( $defaults ) {
 			switch( $defaults['type'] ) {
 				
 				case "property" :
+					$temp_dir = get_template_directory();
+					$bed_icon = file_get_contents( $temp_dir .'/images/icon-bed.svg' );
+					$bath_icon = file_get_contents( $temp_dir .'/images/icon-bath.svg' );
+					$sqft_icon = file_get_contents( $temp_dir .'/images/icon-size.svg' );
 					$property_agents = get_post_meta( $id, 'REAL_HOMES_agents' );
 					$property_agents = array_filter( $property_agents, function($v){
 					  return ( $v > 0 );
@@ -384,10 +388,14 @@ function tbb_custom_posts( $defaults ) {
 					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( $id ) );
 					$bedrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bedrooms', true ) );
 					$bathrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bathrooms', true ) );
-						if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
+						//if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
-					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
+					$square_feet = intval( get_post_meta( $id, 'REAL_HOMES_property_size', true ) );
+					
+					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba"><span class="bd">%s %s</span><span class="ba">%s %s</span></span><span class="sqft">%s %s SqFt</span></div>', 
+											$bed_icon, $bedrooms, $bath_icon, $bathrooms, $sqft_icon, $square_feet );
+											
 					$broker = sprintf( '<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>', 
 									$brokerage, get_template_directory_uri() );
 					break;
@@ -460,8 +468,10 @@ function tbb_custom_posts( $defaults ) {
 				
 				$output .= $additional_meta;
 				
-				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
-								$permalink );
+				if( $defaults['type'] != 'property' ) {
+					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
+									$permalink );
+				}
 								
 				$output .= $broker;
 			
