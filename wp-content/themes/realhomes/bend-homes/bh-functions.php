@@ -83,52 +83,6 @@ function brokerageBlock($my_id,$size) {
 }
 
 
-// Return brokeragBlock instead of echoing it for use with shortcodes.
-function get_brokerageBlock($my_id,$size) {
-  $brokerage = array(
-    'name' => get_post_meta($my_id, 'brk_office_name',true)
-  );
-
-  $output = '';
-  
-  /* only show block if something is in $brokerage array */
-  if(array_filter($brokerage)) {
-	
-    if(!empty($brokerage['name'])){
-
-      if($size == 'small') {
-        $output .= '<div class="brokerage-label bl-'.$size.'">'."\n";
-        $output .= '<p>';
-        $output .= $brokerage['name'];
-        $output .= '</p>';
-        $output .= '<img src="'.get_template_directory_uri().'/images/idx-'.$size.'.gif" width="45" height="35" alt="Broker Reciprocity">';
-        $output .= '</div>'."\n";
-      }elseif ($size == 'xsmall') {
-        $output .= '<div class="brokerage-label bl-'.$size.'">'."\n";
-        $output .= '<p>';
-        $output .= $brokerage['name'];
-        $output .= '</p>';
-        $output .= '<img src="'.get_template_directory_uri().'/images/idx-small.gif" width="" height="" alt="Broker Reciprocity">';
-        $output .= '</div>'."\n";
-      }elseif ($size == 'large') {
-        $output .= '<div class="brokerage-label bl-'.$size.'">'."\n";
-        $output .= '<p>';
-        $output .= '<span>brokered by:</span><br/>'."\n";
-        $output .= $brokerage['name'];
-        $output .= '</p>';
-        $output .= '<img src="'.get_template_directory_uri().'/images/idx-'.$size.'.gif" width="60" height="47" alt="Broker Reciprocity">';
-        $output .= '</div>'."\n";
-      }
-    }
-  } else {
-    $output .= '<!-- no brokerage information supplied -->';
-  }
-  unset($brokerage);
-  
-  return $brokerage;
-}
-
-
 if ( ! function_exists( 'brokerage_label' ) ) {
   /**
 	 * Output brokerage name on listing pages
@@ -146,29 +100,6 @@ if ( ! function_exists( 'brokerage_label' ) ) {
 		// print_r($property_agents);
 		if(!empty($property_agents[0])) {
 		  brokerageBlock($property_agents[0], $size);
-		}
-	}
-}
-
-
-// Return brokerage_label instead of eching it for use with shortcodes.
-if ( ! function_exists( 'get_brokerage_label' ) ) {
-  /**
-	 * Output brokerage name on listing pages
-	 *
-	 * @param string $post_id string to pull in needed data
-	 */
-	function get_brokerage_label( $post_id, $size) {
-		$property_agents = get_post_meta( $post_id, 'REAL_HOMES_agents' );
-		// remove invalid ids
-		$property_agents = array_filter( $property_agents, function($v){
-		  return ( $v > 0 );
-		});
-		// remove duplicated ids
-		$property_agents = array_unique( $property_agents );
-		// print_r($property_agents);
-		if(!empty($property_agents[0])) {
-		  get_brokerageBlock($property_agents[0], $size);
 		}
 	}
 }
