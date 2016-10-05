@@ -205,6 +205,10 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
 .custom-post .property-price small { color: #fff; }
 .post-property .custom-post.one .brokerage-label.bl-small img, .post-property .custom-post.two .brokerage-label.bl-small img { float: left; }
+.post-property .custom-post .extra-meta.property-meta { background: #eee; border: 1px solid #ddd; }
+.post-property .custom-post .extra-meta.property-meta span { display: inline-block; padding: 0 5px; }
+.post-property .custom-post .extra-meta.property-meta > span { padding: 5px 10px; }
+.post-property .custom-post .extra-meta.property-meta >span:first-child { border-right: 1px solid #ddd; }
 
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }

@@ -392,7 +392,7 @@ function tbb_custom_posts( $defaults ) {
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$square_feet = get_post_meta( $id, 'REAL_HOMES_property_size', true );
-					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba"><span class="bd">%s %s</span>%s<span class="ba">%s %s</span></span><span class="sqft">%s %s</span></div>', 
+					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba"><span class="bd">%s %s</span>%s<span class="ba">%s %s</span></span><span class="sqft">%s %s sqft</span></div>', 
 											$bed_icon, $bedrooms, $spacer, $bath_icon, $bathrooms, $sqft_icon, $square_feet );
 					$broker = sprintf( '<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>', 
 									$brokerage, get_template_directory_uri() );
@@ -466,8 +466,10 @@ function tbb_custom_posts( $defaults ) {
 				
 				$output .= $additional_meta;
 				
-				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
-								$permalink );
+				if( $defaults['type'] != 'property' ) {
+					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
+									$permalink );
+				}
 								
 				$output .= $broker;
 			
