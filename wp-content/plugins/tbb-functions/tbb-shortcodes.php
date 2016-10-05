@@ -388,13 +388,15 @@ function tbb_custom_posts( $defaults ) {
 					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( $id ) );
 					$bedrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bedrooms', true ) );
 					$bathrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bathrooms', true ) );
-						//if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
-						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
-						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$square_feet = intval( get_post_meta( $id, 'REAL_HOMES_property_size', true ) );
 					
-					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba"><span class="bd">%s %s</span><span class="ba">%s %s</span></span><span class="sqft">%s %s SqFt</span></div>', 
-											$bed_icon, $bedrooms, $bath_icon, $bathrooms, $sqft_icon, $square_feet );
+						//if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
+						$bedrooms = $bedrooms != 0 ? sprintf( '<span class="bd">%s <span>%s Bd</span></span>', $bed_icon, $bedrooms ) : '';
+						$bathrooms = $bathrooms != 0 ? sprintf( '<span class="ba">%s <span>%s Ba</span></span>', $bath_icon, $bathrooms ) : '';
+						$square_feet = $square_feet != 0 || !empty($square_feet) ? sprintf('<span class="sqft">%s %s SqFt</span>', $sqft_icon, $square_feet ) : '';
+					
+					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba">%s%s</span>%s</div>', 
+											$bedrooms, $bathrooms, $square_feet );
 											
 					$broker = sprintf( '<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>', 
 									$brokerage, get_template_directory_uri() );
