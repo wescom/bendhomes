@@ -385,7 +385,8 @@ function tbb_custom_posts( $defaults ) {
 					$property_agents = array_unique( $property_agents );
 					$brokerage = get_post_meta( $property_agents[0], 'brk_office_name',true );
 					
-					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( $id ) );
+					$property_status = inspiry_get_figure_caption( $id );
+					$property_price = sprintf( '<h5 class="property-price">%s%s%s</h5>', get_property_price(), inspiry_get_property_types( $id ), $property_status );
 					$bedrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bedrooms', true ) );
 					$bathrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bathrooms', true ) );
 					$square_feet = intval( get_post_meta( $id, 'REAL_HOMES_property_size', true ) );
