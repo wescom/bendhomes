@@ -374,15 +374,21 @@ function tbb_custom_posts( $defaults ) {
 			switch( $defaults['type'] ) {
 				
 				case "property" :
-					$brokerage = get_field( 'brk_office_name' );
-					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( get_the_ID() ) );
-					$bedrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true ) );
-					$bathrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true ) );
+					$property_agents = get_post_meta( $id, 'REAL_HOMES_agents' );
+					$property_agents = array_filter( $property_agents, function($v){
+					  return ( $v > 0 );
+					});
+					$property_agents = array_unique( $property_agents );
+					$brokerage = get_post_meta( $property_agents[0], 'brk_office_name',true );
+					
+					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( $id ) );
+					$bedrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bedrooms', true ) );
+					$bathrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bathrooms', true ) );
 						if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
-					$broker = sprintf('<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>',
+					$broker = sprintf( '<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>', 
 									$brokerage, get_template_directory_uri() );
 					break;
 					

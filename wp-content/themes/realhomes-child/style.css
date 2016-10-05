@@ -179,10 +179,12 @@ h3.search-results-header { float: left; margin: 0; }
 .search-results.post-type-archive-company .custom-post.one .custom-post-item, .search-results.post-type-archive-company .custom-post.two .custom-post-item { min-height: 0; }
 .custom-post.four .custom-post-item { padding-bottom: 30px; }
 .custom-post h4 { font-weight: 400; text-transform: capitalize; margin: 0 0 10px; font-size: 18px; }
-.inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; }
+.inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; width: auto; }
 .custom-post a { color: #394041; }
 .custom-post a:hover { color: #02888f; }
 .custom-post a.more-details { display: inline-block; font-size: 14px; margin: 0 0 -1px 0; padding: 0 10px; background: #02888f; color: #fff; position: absolute; right: 0; bottom: 0; }
+.post-property .custom-post.two a.more-details, .post-property .custom-post.three a.more-details, .post-property .custom-post.four a.more-details, .post-property .custom-post.five a.more-details, .post-property .custom-post.six a.more-details { position: static; background: none; color: #394041; padding: 0; margin: 0; }
+.post-property .custom-post.two a.more-details:hover, .post-property .custom-post.three a.more-details:hover, .post-property .custom-post.four a.more-details:hover, .post-property .custom-post.five a.more-details:hover, .post-property .custom-post.six a.more-details:hover { color: #02888f; background: none; }
 .custom-post.one a.more-details { position: absolute; right: -1px; bottom: 0; margin-right: 0; padding: 5px 10px; }
 .custom-post.four a.more-details { font-size: 14px; padding: 1px 10px; }
 .custom-post a.more-details:hover { background: #006267; }
@@ -197,9 +199,12 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.two.with-image .custom-post-title, .custom-post.two.with-image .custom-post-excerpt, .custom-post.two.with-image .extra-meta { float: right; width: 47%; }
 .post-property .custom-post .custom-post-image { margin-bottom: 0; margin-right: 0; float: none; width: 100%; max-width: 100%; }
 .post-property .custom-post.one.with-image .custom-post-title, .post-property .custom-post.two.with-image .custom-post-title, .post-property .custom-post.one.with-image .custom-post-excerpt, .post-property .custom-post.two.with-image .custom-post-excerpt, .post-property .custom-post.one.with-image .extra-meta, .post-property .custom-post.two.with-image .extra-meta { float: none; width: 100%; }
+.custom-post-excerpt { font-size: .85em; }
 .custom-post img { max-width: 100%; height: auto; max-height: 200px; display: block; margin: auto; }
+.custom-post.one img { max-height: none; }
 .custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
 .custom-post .property-price small { color: #fff; }
+.post-property .custom-post.one .brokerage-label.bl-small img { float: left; }
 
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
