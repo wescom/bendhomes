@@ -21,6 +21,7 @@ function get_brokerageBlock($my_id,$size) {
         $output .= '</p>';
         $output .= '<img src="'.get_template_directory_uri().'/images/idx-'.$size.'.gif" width="45" height="35" alt="Broker Reciprocity">';
         $output .= '</div>'."\n";
+		return $output;
       }elseif ($size == 'xsmall') {
         $output .= '<div class="brokerage-label bl-'.$size.'">'."\n";
         $output .= '<p>';
@@ -28,6 +29,7 @@ function get_brokerageBlock($my_id,$size) {
         $output .= '</p>';
         $output .= '<img src="'.get_template_directory_uri().'/images/idx-small.gif" width="" height="" alt="Broker Reciprocity">';
         $output .= '</div>'."\n";
+		return $output;
       }elseif ($size == 'large') {
         $output .= '<div class="brokerage-label bl-'.$size.'">'."\n";
         $output .= '<p>';
@@ -36,14 +38,14 @@ function get_brokerageBlock($my_id,$size) {
         $output .= '</p>';
         $output .= '<img src="'.get_template_directory_uri().'/images/idx-'.$size.'.gif" width="60" height="47" alt="Broker Reciprocity">';
         $output .= '</div>'."\n";
+		return $output;
 	  }
     }
   } else {
     $output .= '<!-- no brokerage information supplied -->';
+	return $output;
   }
-  unset($brokerage);
-  
-  return $output;
+  unset($brokerage);  
 }
 
 // Return brokerage_label instead of eching it for use with shortcodes.
