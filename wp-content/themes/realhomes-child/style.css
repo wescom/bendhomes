@@ -162,7 +162,7 @@ h3.search-results-header { float: left; margin: 0; }
 .quick-header-info .xSold { color: #f00 !important; font-weight: bold;}
 .quick-header-info .xPending { color: #ff6600  !important; font-weight: bold;}
 .quick-header-info .xContingent-Bumpable { color: #ff6600  !important; font-weight: bold;}
-.post-property .property-price figcaption { position: absolute; bottom: 100%; right: 0; font-size: 13px padding: 2px 9px; font-family: Helvetica,Arial,sans-serif; }
+.post-property .property-price figcaption { position: absolute; bottom: 100%; right: 0; font-size: 13px; padding: 2px 9px; font-family: Helvetica,Arial,sans-serif; }
 
 /*--- Custom Posts Shortcode Styles --- */
 .custom-posts-wrapper {}
