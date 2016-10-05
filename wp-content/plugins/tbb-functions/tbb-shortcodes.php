@@ -36,14 +36,14 @@ function get_brokerageBlock($my_id,$size) {
         $output .= '</p>';
         $output .= '<img src="'.get_template_directory_uri().'/images/idx-'.$size.'.gif" width="60" height="47" alt="Broker Reciprocity">';
         $output .= '</div>'."\n";
-      }
+	  }
     }
   } else {
     $output .= '<!-- no brokerage information supplied -->';
   }
   unset($brokerage);
   
-  return $brokerage;
+  return $output;
 }
 
 // Return brokerage_label instead of eching it for use with shortcodes.
@@ -449,7 +449,7 @@ function tbb_custom_posts( $defaults ) {
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
-					$broker = '<div class="broker">'. brokerage_label( $id, 'small' ) .'</div>';
+					$broker = '<div class="broker">'. get_brokerage_label( $id, 'small' ) .'</div>';
 					break;
 					
 				case "agent" :
