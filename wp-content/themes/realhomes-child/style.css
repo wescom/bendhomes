@@ -183,6 +183,8 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post a { color: #394041; }
 .custom-post a:hover { color: #02888f; }
 .custom-post a.more-details { display: inline-block; font-size: 14px; margin: 0 0 -1px 0; padding: 0 10px; background: #02888f; color: #fff; position: absolute; right: 0; bottom: 0; }
+.post-property .custom-post.three a.more-details, .post-property .custom-post.four a.more-details, .post-property .custom-post.five a.more-details, .post-property .custom-post.six a.more-details { position: static; background: none; color: #394041; padding: 0; margin: 0; }
+.post-property .custom-post.three a.more-details:hover, .post-property .custom-post.four a.more-details:hover, .post-property .custom-post.five a.more-details:hover, .post-property .custom-post.six a.more-details:hover { color: #02888f; background: none; }
 .custom-post.one a.more-details { position: absolute; right: -1px; bottom: 0; margin-right: 0; padding: 5px 10px; }
 .custom-post.four a.more-details { font-size: 14px; padding: 1px 10px; }
 .custom-post a.more-details:hover { background: #006267; }
