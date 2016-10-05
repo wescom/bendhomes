@@ -395,7 +395,7 @@ function tbb_custom_posts( $defaults ) {
 					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba"><span class="bd">%s %s</span>%s<span class="ba">%s %s</span></span><span class="sqft">%s %s</span></div>', 
 											$bed_icon, $bedrooms, $spacer, $bath_icon, $bathrooms, $sqft_icon, $square_feet );
 					$broker = sprintf( '<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>', 
-									$brokerage, $temp_dir );
+									$brokerage, get_template_directory_uri() );
 					break;
 					
 				case "agent" :
