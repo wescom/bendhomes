@@ -390,9 +390,9 @@ function tbb_custom_posts( $defaults ) {
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$square_feet = get_post_meta( $id, 'REAL_HOMES_property_size', true );
 					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba">%s %s%s%s %s</span><span class="sqft">%s %s</div></div>', 
-											include( $temp_dir .'/images/icon-bed.svg' ), $bedrooms, $spacer, 
-											include( $temp_dir .'/images/icon-bath.svg' ), $bathrooms, 
-											include( $temp_dir .'/images/icon-size.svg' ), $square_feet );
+											$temp_dir .'/images/icon-bed.svg', $bedrooms, $spacer, 
+											$temp_dir .'/images/icon-bath.svg', $bathrooms, 
+											$temp_dir .'/images/icon-size.svg', $square_feet );
 					$broker = sprintf( '<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>', 
 									$brokerage, get_template_directory_uri() );
 					break;
