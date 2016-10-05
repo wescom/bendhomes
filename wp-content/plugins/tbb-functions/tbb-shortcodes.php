@@ -451,7 +451,7 @@ function tbb_custom_posts( $defaults ) {
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
-					$broker = '<div class="broker">'. get_brokerage_label( $id, 'small' ) .'</div>';
+					$broker = '<div class="broker">'. get_brokerage_label( $post->ID, 'small' ) .'</div>';
 					break;
 					
 				case "agent" :
