@@ -369,11 +369,12 @@ function tbb_custom_posts( $defaults ) {
 			$title = get_the_title();
 			
 			// Show additional meta fields based on post type chosen
-			$property_price = ''; $additional_meta = ''; $category_classes = '';
+			$property_price = ''; $additional_meta = ''; $category_classes = ''; $broker = '';
 			
 			switch( $defaults['type'] ) {
 				
 				case "property" :
+					$brokerage = get_field( 'brk_office_name' );
 					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( get_the_ID() ) );
 					$bedrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true ) );
 					$bathrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true ) );
@@ -381,6 +382,8 @@ function tbb_custom_posts( $defaults ) {
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
+					$broker = sprintf('<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>',
+									$brokerage, get_template_directory_uri() );
 					break;
 					
 				case "agent" :
@@ -453,6 +456,8 @@ function tbb_custom_posts( $defaults ) {
 				
 				$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
 								$permalink );
+								
+				$output .= $broker;
 			
 			$output .= '</div></div>';
 			// End item ouput
