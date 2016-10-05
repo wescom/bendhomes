@@ -154,14 +154,15 @@ h3.search-results-header { float: left; margin: 0; }
 .single article ul.contacts-list { margin-left: 0; }
 
 /* --- Property status colors --- */
-.property-item figure figcaption.for-sale { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #598f28 !important; }
-.property-item figure figcaption.pending { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #ff6600 !important; }
-.property-item figure figcaption.contingent-bumpable { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #ff6600 !important; }
-.property-item figure figcaption.sold { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #f00 !important; }
+.property-item figure figcaption.for-sale, .post-property .property-price figcaption.for-sale { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #598f28 !important; }
+.property-item figure figcaption.pending, .post-property .property-price figcaption.pending { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #ff6600 !important; }
+.property-item figure figcaption.contingent-bumpable, .post-property .property-price figcaption.contingent-bumpable { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #ff6600 !important; }
+.property-item figure figcaption.sold, .post-property .property-price figcaption.sold { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #f00 !important; }
 .quick-header-info .xFor-Sale { color: #598f28 !important;}
 .quick-header-info .xSold { color: #f00 !important; font-weight: bold;}
 .quick-header-info .xPending { color: #ff6600  !important; font-weight: bold;}
 .quick-header-info .xContingent-Bumpable { color: #ff6600  !important; font-weight: bold;}
+.post-property .property-price figcaption { position: absolute; bottom: 100%; right: 0; }
 
 /*--- Custom Posts Shortcode Styles --- */
 .custom-posts-wrapper {}
@@ -202,7 +203,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post-excerpt { font-size: .85em; }
 .custom-post img { max-width: 100%; height: auto; max-height: 200px; display: block; margin: auto; }
 .custom-post.one img { max-height: none; }
-.custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; }
+.custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; position: relative; }
 .custom-post .property-price small { color: #fff; }
 .post-property .custom-post.one .brokerage-label.bl-small img { float: left; }
 .post-property .custom-post .extra-meta.property-meta { background: #eee; border: 1px solid #ddd; }
