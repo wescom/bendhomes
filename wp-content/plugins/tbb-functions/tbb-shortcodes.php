@@ -444,14 +444,14 @@ function tbb_custom_posts( $defaults ) {
 				
 				case "property" :
 					$brokerage = get_field( 'brk_office_name' );
-					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( get_the_ID() ) );
+					$property_price = sprintf( '<h5 class="property-price">%s%s</h5>', get_property_price(), inspiry_get_property_types( $id ) );
 					$bedrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bedrooms', true ) );
 					$bathrooms = floatval( get_post_meta( get_the_ID(), 'REAL_HOMES_property_bathrooms', true ) );
 						if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
 						$bedrooms = $bedrooms != 0 ? sprintf( '<span>%s Bd</span>', $bedrooms ) : '';
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$additional_meta = sprintf( '<div class="extra-meta property-meta">%s%s%s</div>', $bedrooms, $spacer, $bathrooms );
-					$broker = '<div class="broker">'. get_brokerage_label( $post->ID, 'small' ) .'</div>';
+					$broker = sprintf( '<div class="broker">%s</div>', get_brokerage_label( $id, 'small' ) );
 					break;
 					
 				case "agent" :
