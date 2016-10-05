@@ -375,6 +375,9 @@ function tbb_custom_posts( $defaults ) {
 				
 				case "property" :
 					$temp_dir = get_template_directory();
+					$bed_icon = include(	 $temp_dir .'/images/icon-bed.svg' );
+					$bath_icon = include( $temp_dir .'/images/icon-bath.svg' );
+					$sqft_icon = include( $temp_dir .'/images/icon-size.svg' );
 					$property_agents = get_post_meta( $id, 'REAL_HOMES_agents' );
 					$property_agents = array_filter( $property_agents, function($v){
 					  return ( $v > 0 );
@@ -390,9 +393,7 @@ function tbb_custom_posts( $defaults ) {
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span>%s Ba</span>', $bathrooms ) : '';
 					$square_feet = get_post_meta( $id, 'REAL_HOMES_property_size', true );
 					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba">%s %s%s%s %s</span><span class="sqft">%s %s</div></div>', 
-											$temp_dir .'/images/icon-bed.svg', $bedrooms, $spacer, 
-											$temp_dir .'/images/icon-bath.svg', $bathrooms, 
-											$temp_dir .'/images/icon-size.svg', $square_feet );
+											$bed_icon, $bedrooms, $spacer, $bath_icon, $bathrooms, $sqft_icon, $square_feet );
 					$broker = sprintf( '<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>', 
 									$brokerage, get_template_directory_uri() );
 					break;
