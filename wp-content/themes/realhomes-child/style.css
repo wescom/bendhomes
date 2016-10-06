@@ -225,6 +225,7 @@ h3.search-results-header { float: left; margin: 0; }
 
 @media(max-width: 1200px) {
 	.company-agent { width: 25%; }
+	.page-carousel .brands-carousel { padding-left: 0; padding-right: 0; }
 	.brands-carousel .row-fluid .span2, .brands-carousel .row-fluid .span2:first-child { margin-left: 0; width: 20%; }	
 }
 
