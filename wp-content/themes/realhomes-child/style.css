@@ -251,7 +251,7 @@ h3.search-results-header { float: left; margin: 0; }
 	.company-agent { width: 20%; }
 	#mortgage-calculator #acww-widget { height: 840px !important; }
 	#mortgage-calculator #acww-widget-iframe { height: 850px !important; }
-	.brands-carousel .row-fluid .span2 { width: 33.3333%; margin-bottom: 15px; }
+	.brands-carousel .row-fluid .span2, .brands-carousel .row-fluid .span2:first-child { width: 33.3333%; margin-bottom: 15px; }
 }
 
 @media(max-width: 767px) {
@@ -281,7 +281,7 @@ h3.search-results-header { float: left; margin: 0; }
 	.company-agent { width: 25%; }
 	.custom-post.one .custom-post-item, .custom-post.two .custom-post-item { min-height: 0; }
 	#mortgage-calculator, #mortgage-calculator.in { width: auto; margin-left: 0; }
-	.brands-carousel .row-fluid .span2 { width: auto; }
+	.brands-carousel .row-fluid .span2, .brands-carousel .row-fluid .span2:first-child { width: auto; }
 }
 
 @media(max-width: 480px) {
