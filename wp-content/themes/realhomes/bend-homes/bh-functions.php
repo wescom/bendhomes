@@ -37,11 +37,10 @@ function bh_the_title( $before = '', $after = '', $echo = true ) {
 		return $title;
 }
 
+
 function brokerageBlock($my_id,$size) {
   $brokerage = array(
-    'name' => get_post_meta($my_id, 'brk_office_name',true),
-    'address' => get_post_meta($my_id, 'brk_office_address',true),
-    'phone' => get_post_meta($my_id, 'brk_office_phone',true)
+    'name' => get_post_meta($my_id, 'brk_office_name',true)
   );
 
   //error_log("size: ".$size, 0);
@@ -77,26 +76,12 @@ function brokerageBlock($my_id,$size) {
         echo '</div>'."\n";
       }
     }
-    /*
-    echo '<div class="agent-brokerage-office">'."\n";
-    echo '<p>';
-    if(!empty($brokerage['name'])){
-      echo '<strong>'.$brokerage['name'].'</strong><br/>';
-    }
-    if(!empty($brokerage['address'])){
-      echo $brokerage['address'].'<br/>';
-    }
-    if(!empty($brokerage['phone'])){
-      echo $brokerage['phone'];
-    }
-    echo '</p>';
-    echo '</div>';
-    */
   } else {
     echo '<!-- no brokerage information supplied -->';
   }
   unset($brokerage);
 }
+
 
 if ( ! function_exists( 'brokerage_label' ) ) {
   /**
@@ -105,19 +90,20 @@ if ( ! function_exists( 'brokerage_label' ) ) {
 	 * @param string $post_id string to pull in needed data
 	 */
 	function brokerage_label( $post_id, $size) {
-    $property_agents = get_post_meta( $post_id, 'REAL_HOMES_agents' );
-    // remove invalid ids
-    $property_agents = array_filter( $property_agents, function($v){
-      return ( $v > 0 );
-    });
-    // remove duplicated ids
-    $property_agents = array_unique( $property_agents );
-    // print_r($property_agents);
-    if(!empty($property_agents[0])) {
-      brokerageBlock($property_agents[0], $size);
-    }
+		$property_agents = get_post_meta( $post_id, 'REAL_HOMES_agents' );
+		// remove invalid ids
+		$property_agents = array_filter( $property_agents, function($v){
+		  return ( $v > 0 );
+		});
+		// remove duplicated ids
+		$property_agents = array_unique( $property_agents );
+		// print_r($property_agents);
+		if(!empty($property_agents[0])) {
+		  brokerageBlock($property_agents[0], $size);
+		}
 	}
 }
+
 
 if ( ! function_exists( 'time_ago' ) ) {
   function time_ago($timestamp){

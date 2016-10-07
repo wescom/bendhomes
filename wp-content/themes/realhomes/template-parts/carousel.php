@@ -2,7 +2,7 @@
 /* Featured Properties Query Arguments */
 $featured_properties_args = array(
     'post_type' => 'property',
-    'posts_per_page' => 12,
+    'posts_per_page' => 30,
     'meta_query' => array(
         array(
             'key' => 'REAL_HOMES_featured',
@@ -25,7 +25,7 @@ if ( $featured_properties_query->have_posts() ) :
         if(!empty($featured_prop_title)){
             ?>
             <div class="narrative">
-               <h3><?php echo $featured_prop_title; ?></h3>
+               <h3><?php echo $featured_prop_title; ?> <small><a href="/featured-properties">(View All)</a></small></h3>
                 <?php
                 if(!empty($featured_prop_text)){
                     ?><p><?php echo $featured_prop_text; ?></p><?php
