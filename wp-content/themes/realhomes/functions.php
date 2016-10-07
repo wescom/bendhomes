@@ -637,7 +637,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                 // TODO: improve google map arguments by adding option to provide API key
 
                 // default map query parameters
-                $google_map_arguments = array ();
+                /*$google_map_arguments = array ();
 
                 // Localise Google Map if related theme options is set
                 if ( 'true' == get_option( 'theme_map_localization' ) ) {
@@ -663,7 +663,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                     array(),
                     '3.21',
                     false
-                );
+                );*/
 
                 // Google Map Info Box API
                 wp_enqueue_script(
