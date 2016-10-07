@@ -51,7 +51,7 @@ add_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
 
 
 // Add scripts to wp_head()
-add_action( 'wp_head', 'child_theme_head_script' );
+add_action( 'wp_footer', 'child_theme_head_script' );
 function child_theme_head_script() { ?>
   <script type='text/javascript'>
     <?php 
