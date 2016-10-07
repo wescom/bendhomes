@@ -736,6 +736,10 @@ function bhImageSet($item, $isUpdate = false) {
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
+
+  echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
+  $modDay = strtotime($item['PictureModifiedDateTime']);
+  bh_write_to_log('MLS: '.$item['MLNumber'].' PicMod: '.$modDay.'  lastPull: '.$lastPullAdjusted ,'properties');
   if($item['images'] != '') {
     $tmpimages = explode('|',$item['images']);
     $bhimgids = array(); // predeclare wp images id array for use
@@ -749,10 +753,7 @@ function bhImageSet($item, $isUpdate = false) {
         // recent than the last pull time.  We only want to do this if photos are updated - not just the
         // listing being modified or updated.
         if(file_exists($imagesdir['tmpdest'].'/'.$img)) {
-          echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
-          $modDay = strtotime($item['PictureModifiedDateTime']);
-          //echo "last pulled: ".$lastDatePulled." last mod: ".$modDay;
-          bh_write_to_log('PicMod: '.$modDay.'  lastPull: '.$lastPullAdjusted ,'properties');
+
           if ($modDay >= $lastPullAdjusted) {
             bh_write_to_log('Updating photos here... ','properties');
             copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
