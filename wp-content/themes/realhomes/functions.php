@@ -612,7 +612,8 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             wp_enqueue_script( 'jquery' );
             wp_enqueue_script( 'jquery-ui-core' );
             wp_enqueue_script( 'jquery-ui-autocomplete' );
-            wp_enqueue_script( 'flexslider' );
+            //wp_enqueue_script( 'flexslider' );
+			wp_enqueue_script('geodirectory-jquery-flexslider-js');
             wp_enqueue_script( 'easing' );
             wp_enqueue_script( 'elastislide' );
             wp_enqueue_script( 'pretty-photo' );
