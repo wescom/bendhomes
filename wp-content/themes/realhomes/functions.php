@@ -486,9 +486,10 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
              * Registering of Scripts
              */
 			 
-			wp_deregister_script('jquery');
+			//wp_deregister_script('jquery');
 			wp_deregister_script('jquery-ui-core');
-			wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', false, '', true);
+			wp_register_script('jquery');
+			//wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', false, '', true);
 			wp_register_script('jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', array('jquery'), '', true);
 
             // flexslider
