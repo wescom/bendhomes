@@ -739,6 +739,7 @@ function bhImageSet($item, $isUpdate = false) {
 
   echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
   $modDay = strtotime($item['PictureModifiedDateTime']);
+  
   bh_write_to_log('MLS: '.$item['MLNumber'].' PicMod: '.$modDay.'  lastPull: '.$lastPullAdjusted ,'properties');
   if($item['images'] != '') {
     $tmpimages = explode('|',$item['images']);
