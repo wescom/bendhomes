@@ -765,12 +765,14 @@ function bhImageSet($item, $isUpdate = false) {
         if($isUpdate == true) {
           if ($updateFlag == 1) {
             $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
+            $bhimgids[] = $tf;
           }
         }
         else {
           $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
+          $bhimgids[] = $tf;
         }
-        $bhimgids[] = $tf;
+        
       }
     }
     unset($tmpimages,$tf); // we only need $tmpimages & $tf for this loop
