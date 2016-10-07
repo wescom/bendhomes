@@ -766,6 +766,7 @@ function bhImageSet($item, $isUpdate = false) {
           if ($updateFlag == 1) {
             $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
           }
+        }
         else {
           $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
         }
