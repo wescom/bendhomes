@@ -730,7 +730,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
  add_filter( 'bendhomes_img_upload', 'bendhomes_image_upload', 10, 2 );
 }
 
-function bhImageSet($item) {
+function bhImageSet($item, $isUpdate = false) {
   global $lastDatePulled;
   $lastPullAdjusted = $lastDatePulled - 3600;
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
@@ -762,7 +762,13 @@ function bhImageSet($item) {
           copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
         }
 
-        $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
+        if($isUpdate == true) {
+          if ($updateFlag == 1) {
+            $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
+          }
+        else {
+          $tf = apply_filters( 'bendhomes_img_upload', $img, $updateFlag );
+        }
         $bhimgids[] = $tf;
       }
     }
