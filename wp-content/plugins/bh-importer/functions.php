@@ -732,7 +732,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
 
 function bhImageSet($item, $isUpdate = false) {
   global $lastDatePulled;
-  $lastPullAdjusted = $lastDatePulled - 10800;
+  $lastPullAdjusted = $lastDatePulled - 3600;
   $imagesdir['source'] = ABSPATH.'/_retsapi/imagesbackup/property/';
   $imagesdir['tmpdest'] = ABSPATH.'/_retsapi/images/property/';
   $bhimgids = NULL;
