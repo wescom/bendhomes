@@ -677,6 +677,8 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
  function bendhomes_image_upload($imagebase, $needUpdate) {
 
    //echo "In image upload - update = ".$needUpdate;
+   bh_write_to_log('WP side... $needUpdate = '.$needUpdate,'properties');
+
    $imagedir = ABSPATH.'_retsapi/images/property/';
    $ptmp = explode('.',$imagebase);
    $post_name = 'property-'.$ptmp[0];
@@ -697,6 +699,7 @@ if ( ! function_exists( 'bendhomes_image_upload' ) ) {
      // the image already exists, but does it need updating?
      if ($needUpdate == 1) {
       echo '<p style="color: orange;">update pre-existing-id: '.$myid.'</p>';
+      bh_write_to_log('Deleting old versions... ','properties');
       delete_updated_images($myid);
       wp_delete_attachment($myid, true);
       $myid = media_handle_sideload( $file_array, array( 'test_form' => false ) );
