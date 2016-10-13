@@ -765,8 +765,9 @@ function bhImageSet($item, $isUpdate = false) {
           }
         } else {  // file didn't exist in tmpdest so put it there
           copy($imagesdir['source'].$img,$imagesdir['tmpdest'].$img);
-          if($isUpdate == true)
-            $updateFlag = 1;
+          if($isUpdate == true) {
+              $updateFlag = 1;
+          }
         }
 
         if($isUpdate == true) {
