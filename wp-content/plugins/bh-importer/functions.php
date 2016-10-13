@@ -826,7 +826,6 @@ function delete_updated_images($post_id) {
   bh_write_to_log('WP deleting post_id: '.$post_id." - metas: ".$imgpostmetas,'properties');
   echo '</pre>';
   foreach($imgpostmetas as $imgpostmeta) {
-    bh_write_to_log('WP deleting meta_key: '.$imgpostmeta['meta_value'],'properties');
     if($imgpostmeta['meta_key'] == '_wp_attached_file' ) {
       $deletefile = $imgdir.$imgpostmeta['meta_value'];
       $froot = explode('.',$deletefile);
