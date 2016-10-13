@@ -612,7 +612,8 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
             wp_enqueue_script( 'jquery' );
             wp_enqueue_script( 'jquery-ui-core' );
             wp_enqueue_script( 'jquery-ui-autocomplete' );
-            wp_enqueue_script( 'flexslider' );
+            wp_enqueue_script( 'flexslider' );  // use this flexslider if NOT using geo directory
+			//wp_enqueue_script('geodirectory-jquery-flexslider-js'); // use this flexslider if using geo directory
             wp_enqueue_script( 'easing' );
             wp_enqueue_script( 'elastislide' );
             wp_enqueue_script( 'pretty-photo' );
@@ -637,6 +638,9 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                 // TODO: improve google map arguments by adding option to provide API key
 
                 // default map query parameters
+				
+				// ******* BEGIN COMMENT OUT: 
+				// COMMENT OUT THIS SECTION WHEN GEO DIRECTORY IS ACTIVE SINCE IT ALREADY USES THE GOOGLE MAPS API *******/
                 $google_map_arguments = array ();
 
                 // Localise Google Map if related theme options is set
@@ -664,6 +668,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                     '3.21',
                     false
                 );
+				// ******* END COMMENT OUT *********/
 
                 // Google Map Info Box API
                 wp_enqueue_script(

@@ -31,6 +31,7 @@
                               <!-- <a target="_blank" href="https://www.youtube.com/user/bulletinwebmaster"><span class="fa fa-youtube chiclet-youtube"></span></a> -->
                               <a target="_blank" href="https://www.instagram.com/bendhomes/"><span class="fa fa-instagram chiclet-instagram"></span></a>
                               <a target="_blank" href="https://www.pinterest.com/bendhomescom/"><span class="fa fa-pinterest chiclet-pinterest"></span></a>
+                              <a target="_blank" href="https://www.yelp.com/biz/bend-homes-bend"><span class="fa fa-yelp chiclet-yelp"></span></a>
                             </div>
                             <ul>
                               <li><a href="/about-bend-homes/">About Us</a></li>
