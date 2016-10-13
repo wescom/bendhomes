@@ -741,7 +741,7 @@ function bhImageSet($item, $isUpdate = false) {
   $bhimgids = NULL;
 
   echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
-  $modDay = strtotime($item[bhDeleteWPImages'PictureModifiedDateTime']);
+  $modDay = strtotime($item['PictureModifiedDateTime']);
   
   bh_write_to_log('MLS: '.$item['MLNumber'].' PicMod: '.$modDay.'  lastPull: '.$lastPullAdjusted. ' isUpdate: '.$isUpdate ,'properties');
   if($item['images'] != '') {
