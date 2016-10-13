@@ -741,7 +741,7 @@ function bhImageSet($item, $isUpdate = false) {
   $bhimgids = NULL;
 
   echo "picMod: ".$item['PictureModifiedDateTime']."\n\r";
-  $modDay = strtotime($item['PictureModifiedDateTime']);
+  $modDay = strtotime($item[bhDeleteWPImages'PictureModifiedDateTime']);
   
   bh_write_to_log('MLS: '.$item['MLNumber'].' PicMod: '.$modDay.'  lastPull: '.$lastPullAdjusted. ' isUpdate: '.$isUpdate ,'properties');
   if($item['images'] != '') {
@@ -823,8 +823,10 @@ function delete_updated_images($post_id) {
   echo '<pre style="background-color: #ececec; margin: 10px; border: 1px solid #cc0000; padding: 10px;">';
   // echo "\n".'<strong style="color: #cc0000">imgage post id: '.$imgid.'</strong>'."\n";
   print_r($imgpostmetas);
+  bh_write_to_log('WP deleting post_id: '.$post_id." - metas: ".$imgpostmetas,'properties');
   echo '</pre>';
   foreach($imgpostmetas as $imgpostmeta) {
+    bh_write_to_log('WP deleting meta_key: '.$imgpostmeta['meta_value'],'properties');
     if($imgpostmeta['meta_key'] == '_wp_attached_file' ) {
       $deletefile = $imgdir.$imgpostmeta['meta_value'];
       $froot = explode('.',$deletefile);
