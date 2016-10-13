@@ -259,7 +259,7 @@ function dataPreProc($proparr,$scenarioset) {
       } // end swich statement
 
       if($postaction == 'add_property') {
-        $bhimgids = bhImageSet($propitem);
+        $bhimgids = bhImageSet($propitem, false);
         $retsproperties[$propitem['ListingRid']]['gallery_image_ids'] = $bhimgids;
         $retsproperties[$propitem['ListingRid']]['featured_image_id'] = $bhimgids[0];
       } elseif ($postaction == 'update_property') {
