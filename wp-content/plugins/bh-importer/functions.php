@@ -861,6 +861,7 @@ function delete_updated_images($post_id) {
   echo '<pre style="color: blue;">';
   echo '<strong>deleted post_id: '.$post_id.'</strong><br/>';
   print_r($delpost);
+  bh_write_to_log('WP delete post results: '.$delpost,'properties');
   echo '</pre>';
   if(!empty($delpost)) {
     $delpostcount++;
