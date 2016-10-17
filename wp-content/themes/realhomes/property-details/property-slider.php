@@ -11,11 +11,9 @@ if( !empty($properties_images) ){
 
                     $slider_thumb = wp_get_attachment_image_src($prop_image_id,'property-detail-slider-thumb');
 
-                    $imgUrl = $prop_image_meta['url'];
-                    $imgUrl = str_replace("-768x460", "", $imgUrl);
                     echo '<li data-thumb="'.$slider_thumb[0].'">';
                     echo '<a href="'.$prop_image_meta['full_url'].'" class="'.get_lightbox_plugin_class() .'" '.generate_gallery_attribute().'>';
-                    echo '<img src="'.$imgUrl.'" alt="'.$prop_image_meta['title'].'" />';
+                    echo '<img src="'.$prop_image_meta['url'].'" alt="'.$prop_image_meta['title'].'" />';
                     echo '</a>';
                     echo '</li>';
                 }
