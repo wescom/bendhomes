@@ -190,7 +190,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.four a.more-details { font-size: 14px; padding: 1px 10px; }
 .custom-post a.more-details:hover { background: #006267; }
 .inner-wrapper .custom-post .custom-post-excerpt { line-height: 22px; margin-bottom: 10px; }
-.custom-post .extra-meta { margin-bottom: 10px; font-size: 14px; line-height: 150%; }
+.custom-post .extra-meta { margin-bottom: 10px; font-size: 12px; line-height: 150%; }
 .custom-post .extra-meta i { width: 15px; text-align: center; margin-right: 7px; }
 .custom-post .extra-meta i.fa-mobile { font-size: 1.25em; }
 .custom-post .custom-post-image { margin-bottom: 20px; }
@@ -210,6 +210,8 @@ h3.search-results-header { float: left; margin: 0; }
 .post-property .custom-post .extra-meta.property-meta span { display: inline-block; padding: 0 3px; }
 .post-property .custom-post .extra-meta.property-meta > span { padding: 5px 10px; }
 .post-property .custom-post .extra-meta.property-meta >span:first-child { border-right: 1px solid #ddd; }
+.post-property .without-image .property-price { margin-top: 120px; position: relative; }
+.post-property .without-image .property-price:before { content: "No Image"; font-family: Helvetica, Arial, sans-serif; display: block; position: absolute; bottom: 100%; width: 100%; left: 0; height: 120px; background: #eee; line-height: 120px; text-align: center; color: #bcbcbc; }
 
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
