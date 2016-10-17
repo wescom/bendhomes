@@ -8,9 +8,12 @@ if( !empty($properties_images) ){
             <ul class="slides">
                 <?php
                 foreach( $properties_images as $prop_image_id=>$prop_image_meta ){
+					$slide = wp_get_attachment_image_src($prop_image_id, $size);
+					$slide_full = wp_get_attachment_image_src($prop_image_id,'full');
+					
                     echo '<li>';
-                    echo '<a href="'.$prop_image_meta['full_url'].'" class="'.get_lightbox_plugin_class() .'" '.generate_gallery_attribute().'>';
-                    echo '<img src="'.$prop_image_meta['url'].'" alt="'.$prop_image_meta['title'].'" />';
+                    echo '<a href="'.$slide_full[0].'" class="'.get_lightbox_plugin_class() .'" '.generate_gallery_attribute().'>';
+                    echo '<img src="'.$slide[0].'" alt="'.$prop_image_meta['title'].'" width="'.$slide[1].'" height="'.$slide[2].'" />';
                     echo '</a>';
                     echo '</li>';
                 }
@@ -22,6 +25,7 @@ if( !empty($properties_images) ){
                 <?php
                 foreach( $properties_images as $prop_image_id=>$prop_image_meta ){
                     $slider_thumb = wp_get_attachment_image_src($prop_image_id,'property-thumb-image');
+					
                     echo '<li>';
                     echo '<img src="'.$slider_thumb[0].'" alt="'.$prop_image_meta['title'].'" />';
                     echo '</li>';
