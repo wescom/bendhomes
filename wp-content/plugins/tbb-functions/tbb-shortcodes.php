@@ -2,44 +2,78 @@
 // Shortcodes
 
 
+// Creates address with schema.org tags
 add_shortcode('SCHEMA_ADDRESS', 'tbb_schema_address');
 function tbb_schema_address( $atts ) {
 	$atts = shortcode_atts( array(
+		'name' => '',
 		'address' => '',
 		'city' => '',
 		'state' => '',
 		'zip' => '',
 		'phone' => '',
 		'fax' => '',
-		'link' => ''
+		'link' => '',
+		'image_id' => '',
+		'show_image' => '',
+		'latitude' => '',
+		'longitude' => '',
+		'google_plus' => '',
+		'google_map' => ''
 	), $atts );
 	
+	$name = sanitize_text_field( $atts['name'] );
 	$address = sanitize_text_field( $atts['address'] );
 	$city = sanitize_text_field( $atts['city'] );
 	$state = sanitize_text_field( $atts['state'] );
 	$zip = sanitize_text_field( $atts['zip'] );
 	$phone = sanitize_text_field( $atts['phone'] );
-	$phone_url = str_replace("-", '', $phone);
+	$phone_url = preg_replace('/[^0-9]/', '', $phone);
 	$fax = sanitize_text_field( $atts['fax'] );
 	$link = sanitize_text_field( $atts['link'] );
+	$image_id = sanitize_text_field( $atts['image_id'] );
+	
+	$logo = wp_get_attachment_image_src( $image_id, 'full', true);
+	
+	$latitude = sanitize_text_field( $atts['latitude'] );
+	$longitude = sanitize_text_field( $atts['longitude'] );
+	$google_plus = sanitize_text_field( $atts['google_plus'] );
+	$google_map = sanitize_text_field( $atts['google_map'] );
 	
 	ob_start(); ?>
     
-    <div itemid="LocalBusiness" itemprop="location" itemscope="" itemtype="http://schema.org/LocalBusiness">
+    <div itemid="LocalBusiness" itemprop="location" itemscope="" itemtype="http://schema.org/LocalBusiness" style="line-height:125%;">
+    	<?php if(!empty($image_id)) { ?>
+        <p<?php if( $atts['show_image'] == 'no' ) echo ' style="display:none;"'; ?>><img itemprop="logo" src="<?php echo $logo[0]; ?>" alt="<?php echo $name; ?> Logo" width="<?php echo $logo[1]; ?>" height="<?php echo $logo[2]; ?>" /></p>
+        <?php } ?>
+    	
+        <div itemprop="name"><?php echo $name; ?></div>
+        
         <div itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-            <p><a itemprop="url" href="<?php echo $link; ?>" target="_blank"><span itemprop="streetAddress"><?php echo $address; ?></span> <br>
+            <p><span itemprop="streetAddress"><?php echo $address; ?></span> <br>
             
-            <span itemprop="addressLocality"><?php echo $city; ?></span>, <span itemprop="addressRegion"><?php echo $state; ?></span> <span itemprop="postalCode"><?php echo $zip; ?></span></a><br>
-            
-            <?php if(!empty($phone)) { ?>
-            <strong>Phone:</strong> <a href="tel://<?php echo $phone_url; ?>" data-track-event="set">
-            <span itemprop="telephone"><?php echo $phone; ?></span></a> <br>
-            <?php } ?>
-            
-            <?php if(!empty($fax)) { ?>
-            <strong>Fax:</strong> <span itemprop="faxNumber"><?php echo $fax; ?></span></p>
-            <?php } ?>
+            <span itemprop="addressLocality"><?php echo $city; ?></span>, <span itemprop="addressRegion"><?php echo $state; ?></span> <span itemprop="postalCode"><?php echo $zip; ?></span><br>
         </div>
+        
+        <?php if(!empty($phone)) { ?>
+        <strong>Phone:</strong> <a href="tel:<?php echo $phone_url; ?>" data-track-event="set">
+        <span itemprop="telephone"><?php echo $phone; ?></span></a> <br>
+        <?php } ?>
+        
+        <?php if(!empty($fax)) { ?>
+        <strong>Fax:</strong> <span itemprop="faxNumber"><?php echo $fax; ?></span></p>
+        <?php } ?>
+        
+        <?php if(!empty($link)) { ?><link itemprop="url" href="<?php echo $link; ?>"><?php } ?>
+        <?php if(!empty($google_plus)) { ?><link itemprop="sameAs" href="https://plus.google.com/<?php echo $google_plus; ?>"><?php } ?>
+        <?php if(!empty($google_map)) { ?><link itemprop="hasMap" href="<?php echo $google_map; ?>"><?php } ?>
+        
+        <?php if(!empty($latitude) && !empty($longitude)) { ?>
+        <span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+            <meta itemprop="latitude" content="<?php echo $latitude; ?>" />
+            <meta itemprop="longitude" content="<?php echo $longitude; ?>" />
+        </span>
+        <?php } ?>
     </div>
     
     <?php
