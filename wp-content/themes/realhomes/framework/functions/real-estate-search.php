@@ -584,8 +584,9 @@ if ( ! function_exists( 'real_homes_search' ) ) {
 							'type' => 'CHAR'
 						);
 					}
-				}   else {
-					$newKeyPhrase = $newKeyPhrase." ".$word;
+					else {
+						$newKeyPhrase .= " ".$word;
+					}   
 				}
 				$search_args[ 's' ] = $newKeyPhrase;
 			}
