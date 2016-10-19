@@ -571,8 +571,12 @@ if ( ! function_exists( 'real_homes_search' ) ) {
 			$keyword = trim( $_GET[ 'keyword' ] );
 			if ( ! empty( $keyword ) ) {
 				$search_args[ 's' ] = $keyword;
+
+				// check for a keyword that is a 9 digit mls number
 				$keyword_word_array = explode(" ", $keyword);
+				print_r($keyword_word_array);
 				foreach($keyword_word_array as $word){
+					print_r($word);
 					if (is_numeric($word) && (strlen($word) == 9)) {
 						$property_id = $word;
 						$meta_query[] = array(
