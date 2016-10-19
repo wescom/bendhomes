@@ -15,6 +15,7 @@ function tbb_schema_address( $atts ) {
 		'fax' => '',
 		'link' => '',
 		'image_id' => '',
+		'show_image' => '',
 		'latitude' => '',
 		'longitude' => '',
 		'google_plus' => '',
@@ -43,7 +44,7 @@ function tbb_schema_address( $atts ) {
     
     <div itemid="LocalBusiness" itemprop="location" itemscope="" itemtype="http://schema.org/LocalBusiness" style="line-height:125%;">
     	<?php if(!empty($image_id)) { ?>
-        <p><img itemprop="logo" src="<?php echo $logo[0]; ?>" alt="<?php echo $name; ?> Logo" width="<?php echo $logo[1]; ?>" height="<?php echo $logo[2]; ?>" /></p>
+        <p<?php if( $atts['show_image'] == 'no' ) echo ' style="display:none;"'; ?>><img itemprop="logo" src="<?php echo $logo[0]; ?>" alt="<?php echo $name; ?> Logo" width="<?php echo $logo[1]; ?>" height="<?php echo $logo[2]; ?>" /></p>
         <?php } ?>
     	
         <div itemprop="name"><?php echo $name; ?></div>
