@@ -8,7 +8,7 @@ if( !empty($properties_images) ){
             <ul class="slides">
                 <?php
                 foreach( $properties_images as $prop_image_id=>$prop_image_meta ){
-					$slide = wp_get_attachment_image_src($prop_image_id, $size);
+					$slide = wp_get_attachment_image_src($prop_image_id, 'property-detail-slider-image-two');
 					$slide_full = wp_get_attachment_image_src($prop_image_id,'full');
 					
                     echo '<li>';
