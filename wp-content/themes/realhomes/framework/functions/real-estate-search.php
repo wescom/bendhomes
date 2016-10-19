@@ -570,7 +570,25 @@ if ( ! function_exists( 'real_homes_search' ) ) {
 		if ( isset ( $_GET[ 'keyword' ] ) ) {
 			$keyword = trim( $_GET[ 'keyword' ] );
 			if ( ! empty( $keyword ) ) {
-				$search_args[ 's' ] = $keyword;
+
+				// check for a keyword that is a 9 digit mls number
+				$keyword_word_array = explode(" ", $keyword);
+				$newKeyPhrase = "";
+				foreach($keyword_word_array as $word){
+					if (is_numeric($word) && (strlen($word) == 9)) {
+						$property_id = trim($word);
+						$meta_query[] = array(
+							'key' => 'REAL_HOMES_property_id',
+							'value' => $property_id,
+							'compare' => 'LIKE',
+							'type' => 'CHAR'
+						);
+					}
+					else {
+						$newKeyPhrase .= " ".$word;
+					}   
+				}
+				$search_args[ 's' ] = $newKeyPhrase;
 			}
 		}
 

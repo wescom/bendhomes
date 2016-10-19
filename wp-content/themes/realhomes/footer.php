@@ -28,6 +28,7 @@
                             <div class="socialicons">
                               <a target="_blank" href="https://www.facebook.com/BendHomescom-774527582683047/"><span class="fa fa-facebook chiclet-facebook"></span></a>
                               <a target="_blank" href="https://twitter.com/BendHomes541"><span class="fa fa-twitter chiclet-twitter"></span></a>
+                              <a target="_blank" href="https://plus.google.com/101058950766867205838"><span class="fa fa-google-plus chiclet-googleplus"></span></a>
                               <!-- <a target="_blank" href="https://www.youtube.com/user/bulletinwebmaster"><span class="fa fa-youtube chiclet-youtube"></span></a> -->
                               <a target="_blank" href="https://www.instagram.com/bendhomes/"><span class="fa fa-instagram chiclet-instagram"></span></a>
                               <a target="_blank" href="https://www.pinterest.com/bendhomescom/"><span class="fa fa-pinterest chiclet-pinterest"></span></a>
@@ -39,6 +40,22 @@
                               <li><a href="mailto:info@bendhomes.com">Contact Us</a></li>
                             </ul>
                           <p>Listings updated:  <?php properties_updated_timestamp(); ?></p>
+                          <?php echo do_shortcode('
+						  	[SCHEMA_ADDRESS 
+								name="Bend Homes" 
+								address="1777 SW Chandler Ave." 
+								city="Bend" 
+								state="Oregon" 
+								zip="97702" 
+								phone="541-382-1811" 
+								link="'. home_url() .'" 
+								image_id="409664" 
+								show_image="no" 
+								latitude="44.040909" 
+								longitude="-121.3399297" 
+								google_plus="https://plus.google.com/101058950766867205838" 
+								google_map="https://goo.gl/maps/CDhkq312P9t"]
+							'); ?>
                         </div>
 
                         <div class="span4">
