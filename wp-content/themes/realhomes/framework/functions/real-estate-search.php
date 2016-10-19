@@ -579,6 +579,7 @@ if ( ! function_exists( 'real_homes_search' ) ) {
 					print_r($word);
 					print_r(is_numeric($word)." len: ".strlen($word));
 					if (is_numeric($word) && (strlen($word) == 9)) {
+						print_r("inside of if")
 						$property_id = $word;
 						$meta_query[] = array(
 							'key' => 'REAL_HOMES_property_id',
