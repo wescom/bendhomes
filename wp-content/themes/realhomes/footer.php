@@ -50,6 +50,7 @@
 								phone="541-382-1811" 
 								link="'. home_url() .'" 
 								image_id="409664" 
+								show_image="no" 
 								latitude="44.040909" 
 								longitude="-121.3399297" 
 								google_plus="https://plus.google.com/101058950766867205838" 
