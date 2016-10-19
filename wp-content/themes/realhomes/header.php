@@ -42,10 +42,10 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
           if( get_queried_object()->post_name == home ) {
             // do nothing
           } else { ?>
-            <!--<div class="ad-wrapper">
-              <div class="container"> -->
+            <div class="ad-wrapper">
+              <div class="container" id="leaderBoardContainer">
                 <?php do_action('dfp_ad_spot','leadheader'); ?>
-              <!--</div> -->
+              </div>
             </div>
             <?php
           }
