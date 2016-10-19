@@ -40,6 +40,21 @@
                               <li><a href="mailto:info@bendhomes.com">Contact Us</a></li>
                             </ul>
                           <p>Listings updated:  <?php properties_updated_timestamp(); ?></p>
+                          <?php echo do_shortcode('
+						  	[SCHEMA_ADDRESS 
+								name="Bend Homes" 
+								address="1777 SW Chandler Ave." 
+								city="Bend" 
+								state="Oregon" 
+								zip="97702" 
+								phone="541-382-1811" 
+								link="'. home_url() .'" 
+								image_id="409664" 
+								latitude="44.040909" 
+								longitude="-121.3399297" 
+								google_plus="https://plus.google.com/101058950766867205838" 
+								google_map="https://goo.gl/maps/CDhkq312P9t"]
+							'); ?>
                         </div>
 
                         <div class="span4">
