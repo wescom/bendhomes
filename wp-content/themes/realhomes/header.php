@@ -43,7 +43,7 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
             // do nothing
           } else { ?>
             <div class="ad-wrapper">
-              <div class="container">
+              <div class="container" id="leaderBoardContainer">
                 <?php do_action('dfp_ad_spot','leadheader'); ?>
               </div>
             </div>

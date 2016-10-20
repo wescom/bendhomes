@@ -11,7 +11,7 @@
     ?>
   <div class="bh-section-header">
     <h3>Recent Properties</h3>
-    <p>Listings updated: <?php properties_updated_timestamp(); ?></p>
+    <p>MLS Listings Updated: <?php properties_updated_timestamp(); ?></p>
   </div>
 
   <div id="home-properties-section-wrapper">
