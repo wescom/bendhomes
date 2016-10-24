@@ -6,7 +6,7 @@ $id = get_the_ID();
 $permalink = get_permalink();
 $title = get_the_title();
 		
-$image_size = 'property-thumb-image';
+$image_size = 'full';
 $phone = get_field( 'company_office_phone' );
 $fax = get_field( 'company_office_fax' );
 $address = get_field( 'company_office_address' );
