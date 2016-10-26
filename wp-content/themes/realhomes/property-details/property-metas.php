@@ -13,8 +13,8 @@
                 echo '</span>';
 				
 				echo '<span>';
-					$prop_price = get_property_price();
-					$price_per_sqft = intval($prop_price / $prop_size);
+					$prop_price = $post_meta_data['REAL_HOMES_property_price'][0];
+					$price_per_sqft = $prop_price / $prop_size;
 					echo '$'. $price_per_sqft .' &nbsp;$/SqFt';
 				echo '</span>';
         }
