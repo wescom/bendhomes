@@ -303,15 +303,9 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Cascade Mountain', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
+					'columns' => 12,
 					'tab' => 'exterior',
 				),
-				array(
-                    'type' => 'divider',
-                    'columns' => 12,
-                    'id' => 'exterior_divider', // Not used, but needed
-                    'tab' => 'exterior',
-                ),
 				
 				// Interior Featured
 				array(
