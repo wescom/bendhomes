@@ -13,8 +13,9 @@
                 echo '</span>';
 				
 				echo '<span>';
-					$price_per_sqft = get_property_price() / $prop_size;
-					echo $price_per_sqft .' &nbsp;$/SqFt';
+					$prop_price = get_property_price();
+					$price_per_sqft = intval($prop_price / $prop_size);
+					echo '$'. $price_per_sqft .' &nbsp;$/SqFt';
 				echo '</span>';
         }
 
