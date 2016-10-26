@@ -236,7 +236,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_exterior_exterior",
 					'name' => __('Exterior', 'framework'),
-					'desc' => __('Example Value: Sprinkler system, Fenced', 'framework'),
+					'desc' => __('Example Value: Sprinkler system', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'exterior',
@@ -268,7 +268,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_exterior_parking",
 					'name' => __('Parking', 'framework'),
-					'desc' => __('Example Value: Driveway, Garage', 'framework'),
+					'desc' => __('Example Value: Driveway', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'exterior',
@@ -302,7 +302,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_interior_bathroom_desc",
 					'name' => __('Bathroom Desc.', 'framework'),
-					'desc' => __('Example Value: Tiled vanity, Tub soaking', 'framework'),
+					'desc' => __('Example Value: Tiled vanity', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'interior',
@@ -318,7 +318,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_interior_floors",
 					'name' => __('Floors', 'framework'),
-					'desc' => __('Example Value: Carpet, Tile, Laminate', 'framework'),
+					'desc' => __('Example Value: Carpet', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'interior',
@@ -334,7 +334,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_interior_interior",
 					'name' => __('Interior', 'framework'),
-					'desc' => __('Example Value: Ceiling fan, Walk-in-closet', 'framework'),
+					'desc' => __('Example Value: Ceiling fan', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'interior',
@@ -342,7 +342,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_interior_kitchen_desc",
 					'name' => __('Kitchen Description', 'framework'),
-					'desc' => __('Example Value: Island, Dishwasher', 'framework'),
+					'desc' => __('Example Value: Island', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'interior',
@@ -358,7 +358,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_interior_rooms",
 					'name' => __('Rooms', 'framework'),
-					'desc' => __('Example Value: Kitchen, Living Room, Dining Area', 'framework'),
+					'desc' => __('Example Value: Kitchen', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'interior',
@@ -432,7 +432,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_property_features_existing_water",
 					'name' => __('Existing Water', 'framework'),
-					'desc' => __('Example Value: Back Flow, City', 'framework'),
+					'desc' => __('Example Value: Back Flow', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'property-features',
@@ -544,7 +544,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				array(
 					'id' => "inspiry_property_features_terms",
 					'name' => __('Terms', 'framework'),
-					'desc' => __('Example Value: New Loan, Cash', 'framework'),
+					'desc' => __('Example Value: New Loan', 'framework'),
 					'type' => 'text',
 					'std' => "",
 					'tab' => 'property-features',
