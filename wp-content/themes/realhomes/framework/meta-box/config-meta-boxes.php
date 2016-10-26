@@ -68,11 +68,11 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'label' => __('Basic Information', 'framework'),
                     'icon' => 'dashicons-admin-home',
                 ),
-				'exterior-features' => array(
+				'exterior' => array(
 					'label' => __('Exterior Features', 'framework'),
 					'icon' => 'dashicons-list-view',
 				),
-				'interior-features' => array(
+				'interior' => array(
 					'label' => __('Interior Features', 'framework'),
 					'icon' => 'dashicons-flag',
 				),
@@ -226,11 +226,11 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				
 				// Exterior Features
 				array(
-                    'id'    => "inspiry_exterior",
+                    'id'    => "exteriors",
                     'type'  => 'group',
                     'columns' => 12,
-                    //'clone' => true,
-                    'tab'   => 'exterior-features',
+                    'clone' => true,
+                    'tab'   => 'exterior',
                     'fields' => array(
 						array(
 							'id' => "inspiry_exterior_construction",
@@ -300,11 +300,11 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				
 				// Interior Featured
 				array(
-                    'id'    => "inspiry_interior",
+                    'id'    => "interiors",
                     'type'  => 'group',
                     'columns' => 12,
-                    //'clone' => true,
-                    'tab'   => 'interior-features',
+                    'clone' => true,
+                    'tab'   => 'interior',
                     'fields' => array(
 						array(
 							'id' => "inspiry_interior_bathroom_desc",
@@ -384,7 +384,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'id'    => "inspiry_property_features",
                     'type'  => 'group',
                     'columns' => 12,
-                    //'clone' => true,
+                    'clone' => true,
                     'tab'   => 'property-features',
                     'fields' => array(
 						array(
