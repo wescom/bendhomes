@@ -2,7 +2,7 @@
         $post_meta_data = get_post_custom($post->ID);
 
         if( !empty($post_meta_data['REAL_HOMES_property_size'][0]) ) {
-                $prop_size = $post_meta_data['REAL_HOMES_property_size'][0];
+                $prop_size = intval($post_meta_data['REAL_HOMES_property_size'][0]);
                 echo '<span>';
                     include( get_template_directory() . '/images/icon-size.svg' );
                     echo $prop_size;
@@ -11,6 +11,11 @@
                         echo '&nbsp;'.$prop_size_postfix;
                     }
                 echo '</span>';
+				
+				echo '<span>';
+					$price_per_sqft = get_property_price() / $prop_size;
+					echo $price_per_sqft .' &nbsp;$/SqFt';
+				echo '</span>';
         }
 
         if( !empty($post_meta_data['REAL_HOMES_property_bedrooms'][0]) ) {
