@@ -76,7 +76,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'label' => __('Interior Features', 'framework'),
 					'icon' => 'dashicons-list-view',
 				),
-				'property' => array(
+				'property-features' => array(
 					'label' => __('Property Features', 'framework'),
 					'icon' => 'dashicons-list-view',
 				),
@@ -226,7 +226,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				
 				// Exterior Features
 				array(
-                    'id'    => "exterior",
+                    'id'    => "inspiry_exterior",
                     'type'  => 'group',
                     'columns' => 12,
                     'clone' => true,
@@ -300,7 +300,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				
 				// Interior Featured
 				array(
-                    'id'    => "interior",
+                    'id'    => "inspiry_interior",
                     'type'  => 'group',
                     'columns' => 12,
                     'clone' => true,
@@ -381,11 +381,11 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				
 				// Property Featured
 				array(
-                    'id'    => "property",
+                    'id'    => "inspiry_property_features",
                     'type'  => 'group',
                     'columns' => 12,
                     'clone' => true,
-                    'tab'   => 'property',
+                    'tab'   => 'property-features',
                     'fields' => array(
 						array(
 							'id' => "{$prefix}property_year_built",
