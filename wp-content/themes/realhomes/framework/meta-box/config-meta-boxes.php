@@ -305,6 +305,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Tiled vanity', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -313,6 +314,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Sliding Glass', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
