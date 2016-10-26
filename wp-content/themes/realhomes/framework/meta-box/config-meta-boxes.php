@@ -231,7 +231,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Frame', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -240,7 +239,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Sprinkler system, Fenced', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -249,7 +247,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Stemwall', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -258,7 +255,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 2', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -267,7 +263,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -276,7 +271,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Driveway, Garage', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
+					'tab' => 'exterior',
 				),
 				array(
 					'id' => "inspiry_exterior_roof",
@@ -284,7 +279,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Composition', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -293,7 +287,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Traditional', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -302,7 +295,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Cascade Mountain', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				
@@ -313,7 +305,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Tiled vanity, Tub soaking', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -322,7 +313,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Sliding Glass', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -331,7 +321,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Carpet, Tile, Laminate', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -340,7 +329,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Forced Air', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -349,7 +337,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Ceiling fan, Walk-in-closet', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -358,7 +345,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Island, Dishwasher', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -367,7 +353,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 2 Story', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -376,7 +361,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Kitchen, Living Room, Dining Area', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				array(
@@ -385,7 +369,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Natural Ventilation', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
+					'tab' => 'interior',
 				),
 				array(
 					'id' => "inspiry_interior_water_heater",
@@ -393,7 +377,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Electric', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'interior',
 				),
 				
@@ -404,7 +387,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 2001', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -413,7 +395,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Yes', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -422,7 +403,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: SW Lava', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -431,7 +411,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Pp&L', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -440,7 +419,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 0', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -449,7 +427,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -458,7 +435,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Back Flow, City', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -467,7 +443,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -476,7 +451,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -485,7 +459,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 200', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -494,7 +467,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Stove', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -503,7 +475,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Patio Screened Room', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -512,7 +483,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 103', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -521,7 +491,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -530,7 +499,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 0', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -539,7 +507,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Residential', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -548,7 +515,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Yes', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -557,7 +523,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: City Sewer', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -566,7 +531,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 2016', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -575,7 +539,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 2000', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -584,7 +547,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: New Loan, Cash', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -593,7 +555,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: City', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -602,7 +563,6 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Rs', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
 					'tab' => 'property-features',
 				),
 
