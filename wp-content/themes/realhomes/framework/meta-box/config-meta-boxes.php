@@ -74,11 +74,11 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				),
 				'interior-features' => array(
 					'label' => __('Interior Features', 'framework'),
-					'icon' => 'dashicons-list-view',
+					'icon' => 'dashicons-flag',
 				),
 				'property-features' => array(
 					'label' => __('Property Features', 'framework'),
-					'icon' => 'dashicons-list-view',
+					'icon' => 'dashicons-tag',
 				),
                 'gallery' => array(
                     'label' => __('Gallery Images', 'framework'),
