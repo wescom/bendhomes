@@ -114,7 +114,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 
                 // Details
                 array(
-                    'id' => "inspiry_property_features_price",
+                    'id' => "{$prefix}property_features_price",
                     'name' => __('Sale or Rent Price ( Only digits )', 'framework'),
                     'desc' => __('Example Value: 435000', 'framework'),
                     'type' => 'text',
@@ -123,7 +123,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_price_postfix",
+                    'id' => "{$prefix}property_features_price_postfix",
                     'name' => __('Price Postfix', 'framework'),
                     'desc' => __('Example Value: Per Month', 'framework'),
                     'type' => 'text',
@@ -132,7 +132,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_size",
+                    'id' => "{$prefix}property_features_size",
                     'name' => __('Area Size ( Only digits )', 'framework'),
                     'desc' => __('Example Value: 2500', 'framework'),
                     'type' => 'text',
@@ -141,7 +141,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_size_postfix",
+                    'id' => "{$prefix}property_features_size_postfix",
                     'name' => __('Size Postfix', 'framework'),
                     'desc' => __('Example Value: Sq Ft', 'framework'),
                     'type' => 'text',
@@ -150,7 +150,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_bedrooms",
+                    'id' => "{$prefix}property_features_bedrooms",
                     'name' => __('Bedrooms', 'framework'),
                     'desc' => __('Example Value: 4', 'framework'),
                     'type' => 'text',
@@ -159,7 +159,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_bathrooms",
+                    'id' => "{$prefix}property_features_bathrooms",
                     'name' => __('Bathrooms', 'framework'),
                     'desc' => __('Example Value: 2', 'framework'),
                     'type' => 'text',
@@ -168,7 +168,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_garage",
+                    'id' => "{$prefix}property_features_garage",
                     'name' => __('Garages', 'framework'),
                     'desc' => __('Example Value: 1', 'framework'),
                     'type' => 'text',
@@ -177,7 +177,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_id",
+                    'id' => "{$prefix}property_features_id",
                     'name' => __('Property ID', 'framework'),
                     'desc' => __('It will help you search a property directly.', 'framework'),
                     'type' => 'text',
@@ -196,7 +196,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                 ),
                 array(
                     'name' => __('Do you want to hide Google map on property detail page ?', 'framework'),
-                    'id' => "inspiry_property_features_map",
+                    'id' => "{$prefix}property_features_map",
                     'type' => 'checkbox',
                     'std' => 0,
                     'desc' => __( 'Yes', 'framework' ),
@@ -204,7 +204,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_address",
+                    'id' => "{$prefix}property_features_address",
                     'name' => __('Property Address', 'framework'),
                     'desc' => __('Leaving it empty will hide the google map on property detail page.', 'framework'),
                     'type' => 'text',
@@ -213,7 +213,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
                 array(
-                    'id' => "inspiry_property_features_location",
+                    'id' => "{$prefix}property_features_location",
                     'name' => __('Property Location at Google Map*', 'framework'),
                     'desc' => __('Drag the google map marker to point your property location. You can also use the address field above to search for your property.', 'framework'),
                     'type' => 'map',
@@ -226,7 +226,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				
 				// Exterior Features
 				array(
-					'id' => "inspiry_exterior_construction",
+					'id' => "{$prefix}exterior_construction",
 					'name' => __('Construction', 'framework'),
 					'desc' => __('Example Value: Frame', 'framework'),
 					'type' => 'text',
@@ -235,7 +235,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'exterior',
 				),
 				array(
-					'id' => "inspiry_exterior_exterior",
+					'id' => "{$prefix}exterior_exterior",
 					'name' => __('Exterior', 'framework'),
 					'desc' => __('Example Value: Sprinkler system', 'framework'),
 					'type' => 'text',
@@ -244,7 +244,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'exterior',
 				),
 				array(
-					'id' => "inspiry_exterior_foundation",
+					'id' => "{$prefix}exterior_foundation",
 					'name' => __('Foundation', 'framework'),
 					'desc' => __('Example Value: Stemwall', 'framework'),
 					'type' => 'text',
@@ -253,7 +253,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'exterior',
 				),
 				array(
-					'id' => "inspiry_exterior_irrigated_acres",
+					'id' => "{$prefix}exterior_irrigated_acres",
 					'name' => __('Irrigated Acres', 'framework'),
 					'desc' => __('Example Value: 2', 'framework'),
 					'type' => 'text',
@@ -262,7 +262,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'exterior',
 				),
 				array(
-					'id' => "inspiry_exterior_irrigation",
+					'id' => "{$prefix}exterior_irrigation",
 					'name' => __('Irrigation', 'framework'),
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
@@ -271,7 +271,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'exterior',
 				),
 				array(
-					'id' => "inspiry_exterior_parking",
+					'id' => "{$prefix}exterior_parking",
 					'name' => __('Parking', 'framework'),
 					'desc' => __('Example Value: Driveway', 'framework'),
 					'type' => 'text',
@@ -280,7 +280,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'exterior',
 				),
 				array(
-					'id' => "inspiry_exterior_roof",
+					'id' => "{$prefix}exterior_roof",
 					'name' => __('Roof', 'framework'),
 					'desc' => __('Example Value: Composition', 'framework'),
 					'type' => 'text',
@@ -289,7 +289,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'exterior',
 				),
 				array(
-					'id' => "inspiry_exterior_style",
+					'id' => "{$prefix}exterior_style",
 					'name' => __('Exterior Style', 'framework'),
 					'desc' => __('Example Value: Traditional', 'framework'),
 					'type' => 'text',
@@ -298,7 +298,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'exterior',
 				),
 				array(
-					'id' => "inspiry_exterior_view",
+					'id' => "{$prefix}exterior_view",
 					'name' => __('Exterior View', 'framework'),
 					'desc' => __('Example Value: Cascade Mountain', 'framework'),
 					'type' => 'text',
@@ -309,7 +309,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				
 				// Interior Featured
 				array(
-					'id' => "inspiry_interior_bathroom_desc",
+					'id' => "{$prefix}interior_bathroom_desc",
 					'name' => __('Bathroom Desc.', 'framework'),
 					'desc' => __('Example Value: Tiled vanity', 'framework'),
 					'type' => 'text',
@@ -318,7 +318,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_doors_windows",
+					'id' => "{$prefix}interior_doors_windows",
 					'name' => __('Doors/Windows', 'framework'),
 					'desc' => __('Example Value: Sliding Glass', 'framework'),
 					'type' => 'text',
@@ -327,7 +327,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_floors",
+					'id' => "{$prefix}interior_floors",
 					'name' => __('Floors', 'framework'),
 					'desc' => __('Example Value: Carpet', 'framework'),
 					'type' => 'text',
@@ -336,7 +336,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_heat_cool",
+					'id' => "{$prefix}interior_heat_cool",
 					'name' => __('Heating/Cooling', 'framework'),
 					'desc' => __('Example Value: Forced Air', 'framework'),
 					'type' => 'text',
@@ -345,7 +345,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_interior",
+					'id' => "{$prefix}interior_interior",
 					'name' => __('Interior', 'framework'),
 					'desc' => __('Example Value: Ceiling fan', 'framework'),
 					'type' => 'text',
@@ -354,7 +354,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_kitchen_desc",
+					'id' => "{$prefix}interior_kitchen_desc",
 					'name' => __('Kitchen Description', 'framework'),
 					'desc' => __('Example Value: Island', 'framework'),
 					'type' => 'text',
@@ -363,7 +363,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_levels",
+					'id' => "{$prefix}interior_levels",
 					'name' => __('Levels', 'framework'),
 					'desc' => __('Example Value: 2 Story', 'framework'),
 					'type' => 'text',
@@ -372,7 +372,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_rooms",
+					'id' => "{$prefix}interior_rooms",
 					'name' => __('Rooms', 'framework'),
 					'desc' => __('Example Value: Kitchen', 'framework'),
 					'type' => 'text',
@@ -381,7 +381,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_ventilation",
+					'id' => "{$prefix}interior_ventilation",
 					'name' => __('Ventilation', 'framework'),
 					'desc' => __('Example Value: Natural Ventilation', 'framework'),
 					'type' => 'text',
@@ -390,7 +390,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'interior',
 				),
 				array(
-					'id' => "inspiry_interior_water_heater",
+					'id' => "{$prefix}interior_water_heater",
 					'name' => __('Water Heater', 'framework'),
 					'desc' => __('Example Value: Electric', 'framework'),
 					'type' => 'text',
@@ -401,7 +401,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 				
 				// Property Featured
 				array(
-					'id' => "inspiry_property_features_year_built",
+					'id' => "{$prefix}property_features_year_built",
 					'name' => __('Year Built', 'framework'),
 					'desc' => __('Example Value: 2001', 'framework'),
 					'type' => 'text',
@@ -410,7 +410,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_ccrs",
+					'id' => "{$prefix}property_features_ccrs",
 					'name' => __('CCRs', 'framework'),
 					'desc' => __('Example Value: Yes', 'framework'),
 					'type' => 'text',
@@ -419,7 +419,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_cross_street",
+					'id' => "{$prefix}property_features_cross_street",
 					'name' => __('Cross Street Address', 'framework'),
 					'desc' => __('Example Value: SW Lava', 'framework'),
 					'type' => 'text',
@@ -428,7 +428,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_electric_company",
+					'id' => "{$prefix}property_features_electric_company",
 					'name' => __('Electric Company', 'framework'),
 					'desc' => __('Example Value: Pp&L', 'framework'),
 					'type' => 'text',
@@ -437,7 +437,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_energy_score",
+					'id' => "{$prefix}property_features_energy_score",
 					'name' => __('Eps Energy Score', 'framework'),
 					'desc' => __('Example Value: 0', 'framework'),
 					'type' => 'text',
@@ -446,7 +446,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_exempt",
+					'id' => "{$prefix}property_features_exempt",
 					'name' => __('Exempt', 'framework'),
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
@@ -455,7 +455,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_tax_year",
+					'id' => "{$prefix}property_features_tax_year",
 					'name' => __('Tax Year', 'framework'),
 					'desc' => __('Example Value: 2016', 'framework'),
 					'type' => 'text',
@@ -464,7 +464,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_tax_amount",
+					'id' => "{$prefix}property_features_tax_amount",
 					'name' => __('Tax Amount', 'framework'),
 					'desc' => __('Example Value: 2000', 'framework'),
 					'type' => 'text',
@@ -473,7 +473,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_terms",
+					'id' => "{$prefix}property_features_terms",
 					'name' => __('Terms', 'framework'),
 					'desc' => __('Example Value: New Loan', 'framework'),
 					'type' => 'text',
@@ -482,7 +482,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_existing_water",
+					'id' => "{$prefix}property_features_existing_water",
 					'name' => __('Existing Water', 'framework'),
 					'desc' => __('Example Value: Back Flow', 'framework'),
 					'type' => 'text',
@@ -491,7 +491,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_farm_deferral",
+					'id' => "{$prefix}property_features_farm_deferral",
 					'name' => __('Farm Deferral', 'framework'),
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
@@ -500,7 +500,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_hoa",
+					'id' => "{$prefix}property_features_hoa",
 					'name' => __('HOA', 'framework'),
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
@@ -509,7 +509,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_hoa_amount",
+					'id' => "{$prefix}property_features_hoa_amount",
 					'name' => __('HOA Amount', 'framework'),
 					'desc' => __('Example Value: 200', 'framework'),
 					'type' => 'text',
@@ -518,7 +518,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_included",
+					'id' => "{$prefix}property_features_included",
 					'name' => __('Included', 'framework'),
 					'desc' => __('Example Value: Stove', 'framework'),
 					'type' => 'text',
@@ -527,7 +527,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_included2",
+					'id' => "{$prefix}property_features_included2",
 					'name' => __('Included 2', 'framework'),
 					'desc' => __('Example Value: Patio Screened Room', 'framework'),
 					'type' => 'text',
@@ -536,7 +536,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_lot_number",
+					'id' => "{$prefix}property_features_lot_number",
 					'name' => __('Lot Number', 'framework'),
 					'desc' => __('Example Value: 103', 'framework'),
 					'type' => 'text',
@@ -545,7 +545,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_new_construction",
+					'id' => "{$prefix}property_features_new_construction",
 					'name' => __('New Construction', 'framework'),
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
@@ -554,7 +554,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_percent_shared",
+					'id' => "{$prefix}property_features_percent_shared",
 					'name' => __('Percent of Shared Interest', 'framework'),
 					'desc' => __('Example Value: 0', 'framework'),
 					'type' => 'text',
@@ -563,7 +563,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_subtype",
+					'id' => "{$prefix}property_features_subtype",
 					'name' => __('Property Subtype', 'framework'),
 					'desc' => __('Example Value: Residential', 'framework'),
 					'type' => 'text',
@@ -572,7 +572,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_sellers_disclosure",
+					'id' => "{$prefix}property_features_sellers_disclosure",
 					'name' => __('Sellers Disclosure', 'framework'),
 					'desc' => __('Example Value: Yes', 'framework'),
 					'type' => 'text',
@@ -581,7 +581,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_sewer_septic",
+					'id' => "{$prefix}property_features_sewer_septic",
 					'name' => __('Sewer/Septic', 'framework'),
 					'desc' => __('Example Value: City Sewer', 'framework'),
 					'type' => 'text',
@@ -590,7 +590,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_water_district",
+					'id' => "{$prefix}property_features_water_district",
 					'name' => __('Water District', 'framework'),
 					'desc' => __('Example Value: City', 'framework'),
 					'type' => 'text',
@@ -599,7 +599,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'tab' => 'property-features',
 				),
 				array(
-					'id' => "inspiry_property_features_zoning",
+					'id' => "{$prefix}property_features_zoning",
 					'name' => __('Zoning', 'framework'),
 					'desc' => __('Example Value: Rs', 'framework'),
 					'type' => 'text',
@@ -623,7 +623,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                 ),
                 array(
                     'name' => __('Property Gallery Images', 'framework'),
-                    'id' => "inspiry_property_features_images",
+                    'id' => "{$prefix}property_features_images",
                     'desc' => __('Images should have minimum size of 770px by 386px for thumbnails on right and 830px by 460px for thumbnails on bottom. Bigger size images will be cropped automatically.', 'framework'),
                     'type' => 'image_advanced',
                     'max_file_uploads' => 48,
@@ -633,7 +633,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 
 				// Floor Plans
                 array(
-                    'id'    => "inspiry_floor_plans",
+                    'id' => "{$prefix}floor_plans",
                     'type'  => 'group',
                     'columns' => 12,
                     'clone' => true,
@@ -641,60 +641,60 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'fields' => array(
                         array(
                             'name' => __( 'Floor Name', 'framework' ),
-                            'id'   => "inspiry_floor_plan_name",
+                            'id' => "{$prefix}floor_plan_name",
                             'desc' => __( 'Example: Ground Floor', 'framework' ),
                             'type' => 'text',
                         ),
                         array(
                             'name' => __( 'Floor Price ( Only digits )', 'framework' ),
-                            'id'   => "inspiry_floor_plan_price",
+                            'id' => "{$prefix}floor_plan_price",
                             'desc' => __( 'Example: 4000', 'framework' ),
                             'type' => 'text',
                             'columns' => 6,
                         ),
                         array(
                             'name' => __( 'Price Postfix', 'framework' ),
-                            'id'   => "inspiry_floor_plan_price_postfix",
+                            'id' => "{$prefix}floor_plan_price_postfix",
                             'desc' => __( 'Example: Per Month', 'framework' ),
                             'type' => 'text',
                             'columns' => 6,
                         ),
                         array(
                             'name' => __( 'Floor Size ( Only digits )', 'framework' ),
-                            'id'   => "inspiry_floor_plan_size",
+                            'id' => "{$prefix}floor_plan_size",
                             'desc' => __( 'Example: 2500', 'framework' ),
                             'type' => 'text',
                             'columns' => 6,
                         ),
                         array(
                             'name' => __( 'Size Postfix', 'framework' ),
-                            'id'   => "inspiry_floor_plan_size_postfix",
+                            'id' => "{$prefix}floor_plan_size_postfix",
                             'desc' => __( 'Example: Sq Ft', 'framework' ),
                             'type' => 'text',
                             'columns' => 6,
                         ),
                         array(
                             'name' => __( 'Bedrooms', 'framework' ),
-                            'id'   => "inspiry_floor_plan_bedrooms",
+                            'id' => "{$prefix}floor_plan_bedrooms",
                             'desc' => __( 'Example: 4', 'framework' ),
                             'type' => 'text',
                             'columns' => 6,
                         ),
                         array(
                             'name' => __( 'Bathrooms', 'framework' ),
-                            'id'   => "inspiry_floor_plan_bathrooms",
+                            'id' => "{$prefix}floor_plan_bathrooms",
                             'desc' => __( 'Example: 2', 'framework' ),
                             'type' => 'text',
                             'columns' => 6,
                         ),
                         array(
                             'name' => __( 'Description', 'framework' ),
-                            'id'   => "inspiry_floor_plan_descr",
+                            'id' => "{$prefix}floor_plan_descr",
                             'type' => 'textarea',
                         ),
                         array(
                             'name' => __( 'Floor Plan Image', 'framework' ),
-                            'id'   => "inspiry_floor_plan_image",
+                            'id' => "{$prefix}floor_plan_image",
                             'desc' => __( 'The recommended minimum width is 770px and height is flexible.', 'framework' ),
                             'type' => 'file_input',
                             'max_file_uploads' => 1,
@@ -766,7 +766,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'misc',
                 ),
                 array(
-                    'id' => "inspiry_property_features_private_note",
+                    'id' => "{$prefix}property_features_private_note",
                     'name' => __('Private Note', 'framework'),
                     'desc' => __('In this textarea, You can write your private note about this property. This field will not be displayed anywhere else.', 'framework'),
                     'type' => 'textarea',
@@ -988,7 +988,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'std'   => 6,
                 ),
                 array(
-                    'id'          => "inspiry_properties_order",
+                    'id' => "{$prefix}properties_order",
                     'name'        => __( 'Order Properties By', 'framework' ),
                     'type'        => 'select',
                     'options'     => array(
@@ -1001,28 +1001,28 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'std'         => 'date-desc',
                 ),
                 array(
-                    'id'          => "inspiry_properties_locations",
+                    'id' => "{$prefix}properties_locations",
                     'name'        => __( 'Locations', 'framework' ),
                     'type'        => 'select',
                     'options'     => $locations,
                     'multiple'    => true,
                 ),
                 array(
-                    'id'          => "inspiry_properties_statuses",
+                    'id' => "{$prefix}properties_statuses",
                     'name'        => __( 'Statuses', 'framework' ),
                     'type'        => 'select',
                     'options'     => $statuses,
                     'multiple'    => true,
                 ),
                 array(
-                    'id'          => "inspiry_properties_types",
+                    'id' => "{$prefix}properties_types",
                     'name'        => __( 'Types', 'framework' ),
                     'type'        => 'select',
                     'options'     => $types,
                     'multiple'    => true,
                 ),
                 array(
-                    'id'          => "inspiry_properties_features",
+                    'id' => "{$prefix}properties_features",
                     'name'        => __( 'Features', 'framework' ),
                     'type'        => 'select',
                     'options'     => $features,
