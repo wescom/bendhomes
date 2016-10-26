@@ -231,6 +231,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Frame', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -239,6 +240,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Sprinkler system', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -247,6 +249,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Stemwall', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -255,6 +258,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 2', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -263,6 +267,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -271,6 +276,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Driveway', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -279,6 +285,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Composition', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -287,6 +294,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Traditional', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -295,8 +303,15 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Cascade Mountain', 'framework'),
 					'type' => 'text',
 					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
+				array(
+                    'type' => 'divider',
+                    'columns' => 12,
+                    'id' => 'exterior_divider', // Not used, but needed
+                    'tab' => 'exterior',
+                ),
 				
 				// Interior Featured
 				array(
