@@ -229,7 +229,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'id'    => "inspiry_exterior",
                     'type'  => 'group',
                     'columns' => 12,
-                    'clone' => true,
+                    //'clone' => true,
                     'tab'   => 'exterior-features',
                     'fields' => array(
 						array(
@@ -303,7 +303,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'id'    => "inspiry_interior",
                     'type'  => 'group',
                     'columns' => 12,
-                    'clone' => true,
+                    //'clone' => true,
                     'tab'   => 'interior-features',
                     'fields' => array(
 						array(
@@ -384,7 +384,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'id'    => "inspiry_property_features",
                     'type'  => 'group',
                     'columns' => 12,
-                    'clone' => true,
+                    //'clone' => true,
                     'tab'   => 'property-features',
                     'fields' => array(
 						array(
