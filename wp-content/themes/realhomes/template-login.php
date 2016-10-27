@@ -39,7 +39,7 @@ get_header();
 
 	                                <!-- LOGIN -->
                                     <p class="info-text"><?php _e('Already a Member? Log in here.','framework'); ?></p>
-                                    <form id="login-form" class="login-form" action="<?php bloginfo('url') ?>/wp-login.php" method="post" enctype="multipart/form-data">
+                                    <form id="login-form" class="login-form" action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" enctype="multipart/form-data">
                                         <div class="form-option">
                                             <label for="username"><?php _e('Username','framework'); ?><span>*</span></label>
                                             <input id="username" name="log" type="text" class="required" title="<?php _e( '* Provide username!', 'framework'); ?>" autofocus required/>
@@ -68,7 +68,7 @@ get_header();
                                     <p class="forgot-password">
                                         <a class="toggle-forgot-form" href="#"><?php _e("Forgot password!",'framework')?></a>
                                     </p>
-                                    <form action="<?php echo site_url('wp-login.php?action=lostpassword', 'login_post') ?>" id="forgot-form"  method="post" enctype="multipart/form-data">
+                                    <form action="<?php echo admin_url('admin-ajax.php'); ?>" id="forgot-form"  method="post" enctype="multipart/form-data">
 	                                    <div class="form-option">
 		                                    <label for="reset_username_or_email"><?php _e('Username or Email','framework'); ?><span>*</span></label>
 		                                    <input id="reset_username_or_email" name="reset_username_or_email" type="text" class="required" title="<?php _e( '* Provide username or email!', 'framework'); ?>" required/>
@@ -91,7 +91,7 @@ get_header();
                                     if ( get_option( 'users_can_register' ) ) {
                                         ?>
                                         <p class="info-text"><?php _e('Do not have an account? Register here','framework'); ?></p>
-                                        <form action="<?php echo site_url('wp-login.php?action=register', 'login_post') ?>" id="register-form"  method="post" enctype="multipart/form-data">
+                                        <form action="<?php echo admin_url('admin-ajax.php'); ?>" id="register-form"  method="post" enctype="multipart/form-data">
 
                                             <div class="form-option">
 	                                            <label for="register_username" class="hide"><?php _e('Username','framework'); ?><span>*</span></label>
