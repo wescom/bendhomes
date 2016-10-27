@@ -1,4 +1,4 @@
-<?php get_template_part("template-parts/carousel_partners"); ?>
+<?php //get_template_part("template-parts/carousel_partners"); ?>
 
 <?php get_template_part("bend-homes/template-parts/footer-banner-ad"); ?>
 
