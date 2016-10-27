@@ -164,33 +164,183 @@ if( !function_exists( 'build_taxonomies' ) ){
             )
         );
 		
-		$schools_labels = array(
-			'name' => __( 'Schools', 'framework' ),
-            'singular_name' => __( 'School', 'framework' ),
-            'search_items' =>  __( 'Search Schools', 'framework' ),
-            'popular_items' => __( 'Popular Schools', 'framework' ),
-            'all_items' => __( 'All Schools', 'framework' ),
-            'parent_item' => __( 'Parent School', 'framework' ),
-            'parent_item_colon' => __( 'Parent School:', 'framework' ),
-            'edit_item' => __( 'Edit School', 'framework' ),
-            'update_item' => __( 'Update School', 'framework' ),
-            'add_new_item' => __( 'Add New School', 'framework' ),
-            'new_item_name' => __( 'New School Name', 'framework' ),
-            'separate_items_with_commas' => __( 'Separate Schools with commas', 'framework' ),
-            'add_or_remove_items' => __( 'Add or remove School', 'framework' ),
-            'choose_from_most_used' => __( 'Choose from the most used Schools', 'framework' ),
-            'menu_name' => __( 'Schools', 'framework' )
+		$elem_schools_labels = array(
+			'name' => __( 'Elementry Schools', 'framework' ),
+            'singular_name' => __( 'Elementry School', 'framework' ),
+            'search_items' =>  __( 'Search Elementary Schools', 'framework' ),
+            'popular_items' => __( 'Popular Elementry Schools', 'framework' ),
+            'all_items' => __( 'All Elementry Schools', 'framework' ),
+            'parent_item' => __( 'Parent Elementry School', 'framework' ),
+            'parent_item_colon' => __( 'Parent Elementry School:', 'framework' ),
+            'edit_item' => __( 'Edit Elementry School', 'framework' ),
+            'update_item' => __( 'Update Elementry School', 'framework' ),
+            'add_new_item' => __( 'Add New Elementry School', 'framework' ),
+            'new_item_name' => __( 'New Elementry School Name', 'framework' ),
+            'separate_items_with_commas' => __( 'Separate Elementry Schools with commas', 'framework' ),
+            'add_or_remove_items' => __( 'Add or remove Elementry School', 'framework' ),
+            'choose_from_most_used' => __( 'Choose from the most used Elementry Schools', 'framework' ),
+            'menu_name' => __( 'Elementry Schools', 'framework' )
 		);
 		
 		register_taxonomy(
-            'school',
+            'elementry_school',
             array( 'property' ),
             array(
                 'hierarchical' => true,
-                'labels' => $schools_labels,
+                'labels' => $elem_schools_labels,
                 'show_ui' => true,
                 'query_var' => true,
-                'rewrite' => array('slug' => __('school', 'framework'))
+                'rewrite' => array('slug' => __('elementry-school', 'framework'))
+            )
+        );
+		
+		$midd_schools_labels = array(
+			'name' => __( 'Middle Schools', 'framework' ),
+            'singular_name' => __( 'Middle School', 'framework' ),
+            'search_items' =>  __( 'Search Middle Schools', 'framework' ),
+            'popular_items' => __( 'Popular Middle Schools', 'framework' ),
+            'all_items' => __( 'All Middle Schools', 'framework' ),
+            'parent_item' => __( 'Parent Middle School', 'framework' ),
+            'parent_item_colon' => __( 'Parent Middle School:', 'framework' ),
+            'edit_item' => __( 'Edit Middle School', 'framework' ),
+            'update_item' => __( 'Update Middle School', 'framework' ),
+            'add_new_item' => __( 'Add New Middle School', 'framework' ),
+            'new_item_name' => __( 'New Middle School Name', 'framework' ),
+            'separate_items_with_commas' => __( 'Separate Middle Schools with commas', 'framework' ),
+            'add_or_remove_items' => __( 'Add or remove Middle School', 'framework' ),
+            'choose_from_most_used' => __( 'Choose from the most used Middle Schools', 'framework' ),
+            'menu_name' => __( 'Middle Schools', 'framework' )
+		);
+		
+		register_taxonomy(
+            'middle_school',
+            array( 'property' ),
+            array(
+                'hierarchical' => true,
+                'labels' => $midd_schools_labels,
+                'show_ui' => true,
+                'query_var' => true,
+                'rewrite' => array('slug' => __('middle-school', 'framework'))
+            )
+        );
+		
+		$high_schools_labels = array(
+			'name' => __( 'High Schools', 'framework' ),
+            'singular_name' => __( 'High School', 'framework' ),
+            'search_items' =>  __( 'Search High Schools', 'framework' ),
+            'popular_items' => __( 'Popular High Schools', 'framework' ),
+            'all_items' => __( 'All High Schools', 'framework' ),
+            'parent_item' => __( 'Parent High School', 'framework' ),
+            'parent_item_colon' => __( 'Parent High School:', 'framework' ),
+            'edit_item' => __( 'Edit High School', 'framework' ),
+            'update_item' => __( 'Update High School', 'framework' ),
+            'add_new_item' => __( 'Add New High School', 'framework' ),
+            'new_item_name' => __( 'New High School Name', 'framework' ),
+            'separate_items_with_commas' => __( 'Separate High Schools with commas', 'framework' ),
+            'add_or_remove_items' => __( 'Add or remove High School', 'framework' ),
+            'choose_from_most_used' => __( 'Choose from the most used High Schools', 'framework' ),
+            'menu_name' => __( 'High Schools', 'framework' )
+		);
+		
+		register_taxonomy(
+            'high_school',
+            array( 'property' ),
+            array(
+                'hierarchical' => true,
+                'labels' => $high_schools_labels,
+                'show_ui' => true,
+                'query_var' => true,
+                'rewrite' => array('slug' => __('high-school', 'framework'))
+            )
+        );
+		
+		$neighborhood_labels = array(
+			'name' => __( 'Neighborhoods', 'framework' ),
+            'singular_name' => __( 'Neighborhood', 'framework' ),
+            'search_items' =>  __( 'Search Neighborhoods', 'framework' ),
+            'popular_items' => __( 'Popular Neighborhoods', 'framework' ),
+            'all_items' => __( 'All Neighborhoods', 'framework' ),
+            'parent_item' => __( 'Parent Neighborhood', 'framework' ),
+            'parent_item_colon' => __( 'Parent Neighborhood:', 'framework' ),
+            'edit_item' => __( 'Edit Neighborhood', 'framework' ),
+            'update_item' => __( 'Update Neighborhood', 'framework' ),
+            'add_new_item' => __( 'Add New Neighborhood', 'framework' ),
+            'new_item_name' => __( 'New Neighborhood Name', 'framework' ),
+            'separate_items_with_commas' => __( 'Separate Neighborhoods with commas', 'framework' ),
+            'add_or_remove_items' => __( 'Add or remove Neighborhood', 'framework' ),
+            'choose_from_most_used' => __( 'Choose from the most used Neighborhoods', 'framework' ),
+            'menu_name' => __( 'Neighborhoods', 'framework' )
+		);
+		
+		register_taxonomy(
+            'neighborhood',
+            array( 'property' ),
+            array(
+                'hierarchical' => true,
+                'labels' => $neighborhood_labels,
+                'show_ui' => true,
+                'query_var' => true,
+                'rewrite' => array('slug' => __('neighborhood', 'framework'))
+            )
+        );
+		
+		$county_labels = array(
+			'name' => __( 'Counties', 'framework' ),
+            'singular_name' => __( 'County', 'framework' ),
+            'search_items' =>  __( 'Search Counties', 'framework' ),
+            'popular_items' => __( 'Popular Counties', 'framework' ),
+            'all_items' => __( 'All Counties', 'framework' ),
+            'parent_item' => __( 'Parent County', 'framework' ),
+            'parent_item_colon' => __( 'Parent County:', 'framework' ),
+            'edit_item' => __( 'Edit County', 'framework' ),
+            'update_item' => __( 'Update County', 'framework' ),
+            'add_new_item' => __( 'Add New County', 'framework' ),
+            'new_item_name' => __( 'New County Name', 'framework' ),
+            'separate_items_with_commas' => __( 'Separate Counties with commas', 'framework' ),
+            'add_or_remove_items' => __( 'Add or remove County', 'framework' ),
+            'choose_from_most_used' => __( 'Choose from the most used Counties', 'framework' ),
+            'menu_name' => __( 'Counties', 'framework' )
+		);
+		
+		register_taxonomy(
+            'county',
+            array( 'property' ),
+            array(
+                'hierarchical' => true,
+                'labels' => $county_labels,
+                'show_ui' => true,
+                'query_var' => true,
+                'rewrite' => array('slug' => __('county', 'framework'))
+            )
+        );
+		
+		$area_labels = array(
+			'name' => __( 'Areas', 'framework' ),
+            'singular_name' => __( 'Area', 'framework' ),
+            'search_items' =>  __( 'Search Areas', 'framework' ),
+            'popular_items' => __( 'Popular Areas', 'framework' ),
+            'all_items' => __( 'All Areas', 'framework' ),
+            'parent_item' => __( 'Parent Area', 'framework' ),
+            'parent_item_colon' => __( 'Parent Area:', 'framework' ),
+            'edit_item' => __( 'Edit Area', 'framework' ),
+            'update_item' => __( 'Update Area', 'framework' ),
+            'add_new_item' => __( 'Add New Area', 'framework' ),
+            'new_item_name' => __( 'New Area Name', 'framework' ),
+            'separate_items_with_commas' => __( 'Separate Areas with commas', 'framework' ),
+            'add_or_remove_items' => __( 'Add or remove Area', 'framework' ),
+            'choose_from_most_used' => __( 'Choose from the most used Areas', 'framework' ),
+            'menu_name' => __( 'Areas', 'framework' )
+		);
+		
+		register_taxonomy(
+            'area',
+            array( 'property' ),
+            array(
+                'hierarchical' => true,
+                'labels' => $area_labels,
+                'show_ui' => true,
+                'query_var' => true,
+                'rewrite' => array('slug' => __('area', 'framework'))
             )
         );
     }
