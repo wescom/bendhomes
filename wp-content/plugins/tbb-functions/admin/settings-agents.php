@@ -14,7 +14,7 @@ class AgentSettingsPage {
 			'edit.php?post_type=agent',
 			'Agent Settings',
 			'Settings',
-			'manage_options',
+			'edit_posts',
 			'agent-settings',
 			array(
 				$this,

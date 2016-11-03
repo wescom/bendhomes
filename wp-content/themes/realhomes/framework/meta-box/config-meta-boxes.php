@@ -80,6 +80,22 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'label' => __('Property Features', 'framework'),
 					'icon' => 'dashicons-tag',
 				),
+				'land' => array(
+					'label' => __('Land Specific', 'framework'),
+					'icon' => 'dashicons-star-empty',
+				),
+				'farm' => array(
+					'label' => __('Farm Specific', 'framework'),
+					'icon' => 'dashicons-carrot',
+				),
+				'commercial' => array(
+					'label' => __('Commercial Specific', 'framework'),
+					'icon' => 'dashicons-building',
+				),
+				'business' => array(
+					'label' => __('Business Specific', 'framework'),
+					'icon' => 'dashicons-welcome-learn-more',
+				),
                 'gallery' => array(
                     'label' => __('Gallery Images', 'framework'),
                     'icon' => 'dashicons-format-gallery',
@@ -232,6 +248,24 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'type' => 'text',
 					'std' => "",
 					'columns' => 12,
+					'tab' => 'exterior',
+				),
+				array(
+					'id' => "{$prefix}exterior_acres",
+					'name' => __('Acres', 'framework'),
+					'desc' => __('Example Value: 0.50', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
+					'tab' => 'exterior',
+				),
+				array(
+					'id' => "{$prefix}exterior_additions",
+					'name' => __('Additions', 'framework'),
+					'desc' => __('Example Value: Barn Shop', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
 					'tab' => 'exterior',
 				),
 				array(
@@ -433,7 +467,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: Pp&L', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 4,
+					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -442,7 +476,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 0', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 4,
+					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -451,7 +485,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 4,
+					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -460,7 +494,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 2016', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 4,
+					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -469,7 +503,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 2000', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 4,
+					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -478,7 +512,25 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: New Loan', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 4,
+					'columns' => 6,
+					'tab' => 'property-features',
+				),
+				array(
+					'id' => "{$prefix}property_features_number_units",
+					'name' => __('Number of Units', 'framework'),
+					'desc' => __('Example Value: 2', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
+					'tab' => 'property-features',
+				),
+				array(
+					'id' => "{$prefix}property_features_subdivision",
+					'name' => __('Subdivision', 'framework'),
+					'desc' => __('Example Value: Eagle Crest', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
 					'tab' => 'property-features',
 				),
 				array(
@@ -607,7 +659,123 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'columns' => 6,
 					'tab' => 'property-features',
 				),
-
+				array(
+					'id' => "{$prefix}property_features_sale_exclusions",
+					'name' => __('Sale Exclusions', 'framework'),
+					'desc' => __('Example Value: Sellers personal property', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 12,
+					'tab' => 'property-features',
+				),
+				array(
+					'id' => "{$prefix}property_features_sale_inclusions",
+					'name' => __('Sale Inclusions', 'framework'),
+					'desc' => __('Example Value: Some or all equipment', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 12,
+					'tab' => 'property-features',
+				),
+				
+				// Land Specific
+				array(
+					'id' => "{$prefix}utilities",
+					'name' => __('Utilities Available', 'framework'),
+					'desc' => __('Example Value: Utilities to lot line', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 12,
+					'tab' => 'land',
+				),
+				array(
+					'id' => "{$prefix}road_type",
+					'name' => __('Road Type', 'framework'),
+					'desc' => __('Example Value: Gravel', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
+					'tab' => 'land',
+				),
+				array(
+					'id' => "{$prefix}current_use",
+					'name' => __('Current Use', 'framework'),
+					'desc' => __('Example Value: Bare Land', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
+					'tab' => 'land',
+				),
+				
+				// Farm Specific
+				array(
+					'id' => "{$prefix}directions",
+					'name' => __('Farm Directions', 'framework'),
+					'desc' => __('Example Value: North of Madras', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 12,
+					'tab' => 'farm',
+				),
+				array(
+					'id' => "{$prefix}soil",
+					'name' => __('Soil Type(s)', 'framework'),
+					'desc' => __('Example Value: Silty clay', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
+					'tab' => 'farm',
+				),
+				array(
+					'id' => "{$prefix}topography",
+					'name' => __('Topography', 'framework'),
+					'desc' => __('Example Value: Float to gentle rolling', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
+					'tab' => 'farm',
+				),
+				
+				// Commercial Specific
+				array(
+					'id' => "{$prefix}parking",
+					'name' => __('Parking Available', 'framework'),
+					'desc' => __('Example Value: Yes', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
+					'tab' => 'commercial',
+				),
+				array(
+					'id' => "{$prefix}office_type",
+					'name' => __('Office Type', 'framework'),
+					'desc' => __('Example Value: Mixed Use Office', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 6,
+					'tab' => 'commercial',
+				),
+				
+				// Business Specific
+				array(
+					'id' => "{$prefix}lease",
+					'name' => __('Lease', 'framework'),
+					'desc' => __('Example Value: 1600', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 12,
+					'tab' => 'business',
+				),
+				array(
+					'id' => "{$prefix}business_sale",
+					'name' => __('Business Sale', 'framework'),
+					'desc' => __('Example Value: Inventory Equipment', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 12,
+					'tab' => 'business',
+				),
+				
                 // Gallery
                 array(
                     'name' => __('Gallery Type You Want to Use', 'framework'),
