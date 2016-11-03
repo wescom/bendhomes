@@ -59,13 +59,14 @@
                         </div>
 
                         <div class="span4">
-                            <h4>Popular Home Searches</h4>
+                            <h4>Popular Searches</h4>
                             <ul>
-                              <li><a href="/property-search/?bedrooms=3&bathrooms=2">3 bedroom, 2 bathroom</a></li>
-                              <li><a href="/property-search/?max-price=300000">Price under $300,000</a></li>
-                              <li><a href="/property-search/?type=single-family-home">Single family home</a></li>
-                              <li><a href="/property-search/?min-area=3000">Homes over 3000 sq ft</a></li>
-                              <li><a href="/property-search/?status=open-house">Open houses</a></li>
+                              <li><a href="/property-search/?location=bend">Bend Oregon Real Estate</a></li>
+                              <li><a href="http://www.todaysnewjobs.com/" target="_blank">Bend Oregon Jobs</a></li>
+                              <li><a href="/property-search/?location=sisters">Homes For Sale in Sisters Oregon</a></li>
+                              <li><a href="/property-search/?location=redmond">Homes For Sale in Redmond Oregon</a></li>
+                              <li><a href="/property-search/?type=land">Land For Sale in Bend Oregon</a></li>
+                              <li><a href="/events/">Things to do in Bend Oregon</a></li>
                             </ul>
                         </div>
 
