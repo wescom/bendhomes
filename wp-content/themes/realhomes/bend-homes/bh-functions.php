@@ -154,8 +154,9 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
 	
 		if(file_exists($fnamerecent)) {
 		  $file_date = file_get_contents($fnamerecent);
-		  $dt = new DateTime("@$file_date");
-		  $timestamp = $dt->format('M j,Y g:ia');
+		  //$dt = new DateTime("@$file_date");
+		  //$timestamp = $dt->format('M j, Y g:ia');
+		  $timestamp = date('M j, Y g:ia', $file_date/1000);
 		  
 		  //$pulldate = $pulldate - (60*60*7);  // 7 hours off so subtract
 		} else {
