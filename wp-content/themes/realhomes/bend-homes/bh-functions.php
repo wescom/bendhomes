@@ -147,30 +147,24 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
 	 * @param string $post_id string to pull in needed data
 	 */
 	function properties_updated_timestamp() {
-    $resource = 'Property';
-    $class = 'RESI';
-    $rc = $resource.'_'.$class;
-    $fnamerecent = ABSPATH.'/_retsapi/pulldates/'.$rc.'.txt';
-
-    if(file_exists($fnamerecent)) {
-      $pulldate = file_get_contents($fnamerecent);
-	  $dt = new DateTime("@$pulldate");
-	  $human_time = date('F j, Y g:ia', $dt);
-      $pulldate = $pulldate - (60*60*7);  // 7 hours off so subtract
-    } else {
-      $pulldate = strtotime('-30 days'); //'-6 hours' '-1 days'
-    }
-    $showdate = date('F j, Y g:ia', $pulldate);
-
-    //$datetime_now = new DateTime("now");
-    //$datetime_smp = date_create($showdate);
-    //$diff = date_diff($datetime_now, $datetime_smp);
-
-    //if($diff->h < 1){
-      // if date stamp of last update is less than one day, use 'ago' language
-      //$showdate = '<span class="time-ago">'.time_ago($showdate).'</span>';
-    //}
-    echo '<!-- '. $human_time .' -->'. $showdate;
+		$resource = 'Property';
+		$class = 'RESI';
+		$rc = $resource.'_'.$class;
+		$fnamerecent = ABSPATH.'/_retsapi/pulldates/'.$rc.'.txt';
+	
+		if(file_exists($fnamerecent)) {
+		  $file_date = file_get_contents($fnamerecent);
+		  $dt = new DateTime("@$file_date");
+		  $pull_date = date('F j, Y g:ia', $dt);
+		  
+		  //$pulldate = $pulldate - (60*60*7);  // 7 hours off so subtract
+		} else {
+		  $pull_date = strtotime('-30 days'); //'-6 hours' '-1 days'
+		}
+		
+		$show_date = date('F j, Y g:ia', $pull_date);
+	
+		echo $show_date;
 	}
 }
 
