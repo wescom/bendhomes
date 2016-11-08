@@ -154,7 +154,7 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
 
     if(file_exists($fnamerecent)) {
       $pulldate = file_get_contents($fnamerecent);
-      $pulldate = $pulldate - (60*60*7);  // 7 hours off so subtract
+      $pulldate = $pulldate - (60*60*8);  // 7 hours off so subtract
     } else {
       $pulldate = strtotime('-30 days'); //'-6 hours' '-1 days'
     }
