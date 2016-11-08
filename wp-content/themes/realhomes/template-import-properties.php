@@ -871,7 +871,7 @@ function dataPropertyWPinsert($myproperty) {
 			  
 			  // Attach HOA Amount Post Meta
 			  if( isset ( $myproperty['hoa_amount'] ) && ! empty ( $myproperty['hoa_amount'] ) ) {
-                  update_post_meta( $property_id, 'REAL_HOMES_property_features_hoa_amount', floatval( $myproperty['hoa_amount'] ) );
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_hoa_amount', sanitize_text_field( $myproperty['hoa_amount'] ) );
               }
 			  
 			  // Attach HOA Per Post Meta
