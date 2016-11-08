@@ -165,32 +165,32 @@ if( !function_exists( 'build_taxonomies' ) ){
         );
 		
 		$elem_schools_labels = array(
-			'name' => __( 'Elementry Schools', 'framework' ),
-            'singular_name' => __( 'Elementry School', 'framework' ),
+			'name' => __( 'Elementary Schools', 'framework' ),
+            'singular_name' => __( 'Elementary School', 'framework' ),
             'search_items' =>  __( 'Search Elementary Schools', 'framework' ),
-            'popular_items' => __( 'Popular Elementry Schools', 'framework' ),
-            'all_items' => __( 'All Elementry Schools', 'framework' ),
-            'parent_item' => __( 'Parent Elementry School', 'framework' ),
-            'parent_item_colon' => __( 'Parent Elementry School:', 'framework' ),
-            'edit_item' => __( 'Edit Elementry School', 'framework' ),
-            'update_item' => __( 'Update Elementry School', 'framework' ),
-            'add_new_item' => __( 'Add New Elementry School', 'framework' ),
-            'new_item_name' => __( 'New Elementry School Name', 'framework' ),
-            'separate_items_with_commas' => __( 'Separate Elementry Schools with commas', 'framework' ),
-            'add_or_remove_items' => __( 'Add or remove Elementry School', 'framework' ),
-            'choose_from_most_used' => __( 'Choose from the most used Elementry Schools', 'framework' ),
-            'menu_name' => __( 'Elementry Schools', 'framework' )
+            'popular_items' => __( 'Popular Elementary Schools', 'framework' ),
+            'all_items' => __( 'All Elementary Schools', 'framework' ),
+            'parent_item' => __( 'Parent Elementary School', 'framework' ),
+            'parent_item_colon' => __( 'Parent Elementary School:', 'framework' ),
+            'edit_item' => __( 'Edit Elementary School', 'framework' ),
+            'update_item' => __( 'Update Elementary School', 'framework' ),
+            'add_new_item' => __( 'Add New Elementary School', 'framework' ),
+            'new_item_name' => __( 'New Elementary School Name', 'framework' ),
+            'separate_items_with_commas' => __( 'Separate Elementary Schools with commas', 'framework' ),
+            'add_or_remove_items' => __( 'Add or remove Elementary School', 'framework' ),
+            'choose_from_most_used' => __( 'Choose from the most used Elementary Schools', 'framework' ),
+            'menu_name' => __( 'Elementary Schools', 'framework' )
 		);
 		
 		register_taxonomy(
-            'elementry_school',
+            'elementary_school',
             array( 'property' ),
             array(
                 'hierarchical' => true,
                 'labels' => $elem_schools_labels,
                 'show_ui' => true,
                 'query_var' => true,
-                'rewrite' => array('slug' => __('elementry-school', 'framework'))
+                'rewrite' => array('slug' => __('elementary-school', 'framework'))
             )
         );
 		
