@@ -201,6 +201,15 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'columns' => 6,
                     'tab' => 'details',
                 ),
+				array(
+                    'id' => "{$prefix}property_listing_date",
+                    'name' => __('Listing Date', 'framework'),
+                    'desc' => __('Example 2016-11-20 Y-M-D', 'framework'),
+                    'type' => 'text',
+                    'std' => "",
+                    'columns' => 12,
+                    'tab' => 'details',
+                ),
 
 
                 // Map
@@ -557,7 +566,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: No', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
+					'columns' => 4,
 					'tab' => 'property-features',
 				),
 				array(
@@ -566,7 +575,16 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
 					'desc' => __('Example Value: 200', 'framework'),
 					'type' => 'text',
 					'std' => "",
-					'columns' => 6,
+					'columns' => 4,
+					'tab' => 'property-features',
+				),
+				array(
+					'id' => "{$prefix}property_features_hoa_per",
+					'name' => __('HOA Per', 'framework'),
+					'desc' => __('Example Value: Monthly', 'framework'),
+					'type' => 'text',
+					'std' => "",
+					'columns' => 4,
 					'tab' => 'property-features',
 				),
 				array(

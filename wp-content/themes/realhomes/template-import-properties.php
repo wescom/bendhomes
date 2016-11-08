@@ -120,7 +120,21 @@ function dataPreProc($proparr,$scenarioset) {
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            'action' => $postaction, // give api db status, and pre-existing wp id, if exists
+			
+			'listing-date' => $propitem['ListingDate'],
+			'county' => $propitem['County'],
+			'area' => $propitem['Area'],
+			'cross_street' => $propitem['CrossStreetAddress'],
+			'construction_type' => $propitem['BUSICONS'],
+			'existing_water' => $propitem['BUSIEXIS'],
+			'foundation' => $propitem['BUSIFOUN'],
+			'sale_inclusions' => $propitem['BUSIFFE1'] .' '. $propitem['BUSIFFE2'] .' '. $propitem['BUSIFFE3'],
+			'lease' => $propitem['BUSILEAS'],
+			'business_sale' => $propitem['BUSISALE'],
+			'sewer' => $propitem['BUSISEWR'],
+			'seller_terms' => $propitem['BUSITERM'],
+			'zoning' => $propitem['BUSIZONE'],
           );
           // END Property_BUSI import template
       		break;
@@ -137,13 +151,41 @@ function dataPreProc($proparr,$scenarioset) {
             'property_id' => $bhpropertyid, // this is the WP post id if there's record update
             'price' => $propprice,
             'price-postfix' => '',
+			'size' => $propitem['SquareFootage'],
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
             'coordinates' => $bhcoordinates,
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            'action' => $postaction, // give api db status, and pre-existing wp id, if exists
+			
+			'listing-date' => $propitem['ListingDate'],
+			'county' => $propitem['County'],
+			'area' => $propitem['Area'],
+			'acres' => $propitem['Acres'],
+			'cross_street' => $propitem['CrossStreetAddress'],
+			'levels' => $propitem['COMMNOFL'],
+			'ccrs' => $propitem['COMMCCR'],
+			'construction_type' => $propitem['COMMCONS'],
+			'electric_company' => $propitem['COMMELEC'],
+			'existing_water' => $propitem['COMMEXIS'],
+			'water_district' => $propitem['COMMWTRD'],
+			'flooring' => $propitem['COMMFLOR'],
+			'roofing' => $propitem['COMMROOF'],
+			'foundation' => $propitem['COMMFOUN'],
+			'heating_cooling' => $propitem['COMMHTCO'],
+			'lot_number' => $propitem['COMMLOTN'],
+			'new_construction' => $propitem['COMMNEWC'],
+			'parking' => $propitem['COMMPARK'],
+			'subtype' => $propitem['PropertySubtype1'],
+			'sewer' => $propitem['COMMSEWR'],
+			'tax_amount' => $propitem['COMMTAXE'],
+			'tax_year' => $propitem['COMMTAXY'],
+			'seller_terms' => $propitem['COMMTERM'],
+			'exterior_view' => $propitem['COMMVIEW'],
+			'office_type' => $propitem['COMMTYPE'],
+			'year_built' => $propitem['YearBuilt'],
           );
           // END Property_COMM import template
       		break;
@@ -172,7 +214,46 @@ function dataPreProc($proparr,$scenarioset) {
             'features' => bhLookupFeatures($propitem['FARMINTE'],$propitem['FARMEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            'action' => $postaction, // give api db status, and pre-existing wp id, if exists
+			
+			'listing-date' => $propitem['ListingDate'],
+			'county' => $propitem['County'],
+			'area' => $propitem['Area'],
+			'acres' => $propitem['Acres'],
+			'cross_street' => $propitem['CrossStreetAddress'],
+			'additions' => $propitem['FARMADDI'],
+			'construction_type' => $propitem['FARMCONS'],
+			'current_use' => $propitem['FARMCRP1'] .' '. $propitem['FARMCRP2'] .' '. $propitem['FARMCRP3'] .' '. $propitem['FARMCRP4'] .' '. $propitem['FARMAMT'],
+			'directions' => $propitem['Directions'],
+			'existing_water' => $propitem['FARMEXIS'],
+			'water_district' => $propitem['FARMWTRD'],
+			'electric_company' => $propitem['FARMELEC'],
+			'elem_school' => $propitem['FARMELMS'],
+			'mid_school' => $propitem['FARMJRHI'],
+			'high_school' => $propitem['FARMSRHI'],
+			'sale_exclusions' => $propitem['FARMEXC1'] .' '. $propitem['FARMEXC2'] .' '. $propitem['FARMEXC3'] .' '. $propitem['FARMEXC4'],
+			'sale_inclusions' => $propitem['FARMINC1'] .' '. $propitem['FARMINC2'] .' '. $propitem['FARMINC3'] .' '. $propitem['FARMINC4'],
+			'exempt' => $propitem['FARMEXEM'],
+			'exterior_features' => $propitem['FARMEXTE'],
+			'rooms' => $propitem['FARMROOM'],
+			'interior' => $propitem['FARMINTE'],
+			'flooring' => $propitem['FARMFLOR'],
+			'roofing' => $propitem['FARMROOF'],
+			'foundation' => $propitem['FARMFOUN'],
+			'heating_cooling' => $propitem['FARMHTCO'],
+			'irrigation' => $propitem['FARMIRRG'],
+			'irrigation_acres' => $propitem['FARMIRRA'],
+			'levels' => $propitem['FARMLEVL'],
+			'subtype' => $propitem['PropertySubtype1'],
+			'seller_disclosure' => $propitem['FARMSELD'],
+			'soil' => $propitem['FARMSOIL'],
+			'exterior_style' => $propitem['FARMSTYL'],
+			'tax_amount' => $propitem['FARMTAXE'],
+			'seller_terms' => $propitem['FARMTERM'],
+			'topography' => $propitem['FARMTOPO'],
+			'exterior_view' => $propitem['FARMVIEW'],
+			'year_built' => $propitem['YearBuilt'],
+			'zoning' => $propitem['FARMZONI'],
           );
           // END Property_FARM import template
       		break;
@@ -189,13 +270,43 @@ function dataPreProc($proparr,$scenarioset) {
             'property_id' => $bhpropertyid, // this is the WP post id if there's record update
             'price' => $propprice,
             'price-postfix' => '',
+			'size' => $propitem['LotSquareFootage'],
             'video-url' => $propitem['VirtualTourURL'],
             'address' => $propname,
             'coordinates' => $bhcoordinates,
             // 'featured' => 0, // 0 == not featured, 1 == featured
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            'action' => $postaction, // give api db status, and pre-existing wp id, if exists
+			
+			'listing-date' => $propitem['ListingDate'],
+			'county' => $propitem['County'],
+			'area' => $propitem['Area'],
+			'acres' => $propitem['Acres'],
+			'ccrs' => $propitem['LANDCCR'],
+			'included_two' => $propitem['LANDCOMM'],
+			'cross_street' => $propitem['CrossStreetAddress'],
+			'electric_company' => $propitem['LANDELEC'],
+			'existing_water' => $propitem['LANDEXIS'],
+			'elem_school' => $propitem['LANDELMS'],
+			'mid_school' => $propitem['LANDJRHI'],
+			'high_school' => $propitem['LANDSRHI'],
+			'hoa' => $propitem['LANDHOA'],
+			'hoa_amount' => $propitem['LANDHOAD'],
+			'hoa_per' => $propitem[''],
+			'irrigation' => $propitem['LANDIRRI'],
+			'irrigation_acres' => $propitem['LANDIRRA'],
+			'lot_number' => $propitem['LANDLOTN'],
+			'subtype' => $propitem['PropertySubtype1'],
+			'road_type' => $propitem['LANDROAD'],
+			'water_district' => $propitem['LANDWTRC'],
+			'sewer' => $propitem['LANDSEWR'] .' '. $propitem['LANDSEW1'],
+			'subdivision' => $propitem['Subdivision'],
+			'tax_amount' => $propitem['LANDTAXE'],
+			'seller_terms' => $propitem['LANDTERM'],
+			'utilities' => $propitem['LANDUTL1'] .' '. $propitem['LANDUTL2'],
+			'zoning' => $propitem['LANDZONE'] .', '. $propitem['LANDZON1'],
+			'current_use' => $propitem['LANDCURU']
           );
           // END Property_LAND import template
       		break;
@@ -223,7 +334,39 @@ function dataPreProc($proparr,$scenarioset) {
             'features' => bhLookupFeatures($propitem['MULTINTE'],$propitem['MULTEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            'action' => $postaction, // give api db status, and pre-existing wp id, if exists
+			
+			'listing-date' => $propitem['ListingDate'],
+			'county' => $propitem['County'],
+			'area' => $propitem['Area'],
+			'acres' => $propitem['Acres'],
+			'ccrs' => $propitem['MULTCCR'],
+			'lot_number' => $propitem['MULTLOTN'],
+			'included_two' => $propitem['MULTCOMM'],
+			'construction_type' => $propitem['MULTCONS'],
+			'cross_street' => $propitem['CrossStreetAddress'],
+			'electric_company' => $propitem['MULTELEC'],
+			'exempt' => $propitem['MULTEXEM'],
+			'existing_water' => $propitem['MULTEXIS'],
+			'water_district' => $propitem['MULTWTRD'],
+			'sewer' => $propitem['MULTSEWR'],
+			'exterior_features' => $propitem['MULTEXTE'],
+			'flooring' => $propitem['MULTFLOR'],
+			'roofing' => $propitem['MULTROOF'],
+			'foundation' => $propitem['MULTFOUN'],
+			'heating_cooling' => $propitem['MULTHTCO'],
+			'interior' => $propitem['MULTINTE'],
+			'levels' => $propitem['MULTLEVL'],
+			'new_construction' => $propitem['MULTNEWC'],
+			'subtype' => $propitem['PropertySubtype1'],
+			'exterior_style' => $propitem['MULTISTYL'],
+			'exterior_view' => $propitem['MULTVIEW'],
+			'subdivision' => $propitem['Subdivision'],
+			'tax_amount' => $propitem['MULTTAXE'],
+			'seller_terms' => $propitem['MULTTERM'],
+			'year_built' => $propitem['YearBuilt'],
+			'zoning' => $propitem['MULTZONI'],
+			'number_units' => $propitem['MULTTONU']
           );
           // END Property_MULT import template
       		break;
@@ -252,7 +395,51 @@ function dataPreProc($proparr,$scenarioset) {
             'features' => bhLookupFeatures($propitem['RESIINTE'],$propitem['RESIEXTE']),
             'agent_display_option' => $bhagentdisplayoption,
             'agent_id' => $bhagentid,
-            'action' => $postaction // give api db status, and pre-existing wp id, if exists
+            'action' => $postaction, // give api db status, and pre-existing wp id, if exists
+			
+			'listing-date' => $propitem['ListingDate'],
+			'county' => $propitem['County'],
+			'area' => $propitem['Area'],
+			'acres' => $propitem['Acres'],
+			'additions' => $propitem['RESIADDI'],
+			'year_built' => $propitem['YearBuilt'],
+			'zoning' => $propitem['RESIZONE'],
+			'included' => $propitem['RESIADDI'] .', '. $propitem['RESIINC1'],
+			'included_two' => $propitem['RESICOMM'],
+			'ccrs' => $propitem['RESICCR'],
+			'construction_type' => $propitem['RESICONS'],
+			'cross_street' => $propitem['CrossStreetAddress'],
+			'electric_company' => $propitem['RESIELEC'],
+			'elem_school' => $propitem['RESIELMS'],
+			'mid_school' => $propitem['RESIJRHI'],
+			'high_school' => $propitem['RESISRHI'],
+			'existing_water' => $propitem['RESIEXIS'],
+			'water_district' => $propitem['RESIWTRD'],
+			'sewer' => $propitem['RESISEWR'],
+			'exterior_features' => $propitem['RESIEXTE'],
+			'exterior_view' => $propitem['RESIVIEW'],
+			'flooring' => $propitem['RESIFLOR'],
+			'foundation' => $propitem['RESIFOUN'],
+			'rooms' => $propitem['RESIROOM'],
+			'heating_cooling' => $propitem['RESIHTCO'],
+			'roofing' => $propitem['RESIROOF'],
+			'hoa' => $propitem['RESIHOA'],
+			'hoa_amount' => $propitem['RESIHOAD'],
+			'hoa_per' => $propitem[''],
+			'interior' => $propitem['RESIINTE'],
+			'irrigation' => $propitem['RESIIRRI'],
+			'irrigation_acres' => $propitem['RESIIRRA'],
+			'levels' => $propitem['RESILEVL'],
+			'lot_number' => $propitem['RESILOTN'],
+			'new_construction' => $propitem['RESINEWC'],
+			'subtype' => $propitem['PropertySubtype1'],
+			'exterior_style' => $propitem['RESISTYL'],
+			'tax_amount' => $propitem['RESITAXS'],
+			'seller_terms' => $propitem['RESITERM'],
+			'seller_disclosure' => $propitem['RESISELD'],
+			'exempt' => $propitem['RESIEXEM'],
+			'shared_interest' => $propitem['RESISHRP'],
+			'subdivision' => $propitem['Subdivision']
           );
           // END Property_RESI import template
       		break;
@@ -415,6 +602,11 @@ function dataPropertyWPinsert($myproperty) {
                       update_post_meta( $property_id, 'REAL_HOMES_property_price_postfix', sanitize_text_field( $myproperty['price-postfix'] ) );
                   }
               }
+			  
+			  // Attach Listing Date Post Meta
+              if( isset ( $myproperty['listing-date'] ) && ! empty ( $myproperty['listing-date'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_listing_date', floatval( $myproperty['listing-date'] ) );
+              }
 
               // Attach Size Post Meta
               if( isset ( $myproperty['size'] ) && ! empty ( $myproperty['size'] ) ) {
@@ -437,7 +629,7 @@ function dataPropertyWPinsert($myproperty) {
 
               // Attach Garages Post Meta
               if( isset ( $myproperty['garages'] ) && ! empty ( $myproperty['garages'] ) ) {
-                  update_post_meta( $property_id, 'REAL_HOMES_property_garage', floatval( $myproperty['garages'] ) );
+                  update_post_meta( $property_id, 'REAL_HOMES_property_garage', sanitize_text_field( $myproperty['garages'] ) );
               }
 
               // Attach Address Post Meta
@@ -546,6 +738,287 @@ function dataPropertyWPinsert($myproperty) {
                       }
                   }
               } // end gallery if
+			  
+			  // Attach County Post Meta
+              if( isset( $myproperty['county'] ) && ( $myproperty['county'] != "" ) ) {
+                  wp_set_object_terms( $property_id, $myproperty['county'], 'county' );
+              }
+			  
+			  // Attach Area Post Meta
+              if( isset( $myproperty['area'] ) && ( $myproperty['area'] != "" ) ) {
+                  wp_set_object_terms( $property_id, $myproperty['area'], 'area' );
+              }
+			  
+			  // Attach Acres Post Meta
+			  if( isset ( $myproperty['acres'] ) && ! empty ( $myproperty['acres'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_acres', sanitize_text_field( $myproperty['acres'] ) );
+              }
+			  
+			  // Attach Additions Post Meta
+			  if( isset ( $myproperty['additions'] ) && ! empty ( $myproperty['additions'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_additions', sanitize_text_field( $myproperty['additions'] ) );
+              }
+			  
+			  // Attach Year Built Post Meta
+			  if( isset ( $myproperty['year_built'] ) && ! empty ( $myproperty['year_built'] ) && ( $myproperty['year_built'] != '0' ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_year_built', sanitize_text_field( $myproperty['year_built'] ) );
+              }
+			  
+			  // Attach Zoning Post Meta
+			  if( isset ( $myproperty['zoning'] ) && ! empty ( $myproperty['zoning'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_zoning', sanitize_text_field( $myproperty['zoning'] ) );
+              }
+			  
+			  // Attach Included Post Meta
+			  if( isset ( $myproperty['included'] ) && ! empty ( $myproperty['included'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_included', sanitize_text_field( $myproperty['included'] ) );
+              }
+			  
+			  // Attach Included 2 Post Meta
+			  if( isset ( $myproperty['included_two'] ) && ! empty ( $myproperty['included_two'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_included2', sanitize_text_field( $myproperty['included_two'] ) );
+              }
+			  
+			  // Attach CCRS Post Meta
+			  if( isset ( $myproperty['ccrs'] ) && ! empty ( $myproperty['ccrs'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_included', sanitize_text_field( $myproperty['ccrs'] ) );
+              }
+			  
+			  // Attach Construction Post Meta
+			  if( isset ( $myproperty['construction_type'] ) && ! empty ( $myproperty['construction_type'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_construction_description', sanitize_text_field( $myproperty['construction_type'] ) );
+              }
+			  
+			  // Attach Cross Street Post Meta
+			  if( isset ( $myproperty['cross_street'] ) && ! empty ( $myproperty['cross_street'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_cross_street', sanitize_text_field( $myproperty['cross_street'] ) );
+              }
+			  
+			  // Attach Electric Company Post Meta
+			  if( isset ( $myproperty['electric_company'] ) && ! empty ( $myproperty['electric_company'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_electric_company', sanitize_text_field( $myproperty['electric_company'] ) );
+              }
+			  
+			  // Attach Elementry School with Newly Created Property
+              if( isset( $myproperty['elem_school'] ) && ( $myproperty['elem_school'] != "" ) ) {
+                  wp_set_object_terms( $property_id, $myproperty['elem_school'], 'elementary_school' );
+              }
+			  
+			  // Attach Middle School with Newly Created Property
+              if( isset( $myproperty['mid_school'] ) && ( $myproperty['mid_school'] != "" ) ) {
+                  wp_set_object_terms( $property_id, $myproperty['mid_school'], 'middle_school' );
+              }
+			  
+			  // Attach High School with Newly Created Property
+              if( isset( $myproperty['high_school'] ) && ( $myproperty['high_school'] != "" ) ) {
+                  wp_set_object_terms( $property_id, $myproperty['high_school'], 'high_school' );
+              }
+			  
+			  // Attach Existing Water Post Meta
+			  if( isset ( $myproperty['existing_water'] ) && ! empty ( $myproperty['existing_water'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_existing_water', sanitize_text_field( $myproperty['existing_water'] ) );
+              }
+			  
+			  // Attach Water District Post Meta
+			  if( isset ( $myproperty['water_district'] ) && ! empty ( $myproperty['water_district'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_water_district', sanitize_text_field( $myproperty['water_district'] ) );
+              }
+			  
+			  // Attach Sewer Post Meta
+			  if( isset ( $myproperty['sewer'] ) && ! empty ( $myproperty['sewer'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_sewer_septic', sanitize_text_field( $myproperty['sewer'] ) );
+              }
+			  
+			  // Attach Exterior Features Post Meta
+			  if( isset ( $myproperty['exterior_features'] ) && ! empty ( $myproperty['exterior_features'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_exterior', sanitize_text_field( $myproperty['exterior_features'] ) );
+              }
+			  
+			  // Attach Exterior View Post Meta
+			  if( isset ( $myproperty['exterior_view'] ) && ! empty ( $myproperty['exterior_view'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_view', sanitize_text_field( $myproperty['exterior_view'] ) );
+              }
+			  
+			  // Attach Heating Post Meta
+			  if( isset ( $myproperty['flooring'] ) && ! empty ( $myproperty['flooring'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_interior_floors', sanitize_text_field( $myproperty['flooring'] ) );
+              }
+			  
+			  // Attach Foundation Post Meta
+			  if( isset ( $myproperty['foundation'] ) && ! empty ( $myproperty['foundation'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_foundation', sanitize_text_field( $myproperty['foundation'] ) );
+              }
+			  
+			  // Attach Rooms Post Meta
+			  if( isset ( $myproperty['rooms'] ) && ! empty ( $myproperty['rooms'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_interior_rooms', sanitize_text_field( $myproperty['rooms'] ) );
+              }
+			  
+			  // Attach Heating/Cooling Post Meta
+			  if( isset ( $myproperty['heating_cooling'] ) && ! empty ( $myproperty['heating_cooling'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_interior_heat_cool', sanitize_text_field( $myproperty['heating_cooling'] ) );
+              }
+			  
+			  // Attach Roofing Post Meta
+			  if( isset ( $myproperty['roofing'] ) && ! empty ( $myproperty['roofing'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_roof', sanitize_text_field( $myproperty['roofing'] ) );
+              }
+			  
+			  // Attach HOA Post Meta
+			  if( isset ( $myproperty['hoa'] ) && ! empty ( $myproperty['hoa'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_hoa', sanitize_text_field( $myproperty['hoa'] ) );
+              }
+			  
+			  // Attach HOA Amount Post Meta
+			  if( isset ( $myproperty['hoa_amount'] ) && ! empty ( $myproperty['hoa_amount'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_hoa_amount', floatval( $myproperty['hoa_amount'] ) );
+              }
+			  
+			  // Attach HOA Per Post Meta
+			  if( isset ( $myproperty['hoa_per'] ) && ! empty ( $myproperty['hoa_per'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_hoa_per', floatval( $myproperty['hoa_per'] ) );
+              }
+			  
+			  // Attach Interior Features Post Meta
+			  if( isset ( $myproperty['interior'] ) && ! empty ( $myproperty['interior'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_interior_interior', sanitize_text_field( $myproperty['interior'] ) );
+              }
+			  
+			  // Attach Irrigation Post Meta
+			  if( isset ( $myproperty['irrigation'] ) && ! empty ( $myproperty['irrigation'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_irrigation', sanitize_text_field( $myproperty['irrigation'] ) );
+              }
+			  
+			  // Attach Irrigation Acres Post Meta
+			  if( isset ( $myproperty['irrigation_acres'] ) && ( $myproperty['irrigation_acres'] != '0.00' ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_irrigated_acres', sanitize_text_field( $myproperty['irrigation_acres'] ) );
+              }
+			  
+			  // Attach Levels Post Meta
+			  if( isset ( $myproperty['levels'] ) &&  ! empty ( $myproperty['levels'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_interior_levels', sanitize_text_field( $myproperty['levels'] ) );
+              }
+			  
+			  // Attach Lot Number Post Meta
+			  if( isset ( $myproperty['lot_number'] ) &&  ! empty ( $myproperty['lot_number'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_lot_number', sanitize_text_field( $myproperty['lot_number'] ) );
+              }
+			  
+			  // Attach New Construction Post Meta
+			  if( isset ( $myproperty['new_construction'] ) &&  ! empty ( $myproperty['new_construction'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_new_construction', sanitize_text_field( $myproperty['new_construction'] ) );
+              }
+			  
+			  // Attach Property Subtype Post Meta
+			  if( isset ( $myproperty['subtype'] ) &&  ! empty ( $myproperty['subtype'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_subtype', sanitize_text_field( $myproperty['subtype'] ) );
+              }
+			  
+			  // Attach Exterior Style Post Meta
+			  if( isset ( $myproperty['exterior_style'] ) &&  ! empty ( $myproperty['exterior_style'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_exterior_style', sanitize_text_field( $myproperty['exterior_style'] ) );
+              }
+			  
+			  // Attach Tax Amount Post Meta
+			  if( isset ( $myproperty['tax_amount'] ) &&  ! empty ( $myproperty['tax_amount'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_tax_amount', sanitize_text_field( $myproperty['tax_amount'] ) );
+              }
+			  
+			  // Attach Tax Amount Post Meta
+			  if( isset ( $myproperty['tax_year'] ) &&  ! empty ( $myproperty['tax_year'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_tax_year', sanitize_text_field( $myproperty['tax_year'] ) );
+              }
+			  
+			  // Attach Seller Terms Post Meta
+			  if( isset ( $myproperty['seller_terms'] ) &&  ! empty ( $myproperty['seller_terms'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_terms', sanitize_text_field( $myproperty['seller_terms'] ) );
+              }
+			  
+			  // Attach Seller Disclosure Post Meta
+			  if( isset ( $myproperty['seller_disclosure'] ) &&  ! empty ( $myproperty['seller_disclosure'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_sellers_disclosure', sanitize_text_field( $myproperty['seller_disclosure'] ) );
+              }
+			  
+			  // Attach Exempt Post Meta
+			  if( isset ( $myproperty['exempt'] ) &&  ! empty ( $myproperty['exempt'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_exempt', sanitize_text_field( $myproperty['exempt'] ) );
+              }
+			  
+			  // Attach Shared Interest Post Meta
+			  if( isset ( $myproperty['shared_interest'] ) &&  ! empty ( $myproperty['shared_interest'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_percent_shared', sanitize_text_field( $myproperty['shared_interest'] ) );
+              }
+			  
+			  // Attach Subdivision Post Meta
+			  if( isset ( $myproperty['subdivision'] ) &&  ! empty ( $myproperty['subdivision'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_subdivision', sanitize_text_field( $myproperty['subdivision'] ) );
+              }
+			  
+			  // Attach Number of Units Post Meta
+			  if( isset ( $myproperty['number_units'] ) &&  ! empty ( $myproperty['number_units'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_number_units', sanitize_text_field( $myproperty['number_units'] ) );
+              }
+			  
+			  // Attach Land Road Type Post Meta
+			  if( isset ( $myproperty['road_type'] ) &&  ! empty ( $myproperty['road_type'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_road_type', sanitize_text_field( $myproperty['road_type'] ) );
+              }
+			  
+			  // Attach Land Utilities Post Meta
+			  if( isset ( $myproperty['utilities'] ) &&  ! empty ( $myproperty['utilities'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_utilities', sanitize_text_field( $myproperty['utilities'] ) );
+              }
+			  
+			  // Attach Land Current Use Post Meta
+			  if( isset ( $myproperty['current_use'] ) &&  ! empty ( $myproperty['current_use'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_current_use', sanitize_text_field( $myproperty['current_use'] ) );
+              }
+			  
+			  // Attach Farm Directions Post Meta
+			  if( isset ( $myproperty['directions'] ) &&  ! empty ( $myproperty['directions'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_directions', sanitize_text_field( $myproperty['directions'] ) );
+              }
+			  
+			  // Attach Farm Sale Exclusions Post Meta
+			  if( isset ( $myproperty['sale_exclusions'] ) &&  ! empty ( $myproperty['sale_exclusions'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_sale_exclusions', sanitize_text_field( $myproperty['sale_exclusions'] ) );
+              }
+			  
+			  // Attach Farm Sale Inclusions Post Meta
+			  if( isset ( $myproperty['sale_inclusions'] ) &&  ! empty ( $myproperty['sale_inclusions'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_sale_inclusions', sanitize_text_field( $myproperty['sale_inclusions'] ) );
+              }
+			  
+			  // Attach Farm Soil Post Meta
+			  if( isset ( $myproperty['soil'] ) &&  ! empty ( $myproperty['soil'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_soil', sanitize_text_field( $myproperty['soil'] ) );
+              }
+			  
+			  // Attach Farm Topography Post Meta
+			  if( isset ( $myproperty['topography'] ) &&  ! empty ( $myproperty['topography'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_topography', sanitize_text_field( $myproperty['topography'] ) );
+              }
+			  
+			  // Attach Commercial Parking Post Meta
+			  if( isset ( $myproperty['parking'] ) &&  ! empty ( $myproperty['parking'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_parking', sanitize_text_field( $myproperty['parking'] ) );
+              }
+			  
+			  // Attach Commercial Office Type Post Meta
+			  if( isset ( $myproperty['office_type'] ) &&  ! empty ( $myproperty['office_type'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_office_type', sanitize_text_field( $myproperty['office_type'] ) );
+              }
+			  
+			  // Attach Business Lease Type Post Meta
+			  if( isset ( $myproperty['lease'] ) &&  ! empty ( $myproperty['lease'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_lease', sanitize_text_field( $myproperty['lease'] ) );
+              }
+			  
+			  // Attach Business Sale Post Meta
+			  if( isset ( $myproperty['business_sale'] ) &&  ! empty ( $myproperty['business_sale'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_business_sale', sanitize_text_field( $myproperty['business_sale'] ) );
+              }
+			  
           }
         }
         echo '</pre>';
@@ -586,5 +1059,3 @@ foreach($scenarios as $scenario) {
 echo '<h1 style="border: 3px solid orange; padding: 3px;">bh_rets to WP import Complete</h1>';
 
 bh_write_to_log('import end: '.date(DATE_RSS),'properties');
-
-?>
