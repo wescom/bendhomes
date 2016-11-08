@@ -147,7 +147,6 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
 	 * @param string $post_id string to pull in needed data
 	 */
 	function properties_updated_timestamp() {
-		date_default_timezone_set('America/Los_Angeles');
 		$resource = 'Property';
 		$class = 'RESI';
 		$rc = $resource.'_'.$class;
@@ -156,6 +155,8 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
 		if(file_exists($fnamerecent)) {
 		  $file_date = file_get_contents($fnamerecent);
 		  $dt = new DateTime("@$file_date");
+		  $tz = new DateTimeZone('America/Los_Angeles');
+		  $dt->setTimezone($tz);
 		  $timestamp = $dt->format('Y-m-d H:i:s');
 		  
 		  //$pulldate = $pulldate - (60*60*7);  // 7 hours off so subtract
