@@ -155,16 +155,16 @@ if ( ! function_exists( 'properties_updated_timestamp' ) ) {
 		if(file_exists($fnamerecent)) {
 		  $file_date = file_get_contents($fnamerecent);
 		  $dt = new DateTime("@$file_date");
-		  $pull_date = date('F j, Y g:ia', $dt);
+		  $timestamp = $dt->format('M j,Y g:ia');
 		  
 		  //$pulldate = $pulldate - (60*60*7);  // 7 hours off so subtract
 		} else {
-		  $pull_date = strtotime('-30 days'); //'-6 hours' '-1 days'
+		  $timestamp = strtotime('-30 days'); //'-6 hours' '-1 days'
 		}
 		
-		$show_date = date('F j, Y g:ia', $pull_date);
+		//$show_date = date('F j, Y g:ia', $pull_date);
 	
-		echo $show_date;
+		echo $timestamp;
 	}
 }
 
