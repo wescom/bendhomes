@@ -609,7 +609,7 @@ function dataPropertyWPinsert($myproperty) {
 			  
 			  // Attach Listing Date Post Meta
               if( isset ( $myproperty['listing-date'] ) && ! empty ( $myproperty['listing-date'] ) ) {
-                  update_post_meta( $property_id, 'REAL_HOMES_property_listing_date', floatval( $myproperty['listing-date'] ) );
+                  update_post_meta( $property_id, 'REAL_HOMES_property_listing_date', sanitize_text_field( $myproperty['listing-date'] ) );
               }
 
               // Attach Size Post Meta
