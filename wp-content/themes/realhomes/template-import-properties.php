@@ -876,7 +876,7 @@ function dataPropertyWPinsert($myproperty) {
 			  
 			  // Attach HOA Per Post Meta
 			  if( isset ( $myproperty['hoa_per'] ) && ! empty ( $myproperty['hoa_per'] ) ) {
-                  update_post_meta( $property_id, 'REAL_HOMES_property_features_hoa_per', floatval( $myproperty['hoa_per'] ) );
+                  update_post_meta( $property_id, 'REAL_HOMES_property_features_hoa_per', sanitize_text_field( $myproperty['hoa_per'] ) );
               }
 			  
 			  // Attach Interior Features Post Meta
