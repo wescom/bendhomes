@@ -1334,6 +1334,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 			<input type=text onkeypress="return validNumber(event)" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
 			<p>Interest Rate<br>
 			<input type=text onkeypress="return validNumber(event)" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> <span class="smpc-error" id="rateError"></span></p>
+			<input type=button onClick="return myPayment()" value=Calculate>
 			</form>
 			<small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
 			</div>
