@@ -578,6 +578,8 @@ function tbb_display_agents( $defaults ) {
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
+	$order = sanitize_text_field( $defaults['order'] );
+	$orderby = sanitize_text_field( $defaults['orderby'] );
 	
 	switch( $defaults['columns'] ) {
 		case "6":
@@ -606,6 +608,18 @@ function tbb_display_agents( $defaults ) {
 			break;
 	}
 	
+	// Enable order A-Z & Z-A select field if url contains ?sort= param
+	$url_sort = '';
+	$url_sort = $_GET['sort'];
+	$sort_order = ($url_sort == 'a-z' || $url_sort == 'z-a') ? 'name' : $order;
+	if( $url_sort == 'a-z' ) {
+		$sort_orderby = 'ASC';
+	} elseif( $url_sort == 'z-a' ) {
+		$sort_orderby = 'DESC';
+	} else {
+		$sort_orderby = $orderby;
+	}
+	
 	// Initialize the query array
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
@@ -613,8 +627,8 @@ function tbb_display_agents( $defaults ) {
 		'posts_per_page' => $defaults['limit'],
 		'paged' 	=> $paged,
 		'has_password' => false,
-		'order' => $defaults['order'],
-		'orderby' => $defaults['orderby']
+		'order' => $sort_order,
+		'orderby' => $sort_orderby
 	);
 	
 	// Adds offset to query
@@ -694,6 +708,16 @@ function tbb_display_agents( $defaults ) {
 			$output .= '</div>';
 			
 		}
+	
+		$current_url = $_SERVER['REQUEST_URI'];
+		$output .= '<div class="order-box clearfix">';
+			$output .= '<label for="sort-order">Order By:</label>';
+			$output .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
+				$output .= '<option value="">Random</option>';
+				$output .= '<option value="'. $current_url .'?sort=a-z">A - Z</option>';
+				$output .= '<option value="'. $current_url .'?sort=z-a">Z - A</option>';
+			$output .= '</select></span>';
+		$output .= '</div>';
 	
 		$count = 1;
 		// Loop through returned agents
