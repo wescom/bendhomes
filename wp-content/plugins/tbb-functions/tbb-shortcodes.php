@@ -710,12 +710,11 @@ function tbb_display_agents( $defaults ) {
 		}
 	
 		$current_url = $_SERVER['REQUEST_URI'];
-		$output .= '<div class="order-box clearfix">';
-			$output .= '<label for="sort-order">Order By:</label>';
+		$output .= '<div class="order-box option-bar small clearfix">';
 			$output .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
-				$output .= '<option value="">Random</option>';
-				$output .= '<option value="'. $current_url .'?sort=a-z">A - Z</option>';
-				$output .= '<option value="'. $current_url .'?sort=z-a">Z - A</option>';
+				$output .= '<option value="">Order: Random</option>';
+				$output .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+				$output .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
 			$output .= '</select></span>';
 		$output .= '</div>';
 	
