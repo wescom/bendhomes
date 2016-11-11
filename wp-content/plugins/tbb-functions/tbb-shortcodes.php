@@ -1265,6 +1265,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 
 	// Calculate mortgage payment and display result
 	document.getElementById('monthlyPayment').innerHTML = 'Your monthly mortgage payment will be ' + '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(2)+'.';
+	document.getElementById('monthly-payment').innerHTML = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(2)+'/mo';
 	document.getElementById('friendlyReminder').style.display = 'block';
 	}
 
@@ -1288,7 +1289,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
 		<div class="mort-calc">
-			<h2>$/mo</h2>
+			<h2 id="monthly-payment"> </h2>
 			
 			<div class="smpc-div">
 			<form name=mortgagecalc method=POST>
