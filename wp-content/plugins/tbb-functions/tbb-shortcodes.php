@@ -1269,8 +1269,8 @@ function tbb_mortgage_calc_form( $atts ) {
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
 		<div class="mort-calc">
-			<h2 id="monthly-payment">$<?php echo number_format($monthly_payment); ?>/mo</h2>
-			<h3>Estimate Your <span>Monthly Payment</span></h3>
+			<h2 id="monthly-payment" class="text-center">$<?php echo number_format($monthly_payment); ?>/mo</h2>
+			<h3 class="text-center">Estimate Your <span>Monthly Payment</span></h3>
 			
 			<div class="form-wrap">
 				<form name="mortgagecalc" method="POST">
@@ -1287,6 +1287,8 @@ function tbb_mortgage_calc_form( $atts ) {
 							</div>
 							<div class="smpc-error" id="downError"></div>
 						</div>
+					</div>
+					<div class="row-fluid">
 						<div class="form-item span6"><label for="years">Amortization</label>
 							<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name="years">
 								<option value="5">5 Years</option>
