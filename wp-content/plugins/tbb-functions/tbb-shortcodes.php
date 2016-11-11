@@ -1277,7 +1277,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 					</p>
 					<p>Down Payment<br>
 						<input id="mort-down-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name=down size=10 value="<?php echo $down_payment; ?>"> 
-						<span id="down-percent"><?php echo $down_percent; ?>%</span> 
+						<span id="down-percent"><?php echo $down_percent; ?>.00%</span> 
 						<span class="smpc-error" id="downError"></span>
 					</p>
 					<p>Amortization<br>
