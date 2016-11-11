@@ -1303,7 +1303,7 @@ function tbb_mortgage_calc_form( $atts ) {
 				</form>
 			</div>
 			
-			<a href="<?php echo $_SERVER['REQUEST_URI']; ?>/explain-calcs=true">Explain Calculations</a> | <a href="<?php echo $_SERVER['REQUEST_URI']; ?>/breakdown=true">View Monthly Payment Breakdown</a>
+			<a href="<?php echo $_SERVER['REQUEST_URI']; ?>explain-calcs=true">Explain Calculations</a> | <a href="<?php echo $_SERVER['REQUEST_URI']; ?>breakdown=true">View Monthly Payment Breakdown</a>
 			
 			<?php
 			$explain = ''; $breakdown = '';
