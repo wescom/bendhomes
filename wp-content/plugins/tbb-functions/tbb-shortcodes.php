@@ -131,6 +131,39 @@ function tbb_evergreen_home_loads() {
 }
 
 
+// Creates mortgage calculator form with prepopulated form data from property
+add_shortcode('MORT_CALC_FORM', 'tbb_mortgage_calc_form');
+function tbb_mortgage_calc_form( $atts ) {
+	$atts = shortcode_atts( array(
+		'id' => '',
+		'class' => ''
+	), $atts );
+	
+	$id = sanitize_text_field( $atts['id'] );
+	$class = sanitize_text_field( $atts['class'] );
+	$price = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
+	$down_payment = $price * .20;
+	
+	ob_start(); ?>
+	
+	<div class="mort-calc-form-wrap <?php echo $class; ?>">
+		<div class="mort-calc">
+			<div class="row-fluid">
+				<div class="span7">
+					<p>Price: <?php echo $price; ?><br>Down Payment: <?php echo $down_payment; ?></p>
+				</div>
+				<div class="span5">
+					<?php echo do_shortcode('[EVERGREEN_LOANS]'); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<?php
+	return ob_get_clean();
+}
+
+
 // Creates map link to open native maps app on mobile devices.
 add_shortcode('MAP_LINK', 'tbb_map_link');
 function tbb_map_link($atts, $content = null) {
