@@ -1291,7 +1291,8 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	var interest = document.mortgagecalc.rate.value / 1200;
 
 	// Calculate mortgage payment and display result
-	document.getElementById('monthly-payment').innerHTML = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(0)+'/mo';
+	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(0)+'/mo';
+	document.getElementById('monthly-payment').innerHTML = monthlypayment;
 	}
 
 	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
