@@ -1204,15 +1204,6 @@ function tbb_mortgage_calc_form_js( $atts ) {
     $year_term               = 30;
     $down_percent            = 20;
 	
-	$down_payment            = $sale_price * ($down_percent / 100);
-	$financing_price         = $sale_price - $down_payment;
-	$month_term              = $year_term * 12;
-	$annual_interest_rate    = $annual_interest_percent / 100;
-	$monthly_interest_rate   = $annual_interest_rate / 12;
-	$monthly_factor          = get_interest_factor($year_term, $monthly_interest_rate);
-	
-	$monthly_payment         = $financing_price / $monthly_factor;
-	
 	function get_interest_factor($year_term, $monthly_interest_rate) {
         global $base_rate;
         
@@ -1225,6 +1216,15 @@ function tbb_mortgage_calc_form_js( $atts ) {
         }
         return $factor;
     }
+	
+	$down_payment            = $sale_price * ($down_percent / 100);
+	$financing_price         = $sale_price - $down_payment;
+	$month_term              = $year_term * 12;
+	$annual_interest_rate    = $annual_interest_percent / 100;
+	$monthly_interest_rate   = $annual_interest_rate / 12;
+	$monthly_factor          = get_interest_factor($year_term, $monthly_interest_rate);
+	
+	$monthly_payment         = $financing_price / $monthly_factor;
 	
 	ob_start(); ?>
 	
