@@ -826,9 +826,9 @@ function tbb_display_agents( $defaults ) {
 }
 
 
-// Creates mortgage calculator form with prepopulated form data from property
-add_shortcode('MORT_CALC_FORM', 'tbb_mortgage_calc_form');
-function tbb_mortgage_calc_form( $atts ) {
+// Creates mortgage calculator form with prepopulated form data from property in PHP
+add_shortcode('MORT_CALC_FORM_PHP', 'tbb_mortgage_calc_form_php');
+function tbb_mortgage_calc_form_php( $atts ) {
 	$atts = shortcode_atts( array(
 		'id' => '',
 		'class' => ''
@@ -931,6 +931,7 @@ function tbb_mortgage_calc_form( $atts ) {
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
 		<div class="mort-calc">
+			<h2>$/mo</h2>
 			
 			<form method="GET" name="information" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 				<input type="hidden" name="form_complete" value="1">
@@ -1178,6 +1179,131 @@ function tbb_mortgage_calc_form( $atts ) {
 				print("</table>\n");
 			}
 			?>
+			
+		</div><!-- end class mort-calc -->
+	</div><!-- end class mort-calc-form-wrap -->
+	
+	<?php
+	return ob_get_clean();
+}
+
+
+// Creates mortgage calculator form with prepopulated form data from property in JS
+add_shortcode('MORT_CALC_FORM_JS', 'tbb_mortgage_calc_form_js');
+function tbb_mortgage_calc_form_js( $atts ) {
+	$atts = shortcode_atts( array(
+		'id' => '',
+		'class' => ''
+	), $atts );
+	
+	$id = sanitize_text_field( $atts['id'] );
+	$class = sanitize_text_field( $atts['class'] );
+	
+	$default_sale_price = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );;
+	
+	ob_start(); ?>
+	
+	<style type="text/css">
+	.smpc-div {
+	background-color: #f9f9f9;
+	border:1px solid #cccccc;
+	padding:15px;
+	}
+
+	.smpc-error {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color:#ca0000;
+	}
+
+	.smpc-monthlypayment {
+	margin-top:15px;
+	font-size:24px;
+	color:#ca0000;
+	}
+
+	.smpc-friendlyreminder {
+	display:none;
+	}	
+	</style>
+	
+	<script type="text/javascript">
+	function validNumber(fieldinput){
+	var unicode=fieldinput.charCode? fieldinput.charCode : fieldinput.keyCode;
+	if ((unicode!=8) && (unicode!=46)) { //if the key isn't the backspace key (which we should allow)
+	if (unicode<48||unicode>57) //if not a number
+	return false; //disable key press
+	}
+	}
+
+	function myPayment()
+	{
+	// Reset error messages to blank
+	document.getElementById('loanError').innerHTML = '';
+	document.getElementById('yearsError').innerHTML = '';
+	document.getElementById('rateError').innerHTML = '';
+
+	// Form validation checking
+	if ((document.mortgagecalc.loan.value === null) || (document.mortgagecalc.loan.value.length === 0) || (isNaN(document.mortgagecalc.loan.value) === true))
+	{
+	document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
+	document.getElementById('loanError').innerHTML = 'Numeric value required. Example: 165000';
+	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true))
+	{
+	document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
+	document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
+	} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true))
+	{
+	document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
+	document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 5.25';
+	} else
+	{
+	// Set variables from form data
+	var loanprincipal = document.mortgagecalc.loan.value;
+	var months = document.mortgagecalc.years.value * 12;
+	var interest = document.mortgagecalc.rate.value / 1200;
+
+	// Calculate mortgage payment and display result
+	document.getElementById('monthlyPayment').innerHTML = 'Your monthly mortgage payment will be ' + '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(2)+'.';
+	document.getElementById('friendlyReminder').style.display = 'block';
+	}
+
+	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
+
+	}
+
+	function myPaymentReset()
+	{
+	// Reset everything to default/null/blank
+	document.getElementById('monthlyPayment').innerHTML = 'Values reset';
+	document.getElementById('friendlyReminder').style.display = 'none';
+	document.getElementById('loanError').innerHTML = '';
+	document.getElementById('yearsError').innerHTML = '';
+	document.getElementById('rateError').innerHTML = '';
+	document.mortgagecalc.loan.value = null;
+	document.mortgagecalc.years.value = null;
+	document.mortgagecalc.rate.value = null;
+	}	
+	</script>
+	
+	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
+		<div class="mort-calc">
+			<h2>$/mo</h2>
+			
+			<div class="smpc-div">
+			<form name=mortgagecalc method=POST>
+			<p>How much will you be borrowing?<br>
+			<input type=text onkeypress="return validNumber(event)" name=loan size=10 value="<?php echo $price*.80; ?>"> <span class="smpc-error" id="loanError"></span></p>
+			<p>What will be the term of this mortgage (in years)?<br>
+			<input type=text onkeypress="return validNumber(event)" name=years size=5 value="30"> <span class="smpc-error" id="yearsError"></span></p>
+			<p>What will be the interest rate?<br>
+			<input type=text onkeypress="return validNumber(event)" name=rate size=5 value="3.5"> <span class="smpc-error" id="rateError"></span></p>
+			<input type=button onClick="return myPayment()" value=Calculate>  <input type=button onClick="return myPaymentReset()" value=Reset>
+			</form>
+			<small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
+			<p class="smpc-monthlypayment" id="monthlyPayment"> </p>
+			<p class="smpc-friendlyreminder" id="friendlyReminder">This is your principal + interest payment, or in other words, what you send to the bank each month. But remember, you will also have to budget for homeowners insurance, real estate taxes, and if you are unable to afford a 20% down payment, Private Mortgage Insurance (PMI). These additional costs could increase your monthly outlay by as much 50%, sometimes more.</p>
+			</div>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
