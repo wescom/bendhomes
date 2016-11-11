@@ -1201,6 +1201,11 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	
 	$price = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );;
 	
+	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
+	$months = 30 * 12;
+	$interest = 3.5 / 1200;
+	$monthly_payment = $price * $interest / (1 -(1/(1+$interest)*$months));
+	
 	ob_start(); ?>
 	
 	<style type="text/css">
@@ -1289,7 +1294,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
 		<div class="mort-calc">
-			<h2 id="monthly-payment"> </h2>
+			<h2 id="monthly-payment">$<?php echo $monthly_payment; ?>/mo</h2>
 			
 			<div class="smpc-div">
 			<form name=mortgagecalc method=POST>
