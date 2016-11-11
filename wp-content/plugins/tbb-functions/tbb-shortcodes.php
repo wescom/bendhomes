@@ -1199,7 +1199,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	$id = sanitize_text_field( $atts['id'] );
 	$class = sanitize_text_field( $atts['class'] );
 	
-	$default_sale_price = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );;
+	$price = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );;
 	
 	ob_start(); ?>
 	
