@@ -1276,10 +1276,12 @@ function tbb_mortgage_calc_form( $atts ) {
 				<form name="mortgagecalc" method="POST">
 				
 					<div class="row-fluid">
-						<div class="form-item span6"><label for="price">Listing Price</label>
+						<div class="form-item span12"><label for="price">Listing Price</label>
 							<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
 							<div class="smpc-error" id="priceError"></div>
 						</div>
+					</div>
+					<div class="row-fluid">
 						<div class="form-item span6"><label for="down">Down Payment</label>
 							<div class="down">
 								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
