@@ -409,15 +409,31 @@ function tbb_custom_posts( $defaults ) {
 	
 		if( $defaults['type'] == 'agent' ) {
 			
-			$current_url = $_SERVER['REQUEST_URI'];
-			$output .= '<div class="order-box clearfix">';
-				$output .= '<label for="sort-order">Order By:</label>';
+			$current_url = home_url() .'/agents/';
+			$output .= '<div class="order-box option-bar small clearfix">';
 				$output .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
-					$output .= '<option value="">Random</option>';
-					$output .= '<option value="'. $current_url .'?sort=a-z">A - Z</option>';
-					$output .= '<option value="'. $current_url .'?sort=z-a">Z - A</option>';
+
+					$option_values = '';
+					if( $url_sort == 'a-z' ) {
+						$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+						$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+						$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+					} elseif( $url_sort == 'z-a' ) {
+						$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+						$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+						$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+					} else {
+						$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+						$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+						$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+					}
+					$output .= $option_values;
+
 				$output .= '</select></span>';
 			$output .= '</div>';
+			$output .= '<script>
+						document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
+						</script>';
 			
 		}
 	
