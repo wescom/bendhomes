@@ -1320,11 +1320,11 @@ function tbb_mortgage_calc_form_js( $atts ) {
 			<p>Listing Price<br>
 			<input type=text onkeypress="return validNumber(event)" name=price size=10 value="<?php echo $sale_price; ?>"> <span class="smpc-error" id="priceError"></span>
 			</p>
-			<p>Amount Financing (in dollars)<br>
+			<p>Down Payment<br>
 			<input type=text onkeypress="return validNumber(event)" name=down size=10 value="<?php echo $down_payment; ?>"> <span class="smpc-error" id="downError"></span></p>
 			<p>Term (in years)?<br>
 			<input type=text onkeypress="return validNumber(event)" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
-			<p>Interest Rate?<br>
+			<p>Interest Rate<br>
 			<input type=text onkeypress="return validNumber(event)" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> <span class="smpc-error" id="rateError"></span></p>
 			<input type=button onClick="return myPayment()" value=Calculate>  <input type=button onClick="return myPaymentReset()" value=Reset>
 			</form>
