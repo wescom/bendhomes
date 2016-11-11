@@ -1303,14 +1303,15 @@ function tbb_mortgage_calc_form( $atts ) {
 				</form>
 			</div>
 			
-			<a href="<?php echo $_SERVER['REQUEST_URI']; ?>explain-calcs=true">Explain Calculations</a> | <a href="<?php echo $_SERVER['REQUEST_URI']; ?>breakdown=true">View Monthly Payment Breakdown</a>
+			<a href="<?php echo $_SERVER['REQUEST_URI']; ?>?explain-calcs=show">Explain Calculations</a> | 
+			<a href="<?php echo $_SERVER['REQUEST_URI']; ?>?payment-breakdown=show">View Monthly Payment Breakdown</a>
 			
 			<?php
 			$explain = ''; $breakdown = '';
 			$explain = $_GET['explain-calcs'];
-			$breakdown = $_GET['breakdown'];
+			$breakdown = $_GET['payment-breakdown'];
 			
-			if( $explain == 'true' ) { ?>
+			if( $explain == 'show' ) { ?>
 			
 				<table cellpadding="5" cellspacing="0" border="1" width="100%">
 					<tr valign="top">
@@ -1365,7 +1366,7 @@ function tbb_mortgage_calc_form( $atts ) {
 				
 			<?php } 
 			
-			if( $breakdown == 'true' ) {
+			if( $breakdown == 'show' ) {
 			
 				// Set some base variables
 				$principal     = $financing_price;
