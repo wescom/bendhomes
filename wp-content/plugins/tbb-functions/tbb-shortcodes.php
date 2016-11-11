@@ -1282,7 +1282,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 					</p>
 					<p>Amortization<br>
 						<!--input id="mort-term-value" type=text onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name=years size=5 value="<?php //echo $year_term; ?>"--> 
-						<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name=years size=5>
+						<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name="years">
 							<option value="5">5 Years</option>
 							<option value="10">10 Years</option>
 							<option value="15">15 Years</option>
