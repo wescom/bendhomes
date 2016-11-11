@@ -1188,9 +1188,11 @@ function tbb_mortgage_calc_form_php( $atts ) {
 }
 
 
-// Creates mortgage calculator form with prepopulated form data from property in JS
-add_shortcode('MORT_CALC_FORM_JS', 'tbb_mortgage_calc_form_js');
-function tbb_mortgage_calc_form_js( $atts ) {
+// Creates mortgage calculator form with prepopulated form data from property
+// http://www.loansanddebts.com/view.php?file=calculator_code.php
+// http://ravingroo.com/decoded/download-simple-mortgage-payment-calculator.php
+add_shortcode('MORT_CALC_FORM', 'tbb_mortgage_calc_form');
+function tbb_mortgage_calc_form( $atts ) {
 	$atts = shortcode_atts( array(
 		'id' => '',
 		'class' => ''
@@ -1300,6 +1302,146 @@ function tbb_mortgage_calc_form_js( $atts ) {
 					<!--input type=button onClick="return myPayment()" value=Calculate-->
 				</form>
 			</div>
+			
+			<a href="<?php echo $_SERVER['REQUEST_URI']; ?>/explain-calcs=true">Explain Calculations</a> | <a href="<?php echo $_SERVER['REQUEST_URI']; ?>/breakdown=true">View Monthly Payment Breakdown</a>
+			
+			<?php
+			$explain = ''; $breakdown = '';
+			$explain = $_GET['explain-calcs'];
+			$breakdown = $_GET['breakdown'];
+			
+			if( $explain == 'true' ) { ?>
+			
+				<table cellpadding="5" cellspacing="0" border="1" width="100%">
+					<tr valign="top">
+						<td><b><?php echo $step++; ?></b></td>
+						<td>
+							The <b>down payment</b>
+							 = The price of the home multiplied by the percentage down divided by 100 (for 5% down becomes 5/100 or 0.05)<br><br>
+							$<?php echo number_format($down_payment,"2",".",","); ?> = $<?php echo number_format($sale_price,"2",".",","); ?> X 
+							(<?php echo $down_percent; ?> / 100)
+						</td>
+					</tr>
+					<tr valign="top">
+						<td><b><?php echo $step++; ?></b></td>
+						<td>
+							The <b>interest rate</b> = The annual interest percentage divided by 100<br><br>
+							<?php echo $annual_interest_rate; ?> = <?php echo $annual_interest_percent; ?>% / 100
+						</td>
+					</tr>
+					<tr valign="top" bgcolor="#cccccc">
+						<td colspan="2">
+							The <b>monthly factor</b> = The result of the following formula:
+						</td>
+					</tr>
+					<tr valign="top">
+						<td><b><?php echo $step++; ?></b></td>
+						<td>
+							The <b>monthly interest rate</b> = The annual interest rate divided by 12 (for the 12 months in a year)<br><br>
+							<?php echo $monthly_interest_rate; ?> = <?php echo $annual_interest_rate; ?> / 12
+						</td>
+					</tr>
+					<tr valign="top">
+						<td><b><?php echo $step++; ?></b></td>
+						<td>
+							The <b>month term</b> of the loan in months = The number of years you've taken the loan out for times 12<br><br>
+							<?php echo $month_term; ?> Months = <?php echo $year_term; ?> Years X 12
+						</td>
+					</tr>
+					<tr valign="top">
+						<td><b><?php echo $step++; ?></b></td>
+						<td>
+							The montly payment is figured out using the following formula:<br>
+							Monthly Payment = <?php echo number_format($financing_price, "2", "", ""); ?> * 
+							(<?php echo number_format($monthly_interest_rate, "4", "", ""); ?> / 
+							(1 - ((1 + <?php echo number_format($monthly_interest_rate, "4", "", ""); ?>)
+							<sup>-(<?php echo $month_term; ?>)</sup>)))
+							<br><br>
+							The amortization breaks down how much of your monthly payment goes towards the bank's interest,
+							 and how much goes into paying off the principal of your loan.
+						</td>
+					</tr>
+				</table>
+				
+			<?php } 
+			
+			if( $breakdown == 'true' ) {
+			
+				// Set some base variables
+				$principal     = $financing_price;
+				$current_month = 1;
+				$current_year  = 1;
+				// This basically, re-figures out the monthly payment, again.
+				$power = -($month_term);
+				$denom = pow((1 + $monthly_interest_rate), $power);
+				$monthly_payment = $principal * ($monthly_interest_rate / (1 - $denom));
+
+				print("<br><br><a name=\"amortization\"></a>Amortization For Monthly Payment: <b>\$" . number_format($monthly_payment, "2", ".", ",") . "</b> over " . $year_term . " years<br>\n");
+				print("<table cellpadding=\"5\" cellspacing=\"0\" bgcolor=\"#eeeeee\" border=\"1\" width=\"100%\">\n");
+
+				// This LEGEND will get reprinted every 12 months
+				$legend  = "\t<tr valign=\"top\" bgcolor=\"#cccccc\">\n";
+				$legend .= "\t\t<td align=\"right\"><b>Month</b></td>\n";
+				$legend .= "\t\t<td align=\"right\"><b>Interest Paid</b></td>\n";
+				$legend .= "\t\t<td align=\"right\"><b>Principal Paid</b></td>\n";
+				$legend .= "\t\t<td align=\"right\"><b>Remaing Balance</b></td>\n";
+				$legend .= "\t</tr>\n";
+
+				echo $legend;
+
+				// Loop through and get the current month's payments for 
+				// the length of the loan 
+				while ($current_month <= $month_term) {        
+					$interest_paid     = $principal * $monthly_interest_rate;
+					$principal_paid    = $monthly_payment - $interest_paid;
+					$remaining_balance = $principal - $principal_paid;
+
+					$this_year_interest_paid  = $this_year_interest_paid + $interest_paid;
+					$this_year_principal_paid = $this_year_principal_paid + $principal_paid;
+
+					print("\t<tr valign=\"top\" bgcolor=\"#eeeeee\">\n");
+					print("\t\t<td align=\"right\">" . $current_month . "</td>\n");
+					print("\t\t<td align=\"right\">\$" . number_format($interest_paid, "2", ".", ",") . "</td>\n");
+					print("\t\t<td align=\"right\">\$" . number_format($principal_paid, "2", ".", ",") . "</td>\n");
+					print("\t\t<td align=\"right\">\$" . number_format($remaining_balance, "2", ".", ",") . "</td>\n");
+					print("\t</tr>\n");
+
+					($current_month % 12) ? $show_legend = FALSE : $show_legend = TRUE;
+
+					if ($show_legend) {
+						print("\t<tr valign=\"top\" bgcolor=\"#ffffcc\">\n");
+						print("\t\t<td colspan=\"4\"><b>Totals for year " . $current_year . "</td>\n");
+						print("\t</tr>\n");
+
+						$total_spent_this_year = $this_year_interest_paid + $this_year_principal_paid;
+						print("\t<tr valign=\"top\" bgcolor=\"#ffffcc\">\n");
+						print("\t\t<td>&nbsp;</td>\n");
+						print("\t\t<td colspan=\"3\">\n");
+						print("\t\t\tYou will spend \$" . number_format($total_spent_this_year, "2", ".", ",") . " on your house in year " . $current_year . "<br>\n");
+						print("\t\t\t\$" . number_format($this_year_interest_paid, "2", ".", ",") . " will go towards INTEREST<br>\n");
+						print("\t\t\t\$" . number_format($this_year_principal_paid, "2", ".", ",") . " will go towards PRINCIPAL<br>\n");
+						print("\t\t</td>\n");
+						print("\t</tr>\n");
+
+						print("\t<tr valign=\"top\" bgcolor=\"#ffffff\">\n");
+						print("\t\t<td colspan=\"4\">&nbsp;<br><br></td>\n");
+						print("\t</tr>\n");
+
+						$current_year++;
+						$this_year_interest_paid  = 0;
+						$this_year_principal_paid = 0;
+
+						if (($current_month + 6) < $month_term) {
+							echo $legend;
+						}
+					}
+
+					$principal = $remaining_balance;
+					$current_month++;
+				}
+				print("</table>\n");
+			
+			} ?>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
