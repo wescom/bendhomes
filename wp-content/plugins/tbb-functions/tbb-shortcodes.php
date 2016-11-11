@@ -1224,124 +1224,81 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	$monthly_interest_rate   = $annual_interest_rate / 12;
 	$monthly_factor          = get_interest_factor($year_term, $monthly_interest_rate);
 	
+	// Monthly payment calculated with php
 	$monthly_payment         = $financing_price / $monthly_factor;
 	
 	ob_start(); ?>
 	
-	<style type="text/css">
-	.smpc-div {
-	background-color: #f9f9f9;
-	border:1px solid #cccccc;
-	padding:15px;
-	}
-
-	.smpc-error {
-	font-size: 10px;
-	color:#ca0000;
-	}
-
-	.smpc-monthlypayment {
-	margin-top:15px;
-	font-size:24px;
-	color:#ca0000;
-	}
-
-	.smpc-friendlyreminder {
-	display:none;
-	}	
-	</style>
-	
 	<script type="text/javascript">
-	function validNumber(fieldinput){
-	var unicode=fieldinput.charCode? fieldinput.charCode : fieldinput.keyCode;
-	if ((unicode!=8) && (unicode!=46)) { //if the key isn't the backspace key (which we should allow)
-	if (unicode<48||unicode>57) //if not a number
-	return false; //disable key press
-	}
-	}
+	function validNumber(fieldinput){ var unicode=fieldinput.charCode? fieldinput.charCode : fieldinput.keyCode;if ((unicode!=8) && (unicode!=46)) { if (unicode<48||unicode>57) return false; } }
 		
-	function addCommas(nStr)
-	{
-	  nStr += '';
-	  x = nStr.split('.');
-	  x1 = x[0];
-	  x2 = x.length > 1 ? '.' + x[1] : '';
-	  var rgx = /(\d+)(\d{3})/;
-	  while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + ',' + '$2');
-	  }
-	  return x1 + x2;
-	}
+	function addCommas(nStr){nStr+='';x=nStr.split('.');x1=x[0];x2=x.length>1?'.'+x[1]:'';var rgx=/(\d+)(\d{3})/;while(rgx.test(x1)){x1=x1.replace(rgx,'$1'+','+'$2');}return x1+x2;}
 		
-	function findpercentdown()
-	{
-	var price = document.mortgagecalc.price.value;
-	var downpayment = document.mortgagecalc.down.value;
-	var percentdown = (downpayment / price) * 100;
-	
-	document.getElementById('down-percent').innerHTML = percentdown.toFixed(2)+'% Down';
-	}
+	function findpercentdown(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var percentdown=(downpayment/price)*100;document.getElementById('down-percent').innerHTML = percentdown.toFixed(2)+'% Down';}
 
-	function myPayment()
-	{
-	// Reset error messages to blank
-	document.getElementById('priceError').innerHTML = '';
-	document.getElementById('downError').innerHTML = '';
-	document.getElementById('yearsError').innerHTML = '';
-	document.getElementById('rateError').innerHTML = '';
+	function myPayment(){
+	document.getElementById('priceError').innerHTML = ''; document.getElementById('downError').innerHTML = ''; document.getElementById('yearsError').innerHTML = ''; document.getElementById('rateError').innerHTML = '';
 
 	// Form validation checking
-	if ((document.mortgagecalc.price.value === null) || (document.mortgagecalc.price.value.length === 0) || (isNaN(document.mortgagecalc.price.value) === true))
-	{
-	document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
+	if ((document.mortgagecalc.price.value === null) || (document.mortgagecalc.price.value.length === 0) || (isNaN(document.mortgagecalc.price.value) === true)){
+		document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
 	}
-	else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true))
-	{
-	document.getElementById('downError').innerHTML = 'Numeric value required. Example: 50000';
-	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true))
-	{
-	document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
-	} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true))
-	{
-	document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 3.25';
-	} else
-	{
+	else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true)){
+		document.getElementById('downError').innerHTML = 'Numeric value required. Example: 50000';
+	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true)){
+		document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
+	} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true)){
+		document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 3.25';
+	} else{
 	// Set variables from form data
 	var price = document.mortgagecalc.price.value;
 	var downpayment = document.mortgagecalc.down.value;
-	//var loanprincipal = document.mortgagecalc.loan.value;
 	var loanprincipal = price - downpayment;
 	var months = document.mortgagecalc.years.value * 12;
 	var interest = document.mortgagecalc.rate.value / 1200;
-
 	// Calculate mortgage payment and display result
 	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(0)+'/mo';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
-
 	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
-
 	}	
 	</script>
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
 		<div class="mort-calc">
 			<h2 id="monthly-payment">$<?php echo number_format($monthly_payment); ?>/mo</h2>
+			<h3>Estimate Your<span>Monthly Payment</span></h3>
 			
 			<div class="smpc-div">
-			<form name=mortgagecalc method=POST>
-			<p>Listing Price<br>
-			<input id="mort-price-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name=price size=10 value="<?php echo $sale_price; ?>"> <span class="smpc-error" id="priceError"></span>
-			</p>
-			<p>Down Payment<br>
-			<input id="mort-down-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name=down size=10 value="<?php echo $down_payment; ?>"> <span id="down-percent"><?php echo $down_percent; ?>%</span> <span class="smpc-error" id="downError"></span></p>
-			<p>Term (in years)?<br>
-			<input id="mort-term-value" type=text onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
-			<p>Interest Rate<br>
-			<input id="mort-interest-value" type=text onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> <span class="smpc-error" id="rateError"></span></p>
-			<!--input type=button onClick="return myPayment()" value=Calculate-->
-			</form>
-			<small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
+				<form name=mortgagecalc method=POST>
+					<p>Listing Price<br>
+						<input id="mort-price-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name=price size=10 value="<?php echo $sale_price; ?>"> 
+						<span class="smpc-error" id="priceError"></span>
+					</p>
+					<p>Down Payment<br>
+						<input id="mort-down-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name=down size=10 value="<?php echo $down_payment; ?>"> 
+						<span id="down-percent"><?php echo $down_percent; ?>%</span> 
+						<span class="smpc-error" id="downError"></span>
+					</p>
+					<p>Amortization<br>
+						<!--input id="mort-term-value" type=text onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name=years size=5 value="<?php //echo $year_term; ?>"--> 
+						<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name=years size=5>
+							<option value="5">5 Years</option>
+							<option value="10">10 Years</option>
+							<option value="15">15 Years</option>
+							<option value="20">20 Years</option>
+							<option value="25">25 Years</option>
+							<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
+							<option value="35">35 Years</option>
+						</select>
+						<span class="smpc-error" id="yearsError"></span>
+					</p>
+					<p>Interest Rate<br>
+						<input id="mort-interest-value" type=text onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> 
+						<span class="smpc-error" id="rateError"></span>
+					</p>
+					<!--input type=button onClick="return myPayment()" value=Calculate-->
+				</form>
 			</div>
 			
 		</div><!-- end class mort-calc -->
