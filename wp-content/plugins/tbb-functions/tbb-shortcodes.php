@@ -1236,7 +1236,6 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	}
 
 	.smpc-error {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	color:#ca0000;
 	}
@@ -1264,15 +1263,15 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	function myPayment()
 	{
 	// Reset error messages to blank
-	document.getElementById('loanError').innerHTML = '';
+	document.getElementById('downError').innerHTML = '';
 	document.getElementById('yearsError').innerHTML = '';
 	document.getElementById('rateError').innerHTML = '';
 
 	// Form validation checking
-	if ((document.mortgagecalc.loan.value === null) || (document.mortgagecalc.loan.value.length === 0) || (isNaN(document.mortgagecalc.loan.value) === true))
+	if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.loan.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true))
 	{
 	document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
-	document.getElementById('loanError').innerHTML = 'Numeric value required. Example: 165000';
+	document.getElementById('downError').innerHTML = 'Numeric value required. Example: 165000';
 	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true))
 	{
 	document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
@@ -1284,14 +1283,15 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	} else
 	{
 	// Set variables from form data
-	var loanprincipal = document.mortgagecalc.loan.value;
+	var price = document.mortgagecalc.price.value;
+	var downpayment = document.mortgagecalc.down.value;
+	//var loanprincipal = document.mortgagecalc.loan.value;
+	var loanprincipal = price - downpayment;
 	var months = document.mortgagecalc.years.value * 12;
 	var interest = document.mortgagecalc.rate.value / 1200;
 
 	// Calculate mortgage payment and display result
-	document.getElementById('monthlyPayment').innerHTML = 'Your monthly mortgage payment will be ' + '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(2)+'.';
 	document.getElementById('monthly-payment').innerHTML = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(2)+'/mo';
-	document.getElementById('friendlyReminder').style.display = 'block';
 	}
 
 	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
@@ -1302,7 +1302,6 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	{
 	// Reset everything to default/null/blank
 	document.getElementById('monthlyPayment').innerHTML = 'Values reset';
-	document.getElementById('friendlyReminder').style.display = 'none';
 	document.getElementById('loanError').innerHTML = '';
 	document.getElementById('yearsError').innerHTML = '';
 	document.getElementById('rateError').innerHTML = '';
@@ -1318,17 +1317,18 @@ function tbb_mortgage_calc_form_js( $atts ) {
 			
 			<div class="smpc-div">
 			<form name=mortgagecalc method=POST>
-			<p>How much will you be borrowing?<br>
-			<input type=text onkeypress="return validNumber(event)" name=loan size=10 value="<?php echo $financing_price; ?>"> <span class="smpc-error" id="loanError"></span></p>
-			<p>What will be the term of this mortgage (in years)?<br>
+			<p>Listing Price<br>
+			<input type=text onkeypress="return validNumber(event)" name=price size=10 value="<?php echo $sale_price; ?>"> <span class="smpc-error" id="priceError"></span>
+			</p>
+			<p>Amount Financing (in dollars)<br>
+			<input type=text onkeypress="return validNumber(event)" name=down size=10 value="<?php echo $down_payment; ?>"> <span class="smpc-error" id="downError"></span></p>
+			<p>Term (in years)?<br>
 			<input type=text onkeypress="return validNumber(event)" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
-			<p>What will be the interest rate?<br>
+			<p>Interest Rate?<br>
 			<input type=text onkeypress="return validNumber(event)" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> <span class="smpc-error" id="rateError"></span></p>
 			<input type=button onClick="return myPayment()" value=Calculate>  <input type=button onClick="return myPaymentReset()" value=Reset>
 			</form>
 			<small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
-			<p class="smpc-monthlypayment" id="monthlyPayment"> </p>
-			<p class="smpc-friendlyreminder" id="friendlyReminder">This is your principal + interest payment, or in other words, what you send to the bank each month. But remember, you will also have to budget for homeowners insurance, real estate taxes, and if you are unable to afford a 20% down payment, Private Mortgage Insurance (PMI). These additional costs could increase your monthly outlay by as much 50%, sometimes more.</p>
 			</div>
 			
 		</div><!-- end class mort-calc -->
