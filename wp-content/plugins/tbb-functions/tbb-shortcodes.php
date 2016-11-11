@@ -1272,39 +1272,45 @@ function tbb_mortgage_calc_form( $atts ) {
 			<h2 id="monthly-payment">$<?php echo number_format($monthly_payment); ?>/mo</h2>
 			<h3>Estimate Your <span>Monthly Payment</span></h3>
 			
-			<div class="smpc-div">
-				<form name=mortgagecalc method=POST>
-					<p>Listing Price<br>
-						<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
-						<span class="smpc-error" id="priceError"></span>
-					</p>
-					<p>Down Payment<br>
-						<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
-						<span id="down-percent"><?php echo $down_percent; ?>.00%</span> 
-						<span class="smpc-error" id="downError"></span>
-					</p>
-					<p>Amortization<br>
-						<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name="years">
-							<option value="5">5 Years</option>
-							<option value="10">10 Years</option>
-							<option value="15">15 Years</option>
-							<option value="20">20 Years</option>
-							<option value="25">25 Years</option>
-							<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
-							<option value="35">35 Years</option>
-						</select>
-						<span class="smpc-error" id="yearsError"></span>
-					</p>
-					<p>Interest Rate<br>
-						<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
-						<span class="smpc-error" id="rateError"></span>
-					</p>
-					<!--input type=button onClick="return myPayment()" value=Calculate-->
+			<div class="form-wrap">
+				<form name="mortgagecalc" method="POST">
+				
+					<div class="row-fluid">
+						<div class="form-item span6"><label for="price">Listing Price</label>
+							<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
+							<div class="smpc-error" id="priceError"></div>
+						</div>
+						<div class="form-item span6"><label for="down">Down Payment</label>
+							<div class="down">
+								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
+								<div id="down-percent"><?php echo $down_percent; ?>.00%</div>
+							</div>
+							<div class="smpc-error" id="downError"></div>
+						</div>
+						<div class="form-item span6"><label for="years">Amortization</label>
+							<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name="years">
+								<option value="5">5 Years</option>
+								<option value="10">10 Years</option>
+								<option value="15">15 Years</option>
+								<option value="20">20 Years</option>
+								<option value="25">25 Years</option>
+								<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
+								<option value="35">35 Years</option>
+							</select>
+							<div class="smpc-error" id="yearsError"></div>
+						</div>
+						<div class="form-item span6"><label for="rate">Interest Rate</label>
+							<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
+							<div class="smpc-error" id="rateError"></div>
+						</div>
+					</div>
+					
+					<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
 				</form>
 			</div>
 			
-			<a href="<?php echo $_SERVER['REQUEST_URI']; ?>?explain-calcs=show">Explain Calculations</a> | 
-			<a href="<?php echo $_SERVER['REQUEST_URI']; ?>?payment-breakdown=show">View Monthly Payment Breakdown</a>
+			<!--a href="<?php //echo $_SERVER['REQUEST_URI']; ?>?explain-calcs=show">Explain Calculations</a> | 
+			<a href="<?php //echo $_SERVER['REQUEST_URI']; ?>?payment-breakdown=show">View Monthly Payment Breakdown</a-->
 			
 			<?php
 			$explain = ''; $breakdown = '';
