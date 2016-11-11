@@ -1276,12 +1276,18 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	function myPayment()
 	{
 	// Reset error messages to blank
+	document.getElementById('priceError').innerHTML = '';
 	document.getElementById('downError').innerHTML = '';
 	document.getElementById('yearsError').innerHTML = '';
 	document.getElementById('rateError').innerHTML = '';
 
 	// Form validation checking
-	if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true))
+	if ((document.mortgagecalc.price.value === null) || (document.mortgagecalc.price.value.length === 0) || (isNaN(document.mortgagecalc.price.value) === true))
+	{
+	document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
+	document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
+	}
+	else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true))
 	{
 	document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
 	document.getElementById('downError').innerHTML = 'Numeric value required. Example: 165000';
@@ -1310,18 +1316,6 @@ function tbb_mortgage_calc_form_js( $atts ) {
 
 	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
 
-	}
-
-	function myPaymentReset()
-	{
-	// Reset everything to default/null/blank
-	document.getElementById('monthlyPayment').innerHTML = 'Values reset';
-	document.getElementById('loanError').innerHTML = '';
-	document.getElementById('yearsError').innerHTML = '';
-	document.getElementById('rateError').innerHTML = '';
-	document.mortgagecalc.loan.value = null;
-	document.mortgagecalc.years.value = null;
-	document.mortgagecalc.rate.value = null;
 	}	
 	</script>
 	
@@ -1340,7 +1334,6 @@ function tbb_mortgage_calc_form_js( $atts ) {
 			<input type=text onkeypress="return validNumber(event)" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
 			<p>Interest Rate<br>
 			<input type=text onkeypress="return validNumber(event)" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> <span class="smpc-error" id="rateError"></span></p>
-			<input type=button onClick="return myPayment()" value=Calculate>  <input type=button onClick="return myPaymentReset()" value=Reset>
 			</form>
 			<small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
 			</div>
