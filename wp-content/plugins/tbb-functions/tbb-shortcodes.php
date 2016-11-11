@@ -1331,15 +1331,15 @@ function tbb_mortgage_calc_form_js( $atts ) {
 			<div class="smpc-div">
 			<form name=mortgagecalc method=POST>
 			<p>Listing Price<br>
-			<input id="mort-price-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown()" onkeyup="this.onchange();" name=price size=10 value="<?php echo $sale_price; ?>"> <span class="smpc-error" id="priceError"></span>
+			<input id="mort-price-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown() return myPayment()" onkeyup="this.onchange();" name=price size=10 value="<?php echo $sale_price; ?>"> <span class="smpc-error" id="priceError"></span>
 			</p>
 			<p>Down Payment<br>
-			<input id="mort-down-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown()" onkeyup="this.onchange();" name=down size=10 value="<?php echo $down_payment; ?>"> <span id="down-percent"><?php echo $down_percent; ?>%</span> <span class="smpc-error" id="downError"></span></p>
+			<input id="mort-down-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown() return myPayment()" onkeyup="this.onchange();" name=down size=10 value="<?php echo $down_payment; ?>"> <span id="down-percent"><?php echo $down_percent; ?>%</span> <span class="smpc-error" id="downError"></span></p>
 			<p>Term (in years)?<br>
-			<input id="mort-term-value" type=text onkeypress="return validNumber(event)" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
+			<input id="mort-term-value" type=text onkeypress="return validNumber(event)" onChange="return myPayment()" onkeyup="this.onchange();" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
 			<p>Interest Rate<br>
-			<input id="mort-interest-value" type=text onkeypress="return validNumber(event)" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> <span class="smpc-error" id="rateError"></span></p>
-			<input type=button onClick="return myPayment()" value=Calculate>
+			<input id="mort-interest-value" type=text onkeypress="return validNumber(event)" onChange="return myPayment()" onkeyup="this.onchange();" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> <span class="smpc-error" id="rateError"></span></p>
+			<!--input type=button onClick="return myPayment()" value=Calculate-->
 			</form>
 			<small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
 			</div>
