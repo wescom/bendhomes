@@ -278,6 +278,8 @@ function tbb_custom_posts( $defaults ) {
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
+	$order = sanitize_text_field( $defaults['order'] );
+	$orderby = sanitize_text_field( $defaults['orderby'] );
 	
 	switch( $defaults['columns'] ) {
 		case "6":
@@ -327,6 +329,18 @@ function tbb_custom_posts( $defaults ) {
 		$cat_slugs = array();
 	}
 	
+	// Enable order A-Z & Z-A select field if url contains ?sort= param
+	$url_sort = '';
+	$url_sort = $_GET['sort'];
+	$sort_order = ($url_sort == 'a-z' || $url_sort == 'z-a') ? 'name' : $order;
+	if( $url_sort == 'a-z' ) {
+		$sort_orderby = 'ASC';
+	} elseif( $url_sort == 'z-a' ) {
+		$sort_orderby = 'DESC';
+	} else {
+		$sort_orderby = $orderby;
+	}
+	
 	// Initialize the query array
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
@@ -334,8 +348,8 @@ function tbb_custom_posts( $defaults ) {
 		'posts_per_page' => $defaults['limit'],
 		'paged' 	=> $paged,
 		'has_password' => false,
-		'order' => $defaults['order'],
-		'orderby' => $defaults['orderby']
+		'order' => $sort_order,
+		'orderby' => $sort_orderby
 	);
 	
 	// Adds list of ids to query
@@ -390,6 +404,36 @@ function tbb_custom_posts( $defaults ) {
 					</form>
 				';
 			$output .= '</div>';
+			
+		}
+	
+		if( $defaults['type'] == 'agent' ) {
+			
+			$current_url = home_url() .'/agents/';
+			$output .= '<div class="order-box option-bar small clearfix">';
+				$output .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
+
+					$option_values = '';
+					if( $url_sort == 'a-z' ) {
+						$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+						$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+						$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+					} elseif( $url_sort == 'z-a' ) {
+						$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+						$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+						$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+					} else {
+						$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+						$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+						$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+					}
+					$output .= $option_values;
+
+				$output .= '</select></span>';
+			$output .= '</div>';
+			$output .= '<script>
+						document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
+						</script>';
 			
 		}
 	
@@ -550,6 +594,8 @@ function tbb_display_agents( $defaults ) {
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
+	$order = sanitize_text_field( $defaults['order'] );
+	$orderby = sanitize_text_field( $defaults['orderby'] );
 	
 	switch( $defaults['columns'] ) {
 		case "6":
@@ -578,6 +624,21 @@ function tbb_display_agents( $defaults ) {
 			break;
 	}
 	
+	// Enable order A-Z & Z-A select field if url contains ?sort= param
+	$url_sort = '';
+	$url_sort = $_GET['sort'];
+	
+	if( $url_sort == 'a-z' ) {
+		$sort_orderby = 'name';
+		$sort_order = 'ASC';
+	} elseif( $url_sort == 'z-a' ) {
+		$sort_orderby = 'name';
+		$sort_order = 'DESC';
+	} else {
+		$sort_orderby = $orderby;
+		$sort_order = $order;
+	}
+	
 	// Initialize the query array
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	$args = array(
@@ -585,8 +646,8 @@ function tbb_display_agents( $defaults ) {
 		'posts_per_page' => $defaults['limit'],
 		'paged' 	=> $paged,
 		'has_password' => false,
-		'order' => $defaults['order'],
-		'orderby' => $defaults['orderby']
+		'orderby' => $sort_orderby,
+		'order' => $sort_order // ASC or DESC
 	);
 	
 	// Adds offset to query
@@ -666,6 +727,32 @@ function tbb_display_agents( $defaults ) {
 			$output .= '</div>';
 			
 		}
+	
+		$current_url = home_url() .'/agents/';
+		$output .= '<div class="order-box option-bar small clearfix">';
+			$output .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
+	
+				$option_values = '';
+				if( $url_sort == 'a-z' ) {
+					$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+					$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+					$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+				} elseif( $url_sort == 'z-a' ) {
+					$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+					$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+					$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+				} else {
+					$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+					$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+					$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+				}
+				$output .= $option_values;
+	
+			$output .= '</select></span>';
+		$output .= '</div>';
+		$output .= '<script>
+					document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
+					</script>';
 	
 		$count = 1;
 		// Loop through returned agents

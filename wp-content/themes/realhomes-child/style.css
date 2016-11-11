@@ -212,6 +212,8 @@ h3.search-results-header { float: left; margin: 0; }
 .post-property .custom-post .extra-meta.property-meta >span:first-child { border-right: 1px solid #ddd; }
 .post-property .without-image .property-price { margin-top: 120px; position: relative; }
 .post-property .without-image .property-price:before { content: "No Image"; font-family: Helvetica, Arial, sans-serif; display: block; position: absolute; bottom: 100%; width: 100%; left: 0; height: 120px; background: #eee; line-height: 120px; text-align: center; color: #bcbcbc; }
+.custom-posts-wrapper.post-agent .selectwrap { float: right; margin-right: 6px; width: 204px; }
+.custom-posts-wrapper.post-agent .selectwrap .selectbox-wrapper ul { margin: 0 !important }
 
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
