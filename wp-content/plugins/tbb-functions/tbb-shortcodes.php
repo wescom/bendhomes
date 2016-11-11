@@ -611,7 +611,11 @@ function tbb_display_agents( $defaults ) {
 	// Enable order A-Z & Z-A select field if url contains ?sort= param
 	$url_sort = '';
 	$url_sort = $_GET['sort'];
-	$sort_order = ($url_sort == 'a-z' || $url_sort == 'z-a') ? 'name' : $order;
+	if($url_sort == 'a-z' || $url_sort == 'z-a') {
+		$sort_order = 'name';
+	} else {
+		$sort_order = $order;
+	}
 	if( $url_sort == 'a-z' ) {
 		$sort_orderby = 'ASC';
 	} elseif( $url_sort == 'z-a' ) {
