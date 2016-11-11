@@ -1259,6 +1259,19 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	return false; //disable key press
 	}
 	}
+		
+	function addCommas(nStr)
+	{
+	  nStr += '';
+	  x = nStr.split('.');
+	  x1 = x[0];
+	  x2 = x.length > 1 ? '.' + x[1] : '';
+	  var rgx = /(\d+)(\d{3})/;
+	  while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	  }
+	  return x1 + x2;
+	}
 
 	function myPayment()
 	{
@@ -1292,7 +1305,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 
 	// Calculate mortgage payment and display result
 	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(0)+'/mo';
-	document.getElementById('monthly-payment').innerHTML = monthlypayment;
+	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
 
 	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
