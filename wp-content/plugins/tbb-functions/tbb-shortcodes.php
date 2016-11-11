@@ -1273,18 +1273,6 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	  return x1 + x2;
 	}
 		
-	//setup before functions
-	var typingTimer;                //timer identifier
-	var doneTypingInterval = 100;  //time in ms (5 seconds)
-
-	//on keyup, start the countdown
-	$('#mort-down-value').keyup(function(){
-		clearTimeout(typingTimer);
-		if ($('#mort-down-value').val()) {
-			typingTimer = setTimeout(findpercentdown, doneTypingInterval);
-		}
-	});
-		
 	function findpercentdown()
 	{
 	var price = document.mortgagecalc.price.value;
@@ -1343,10 +1331,10 @@ function tbb_mortgage_calc_form_js( $atts ) {
 			<div class="smpc-div">
 			<form name=mortgagecalc method=POST>
 			<p>Listing Price<br>
-			<input id="mort-price-value" type=text onkeypress="return validNumber(event)" name=price size=10 value="<?php echo $sale_price; ?>"> <span class="smpc-error" id="priceError"></span>
+			<input id="mort-price-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown()" name=price size=10 value="<?php echo $sale_price; ?>"> <span class="smpc-error" id="priceError"></span>
 			</p>
 			<p>Down Payment<br>
-			<input id="mort-down-value" type=text onkeypress="return validNumber(event)" name=down size=10 value="<?php echo $down_payment; ?>"> <span id="down-percent"><?php echo $down_percent; ?>%</span> <span class="smpc-error" id="downError"></span></p>
+			<input id="mort-down-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown()" name=down size=10 value="<?php echo $down_payment; ?>"> <span id="down-percent"><?php echo $down_percent; ?>%</span> <span class="smpc-error" id="downError"></span></p>
 			<p>Term (in years)?<br>
 			<input id="mort-term-value" type=text onkeypress="return validNumber(event)" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
 			<p>Interest Rate<br>
