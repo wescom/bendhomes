@@ -1263,7 +1263,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	function myPayment()
 	{
 	// Reset error messages to blank
-	document.getElementById('loanError').innerHTML = '';
+	document.getElementById('downError').innerHTML = '';
 	document.getElementById('yearsError').innerHTML = '';
 	document.getElementById('rateError').innerHTML = '';
 
