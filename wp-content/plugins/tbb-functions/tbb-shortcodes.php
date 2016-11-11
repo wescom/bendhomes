@@ -1275,7 +1275,7 @@ function tbb_mortgage_calc_form( $atts ) {
 			<div class="smpc-div">
 				<form name=mortgagecalc method=POST>
 					<p>Listing Price<br>
-						<input id="mort-price-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment(); addCommas();" onkeyup="this.onchange();" name=price size=10 value="<?php echo $sale_price; ?>"> 
+						<input id="mort-price-value" type=text onChange="findpercentdown(); myPayment(); this.addCommas();" onkeyup="this.onchange();" name=price size=10 value="<?php echo $sale_price; ?>"> 
 						<span class="smpc-error" id="priceError"></span>
 					</p>
 					<p>Down Payment<br>
