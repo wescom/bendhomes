@@ -1189,6 +1189,7 @@ function tbb_mortgage_calc_form_php( $atts ) {
 
 
 // Creates mortgage calculator form with prepopulated form data from property
+// References:
 // http://www.loansanddebts.com/view.php?file=calculator_code.php
 // http://ravingroo.com/decoded/download-simple-mortgage-payment-calculator.php
 add_shortcode('MORT_CALC_FORM', 'tbb_mortgage_calc_form');
@@ -1269,12 +1270,12 @@ function tbb_mortgage_calc_form( $atts ) {
 	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
 		<div class="mort-calc">
 			<h2 id="monthly-payment">$<?php echo number_format($monthly_payment); ?>/mo</h2>
-			<h3>Estimate Your<span>Monthly Payment</span></h3>
+			<h3>Estimate Your <span>Monthly Payment</span></h3>
 			
 			<div class="smpc-div">
 				<form name=mortgagecalc method=POST>
 					<p>Listing Price<br>
-						<input id="mort-price-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name=price size=10 value="<?php echo $sale_price; ?>"> 
+						<input id="mort-price-value" type=text onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment(); addCommas();" onkeyup="this.onchange();" name=price size=10 value="<?php echo $sale_price; ?>"> 
 						<span class="smpc-error" id="priceError"></span>
 					</p>
 					<p>Down Payment<br>
@@ -1283,7 +1284,6 @@ function tbb_mortgage_calc_form( $atts ) {
 						<span class="smpc-error" id="downError"></span>
 					</p>
 					<p>Amortization<br>
-						<!--input id="mort-term-value" type=text onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name=years size=5 value="<?php //echo $year_term; ?>"--> 
 						<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name="years">
 							<option value="5">5 Years</option>
 							<option value="10">10 Years</option>
