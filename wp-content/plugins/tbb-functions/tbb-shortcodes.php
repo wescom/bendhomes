@@ -932,7 +932,7 @@ function tbb_mortgage_calc_form( $atts ) {
 	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
 		<div class="mort-calc">
 			
-			<form method="GET" name="information" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+			<form method="GET" name="information" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 				<input type="hidden" name="form_complete" value="1">
 				<table cellpadding="2" cellspacing="0" border="0" width="100%">
 					<tr valign="top">
