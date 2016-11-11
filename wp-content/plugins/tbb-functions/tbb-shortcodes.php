@@ -717,6 +717,9 @@ function tbb_display_agents( $defaults ) {
 				$output .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
 			$output .= '</select></span>';
 		$output .= '</div>';
+		$output .= '<script>
+						document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
+					</script>';
 	
 		$count = 1;
 		// Loop through returned agents
