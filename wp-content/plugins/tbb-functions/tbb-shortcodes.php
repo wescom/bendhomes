@@ -1277,7 +1277,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	{
 	var price = document.mortgagecalc.price.value;
 	var downpayment = document.mortgagecalc.down.value;
-	var percentdown = downpayment / price;
+	var percentdown = (downpayment / price) * 100;
 	
 	document.getElementById('down-percent').innerHTML = percentdown.toFixed(2)+'%';
 	}
