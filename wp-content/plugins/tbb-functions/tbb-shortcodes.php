@@ -1316,7 +1316,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>" style="margin:30px;border:1px solid #d2d2d2; padding:30px;">
 		<div class="mort-calc">
-			<h2 id="monthly-payment">$<?php echo $monthly_payment; ?>/mo</h2>
+			<h2 id="monthly-payment">$<?php echo number_format($monthly_payment, "2", ".", ","); ?>/mo</h2>
 			
 			<div class="smpc-div">
 			<form name=mortgagecalc method=POST>
