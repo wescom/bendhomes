@@ -1263,12 +1263,12 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	function myPayment()
 	{
 	// Reset error messages to blank
-	document.getElementById('downError').innerHTML = '';
+	document.getElementById('loanError').innerHTML = '';
 	document.getElementById('yearsError').innerHTML = '';
 	document.getElementById('rateError').innerHTML = '';
 
 	// Form validation checking
-	if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.loan.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true))
+	if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true))
 	{
 	document.getElementById('monthlyPayment').innerHTML = 'Please enter the missing information.';
 	document.getElementById('downError').innerHTML = 'Numeric value required. Example: 165000';
@@ -1291,7 +1291,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	var interest = document.mortgagecalc.rate.value / 1200;
 
 	// Calculate mortgage payment and display result
-	document.getElementById('monthly-payment').innerHTML = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(2)+'/mo';
+	document.getElementById('monthly-payment').innerHTML = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(0)+'/mo';
 	}
 
 	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
@@ -1330,6 +1330,7 @@ function tbb_mortgage_calc_form_js( $atts ) {
 			</form>
 			<small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
 			</div>
+			<div id="monthlyPayment"></div>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
