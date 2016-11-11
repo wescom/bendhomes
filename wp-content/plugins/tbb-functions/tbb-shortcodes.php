@@ -611,17 +611,16 @@ function tbb_display_agents( $defaults ) {
 	// Enable order A-Z & Z-A select field if url contains ?sort= param
 	$url_sort = '';
 	$url_sort = $_GET['sort'];
-	if($url_sort == 'a-z' || $url_sort == 'z-a') {
-		$sort_order = 'name';
-	} else {
-		$sort_order = $order;
-	}
+	
 	if( $url_sort == 'a-z' ) {
-		$sort_orderby = 'ASC';
+		$sort_orderby = 'name';
+		$sort_order = 'ASC';
 	} elseif( $url_sort == 'z-a' ) {
-		$sort_orderby = 'DESC';
+		$sort_orderby = 'name';
+		$sort_order = 'DESC';
 	} else {
 		$sort_orderby = $orderby;
+		$sort_order = $order;
 	}
 	
 	// Initialize the query array
@@ -631,8 +630,8 @@ function tbb_display_agents( $defaults ) {
 		'posts_per_page' => $defaults['limit'],
 		'paged' 	=> $paged,
 		'has_password' => false,
-		'order' => $sort_order,
-		'orderby' => $sort_orderby
+		'orderby' => $sort_orderby,
+		'order' => $sort_order // ASC or DESC
 	);
 	
 	// Adds offset to query
