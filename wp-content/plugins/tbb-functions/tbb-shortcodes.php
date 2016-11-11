@@ -1199,12 +1199,34 @@ function tbb_mortgage_calc_form_js( $atts ) {
 	$id = sanitize_text_field( $atts['id'] );
 	$class = sanitize_text_field( $atts['class'] );
 	
-	$price = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );;
+	$sale_price              = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
+    $annual_interest_percent = 3.5;
+    $year_term               = 30;
+    $down_percent            = 20;
 	
-	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
-	$months = 30 * 12;
-	$interest = 3.5 / 1200;
-	$monthly_payment = $price * $interest / (1 -(1/(1+$interest)*$months));
+	$financing_price         = $sale_price - $down_payment;
+	$month_term              = $year_term * 12;
+	$annual_interest_rate    = $annual_interest_percent / 100;
+	$monthly_interest_rate   = $annual_interest_rate / 12;
+	$down_payment            = $sale_price * ($down_percent / 100);
+	
+	function get_interest_factor($year_term, $monthly_interest_rate) {
+        global $base_rate;
+        
+        $factor      = 0;
+        $base_rate   = 1 + $monthly_interest_rate;
+        $denominator = $base_rate;
+        for ($i=0; $i < ($year_term * 12); $i++) {
+            $factor += (1 / $denominator);
+            $denominator *= $base_rate;
+        }
+        return $factor;
+    }
+	
+	$monthly_factor          = get_interest_factor($year_term, $monthly_interest_rate);
+	$monthly_payment         = $financing_price / $monthly_factor;
+	
+	
 	
 	ob_start(); ?>
 	
