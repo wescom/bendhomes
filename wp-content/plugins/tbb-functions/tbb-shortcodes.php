@@ -1323,11 +1323,11 @@ function tbb_mortgage_calc_form_js( $atts ) {
 			<div class="smpc-div">
 			<form name=mortgagecalc method=POST>
 			<p>How much will you be borrowing?<br>
-			<input type=text onkeypress="return validNumber(event)" name=loan size=10 value="<?php echo $price*.80; ?>"> <span class="smpc-error" id="loanError"></span></p>
+			<input type=text onkeypress="return validNumber(event)" name=loan size=10 value="<?php echo $financing_price; ?>"> <span class="smpc-error" id="loanError"></span></p>
 			<p>What will be the term of this mortgage (in years)?<br>
-			<input type=text onkeypress="return validNumber(event)" name=years size=5 value="30"> <span class="smpc-error" id="yearsError"></span></p>
+			<input type=text onkeypress="return validNumber(event)" name=years size=5 value="<?php echo $year_term; ?>"> <span class="smpc-error" id="yearsError"></span></p>
 			<p>What will be the interest rate?<br>
-			<input type=text onkeypress="return validNumber(event)" name=rate size=5 value="3.5"> <span class="smpc-error" id="rateError"></span></p>
+			<input type=text onkeypress="return validNumber(event)" name=rate size=5 value="<?php echo $annual_interest_percent; ?>"> <span class="smpc-error" id="rateError"></span></p>
 			<input type=button onClick="return myPayment()" value=Calculate>  <input type=button onClick="return myPaymentReset()" value=Reset>
 			</form>
 			<small>Instructions: Enter numbers and decimal points. No commas or other characters.</small>
