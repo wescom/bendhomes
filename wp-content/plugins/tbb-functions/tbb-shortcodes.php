@@ -1282,7 +1282,7 @@ function tbb_mortgage_calc_form( $atts ) {
 						</div>
 					</div>
 					<div class="row-fluid">
-						<div class="form-item span6"><label for="down">Down Payment</label>
+						<div class="form-item span12"><label for="down">Down Payment</label>
 							<div class="down">
 								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
 								<div id="down-percent"><?php echo $down_percent; ?>.00%</div>
@@ -1292,15 +1292,17 @@ function tbb_mortgage_calc_form( $atts ) {
 					</div>
 					<div class="row-fluid">
 						<div class="form-item span6"><label for="years">Amortization</label>
-							<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name="years">
-								<option value="5">5 Years</option>
-								<option value="10">10 Years</option>
-								<option value="15">15 Years</option>
-								<option value="20">20 Years</option>
-								<option value="25">25 Years</option>
-								<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
-								<option value="35">35 Years</option>
-							</select>
+							<span class="selectwrap">
+								<select id="mort-term-value" onChange="myPayment();" onkeyup="this.onchange();" name="years">
+									<option value="5">5 Years</option>
+									<option value="10">10 Years</option>
+									<option value="15">15 Years</option>
+									<option value="20">20 Years</option>
+									<option value="25">25 Years</option>
+									<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
+									<option value="35">35 Years</option>
+								</select>
+							</span>
 							<div class="smpc-error" id="yearsError"></div>
 						</div>
 						<div class="form-item span6"><label for="rate">Interest Rate</label>
