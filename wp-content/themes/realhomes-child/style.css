@@ -40,8 +40,8 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 #property-slider-two.flexslider .slides li img { width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
 
 .mort-calc-form-wrap .form-item { margin-bottom: 10px; }
-.mort-calc-form-wrap .down { position: relative; }
-.mort-calc-form-wrap .down-percent { position: absolute; top: 14px; font-size: 18px; right: 15px; font-weight: 600; letter-spacing: .05em; }
+.mort-calc-form-wrap .form-item .down { position: relative; }
+.mort-calc-form-wrap .form-item #down-percent { position: absolute; top: 14px; font-size: 18px; right: 15px; font-weight: 600; letter-spacing: .05em; }
 .mort-calc-form-wrap input[type="text"], .mort-calc-form-wrap select { color: #666; width: 100%; padding: 10px 0; text-indent: 15px; letter-spacing: .05em; font-size: 20px; font-weight: 300; }
 .mort-calc-form-wrap label { font-size: 16px; font-weight: 300; }
 
