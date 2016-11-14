@@ -928,17 +928,17 @@ function tbb_mortgage_calc_form( $atts ) {
 				<form name="mortgagecalc" method="POST">
 				
 					<div class="row-fluid">
-						<div class="form-item span12"><label for="price">Listing Price</label>
+						<div class="form-item span12 price-item dollar"><label for="price" class="text-center">Listing Price</label>
 							<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
 							<div class="smpc-error" id="priceError"></div>
 						</div>
 					</div>
 					<div class="row-fluid">
-						<div class="form-item span6"><label for="rate">Interest Rate</label>
+						<div class="form-item span6 interest-item percent"><label for="rate">Interest Rate</label>
 							<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
 							<div class="smpc-error" id="rateError"></div>
 						</div>
-						<div class="form-item span6"><label for="years">Loan Type</label>
+						<div class="form-item span6 term-item time"><label for="years">Loan Type</label>
 							<span class="selectwrap">
 								<select id="mort-term-value" class="search-select" onChange="myPayment();" onkeyup="this.onchange();" name="years">
 									<option value="5">5 Years</option>
@@ -954,14 +954,14 @@ function tbb_mortgage_calc_form( $atts ) {
 						</div>
 					</div>
 					<div class="row-fluid">
-						<div class="form-item span6"><label for="down">Down Payment</label>
+						<div class="form-item span6 down-item dollar"><label for="down">Down Payment</label>
 							<div class="down">
 								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
 								<div id="down-percent"><?php echo $down_percent; ?>.00%</div>
 							</div>
 							<div class="smpc-error" id="downError"></div>
 						</div>
-						<div class="form-item span6"><label for="taxes">Est. Tax &amp; Insurance</label>
+						<div class="form-item span6 taxes-item percent"><label for="taxes">Est. Tax &amp; Insurance</label>
 							<div class="taxes">
 								<input id="mort-taxes-value" type="text" onkeypress="return validNumber(event)" onChange="findtaxpermonth(); myPayment();" onkeyup="this.onchange();" name="taxes" value="<?php echo $tax_insurance; ?>"> 
 								<div id="taxes-per">($<?php echo round($tax_ins_per_month); ?>/mo.)</div>
