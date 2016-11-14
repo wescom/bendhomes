@@ -916,7 +916,7 @@ function tbb_mortgage_calc_form( $atts ) {
 	<div class="mort-calc-form-wrap <?php echo $class; ?>">
 		<div class="mort-calc">
 			
-			<h3 class="text-center">Estimated<span>Monthly Payment</span></h3>
+			<h3 class="text-center">Monthly Payment Estimator</h3>
 			<h2 id="monthly-payment" class="text-center">
 				$<?php echo number_format($monthly_payment); ?>/mo
 			</h2>
