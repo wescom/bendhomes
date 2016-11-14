@@ -881,21 +881,23 @@ function tbb_mortgage_calc_form( $atts ) {
 	function findpercentdown(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var percentdown=(downpayment/price)*100;document.getElementById('down-percent').innerHTML = percentdown.toFixed(2)+'% Down';}
 		
 	function findtaxpermonth(){var price=document.mortgagecalc.price.value;var taxpercent=document.mortgagecalc.taxes.value;var taxpermonth=(price/12)*(taxpercent/100);document.getElementById('taxes-per').innerHTML = '($'+taxpermonth.toFixed(0)+'/mo)';}
+		
+	function findloadamount(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var loanamount=price-downpayment;document.getElementById('loan-amt').innerHTML = '$'+addCommas(loanamount);}
 
 	function myPayment(){
 	document.getElementById('priceError').innerHTML = ''; document.getElementById('downError').innerHTML = ''; document.getElementById('yearsError').innerHTML = ''; document.getElementById('rateError').innerHTML = '';
 
 	// Form validation checking
 	if ((document.mortgagecalc.price.value === null) || (document.mortgagecalc.price.value.length === 0) || (isNaN(document.mortgagecalc.price.value) === true)){
-		document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
+		//document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
 	} else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true)){
-		document.getElementById('downError').innerHTML = 'Numeric value required. Example: 50000';
+		//document.getElementById('downError').innerHTML = 'Numeric value required. Example: 50000';
 	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true)){
-		document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
+		//document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
 	} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true)){
-		document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 3.25';
+		//document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 3.25';
 	} else if ((document.mortgagecalc.taxes.value === null) || (document.mortgagecalc.taxes.value.length === 0) || (isNaN(document.mortgagecalc.taxes.value) === true)){
-		document.getElementById('taxesError').innerHTML = 'Numeric value required. Example: 1.5';
+		//document.getElementById('taxesError').innerHTML = 'Numeric value required. Example: 1.5';
 	} else{
 	// Set variables from form data
 	var price = document.mortgagecalc.price.value;
@@ -914,8 +916,7 @@ function tbb_mortgage_calc_form( $atts ) {
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>">
 		<div class="mort-calc">
-			<h2 id="monthly-payment" class="text-center">$<?php echo number_format($monthly_payment); ?>/mo</h2>
-			<h3 class="text-center">Estimate Your <span>Monthly Payment</span></h3>
+			<h3 class="text-center">Monthly Payment Estimator</h3>
 			
 			<div class="form-wrap">
 				<form name="mortgagecalc" method="POST">
@@ -966,6 +967,12 @@ function tbb_mortgage_calc_form( $atts ) {
 					<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
 				</form>
 			</div>
+			
+			<h3>Estimated Monthly Payment</h3>
+			<h2 id="monthly-payment" class="text-center">
+				$<?php echo number_format($monthly_payment); ?>/mo
+			</h2>
+			<small>Loan Amount: <strong id="load-amt">$<?php echo number_format($financing_price); ?></strong></small>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
