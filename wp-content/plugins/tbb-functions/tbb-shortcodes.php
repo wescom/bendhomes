@@ -844,7 +844,7 @@ function tbb_mortgage_calc_form( $atts ) {
     $annual_interest_percent = 3.5; // percent
     $year_term               = 30;  // years
     $down_percent            = 20;  // percent
-	$tax_insurance			 = 1.3; // percent
+	$tax_insurance			 = 1.3;
 	
 	function get_interest_factor($year_term, $monthly_interest_rate) {
         global $base_rate;
