@@ -3,10 +3,10 @@ get_header();
 ?>
 
         <!-- Page Head -->
-        <?php get_template_part("banners/blog_page_banner"); ?>
+        <?php //get_template_part("banners/blog_page_banner"); ?>
 
         <!-- Content -->
-        <div class="container contents single">
+        <div class="container contents single" style="margin-top:30px">
             <div class="row">
                 <div class="span9 main-wrap">
                     <!-- Main Content -->
@@ -24,7 +24,7 @@ get_header();
                                     ?>
                                     <article  <?php post_class(); ?>>
                                             <header>
-                                                <h3 class="post-title"><?php the_title(); ?></h3>
+                                                <h1 class="post-title"><?php the_title(); ?></h1>
                                                 <div class="post-meta <?php echo $format; ?>-meta thumb-<?php echo has_post_thumbnail()?'exist':'not-exist'; ?>">
                                                     <span> <?php _e('Posted on', 'framework'); ?>  <span class="date"> <?php the_time('F d, Y'); ?> </span></span>
                                                     <span> <?php _e('by', 'framework'); ?> <?php the_author(); ?> <?php _e('in', 'framework'); ?>  <?php the_category(', '); ?>  </span>
