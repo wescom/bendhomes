@@ -907,7 +907,7 @@ function tbb_mortgage_calc_form( $atts ) {
 	var interest = document.mortgagecalc.rate.value / 1200;
 	var taxpermonth = (price / 12) * (document.mortgagecalc.taxes.value / 100);
 	// Calculate mortgage payment and display result
-	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+'/mo';
+	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+' per month';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
 	}	
@@ -918,7 +918,7 @@ function tbb_mortgage_calc_form( $atts ) {
 			
 			<h3 class="text-center">Monthly Payment Estimator</h3>
 			<h2 id="monthly-payment" class="text-center">
-				$<?php echo number_format($monthly_payment); ?>/mo
+				$<?php echo number_format($monthly_payment); ?> per month
 			</h2>
 			<div class="text-center">
 				<small>Loan Amount: <strong id="loan-amt">$<?php echo number_format($financing_price); ?></strong></small>
