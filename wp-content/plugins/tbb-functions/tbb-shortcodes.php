@@ -882,7 +882,7 @@ function tbb_mortgage_calc_form( $atts ) {
 		
 	function findtaxpermonth(){var price=document.mortgagecalc.price.value;var taxpercent=document.mortgagecalc.taxes.value;var taxpermonth=(price/12)*(taxpercent/100);document.getElementById('taxes-per').innerHTML = '($'+taxpermonth.toFixed(0)+'/mo)';}
 		
-	function findloadamount(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var loanamount=price-downpayment;document.getElementById('loan-amt').innerHTML = '$'+addCommas(loanamount);}
+	function findloadamount(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var loanamount=price-downpayment;document.getElementById('loan-amt').innerHTML = '$'+addCommas(loanamount).toFixed(0);}
 
 	function myPayment(){
 	document.getElementById('priceError').innerHTML = ''; document.getElementById('downError').innerHTML = ''; document.getElementById('yearsError').innerHTML = ''; document.getElementById('rateError').innerHTML = '';
@@ -910,19 +910,18 @@ function tbb_mortgage_calc_form( $atts ) {
 	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+'/mo';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
-	findloadamount();
 	}	
 	</script>
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>">
 		<div class="mort-calc">
 			
-			<h3>Estimated<span>Monthly Payment</span></h3>
+			<h3 class="text-center">Estimated<span>Monthly Payment</span></h3>
 			<h2 id="monthly-payment" class="text-center">
 				$<?php echo number_format($monthly_payment); ?>/mo
 			</h2>
 			<div class="text-center">
-				<small>Loan Amount: <strong id="load-amt">$<?php echo number_format($financing_price); ?></strong></small>
+				<small>Loan Amount: <strong id="loan-amt">$<?php echo number_format($financing_price); ?></strong></small>
 			</div>
 			
 			<div class="form-wrap">
