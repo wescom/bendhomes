@@ -957,7 +957,7 @@ function tbb_mortgage_calc_form( $atts ) {
 						<div class="form-item span6"><label for="taxes">Est. Tax &amp; Insurance</label>
 							<div class="taxes">
 								<input id="mort-taxes-value" type="text" onkeypress="return validNumber(event)" onChange="findtaxpermonth(); myPayment();" onkeyup="this.onchange();" name="taxes" value="<?php echo $tax_insurance; ?>"> 
-								<div id="taxes-per">(<?php echo $tax_ins_per_month; ?>/mo)</div>
+								<div id="taxes-per">(<?php echo round($tax_ins_per_month); ?>/mo)</div>
 							</div>
 							<div class="smpc-error" id="taxesError"></div>
 						</div>
