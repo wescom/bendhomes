@@ -841,9 +841,10 @@ function tbb_mortgage_calc_form( $atts ) {
 	$class = sanitize_text_field( $atts['class'] );
 	
 	$sale_price              = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
-    $annual_interest_percent = 3.5;
-    $year_term               = 30;
-    $down_percent            = 20;
+    $annual_interest_percent = 3.5; // percent
+    $year_term               = 30;  // years
+    $down_percent            = 20;  // percent
+	$tax_insurance			 = 1.3; // percent
 	
 	function get_interest_factor($year_term, $monthly_interest_rate) {
         global $base_rate;
@@ -864,9 +865,11 @@ function tbb_mortgage_calc_form( $atts ) {
 	$annual_interest_rate    = $annual_interest_percent / 100;
 	$monthly_interest_rate   = $annual_interest_rate / 12;
 	$monthly_factor          = get_interest_factor($year_term, $monthly_interest_rate);
+	$tax_insurance_rate		 = $tax_insurance / 100;
+	$tax_ins_per_month			 = ($sale_price / 12) * $tax_insurance_rate;
 	
-	// Monthly payment calculated with php
-	$monthly_payment         = $financing_price / $monthly_factor;
+	// Monthly payment calculated with php including estimated tax + insurance
+	$monthly_payment         = ($financing_price / $monthly_factor) + $tax_ins_per_month;
 	
 	ob_start(); ?>
 	
@@ -876,6 +879,8 @@ function tbb_mortgage_calc_form( $atts ) {
 	function addCommas(nStr){nStr+='';x=nStr.split('.');x1=x[0];x2=x.length>1?'.'+x[1]:'';var rgx=/(\d+)(\d{3})/;while(rgx.test(x1)){x1=x1.replace(rgx,'$1'+','+'$2');}return x1+x2;}
 		
 	function findpercentdown(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var percentdown=(downpayment/price)*100;document.getElementById('down-percent').innerHTML = percentdown.toFixed(2)+'% Down';}
+		
+	function findtaxpermonth(){var price=document.mortgagecalc.price.value;var taxpercent=document.mortgagecalc.taxes.value;var taxpermonth=(price/12)*(taxpercent/100);document.getElementById('taxes-per').innerHTML = '($'+taxpermonth.toFixed(0)+'/mo)';}
 
 	function myPayment(){
 	document.getElementById('priceError').innerHTML = ''; document.getElementById('downError').innerHTML = ''; document.getElementById('yearsError').innerHTML = ''; document.getElementById('rateError').innerHTML = '';
@@ -883,13 +888,14 @@ function tbb_mortgage_calc_form( $atts ) {
 	// Form validation checking
 	if ((document.mortgagecalc.price.value === null) || (document.mortgagecalc.price.value.length === 0) || (isNaN(document.mortgagecalc.price.value) === true)){
 		document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
-	}
-	else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true)){
+	} else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true)){
 		document.getElementById('downError').innerHTML = 'Numeric value required. Example: 50000';
 	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true)){
 		document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
 	} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true)){
 		document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 3.25';
+	} else if ((document.mortgagecalc.taxes.value === null) || (document.mortgagecalc.taxes.value.length === 0) || (isNaN(document.mortgagecalc.taxes.value) === true)){
+		document.getElementById('taxesError').innerHTML = 'Numeric value required. Example: 1.5';
 	} else{
 	// Set variables from form data
 	var price = document.mortgagecalc.price.value;
@@ -897,8 +903,9 @@ function tbb_mortgage_calc_form( $atts ) {
 	var loanprincipal = price - downpayment;
 	var months = document.mortgagecalc.years.value * 12;
 	var interest = document.mortgagecalc.rate.value / 1200;
+	var taxpermonth = (price / 12) * (document.mortgagecalc.taxes.value / 100);
 	// Calculate mortgage payment and display result
-	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months)))).toFixed(0)+'/mo';
+	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+'/mo';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
 	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
@@ -920,16 +927,11 @@ function tbb_mortgage_calc_form( $atts ) {
 						</div>
 					</div>
 					<div class="row-fluid">
-						<div class="form-item span12"><label for="down">Down Payment</label>
-							<div class="down">
-								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
-								<div id="down-percent"><?php echo $down_percent; ?>.00%</div>
-							</div>
-							<div class="smpc-error" id="downError"></div>
+						<div class="form-item span6"><label for="rate">Interest Rate</label>
+							<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
+							<div class="smpc-error" id="rateError"></div>
 						</div>
-					</div>
-					<div class="row-fluid">
-						<div class="form-item span6"><label for="years">Amortization</label>
+						<div class="form-item span6"><label for="years">Loan Type</label>
 							<span class="selectwrap">
 								<select id="mort-term-value" class="search-select" onChange="myPayment();" onkeyup="this.onchange();" name="years">
 									<option value="5">5 Years</option>
@@ -943,156 +945,27 @@ function tbb_mortgage_calc_form( $atts ) {
 							</span>
 							<div class="smpc-error" id="yearsError"></div>
 						</div>
-						<div class="form-item span6"><label for="rate">Interest Rate</label>
-							<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
-							<div class="smpc-error" id="rateError"></div>
+					</div>
+					<div class="row-fluid">
+						<div class="form-item span6"><label for="down">Down Payment</label>
+							<div class="down">
+								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
+								<div id="down-percent"><?php echo $down_percent; ?>.00%</div>
+							</div>
+							<div class="smpc-error" id="downError"></div>
+						</div>
+						<div class="form-item span6"><label for="taxes">Est. Tax &amp; Insurance</label>
+							<div class="taxes">
+								<input id="mort-taxes-value" type="text" onkeypress="return validNumber(event)" onChange="findtaxpermonth(); myPayment();" onkeyup="this.onchange();" name="taxes" value="<?php echo $tax_insurance; ?>"> 
+								<div id="taxes-per">($300/mo)</div>
+							</div>
+							<div class="smpc-error" id="taxesError"></div>
 						</div>
 					</div>
 					
 					<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
 				</form>
 			</div>
-			
-			<!--a href="<?php //echo $_SERVER['REQUEST_URI']; ?>?explain-calcs=show">Explain Calculations</a> | 
-			<a href="<?php //echo $_SERVER['REQUEST_URI']; ?>?payment-breakdown=show">View Monthly Payment Breakdown</a-->
-			
-			<?php
-			$explain = ''; $breakdown = '';
-			$explain = $_GET['explain-calcs'];
-			$breakdown = $_GET['payment-breakdown'];
-			
-			if( $explain == 'show' ) { ?>
-			
-				<table cellpadding="5" cellspacing="0" border="1" width="100%">
-					<tr valign="top">
-						<td><b><?php echo $step++; ?></b></td>
-						<td>
-							The <b>down payment</b>
-							 = The price of the home multiplied by the percentage down divided by 100 (for 5% down becomes 5/100 or 0.05)<br><br>
-							$<?php echo number_format($down_payment,"2",".",","); ?> = $<?php echo number_format($sale_price,"2",".",","); ?> X 
-							(<?php echo $down_percent; ?> / 100)
-						</td>
-					</tr>
-					<tr valign="top">
-						<td><b><?php echo $step++; ?></b></td>
-						<td>
-							The <b>interest rate</b> = The annual interest percentage divided by 100<br><br>
-							<?php echo $annual_interest_rate; ?> = <?php echo $annual_interest_percent; ?>% / 100
-						</td>
-					</tr>
-					<tr valign="top" bgcolor="#cccccc">
-						<td colspan="2">
-							The <b>monthly factor</b> = The result of the following formula:
-						</td>
-					</tr>
-					<tr valign="top">
-						<td><b><?php echo $step++; ?></b></td>
-						<td>
-							The <b>monthly interest rate</b> = The annual interest rate divided by 12 (for the 12 months in a year)<br><br>
-							<?php echo $monthly_interest_rate; ?> = <?php echo $annual_interest_rate; ?> / 12
-						</td>
-					</tr>
-					<tr valign="top">
-						<td><b><?php echo $step++; ?></b></td>
-						<td>
-							The <b>month term</b> of the loan in months = The number of years you've taken the loan out for times 12<br><br>
-							<?php echo $month_term; ?> Months = <?php echo $year_term; ?> Years X 12
-						</td>
-					</tr>
-					<tr valign="top">
-						<td><b><?php echo $step++; ?></b></td>
-						<td>
-							The montly payment is figured out using the following formula:<br>
-							Monthly Payment = <?php echo number_format($financing_price, "2", "", ""); ?> * 
-							(<?php echo number_format($monthly_interest_rate, "4", "", ""); ?> / 
-							(1 - ((1 + <?php echo number_format($monthly_interest_rate, "4", "", ""); ?>)
-							<sup>-(<?php echo $month_term; ?>)</sup>)))
-							<br><br>
-							The amortization breaks down how much of your monthly payment goes towards the bank's interest,
-							 and how much goes into paying off the principal of your loan.
-						</td>
-					</tr>
-				</table>
-				
-			<?php } 
-			
-			if( $breakdown == 'show' ) {
-			
-				// Set some base variables
-				$principal     = $financing_price;
-				$current_month = 1;
-				$current_year  = 1;
-				// This basically, re-figures out the monthly payment, again.
-				$power = -($month_term);
-				$denom = pow((1 + $monthly_interest_rate), $power);
-				$monthly_payment = $principal * ($monthly_interest_rate / (1 - $denom));
-
-				print("<br><br><a name=\"amortization\"></a>Amortization For Monthly Payment: <b>\$" . number_format($monthly_payment, "2", ".", ",") . "</b> over " . $year_term . " years<br>\n");
-				print("<table cellpadding=\"5\" cellspacing=\"0\" bgcolor=\"#eeeeee\" border=\"1\" width=\"100%\">\n");
-
-				// This LEGEND will get reprinted every 12 months
-				$legend  = "\t<tr valign=\"top\" bgcolor=\"#cccccc\">\n";
-				$legend .= "\t\t<td align=\"right\"><b>Month</b></td>\n";
-				$legend .= "\t\t<td align=\"right\"><b>Interest Paid</b></td>\n";
-				$legend .= "\t\t<td align=\"right\"><b>Principal Paid</b></td>\n";
-				$legend .= "\t\t<td align=\"right\"><b>Remaing Balance</b></td>\n";
-				$legend .= "\t</tr>\n";
-
-				echo $legend;
-
-				// Loop through and get the current month's payments for 
-				// the length of the loan 
-				while ($current_month <= $month_term) {        
-					$interest_paid     = $principal * $monthly_interest_rate;
-					$principal_paid    = $monthly_payment - $interest_paid;
-					$remaining_balance = $principal - $principal_paid;
-
-					$this_year_interest_paid  = $this_year_interest_paid + $interest_paid;
-					$this_year_principal_paid = $this_year_principal_paid + $principal_paid;
-
-					print("\t<tr valign=\"top\" bgcolor=\"#eeeeee\">\n");
-					print("\t\t<td align=\"right\">" . $current_month . "</td>\n");
-					print("\t\t<td align=\"right\">\$" . number_format($interest_paid, "2", ".", ",") . "</td>\n");
-					print("\t\t<td align=\"right\">\$" . number_format($principal_paid, "2", ".", ",") . "</td>\n");
-					print("\t\t<td align=\"right\">\$" . number_format($remaining_balance, "2", ".", ",") . "</td>\n");
-					print("\t</tr>\n");
-
-					($current_month % 12) ? $show_legend = FALSE : $show_legend = TRUE;
-
-					if ($show_legend) {
-						print("\t<tr valign=\"top\" bgcolor=\"#ffffcc\">\n");
-						print("\t\t<td colspan=\"4\"><b>Totals for year " . $current_year . "</td>\n");
-						print("\t</tr>\n");
-
-						$total_spent_this_year = $this_year_interest_paid + $this_year_principal_paid;
-						print("\t<tr valign=\"top\" bgcolor=\"#ffffcc\">\n");
-						print("\t\t<td>&nbsp;</td>\n");
-						print("\t\t<td colspan=\"3\">\n");
-						print("\t\t\tYou will spend \$" . number_format($total_spent_this_year, "2", ".", ",") . " on your house in year " . $current_year . "<br>\n");
-						print("\t\t\t\$" . number_format($this_year_interest_paid, "2", ".", ",") . " will go towards INTEREST<br>\n");
-						print("\t\t\t\$" . number_format($this_year_principal_paid, "2", ".", ",") . " will go towards PRINCIPAL<br>\n");
-						print("\t\t</td>\n");
-						print("\t</tr>\n");
-
-						print("\t<tr valign=\"top\" bgcolor=\"#ffffff\">\n");
-						print("\t\t<td colspan=\"4\">&nbsp;<br><br></td>\n");
-						print("\t</tr>\n");
-
-						$current_year++;
-						$this_year_interest_paid  = 0;
-						$this_year_principal_paid = 0;
-
-						if (($current_month + 6) < $month_term) {
-							echo $legend;
-						}
-					}
-
-					$principal = $remaining_balance;
-					$current_month++;
-				}
-				print("</table>\n");
-			
-			} ?>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
