@@ -166,6 +166,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                         ?>
                         
                         <?php echo do_shortcode('[MORT_CALC_FORM id="'. $post->ID .'"]'); ?>
+						<p>&nbsp;</p>
+                   		<?php echo do_shortcode('[SHARE_BAR]'); ?>
                     </div>
 
                 </div><!-- End Main Content -->

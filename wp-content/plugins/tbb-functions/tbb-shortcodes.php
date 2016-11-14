@@ -980,3 +980,78 @@ function tbb_mortgage_calc_form( $atts ) {
 	<?php
 	return ob_get_clean();
 }
+
+
+add_shortcode('SHARE_BAR', 'tbb_share_bar');
+function tbb_share_bar( $atts ) {
+	$atts = shortcode_atts( array(
+		'class' => ''
+	), $atts );
+	
+	$class = sanitize_text_field( $atts['class'] );
+	
+	$fav_button = get_option('theme_enable_fav_button');
+	$property_id = get_the_ID();
+	
+	ob_start(); ?>
+	
+	<div class="share-bar <?php echo $class; ?>">
+		<a id="share-bar-share" href="share-bar-modal" data-toggle="modal"><i class="fa fa-share-alt"></i> Share</a>
+		
+		<?php
+		// if enabled in theme options
+		if( $fav_button == "true" ) {
+			?>
+			<!-- Add to favorite -->
+			<span class="add-to-fav">
+				<?php
+				if( is_user_logged_in() ){
+					$user_id = get_current_user_id();
+					if ( is_added_to_favorite( $user_id, $property_id ) ) {
+						?>
+						<div id="fav_output" class="show"><i class="fa fa-heart"></i> <span id="fav_target">Favorited</span></div>
+						<?php
+					} else {
+						?>
+						<form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" id="add-to-favorite-form">
+							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+							<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" />
+							<input type="hidden" name="action" value="add_to_favorite" />
+						</form>
+						<div id="fav_output"><i class="fa fa-heart-o"></i>&nbsp;<span id="fav_target" class="dim"></span></div>
+						<a id="add-to-favorite" href="#"><i class="fa fa-heart-o"></i> Favorite</a>
+					<?php
+					}
+				} else {
+					?><a href="#login-modal" data-toggle="modal"><i class="fa fa-heart-o"></i> Favorite</a><?php
+				}
+				?>
+			</span>
+			<?php
+		}
+		?>
+		
+		<a id="share-bar-print" href="javascript:window.print()"><i class="fa fa-print"></i> Print</a>
+	</div>
+	
+	<?php
+	
+	add_action('wp_footer', 'tbb_share_modal');
+	function tbb_share_modal() {
+		$modal = '
+		<div id="share-bar-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Share This" aria-hidden="true">
+			<div class="modal-scrollable">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3>Share: '. get_the_title($property_id) .'</h3>
+				</div>
+				<div class="modal-body"> 
+					<p>Share stuff here...</p>
+				</div>
+			</div>
+		</div>';
+		echo $modal;
+	}
+	
+	return ob_get_clean();
+}
