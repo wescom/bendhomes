@@ -995,21 +995,23 @@ function tbb_share_bar( $atts ) {
 	
 	ob_start(); ?>
 	
-	<div class="share-bar <?php echo $class; ?>">
-		<a id="share-bar-share" href="#share-bar-modal" data-toggle="modal"><i class="fa fa-share-alt"></i> Share</a>
+	<div class="share-bar-wrap clearfix <?php echo $class; ?>">
+		<span class="actions">
+			<a id="share-bar-share" href="#share-bar-modal" data-toggle="modal"><i class="fa fa-share-alt"></i> Share</a>
+		</span>
 		
 		<?php
 		// if enabled in theme options
 		if( $fav_button == "true" ) {
 			?>
 			<!-- Add to favorite -->
-			<span class="add-to-fav">
+			<span class="add-to-fav actions">
 				<?php
 				if( is_user_logged_in() ){
 					$user_id = get_current_user_id();
 					if ( is_added_to_favorite( $user_id, $property_id ) ) {
 						?>
-						<div id="fav_output" class="show"><i class="fa fa-heart"></i> <span id="fav_target">Favorited</span></div>
+						<div id="fav_output" class="show fav-btn"><i class="fa fa-heart"></i> <span id="fav_target">Favorited</span></div>
 						<?php
 					} else {
 						?>
@@ -1018,12 +1020,12 @@ function tbb_share_bar( $atts ) {
 							<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" />
 							<input type="hidden" name="action" value="add_to_favorite" />
 						</form>
-						<div id="fav_output"><i class="fa fa-heart-o"></i>&nbsp;<span id="fav_target" class="dim"></span></div>
-						<a id="add-to-favorite" href="#"><i class="fa fa-heart-o"></i> Favorite</a>
+						<div id="fav_output"><i class="fa fa-heart-o"></i> <span id="fav_target" class="dim"></span></div>
+						<a id="add-to-favorite" class="fav-btn" href="#"><i class="fa fa-heart-o"></i> Favorite</a>
 					<?php
 					}
 				} else {
-					?><a href="#login-modal" data-toggle="modal"><i class="fa fa-heart-o"></i> Favorite</a><?php
+					?><a href="#login-modal" class="fav-btn" data-toggle="modal"><i class="fa fa-heart-o"></i> Favorite</a><?php
 				}
 				?>
 			</span>
@@ -1031,7 +1033,9 @@ function tbb_share_bar( $atts ) {
 		}
 		?>
 		
-		<a id="share-bar-print" href="javascript:window.print()"><i class="fa fa-print"></i> Print</a>
+		<span class="actions">
+			<a id="share-bar-print" href="javascript:window.print()"><i class="fa fa-print"></i> Print</a>
+		</span>
 	</div>
 	
 	<?php

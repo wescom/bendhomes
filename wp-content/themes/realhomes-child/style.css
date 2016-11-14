@@ -57,6 +57,10 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .mort-calc-form-wrap .percent:before { content: "%"; }
 .mort-calc-form-wrap .time:before { content: "\f073"; font-family: "FontAwesome"; font-size: 18px; }
 
+.share-bar-wrap { margin: 15px 0; }
+.share-bar-wrap > .actions { display: block; width: 33.3333%; float: left; }
+.share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn { display: block; padding: 10px; text-align: center; color: #777; font-weight: 600; font-size: 18px; }
+
 #map-directions-form { padding: 10px 10px; background: #F5F5F5; border: 1px solid #dedede; }
 #map-directions-form .start-addr { background: #fff; font-size: 16px; height: 40px; line-height: 40px; width: 70%; text-indent: 20px; color: #555; margin: 0; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }
 #map-directions-form .real-btn.map-btn { height: 50px; font-size: 20px; width: 27%; float: right; }
