@@ -878,7 +878,7 @@ function tbb_mortgage_calc_form( $atts ) {
 		
 	function addCommas(nStr){nStr+='';x=nStr.split('.');x1=x[0];x2=x.length>1?'.'+x[1]:'';var rgx=/(\d+)(\d{3})/;while(rgx.test(x1)){x1=x1.replace(rgx,'$1'+','+'$2');}return x1+x2;}
 		
-	function findpercentdown(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var percentdown=(downpayment/price)*100;document.getElementById('down-percent').innerHTML = percentdown.toFixed(2)+'% Down';}
+	function findpercentdown(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var percentdown=(downpayment/price)*100;document.getElementById('down-percent').innerHTML = '('+percentdown.toFixed(2)+'%)';}
 		
 	function findtaxpermonth(){var price=document.mortgagecalc.price.value;var taxpercent=document.mortgagecalc.taxes.value;var taxpermonth=(price/12)*(taxpercent/100);document.getElementById('taxes-per').innerHTML = '($'+taxpermonth.toFixed(0)+'/mo)';}
 		
@@ -957,7 +957,7 @@ function tbb_mortgage_calc_form( $atts ) {
 						<div class="form-item span6 down-item dollar"><label for="down">Down Payment</label>
 							<div class="down">
 								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
-								<div id="down-percent"><?php echo $down_percent; ?>.00%</div>
+								<div id="down-percent">(<?php echo $down_percent; ?>.00%)</div>
 							</div>
 							<div class="smpc-error" id="downError"></div>
 						</div>
