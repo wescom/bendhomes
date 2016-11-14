@@ -909,7 +909,6 @@ function tbb_mortgage_calc_form( $atts ) {
 	// Calculate mortgage payment and display result
 	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+'/mo';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
-	findloanamount();
 	}
 	}	
 	</script>
@@ -930,7 +929,7 @@ function tbb_mortgage_calc_form( $atts ) {
 				
 					<div class="row-fluid">
 						<div class="form-item span12"><label for="price">Listing Price</label>
-							<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
+							<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
 							<div class="smpc-error" id="priceError"></div>
 						</div>
 					</div>
@@ -957,7 +956,7 @@ function tbb_mortgage_calc_form( $atts ) {
 					<div class="row-fluid">
 						<div class="form-item span6"><label for="down">Down Payment</label>
 							<div class="down">
-								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
+								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
 								<div id="down-percent"><?php echo $down_percent; ?>.00%</div>
 							</div>
 							<div class="smpc-error" id="downError"></div>
