@@ -996,7 +996,7 @@ function tbb_share_bar( $atts ) {
 	ob_start(); ?>
 	
 	<div class="share-bar <?php echo $class; ?>">
-		<a id="share-bar-share" href="share-bar-modal" data-toggle="modal"><i class="fa fa-share-alt"></i> Share</a>
+		<a id="share-bar-share" href="#share-bar-modal" data-toggle="modal"><i class="fa fa-share-alt"></i> Share</a>
 		
 		<?php
 		// if enabled in theme options
