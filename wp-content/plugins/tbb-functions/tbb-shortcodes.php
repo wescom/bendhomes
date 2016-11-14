@@ -882,7 +882,7 @@ function tbb_mortgage_calc_form( $atts ) {
 		
 	function findtaxpermonth(){var price=document.mortgagecalc.price.value;var taxpercent=document.mortgagecalc.taxes.value;var taxpermonth=(price/12)*(taxpercent/100);document.getElementById('taxes-per').innerHTML = '($'+taxpermonth.toFixed(0)+'/mo)';}
 		
-	function findloanamount(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var loanamount=price-downpayment;document.getElementById('loan-amt').innerHTML = '$'+addCommas(loanamount).toFixed(0);}
+	function findloanamount(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var loanamount=price-downpayment;document.getElementById('loan-amt').innerHTML = '$'+addCommas(loanamount);}
 
 	function myPayment(){
 	document.getElementById('priceError').innerHTML = ''; document.getElementById('downError').innerHTML = ''; document.getElementById('yearsError').innerHTML = ''; document.getElementById('rateError').innerHTML = '';
