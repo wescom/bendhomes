@@ -1050,7 +1050,33 @@ function tbb_share_bar( $atts ) {
 					<h3>Share: '. get_the_title($property_id) .'</h3>
 				</div>
 				<div class="modal-body"> 
-					<p>Share stuff here...</p>
+					<h2>Share This Listing with a Friend</h2>
+					<div class="row-fluid">
+						<div class="span3">
+							<div class="share facebook">
+								<a href=""><i class="fa fa-facebook"></i></a>
+							</div>
+							<span>Facebook</span>
+						</div>
+						<div class="span3">
+							<div class="share twitter">
+								<a href=""><i class="fa fa-twitter"></i></a>
+							</div>
+							<span>Twitter</span>
+						</div>
+						<div class="span3">
+							<div class="share google">
+								<a href=""><i class="fa fa-google-plus"></i></a>
+							</div>
+							<span>Google+</span>
+						</div>
+						<div class="span3">
+							<div class="share email">
+								<a href=""><i class="fa fa-envelope"></i></a>
+							</div>
+							<span>Via Email</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>';
