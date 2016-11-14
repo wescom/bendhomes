@@ -910,13 +910,20 @@ function tbb_mortgage_calc_form( $atts ) {
 	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+'/mo';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
-	// payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
+	findloadamount();
 	}	
 	</script>
 	
 	<div class="mort-calc-form-wrap <?php echo $class; ?>">
 		<div class="mort-calc">
-			<h3 class="text-center">Monthly Payment Estimator</h3>
+			
+			<h3>Estimated<span>Monthly Payment</span></h3>
+			<h2 id="monthly-payment" class="text-center">
+				$<?php echo number_format($monthly_payment); ?>/mo
+			</h2>
+			<div class="text-center">
+				<small>Loan Amount: <strong id="load-amt">$<?php echo number_format($financing_price); ?></strong></small>
+			</div>
 			
 			<div class="form-wrap">
 				<form name="mortgagecalc" method="POST">
@@ -967,12 +974,6 @@ function tbb_mortgage_calc_form( $atts ) {
 					<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
 				</form>
 			</div>
-			
-			<h3>Estimated Monthly Payment</h3>
-			<h2 id="monthly-payment" class="text-center">
-				$<?php echo number_format($monthly_payment); ?>/mo
-			</h2>
-			<small>Loan Amount: <strong id="load-amt">$<?php echo number_format($financing_price); ?></strong></small>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
