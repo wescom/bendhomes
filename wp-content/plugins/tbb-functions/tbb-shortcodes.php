@@ -1080,7 +1080,7 @@ function tbb_share_bar( $atts ) {
 									}
 								},
 								errorPlacement: function (error, element) {
-									error.insertAfter($(element).parent());
+									error.insertAfter($(element));
 								}
 							});
 							
