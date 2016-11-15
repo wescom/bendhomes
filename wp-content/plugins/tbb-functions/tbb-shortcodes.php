@@ -1059,11 +1059,9 @@ function tbb_share_bar( $atts ) {
 			<div class="modal-scrollable">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h3>Email This Listing to a Friend</h3>
 				</div>
 				<div class="modal-body"> 
-					<h2 class="text-center">Email This Listing</h2>
-					<h4 class="text-center"><?php echo the_title(); ?></h4>
+					<h2 class="text-center">Email This Listing<small><?php echo the_title(); ?></small></h2>
 					
 					<div class="row-fluid share-boxes">
 						
