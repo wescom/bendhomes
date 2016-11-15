@@ -1062,32 +1062,10 @@ function tbb_share_bar( $atts ) {
 					<h3>Email This Listing to a Friend</h3>
 				</div>
 				<div class="modal-body"> 
-					<h2><?php echo the_title(); ?></h2>
+					<h2 class="text-center">Email This Listing</h2>
+					<h4 class="text-center"><?php echo the_title(); ?></h4>
+					
 					<div class="row-fluid share-boxes">
-						<!--div class="span3">
-							<div class="share facebook">
-								<a href="javascript:var w = window.open('http://www.facebook.com/sharer.php?u=<?php //echo urlencode($current_url); ?>', 'sharer', 'toolbar=0,status=0,scrollbars=1,width=660,height=400'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i></a>
-							</div>
-							<span>Facebook</span>
-						</div>
-						<div class="span3">
-							<div class="share twitter">
-								<a href="javascript:var w = window.open('http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+<?php //echo urlencode($current_url); ?>', 'twittersharer', 'toolbar=0,status=0,scrollbars=1,width=400,height=325'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
-							</div>
-							<span>Twitter</span>
-						</div>
-						<div class="span3">
-							<div class="share google">
-								<a href="javascript:var w = window.open('https://plusone.google.com/share?url=<?php //echo urlencode($current_url); ?>', 'gplusshare', 'toolbar=0,status=0,scrollbars=1,width=600,height=450'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
-							</div>
-							<span>Google+</span>
-						</div>
-						<div class="span3">
-							<div class="share email">
-								<a href="" title="Send to a Friend"><i class="fa fa-envelope"></i></a>
-							</div>
-							<span>Via Email</span>
-						</div-->
 						
 						<script type="text/javascript">
 						$(document).ready(function(){
@@ -1103,17 +1081,29 @@ function tbb_share_bar( $atts ) {
 						
 						<div id="email-form">
 							<form action="" method="post" id="share-with-friend" >
-							<label for="yourname">Your Name:</label>
-							<input type="text" name="yourname" id="yourname" /><br>
-							<label for="youremail">Your Email:</label>
-							<input type="text" name="youremail" id="youremail" /><br>
-							<label for="friendemail">Friend's Email:</label>
-							<input type="text" name="friendemail" id="friendemail" /><br>
-							<label for="message">Message:</label>
-							<textarea name="message" id="message">Take a look at this property I found on BendHomes.com: <?php echo $current_url; ?></textarea><br>
-							<input type="hidden" name="listingtitle" value="<?php echo the_title(); ?>" />
-							<input type="button" value="send" id="submit" />
-							<span id="success" style="color:green;"></span>
+								<h4 class="muted text-center">FROM</h4>
+								<div class="form-item">
+									<label for="yourname">Your Name:</label>
+									<input type="text" name="yourname" id="yourname" />
+								</div>
+								<div class="form-item">
+									<label for="youremail">Your Email:</label>
+									<input type="text" name="youremail" id="youremail" />
+								</div>
+								<h4 class="muted text-center">TO</h4>
+								<div class="form-item">
+									<label for="friendemail">Friend's Email:</label>
+									<input type="text" name="friendemail" id="friendemail" /><br>
+								</div>
+								<div class="form-item">
+								<label for="message">Message:</label>
+									<textarea name="message" id="message">Take a look at this property I found on BendHomes.com: <?php echo $current_url; ?></textarea>
+								</div>
+								<div class="text-center">
+									<input type="hidden" name="listingtitle" value="<?php echo the_title(); ?>" />
+									<input type="button" value="Send Email" id="submit" class="btn real-btn btn-large" />
+									<span id="success" style="color:green;"></span>
+								</div>
 							</form>
 						</div>
 					</div>
