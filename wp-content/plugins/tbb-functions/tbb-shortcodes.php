@@ -1064,45 +1064,6 @@ function tbb_share_bar( $atts ) {
 					<h2 class="text-center">Email This Listing<small><?php echo the_title(); ?></small></h2>
 					
 					<div class="row-fluid share-boxes">
-						
-						<script type="text/javascript">
-						$(document).ready(function(){
-							$('#share-with-friend').validate({
-								rules: {
-									"yourname": "required",
-									"youremail": {
-										required: true,
-										email: true
-									},
-									"friendemail": {
-										required: true,
-										email: true
-									}
-								},
-								errorPlacement: function (error, element) {
-									error.insertAfter($(element));
-								}
-							});
-							
-							
-							$('#submit').click(function(){
-								$('#submit').attr("disabled","disabled");
-								if ( $('#share-with-friend').valid() ) {
-									$('#share-with-friend').submit();
-									$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
-										$('#success').html(response).fadeIn('slow');
-									 	$('#share-bar-modal').modal('hide').delay(1500);
-									});
-									return false;
-								} else {
-									$('#submit').removeAttr("disabled");
-									return false;
-								}
-								
-							});
-						});
-						</script>
-						
 						<div id="email-form">
 							<form action="" method="post" id="share-with-friend" >
 								<h4 class="muted text-center">FROM</h4>
@@ -1143,8 +1104,46 @@ function tbb_share_bar( $atts ) {
 			</div>
 		</div>
 		
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('#share-with-friend').validate({
+				rules: {
+					"yourname": "required",
+					"youremail": {
+						required: true,
+						email: true
+					},
+					"friendemail": {
+						required: true,
+						email: true
+					}
+				},
+				errorPlacement: function (error, element) {
+					error.insertAfter($(element));
+				}
+			});
+
+
+			$('#submit').click(function(){
+				$('#submit').attr("disabled","disabled");
+				if ( $('#share-with-friend').valid() ) {
+					$('#share-with-friend').submit();
+					$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
+						$('#success').html(response).fadeIn('slow');
+						$('#share-bar-modal').modal('hide').delay(1500);
+					});
+					return false;
+				} else {
+					$('#submit').removeAttr("disabled");
+					return false;
+				}
+
+			});
+		});
+		</script>
+		
 		<?php echo ob_get_clean();
-	}
+	} // end wp_footer function
 	
 	return ob_get_clean();
 }
