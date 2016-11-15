@@ -1062,13 +1062,13 @@ function tbb_share_bar( $atts ) {
 						</div>
 						<div class="span3">
 							<div class="share twitter">
-								<a href="" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
+								<a href="javascript:var w = window.open(\'http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+'.$current_url.'\', \'twittersharer\', \'toolbar=0,status=0,scrollbars=1,width=400,height=325\'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
 							</div>
 							<span>Twitter</span>
 						</div>
 						<div class="span3">
 							<div class="share google">
-								<a href="" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
+								<a href="javascript:var w = window.open(\'https://plusone.google.com/share?url='.$current_url.'\', \'gplusshare\', \'toolbar=0,status=0,scrollbars=1,width=600,height=450\'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
 							</div>
 							<span>Google+</span>
 						</div>
@@ -1079,6 +1079,8 @@ function tbb_share_bar( $atts ) {
 							<span>Via Email</span>
 						</div>
 					</div>
+					
+					<div class="addthis_inline_share_toolbox"></div>
 				</div>
 			</div>
 		</div>';

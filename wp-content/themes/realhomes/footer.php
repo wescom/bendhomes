@@ -108,8 +108,6 @@
 
 </footer><!-- End Footer -->
 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-562ea0b672b5a046"></script> 
-
 <?php
 /**
  * include modal login if login & register page URL is not configured
@@ -146,5 +144,7 @@ if ( ! is_user_logged_in() ) {
 wp_footer();
 do_action('custom_footer_scripts');
 ?>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-582a57a7e96d4004"></script> 
 </body>
 </html>
