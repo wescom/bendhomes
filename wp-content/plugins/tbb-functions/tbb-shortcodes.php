@@ -1094,7 +1094,7 @@ function tbb_share_bar( $atts ) {
 								<div class="row-fluid">
 									<div class="form-item span12">
 										<label for="friendemail">Friend's Email:</label>
-										<input type="text" name="friendemail" id="friendemail" /><br>
+										<input type="text" name="friendemail" id="friendemail" />
 									</div>
 								</div>
 								<div class="row-fluid">
