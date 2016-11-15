@@ -1093,7 +1093,7 @@ function tbb_share_bar( $atts ) {
 								} else {
 									$.ajax({
 										type: "POST",
-										url: "<?php TBB_FUNCTIONS_URL; ?>/post.php",
+										url: "<?php echo TBB_FUNCTIONS_URL; ?>/post.php",
 										data: dataString,
 										success: function(){
 										 $('.success').fadeIn(200).show();
@@ -1116,7 +1116,7 @@ function tbb_share_bar( $atts ) {
 								<input id="friendemail" type="text" name="friendemail" placeholder="Friend's Email"><br>
 								<label for="message">Message</label>
 								<textarea id="message" name="message">Check out this property: <?php echo $current_url; ?></textarea><br>
-								<input type="submit" value="Send" name="Send" id="send"/>
+								<input type="submit" value="Send Message" name="Send" id="send"/>
 							</form>
 							<div class="error" style="display:none"> Please Enter Valid Data</div>
 							<div class="success" style="display:none"> Form Submitted Success</div>
