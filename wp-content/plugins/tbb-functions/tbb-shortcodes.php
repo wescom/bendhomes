@@ -1093,7 +1093,7 @@ function tbb_share_bar( $atts ) {
 								} else {
 									$.ajax({
 										type: "POST",
-										url: "<?php echo TBB_FUNCTIONS_URL; ?>/post.php",
+										url: "<?php echo plugins_url() .'/tbb-functions/post.php'; ?>",
 										data: dataString,
 										success: function(){
 										 $('.success').fadeIn(200).show();
