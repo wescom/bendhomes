@@ -1066,15 +1066,41 @@ function tbb_share_bar( $atts ) {
 					<div class="row-fluid share-boxes">
 						
 						<script type="text/javascript">
-						$(document).ready(function(){
-							$('#submit').click(function(){
-								$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
-									$('#success').html(response);
-									 //$('#success').hide('slow');
-									});
-								return false;
+						(function($){
+							$('#share-with-friend').validate({
+								rules: {
+									"yourname": "required",
+									"youremail": {
+										required: true,
+										email: true
+									},
+									"friendemail": {
+										required: true,
+										email: true
+									}
+								},
+								errorPlacement: function (error, element) {
+									error.insertAfter($(element).parent());
+								}
 							});
-						});
+							
+							
+							$('#submit').click(function(){
+								$('#submit').attr("disabled","disabled");
+								if ( $('#share-with-friend').valid() ) {
+									$('#share-with-friend').submit();
+									$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
+										$('#success').html(response);
+									 	//$('#success').hide('slow');
+									});
+									return false;
+								} else {
+									$('#submit').removeAttr("disabled");
+									return false;
+								}
+								
+							});
+						})(jQuery);
 						</script>
 						
 						<div id="email-form">
