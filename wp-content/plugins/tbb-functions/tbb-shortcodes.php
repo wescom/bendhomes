@@ -1082,32 +1082,24 @@ function tbb_share_bar( $atts ) {
 						</div>
 						
 						<script type="text/javascript">
-						$(function() {
-							$("#send").on('click', function(){
-								var youremail = $('#youremail').val();
-								var friendemail = $('#friendemail').val();
-								
-								if(youremail == '' || friendemail == '') {
-									$('.success').fadeOut(200).hide();
-									$('.error').fadeOut(200).show();
-								} else {
-									$.ajax({
-										type: "POST",
-										url: "<?php echo plugins_url() .'/tbb-functions/post.php'; ?>",
-										data: dataString,
-										success: function(){
-										 $('.success').fadeIn(200).show();
-										 $('.error').fadeOut(200).hide();
-										}
-									  });
-								}
-							});
-							return false;
+						$(document).ready(function(){
+
+						$('#submit').click(function(){
+
+						$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
+						 $('#success').html(response);
+						 //$('#success').hide('slow');
+						});
+						return false;
+
+
+						});
+
 						});
 						</script>
 						
 						<div id="email-form">
-							<form method="post" action="">
+							<!--form method="post" action="" id="share-with-friend">
 								<label for="yourname">Your Name</label>
 								<input id="yourname" type="text" name="yourname" placeholder="Your Name"><br>
 								<label for="youremail">Your Email</label>
@@ -1115,11 +1107,20 @@ function tbb_share_bar( $atts ) {
 								<label for="friendemail">Your Friend's Email</label>
 								<input id="friendemail" type="text" name="friendemail" placeholder="Friend's Email"><br>
 								<label for="message">Message</label>
-								<textarea id="message" name="message">Check out this property: <?php echo $current_url; ?></textarea><br>
+								<textarea id="message" name="message">Check out this property: <?php //echo $current_url; ?></textarea><br>
 								<input type="submit" value="Send Message" name="Send" id="send"/>
 							</form>
 							<div class="error" style="display:none"> Please Enter Valid Data</div>
-							<div class="success" style="display:none"> Form Submitted Success</div>
+							<div id="success" style="display:none"> Form Submitted Success</div-->
+							<form action="" method="post" id="share-with-friend" >
+							<label for="name">Name:</label><br />
+							<input type="text" name="name" id="name" /><br />
+							<label for="email">Email:</label><br />
+							<input type="text" name="email" id="email" /><br />
+							<label for="message">Message:</label><br />
+							<textarea name="message" id="message">Check out this property: <?php echo $current_url; ?></textarea><br />
+							<input type="button" value="send" id="submit" /><div id="success" style="color:red;"></div>
+							</form>
 						</div>
 					</div>
 					
