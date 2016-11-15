@@ -1130,14 +1130,9 @@ function tbb_share_bar( $atts ) {
 					$('#share-with-friend').submit();
 					$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
 						$('#success').html(response).fadeIn('slow');
-						//$('#share-bar-modal').stop().modal('hide').delay(7000);
-						setTimeout(function() { $('#share-bar-modal').modal('hide'); }, 4000);
-					});
-					return false;
-				} else {
-					$('#submit').removeAttr("disabled");
-					return false;
-				}
+						setTimeout(function() { $('#share-bar-modal').modal('hide'); }, 1500);
+					}); return false;
+				} else { $('#submit').removeAttr("disabled"); return false; }
 
 			});
 		});
