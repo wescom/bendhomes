@@ -30,9 +30,9 @@ $listingtitle = $_POST['listingtitle'];
  
 $to = $friendemail;
 //$subject = $name .' Wants to Share This Property With You';
-$subject = $listingtitle;
+$subject = 'BendHomes.com - '. $listingtitle;
 $message =  $message . "\r\n\r\n" .'Shared by: '. $name;
-$headers = 'From: BendHomes <info@bendhomes.com>' . "\r\n";
+$headers = 'From: BendHomes <noreply@bendhomes.com>' . "\r\n";
  
 if (filter_var($email, FILTER_VALIDATE_EMAIL)) { // this line checks that we have a valid email address
 	mail($to, $subject, $message, $headers); //This method sends the mail.

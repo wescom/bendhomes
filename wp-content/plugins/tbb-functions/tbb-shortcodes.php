@@ -1042,7 +1042,6 @@ function tbb_share_bar( $atts ) {
 	
 	add_action('wp_footer', 'tbb_share_modal');
 	function tbb_share_modal() {
-		$id = get_the_ID();
 		$current_url = home_url().''.$_SERVER['REQUEST_URI'];
 		
 		ob_start(); ?>
@@ -1115,10 +1114,10 @@ function tbb_share_bar( $atts ) {
 							<label for="friendemail">Friend's Email:</label>
 							<input type="text" name="friendemail" id="friendemail" /><br>
 							<label for="message">Message:</label>
-							<textarea name="message" id="message">Check out this property: <?php echo $current_url; ?></textarea><br>
-							<input type="hidden" name="listingtitle" value="<?php echo the_title($id); ?>" />
+							<textarea name="message" id="message">Take a look at this property I found on BendHomes.com: <?php echo $current_url; ?></textarea><br>
+							<input type="hidden" name="listingtitle" value="<?php echo the_title(); ?>" />
 							<input type="button" value="send" id="submit" />
-							<div id="success" style="color:green;"></div>
+							<span id="success" style="color:green;"></span>
 							</form>
 						</div>
 					</div>
