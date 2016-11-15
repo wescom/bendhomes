@@ -982,6 +982,26 @@ function tbb_mortgage_calc_form( $atts ) {
 }
 
 
+// Creates the Share Bar on single properties
+if ( ! function_exists( 'tbb_is_added_to_favorite' ) ) {
+	/**
+	 * Check if a property is already added to favorites of a given user
+	 *
+	 * @param $user_id
+	 * @param $property_id
+	 * @return bool
+	 */
+	function tbb_is_added_to_favorite( $user_id, $property_id ) {
+		global $wpdb;
+		$results = $wpdb->get_results( "SELECT * FROM $wpdb->usermeta WHERE meta_key='favorite_properties' AND meta_value=" . $property_id . " AND user_id=" . $user_id );
+		if ( isset( $results[ 0 ]->meta_value ) && ( $results[ 0 ]->meta_value == $property_id ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
 add_shortcode('SHARE_BAR', 'tbb_share_bar');
 function tbb_share_bar( $atts ) {
 	$atts = shortcode_atts( array(
@@ -997,6 +1017,7 @@ function tbb_share_bar( $atts ) {
 	ob_start(); ?>
 	
 	<div class="share-bar-wrap clearfix <?php echo $class; ?>">
+		<!-- Share Dropdown -->
 		<span class="actions">
 			<div class="dropdown">
 				<a id="share-bar-share" class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-share-square-o"></i> Share</a>
@@ -1010,39 +1031,33 @@ function tbb_share_bar( $atts ) {
 			</div>
 		</span>
 		
-		<?php
-		// if enabled in theme options
-		if( $fav_button == "true" ) {
-			?>
-			<!-- Add to favorite -->
-			<span class="add-to-fav actions">
-				<?php
-				if( is_user_logged_in() ){
-					$user_id = get_current_user_id();
-					if ( is_added_to_favorite( $user_id, $property_id ) ) {
-						?>
-						<div id="fav_output" class="show fav-btn"><i class="fa fa-heart"></i> <span id="fav_target">Favorited</span></div>
-						<?php
-					} else {
-						?>
-						<form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" id="add-to-favorite-form">
-							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
-							<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" />
-							<input type="hidden" name="action" value="add_to_favorite" />
-						</form>
-						<div id="fav_output"><i class="fa fa-heart-o"></i> <span id="fav_target" class="dim"></span></div>
-						<a id="add-to-favorite" class="fav-btn" href="#"><i class="fa fa-heart-o"></i> Favorite</a>
-					<?php
-					}
-				} else {
-					?><a href="#login-modal" class="fav-btn" data-toggle="modal"><i class="fa fa-heart-o"></i> Favorite</a><?php
-				}
-				?>
-			</span>
+		<!-- Add to favorite -->
+		<span class="add-to-fav actions">
 			<?php
-		}
-		?>
+			if( is_user_logged_in() ){
+				$user_id = get_current_user_id();
+				if ( tbb_is_added_to_favorite( $user_id, $property_id ) ) {
+					?>
+					<div id="fav_output" class="show fav-btn"><i class="fa fa-heart"></i> <span id="fav_target">Favorited</span></div>
+					<?php
+				} else {
+					?>
+					<form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" id="add-to-favorite-form">
+						<input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+						<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" />
+						<input type="hidden" name="action" value="add_to_favorite" />
+					</form>
+					<div id="fav_output"><i class="fa fa-heart-o"></i> <span id="fav_target" class="dim"></span></div>
+					<a id="add-to-favorite" class="fav-btn" href="#"><i class="fa fa-heart-o"></i> Favorite</a>
+				<?php
+				}
+			} else {
+				?><a href="#login-modal" class="fav-btn" data-toggle="modal"><i class="fa fa-heart-o"></i> Favorite</a><?php
+			}
+			?>
+		</span>
 		
+		<!-- Print -->
 		<span class="actions">
 			<a id="share-bar-print" href="javascript:window.print()"><i class="fa fa-print"></i> Print</a>
 		</span>
@@ -1098,7 +1113,7 @@ function tbb_share_bar( $atts ) {
 								<div class="text-center">
 									<input type="hidden" name="listingtitle" value="<?php echo the_title(); ?>" />
 									<input type="button" value="Send Email" id="submit" class="btn real-btn btn-large" />
-									<span id="success" style="color:green;"></span>
+									<span id="success" style="color:#02888f;"></span>
 								</div>
 							</form>
 						</div>

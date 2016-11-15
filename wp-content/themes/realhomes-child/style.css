@@ -66,7 +66,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .share-bar-wrap .dropdown-menu:before { content: ''; width: 10px; height: 10px; position: absolute; top: -5px; left: 50%; margin-left: -5px; background: #fff; -webkit-transform: rotate(135deg); -ms-transform: rotate(135deg); transform: rotate(135deg); border-bottom-left-radius: 3px; border: 1px solid #c8c8c8; border-right: none; border-top: none; }
 .share-bar-wrap .dropdown-menu li > a { color: #777; padding: 7px 15px; line-height: 28px; letter-spacing: .02em; text-transform: uppercase; }
 .share-bar-wrap .dropdown-menu li > a:hover { color: #fff; }
-.share-bar-wrap .dropdown-menu li > a .fa { display: inline-block; width: 15px; text-align: center; margin-right: 8px; }
+.share-bar-wrap .dropdown-menu li > a .fa { display: inline-block; width: 20px; text-align: center; margin-right: 15px; font-size: 22px; }
 #share-bar-modal .modal-header { border-bottom: none; }
 #share-bar-modal .modal-header .close { font-size: 30px; }
 #share-bar-modal .modal-body { padding: 15px 30px 0; max-height: 550px; }
