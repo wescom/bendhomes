@@ -63,8 +63,8 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .share-bar-wrap .actions > a:hover, .share-bar-wrap .actions .fav-btn:hover { background: #006267; }
 .share-bar-wrap .actions #share-bar-share { border-left: none; }
 #share-bar-modal .modal-header { background: #282828; }
-#share-bar-modal .modal-heaer h3 { color: #fff; font-size: 20px; }
-#share-bar-modal .modal-heaer .close { color: #fff; }
+#share-bar-modal .modal-header h3 { color: #fff; font-size: 20px; }
+#share-bar-modal .modal-header .close { color: #fff; }
 #share-bar-modal .modal-body { padding: 15px 30px 50px; }
 #share-bar-modal .modal-body h2 { margin: 30px 0 40px; }
 #share-bar-modal .share a { display: block; background: #ccc; color: #fff; text-align: center; padding: 30px 0; }
