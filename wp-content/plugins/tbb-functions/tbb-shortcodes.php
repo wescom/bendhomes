@@ -1113,13 +1113,16 @@ function tbb_share_bar( $atts ) {
 							<div class="error" style="display:none"> Please Enter Valid Data</div>
 							<div id="success" style="display:none"> Form Submitted Success</div-->
 							<form action="" method="post" id="share-with-friend" >
-							<label for="name">Name:</label><br />
-							<input type="text" name="name" id="name" /><br />
-							<label for="email">Email:</label><br />
-							<input type="text" name="email" id="email" /><br />
+							<label for="yourname">Your Name:</label><br />
+							<input type="text" name="yourname" id="yourname" /><br />
+							<label for="youremail">Your Email:</label><br />
+							<input type="text" name="youremail" id="youremail" /><br />
+							<label for="friendemail">Friend's Email:</label><br />
+							<input type="text" name="friendemail" id="friendemail" /><br />
 							<label for="message">Message:</label><br />
 							<textarea name="message" id="message">Check out this property: <?php echo $current_url; ?></textarea><br />
-							<input type="button" value="send" id="submit" /><div id="success" style="color:red;"></div>
+							<input type="button" value="send" id="submit" />
+							<div id="success" style="color:green;"></div>
 							</form>
 						</div>
 					</div>
