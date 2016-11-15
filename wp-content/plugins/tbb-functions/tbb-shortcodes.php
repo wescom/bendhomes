@@ -1066,7 +1066,7 @@ function tbb_share_bar( $atts ) {
 					<div class="row-fluid share-boxes">
 						
 						<script type="text/javascript">
-						(function($){
+						$(document).ready(function(){
 							$('#share-with-friend').validate({
 								rules: {
 									"yourname": "required",
@@ -1100,8 +1100,7 @@ function tbb_share_bar( $atts ) {
 								}
 								
 							});
-						})(jQuery);
-							
+						});
 						</script>
 						
 						<div id="email-form">
@@ -1110,18 +1109,18 @@ function tbb_share_bar( $atts ) {
 								<div class="row-fluid">
 									<div class="form-item span6">
 										<label for="yourname">Your Name:</label>
-										<input type="text" name="yourname" id="yourname" />
+										<input type="text" name="yourname" id="yourname" class="required" />
 									</div>
 									<div class="form-item span6">
 										<label for="youremail">Your Email:</label>
-										<input type="text" name="youremail" id="youremail" />
+										<input type="text" name="youremail" id="youremail" class="required" />
 									</div>
 								</div>
 								<h4 class="muted text-center">TO</h4>
 								<div class="row-fluid">
 									<div class="form-item span12">
 										<label for="friendemail">Friend's Email:</label>
-										<input type="text" name="friendemail" id="friendemail" />
+										<input type="text" name="friendemail" id="friendemail" class="required" />
 									</div>
 								</div>
 								<div class="row-fluid">
