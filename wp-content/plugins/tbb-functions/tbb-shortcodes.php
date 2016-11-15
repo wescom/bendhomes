@@ -1042,6 +1042,8 @@ function tbb_share_bar( $atts ) {
 	
 	add_action('wp_footer', 'tbb_share_modal');
 	function tbb_share_modal() {
+		$current_url = urlencode(home_url().''.$_SERVER['REQUEST_URI']);
+		
 		$modal = '
 		<div id="share-bar-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Share This" aria-hidden="true">
 			<div class="modal-scrollable">
@@ -1054,25 +1056,25 @@ function tbb_share_bar( $atts ) {
 					<div class="row-fluid share-boxes">
 						<div class="span3">
 							<div class="share facebook">
-								<a href=""><i class="fa fa-facebook"></i></a>
+								<a href="javascript:var w = window.open(\'http://www.facebook.com/sharer.php?u='.$current_url.'\', \'sharer\', \'toolbar=0,status=0,scrollbars=1,width=660,height=400\'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i></a>
 							</div>
 							<span>Facebook</span>
 						</div>
 						<div class="span3">
 							<div class="share twitter">
-								<a href=""><i class="fa fa-twitter"></i></a>
+								<a href="" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
 							</div>
 							<span>Twitter</span>
 						</div>
 						<div class="span3">
 							<div class="share google">
-								<a href=""><i class="fa fa-google-plus"></i></a>
+								<a href="" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
 							</div>
 							<span>Google+</span>
 						</div>
 						<div class="span3">
 							<div class="share email">
-								<a href=""><i class="fa fa-envelope"></i></a>
+								<a href="" title="Send to a Friend"><i class="fa fa-envelope"></i></a>
 							</div>
 							<span>Via Email</span>
 						</div>
