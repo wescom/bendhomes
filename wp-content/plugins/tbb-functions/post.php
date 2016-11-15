@@ -29,8 +29,8 @@ $friendemail = $_POST['friendemail'];
  
 $to = $friendemail;
 $subject = $name .' Wants to Share This Property With You';
-$message =  $message . "\r\n" .'Shared by: '. $name;
-$headers = 'From: ' . $email . "\r\n";
+$message =  $message . "\r\n\r\n" .'Shared by: '. $name;
+$headers = 'From: info@bendhomes.com' . "\r\n";
  
 if (filter_var($email, FILTER_VALIDATE_EMAIL)) { // this line checks that we have a valid email address
 	mail($to, $subject, $message, $headers); //This method sends the mail.
