@@ -1130,7 +1130,7 @@ function tbb_share_bar( $atts ) {
 					$('#share-with-friend').submit();
 					$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
 						$('#success').html(response).fadeIn('slow');
-						$('#share-bar-modal').modal('hide').delay(3500);
+						$('#share-bar-modal').stop().modal('hide').delay(3500);
 					});
 					return false;
 				} else {
