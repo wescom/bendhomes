@@ -1080,22 +1080,28 @@ function tbb_share_bar( $atts ) {
 						<div id="email-form">
 							<form action="" method="post" id="share-with-friend" >
 								<h4 class="muted text-center">FROM</h4>
-								<div class="form-item">
-									<label for="yourname">Your Name:</label>
-									<input type="text" name="yourname" id="yourname" />
-								</div>
-								<div class="form-item">
-									<label for="youremail">Your Email:</label>
-									<input type="text" name="youremail" id="youremail" />
+								<div class="row-fluid">
+									<div class="form-item span6">
+										<label for="yourname">Your Name:</label>
+										<input type="text" name="yourname" id="yourname" />
+									</div>
+									<div class="form-item span6">
+										<label for="youremail">Your Email:</label>
+										<input type="text" name="youremail" id="youremail" />
+									</div>
 								</div>
 								<h4 class="muted text-center">TO</h4>
-								<div class="form-item">
-									<label for="friendemail">Friend's Email:</label>
-									<input type="text" name="friendemail" id="friendemail" /><br>
+								<div class="row-fluid">
+									<div class="form-item span12">
+										<label for="friendemail">Friend's Email:</label>
+										<input type="text" name="friendemail" id="friendemail" /><br>
+									</div>
 								</div>
-								<div class="form-item">
-								<label for="message">Message:</label>
-									<textarea name="message" id="message">Take a look at this property I found on BendHomes.com: <?php echo $current_url; ?></textarea>
+								<div class="row-fluid">
+									<div class="form-item span12">
+										<label for="message">Message:</label>
+										<textarea name="message" id="message">Take a look at this property I found on BendHomes.com: <?php echo $current_url; ?></textarea>
+									</div>
 								</div>
 								<div class="text-center">
 									<input type="hidden" name="listingtitle" value="<?php echo the_title(); ?>" />
