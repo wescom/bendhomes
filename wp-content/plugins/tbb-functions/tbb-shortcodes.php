@@ -1042,33 +1042,35 @@ function tbb_share_bar( $atts ) {
 	
 	add_action('wp_footer', 'tbb_share_modal');
 	function tbb_share_modal() {
+		$id = get_the_ID();
 		$current_url = urlencode(home_url().''.$_SERVER['REQUEST_URI']);
 		
-		$modal = '
+		ob_start(); ?>
+		
 		<div id="share-bar-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Share This" aria-hidden="true">
 			<div class="modal-scrollable">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h3>Share: '. get_the_title($property_id) .'</h3>
+					<h3>Share: <?php echo the_title($id); ?></h3>
 				</div>
 				<div class="modal-body"> 
 					<h2>Share This Listing with a Friend</h2>
 					<div class="row-fluid share-boxes">
 						<div class="span3">
 							<div class="share facebook">
-								<a href="javascript:var w = window.open(\'http://www.facebook.com/sharer.php?u='.$current_url.'\', \'sharer\', \'toolbar=0,status=0,scrollbars=1,width=660,height=400\'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i></a>
+								<a href="javascript:var w = window.open('http://www.facebook.com/sharer.php?u=<?php echo $current_url; ?>', 'sharer', 'toolbar=0,status=0,scrollbars=1,width=660,height=400'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i></a>
 							</div>
 							<span>Facebook</span>
 						</div>
 						<div class="span3">
 							<div class="share twitter">
-								<a href="javascript:var w = window.open(\'http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+'.$current_url.'\', \'twittersharer\', \'toolbar=0,status=0,scrollbars=1,width=400,height=325\'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
+								<a href="javascript:var w = window.open('http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+<?php echo $current_url; ?>', 'twittersharer', 'toolbar=0,status=0,scrollbars=1,width=400,height=325'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
 							</div>
 							<span>Twitter</span>
 						</div>
 						<div class="span3">
 							<div class="share google">
-								<a href="javascript:var w = window.open(\'https://plusone.google.com/share?url='.$current_url.'\', \'gplusshare\', \'toolbar=0,status=0,scrollbars=1,width=600,height=450\'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
+								<a href="javascript:var w = window.open('https://plusone.google.com/share?url=<?php echo $current_url; ?>', 'gplusshare', 'toolbar=0,status=0,scrollbars=1,width=600,height=450'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
 							</div>
 							<span>Google+</span>
 						</div>
@@ -1078,13 +1080,37 @@ function tbb_share_bar( $atts ) {
 							</div>
 							<span>Via Email</span>
 						</div>
+						
+						<div id="email-form">
+							<form method="post" action="">
+								<label for="yourname">Your Name</label>
+								<input type="text" name="yourname" placeholder="Your Name"><br>
+								<label for="youremail">Your Email</label>
+								<input type="text" name="youremail" placeholder="Your Email"><br>
+								<label for="friendemail">Your Friend's Email</label>
+								<input type="text" name="friendemail" placeholder="Friend's Email"><br>
+								<label for="message">Message</label>
+								<textarea name="message">Check out this property: <?php echo $current_url; ?></textarea><br>
+								<input type="submit" value="Send" name="Send" id="send"/>
+							</form>
+							
+							<?php
+							$to = $_POST['friendemail'];
+							$subject = get_the_title($id);
+							$msg = $_POST['message'];
+							$headers  = 'MIME-Version: 1.0' . "\r\n";
+							$headers .= 'From: ' . $_POST['yourname'] . "\r\n";
+							mail( $to, $subject, $msg, $headers );
+							?>
+						</div>
 					</div>
 					
-					<div class="addthis_inline_share_toolbox"></div>
+					<!--div class="addthis_inline_share_toolbox"></div-->
 				</div>
 			</div>
-		</div>';
-		echo $modal;
+		</div>
+		
+		<?php echo ob_get_clean();
 	}
 	
 	return ob_get_clean();
