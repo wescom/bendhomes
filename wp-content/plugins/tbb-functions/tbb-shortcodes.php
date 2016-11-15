@@ -1094,6 +1094,7 @@ function tbb_share_bar( $atts ) {
 									 	//$('#success').hide('slow');
 									});
 									return false;
+									$('#share-bar-modal').modal('hide').delay(1000);
 								} else {
 									$('#submit').removeAttr("disabled");
 									return false;
