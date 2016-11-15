@@ -62,9 +62,18 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn { display: block; padding: 16px 10px; text-align: center; color: #fff; font-weight: 400; font-size: 16px; text-transform: uppercase; background: #02888f; letter-spacing: .05em; border-left: 1px solid #fff; cursor: pointer; }
 .share-bar-wrap .actions > a:hover, .share-bar-wrap .actions .fav-btn:hover { background: #006267; }
 .share-bar-wrap .actions #share-bar-share { border-left: none; }
-#share-bar-modal .share a { display: block; background: #ccc; color: #fff; text-align: center; }
+#share-bar-modal .modal-header { background: #282828; }
+#share-bar-modal .modal-heaer h2 { color: #fff; font-size: 20px; }
+#share-bar-modal .modal-heaer .close { color: #fff; }
+#share-bar-modal .modal-body { padding: 15px 30px 50px; }
+#share-bar-modal .modal-body h2 { margin: 30px 0 40px; }
+#share-bar-modal .share a { display: block; background: #ccc; color: #fff; text-align: center; padding: 30px 0; }
+#share-bar-modal .share.facebook a { background: #004088; }
+#share-bar-modal .share.twitter a { background: #00ABE3; }
+#share-bar-modal .share.google a { background: #F14724; }
+#share-bar-modal .share.email a { background: #02888f; }
 #share-bar-modal .share i { font-size: 50px; color: #fff; }
-#share-bar-modal .share span { font-size: 24px; }
+#share-bar-modal .share-boxes span { font-size: 18px; padding: 10px 0; display: block; font-weight: 300; letter-spacing: .05em; }
 
 #map-directions-form { padding: 10px 10px; background: #F5F5F5; border: 1px solid #dedede; }
 #map-directions-form .start-addr { background: #fff; font-size: 16px; height: 40px; line-height: 40px; width: 70%; text-indent: 20px; color: #555; margin: 0; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }

@@ -1051,7 +1051,7 @@ function tbb_share_bar( $atts ) {
 				</div>
 				<div class="modal-body"> 
 					<h2>Share This Listing with a Friend</h2>
-					<div class="row-fluid">
+					<div class="row-fluid share-boxes">
 						<div class="span3">
 							<div class="share facebook">
 								<a href=""><i class="fa fa-facebook"></i></a>
