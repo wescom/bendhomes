@@ -20,20 +20,21 @@
 	}
 }*/
 
+
 // Here we get all the information from the fields sent over by the form.
-$yourname = $_POST['yourname'];
-$youremail = $_POST['youremail'];
-$msg = $_POST['message'];
-$to = $_POST['friendemail'];
-
-$subject = get_the_title( get_the_ID() );
-$message = $msg . "\r\n\r\n" .'Sent by '. $yourname;
-$headers = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'From: ' . $youremail . "\r\n";
-
-if (filter_var($youremail, FILTER_VALIDATE_EMAIL) && filter_var($to, FILTER_VALIDATE_EMAIL)) { // this line checks that we have a valid email address
+$name = $_POST['yourname'];
+$email = $_POST['youremail'];
+$message = $_POST['message'];
+$friendemail = $_POST['friendemail'];
+ 
+$to = $friendemail;
+$subject = $name .' Wants to Share This Property With You';
+$message =  $message . "\r\n" .'Shared by: '. $name;
+$headers = 'From: ' . $email . "\r\n";
+ 
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) { // this line checks that we have a valid email address
 	mail($to, $subject, $message, $headers); //This method sends the mail.
 	echo "Email sent!"; // success message
 }else{
-	echo "Invalid Email, please provide a correct email.";
+	echo "Invalid Email, please provide an correct email.";
 }
