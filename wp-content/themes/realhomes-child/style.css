@@ -59,9 +59,11 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 
 .share-bar-wrap { margin: 15px 0; }
 .share-bar-wrap > .actions { display: block; width: 33.3333%; float: left; }
-.share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn { display: block; padding: 16px 10px; text-align: center; color: #fff; font-weight: 400; font-size: 16px; text-transform: uppercase; background: #02888f; letter-spacing: .05em; border-left: 1px solid #fff; cursor: pointer; }
-.share-bar-wrap .actions > a:hover, .share-bar-wrap .actions .fav-btn:hover { background: #006267; }
+.share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share { display: block; padding: 16px 10px; text-align: center; color: #fff; font-weight: 400; font-size: 16px; text-transform: uppercase; background: #02888f; letter-spacing: .05em; border-left: 1px solid #fff; cursor: pointer; }
+.share-bar-wrap .actions > a:hover, .share-bar-wrap .actions .fav-btn:hover, .share-bar-wrap .actions #share-bar-share:hover { background: #006267; }
 .share-bar-wrap .actions #share-bar-share { border-left: none; }
+.share-bar-wrap .dropdown-menu li > a { padding; 7px 20px; color: #777; }
+.share-bar-wrap .dropdown-menu li > a .fa { display: inline-block; width: 15px; text-align: center; }
 #share-bar-modal .modal-header { background: #282828; }
 #share-bar-modal .modal-header h3 { color: #fff; font-size: 20px; }
 #share-bar-modal .modal-header .close { color: #fff; }
