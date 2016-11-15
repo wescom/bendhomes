@@ -1101,6 +1101,7 @@ function tbb_share_bar( $atts ) {
 								
 							});
 						})(jQuery);
+							
 						</script>
 						
 						<div id="email-form">
