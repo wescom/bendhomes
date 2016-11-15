@@ -108,6 +108,8 @@
 
 </footer><!-- End Footer -->
 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-562ea0b672b5a046"></script> 
+
 <?php
 /**
  * include modal login if login & register page URL is not configured
