@@ -1129,8 +1129,9 @@ function tbb_share_bar( $atts ) {
 				if ( $('#share-with-friend').valid() ) {
 					$('#share-with-friend').submit();
 					$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
-						$('#success').html(response).fadeIn('slow');
-						$('#share-bar-modal').modal('hide').delay(1500);
+						$('#success').html(response).fadeIn('slow', function(){
+							$('#share-bar-modal').modal('hide').delay(2000);
+						});
 					});
 					return false;
 				} else {
