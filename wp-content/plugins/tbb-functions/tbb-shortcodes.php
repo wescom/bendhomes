@@ -1093,7 +1093,7 @@ function tbb_share_bar( $atts ) {
 								} else {
 									$.ajax({
 										type: "POST",
-										url: "post.php",
+										url: "<?php TBB_FUNCTIONS_URL; ?>/post.php",
 										data: dataString,
 										success: function(){
 										 $('.success').fadeIn(200).show();
@@ -1120,17 +1120,6 @@ function tbb_share_bar( $atts ) {
 							</form>
 							<div class="error" style="display:none"> Please Enter Valid Data</div>
 							<div class="success" style="display:none"> Form Submitted Success</div>
-							
-							<?php
-							if( $_POST ) {
-								$to = $_POST['friendemail'];
-								$subject = get_the_title($id);
-								$msg = $_POST['message'];
-								$headers  = 'MIME-Version: 1.0' . "\r\n";
-								$headers .= 'From: ' . $_POST['youremail'] . "\r\n";
-								mail( $to, $subject, $msg, $headers );
-							}
-							?>
 						</div>
 					</div>
 					
