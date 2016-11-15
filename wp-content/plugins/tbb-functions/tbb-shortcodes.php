@@ -1051,7 +1051,11 @@ function tbb_share_bar( $atts ) {
 	
 	add_action('wp_footer', 'tbb_share_modal');
 	function tbb_share_modal() {
+		global $current_user;
+		get_currentuserinfo();
 		$current_url = home_url().''.$_SERVER['REQUEST_URI'];
+		$current_user = wp_get_current_user();
+		$current_user_email = is_user_logged_in() ? $current_user->user_email : '';
 		
 		ob_start(); ?>
 		
@@ -1074,7 +1078,7 @@ function tbb_share_bar( $atts ) {
 									</div>
 									<div class="form-item span6">
 										<label for="youremail">Your Email:</label>
-										<input type="text" name="youremail" id="youremail" class="required" />
+										<input type="text" name="youremail" id="youremail" class="required" value="<?php echo $current_user_email; ?>" />
 									</div>
 								</div>
 								<h4 class="muted text-center">TO</h4>
@@ -1099,47 +1103,52 @@ function tbb_share_bar( $atts ) {
 						</div>
 					</div>
 					
-					<!--div class="addthis_inline_share_toolbox"></div-->
 				</div>
 			</div>
 		</div>
 		
 		<script type="text/javascript">
-		$(document).ready(function(){
-			$('#share-with-friend').validate({
-				rules: {
-					"yourname": "required",
-					"youremail": {
-						required: true,
-						email: true
-					},
-					"friendemail": {
-						required: true,
-						email: true
-					}
-				},
-				errorPlacement: function (error, element) {
-					error.insertAfter($(element));
-				}
-			});
-
-
-			$('#submit').click(function(){
-				$('#submit').attr("disabled","disabled");
-				if ( $('#share-with-friend').valid() ) {
-					$('#share-with-friend').submit();
-					$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
-						$('#success').html(response).fadeIn('slow');
-						setTimeout(function() { $('#share-bar-modal').modal('hide'); }, 1500);
-					}); return false;
-				} else { $('#submit').removeAttr("disabled"); return false; }
-
-			});
-		});
+		$(document).ready(function(){$("#share-with-friend").validate({rules:{yourname:"required",youremail:{required:!0,email:!0},friendemail:{required:!0,email:!0}},errorPlacement:function(e,i){e.insertAfter($(i))}}),$("#submit").click(function(){return $("#submit").attr("disabled","disabled"),$("#share-with-friend").valid()?($("#share-with-friend").submit(),$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>",$("#share-with-friend").serialize(),function(e){$("#success").html(e).fadeIn("slow"),setTimeout(function(){$("#share-bar-modal").modal("hide")},1500)}),!1):($("#submit").removeAttr("disabled"),!1)})});
 		</script>
 		
 		<?php echo ob_get_clean();
 	} // end wp_footer function
 	
 	return ob_get_clean();
-}
+	
+	/* Unminified script used above for form validation
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#share-with-friend').validate({
+			rules: {
+				"yourname": "required",
+				"youremail": {
+					required: true,
+					email: true
+				},
+				"friendemail": {
+					required: true,
+					email: true
+				}
+			},
+			errorPlacement: function (error, element) {
+				error.insertAfter($(element));
+			}
+		});
+
+
+		$('#submit').click(function(){
+			$('#submit').attr("disabled","disabled");
+			if ( $('#share-with-friend').valid() ) {
+				$('#share-with-friend').submit();
+				$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
+					$('#success').html(response).fadeIn('slow');
+					setTimeout(function() { $('#share-bar-modal').modal('hide'); }, 1500);
+				}); return false;
+			} else { $('#submit').removeAttr("disabled"); return false; }
+
+		});
+	});
+	</script>*/
+	
+} // end SHARE_BAR shortcode
