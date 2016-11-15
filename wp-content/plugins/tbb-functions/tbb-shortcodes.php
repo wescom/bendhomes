@@ -1005,7 +1005,7 @@ function tbb_share_bar( $atts ) {
 					<li role="presentation"><a href="javascript:var w = window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode($current_url); ?>', 'sharer', 'toolbar=0,status=0,scrollbars=1,width=660,height=400'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i> Share on Facebook</a></li>
 					<li role="presentation"><a href="javascript:var w = window.open('https://plusone.google.com/share?url=<?php echo urlencode($current_url); ?>', 'gplusshare', 'toolbar=0,status=0,scrollbars=1,width=600,height=450'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i> Share on Google+</a></li>
 					<li role="presentation"><a href="javascript:var w = window.open('http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+<?php echo urlencode($current_url); ?>', 'twittersharer', 'toolbar=0,status=0,scrollbars=1,width=400,height=325'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i> Share on Twitter</a></li>
-					<li role="presentation"><a href="javascript:var w = window.open('http://pinterest.com/pin/create/button/?url='. <?php echo urlencode($current_url); ?> .'&media=<?php echo the_post_thumbnail_url('full'); ?>&description=<?php echo the_title(); ?>'); w.focus();" title="Share on Pinterest"><i class="fa fa-pinterest"></i> Share on Pinterest</a></li>
+					<li role="presentation"><a href="javascript:var w = window.open('http://pinterest.com/pin/create/button/?url=<?php echo urlencode($current_url); ?>&media=<?php echo the_post_thumbnail_url('full'); ?>&description=<?php echo the_title(); ?>'); w.focus();" title="Share on Pinterest"><i class="fa fa-pinterest"></i> Share on Pinterest</a></li>
 				</ul>
 			</div>
 		</span>
