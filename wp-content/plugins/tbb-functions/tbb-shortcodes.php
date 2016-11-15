@@ -1116,6 +1116,7 @@ function tbb_share_bar( $atts ) {
 							<input type="text" name="friendemail" id="friendemail" /><br>
 							<label for="message">Message:</label>
 							<textarea name="message" id="message">Check out this property: <?php echo $current_url; ?></textarea><br>
+							<input type="hidden" name="listingtitle" value="<?php echo the_title($id); ?>" />
 							<input type="button" value="send" id="submit" />
 							<div id="success" style="color:green;"></div>
 							</form>

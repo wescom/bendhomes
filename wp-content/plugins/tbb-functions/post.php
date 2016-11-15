@@ -26,19 +26,17 @@ $name = $_POST['yourname'];
 $email = $_POST['youremail'];
 $message = $_POST['message'];
 $friendemail = $_POST['friendemail'];
+$listingtitle = $_POST['listingtitle'];
  
 $to = $friendemail;
-$subject = $name .' Wants to Share This Property With You';
+//$subject = $name .' Wants to Share This Property With You';
+$subject = $listingtitle;
 $message =  $message . "\r\n\r\n" .'Shared by: '. $name;
-//$headers = 'From: info@bendhomes.com' . "\r\n";
-$headers = 'MIME-Version: 1.0';
-$headers .= 'Content-type: text/plain; charset=iso-8859-1';
-$headers .= 'From: BendHomes <info@bendhomes.com>';
-$headers .= 'Reply-To: '. $name .' <'. $friendemail .'>';
+$headers = 'From: BendHomes <info@bendhomes.com>' . "\r\n";
  
 if (filter_var($email, FILTER_VALIDATE_EMAIL)) { // this line checks that we have a valid email address
 	mail($to, $subject, $message, $headers); //This method sends the mail.
 	echo "Email sent!"; // success message
 }else{
-	echo "Invalid Email, please provide an correct email.";
+	echo "Invalid Email, please provide a correct email.";
 }
