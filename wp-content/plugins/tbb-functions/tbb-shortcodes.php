@@ -992,12 +992,21 @@ function tbb_share_bar( $atts ) {
 	
 	$fav_button = get_option('theme_enable_fav_button');
 	$property_id = get_the_ID();
+	$current_url = home_url().''.$_SERVER['REQUEST_URI'];
 	
 	ob_start(); ?>
 	
 	<div class="share-bar-wrap clearfix <?php echo $class; ?>">
 		<span class="actions">
-			<a id="share-bar-share" href="#share-bar-modal" data-toggle="modal"><i class="fa fa-share-alt"></i> Share</a>
+			<div class="dropdown">
+				<a id="share-bar-share" class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-share-square-o"></i> Share</a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					<li role="presentation"><a href="#share-bar-modal" data-toggle="modal"><i class="fa fa-envelope"></i> Email this listing</a></li>
+					<li role="presentation"><a href="javascript:var w = window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode($current_url); ?>', 'sharer', 'toolbar=0,status=0,scrollbars=1,width=660,height=400'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i> Share on Facebook</a></li>
+					<li role="presentation"><a href="javascript:var w = window.open('https://plusone.google.com/share?url=<?php echo urlencode($current_url); ?>', 'gplusshare', 'toolbar=0,status=0,scrollbars=1,width=600,height=450'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i> Share on Google+</a></li>
+					<li role="presentation"><a href="javascript:var w = window.open('http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+<?php echo urlencode($current_url); ?>', 'twittersharer', 'toolbar=0,status=0,scrollbars=1,width=400,height=325'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i> Share on Twitter</a></li>
+				</ul>
+			</div>
 		</span>
 		
 		<?php
@@ -1053,23 +1062,23 @@ function tbb_share_bar( $atts ) {
 					<h3>Share: <?php echo the_title(); ?></h3>
 				</div>
 				<div class="modal-body"> 
-					<h2>Share This Listing with a Friend</h2>
+					<h2>Email This Listing to a Friend</h2>
 					<div class="row-fluid share-boxes">
-						<div class="span3">
+						<!--div class="span3">
 							<div class="share facebook">
-								<a href="javascript:var w = window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode($current_url); ?>', 'sharer', 'toolbar=0,status=0,scrollbars=1,width=660,height=400'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i></a>
+								<a href="javascript:var w = window.open('http://www.facebook.com/sharer.php?u=<?php //echo urlencode($current_url); ?>', 'sharer', 'toolbar=0,status=0,scrollbars=1,width=660,height=400'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i></a>
 							</div>
 							<span>Facebook</span>
 						</div>
 						<div class="span3">
 							<div class="share twitter">
-								<a href="javascript:var w = window.open('http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+<?php echo urlencode($current_url); ?>', 'twittersharer', 'toolbar=0,status=0,scrollbars=1,width=400,height=325'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
+								<a href="javascript:var w = window.open('http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+<?php //echo urlencode($current_url); ?>', 'twittersharer', 'toolbar=0,status=0,scrollbars=1,width=400,height=325'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i></a>
 							</div>
 							<span>Twitter</span>
 						</div>
 						<div class="span3">
 							<div class="share google">
-								<a href="javascript:var w = window.open('https://plusone.google.com/share?url=<?php echo urlencode($current_url); ?>', 'gplusshare', 'toolbar=0,status=0,scrollbars=1,width=600,height=450'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
+								<a href="javascript:var w = window.open('https://plusone.google.com/share?url=<?php //echo urlencode($current_url); ?>', 'gplusshare', 'toolbar=0,status=0,scrollbars=1,width=600,height=450'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
 							</div>
 							<span>Google+</span>
 						</div>
@@ -1078,7 +1087,7 @@ function tbb_share_bar( $atts ) {
 								<a href="" title="Send to a Friend"><i class="fa fa-envelope"></i></a>
 							</div>
 							<span>Via Email</span>
-						</div>
+						</div-->
 						
 						<script type="text/javascript">
 						$(document).ready(function(){
@@ -1093,19 +1102,6 @@ function tbb_share_bar( $atts ) {
 						</script>
 						
 						<div id="email-form">
-							<!--form method="post" action="" id="share-with-friend">
-								<label for="yourname">Your Name</label>
-								<input id="yourname" type="text" name="yourname" placeholder="Your Name"><br>
-								<label for="youremail">Your Email</label>
-								<input id="youremail" type="text" name="youremail" placeholder="Your Email"><br>
-								<label for="friendemail">Your Friend's Email</label>
-								<input id="friendemail" type="text" name="friendemail" placeholder="Friend's Email"><br>
-								<label for="message">Message</label>
-								<textarea id="message" name="message">Check out this property: <?php //echo $current_url; ?></textarea><br>
-								<input type="submit" value="Send Message" name="Send" id="send"/>
-							</form>
-							<div class="error" style="display:none"> Please Enter Valid Data</div>
-							<div id="success" style="display:none"> Form Submitted Success</div-->
 							<form action="" method="post" id="share-with-friend" >
 							<label for="yourname">Your Name:</label>
 							<input type="text" name="yourname" id="yourname" /><br>
