@@ -59,7 +59,8 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 
 .share-bar-wrap { margin: 15px 0; }
 .share-bar-wrap > .actions { display: block; width: 33.3333%; float: left; }
-.share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share, .share-bar-wrap .actions #fav_output { display: block; padding: 16px 10px; text-align: center; color: #fff; font-weight: 400; font-size: 16px; text-transform: uppercase; background: #02888f; letter-spacing: .05em; border-left: 1px solid #fff; cursor: pointer; }
+.share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share { display: block; }
+.share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share, .share-bar-wrap .actions #fav_output { padding: 16px 10px; text-align: center; color: #fff; font-weight: 400; font-size: 16px; text-transform: uppercase; background: #02888f; letter-spacing: .05em; border-left: 1px solid #fff; cursor: pointer; }
 .share-bar-wrap .actions #fav_output #fav_target.dim, .share-bar-wrap .actions #fav_output i { color: yellow; }
 .share-bar-wrap .actions > a:hover, .share-bar-wrap .actions .fav-btn:hover, .share-bar-wrap .actions #share-bar-share:hover, .share-bar-wrap .actions #fav_output:hover { background: #006267; }
 .share-bar-wrap .actions #share-bar-share { border-left: none; }
