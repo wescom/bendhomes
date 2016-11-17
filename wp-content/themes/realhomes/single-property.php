@@ -138,6 +138,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</div>
 							<?php } ?>
 						</div>
+						<script type="text/javascript">
+							$('a[href="#tab-map"]').on('shown', function(){
+								google.maps.event.trigger(map, 'resize');
+							 });
+						</script>
 					</div>
 					
 					<div class="span5">
