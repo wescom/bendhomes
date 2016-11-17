@@ -117,7 +117,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			<div class="main-wrap">
 				<div class="row-fluid">
 					<div class="span7">
-						<ul class="nav nav-tabs" id="myTab">
+						<ul class="nav nav-tabs" id="prop-tabs">
 							<li class="active"><a href="#tab-photos" data-toggle="tab">Photos</a></li>
 							<li><a href="#tab-map" data-toggle="tab">Map</a></li>
 							<?php if(!empty($video)) { ?>
