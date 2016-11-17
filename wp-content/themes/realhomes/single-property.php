@@ -89,7 +89,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$video = get_field('REAL_HOMES_tour_video_url');
 			$hoa = get_field('REAL_HOMES_property_features_hoa');
 			$hoa_amount = intval(get_field('REAL_HOMES_property_features_hoa_amount'));
-			$hoa_per = get_field('REAL_HOMES_property_features_hoa_amount');
+			$hoa_per = get_field('REAL_HOMES_property_features_hoa_per');
+			$zoning = get_field('REAL_HOMES_property_features_zoning');
 
 			// Exterior Features
 			$construction = get_field('REAL_HOMES_exterior_construction');
@@ -116,47 +117,41 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$water_heater = get_field('REAL_HOMES_interior_water_heater');
 			
 			// Property Featured
-			$ccrs = get_field('');
-			$cross_street = get_field('REAL_HOMES_property_features_cross_street');
-			$elec_company = get_field('');
-			$elec_score = get_field('');
-			$exempt = get_field('');
-			$tax_year = get_field('');
-			$tax_amount = get_field('');
-			$terms = get_field('');
-			$num_units = get_field('');
-			$subdivision = get_field('');
-			$exist_water = get_field('');
-			$farm_defferal = get_field('');
-			$included1 = get_field('');
-			$included2 = get_field('');
-			$lot_num = get_field('');
-			$new_construct = get_field('');
-			$percent_shared = get_field('');
-			$sell_disclosure = get_field('');
-			$sewer_septic = get_field('');
-			$water_district = get_field('');
-			$zoning = get_field('');
-			$sale_incl = get_field('');
-			$sale_excl = get_field('');
-			
-			// Land Specific
-			$utils_avail = get_field('');
-			$road_type = get_field('');
-			$current_use = get_field('');
-			
-			// Farm Specific
-			$farm_directions = get_field('');
-			$soil_type = get_field('');
-			$topography = get_field('');
-			
-			// Commercial Specific
-			$parking_avail = get_field('');
-			$office_type = get_field('');
-			
-			// Business Specific
-			$lease = get_field('');
-			$busi_sale = get_field('');
+			$property_features = [
+				'New Construction' => get_field('REAL_HOMES_property_features_new_construction'),
+				'Property Subtype' => get_field('REAL_HOMES_property_features_subtype'),
+				'CCRs' => get_field('REAL_HOMES_property_features_ccrs'),
+				'Cross Street' => get_field('REAL_HOMES_property_features_cross_street'),
+				'Electric Company' => get_field('REAL_HOMES_property_features_electric_company'),
+				'Eps Energy Score' => get_field('REAL_HOMES_property_features_energy_score'),
+				'Exempt' => get_field('REAL_HOMES_property_features_exempt'),
+				'Tax Year' => get_field('REAL_HOMES_property_features_tax_year'),
+				'Tax Amount' => get_field('REAL_HOMES_property_features_tax_amount'),
+				'Terms' => get_field('REAL_HOMES_property_features_terms'),
+				'Number of Units' => get_field('REAL_HOMES_property_features_number_units'),
+				'Subdivision' => get_field('REAL_HOMES_property_features_subdivision'),
+				'Existing Water' => get_field('REAL_HOMES_property_features_existing_water'),
+				'Farm Deferral' => get_field('REAL_HOMES_property_features_farm_deferral'),
+				'Included' => get_field('REAL_HOMES_property_features_included'),
+				'Included 2' => get_field('REAL_HOMES_property_features_included2'),
+				'Lot Number' => get_field('REAL_HOMES_property_features_lot_number'),
+				'Percent Shared Interest' => get_field('REAL_HOMES_property_features_percent_shared'),
+				'Sellers Disclosure' => get_field('REAL_HOMES_property_features_sellers_disclosure'),
+				'Sewer/Septic' => get_field('REAL_HOMES_property_features_sewer_septic'),
+				'Water District' => get_field('REAL_HOMES_property_features_water_district'),
+				'Sale Inclusions' => get_field('REAL_HOMES_property_features_sale_inclusions'),
+				'Sale Exclusions' => get_field('REAL_HOMES_property_features_sale_exclusions'),
+				'Utilities Available' => get_field('REAL_HOMES_utilities'),
+				'Road Type' => get_field('REAL_HOMES_road_type'),
+				'Current Use' => get_field('REAL_HOMES_current_use'),
+				'Directions' => get_field('REAL_HOMES_directions'),
+				'Soil Type' => get_field('REAL_HOMES_soil'),
+				'Topography' => get_field('REAL_HOMES_topography'),
+				'Parking Available' => get_field('REAL_HOMES_parking'),
+				'Office Type' => get_field('REAL_HOMES_office_type'),
+				'Lease' => get_field('REAL_HOMES_lease'),
+				'Business Sale' => get_field('REAL_HOMES_business_sale'),
+			];
 				
 			?>
 			<div class="row-fluid">
@@ -229,17 +224,20 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						?>
 						
 						<div class="basic-info">
-							<table class="table table-striped">
+							<table class="table table-striped table-hover">
 								<tbody>
 									<?php 
 									echo sprintf('<tr><td>MLS#</td><td class="text-right">%s</td></tr>', $mls_number); 
-									if(!empty($hoa)) { 
-										echo sprintf('<tr><td>HOA</td><td class="text-right">$%s</td></tr>
-											<tr><td>HOA Amount</td><td class="text-right">$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);
-									}
+									if(!empty($hoa))
+									echo sprintf('<tr><td>HOA</td><td class="text-right">%s</td></tr>
+										<tr><td>HOA Amount</td><td class="text-right">$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);
+									
 									echo sprintf('<tr><td>County</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'county' ));
 									
 									echo sprintf('<tr><td>Area</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'area' ));
+									
+									if(!empty($zoning))
+									echo sprintf('<tr><td>Zoning</td><td class="text-right">%s</td></tr>', $zoning);
 									?>
 
 								</tbody>
@@ -248,7 +246,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						
 						<div class="schools">
 							<h3>School Information</h3>
-							<table class="table table-striped">
+							<table class="table table-striped table-hover">
 								<tbody>
 									<tr>
 										<td>Elementary School</td>
@@ -290,7 +288,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="row-fluid">
 					<div class="span4">
 						<h3>Exterior Features</h3>
-						<table class="table table-striped exterior">
+						<table class="table table-striped table-hover exterior">
 							<tbody>
 							<?php
 							if(!empty($construction)) echo sprintf('<tr><td>Construction</td><td class="text-right">%s</td></tr>', $construction);
@@ -319,7 +317,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					
 					<div class="span4">
 						<h3>Interior Features</h3>
-						<table class="table table-striped interior">
+						<table class="table table-striped table-hover interior">
 							<tbody>
 							<?php
 							if(!empty($interior)) echo sprintf('<tr><td>Interior</td><td class="text-right">%s</td></tr>', $interior);
@@ -348,9 +346,15 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					
 					<div class="span4">
 						<h3>Property Features</h3>
-						<table class="table table-striped features">
+						<table class="table table-striped table-hover features">
 							<tbody>
-							
+							<?php								
+							foreach( $property_features as $key => $val ) {
+								if( !empty($val) ) {
+									echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+								}
+							}
+							?>
 							</tbody>
 						</table>
 					</div>
