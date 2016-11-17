@@ -44,7 +44,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
            <!--******* Begin Custom Design *******-->
 			
 			<?php while( have_posts() ): the_post();
-				
+			
+				$id = get_the_ID();	
 					
 				$mls_number = get_field( 'REAL_HOMES_property_id' );
 				if(!empty($mls_number)) $mls = sprintf( 'MLS #: %s', $mls_number );
@@ -52,7 +53,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$property_type = get_field( 'REAL_HOMES_property_features_subtype' );
 				if(!empty($property_type)) $property_type = sprintf('Type: %s', $property_type);
 					
-				$status_terms = get_the_terms( get_the_ID(), 'property-status' );
+				$status_terms = get_the_terms( $id, 'property-status' );
 				if ( $status_terms && !is_wp_error( $status_terms ) ) :
 					$term_links = array();
 					foreach( $status_terms as $status ) {
@@ -117,10 +118,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="row-fluid">
 					<div class="span7">
 						<ul class="nav nav-tabs" id="myTab">
-							<li class="active"><a href="#tab-photos">Photos</a></li>
-							<li><a href="#tab-map">Map</a></li>
+							<li class="active"><a href="#tab-photos" data-toggle="tab">Photos</a></li>
+							<li><a href="#tab-map" data-toggle="tab">Map</a></li>
 							<?php if(!empty($video)) { ?>
-							<li><a href="#tab-video">Video</a></li>
+							<li><a href="#tab-video" data-toggle="tab">Video</a></li>
 							<?php } ?>
 						</ul>
 
@@ -154,7 +155,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						get_template_part('bend-homes/open-house-fragment');
 					
 						// Mortgage calculator
-						echo do_shortcode('[MORT_CALC_FORM id="'. get_the_ID() .'"]');
+						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]');
 						
 						// Show share bar icons
 						echo do_shortcode('[SHARE_BAR]');
@@ -180,15 +181,15 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								<tbody>
 									<tr>
 										<td>Elementary School</td>
-										<td><?php echo get_the_term_list( get_the_ID(), 'elementary_school' ); ?></td>
+										<td><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
 									</tr>
 									<tr>
 										<td>Middle School</td>
-										<td><?php echo get_the_term_list( get_the_ID(), 'middle_school' ); ?></td>
+										<td><?php echo get_the_term_list( $id, 'middle_school' ); ?></td>
 									</tr>
 									<tr>
 										<td>High School</td>
-										<td><?php echo get_the_term_list( get_the_ID(), 'high_school' ); ?></td>
+										<td><?php echo get_the_term_list( $id, 'high_school' ); ?></td>
 									</tr>
 								</tbody>
 							</table>
@@ -210,6 +211,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 				</div>
 			</div><!-- end main-wrap -->
+			
+			<?php get_template_part('property-details/similar-properties'); ?>
 				
 				
 			<?php endwhile; ?>
