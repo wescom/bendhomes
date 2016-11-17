@@ -117,27 +117,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			<div class="main-wrap">
 				<div class="row-fluid">
 					<div class="span7">
-						<ul class="nav nav-tabs" id="prop-tabs">
-							<li class="active"><a href="#tab-photos" data-toggle="tab">Photos</a></li>
-							<li><a href="#tab-map" data-toggle="tab">Map</a></li>
-							<?php if(!empty($video)) { ?>
-							<li><a href="#tab-video" data-toggle="tab">Video</a></li>
-							<?php } ?>
-						</ul>
-
-						<div class="tab-content">
-							<div class="tab-pane active" id="tab-photos">
-								<?php get_template_part('property-details/property-slider-two'); ?>
-							</div>
-							<div class="tab-pane" id="tab-map">
-								<?php get_template_part('property-details/property-map'); ?>
-							</div>
-							<?php if(!empty($video)) { ?>
-							<div class="tab-pane" id="tab-video">
-								<?php get_template_part('property-details/property-video'); ?>
-							</div>
-							<?php } ?>
-						</div>
+						<?php 
+						// Property image slider
+						get_template_part('property-details/property-slider-two'); ?>
 					</div>
 					
 					<div class="span5">
@@ -208,6 +190,17 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					
 					<div class="span4">
 						<h3>Exterior Features</h3>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span6">
+						<?php 
+						// Property map
+						get_template_part('property-details/property-map'); ?>
+					</div>
+					<div class="span6">
+					
 					</div>
 				</div>
 			</div><!-- end main-wrap -->
