@@ -653,7 +653,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                 }
 
                 // Google Map API
-                /*wp_enqueue_script(
+                wp_enqueue_script(
                     'google-map-api',
                     esc_url_raw(
                         add_query_arg(
@@ -667,7 +667,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                     array(),
                     '3.21',
                     false
-                );*/
+                );
 				// ******* END COMMENT OUT *********/
 
                 // Google Map Info Box API
