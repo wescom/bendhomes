@@ -184,7 +184,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 										<td><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
 									</tr>
 									<tr>
-										<td>Middle School</td>
+										<td>Middle School </td>
 										<td><?php echo get_the_term_list( $id, 'middle_school' ); ?></td>
 									</tr>
 									<tr>
