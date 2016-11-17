@@ -43,8 +43,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
         <div class="row">
            <!--******* Begin Custom Design *******-->
 			
-			<?php
-			if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( ! post_password_required() ) {
+			<?php while( have_posts() ): the_post();
 				
 					
 				$mls_number = get_field( 'REAL_HOMES_property_id' );
@@ -213,7 +212,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			</div><!-- end main-wrap -->
 				
 				
-			<?php } endwhile; endif; ?>
+			<?php endwhile; ?>
+            <?php wp_reset_query(); ?>
            
            
            
