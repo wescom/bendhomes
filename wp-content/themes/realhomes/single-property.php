@@ -138,15 +138,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</div>
 							<?php } ?>
 						</div>
-						<script type="text/javascript">
-							$('a[href="#tab-map"]').on('shown', function(){
-								initialize_property_map();
-							 });
-						</script>
 					</div>
 					
 					<div class="span5">
-						<h2 class="text-center property-price"><?php property_price(); ?></h2>
+						<h2 class="text-center property-price">$<?php echo $price; ?></h2>
 						<div class="main-items">
 							<div class="item"><span class="val"><?php echo $beds; ?></span><span class="key">Beds</span></div>
 							<div class="item"><span class="val"><?php echo $baths; ?></span><span class="key">Baths</span></div>
