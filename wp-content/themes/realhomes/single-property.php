@@ -195,9 +195,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				
 				<div class="row-fluid">
 					<div class="span6">
+						<div id="overview">
 						<?php 
 						// Property map
 						get_template_part('property-details/property-map'); ?>
+						</div>
 					</div>
 					<div class="span6">
 					
