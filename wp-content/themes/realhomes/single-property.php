@@ -67,7 +67,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					
 				$current_date = date('Y-m-d');
 				$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
-				$listing_date = DateTime::createFromFormat('Y-m-d', $listing_date)->format('Y-m-d');
+				$listing_date = '';//DateTime::createFromFormat('Y-m-d', $listing_date)->format('Y-m-d');
 				$days_on_site = $current_date - $listing_date;
 				if( $days_on_site < 1 ) {
 					$onsite = 'New Today';
@@ -82,7 +82,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$sqft = intval(get_field('REAL_HOMES_property_size'));
 				$acres = get_field('REAL_HOMES_exterior_acres');
 				$built = get_field('REAL_HOMES_property_features_year_built');
-				$price = get_field('REAL_HOMES_property_price');
+				$price = intval(get_field('REAL_HOMES_property_price'));
 				$p_sqft = intval($price / $sqft);
 				$video = get_field('REAL_HOMES_tour_video_url');
 				
@@ -91,7 +91,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="span7">
 					<h1 class="property-title"><?php echo bh_the_title(); ?></h1>
 					<div class="quick-header-info clearfix">
-						<span class="header-price text-green"><?php property_price(); ?></span>
+						<span class="header-price text-green">$<?php echo $price; ?></span>
 						<span class="header-type"><?php echo $property_type; ?></span>
 						<?php echo $status_list; ?>
 						<span class="header-mls"><?php echo $mls; ?></span>
