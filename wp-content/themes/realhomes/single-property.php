@@ -86,6 +86,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$price = intval(get_field('REAL_HOMES_property_price'));
 				$p_sqft = intval($price / $sqft);
 				$video = get_field('REAL_HOMES_tour_video_url');
+				$hoa = get_field('REAL_HOMES_property_features_hoa');
+				$hoa_amount = intval(get_field('REAL_HOMES_property_features_hoa_amount'));
+				$hoa_per = get_field('REAL_HOMES_property_features_hoa_amount');
+				$cross_street = get_field('REAL_HOMES_property_features_cross_street');
 				
 			?>
 			<div class="row-fluid">
@@ -155,31 +159,29 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php 
 						// open house info, if array_change_key_case
 						get_template_part('bend-homes/open-house-fragment');
-					
-						// Mortgage calculator
-						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]');
-						
-						// Show share bar icons
-						echo do_shortcode('[SHARE_BAR]');
 						?>
-					</div>
-				</div>
-				
-				<div class="row-fluid">
-					<div class="span7">
-						<div class="description">
-							<h3>Description</h3>
-							<?php the_content(); ?>
+						
+						<div class="basic-info">
+							<table class="table table-striped">
+								<tbody>
+									<?php 
+									sprintf('<tr><td>MLS#</td><td>%s</td></tr>', $mls_number);
+									if(!empty($hoa)) { 
+										sprintf('<tr><td>HOA</td><td>$%s</td></tr>
+											<tr><td>HOA Amount</td><td>$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);
+									}
+									sprintf('<tr><td>County</td><td>%s</td></tr>', get_the_term_list( $id, 'county' ));
+									
+									sprintf('<tr><td>Area</td><td>%s</td></tr>', get_the_term_list( $id, 'area' ));
+									?>
+
+								</tbody>
+							</table>
 						</div>
-					</div>
-					<div class="span5">
+						
 						<div class="schools">
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<th colspan="2"><h3>Schools</h3></th>
-									</tr>
-								</thead>
+							<h3>School Information</h3>
+							<table class="table table-striped">
 								<tbody>
 									<tr>
 										<td>Elementary School</td>
@@ -196,12 +198,32 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</tbody>
 							</table>
 						</div>
+						
+						<?php
+						// Show share bar icons
+						echo do_shortcode('[SHARE_BAR]');
+						?>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span6">
+						<div class="description">
+							<h3>Description</h3>
+							<?php the_content(); ?>
+						</div>
+					</div>
+					<div class="span6">
+						<?php
+						// Mortgage calculator
+						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]'); ?>
 					</div>
 				</div>
 				
 				<div class="row-fluid">
 					<div class="span4">
 						<h3>Property Features</h3>
+						
 					</div>
 					
 					<div class="span4">
