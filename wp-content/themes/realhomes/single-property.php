@@ -44,8 +44,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
            <!--******* Begin Custom Design *******-->
 			
 			<?php
-			if ( have_posts() ) : while ( have_posts() ) : the_post();
-				if ( ! post_password_required() ) {
+			if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( ! post_password_required() ) {
+				
 					
 				$mls_number = get_field( 'REAL_HOMES_property_id' );
 				if(!empty($mls_number)) $mls = sprintf( 'MLS #: %s', $mls_number );
@@ -212,15 +212,14 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				</div>
 			</div><!-- end main-wrap -->
 				
-			<?php
-				}
-			endwhile; endif;
-			?>
+				
+			<?php } endwhile; endif; ?>
            
            
            
            <!--******* End Custom Design *******-->
            
+           <?php /*
             <div class="span9 main-wrap">
               <?php
               // 1777
@@ -287,48 +286,49 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                                         get_template_part('property-details/property-slider');
                                     }*/
 									
+									/*
 									// Use this slider style instead of regular /property-slider because it looks better.
 									get_template_part('property-details/property-slider-two');
 
 
-                                    /*
-                                    * 2. Property Information Bar, Icons Bar, Text Contents and Features
-                                    */
+                                    
+                                    // 2. Property Information Bar, Icons Bar, Text Contents and Features
+
                                     get_template_part('property-details/property-contents');
 
-                                    /*
-                                    * 2.5. Property Agent information, if not a featured agent
-                                    */
+                                    
+                                    // 2.5. Property Agent information, if not a featured agent
+                                    
                                     bhAgentRender('body');
 
-                                    /*
-                                    * 3. Property Floor Plans
-                                    */
+                                    
+                                    // 3. Property Floor Plans
+                                    
                                     get_template_part('property-details/property-floor-plans');
 
-                                    /*
-                                    * 4. Property Video
-                                    */
+                                    
+                                    // 4. Property Video
+                                    
                                     get_template_part('property-details/property-video');
 
-                                    /*
-                                    * 5. Property Map
-                                    */
+                                    
+                                    // 5. Property Map
+                                    
                                     get_template_part('property-details/property-map');
 
-                                    /*
-                                    * 6. Property Attachments
-                                    */
+                                    /
+                                    // 6. Property Attachments
+                                    
                                     get_template_part('property-details/property-attachments');
 
-                                    /*
-                                    * 7. Child Properties
-                                    */
+                                    
+                                    // 7. Child Properties
+                                    
                                     get_template_part('property-details/property-children');
 
-                                    /*
-                                    * 8. Property Agent
-                                    */
+                                    
+                                    // 8. Property Agent
+                                    
                                     if ( isset( $_GET[ 'variation' ] ) ) {
                                         $theme_property_detail_variation = $_GET[ 'variation' ];    // For demo purpose only
                                     }
@@ -353,9 +353,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                 </div><!-- End Main Content -->
 
                 <?php
-                /*
-                 * 8. Similar Properties
-                 */
+                
+                // 8. Similar Properties
+                 
                 get_template_part('property-details/similar-properties');
                 ?>
 
@@ -408,7 +408,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						endif;*/
                     
                     
-                        
+                        /*
                         bhAgentRender('sidebar');
                         if ( ! dynamic_sidebar( 'property-sidebar' ) ) :
                         endif;
@@ -422,7 +422,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                 get_sidebar('property');
             }
 
-            ?>
+            */ ?>
 
         </div><!-- End contents row -->
     </div><!-- End Content -->
