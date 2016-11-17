@@ -141,7 +141,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							<?php } ?>
 						</div>
 						<script type="text/javascript">
-							$('#tab-map').on('shown', function (e) {
+							$('#prop-tabs a[href="#tab-map"]').on('shown', function (e) {
 							  initialize_property_map();
 							})
 						</script>
