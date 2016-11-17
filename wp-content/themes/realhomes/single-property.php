@@ -37,10 +37,190 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
     ?>
 
     <div class="page-spacer"></div>
-
+    
     <!-- Content -->
     <div class="container contents detail">
         <div class="row">
+           <!--******* Begin Custom Design *******-->
+			
+			<?php
+			if ( have_posts() ) : while ( have_posts() ) : the_post();
+				if ( ! post_password_required() ) {
+					
+				$mls_number = get_field( 'REAL_HOMES_property_id' );
+				if(!empty($mls_number)) $mls = sprintf( 'MLS #: %s', $mls_number );
+					
+				$property_type = get_field( 'REAL_HOMES_property_features_subtype' );
+				if(!empty($property_type)) $property_type = sprintf('Type: %s', $property_type);
+					
+				$status_terms = get_the_terms( get_the_ID(), 'property-status' );
+				if ( $status_terms && !is_wp_error( $status_terms ) ) :
+					$term_links = array();
+					foreach( $status_terms as $status ) {
+						$term_links[] = $status->name;
+					}
+					$on_status = join( ', ', $term_links );
+					$statusClass = "x".str_replace(", ", ",", esc_html($on_status));
+					$statusClass = str_replace(" ", "-", $statusClass );
+					$statusClass = str_replace(",", " ", $statusClass );
+					$status_list = sprintf( '<span class="header-status %s">Status: <strong>%s</strong></span>', $statusClass, esc_html($on_status));
+				endif;
+					
+				$current_date = date('Y-m-d');
+				$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
+				$listing_date = DateTime::createFromFormat('Y-m-d', $listing_date)->format('Y-m-d');
+				$days_on_site = $current_date - $listing_date;
+				if( $days_on_site < 1 ) {
+					$onsite = 'New Today';
+				} elseif( $days_on_site == 1 ) {
+					$onsite = '1 Day on Market';
+				} else {
+					$onsite = $days_on_site .' Days on Market';
+				}
+					
+				$beds = get_field('REAL_HOMES_property_bedrooms');
+				$baths = get_field('REAL_HOMES_property_bathrooms');
+				$sqft = intval(get_field('REAL_HOMES_property_size'));
+				$acres = get_field('REAL_HOMES_exterior_acres');
+				$built = get_field('REAL_HOMES_property_features_year_built');
+				$price = get_field('REAL_HOMES_property_price');
+				$p_sqft = intval($price / $sqft);
+				$video = get_field('REAL_HOMES_tour_video_url');
+				
+			?>
+			<div class="row-fluid">
+				<div class="span7">
+					<h1 class="property-title"><?php echo bh_the_title(); ?></h1>
+					<div class="quick-header-info clearfix">
+						<span class="header-price text-green"><?php property_price(); ?></span>
+						<span class="header-type"><?php echo $property_type; ?></span>
+						<?php echo $status_list; ?>
+						<span class="header-mls"><?php echo $mls; ?></span>
+						<div class="newness">
+							<?php echo $onsite; ?>
+						</div>
+						<div class="updated">
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="span5">
+					<?php
+					// Show featured agent box
+					bhAgentRender('sidebar');
+					bhAgentRender('body');
+					?>
+				</div>
+			</div>
+			
+			<div class="main-wrap">
+				<div class="row-fluid">
+					<div class="span7">
+						<ul class="nav nav-tabs" id="myTab">
+							<li class="active"><a href="#tab-photos">Photos</a></li>
+							<li><a href="#tab-map">Map</a></li>
+							<?php if(!empty($video)) { ?>
+							<li><a href="#tab-video">Video</a></li>
+							<?php } ?>
+						</ul>
+
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab-photos">
+								<?php get_template_part('property-details/property-slider-two'); ?>
+							</div>
+							<div class="tab-pane" id="tab-map">
+								<?php get_template_part('property-details/property-map'); ?>
+							</div>
+							<?php if(!empty($video)) { ?>
+							<div class="tab-pane" id="tab-video">
+								<?php get_template_part('property-details/property-video'); ?>
+							</div>
+							<?php } ?>
+						</div>
+					</div>
+					
+					<div class="span5">
+						<h2 class="text-center property-price"><?php property_price(); ?></h2>
+						<div class="main-items">
+							<div class="item"><span class="val"><?php echo $beds; ?></span><span class="key">Beds</span></div>
+							<div class="item"><span class="val"><?php echo $baths; ?></span><span class="key">Baths</span></div>
+							<div class="item"><span class="val"><?php echo $sqft; ?></span><span class="key">SqFt</span></div>
+							<div class="item"><span class="val"><?php echo $acres; ?></span><span class="key">Acres</span></div>
+							<div class="item"><span class="val"><?php echo $built; ?></span><span class="key">Built</span></div>
+							<div class="item"><span class="val"><?php echo $p_sqft; ?></span><span class="key">$/SqFt</span></div>
+						</div>
+						<?php 
+						// open house info, if array_change_key_case
+						get_template_part('bend-homes/open-house-fragment');
+					
+						// Mortgage calculator
+						echo do_shortcode('[MORT_CALC_FORM id="'. get_the_ID() .'"]');
+						
+						// Show share bar icons
+						echo do_shortcode('[SHARE_BAR]');
+						?>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span7">
+						<div class="description">
+							<h3>Description</h3>
+							<?php the_content(); ?>
+						</div>
+					</div>
+					<div class="span5">
+						<div class="schools">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th colspan="2"><h3>Schools</h3></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Elementary School</td>
+										<td><?php echo get_the_term_list( get_the_ID(), 'elementary_school' ); ?></td>
+									</tr>
+									<tr>
+										<td>Middle School</td>
+										<td><?php echo get_the_term_list( get_the_ID(), 'middle_school' ); ?></td>
+									</tr>
+									<tr>
+										<td>High School</td>
+										<td><?php echo get_the_term_list( get_the_ID(), 'high_school' ); ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span4">
+						<h3>Property Features</h3>
+					</div>
+					
+					<div class="span4">
+						<h3>Interior Features</h3>
+					</div>
+					
+					<div class="span4">
+						<h3>Exterior Features</h3>
+					</div>
+				</div>
+			</div><!-- end main-wrap -->
+				
+			<?php
+				}
+			endwhile; endif;
+			?>
+           
+           
+           
+           <!--******* End Custom Design *******-->
+           
             <div class="span9 main-wrap">
               <?php
               // 1777
@@ -167,7 +347,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
                         
                         <?php echo do_shortcode('[MORT_CALC_FORM id="'. $post->ID .'"]'); ?>
 						<p>&nbsp;</p>
-                   		<?php echo do_shortcode('[SHARE_BAR]'); ?>
+                
                     </div>
 
                 </div><!-- End Main Content -->
