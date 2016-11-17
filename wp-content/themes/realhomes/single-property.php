@@ -45,51 +45,118 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			
 			<?php while( have_posts() ): the_post();
 			
-				$id = get_the_ID();	
-					
-				$mls_number = get_field( 'REAL_HOMES_property_id' );
-				if(!empty($mls_number)) $mls = sprintf( 'MLS #: %s', $mls_number );
-					
-				$property_type = get_field( 'REAL_HOMES_property_features_subtype' );
-				if(!empty($property_type)) $property_type = sprintf('Type: %s', $property_type);
-					
-				$status_terms = get_the_terms( $id, 'property-status' );
-				if ( $status_terms && !is_wp_error( $status_terms ) ) :
-					$term_links = array();
-					foreach( $status_terms as $status ) {
-						$term_links[] = $status->name;
-					}
-					$on_status = join( ', ', $term_links );
-					$statusClass = "x".str_replace(", ", ",", esc_html($on_status));
-					$statusClass = str_replace(" ", "-", $statusClass );
-					$statusClass = str_replace(",", " ", $statusClass );
-					$status_list = sprintf( '<span class="header-status %s">Status: <strong>%s</strong></span>', $statusClass, esc_html($on_status));
-				endif;
-					
-				$current_date = date('Y-m-d');
-				$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
-				$listing_date = '';//DateTime::createFromFormat('Y-m-d', $listing_date)->format('Y-m-d');
-				$days_on_site = $current_date - $listing_date;
-				if( $days_on_site < 1 ) {
-					$onsite = 'New Today';
-				} elseif( $days_on_site == 1 ) {
-					$onsite = '1 Day on Market';
-				} else {
-					$onsite = $days_on_site .' Days on Market';
+			$id = get_the_ID();	
+
+			$mls_number = get_field( 'REAL_HOMES_property_id' );
+			if(!empty($mls_number)) $mls = sprintf( 'MLS #: %s', $mls_number );
+
+			$property_type = get_field( 'REAL_HOMES_property_features_subtype' );
+			if(!empty($property_type)) $property_type = sprintf('Type: %s', $property_type);
+
+			$status_terms = get_the_terms( $id, 'property-status' );
+			if ( $status_terms && !is_wp_error( $status_terms ) ) :
+				$term_links = array();
+				foreach( $status_terms as $status ) {
+					$term_links[] = $status->name;
 				}
-					
-				$beds = get_field('REAL_HOMES_property_bedrooms');
-				$baths = get_field('REAL_HOMES_property_bathrooms');
-				$sqft = intval(get_field('REAL_HOMES_property_size'));
-				$acres = get_field('REAL_HOMES_exterior_acres');
-				$built = get_field('REAL_HOMES_property_features_year_built');
-				$price = intval(get_field('REAL_HOMES_property_price'));
-				$p_sqft = intval($price / $sqft);
-				$video = get_field('REAL_HOMES_tour_video_url');
-				$hoa = get_field('REAL_HOMES_property_features_hoa');
-				$hoa_amount = intval(get_field('REAL_HOMES_property_features_hoa_amount'));
-				$hoa_per = get_field('REAL_HOMES_property_features_hoa_amount');
-				$cross_street = get_field('REAL_HOMES_property_features_cross_street');
+				$on_status = join( ', ', $term_links );
+				$statusClass = "x".str_replace(", ", ",", esc_html($on_status));
+				$statusClass = str_replace(" ", "-", $statusClass );
+				$statusClass = str_replace(",", " ", $statusClass );
+				$status_list = sprintf( '<span class="header-status %s">Status: <strong>%s</strong></span>', $statusClass, esc_html($on_status));
+			endif;
+
+			$current_date = date('Y-m-d');
+			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
+			$listing_date = '';//DateTime::createFromFormat('Y-m-d', $listing_date)->format('Y-m-d');
+			$days_on_site = $current_date - $listing_date;
+			if( $days_on_site < 1 ) {
+				$onsite = 'New Today';
+			} elseif( $days_on_site == 1 ) {
+				$onsite = '1 Day on Market';
+			} else {
+				$onsite = $days_on_site .' Days on Market';
+			}
+
+			// Basic Fields
+			$beds = get_field('REAL_HOMES_property_bedrooms');
+			$baths = get_field('REAL_HOMES_property_bathrooms');
+			$sqft = intval(get_field('REAL_HOMES_property_size'));
+			$acres = get_field('REAL_HOMES_exterior_acres');
+			$built = get_field('REAL_HOMES_property_features_year_built');
+			$price = intval(get_field('REAL_HOMES_property_price'));
+			$p_sqft = intval($price / $sqft);
+			$video = get_field('REAL_HOMES_tour_video_url');
+			$hoa = get_field('REAL_HOMES_property_features_hoa');
+			$hoa_amount = intval(get_field('REAL_HOMES_property_features_hoa_amount'));
+			$hoa_per = get_field('REAL_HOMES_property_features_hoa_amount');
+
+			// Exterior Features
+			$construction = get_field('REAL_HOMES_exterior_construction');
+			$additions = get_field('REAL_HOMES_exterior_additions');
+			$exterior = get_field('REAL_HOMES_exterior_exterior');
+			$foundation = get_field('REAL_HOMES_exterior_foundation');
+			$irrigated_acres = get_field('REAL_HOMES_exterior_irrigated_acres');
+			$irrigation = get_field('REAL_HOMES_exterior_irrigation');
+			$parking = get_field('REAL_HOMES_exterior_parking');
+			$roof = get_field('REAL_HOMES_exterior_roof');
+			$exterior_style = get_field('REAL_HOMES_exterior_style');
+			$exterior_view = get_field('REAL_HOMES_exterior_view');
+			
+			// Interior Features
+			$interior = get_field('REAL_HOMES_interior_interior');
+			$rooms = get_field('REAL_HOMES_interior_rooms');
+			$windows_doors = get_field('REAL_HOMES_interior_doors_windows');
+			$floors = get_field('REAL_HOMES_interior_floors');
+			$heat_cool = get_field('REAL_HOMES_interior_heat_cool');
+			$bath_desc = get_field('REAL_HOMES_interior_bathroom_desc');
+			$kitchen_desc = get_field('REAL_HOMES_interior_kitchen_desc');
+			$levels = get_field('REAL_HOMES_interior_levels');
+			$ventilation = get_field('REAL_HOMES_interior_ventilation');
+			$water_heater = get_field('REAL_HOMES_interior_water_heater');
+			
+			// Property Featured
+			$ccrs = get_field('');
+			$cross_street = get_field('REAL_HOMES_property_features_cross_street');
+			$elec_company = get_field('');
+			$elec_score = get_field('');
+			$exempt = get_field('');
+			$tax_year = get_field('');
+			$tax_amount = get_field('');
+			$terms = get_field('');
+			$num_units = get_field('');
+			$subdivision = get_field('');
+			$exist_water = get_field('');
+			$farm_defferal = get_field('');
+			$included1 = get_field('');
+			$included2 = get_field('');
+			$lot_num = get_field('');
+			$new_construct = get_field('');
+			$percent_shared = get_field('');
+			$sell_disclosure = get_field('');
+			$sewer_septic = get_field('');
+			$water_district = get_field('');
+			$zoning = get_field('');
+			$sale_incl = get_field('');
+			$sale_excl = get_field('');
+			
+			// Land Specific
+			$utils_avail = get_field('');
+			$road_type = get_field('');
+			$current_use = get_field('');
+			
+			// Farm Specific
+			$farm_directions = get_field('');
+			$soil_type = get_field('');
+			$topography = get_field('');
+			
+			// Commercial Specific
+			$parking_avail = get_field('');
+			$office_type = get_field('');
+			
+			// Business Specific
+			$lease = get_field('');
+			$busi_sale = get_field('');
 				
 			?>
 			<div class="row-fluid">
@@ -165,14 +232,14 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							<table class="table table-striped">
 								<tbody>
 									<?php 
-									sprintf('<tr><td>MLS#</td><td>%s</td></tr>', $mls_number); 
+									echo sprintf('<tr><td>MLS#</td><td class="text-right">%s</td></tr>', $mls_number); 
 									if(!empty($hoa)) { 
-										sprintf('<tr><td>HOA</td><td>$%s</td></tr>
-											<tr><td>HOA Amount</td><td>$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);
+										echo sprintf('<tr><td>HOA</td><td class="text-right">$%s</td></tr>
+											<tr><td>HOA Amount</td><td class="text-right">$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);
 									}
-									sprintf('<tr><td>County</td><td>%s</td></tr>', get_the_term_list( $id, 'county' ));
+									echo sprintf('<tr><td>County</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'county' ));
 									
-									sprintf('<tr><td>Area</td><td>%s</td></tr>', get_the_term_list( $id, 'area' ));
+									echo sprintf('<tr><td>Area</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'area' ));
 									?>
 
 								</tbody>
@@ -185,15 +252,15 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								<tbody>
 									<tr>
 										<td>Elementary School</td>
-										<td><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
+										<td class="text-right"><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
 									</tr>
 									<tr>
 										<td>Middle School </td>
-										<td><?php echo get_the_term_list( $id, 'middle_school' ); ?></td>
+										<td class="text-right"><?php echo get_the_term_list( $id, 'middle_school' ); ?></td>
 									</tr>
 									<tr>
 										<td>High School</td>
-										<td><?php echo get_the_term_list( $id, 'high_school' ); ?></td>
+										<td class="text-right"><?php echo get_the_term_list( $id, 'high_school' ); ?></td>
 									</tr>
 								</tbody>
 							</table>
@@ -222,16 +289,70 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				
 				<div class="row-fluid">
 					<div class="span4">
-						<h3>Property Features</h3>
-						
+						<h3>Exterior Features</h3>
+						<table class="table table-striped exterior">
+							<tbody>
+							<?php
+							if(!empty($construction)) echo sprintf('<tr><td>Construction</td><td class="text-right">%s</td></tr>', $construction);
+								
+							if(!empty($additions)) echo sprintf('<tr><td>Additions</td><td class="text-right">%s</td></tr>', $additions);
+								
+							if(!empty($exterior)) echo sprintf('<tr><td>Exterior</td><td class="text-right">%s</td></tr>', $exterior);
+								
+							if(!empty($foundation)) echo sprintf('<tr><td>Foundation</td><td class="text-right">%s</td></tr>', $foundation);
+								
+							if(!empty($irrigated_acres)) echo sprintf('<tr><td>Irrigated Acres</td><td class="text-right">%s</td></tr>', $irrigated_acres);
+								
+							if(!empty($irrigation)) echo sprintf('<tr><td>Irrigation</td><td class="text-right">%s</td></tr>', $irrigation);
+								
+							if(!empty($parking)) echo sprintf('<tr><td>Parking</td><td class="text-right">%s</td></tr>', $parking);
+								
+							if(!empty($roof)) echo sprintf('<tr><td>Roof</td><td class="text-right">%s</td></tr>', $roof);
+								
+							if(!empty($exterior_style)) echo sprintf('<tr><td>Exterior Style</td><td class="text-right">%s</td></tr>', $exterior_style);
+								
+							if(!empty($exterior_view)) echo sprintf('<tr><td>Exterior View</td><td class="text-right">%s</td></tr>', $exterior_view);
+							?>
+							</tbody>
+						</table>
 					</div>
 					
 					<div class="span4">
 						<h3>Interior Features</h3>
+						<table class="table table-striped interior">
+							<tbody>
+							<?php
+							if(!empty($interior)) echo sprintf('<tr><td>Interior</td><td class="text-right">%s</td></tr>', $interior);
+								
+							if(!empty($rooms)) echo sprintf('<tr><td>Rooms</td><td class="text-right">%s</td></tr>', $rooms);
+								
+							if(!empty($windows_doors)) echo sprintf('<tr><td>Windows/Doors</td><td class="text-right">%s</td></tr>', $windows_doors);
+								
+							if(!empty($floors)) echo sprintf('<tr><td>Floors</td><td class="text-right">%s</td></tr>', $floors);
+								
+							if(!empty($heat_cool)) echo sprintf('<tr><td>Heating/Cooling</td><td class="text-right">%s</td></tr>', $heat_cool);
+								
+							if(!empty($bath_desc)) echo sprintf('<tr><td>Bathroom Description</td><td class="text-right">%s</td></tr>', $bath_desc);
+								
+							if(!empty($kitchen_desc)) echo sprintf('<tr><td>Kitchen Description</td><td class="text-right">%s</td></tr>', $kitchen_desc);
+								
+							if(!empty($levels)) echo sprintf('<tr><td>Levels</td><td class="text-right">%s</td></tr>', $levels);
+								
+							if(!empty($ventilation)) echo sprintf('<tr><td>Ventilation</td><td class="text-right">%s</td></tr>', $ventilation);
+								
+							if(!empty($water_heater)) echo sprintf('<tr><td>Water Heater</td><td class="text-right">%s</td></tr>', $water_heater);
+							?>
+							</tbody>
+						</table>
 					</div>
 					
 					<div class="span4">
-						<h3>Exterior Features</h3>
+						<h3>Property Features</h3>
+						<table class="table table-striped features">
+							<tbody>
+							
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div><!-- end main-wrap -->
