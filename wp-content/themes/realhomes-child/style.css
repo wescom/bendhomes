@@ -190,10 +190,9 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-search-wrap .btn { position: absolute; top: 0; right: 0; height: 44px; }
 
 /* --- Single Property Styles --- */
-.quick-header-info { padding: 5px 10px 15px; font-size: 14px; text-transform: uppercase; color: #777; }
-.quick-header-info > span { display: inline-block; letter-spacing: .02em; margin-right: 10px; }
+.quick-header-info { padding: 5px 10px 15px; font-size: 14px; text-transform: uppercase; color: #777; line-height: 26px; }
+.quick-header-info span { display: inline-block; letter-spacing: .02em; margin-right: 20px; }
 .quick-header-info .header-price { font-size: 16px; }
-.quick-header-info .updated { padding-top: 5px; font-size: 13px; }
 .rail-ad-wrapper{padding:20px 0}
 .rail-standard-agent-wrapper{ font-size: 14px; line-height: 150%; margin-top: 20px; border-top: 1px solid #d2d2d2; padding-top: 15px; }
 .rail-button-agent-wrapper{padding: 18px 14px; float: right; }

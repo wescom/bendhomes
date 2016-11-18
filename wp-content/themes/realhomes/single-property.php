@@ -70,6 +70,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
 			$listing_date = strtotime( $listing_date );
 			
+			echo 'Today: '. $today .' Listing Date: '. $listing_date;
+			
 			$date_diff = floor( $today - $listing_date / (60 * 60 * 24) );
 						
 			if( $date_diff < 1 ) {
