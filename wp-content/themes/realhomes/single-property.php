@@ -298,7 +298,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				
 				<div class="row-fluid">
 					<div class="span4">
-						<?php if( array_filter( $exterior_features ) ) {
+						<?php if( array_filter( $exterior_features, '' ) ) {
 							echo '<h3>Exterior Features</h3>'; } ?>
 						
 						<table class="table table-striped table-hover exterior">
