@@ -184,7 +184,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					<?php
 					// Show featured agent box
 					bhAgentRender('sidebar');
-					bhAgentRender('body');
 					?>
 				</div>
 			</div>
@@ -264,7 +263,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					<div class="span5">
 						<div class="description">
 							<h3>Description</h3>
-							<?php the_content(); ?>
+							<?php 
+							the_content(); 
+							bhAgentRender('body');
+							?>
 						</div>
 						
 						<div class="schools">
