@@ -51,7 +51,12 @@ function display_sidebar_agent_box( $args ) {
 				</strong></h3>
 				<?php
 			}
-			?>
+			
+			if ( isset( $args[ 'agent_brokerage' ] ) && ! empty( $args[ 'agent_brokerage' ] ) ) { ?>
+			<div class="agent-office-name">
+				<?php echo $args[ 'agent_brokerage' ]; ?>
+			</div>
+			<?php } ?>
 
 			<div class="contacts-list">
 			<?php
