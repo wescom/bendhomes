@@ -300,7 +300,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				</div>
 				
 				<div class="row-fluid">
-					<div class="span4">
+					<div class="span6">
 						<?php if( implode( $exterior_features ) )
 							echo '<h3>Exterior Features</h3>'; ?>
 						

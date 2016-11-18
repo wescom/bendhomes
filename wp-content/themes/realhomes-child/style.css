@@ -35,7 +35,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 #property-slider-two.flexslider .slides { max-height: 460px; overflow: hidden; }
 #property-slider-two.flexslider .slides li img { width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
 
-.mort-calc-form-wrap { margin:30px 0; border:1px solid #d2d2d2; padding: 10px 20px 0; background: #fff; }
+.mort-calc-form-wrap { border:1px solid #d2d2d2; padding: 10px 20px 0; background: #fff; }
 .mort-calc-form-wrap h2 { color: #598F28; margin: 0; }
 .mort-calc-form-wrap h3 { font-size: 16px; text-transform: uppercase; line-height: 150%; margin-bottom: 0; }
 .mort-calc-form-wrap h3 span { display: block; font-size: 24px; }
@@ -212,7 +212,7 @@ h3.search-results-header { float: left; margin: 0; }
 .main-items { background: #fff; border-right: 1px solid #d2d2d2; border-left: 1px solid #d2d2d2; padding: 20px 0; }
 .main-items .item { display: block; float: left; width: 20%; margin: 0; padding: 0; }
 .main-items .item span { display: block; text-align: center; text-transform: uppercase; font-size: 14px; }
-.main-items .item span.val { font-size: 20px; padding-bottom: 8px; font-weight: 600; }
+.main-items .item span.val { font-size: 20px; padding-bottom: 8px; font-weight: 600; color: #777; }
 .description { color: #777; }
 .description .desc-content { font-size: 18px; line-height: 1.625em; font-weight: 300; }
 .table { font-size: 16px; font-weight: 300; }
@@ -226,12 +226,13 @@ h3.search-results-header { float: left; margin: 0; }
 .agent-widget > a { float: left; width: 100px; margin: 0 15px 0 0; }
 .agent-widget .agent-image { width: 125px; float: left; margin: 0 15px 10px 0; }
 .agent-widget .agent-info { margin-left: 140px; }
-.agent-widget h3 { margin: 0; padding: 0 45px 10px 0; line-height: 22px; font-size: 14px; font-family: "Open Sans", sans-serif; text-transform: uppercase; font-weight: 400; color: #777; }
+.agent-widget h3 { margin: 0; padding: 0 45px 3px 0; line-height: 22px; font-size: 14px; font-family: "Open Sans", sans-serif; text-transform: uppercase; font-weight: 400; color: #777; }
 .agent-widget h3 strong { display: block; font-size: 20px; }
+.agent-widget .agent-office-name { padding-bottom: 10px; }
 .agent-widget .contacts-list { font-size: 16px; font-weight: 600; color: #777; }
-.agent-widget .contacts-list span { display: block; padding: 0 0 4px; border-bottom: 1px solid #d2d2d2; }
+.agent-widget .contacts-list span { display: block; padding: 4px 0; margin-bottom: 6px; border-bottom: 1px solid #d2d2d2; }
 .agent-widget .reciprocity-logo { width: 30px; position: absolute; display: block; top: 15px; right: 10px; }
-.agent-widget .agent-btn { color: #fff; background: #02888f; display: block; padding: 8px 0; margin: 0; width: 100%; clear: both; text-align: center; }
+.agent-widget .agent-btn { color: #fff; background: #02888f; display: block; padding: 8px 0; margin: 0; width: 100%; clear: both; text-align: center; text-transform: uppercase; letter-spacing: .05em;  }
 .agent-widget .agent-btn:hover { color: #fff; background: #006267; }
 
 /* --- Single Company Template Styles --- */

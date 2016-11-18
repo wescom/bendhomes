@@ -63,22 +63,21 @@ function display_sidebar_agent_box( $args ) {
 				if ( isset( $args[ 'agent_office_phone' ] ) && ! empty( $args[ 'agent_office_phone' ] ) ) {
 					?>
 					<span class="office">
-						<a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_office_phone' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?> (Office)</a>
+						<a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_office_phone' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?></a> (Office)
 					</span>
 					<?php
 				}
 				if ( isset( $args[ 'agent_mobile' ] ) && ! empty( $args[ 'agent_mobile' ] ) ) {
 					?>
 					<span class="mobile">
-						<a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_mobile' ]; ?> (Cell)</a>
+						<a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_mobile' ]; ?></a> (Cell)
 					</span>
 					<?php
 				}
 				if ( isset( $args[ 'agent_office_fax' ] ) && ! empty( $args[ 'agent_office_fax' ] ) ) {
 					?>
 					<span class="fax">
-						<?php
-						_e( '<i class="fa fa-print"></i> Fax', 'framework' ); ?> : <?php echo $args[ 'agent_office_fax' ]; ?>
+						<?php echo $args[ 'agent_office_fax' ]; ?> (Fax)
 					</span>
 					<?php
 				}
