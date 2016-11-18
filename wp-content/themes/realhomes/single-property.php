@@ -167,14 +167,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="span7">
 					<h1 class="property-title"><?php echo bh_the_title(); ?></h1>
 					<div class="quick-header-info clearfix">
-						<span class="header-price text-green"><strong>$<?php echo $price; ?></strong></span>
+						<span class="header-price text-green"><strong>$<?php echo number_format($price); ?></strong></span>
 						<span class="header-type"><?php echo $property_type; ?></span>
 						<?php echo $status_list; ?>
 						<span class="header-mls"><?php echo $mls; ?></span>
 						<span class="newness">On Site: <strong><?php echo $onsite; ?></strong></span>
-						<div class="updated">
-
-						</div>
+						<div class="updated"><?php properties_updated_timestamp(); ?></div>
 					</div>
 				</div>
 				
@@ -215,7 +213,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 					
 					<div class="span5">
-						<h2 class="text-center property-price">$<?php echo $price; ?></h2>
+						<h2 class="text-center property-price">$<?php echo number_format($price); ?></h2>
 						<div class="main-items">
 							<?php								
 							foreach( $main_items as $key => $val ) {
