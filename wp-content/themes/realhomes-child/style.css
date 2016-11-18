@@ -193,6 +193,7 @@ h3.search-results-header { float: left; margin: 0; }
 .quick-header-info { padding: 5px 10px 15px; font-size: 14px; text-transform: uppercase; color: #777; }
 .quick-header-info > span { display: inline-block; letter-spacing: .02em; margin-right: 10px; }
 .quick-header-info .header-price { font-size: 16px; }
+.quick-header-info .updated { padding-top: 5px; }
 .rail-ad-wrapper{padding:20px 0}
 .rail-standard-agent-wrapper{border-bottom:1px solid #dedede;padding:18px 18px 7px}
 .rail-button-agent-wrapper{padding: 18px 14px; float: right; }

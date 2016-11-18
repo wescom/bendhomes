@@ -172,7 +172,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php echo $status_list; ?>
 						<span class="header-mls"><?php echo $mls; ?></span>
 						<span class="newness">On Site: <strong><?php echo $onsite; ?></strong></span>
-						<div class="updated"><?php properties_updated_timestamp(); ?></div>
+						<div class="updated">Updated: <strong><?php properties_updated_timestamp(); ?></strong></div>
 					</div>
 				</div>
 				
