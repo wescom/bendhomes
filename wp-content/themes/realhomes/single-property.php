@@ -187,71 +187,75 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			<div class="main-wrap">
 				<div class="row-fluid">
 					<div class="span7">
-						<ul class="nav nav-tabs" id="prop-tabs">
-							<li class="active"><a href="#tab-photos" data-toggle="tab">Photos</a></li>
-							<li><a href="#tab-map" data-toggle="tab">Map</a></li>
-							<?php if(!empty($video)) { ?>
-							<li><a href="#tab-video" data-toggle="tab">Video</a></li>
-							<?php } ?>
-						</ul>
+						<div class="tabs-wrap">
+							<ul class="nav nav-tabs" id="prop-tabs">
+								<li class="active"><a href="#tab-photos" data-toggle="tab">Photos</a></li>
+								<li><a href="#tab-map" data-toggle="tab">Map</a></li>
+								<?php if(!empty($video)) { ?>
+								<li><a href="#tab-video" data-toggle="tab">Video</a></li>
+								<?php } ?>
+							</ul>
 
-						<div class="tab-content">
-							<div class="tab-pane active" id="tab-photos">
-								<?php get_template_part('property-details/property-slider-two'); ?>
-							</div>
-							<div class="tab-pane" id="tab-map">
-								<div id="overview">
-								<?php get_template_part('property-details/property-map'); ?>
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab-photos">
+									<?php get_template_part('property-details/property-slider-two'); ?>
 								</div>
+								<div class="tab-pane" id="tab-map">
+									<div id="overview">
+									<?php get_template_part('property-details/property-map'); ?>
+									</div>
+								</div>
+								<?php if(!empty($video)) { ?>
+								<div class="tab-pane" id="tab-video">
+									<?php get_template_part('property-details/property-video'); ?>
+								</div>
+								<?php } ?>
 							</div>
-							<?php if(!empty($video)) { ?>
-							<div class="tab-pane" id="tab-video">
-								<?php get_template_part('property-details/property-video'); ?>
-							</div>
-							<?php } ?>
 						</div>
 					</div>
 					
 					<div class="span5">
-						<h2 class="text-center property-price">$<?php echo number_format($price); ?></h2>
-						<div class="main-items">
-							<?php								
-							foreach( $main_items as $key => $val ) {
-								if( !empty($val) ) {
-									echo sprintf( '<div class="item"><span class="val">%s</span><span class="key">%s</span></div>', $val, $key );
+						<div class="main-items-wrap">
+							<h2 class="text-center property-price">$<?php echo number_format($price); ?></h2>
+							<div class="main-items">
+								<?php								
+								foreach( $main_items as $key => $val ) {
+									if( !empty($val) ) {
+										echo sprintf( '<div class="item"><span class="val">%s</span><span class="key">%s</span></div>', $val, $key );
+									}
 								}
-							}
+								?>
+							</div>
+							<?php 
+							// open house info, if array_change_key_case
+							get_template_part('bend-homes/open-house-fragment');
+							?>
+
+							<div class="basic-info2">
+								<table class="table table-striped table-hover">
+									<tbody>
+										<?php 
+										echo sprintf('<tr><td>MLS#</td><td class="text-right">%s</td></tr>', $mls_number); 
+										if(!empty($hoa))
+										echo sprintf('<tr><td>HOA</td><td class="text-right">%s</td></tr>
+											<tr><td>HOA Amount</td><td class="text-right">$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);
+
+										echo sprintf('<tr><td>County</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'county' ));
+
+										echo sprintf('<tr><td>Area</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'area' ));
+
+										if(!empty($zoning))
+										echo sprintf('<tr><td>Zoning</td><td class="text-right">%s</td></tr>', $zoning);
+										?>
+									</tbody>
+								</table>
+							</div>
+
+							<?php
+							// Show share bar icons
+							echo do_shortcode('[SHARE_BAR]');
 							?>
 						</div>
-						<?php 
-						// open house info, if array_change_key_case
-						get_template_part('bend-homes/open-house-fragment');
-						?>
-						
-						<div class="basic-info2">
-							<table class="table table-striped table-hover">
-								<tbody>
-									<?php 
-									echo sprintf('<tr><td>MLS#</td><td class="text-right">%s</td></tr>', $mls_number); 
-									if(!empty($hoa))
-									echo sprintf('<tr><td>HOA</td><td class="text-right">%s</td></tr>
-										<tr><td>HOA Amount</td><td class="text-right">$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);
-									
-									echo sprintf('<tr><td>County</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'county' ));
-									
-									echo sprintf('<tr><td>Area</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'area' ));
-									
-									if(!empty($zoning))
-									echo sprintf('<tr><td>Zoning</td><td class="text-right">%s</td></tr>', $zoning);
-									?>
-								</tbody>
-							</table>
-						</div>
-						
-						<?php
-						// Show share bar icons
-						echo do_shortcode('[SHARE_BAR]');
-						?>
 					</div>
 				</div>
 				
