@@ -48,10 +48,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$id = get_the_ID();	
 
 			$mls_number = get_field( 'REAL_HOMES_property_id' );
-			if(!empty($mls_number)) $mls = sprintf( 'MLS #: %s', $mls_number );
+			if(!empty($mls_number)) $mls = sprintf( 'MLS #: <strong>%s</strong>', $mls_number );
 
 			$property_type = get_field( 'REAL_HOMES_property_features_subtype' );
-			if(!empty($property_type)) $property_type = sprintf('Type: %s', $property_type);
+			if(!empty($property_type)) $property_type = sprintf('Type: <strong>%s</strong>', $property_type);
 
 			$status_terms = get_the_terms( $id, 'property-status' );
 			if ( $status_terms && !is_wp_error( $status_terms ) ) :
@@ -167,13 +167,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="span7">
 					<h1 class="property-title"><?php echo bh_the_title(); ?></h1>
 					<div class="quick-header-info clearfix">
-						<span class="header-price text-green">$<?php echo $price; ?></span>
+						<span class="header-price text-green"><strong>$<?php echo $price; ?></strong></span>
 						<span class="header-type"><?php echo $property_type; ?></span>
 						<?php echo $status_list; ?>
 						<span class="header-mls"><?php echo $mls; ?></span>
-						<div class="newness">
-							<?php echo $onsite; ?>
-						</div>
+						<span class="newness">On Site: <strong><?php echo $onsite; ?></strong></span>
 						<div class="updated">
 
 						</div>
