@@ -224,14 +224,14 @@ h3.search-results-header { float: left; margin: 0; }
 .agent-widget a { color: #02888f; }
 .agent-widget a:hover { color: #006267; }
 .agent-widget > a { float: left; width: 100px; margin: 0 15px 0 0; }
-.agent-widget .agent-image { width: 125px; float: left; margin: 0 15px 0 10px; }
+.agent-widget .agent-image { width: 125px; float: left; margin: 0 15px 10px 0; }
 .agent-widget .agent-info { margin-left: 140px; }
 .agent-widget h3 { margin: 0; padding: 0 45px 10px 0; line-height: 22px; font-size: 14px; font-family: "Open Sans", sans-serif; text-transform: uppercase; font-weight: 400; color: #777; }
 .agent-widget h3 strong { display: block; font-size: 20px; }
 .agent-widget .contacts-list { font-size: 16px; font-weight: 600; color: #777; }
 .agent-widget .contacts-list span { display: block; padding: 0 0 4px; border-bottom: 1px solid #d2d2d2; }
 .agent-widget .reciprocity-logo { width: 30px; position: absolute; display: block; top: 15px; right: 10px; }
-.agent-widget .agent-btn { color: #fff; background: #02888f; display: block; padding: 8px; clear: both; text-align: center; }
+.agent-widget .agent-btn { color: #fff; background: #02888f; display: block; padding: 8px 0; margin: 0; width: 100%; clear: both; text-align: center; }
 .agent-widget .agent-btn:hover { color: #fff; background: #006267; }
 
 /* --- Single Company Template Styles --- */
