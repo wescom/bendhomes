@@ -67,8 +67,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			endif;
 
 			$current_date = new DateTime( 'now' );
+			$current_date = date_format($current_date, 'Y-m-d');
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
 			$listing_date = date_create( $listing_date );
+			$listing_date = date_format($listing_date, 'Y-m-d');
 			$date_diff = date_diff( $current_date, $listing_date );
 			if( $date_diff->d < 1 ) {
 				$onsite = 'New Today';
