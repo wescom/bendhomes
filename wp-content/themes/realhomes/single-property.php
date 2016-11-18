@@ -247,6 +247,28 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 									if(!empty($zoning))
 									echo sprintf('<tr><td>Zoning</td><td class="text-right">%s</td></tr>', $zoning);
 									?>
+								</tbody>
+							</table>
+						</div>
+						
+						<?php
+						// Show share bar icons
+						echo do_shortcode('[SHARE_BAR]');
+						?>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span5">
+						<div class="description">
+							<h3>Description</h3>
+							<?php the_content(); ?>
+						</div>
+						
+						<div class="schools">
+							<h3>School Information</h3>
+							<table class="table table-striped table-hover schools">
+								<tbody>
 									<tr>
 										<td>Elementary School</td>
 										<td class="text-right"><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
@@ -262,22 +284,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</tbody>
 							</table>
 						</div>
-						
-						<?php
-						// Show share bar icons
-						echo do_shortcode('[SHARE_BAR]');
-						?>
 					</div>
-				</div>
-				
-				<div class="row-fluid">
-					<div class="span6">
-						<div class="description">
-							<h3>Description</h3>
-							<?php the_content(); ?>
-						</div>
-					</div>
-					<div class="span6">
+					<div class="span7">
 						<?php
 						// Mortgage calculator
 						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]'); ?>
