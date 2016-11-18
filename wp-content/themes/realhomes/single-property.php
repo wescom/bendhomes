@@ -217,7 +217,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					<div class="span5">
 						<div class="main-items-wrap">
 							<h2 class="text-center property-price">$<?php echo number_format($price); ?></h2>
-							<div class="main-items">
+							<div class="main-items clearfix">
 								<?php								
 								foreach( $main_items as $key => $val ) {
 									if( !empty($val) ) {
@@ -250,6 +250,26 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 									</tbody>
 								</table>
 							</div>
+							
+							<div class="schools">
+								<h3>School Information</h3>
+								<table class="table table-striped table-hover schools">
+									<tbody>
+										<tr>
+											<td>Elementary School</td>
+											<td class="text-right"><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
+										</tr>
+										<tr>
+											<td>Middle School </td>
+											<td class="text-right"><?php echo get_the_term_list( $id, 'middle_school' ); ?></td>
+										</tr>
+										<tr>
+											<td>High School</td>
+											<td class="text-right"><?php echo get_the_term_list( $id, 'high_school' ); ?></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 
 							<?php
 							// Show share bar icons
@@ -267,26 +287,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							the_content(); 
 							bhAgentRender('body');
 							?>
-						</div>
-						
-						<div class="schools">
-							<h3>School Information</h3>
-							<table class="table table-striped table-hover schools">
-								<tbody>
-									<tr>
-										<td>Elementary School</td>
-										<td class="text-right"><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
-									</tr>
-									<tr>
-										<td>Middle School </td>
-										<td class="text-right"><?php echo get_the_term_list( $id, 'middle_school' ); ?></td>
-									</tr>
-									<tr>
-										<td>High School</td>
-										<td class="text-right"><?php echo get_the_term_list( $id, 'high_school' ); ?></td>
-									</tr>
-								</tbody>
-							</table>
 						</div>
 					</div>
 					<div class="span7">
