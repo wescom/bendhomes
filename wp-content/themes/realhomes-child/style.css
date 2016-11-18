@@ -228,8 +228,9 @@ h3.search-results-header { float: left; margin: 0; }
 .agent-widget h3 { margin: 0; padding: 0 0 8px; line-height: 22px; font-size: 14px; font-family: "Open Sans", sans-serif; text-transform: uppercase; font-weight: 400; color: #777; }
 .agent-widget h3 strong { display: block; font-size: 20px; }
 .agent-widget .contacts-list { font-size: 16px; font-weight: 600; color: #777; }
-.agent-widget .contacts-list span { display: inline-block; padding: 4px 10px 4px 0; }
+.agent-widget .contacts-list span { display: block; padding: 0 0 4px; border-bottom: 1px solid #d2d2d2; }
 .agent-widget .reciprocity-logo { float: right; width: 30px; display: block; margin-top: -5px; }
+.agent-widget .agent-btn { color: #fff; background: #02888f; display: block; padding: 5px; }
 
 /* --- Single Company Template Styles --- */
 .company-agent { text-align: center; float: left; margin: 0; padding: 0; min-height: 240px; width: 20%; }

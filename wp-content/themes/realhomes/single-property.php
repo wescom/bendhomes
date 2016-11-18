@@ -235,7 +235,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								<table class="table table-striped table-hover">
 									<tbody>
 										<?php 
-										echo sprintf('<tr><td>MLS#</td><td class="text-right">%s</td></tr>', $mls_number); 
 										if(!empty($hoa))
 										echo sprintf('<tr><td>HOA</td><td class="text-right">%s</td></tr>
 											<tr><td>HOA Amount</td><td class="text-right">$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);

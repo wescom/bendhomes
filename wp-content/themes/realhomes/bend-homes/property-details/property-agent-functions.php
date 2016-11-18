@@ -58,16 +58,14 @@ function display_sidebar_agent_box( $args ) {
 				if ( isset( $args[ 'agent_office_phone' ] ) && ! empty( $args[ 'agent_office_phone' ] ) ) {
 					?>
 					<span class="office">
-						<?php
-						_e( '<i class="fa fa-phone"></i> Office', 'framework' ); ?> : <a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_office_phone' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?></a>
+						<a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_office_phone' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?> (Office)</a>
 					</span>
 					<?php
 				}
 				if ( isset( $args[ 'agent_mobile' ] ) && ! empty( $args[ 'agent_mobile' ] ) ) {
 					?>
 					<span class="mobile">
-						<?php
-						_e( '<i class="fa fa-mobile-phone"></i> Mobile', 'framework' ); ?> : <a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_mobile' ]; ?></a>
+						<a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_mobile' ]; ?> (Cell)</a>
 					</span>
 					<?php
 				}
@@ -82,20 +80,20 @@ function display_sidebar_agent_box( $args ) {
 			?>
 			</div>
 		
-			<div>
-				<?php
-				//echo $args[ 'agent_description' ];
-				//brokerageBlock($args[ 'agent_id' ]);
-	
-				/*if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
-					?><a class="agent-btn" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
-				} else {
-					?><a class="agent-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'View Profile & Properties', 'framework' ); ?></a><?php
-				}*/
-				?>
-				<img class="reciprocity-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/brslogosm.gif" alt="Broker Reciprocity Logo" />
-			</div>
+		</div>
 		
+		<div>
+			<?php
+			//echo $args[ 'agent_description' ];
+			//brokerageBlock($args[ 'agent_id' ]);
+
+			if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
+				?><a class="agent-btn" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
+			} else {
+				?><a class="agent-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'View Profile & Properties', 'framework' ); ?></a><?php
+			}
+			?>
+			<img class="reciprocity-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/brslogosm.gif" alt="Broker Reciprocity Logo" />
 		</div>
 
 		<?php
