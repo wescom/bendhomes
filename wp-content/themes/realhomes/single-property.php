@@ -296,9 +296,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				
 				<div class="row-fluid">
 					<div class="span4">
-						<?php if( array_filter( $exterior_features ) ) { ?>
-						<h3>Exterior Features</h3>
-						<?php } ?>
+						<?php if( array_filter( $exterior_features ) )
+							echo '<h3>Exterior Features</h3>'; ?>
+						
 						<table class="table table-striped table-hover exterior">
 							<tbody>
 							<?php								
@@ -313,7 +313,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 					
 					<div class="span4">
-						<h3>Interior Features</h3>
+						<?php if( aray_filter( $interior_features ) )
+							echo '<h3>Interior Features</h3>'; ?>
+						
 						<table class="table table-striped table-hover interior">
 							<tbody>
 							<?php								
@@ -328,7 +330,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 					
 					<div class="span4">
-						<h3>Property Features</h3>
+						<?php if( array_filter( $property_features ) )
+							echo '<h3>Property Features</h3>'; ?>
+							
 						<table class="table table-striped table-hover features">
 							<tbody>
 							<?php								
