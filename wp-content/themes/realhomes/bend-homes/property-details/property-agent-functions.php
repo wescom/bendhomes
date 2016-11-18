@@ -46,7 +46,10 @@ function display_sidebar_agent_box( $args ) {
 		
 			<?php
 			if ( isset( $args[ 'agent_title_text' ] ) && ! empty( $args[ 'agent_title_text' ] ) ) { ?>
-			<h3 class="title">Listing Agent: <strong><a href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php echo str_replace( 'Agent ', '', $args[ 'agent_title_text' ] ); ?></a></strong></h3><?php
+				<h3 class="title">Listing Agent: <strong>
+				<a href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php echo str_replace( 'Agent ', '', $args[ 'agent_title_text' ] ); ?></a>
+				</strong></h3>
+				<?php
 			}
 			?>
 
