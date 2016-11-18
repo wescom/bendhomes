@@ -66,12 +66,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$status_list = sprintf( '<span class="header-status %s">Status: <strong>%s</strong></span>', $statusClass, esc_html($on_status));
 			endif;
 
-			$current_date = new DateTime( 'now' );
-			$current_date = date_format($current_date, 'Y-m-d');
+			$today = date( 'Y-m-d' );
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
-			$listing_date = date_create( $listing_date );
-			$listing_date = date_format($listing_date, 'Y-m-d');
-			$date_diff = date_diff( $current_date, $listing_date );
+			$listing_date = date('Y-m-d', strtotime( $listing_date ) );
+			
+			$date_diff = date_diff( $today, $listing_date );
 			
 			echo 'LD: '. $listing_date .' DD: '. print_r($date_diff);
 			
