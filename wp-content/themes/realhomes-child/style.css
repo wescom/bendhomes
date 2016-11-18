@@ -199,11 +199,13 @@ h3.search-results-header { float: left; margin: 0; }
 .rail-button-agent-wrapper{padding: 18px 14px; float: right; }
 .rail-button-agent-wrapper .button{background-color:#c4c4c4;color:#fff;text-transform:capitalize;font-size:1.4em;padding:10px 20px;letter-spacing:.09em;line-height:24px;text-align:center;display:block}
 .rail-button-agent-wrapper .button:hover{background-color:#02888f}
-.tabs-wrap { background: #fff; border: 1px solid #d2d2d2; }
-.tabs-wrap .nav-tabs { border-bottom: none; margin-bottom: 0; background: #f7f7f7; }
-.tabs-wrap .nav-tabs>li>a { color: #02888f; font-size: 18px; text-transform: uppercase; line-height: 30px; padding: 10px 30px; border-right: 1px solid #d2d2d2; }
+.tabs-wrap { background: #fff; border: 1px solid #d2d2d2; padding-bottom: 10px; }
+.tabs-wrap .nav-tabs { margin-bottom: 0; background: #f7f7f7; }
+.tabs-wrap .nav-tabs>li>a { color: #02888f; font-size: 18px; text-transform: uppercase; line-height: 30px; padding: 10px 30px; border: none; border-right: 1px solid #d2d2d2; border-radius: 0; margin: 0; }
 .tabs-wrap .nav-tabs>.active>a { color: #333; }
-.tabs-wrap .nav-tabs>.active>a, .nav-tabs>.active>a:hover { border-left: none; border-top: none; margin-right: 0; }
+.tabs-wrap .nav-tabs>.active>a, .nav-tabs>.active>a:hover { border-left: none; border-top: none; border-bottom: 1px solid #fff; margin-right: 0; margin-bottom: -1px; }
+.tabs-wrap .nav-tabs>.active>a:hover { border-bottom-color: #d2d2d2; }
+.tabs-wrap #property-slider-two-wrapper { margin-bottom: 10px; }
 
 /* --- Single Company Template Styles --- */
 .company-agent { text-align: center; float: left; margin: 0; padding: 0; min-height: 240px; width: 20%; }
