@@ -185,7 +185,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			</div>
 			
 			<div class="main-wrap">
-				<div class="row-fluid">
+				<div class="row-fluid section1">
 					<div class="span7">
 						<div class="tabs-wrap">
 							<ul class="nav nav-tabs" id="prop-tabs">
@@ -279,12 +279,16 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 				</div>
 				
-				<div class="row-fluid">
+				<div class="row-fluid section2">
 					<div class="span5">
 						<div class="description">
 							<h3>Description</h3>
-							<?php 
-							the_content(); 
+							<div class="desc-content">
+								<?php 
+								the_content(); 
+								?>
+							</div>
+							<?php
 							bhAgentRender('body');
 							?>
 						</div>

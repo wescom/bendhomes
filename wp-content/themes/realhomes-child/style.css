@@ -35,17 +35,17 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 #property-slider-two.flexslider .slides { max-height: 460px; overflow: hidden; }
 #property-slider-two.flexslider .slides li img { width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
 
-.mort-calc-form-wrap { margin:30px; border:1px solid #d2d2d2; padding: .5em 1em 0; background: #f7f7f7; }
-.mort-calc-form-wrap h2 { color: #598F28; font-size: 2.75em; margin-bottom: .25em; letter-spacing: .05em; font-family: "Open Sans", sans-serif; }
-.mort-calc-form-wrap h3 { font-size: 16px; text-transform: uppercase; line-height: 150%; }
+.mort-calc-form-wrap { margin:30px 0; border:1px solid #d2d2d2; padding: 10px 20px 0; background: #fff; }
+.mort-calc-form-wrap h2 { color: #598F28; margin: 0; }
+.mort-calc-form-wrap h3 { font-size: 16px; text-transform: uppercase; line-height: 150%; margin-bottom: 0; }
 .mort-calc-form-wrap h3 span { display: block; font-size: 24px; }
-.mort-calc-form-wrap .form-wrap { margin-top: 20px; }
+.mort-calc-form-wrap .form-wrap { margin-top: 10px; }
 .mort-calc-form-wrap .form-item { margin-bottom: 10px; position: relative; }
 .mort-calc-form-wrap .form-item .down, .mort-calc-form-wrap .form-item .taxes { position: relative; }
 .mort-calc-form-wrap .form-item #down-percent, .mort-calc-form-wrap .form-item #taxes-per { position: absolute; top: 14px; font-size: 18px; right: 15px; font-weight: 300; letter-spacing: .05em; color: #999; }
-.mort-calc-form-wrap input[type="text"], .mort-calc-form-wrap select { color: #777; background-color: #fff; width: 100%; padding: 10px 0; text-indent: 40px; letter-spacing: .05em; font-size: 20px; font-weight: 400; border-radius: 3px; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }
+.mort-calc-form-wrap input[type="text"], .mort-calc-form-wrap select { color: #777; background-color: #fff; width: 100%; padding: 10px 0; text-indent: 40px; letter-spacing: .05em; font-size: 18px; font-weight: 400; border-radius: 3px; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }
 .mort-calc-form-wrap .selectwrap input { background: url(images/dropdown-arrow-lg.png) no-repeat right top #fff; }
-.mort-calc-form-wrap label { font-size: 16px; font-weight: 300; color: #777; }
+.mort-calc-form-wrap label { font-size: 14px; color: #777; text-transform: uppercase; }
 .mort-calc-form-wrap #mort-price-value { text-align: center; width: 80%; margin: auto; display: block; max-width: 400px; text-indent: 0; }
 .mort-calc-form-wrap .dollar:before, .mort-calc-form-wrap .percent:before, .mort-calc-form-wrap .time:before { content: ""; font-size: 20px; position: absolute; left: 15px; top: 39px; color: #999; z-index: 1; font-weight: 300; }
 .mort-calc-form-wrap .price-item.dollar:before { left: 50%; margin-left: -185px; }
@@ -195,11 +195,12 @@ h3.search-results-header { float: left; margin: 0; }
 .quick-header-info .header-price { font-size: 16px; }
 .quick-header-info .updated { padding-top: 5px; font-size: 13px; }
 .rail-ad-wrapper{padding:20px 0}
-.rail-standard-agent-wrapper{border-bottom:1px solid #dedede;padding:18px 18px 7px}
+.rail-standard-agent-wrapper{ font-size: 14px; line-height: 150%; margin-top: 20px; border-top: 1px solid #d2d2d2; padding-top: 15px; }
 .rail-button-agent-wrapper{padding: 18px 14px; float: right; }
 .rail-button-agent-wrapper .button{background-color:#c4c4c4;color:#fff;text-transform:capitalize;font-size:1.4em;padding:10px 20px;letter-spacing:.09em;line-height:24px;text-align:center;display:block}
 .rail-button-agent-wrapper .button:hover{background-color:#02888f}
-.tabs-wrap { background: #fff; border: 1px solid #d2d2d2; padding-bottom: 10px; }
+.row-fluid.section1, .row-fluid.section2 { margin-bottom: 30px; }
+.tabs-wrap { background: #fff; border: 1px solid #d2d2d2; }
 .tabs-wrap .nav-tabs { margin-bottom: 0; background: #f7f7f7; }
 .tabs-wrap .nav-tabs>li>a { color: #02888f; font-size: 18px; text-transform: uppercase; line-height: 30px; padding: 10px 30px; border: none; border-right: 1px solid #d2d2d2; border-radius: 0; margin: 0; }
 .tabs-wrap .nav-tabs>.active>a { color: #333; }
@@ -211,8 +212,9 @@ h3.search-results-header { float: left; margin: 0; }
 .main-items { background: #fff; border-right: 1px solid #d2d2d2; border-left: 1px solid #d2d2d2; padding: 20px 0; }
 .main-items .item { display: block; float: left; width: 20%; margin: 0; padding: 0; }
 .main-items .item span { display: block; text-align: center; text-transform: uppercase; font-size: 14px; }
-.main-items .item span.val { font-size: 22px; color: #777; padding-bottom: 8px; }
-
+.main-items .item span.val { font-size: 22px; color: #777; padding-bottom: 8px; font-weight: 300; }
+.description { color: #777; }
+.description .desc-content { font-size: 18px; line-height: 1.625em; font-weight: 300; }
 
 /* --- Single Company Template Styles --- */
 .company-agent { text-align: center; float: left; margin: 0; padding: 0; min-height: 240px; width: 20%; }
