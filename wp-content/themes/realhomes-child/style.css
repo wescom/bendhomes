@@ -220,6 +220,7 @@ h3.search-results-header { float: left; margin: 0; }
 .table td.text-right { text-align: right; width: 60%; }
 .basic-info2 td, .schools td { font-weight: 600; font-size: 15px; }
 .basic-info2 td.text-right, .schools td.text-right { font-weight: 300; font-size: 16px; width: 60%; }
+.agent-widget { background: #fff; border: 1px solid #d2d2d2; padding: 5px; }
 .agent-widget > a { float: left; width: 100px; margin: 0 15px 0 0; }
 .agent-widget .agent-image { width: 125px; float: left; margin: 0 15px 0 0; }
 .agent-widget .agent-info { margin-left: 140px; }
