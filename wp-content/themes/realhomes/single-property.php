@@ -70,7 +70,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
 			$listing_date = strtotime( $listing_date );
 			
-			$date_diff = flor( $today - $listing_date / (60 * 60 * 24) );
+			$date_diff = floor( $today - $listing_date / (60 * 60 * 24) );
 						
 			if( $date_diff < 1 ) {
 				$onsite = 'New Today';
@@ -171,8 +171,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<span class="header-type"><?php echo $property_type; ?></span>
 						<?php echo $status_list; ?>
 						<span class="header-mls"><?php echo $mls; ?></span>
-						<span class="newness">On Site: <strong><?php echo $onsite; ?></strong></span>
-						<div class="updated">Updated: <strong><?php properties_updated_timestamp(); ?></strong></div>
+						<div>
+							<span class="newness">On Site: <strong><?php echo $onsite; ?></strong></span>
+							<span class="updated">Updated: <strong><?php properties_updated_timestamp(); ?></strong></span>
+						</div>
 					</div>
 				</div>
 				
