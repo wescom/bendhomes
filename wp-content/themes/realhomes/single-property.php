@@ -72,6 +72,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$listing_date = date_create( $listing_date );
 			$listing_date = date_format($listing_date, 'Y-m-d');
 			$date_diff = date_diff( $current_date, $listing_date );
+			
+			echo 'LD: '. $listing_date .' DD: '. $date_diff;
+			
 			if( $date_diff->d < 1 ) {
 				$onsite = 'New Today';
 			} elseif( $date_diff->d = 0 ) {
@@ -300,7 +303,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				</div>
 				
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="span4">
 						<?php if( implode( $exterior_features ) )
 							echo '<h3>Exterior Features</h3>'; ?>
 						
