@@ -66,16 +66,16 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$status_list = sprintf( '<span class="header-status %s">Status: <strong>%s</strong></span>', $statusClass, esc_html($on_status));
 			endif;
 
-			$current_date = date('Y-m-d');
+			$current_date = new DateTime( 'now' );
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
-			$listing_date = '';//DateTime::createFromFormat('Y-m-d', $listing_date)->format('Y-m-d');
-			$days_on_site = $current_date - $listing_date;
-			if( $days_on_site < 1 ) {
+			$listing_date = date_create( $listing_date );
+			$date_diff = date_diff( $current_date, $listing_date );
+			if( $date_diff->d < 1 ) {
 				$onsite = 'New Today';
-			} elseif( $days_on_site == 1 ) {
+			} elseif( $date_diff->d = 0 ) {
 				$onsite = '1 Day on Market';
 			} else {
-				$onsite = $days_on_site .' Days on Market';
+				$onsite = $date_diff->d .'Days on Market';
 			}
 			
 			$price = intval(get_field('REAL_HOMES_property_price'));
