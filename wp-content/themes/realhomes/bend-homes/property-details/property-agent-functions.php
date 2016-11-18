@@ -46,7 +46,7 @@ function display_sidebar_agent_box( $args ) {
 		
 			<?php
 			if ( isset( $args[ 'agent_title_text' ] ) && ! empty( $args[ 'agent_title_text' ] ) ) { ?>
-				<h3 class="title">Listing Agent: <strong><?php echo str_replace( 'Agent ', '', $args[ 'agent_title_text' ] ); ?></strong></h3><?php
+			<h3 class="title">Listing Agent: <strong><a href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php echo str_replace( 'Agent ', '', $args[ 'agent_title_text' ] ); ?></a></strong></h3><?php
 			}
 			?>
 
@@ -84,11 +84,11 @@ function display_sidebar_agent_box( $args ) {
 				//echo $args[ 'agent_description' ];
 				//brokerageBlock($args[ 'agent_id' ]);
 	
-				if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
+				/*if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
 					?><a class="agent-btn" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
 				} else {
 					?><a class="agent-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'View Profile & Properties', 'framework' ); ?></a><?php
-				}
+				}*/
 				?>
 				<img class="reciprocity-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/brslogosm.gif" alt="Broker Reciprocity Logo" />
 			</div>
