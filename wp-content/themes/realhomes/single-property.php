@@ -77,44 +77,51 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			} else {
 				$onsite = $days_on_site .' Days on Market';
 			}
-
-			// Basic Fields
-			$beds = get_field('REAL_HOMES_property_bedrooms');
-			$baths = get_field('REAL_HOMES_property_bathrooms');
-			$sqft = intval(get_field('REAL_HOMES_property_size'));
-			$acres = get_field('REAL_HOMES_exterior_acres');
-			$built = get_field('REAL_HOMES_property_features_year_built');
+			
 			$price = intval(get_field('REAL_HOMES_property_price'));
-			$p_sqft = intval($price / $sqft);
 			$video = get_field('REAL_HOMES_tour_video_url');
 			$hoa = get_field('REAL_HOMES_property_features_hoa');
 			$hoa_amount = intval(get_field('REAL_HOMES_property_features_hoa_amount'));
 			$hoa_per = get_field('REAL_HOMES_property_features_hoa_per');
 			$zoning = get_field('REAL_HOMES_property_features_zoning');
 
+			// Main Fields
+			$main_items = [
+				'Beds' => get_field('REAL_HOMES_property_bedrooms'),
+				'Baths' => get_field('REAL_HOMES_property_bathrooms'),
+				'SqFt' => intval(get_field('REAL_HOMES_property_size')),
+				'Acres' => get_field('REAL_HOMES_exterior_acres'),
+				'Built' => get_field('REAL_HOMES_property_features_year_built'),
+				'$/SqFt' => intval($price / $sqft),
+			];
+
 			// Exterior Features
-			$construction = get_field('REAL_HOMES_exterior_construction');
-			$additions = get_field('REAL_HOMES_exterior_additions');
-			$exterior = get_field('REAL_HOMES_exterior_exterior');
-			$foundation = get_field('REAL_HOMES_exterior_foundation');
-			$irrigated_acres = get_field('REAL_HOMES_exterior_irrigated_acres');
-			$irrigation = get_field('REAL_HOMES_exterior_irrigation');
-			$parking = get_field('REAL_HOMES_exterior_parking');
-			$roof = get_field('REAL_HOMES_exterior_roof');
-			$exterior_style = get_field('REAL_HOMES_exterior_style');
-			$exterior_view = get_field('REAL_HOMES_exterior_view');
+			$exterior_features = [
+				'Construction' => get_field('REAL_HOMES_exterior_construction'),
+				'Additions' => get_field('REAL_HOMES_exterior_additions'),
+				'Exterior' => get_field('REAL_HOMES_exterior_exterior'),
+				'Foundation' => get_field('REAL_HOMES_exterior_foundation'),
+				'Irrigated Acres' => get_field('REAL_HOMES_exterior_irrigated_acres'),
+				'Irrigation' => get_field('REAL_HOMES_exterior_irrigation'),
+				'Parking' => get_field('REAL_HOMES_exterior_parking'),
+				'Roof' => get_field('REAL_HOMES_exterior_roof'),
+				'Exterior Style' => get_field('REAL_HOMES_exterior_style'),
+				'Exterior View' => get_field('REAL_HOMES_exterior_view'),
+			];
 			
 			// Interior Features
-			$interior = get_field('REAL_HOMES_interior_interior');
-			$rooms = get_field('REAL_HOMES_interior_rooms');
-			$windows_doors = get_field('REAL_HOMES_interior_doors_windows');
-			$floors = get_field('REAL_HOMES_interior_floors');
-			$heat_cool = get_field('REAL_HOMES_interior_heat_cool');
-			$bath_desc = get_field('REAL_HOMES_interior_bathroom_desc');
-			$kitchen_desc = get_field('REAL_HOMES_interior_kitchen_desc');
-			$levels = get_field('REAL_HOMES_interior_levels');
-			$ventilation = get_field('REAL_HOMES_interior_ventilation');
-			$water_heater = get_field('REAL_HOMES_interior_water_heater');
+			$interior_features = [
+				'Interior' => get_field('REAL_HOMES_interior_interior'),
+				'Rooms' => get_field('REAL_HOMES_interior_rooms'),
+				'Doors/Windows' => get_field('REAL_HOMES_interior_doors_windows'),
+				'Floors' => get_field('REAL_HOMES_interior_floors'),
+				'Heating/Cooling' => get_field('REAL_HOMES_interior_heat_cool'),
+				'Bathroom Description' => get_field('REAL_HOMES_interior_bathroom_desc'),
+				'Kitchen Description' => get_field('REAL_HOMES_interior_kitchen_desc'),
+				'Levels' => get_field('REAL_HOMES_interior_levels'),
+				'Ventilation' => get_field('REAL_HOMES_interior_ventilation'),
+				'Water Heater' => get_field('REAL_HOMES_interior_water_heater'),
+			];
 			
 			// Property Featured
 			$property_features = [
@@ -211,19 +218,20 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					<div class="span5">
 						<h2 class="text-center property-price">$<?php echo $price; ?></h2>
 						<div class="main-items">
-							<div class="item"><span class="val"><?php echo $beds; ?></span><span class="key">Beds</span></div>
-							<div class="item"><span class="val"><?php echo $baths; ?></span><span class="key">Baths</span></div>
-							<div class="item"><span class="val"><?php echo $sqft; ?></span><span class="key">SqFt</span></div>
-							<div class="item"><span class="val"><?php echo $acres; ?></span><span class="key">Acres</span></div>
-							<div class="item"><span class="val"><?php echo $built; ?></span><span class="key">Built</span></div>
-							<div class="item"><span class="val"><?php echo $p_sqft; ?></span><span class="key">$/SqFt</span></div>
+							<?php								
+							foreach( $main_items as $key => $val ) {
+								if( !empty($val) ) {
+									echo sprintf( '<div class="item"><span class="val">%s</span><span class="key">%s</span></div>', $val, $key );
+								}
+							}
+							?>
 						</div>
 						<?php 
 						// open house info, if array_change_key_case
 						get_template_part('bend-homes/open-house-fragment');
 						?>
 						
-						<div class="basic-info">
+						<div class="basic-info2">
 							<table class="table table-striped table-hover">
 								<tbody>
 									<?php 
@@ -239,15 +247,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 									if(!empty($zoning))
 									echo sprintf('<tr><td>Zoning</td><td class="text-right">%s</td></tr>', $zoning);
 									?>
-
-								</tbody>
-							</table>
-						</div>
-						
-						<div class="schools">
-							<h3>School Information</h3>
-							<table class="table table-striped table-hover">
-								<tbody>
 									<tr>
 										<td>Elementary School</td>
 										<td class="text-right"><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
@@ -290,26 +289,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<h3>Exterior Features</h3>
 						<table class="table table-striped table-hover exterior">
 							<tbody>
-							<?php
-							if(!empty($construction)) echo sprintf('<tr><td>Construction</td><td class="text-right">%s</td></tr>', $construction);
-								
-							if(!empty($additions)) echo sprintf('<tr><td>Additions</td><td class="text-right">%s</td></tr>', $additions);
-								
-							if(!empty($exterior)) echo sprintf('<tr><td>Exterior</td><td class="text-right">%s</td></tr>', $exterior);
-								
-							if(!empty($foundation)) echo sprintf('<tr><td>Foundation</td><td class="text-right">%s</td></tr>', $foundation);
-								
-							if(!empty($irrigated_acres)) echo sprintf('<tr><td>Irrigated Acres</td><td class="text-right">%s</td></tr>', $irrigated_acres);
-								
-							if(!empty($irrigation)) echo sprintf('<tr><td>Irrigation</td><td class="text-right">%s</td></tr>', $irrigation);
-								
-							if(!empty($parking)) echo sprintf('<tr><td>Parking</td><td class="text-right">%s</td></tr>', $parking);
-								
-							if(!empty($roof)) echo sprintf('<tr><td>Roof</td><td class="text-right">%s</td></tr>', $roof);
-								
-							if(!empty($exterior_style)) echo sprintf('<tr><td>Exterior Style</td><td class="text-right">%s</td></tr>', $exterior_style);
-								
-							if(!empty($exterior_view)) echo sprintf('<tr><td>Exterior View</td><td class="text-right">%s</td></tr>', $exterior_view);
+							<?php								
+							foreach( $exterior_features as $key => $val ) {
+								if( !empty($val) ) {
+									echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+								}
+							}
 							?>
 							</tbody>
 						</table>
@@ -319,26 +304,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<h3>Interior Features</h3>
 						<table class="table table-striped table-hover interior">
 							<tbody>
-							<?php
-							if(!empty($interior)) echo sprintf('<tr><td>Interior</td><td class="text-right">%s</td></tr>', $interior);
-								
-							if(!empty($rooms)) echo sprintf('<tr><td>Rooms</td><td class="text-right">%s</td></tr>', $rooms);
-								
-							if(!empty($windows_doors)) echo sprintf('<tr><td>Windows/Doors</td><td class="text-right">%s</td></tr>', $windows_doors);
-								
-							if(!empty($floors)) echo sprintf('<tr><td>Floors</td><td class="text-right">%s</td></tr>', $floors);
-								
-							if(!empty($heat_cool)) echo sprintf('<tr><td>Heating/Cooling</td><td class="text-right">%s</td></tr>', $heat_cool);
-								
-							if(!empty($bath_desc)) echo sprintf('<tr><td>Bathroom Description</td><td class="text-right">%s</td></tr>', $bath_desc);
-								
-							if(!empty($kitchen_desc)) echo sprintf('<tr><td>Kitchen Description</td><td class="text-right">%s</td></tr>', $kitchen_desc);
-								
-							if(!empty($levels)) echo sprintf('<tr><td>Levels</td><td class="text-right">%s</td></tr>', $levels);
-								
-							if(!empty($ventilation)) echo sprintf('<tr><td>Ventilation</td><td class="text-right">%s</td></tr>', $ventilation);
-								
-							if(!empty($water_heater)) echo sprintf('<tr><td>Water Heater</td><td class="text-right">%s</td></tr>', $water_heater);
+							<?php								
+							foreach( $interior_features as $key => $val ) {
+								if( !empty($val) ) {
+									echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+								}
+							}
 							?>
 							</tbody>
 						</table>
