@@ -203,8 +203,8 @@ h3.search-results-header { float: left; margin: 0; }
 .tabs-wrap .nav-tabs { margin-bottom: 0; background: #f7f7f7; }
 .tabs-wrap .nav-tabs>li>a { color: #02888f; font-size: 18px; text-transform: uppercase; line-height: 30px; padding: 10px 30px; border: none; border-right: 1px solid #d2d2d2; border-radius: 0; margin: 0; }
 .tabs-wrap .nav-tabs>.active>a { color: #333; }
-.tabs-wrap .nav-tabs>li>a:hover { border-bottom: 1px solid #d2d2d2; }
 .tabs-wrap .nav-tabs>.active>a, .nav-tabs>.active>a:hover { border-left: none; border-top: none; border-bottom: 1px solid #fff; margin-right: 0; margin-bottom: -1px; }
+.tabs-wrap .nav-tabs>li>a:hover { border-bottom-color: #d2d2d2; }
 .tabs-wrap .nav-tabs>.active>a:hover { border-bottom-color: #fff; }
 .tabs-wrap #property-slider-two-wrapper { margin-bottom: 10px; }
 
