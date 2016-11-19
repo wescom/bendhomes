@@ -73,7 +73,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$date2 = new DateTime( $listing_date );
 
 			$date_diff = ($date2->diff($date1)->format("%a")) - 1; 
-			echo 'Difference: '. $date_diff;
 			
 			$onsite = $date_diff .' Days on Market';
 			
@@ -179,7 +178,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="span7">
 					<h1 class="property-title"><?php echo bh_the_title(); ?></h1>
 					<div class="quick-header-info clearfix">
-						<span class="header-price text-green"><strong>$<?php echo number_format($price); ?></strong></span>
+						<span class="header-price text-green"><strong>Price: $<?php echo number_format($price); ?></strong></span>
 						<span class="header-type"><?php echo $property_type; ?></span>
 						<?php echo $status_list; ?>
 						<span class="header-mls"><?php echo $mls; ?></span>
