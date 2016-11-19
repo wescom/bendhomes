@@ -72,7 +72,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			
 			echo 'Today: '. $today .' Listing Date: '. $listing_date;
 			
-			$date_diff = floor( $today - $listing_date / (60 * 60 * 24) );
+			$date_diff = intval( $today - $listing_date / (60 * 60 * 24) );
 						
 			if( $date_diff < 1 ) {
 				$onsite = 'New Today';
