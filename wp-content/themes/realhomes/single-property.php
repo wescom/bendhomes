@@ -68,17 +68,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 
 			$today = time();
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
-			$listing_date = strtotime( $listing_date );
-			
-			echo 'Today: '. $today .' Listing Date: '. $listing_date;
-			
-			$date_diff = intval( $today - $listing_date / (60 * 60 * 24) );
-			
-$date1 = new DateTime("2010-07-06");
-$date2 = new DateTime("2010-07-09");
+									
+			$date1 = new DateTime();
+			$date2 = new DateTime( $listing_date );
 
-$diff = $date2->diff($date1)->format("%a"); 
-echo 'Diff: '. $diff;
+			$date_diff = $date2->diff($date1)->format("%a"); 
+			echo 'Diff: '. $date_diff;
 						
 			if( $date_diff < 1 ) {
 				$onsite = 'New Today';
