@@ -66,6 +66,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$status_list = sprintf( '<span class="header-status %s">Status: <strong>%s</strong></span>', $statusClass, esc_html($on_status));
 			endif;
 
+			$today = time();
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
 									
 			$date1 = new DateTime();
