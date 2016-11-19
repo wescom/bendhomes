@@ -75,9 +75,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$date_diff = $date2->diff($date1)->format("%a"); 
 			echo 'Difference: '. $date_diff;
 						
-			if( $date_diff < 1 ) {
+			if( (int)$date_diff < 1 ) {
 				$onsite = 'New Today';
-			} elseif( $date_diff = 1 ) {
+			} elseif( (int)$date_diff = 1 ) {
 				$onsite = '1 Day on Market';
 			} else {
 				$onsite = $date_diff .' Days on Market';
