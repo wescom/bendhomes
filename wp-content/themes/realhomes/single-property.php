@@ -66,7 +66,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$status_list = sprintf( '<span class="header-status %s">Status: <strong>%s</strong></span>', $statusClass, esc_html($on_status));
 			endif;
 
-			$today = time();
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
 									
 			$date1 = new DateTime();
@@ -75,9 +74,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$date_diff = $date2->diff($date1)->format("%a"); 
 			echo 'Diff: '. $date_diff;
 						
-			if( $date_diff < 1 ) {
+			if( intval($date_diff) < 1 ) {
 				$onsite = 'New Today';
-			} elseif( $date_diff = 1 ) {
+			} elseif( intval($date_diff) = 1 ) {
 				$onsite = '1 Day on Market';
 			} else {
 				$onsite = $date_diff .' Days on Market';
