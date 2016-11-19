@@ -72,7 +72,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$date1 = new DateTime();
 			$date2 = new DateTime( $listing_date );
 
-			$date_diff = $date2->diff($date1)->format("%a"); 
+			$date_diff = ($date2->diff($date1)->format("%a")) - 1; 
 			echo 'Difference: '. $date_diff;
 			
 			$onsite = $date_diff .' Days on Market';
