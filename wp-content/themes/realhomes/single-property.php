@@ -73,6 +73,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$date2 = new DateTime( $listing_date );
 
 			$date_diff = $date2->diff($date1)->format("%a"); 
+			echo 'Difference: '. $date_diff;
 						
 			if( $date_diff < 1 ) {
 				$onsite = 'New Today';
