@@ -995,10 +995,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 				</form>
 			</div>
 			
-			<?php if( $has_content ) {
-				echo '<div class="mort-content-wrap">'. $content .'</div>';
-			}
-			?>
+			<div class="mort-content-wrap"><?php echo $content; ?></div>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
