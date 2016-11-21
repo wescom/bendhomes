@@ -996,7 +996,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 			</div>
 			
 			<?php if( $has_content ) {
-				sprintf('<div class="mort-content-wrap">%s</div>', $content );
+				echo sprintf('<div class="mort-content-wrap">%s</div>', $content );
 			}
 			?>
 			
