@@ -104,6 +104,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				'Built' => get_field('REAL_HOMES_property_features_year_built'),
 				'$/SqFt' => intval($price / $sqft),
 			];
+			
+			$schools = [
+				'Elementary School' => get_the_term_list( $id, 'elementary_school' ),
+				'Middle School' => get_the_term_list( $id, 'middle_school' ),
+				'High School' => get_the_term_list( $id, 'high_school' )
+			];
 
 			// Exterior Features
 			$exterior_features = [
@@ -262,21 +268,18 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</div>
 							
 							<div class="schools">
-								<h3>School Information</h3>
+								<?php if( implode( $exterior_features ) )
+									echo '<h3>School Information</h3>'; ?>
+									
 								<table class="table table-striped table-hover schools">
 									<tbody>
-										<tr>
-											<td>Elementary School</td>
-											<td class="text-right"><?php echo get_the_term_list( $id, 'elementary_school' ); ?></td>
-										</tr>
-										<tr>
-											<td>Middle School </td>
-											<td class="text-right"><?php echo get_the_term_list( $id, 'middle_school' ); ?></td>
-										</tr>
-										<tr>
-											<td>High School</td>
-											<td class="text-right"><?php echo get_the_term_list( $id, 'high_school' ); ?></td>
-										</tr>
+										<?php								
+										foreach( $schools as $key => $val ) {
+											if( !empty($val) ) {
+												echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+											}
+										}
+										?>
 									</tbody>
 								</table>
 							</div>

@@ -57,13 +57,13 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .mort-calc-form-wrap.has-content .span8:before { content: ""; display: block; position: absolute; top: 0; width: 100%; height: 100%; background: #f7f7f7; left: 100%; margin-left: 4.5641%; border-left: 1px solid #d2d2d2; }
 .mort-calc-form-wrap.has-content .span4 { position: relative; }
 .mort-calc-form-wrap.has-content .mort-content-wrap { padding-left: 10px; padding-right: 10px; }
-.mort-calc-form-wrap.has-content .mort-content-wrap h4 { font-size: 16px; text-transform: uppercase; line-height: 140%; margin-bottom: 30px; text-align: center; margin-top: 0; padding-top: 25px; }
+.mort-calc-form-wrap.has-content .mort-content-wrap h4 { font-size: 16px; text-transform: uppercase; line-height: 140%; margin-bottom: 30px; text-align: center; margin-top: 0; padding-top: 25px; padding-bottom: 25px; }
 .mort-sponsor p { font-weight: bold; color: #51A0AD; font-style: italic; }
 
 .share-bar-wrap { margin: 15px 0; }
 .share-bar-wrap > .actions { display: block; width: 33.3333%; float: left; }
 .share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share { display: block; }
-.share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share, .share-bar-wrap .actions #fav_output { padding: 16px 10px; text-align: center; color: #fff; font-weight: 400; font-size: 16px; text-transform: uppercase; background: #02888f; letter-spacing: .05em; border-left: 1px solid #fff; cursor: pointer; }
+.share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share, .share-bar-wrap .actions #fav_output { padding: 16px 10px; text-align: center; color: #fff; font-weight: 400; font-size: 14px; text-transform: uppercase; background: #02888f; letter-spacing: .05em; border-left: 1px solid #fff; cursor: pointer; }
 .share-bar-wrap .actions #fav_output #fav_target.dim, .share-bar-wrap .actions #fav_output i { color: yellow; }
 .share-bar-wrap .actions > a:hover, .share-bar-wrap .actions .fav-btn:hover, .share-bar-wrap .actions #share-bar-share:hover, .share-bar-wrap .actions #fav_output:hover { background: #006267; }
 .share-bar-wrap .actions #share-bar-share { border-left: none; }
@@ -360,6 +360,7 @@ h3.search-results-header { float: left; margin: 0; }
 }
 
 @media(max-width: 767px) {
+	.container { padding-left: 2.5%; padding-right: 2.5%; }
 	.page-spacer { height: 20px; }
 	#home-flexslider .flexslider { height: auto; }
 	#home-flexslider .desc-wrap, #overview .property-item .printer-icon { display: none; }
@@ -387,6 +388,7 @@ h3.search-results-header { float: left; margin: 0; }
 	.custom-post.one .custom-post-item, .custom-post.two .custom-post-item { min-height: 0; }
 	#mortgage-calculator, #mortgage-calculator.in { width: auto; margin-left: 0; }
 	.brands-carousel .row-fluid .span2, .brands-carousel .row-fluid .span2:first-child { width: auto; }
+	.mort-calc-form-wrap input[type="text"], .mort-calc-form-wrap select { width: 97.5%; }
 }
 
 @media(max-width: 480px) {
