@@ -859,7 +859,6 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	$id = sanitize_text_field( $atts['id'] );
 	$class = sanitize_text_field( $atts['class'] );
 	$content = apply_filters('shortcode_content', $content);
-	$has_content = !empty($content);
 	
 	$sale_price              = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
     $annual_interest_percent = 3.5; // percent
@@ -934,7 +933,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	}	
 	</script>
 	
-	<div class="mort-calc-form-wrap clearfix <?php echo $class; if($has_content) echo ' has-content'; ?>">
+	<div class="mort-calc-form-wrap clearfix <?php echo $class; if(!empty($content)) echo ' has-content'; ?>">
 		<div class="mort-calc clearfix">
 			
 			<h3 class="text-center">Monthly Payment Estimator</h3>
@@ -995,7 +994,10 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 				</form>
 			</div>
 			
-			<div class="mort-content-wrap"><?php echo $content; ?></div>
+			<?php
+			if( !empty( $content ) )
+				echo sprintf('<div class="mort-content-wrap">%s</div>', $content );
+			?>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
