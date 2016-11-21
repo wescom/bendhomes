@@ -859,6 +859,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	$id = sanitize_text_field( $atts['id'] );
 	$class = sanitize_text_field( $atts['class'] );
 	$content = apply_filters('shortcode_content', $content);
+	$span_check = !empty($content) ? 'span8' : 'span12';
 	
 	$sale_price              = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
     $annual_interest_percent = 3.5; // percent
@@ -936,68 +937,74 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	<div class="mort-calc-form-wrap clearfix <?php echo $class; if(!empty($content)) echo ' has-content'; ?>">
 		<div class="mort-calc clearfix">
 			
-			<h3 class="text-center">Monthly Payment Estimator</h3>
-			<h2 id="monthly-payment" class="text-center">
-				$<?php echo number_format($monthly_payment); ?> per month
-			</h2>
-			<div class="text-center">
-				<small>Loan Amount: <strong id="loan-amt">$<?php echo number_format($financing_price); ?></strong></small>
-			</div>
+			<div class="row-fluid">
+				<div class="<?php echo $span_check; ?>">
 			
-			<div class="form-wrap">
-				<form name="mortgagecalc" method="POST">
-				
-					<div class="row-fluid">
-						<div class="form-item span12 price-item dollar"><label for="price" class="text-center">Listing Price</label>
-							<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
-							<div class="smpc-error" id="priceError"></div>
-						</div>
+					<h3 class="text-center">Monthly Payment Estimator</h3>
+					<h2 id="monthly-payment" class="text-center">
+						$<?php echo number_format($monthly_payment); ?> per month
+					</h2>
+					<div class="text-center">
+						<small>Loan Amount: <strong id="loan-amt">$<?php echo number_format($financing_price); ?></strong></small>
 					</div>
-					<div class="row-fluid">
-						<div class="form-item span6 interest-item percent"><label for="rate">Interest Rate</label>
-							<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
-							<div class="smpc-error" id="rateError"></div>
-						</div>
-						<div class="form-item span6 term-item time"><label for="years">Loan Type</label>
-							<span class="selectwrap">
-								<select id="mort-term-value" class="search-select" onChange="myPayment();" onkeyup="this.onchange();" name="years">
-									<option value="5">5 Years</option>
-									<option value="10">10 Years</option>
-									<option value="15">15 Years</option>
-									<option value="20">20 Years</option>
-									<option value="25">25 Years</option>
-									<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
-									<option value="35">35 Years</option>
-								</select>
-							</span>
-							<div class="smpc-error" id="yearsError"></div>
-						</div>
-					</div>
-					<div class="row-fluid">
-						<div class="form-item span6 down-item dollar"><label for="down">Down Payment</label>
-							<div class="down">
-								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
-								<div id="down-percent">(<?php echo $down_percent; ?>%)</div>
+
+					<div class="form-wrap">
+						<form name="mortgagecalc" method="POST">
+
+							<div class="row-fluid">
+								<div class="form-item span12 price-item dollar"><label for="price" class="text-center">Listing Price</label>
+									<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
+									<div class="smpc-error" id="priceError"></div>
+								</div>
 							</div>
-							<div class="smpc-error" id="downError"></div>
-						</div>
-						<div class="form-item span6 taxes-item percent"><label for="taxes">Est. Tax &amp; Insurance</label>
-							<div class="taxes">
-								<input id="mort-taxes-value" type="text" onkeypress="return validNumber(event)" onChange="findtaxpermonth(); myPayment();" onkeyup="this.onchange();" name="taxes" value="<?php echo $tax_insurance; ?>"> 
-								<div id="taxes-per">($<?php echo round($tax_ins_per_month); ?>/mo.)</div>
+							<div class="row-fluid">
+								<div class="form-item span6 interest-item percent"><label for="rate">Interest Rate</label>
+									<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
+									<div class="smpc-error" id="rateError"></div>
+								</div>
+								<div class="form-item span6 term-item time"><label for="years">Loan Type</label>
+									<span class="selectwrap">
+										<select id="mort-term-value" class="search-select" onChange="myPayment();" onkeyup="this.onchange();" name="years">
+											<option value="5">5 Years</option>
+											<option value="10">10 Years</option>
+											<option value="15">15 Years</option>
+											<option value="20">20 Years</option>
+											<option value="25">25 Years</option>
+											<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
+											<option value="35">35 Years</option>
+										</select>
+									</span>
+									<div class="smpc-error" id="yearsError"></div>
+								</div>
 							</div>
-							<div class="smpc-error" id="taxesError"></div>
-						</div>
+							<div class="row-fluid">
+								<div class="form-item span6 down-item dollar"><label for="down">Down Payment</label>
+									<div class="down">
+										<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
+										<div id="down-percent">(<?php echo $down_percent; ?>%)</div>
+									</div>
+									<div class="smpc-error" id="downError"></div>
+								</div>
+								<div class="form-item span6 taxes-item percent"><label for="taxes">Est. Tax &amp; Insurance</label>
+									<div class="taxes">
+										<input id="mort-taxes-value" type="text" onkeypress="return validNumber(event)" onChange="findtaxpermonth(); myPayment();" onkeyup="this.onchange();" name="taxes" value="<?php echo $tax_insurance; ?>"> 
+										<div id="taxes-per">($<?php echo round($tax_ins_per_month); ?>/mo.)</div>
+									</div>
+									<div class="smpc-error" id="taxesError"></div>
+								</div>
+							</div>
+
+							<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
+						</form>
 					</div>
-					
-					<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
-				</form>
-			</div>
+				</div>
 			
-			<?php
-			if( !empty( $content ) )
-				echo sprintf('<div class="mort-content-wrap">%s</div>', $content );
-			?>
+				<?php
+				if( !empty( $content ) )
+					echo sprintf('<div class="span4"><div class="mort-content-wrap"><div class="mort-content">%s</div></div></div>', $content );
+				?>
+			
+			</div>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
