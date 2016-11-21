@@ -2,6 +2,25 @@
 // Shortcodes
 
 
+// Filters shortcode content to format html tags
+add_filter('shortcode_content', 'shortcode_content');
+function shortcode_content($content) {
+	// p and br tag fix for wordpress autop
+	$bogus_br_start_end = "^<br \/>\s*|<br \/>\s*$";
+	$br_between_scs = "(\])<br \/>\s*?(\[)";
+	$bogus_p_start_end = "^<\/p>\s*|\s*<p>$";
+	$p_with_sc = "<p>(\[.*\]|\[[^\]]*\][^\[]*\[[^\]]*\])<\/p>|<p>(\[)|(\])<\/p>"; // Detect them brackets!
+
+	$content = preg_replace("/{$bogus_br_start_end}|{$br_between_scs}/", "\$1\$2", $content);
+	$content = preg_replace("/{$bogus_p_start_end}|{$p_with_sc}/", "\$1\$2\$3", $content);
+
+	// render internal shortcodes... cause wordpress doesn't
+	$content = do_shortcode($content);
+
+	return $content;
+}
+
+
 // Creates address with schema.org tags
 add_shortcode('SCHEMA_ADDRESS', 'tbb_schema_address');
 function tbb_schema_address( $atts ) {
@@ -831,7 +850,7 @@ function tbb_display_agents( $defaults ) {
 // http://www.loansanddebts.com/view.php?file=calculator_code.php
 // http://ravingroo.com/decoded/download-simple-mortgage-payment-calculator.php
 add_shortcode('MORT_CALC_FORM', 'tbb_mortgage_calc_form');
-function tbb_mortgage_calc_form( $atts ) {
+function tbb_mortgage_calc_form( $atts, $content = null ) {
 	$atts = shortcode_atts( array(
 		'id' => '',
 		'class' => ''
@@ -839,6 +858,8 @@ function tbb_mortgage_calc_form( $atts ) {
 	
 	$id = sanitize_text_field( $atts['id'] );
 	$class = sanitize_text_field( $atts['class'] );
+	$content = apply_filters('shortcode_content', $content);
+	$has_content = !empty($content);
 	
 	$sale_price              = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
     $annual_interest_percent = 3.5; // percent
@@ -913,8 +934,8 @@ function tbb_mortgage_calc_form( $atts ) {
 	}	
 	</script>
 	
-	<div class="mort-calc-form-wrap <?php echo $class; ?>">
-		<div class="mort-calc">
+	<div class="mort-calc-form-wrap clearfix <?php echo $class; if($has_content) echo ' has-content'; ?>">
+		<div class="mort-calc clearfix">
 			
 			<h3 class="text-center">Monthly Payment Estimator</h3>
 			<h2 id="monthly-payment" class="text-center">
@@ -973,6 +994,11 @@ function tbb_mortgage_calc_form( $atts ) {
 					<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
 				</form>
 			</div>
+			
+			<?php if( $has_content ) {
+				sprintf('<div class="mort-content-wrap">%s</div>', $content );
+			}
+			?>
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
