@@ -268,7 +268,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</div>
 							
 							<div class="schools">
-								<?php if( implode( $exterior_features ) )
+								<?php if( implode( $schools ) )
 									echo '<h3>School Information</h3>'; ?>
 									
 								<table class="table table-striped table-hover schools">
