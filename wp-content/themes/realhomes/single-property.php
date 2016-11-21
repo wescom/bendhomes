@@ -47,12 +47,15 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			
 			$id = get_the_ID();	
 
+			// MLS Number
 			$mls_number = get_field( 'REAL_HOMES_property_id' );
 			if(!empty($mls_number)) $mls = sprintf( 'MLS #: <strong>%s</strong>', $mls_number );
 
+			// Property SubType
 			$property_type = get_field( 'REAL_HOMES_property_features_subtype' );
 			if(!empty($property_type)) $property_type = sprintf('Type: <strong>%s</strong>', $property_type);
 
+			// Property Status: i.e. For Sale, Pending, Contingent Bumpable, Sold, etc.
 			$status_terms = get_the_terms( $id, 'property-status' );
 			if ( $status_terms && !is_wp_error( $status_terms ) ) :
 				$term_links = array();
@@ -66,6 +69,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$status_list = sprintf( '<span class="header-status %s">Status: <strong>%s</strong></span>', $statusClass, esc_html($on_status));
 			endif;
 
+			// Number of days on market. $onsite.
 			$today = time();
 			$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
 			$date1 = new DateTime();
@@ -80,20 +84,15 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				$onsite = '1 Day on Market';
 			}
 						
-			/*if( (int)$date_diff < 1 ) {
-				$onsite = 'New Today';
-			} elseif( (int)$date_diff = 1 ) {
-				$onsite = '1 Day on Market';
-			} else {
-				$onsite = $date_diff .' Days on Market';
-			}*/
-			
+			// Basic Fields
 			$price = intval(get_field('REAL_HOMES_property_price'));
 			$video = get_field('REAL_HOMES_tour_video_url');
 			$hoa = get_field('REAL_HOMES_property_features_hoa');
 			$hoa_amount = intval(get_field('REAL_HOMES_property_features_hoa_amount'));
 			$hoa_per = get_field('REAL_HOMES_property_features_hoa_per');
 			$zoning = get_field('REAL_HOMES_property_features_zoning');
+			$county = get_the_term_list( $id, 'county' );
+			$area = get_the_term_list( $id, 'area' );
 
 			// Main Fields
 			$main_items = [
@@ -105,6 +104,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				'$/SqFt' => intval($price / $sqft),
 			];
 			
+			// Schools
 			$schools = [
 				'Elementary School' => get_the_term_list( $id, 'elementary_school' ),
 				'Middle School' => get_the_term_list( $id, 'middle_school' ),
@@ -213,14 +213,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								<?php } ?>
 							</ul>
 
-							<div class="tab-content">
+							<div id="overview" class="tab-content">
 								<div class="tab-pane active" id="tab-photos">
 									<?php get_template_part('property-details/property-slider-two'); ?>
 								</div>
 								<div class="tab-pane" id="tab-map">
-									<div id="overview">
 									<?php get_template_part('property-details/property-map'); ?>
-									</div>
 								</div>
 								<?php if(!empty($video)) { ?>
 								<div class="tab-pane" id="tab-video">
@@ -256,9 +254,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 										echo sprintf('<tr><td>HOA</td><td class="text-right">%s</td></tr>
 											<tr><td>HOA Amount</td><td class="text-right">$%s %s</td></tr>', $hoa, $hoa_amount, $hoa_per);
 
-										echo sprintf('<tr><td>County</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'county' ));
+										if(!empty($county))
+										echo sprintf('<tr><td>County</td><td class="text-right">%s</td></tr>', $county);
 
-										echo sprintf('<tr><td>Area</td><td class="text-right">%s</td></tr>', get_the_term_list( $id, 'area' ));
+										if(!empty($area))
+										echo sprintf('<tr><td>Area</td><td class="text-right">%s</td></tr>', $area);
 
 										if(!empty($zoning))
 										echo sprintf('<tr><td>Zoning</td><td class="text-right">%s</td></tr>', $zoning);
