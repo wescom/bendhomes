@@ -42,19 +42,21 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .mort-calc-form-wrap .form-wrap { margin-top: 10px; }
 .mort-calc-form-wrap .form-item { margin-bottom: 10px; position: relative; }
 .mort-calc-form-wrap .form-item .down, .mort-calc-form-wrap .form-item .taxes { position: relative; }
-.mort-calc-form-wrap .form-item #down-percent, .mort-calc-form-wrap .form-item #taxes-per { position: absolute; top: 14px; font-size: 18px; right: 15px; font-weight: 300; letter-spacing: .05em; color: #999; }
+.mort-calc-form-wrap .form-item #down-percent, .mort-calc-form-wrap .form-item #taxes-per { position: absolute; top: 14px; font-size: 16px; right: 15px; font-weight: 300; color: #999; }
 .mort-calc-form-wrap input[type="text"], .mort-calc-form-wrap select { color: #777; background-color: #fff; width: 100%; padding: 10px 0; text-indent: 40px; letter-spacing: .05em; font-size: 18px; font-weight: 400; border-radius: 3px; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }
 .mort-calc-form-wrap .selectwrap input { background: url(images/dropdown-arrow-lg.png) no-repeat right top #fff; }
 .mort-calc-form-wrap label { font-size: 14px; color: #777; text-transform: uppercase; }
 .mort-calc-form-wrap #mort-price-value { text-align: center; width: 80%; margin: auto; display: block; max-width: 400px; text-indent: 0; }
 .mort-calc-form-wrap .dollar:before, .mort-calc-form-wrap .percent:before, .mort-calc-form-wrap .time:before { content: ""; font-size: 20px; position: absolute; left: 15px; top: 39px; color: #999; z-index: 1; font-weight: 300; }
-.mort-calc-form-wrap .price-item.dollar:before { left: 50%; margin-left: -185px; }
+.mort-calc-form-wrap .price-item.dollar:before { left: 50%; margin-left: -40%; text-indent: 15px; }
 .mort-calc-form-wrap .dollar:before { content: "$"; }
 .mort-calc-form-wrap .percent:before { content: "%"; }
 .mort-calc-form-wrap .time:before { content: "\f073"; font-family: "FontAwesome"; font-size: 18px; }
 .mort-calc-form-wrap.has-content { padding: 0; }
-.mort-calc-form-wrap.has-content .span8 { 10px 0 0 15px; }
-.mort-calc-form-wrap.has-content .mort-content-wrap { padding-left: 10px; padding-right: 10px; border-left: 1px solid #e8e8e8; }
+.mort-calc-form-wrap.has-content .span8 { padding: 15px 0 0 2.5641%; position: relative; }
+.mort-calc-form-wrap.has-content .span8:before { content: ""; display: block; position: absolute; top: 0; width: 1px; height: 100%; background: #d2d2d2; right: -2.5641%; }
+.mort-calc-form-wrap.has-content .mort-content-wrap { padding-left: 10px; padding-right: 10px; }
+.mort-calc-form-wrap.has-content .mort-content-wrap h4 { font-size: 16px; text-transform: uppercase; line-height: 140%; margin-bottom: 30px; text-align: center; margin-top: 0; padding-top: 25px; }
 
 .share-bar-wrap { margin: 15px 0; }
 .share-bar-wrap > .actions { display: block; width: 33.3333%; float: left; }
