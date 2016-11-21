@@ -306,7 +306,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					<div class="span7">
 						<?php
 						// Mortgage calculator
-						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]<div class="mort-sponsor">[EVERGREEN_LOANS]</div>[/MORT_CALC_FORM]'); ?>
+						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]<div class="mort-sponsor"><p>Find what the real terms of your loan could be.</p>[EVERGREEN_LOANS]</div>[/MORT_CALC_FORM]'); ?>
 					</div>
 				</div>
 				

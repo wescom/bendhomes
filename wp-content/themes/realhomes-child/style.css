@@ -52,6 +52,9 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .mort-calc-form-wrap .dollar:before { content: "$"; }
 .mort-calc-form-wrap .percent:before { content: "%"; }
 .mort-calc-form-wrap .time:before { content: "\f073"; font-family: "FontAwesome"; font-size: 18px; }
+.mort-calc-form-wrap.has-content { padding: 0; }
+.mort-calc-form-wrap.has-content .span8 { 10px 0 0 15px; }
+.mort-calc-form-wrap.has-content .mort-content-wrap { padding-left: 10px; padding-right: 10px; border-left: 1px solid #e8e8e8; }
 
 .share-bar-wrap { margin: 15px 0; }
 .share-bar-wrap > .actions { display: block; width: 33.3333%; float: left; }
