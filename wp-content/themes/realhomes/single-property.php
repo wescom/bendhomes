@@ -302,7 +302,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							?>
 							
 							<div class="sponsor-block sponsor1">
-								<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:50px auto 30px;line-height:100px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
+								<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:50px auto 30px;line-height:100px;border:1px solid #aaa;font-size:24px;">Ad: 320x100</div>
 							</div>
 						</div>
 					</div>
@@ -387,7 +387,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="row-fluid section4">
 					<div class="span4">
 						<div class="sponsor-block sponsor2">
-							<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:100px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
+							<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:100px;border:1px solid #aaa;font-size:24px;">Ad: 320x100</div>
 						</div>
 					</div>
 					
@@ -398,8 +398,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 					
 					<div class="span4">
-						<div class="sponsor-block sponsor2">
-							<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:100px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
+						<div class="sponsor-block sponsor3">
+							<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:100px;border:1px solid #aaa;font-size:24px;">Ad: 320x100</div>
 						</div>
 					</div>
 				</div>
