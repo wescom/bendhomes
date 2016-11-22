@@ -249,7 +249,7 @@ h3.search-results-header { float: left; margin: 0; }
 .slide-menu button.collapsed:before { content: "\f077"; }
 .property-openhouse{ padding-top: 7px; border-top: 1px solid #d2d2d2; margin-top: 7px; }
 .property-openhouse .oh_time{font-weight:700; background: #FFDB00; padding-left: 5px;}
-.property-post .custom-post.one .custom-post-item { min-height: 0; margin-left: 0; margin-right: 0; }
+.property-post .custom-post.one .custom-post-item { min-height: 0; margin-left: 0; margin-right: 0; padding-bottom: 35px; }
 .property-post .custom-post.one .custom-post-image { margin: 0; }
 
 /* --- Single Company Template Styles --- */
