@@ -294,7 +294,8 @@ function tbb_custom_posts( $defaults ) {
 		'columns' => '2',
 		'order' => 'ASC',
 		'orderby' => 'name',
-		'show_search' => ''
+		'show_search' => '',
+		'show_pagination' => ''
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
@@ -589,7 +590,9 @@ function tbb_custom_posts( $defaults ) {
 			
 		endwhile;
 	
-	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $custom_posts->max_num_pages) );
+	if(empty( $defaults['show_pagination'] )) {
+		$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $custom_posts->max_num_pages) );
+	}
 	
 	endif;
 			
