@@ -333,7 +333,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 							</div>
 							<div class="slide-menu">
-								<a href="#">Read More</a>
+								<a href="">Read More</a>
 							</div>
 						</div>
 					</div>
@@ -361,7 +361,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							var open_height = $(".slide-content").attr("box_h") + "px";
 							$(".slide-content").animate({"height": open_height}, {duration: "slow" });
 							$(".slide-menu").html('<a href="#">Close</a>');
-							$(".slide-menu a").click(function(e) { closeSlider(); e.preventDefault; })
+							$(".slide-menu a").click(function() { closeSlider() })
 						}
 
 						function closeSlider()
@@ -369,7 +369,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						{
 							$(".slide-content").animate({"height": sliderHeight}, {duration: "slow" });
 							$(".slide-menu").html('<a href="#">Read More</a>');
-							$(".slide-menu a").click(function(e) { openSlider(); e.preventDefault; })
+							$(".slide-menu a").click(function() { openSlider() })
 						}
 					</script>
 					
