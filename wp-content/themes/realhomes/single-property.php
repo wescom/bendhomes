@@ -399,7 +399,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						});
 
 						$(".slide-content").css("height", sliderHeight);
-						$(".slide-menu").html('<a href="#">'+viewMoreTxt+'</a>');
+						//$(".slide-menu").html('<a href="#">'+viewMoreTxt+'</a>');
 						$(".slide-menu a").each(function() {
 							var button = $(this);
 							var target = button.attr('href');
