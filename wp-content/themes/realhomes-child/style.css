@@ -240,7 +240,11 @@ h3.search-results-header { float: left; margin: 0; }
 .agent-widget .reciprocity-logo { width: 30px; position: absolute; display: block; top: 15px; right: 10px; }
 .agent-widget .agent-btn { color: #fff; background: #02888f; display: block; padding: 8px 0; margin: 0; width: 100%; clear: both; text-align: center; text-transform: uppercase; letter-spacing: .05em;  }
 .agent-widget .agent-btn:hover { color: #fff; background: #006267; }
+.section3 h3 { margin: 0; padding: 5px 15px; background: #02888f; color: #fff; }
 .slide-content { overflow: hidden; }
+.slide-content .table { margin-bottom: 0; }
+.slide-menu a { color: #02888f; display: block; padding: 10px 5px; text-align: center; border: 1px solid #ccc; background: #fff; border-top-width: 2px; }
+.slide0menu a:hover, .slide-menu a:active { color: #02888f; background: #f7f7f7; }
 
 /* --- Single Company Template Styles --- */
 .company-agent { text-align: center; float: left; margin: 0; padding: 0; min-height: 240px; width: 20%; }

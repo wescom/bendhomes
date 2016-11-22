@@ -313,7 +313,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 				</div>
 				
-				<div class="row-fluid">
+				<div class="row-fluid section3">
 					<div class="span4">
 						<?php if( implode( $exterior_features ) )
 							echo '<h3>Exterior Features</h3>'; ?>
@@ -339,7 +339,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 					
 					<script type="text/javascript">
-						var sliderHeight = "100px";
+						var sliderHeight = "140px";
 						var viewMoreTxt = '<i class="fa fa-chevron-down"></i> View More';
 						var viewLessTxt = '<i class="fa fa-chevron-up"></i> View Less';
  
