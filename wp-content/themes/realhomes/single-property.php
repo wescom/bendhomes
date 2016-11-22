@@ -318,17 +318,20 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php if( implode( $exterior_features ) )
 							echo '<h3>Exterior Features</h3>'; ?>
 						
-						<table class="table table-striped table-hover exterior">
-							<tbody>
-							<?php								
-							foreach( $exterior_features as $key => $val ) {
-								if( !empty($val) ) {
-									echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+						<div id="slide-toggle1" class="slide-toggle">
+							<table class="table table-striped table-hover exterior">
+								<tbody>
+								<?php								
+								foreach( $exterior_features as $key => $val ) {
+									if( !empty($val) ) {
+										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+									}
 								}
-							}
-							?>
-							</tbody>
-						</table>
+								?>
+								</tbody>
+							</table>
+							<a href="#slide-toggle1" class="toggle-btn"><i class="fa fa-caret-down"></i> View More</a>
+						</div>
 					</div>
 					
 					<div class="span4">
