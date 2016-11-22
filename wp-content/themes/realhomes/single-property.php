@@ -330,8 +330,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								?>
 								</tbody>
 							</table>
-							<a href="#slide-toggle1" class="toggle-btn"><i class="fa fa-caret-down"></i> View More</a>
 						</div>
+						<a href="#slide-toggle1" class="toggle-btn"><i class="fa fa-chevron-down"></i> View More</a>
 					</div>
 					
 					<div class="span4">
@@ -368,6 +368,29 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						</table>
 					</div>
 				</div>
+				
+				<script type="text/javascript">
+					$(document).ready(function() {
+    
+						var $dscr = $('.slide-toggle'),
+							$switch = $('.toggle-btn'),
+							$initHeight = 100; // Initial height
+
+						$dscr.each(function() {
+							$.data(this, "realHeight", $(this).height());    // Create new property realHeight
+							}).css({ overflow: "hidden", height: $initHeight + 'px' });
+
+						$switch.toggle(function() {
+							  $dscr.animate({ height: $dscr.data("realHeight") }, 600);
+							  $switch.html("-");
+
+							}, function() {
+								$dscr.animate({ height: $initHeight}, 600);
+								$switch.html("+");
+							});
+					});
+				</script>
+				
 			</div><!-- end main-wrap -->
 			
 			<?php get_template_part('property-details/similar-properties'); ?>
