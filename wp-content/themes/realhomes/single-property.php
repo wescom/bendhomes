@@ -314,26 +314,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				
 				<div class="row-fluid section3">
 					<div class="span4">
-						<?php if( implode( $exterior_features ) ) { ?>
-						<h3>Exterior Features</h3>
-						<div id="slide-content1" class="slide-content collapse">
-							<table class="table table-striped table-hover exterior">
-								<tbody>
-								<?php								
-								foreach( $exterior_features as $key => $val ) {
-									if( !empty($val) ) {
-										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
-									}
-								}
-								?>
-								</tbody>
-							</table>
-						</div>
-						<div class="slide-menu">
-							<button class="collapsed" data-toggle="collapse" data-target="#slide-content1">View More</button>
-						</div>
-						<?php } ?>
-						
 						<?php if( implode( $interior_features ) ) { ?>
 						<h3>Interior Features</h3>
 						<div id="slide-content2" class="slide-content collapse">
@@ -351,6 +331,26 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						</div>
 						<div class="slide-menu">
 							<button class="collapsed" data-toggle="collapse" data-target="#slide-content2">View More</button>
+						</div>
+						<?php } ?>
+						
+						<?php if( implode( $exterior_features ) ) { ?>
+						<h3>Exterior Features</h3>
+						<div id="slide-content1" class="slide-content collapse">
+							<table class="table table-striped table-hover exterior">
+								<tbody>
+								<?php								
+								foreach( $exterior_features as $key => $val ) {
+									if( !empty($val) ) {
+										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+									}
+								}
+								?>
+								</tbody>
+							</table>
+						</div>
+						<div class="slide-menu">
+							<button class="collapsed" data-toggle="collapse" data-target="#slide-content1">View More</button>
 						</div>
 						<?php } ?>
 					</div>
