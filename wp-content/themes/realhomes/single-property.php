@@ -355,8 +355,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php } ?>
 					</div>
 					
+					<?php if( implode( $property_features ) ) { ?>
 					<div class="span4">
-						<?php if( implode( $property_features ) ) { ?>
 						<h3>Property Features</h3>	
 						<div id="slide-content3" class="slide-content collapse">
 							<table class="table table-striped table-hover features">
@@ -374,8 +374,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<div class="slide-menu">
 							<button class="collapsed" data-toggle="collapse" data-target="#slide-content3">View More</button>
 						</div>
-						<?php } ?>
 					</div>
+					<?php } ?>
 					
 					<div class="span4">
 						<div class="sponsor-block sponsor1">
