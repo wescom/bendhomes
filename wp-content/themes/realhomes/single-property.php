@@ -315,9 +315,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				
 				<div class="row-fluid section3">
 					<div class="span4">
-						<?php if( implode( $exterior_features ) )
-							echo '<h3>Exterior Features</h3>'; ?>
-						
+						<?php if( implode( $exterior_features ) ) { ?>
+						<h3>Exterior Features</h3>
 						<div id="slide-content1" class="slide-content collapse">
 							<table class="table table-striped table-hover exterior">
 								<tbody>
@@ -334,12 +333,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<div class="slide-menu">
 							<button data-toggle="collapse" data-target="#slide-content1">View More</button>
 						</div>
+						<?php } ?>
 					</div>
 					
 					<div class="span4">
-						<?php if( implode( $interior_features ) )
-							echo '<h3>Interior Features</h3>'; ?>
-						
+						<?php if( implode( $interior_features ) ) { ?>
+						<h3>Interior Features</h3>
 						<div id="slide-content2" class="slide-content collapse">
 							<table class="table table-striped table-hover interior">
 								<tbody>
@@ -356,12 +355,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<div class="slide-menu">
 							<button data-toggle="collapse" data-target="#slide-content2">View More</button>
 						</div>
+						<?php } ?>
 					</div>
 					
 					<div class="span4">
-						<?php if( implode( $property_features ) )
-							echo '<h3>Property Features</h3>'; ?>
-							
+						<?php if( implode( $property_features ) ) { ?>
+						<h3>Property Features</h3>	
 						<div id="slide-content3" class="slide-content collapse">
 							<table class="table table-striped table-hover features">
 								<tbody>
@@ -378,59 +377,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<div class="slide-menu">
 							<button data-toggle="collapse" data-target="#slide-content3">View More</button>
 						</div>
+						<?php } ?>
 					</div>
 				</div>
-				
-				<script>
-					$('.slide-menu button').click(function(){ //you can give id or class name here for $('button')
-						$(this).text(function(i,old){
-							return old=='View More' ?  'View Less' : 'View More';
-						});
-					});		
-				</script>
-				
-				<!--script type="text/javascript">
-					var sliderHeight = "140px";
-					var viewMoreTxt = '<i class="fa fa-chevron-down"></i> View More';
-					var viewLessTxt = '<i class="fa fa-chevron-up"></i> View Less';
-
-					$(document).ready(function(){
-						$('.slide-content').each(function () {
-							var current = $(this);
-							current.attr("box_h", current.height());
-						});
-
-						$(".slide-content").css("height", sliderHeight);
-						//$(".slide-menu").html('<a href="#">'+viewMoreTxt+'</a>');
-						$(".slide-menu a").each(function() {
-							var button = $(this);
-							var target = button.attr('href');
-							button.click(function(e){
-								openSlider( button, target );
-								e.preventDefault();
-							});
-						});
-						//$(".slide-menu a").click(function(e) { openSlider( $(this).attr('href') ); e.preventDefault(); })
-
-					});
-
-					function openSlider( clicker, sliderDiv )
-
-					{
-						var open_height = $(sliderDiv).attr("box_h") + "px";
-						$(sliderDiv).animate({"height": open_height}, {duration: "slow" });
-						clicker.parent().html('<a href="'+sliderDiv+'">'+viewLessTxt+'</a>');
-						clicker.click(function(e) { closeSlider( clicker, sliderDiv ); e.preventDefault(); })
-					}
-
-					function closeSlider( clicker, sliderDiv )
-
-					{
-						$(sliderDiv).animate({"height": sliderHeight}, {duration: "slow" });
-						clicker.parent().html('<a href="'+sliderDiv+'">'+viewMoreTxt+'</a>');
-						clicker.click(function(e) { openSlider( clicker, sliderDiv ); e.preventDefault(); })
-					}
-				</script-->
 				
 			</div><!-- end main-wrap -->
 			
@@ -651,5 +600,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 
         </div><!-- End contents row -->
     </div><!-- End Content -->
-
+    
+<script>$('.slide-menu button').click(function(){$(this).text(function(i,old){return old=='View More' ?  'View Less' : 'View More';});});</script>
 <?php get_footer(); ?>
