@@ -319,7 +319,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							echo '<h3>Exterior Features</h3>'; ?>
 						
 						<div class="slide-wrapper">
-							<div id="slide-content1" class="slide-content collapse in">
+							<div id="slide-content1" class="slide-content collapse">
 								<table class="table table-striped table-hover exterior">
 									<tbody>
 									<?php								
@@ -333,7 +333,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 							</div>
 							<div class="slide-menu">
-								<a href="#" data-toggle="collapse" data-target="#slide-content1">View More</a>
+								<button data-toggle="collapse" data-target="#slide-content1">View More</button>
 							</div>
 						</div>
 					</div>
