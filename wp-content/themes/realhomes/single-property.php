@@ -319,7 +319,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							echo '<h3>Exterior Features</h3>'; ?>
 						
 						<div class="slide-wrapper">
-							<div id="slide-content1" class="slide-content">
+							<div id="slide-content1" class="slide-content collapse in">
 								<table class="table table-striped table-hover exterior">
 									<tbody>
 									<?php								
@@ -333,7 +333,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 							</div>
 							<div class="slide-menu">
-								<a href="#slide-content1">View More</a>
+								<a href="#" data-toggle="collapse" data-target="#slide-content1">View More</a>
 							</div>
 						</div>
 					</div>
@@ -386,23 +386,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						</div>
 					</div>
 				</div>
-				
-				<script>
-					$(document).ready(function () {
-
-						$('.slide-menu a').click(function (e) {
-							var $opener = $(this);
-							var $content = $opener.parent().previous('.slide-content');        
-
-							e.preventDefault();
-
-							$content.toggleClass('open').slideToggle(300, function(){
-								$opener.text($content.hasClass('open')?"View Less":"View More");
-							});
-
-						});
-					});
-				</script>
 				
 				<!--script type="text/javascript">
 					var sliderHeight = "140px";
