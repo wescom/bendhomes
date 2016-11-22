@@ -318,7 +318,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php if( implode( $exterior_features ) )
 							echo '<h3>Exterior Features</h3>'; ?>
 						
-						<div id="slide-toggle1" class="slide-toggle">
+						<div class="description">
 							<table class="table table-striped table-hover exterior">
 								<tbody>
 								<?php								
@@ -331,8 +331,30 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</tbody>
 							</table>
 						</div>
-						<a href="#" class="toggle-btn"><i class="fa fa-chevron-down"></i> View More</a>
+						<a href="#" class="toggle-link">+</a>
 					</div>
+					
+					<script type="text/javascript">
+						$(document).ready(function() {
+    
+							var $dscr = $('.description'),
+								$switch = $('.toggle-link'),
+								$initHeight = 40; // Initial height
+
+							$dscr.each(function() {
+								$.data(this, "realHeight", $(this).height());    // Create new property realHeight
+								}).css({ overflow: "hidden", height: $initHeight + 'px' });
+
+							$switch.toggle(function() {
+								  $dscr.animate({ height: $dscr.data("realHeight") }, 600);
+								  $switch.html("-");
+
+								}, function() {
+									$dscr.animate({ height: $initHeight}, 600);
+									$switch.html("+");
+								});
+						});
+					</script>
 					
 					<div class="span4">
 						<?php if( implode( $interior_features ) )
@@ -368,28 +390,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						</table>
 					</div>
 				</div>
-				
-				<script type="text/javascript">
-					$(document).ready(function() {
-    
-						var $dscr = $('.slide-toggle'),
-							$switch = $('.toggle-btn'),
-							$initHeight = 100; // Initial height
-
-						$dscr.each(function() {
-							$.data(this, "realHeight", $(this).height());    // Create new property realHeight
-							}).css({ overflow: "hidden", height: $initHeight + 'px' });
-
-						$switch.toggle(function() {
-							  $dscr.animate({ height: $dscr.data("realHeight") }, 600);
-							  $switch.html('<i class="fa fa-chevron-up"></i> View More');
-
-							}, function() {
-								$dscr.animate({ height: $initHeight}, 600);
-								$switch.html('<i class="fa fa-chevron-down"></i> View More');
-							});
-					});
-				</script>
 				
 			</div><!-- end main-wrap -->
 			
