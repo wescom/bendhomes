@@ -563,7 +563,7 @@ function tbb_custom_posts( $defaults ) {
 				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $title );
 				
-				if( $defaults['type'] == 'property' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
+				if( $defaults['type'] == 'property' || $defaults['type'] == 'post' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
 					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', 
 									get_framework_excerpt( $defaults['excerpt_length'] ) );
 				}
