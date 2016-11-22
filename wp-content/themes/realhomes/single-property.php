@@ -332,7 +332,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</table>
 						</div>
 						<div class="slide-menu">
-							<button data-toggle="collapse" data-target="#slide-content1"><i class="fa fa-chevron-down"></i> View More</button>
+							<button data-toggle="collapse" data-target="#slide-content1">View More</button>
 						</div>
 					</div>
 					
@@ -354,7 +354,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</table>
 						</div>
 						<div class="slide-menu">
-							<button data-toggle="collapse" data-target="#slide-content2"><i class="fa fa-chevron-down"></i> View More</button>
+							<button data-toggle="collapse" data-target="#slide-content2">View More</button>
 						</div>
 					</div>
 					
@@ -376,7 +376,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</table>
 						</div>
 						<div class="slide-menu">
-							<button data-toggle="collapse" data-target="#slide-content3"><i class="fa fa-chevron-down"></i> View More</button>
+							<button data-toggle="collapse" data-target="#slide-content3">View More</button>
 						</div>
 					</div>
 				</div>
@@ -384,7 +384,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<script>
 					$('.slide-menu button').click(function(){ //you can give id or class name here for $('button')
 						$(this).text(function(i,old){
-							return old=='<i class="fa fa-chevron-down"></i> View More' ?  '<i class="fa fa-chevron-up"></i> View Less' : '<i class="fa fa-chevron-down"></i> View More';
+							return old=='View More' ?  'View Less' : 'View More';
 						});
 					});		
 				</script>
