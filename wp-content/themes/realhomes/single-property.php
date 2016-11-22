@@ -333,7 +333,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 							</div>
 							<div class="slide-menu">
-								<a href="#slide-content1"><i class="fa fa-chevron-down"></i> View More</a>
+								<a href="#slide-content1">View More</a>
 							</div>
 						</div>
 					</div>
@@ -357,7 +357,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 							</div>
 							<div class="slide-menu">
-								<a href="#slide-content2"><i class="fa fa-chevron-down"></i> View More</a>
+								<a href="#slide-content2">View More</a>
 							</div>
 						</div>
 					</div>
@@ -381,13 +381,30 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 								</div>
 							<div class="slide-menu">
-								<a href="#slide-content1"><i class="fa fa-chevron-down"></i> View More</a>
+								<a href="#slide-content1">View More</a>
 							</div>
 						</div>
 					</div>
 				</div>
 				
-				<script type="text/javascript">
+				<script>
+					$(document).ready(function () {
+
+						$('.slide-menu a').click(function (e) {
+							var $opener = $(this);
+							var $content = $opener.parent().previous('.slide-content');        
+
+							e.preventDefault();
+
+							$content.toggleClass('open').slideToggle(300, function(){
+								$opener.text($content.hasClass('open')?"View Less":"View More");
+							});
+
+						});
+					});
+				</script>
+				
+				<!--script type="text/javascript">
 					var sliderHeight = "140px";
 					var viewMoreTxt = '<i class="fa fa-chevron-down"></i> View More';
 					var viewLessTxt = '<i class="fa fa-chevron-up"></i> View Less';
@@ -428,7 +445,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						clicker.parent().html('<a href="'+sliderDiv+'">'+viewMoreTxt+'</a>');
 						clicker.click(function(e) { openSlider( clicker, sliderDiv ); e.preventDefault(); })
 					}
-				</script>
+				</script-->
 				
 			</div><!-- end main-wrap -->
 			
