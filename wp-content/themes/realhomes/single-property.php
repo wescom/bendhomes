@@ -300,10 +300,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							<?php
 							bhAgentRender('body');
 							?>
-							
-							<div class="sponsor-block sponsor1">
-								<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:50px auto 30px;line-height:100px;border:1px solid #aaa;font-size:24px;">Ad: 320x100</div>
-							</div>
 						</div>
 					</div>
 					<div class="span7">
@@ -337,9 +333,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							<button data-toggle="collapse" data-target="#slide-content1">View More</button>
 						</div>
 						<?php } ?>
-					</div>
-					
-					<div class="span4">
+						
 						<?php if( implode( $interior_features ) ) { ?>
 						<h3>Interior Features</h3>
 						<div id="slide-content2" class="slide-content collapse">
@@ -382,24 +376,14 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						</div>
 						<?php } ?>
 					</div>
-				</div>
-				
-				<div class="row-fluid section4">
+					
 					<div class="span4">
+						<div class="sponsor-block sponsor1">
+							<div class="sample-ad" style="width:300px;height:250px;background:#ccc;color:#333;text-align:center;margin:0 auto 30px;line-height:250px;border:1px solid #aaa;font-size:24px;">Ad: 300x250</div>
+						</div>
+						
 						<div class="sponsor-block sponsor2">
-							<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:100px;border:1px solid #aaa;font-size:24px;">Ad: 320x100</div>
-						</div>
-					</div>
-					
-					<div class="span4">
-						<div class="property-post">
-							<?php echo do_shortcode('[BH_CUSTOM_POSTS limit="1" excerpt_length="20" columns="1" orderby="rand" show_pagination="no"]'); ?>
-						</div>
-					</div>
-					
-					<div class="span4">
-						<div class="sponsor-block sponsor3">
-							<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:100px;border:1px solid #aaa;font-size:24px;">Ad: 320x100</div>
+							<div class="sample-ad" style="width:300px;height:250px;background:#ccc;color:#333;text-align:center;margin:0 auto 30px;line-height:250px;border:1px solid #aaa;font-size:24px;">Ad: 300x250</div>
 						</div>
 					</div>
 				</div>
