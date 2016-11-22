@@ -284,10 +284,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 							</div>
 
-							<?php
-							// Show share bar icons
-							echo do_shortcode('[SHARE_BAR]');
-							?>
 						</div>
 					</div>
 				</div>
@@ -308,6 +304,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 					<div class="span7">
 						<?php
+						// Show share bar icons
+						echo do_shortcode('[SHARE_BAR]');
+						
 						// Mortgage calculator
 						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]<div class="mort-sponsor"><h4>Find what the real terms of your loan could be&hellip;</h4>[EVERGREEN_LOANS]</div>[/MORT_CALC_FORM]'); ?>
 					</div>
