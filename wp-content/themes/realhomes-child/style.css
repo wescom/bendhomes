@@ -247,8 +247,8 @@ h3.search-results-header { float: left; margin: 0; }
 .slide-content .table { margin-bottom: 0; }
 .slide-menu button { color: #02888f; display: block; padding: 10px 5px; width: 100%; outline: none; text-align: center; border: 1px solid #ccc; background: #fff; border-top-width: 2px; position: relative; text-transform: uppercase; }
 .slide-menu button:hover, .slide-menu button:active { color: #02888f; background: #f7f7f7; }
-.slide-menu button:before { content: "\f078"; font-family: "FontAwesome"; font-size: 14px; color: #aaa; margin-right: 10px; }
-.slide-menu button.collapsed:before { content: "\f077"; }
+.slide-menu button:before { content: "\f077"; font-family: "FontAwesome"; font-size: 14px; color: #aaa; margin-right: 10px; }
+.slide-menu button.collapsed:before { content: "\f078"; }
 .property-openhouse{ padding-top: 7px; border-top: 1px solid #d2d2d2; margin-top: 7px; }
 .property-openhouse .oh_time{font-weight:700; background: #FFDB00; padding-left: 5px;}
 .property-post .custom-post.one .custom-post-item { min-height: 0; margin-left: 0; margin-right: 0; padding-bottom: 35px; }
