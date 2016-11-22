@@ -417,7 +417,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					{
 						var open_height = $(sliderDiv).attr("box_h") + "px";
 						$(sliderDiv).animate({"height": open_height}, {duration: "slow" });
-						clicker.parent().html('<a href="#">'+viewLessTxt+'</a>');
+						clicker.parent().html('<a href="'+sliderDiv+'">'+viewLessTxt+'</a>');
 						clicker.click(function(e) { closeSlider( clicker, sliderDiv ); e.preventDefault(); })
 					}
 
@@ -425,7 +425,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 
 					{
 						$(sliderDiv).animate({"height": sliderHeight}, {duration: "slow" });
-						clicker.parent().html('<a href="#">'+viewMoreTxt+'</a>');
+						clicker.parent().html('<a href="'+sliderDiv+'">'+viewMoreTxt+'</a>');
 						clicker.click(function(e) { openSlider( clicker, sliderDiv ); e.preventDefault(); })
 					}
 				</script>
