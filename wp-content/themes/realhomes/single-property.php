@@ -190,6 +190,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							echo sprintf('<span class="newness">On Site: <strong>%s</strong></span>', $onsite); ?>
 							<span class="updated">Updated: <strong><?php properties_updated_timestamp(); ?></strong></span>
 						</div>
+						<?php 
+						// open house info, if array_change_key_case
+						get_template_part('bend-homes/open-house-fragment');
+						?>
 					</div>
 				</div>
 				
@@ -241,10 +245,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								}
 								?>
 							</div>
-							<?php 
-							// open house info, if array_change_key_case
-							get_template_part('bend-homes/open-house-fragment');
-							?>
 
 							<div class="basic-info2">
 								<table class="table table-striped table-hover">
