@@ -330,7 +330,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</table>
 						</div>
 						<div class="slide-menu">
-							<button data-toggle="collapse" data-target="#slide-content1">View More</button>
+							<button class="collapsed" data-toggle="collapse" data-target="#slide-content1">View More</button>
 						</div>
 						<?php } ?>
 						
@@ -350,7 +350,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</table>
 						</div>
 						<div class="slide-menu">
-							<button data-toggle="collapse" data-target="#slide-content2">View More</button>
+							<button class="collapsed" data-toggle="collapse" data-target="#slide-content2">View More</button>
 						</div>
 						<?php } ?>
 					</div>
@@ -372,7 +372,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							</table>
 						</div>
 						<div class="slide-menu">
-							<button data-toggle="collapse" data-target="#slide-content3">View More</button>
+							<button class="collapsed" data-toggle="collapse" data-target="#slide-content3">View More</button>
 						</div>
 						<?php } ?>
 					</div>
