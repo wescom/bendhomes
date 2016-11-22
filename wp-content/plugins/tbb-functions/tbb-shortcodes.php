@@ -592,6 +592,8 @@ function tbb_custom_posts( $defaults ) {
 	
 	if(empty( $defaults['show_pagination'] )) {
 		$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $custom_posts->max_num_pages) );
+	} else {
+		$output .= '</div></div>';
 	}
 	
 	endif;
