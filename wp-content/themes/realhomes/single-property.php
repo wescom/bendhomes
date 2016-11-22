@@ -302,7 +302,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							?>
 							
 							<div class="sponsor-block sponsor1">
-								<div class="sample-ad" style="width:300px;height:250px;background:#ccc;color:#333;text-align:center;margin:0 auto;line-height:250px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
+								<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:50px auto 30px;line-height:100px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
 							</div>
 						</div>
 					</div>
@@ -381,6 +381,20 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							<button data-toggle="collapse" data-target="#slide-content3">View More</button>
 						</div>
 						<?php } ?>
+					</div>
+				</div>
+				
+				<div class="row-fluid section4">
+					<div class="span6">
+						<div class="sponsor-block sponsor2">
+							<div class="sample-ad" style="width:728px;height:90px;background:#ccc;color:#333;text-align:center;margin:50px auto 30px;line-height:90px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
+						</div>
+					</div>
+					
+					<div class="span6">
+						<div class="news-post">
+							<?php echo do_shortcode('[BH_CUSTOM_POSTS limit="1" excerpt_length="50" columns="1" orderby="rand"]'); ?>
+						</div>
 					</div>
 				</div>
 				
