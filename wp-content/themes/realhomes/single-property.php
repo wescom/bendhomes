@@ -300,6 +300,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							<?php
 							bhAgentRender('body');
 							?>
+							
+							<div class="sponsor-block sponsor1">
+								<div class="sample-ad" style="width:300px;height:250px;background:#ccc;color:#333;text-align:center;margin:0 auto;line-height:250px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
+							</div>
 						</div>
 					</div>
 					<div class="span7">
