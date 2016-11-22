@@ -318,23 +318,21 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php if( implode( $exterior_features ) )
 							echo '<h3>Exterior Features</h3>'; ?>
 						
-						<div class="slide-wrapper">
-							<div id="slide-content1" class="slide-content collapse">
-								<table class="table table-striped table-hover exterior">
-									<tbody>
-									<?php								
-									foreach( $exterior_features as $key => $val ) {
-										if( !empty($val) ) {
-											echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
-										}
+						<div id="slide-content1" class="slide-content collapse">
+							<table class="table table-striped table-hover exterior">
+								<tbody>
+								<?php								
+								foreach( $exterior_features as $key => $val ) {
+									if( !empty($val) ) {
+										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
 									}
-									?>
-									</tbody>
-								</table>
-							</div>
-							<div class="slide-menu">
-								<button data-toggle="collapse" data-target="#slide-content1">View More</button>
-							</div>
+								}
+								?>
+								</tbody>
+							</table>
+						</div>
+						<div class="slide-menu">
+							<button data-toggle="collapse" data-target="#slide-content1"><i class="fa fa-chevron-down"></i> View More</button>
 						</div>
 					</div>
 					
@@ -342,23 +340,21 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php if( implode( $interior_features ) )
 							echo '<h3>Interior Features</h3>'; ?>
 						
-						<div class="slide-wrapper">
-							<div id="slide-content2" class="slide-content">
-								<table class="table table-striped table-hover interior">
-									<tbody>
-									<?php								
-									foreach( $interior_features as $key => $val ) {
-										if( !empty($val) ) {
-											echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
-										}
+						<div id="slide-content2" class="slide-content collapse">
+							<table class="table table-striped table-hover interior">
+								<tbody>
+								<?php								
+								foreach( $interior_features as $key => $val ) {
+									if( !empty($val) ) {
+										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
 									}
-									?>
-									</tbody>
-								</table>
-							</div>
-							<div class="slide-menu">
-								<a href="#slide-content2">View More</a>
-							</div>
+								}
+								?>
+								</tbody>
+							</table>
+						</div>
+						<div class="slide-menu">
+							<button data-toggle="collapse" data-target="#slide-content2"><i class="fa fa-chevron-down"></i> View More</button>
 						</div>
 					</div>
 					
@@ -366,26 +362,32 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php if( implode( $property_features ) )
 							echo '<h3>Property Features</h3>'; ?>
 							
-						<div class="slide-wrapper">
-							<div id="slide-content3" class="slide-content">
-								<table class="table table-striped table-hover features">
-									<tbody>
-									<?php								
-									foreach( $property_features as $key => $val ) {
-										if( !empty($val) ) {
-											echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
-										}
+						<div id="slide-content3" class="slide-content collapse">
+							<table class="table table-striped table-hover features">
+								<tbody>
+								<?php								
+								foreach( $property_features as $key => $val ) {
+									if( !empty($val) ) {
+										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
 									}
-									?>
-									</tbody>
-								</table>
-								</div>
-							<div class="slide-menu">
-								<a href="#slide-content1">View More</a>
-							</div>
+								}
+								?>
+								</tbody>
+							</table>
+						</div>
+						<div class="slide-menu">
+							<button data-toggle="collapse" data-target="#slide-content3"><i class="fa fa-chevron-down"></i> View More</button>
 						</div>
 					</div>
 				</div>
+				
+				<script>
+					$('.slide-menu button').click(function(){ //you can give id or class name here for $('button')
+						$(this).text(function(i,old){
+							return old=='<i class="fa fa-chevron-down"></i> View More' ?  '<i class="fa fa-chevron-up"></i> View Less' : '<i class="fa fa-chevron-down"></i> View More';
+						});
+					});		
+				</script>
 				
 				<!--script type="text/javascript">
 					var sliderHeight = "140px";
