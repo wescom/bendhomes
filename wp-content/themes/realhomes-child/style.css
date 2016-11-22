@@ -52,9 +52,9 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .mort-calc-form-wrap .dollar:before { content: "$"; }
 .mort-calc-form-wrap .percent:before { content: "%"; }
 .mort-calc-form-wrap .time:before { content: "\f073"; font-family: "FontAwesome"; font-size: 18px; }
-.mort-calc-form-wrap.has-content { padding: 0; overflow: hidden; }
+.mort-calc-form-wrap.has-content { padding: 0; }
 .mort-calc-form-wrap.has-content .span8 { padding: 15px 0 0 2.5641%; position: relative; }
-.mort-calc-form-wrap.has-content .span8:before { content: ""; display: block; position: absolute; top: 0; width: 100%; height: 100%; background: #f7f7f7; left: 100%; margin-left: 4.5641%; border-left: 1px solid #d2d2d2; }
+.mort-calc-form-wrap.has-content .span8:before { content: ""; display: block; position: absolute; top: 0; width: 47%; height: 100%; background: #f7f7f7; left: 100%; margin-left: 4.5641%; border-left: 1px solid #d2d2d2; }
 .mort-calc-form-wrap.has-content .span4 { position: relative; }
 .mort-calc-form-wrap.has-content .mort-content-wrap { padding-left: 10px; padding-right: 10px; }
 .mort-calc-form-wrap.has-content .mort-content-wrap h4 { font-size: 16px; text-transform: uppercase; line-height: 140%; margin-bottom: 30px; text-align: center; margin-top: 0; padding-top: 25px; padding-bottom: 25px; }
