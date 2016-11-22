@@ -318,42 +318,59 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<?php if( implode( $exterior_features ) )
 							echo '<h3>Exterior Features</h3>'; ?>
 						
-						<div class="description">
-							<table class="table table-striped table-hover exterior">
-								<tbody>
-								<?php								
-								foreach( $exterior_features as $key => $val ) {
-									if( !empty($val) ) {
-										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+						<div class="slide-wrapper">
+							<div class="slide-content">
+								<table class="table table-striped table-hover exterior">
+									<tbody>
+									<?php								
+									foreach( $exterior_features as $key => $val ) {
+										if( !empty($val) ) {
+											echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+										}
 									}
-								}
-								?>
-								</tbody>
-							</table>
+									?>
+									</tbody>
+								</table>
+							</div>
+							<div class="slide-menu">
+								<a href="#">Read More</a>
+							</div>
 						</div>
-						<a href="#" class="toggle-link">+</a>
 					</div>
 					
 					<script type="text/javascript">
-						$(document).ready(function() {
-    
-							var $dscr = $('.description'),
-								$switch = $('.toggle-link'),
-								$initHeight = 40; // Initial height
+						var sliderHeight = "100px";
+ 
+						$(document).ready(function(){
+							$('.slide-content').each(function () {
+										var current = $(this);
+										current.attr("box_h", current.height());
+									}
 
-							$dscr.each(function() {
-								$.data(this, "realHeight", $(this).height());    // Create new property realHeight
-								}).css({ overflow: "hidden", height: $initHeight + 'px' });
+							 );
 
-							$switch.toggle(function() {
-								  $dscr.animate({ height: $dscr.data("realHeight") }, 600);
-								  $switch.html("-");
+							$(".slide-content").css("height", sliderHeight);
+							$(".slide-menu").html('<a href="#">Read More</a>');
+							$(".slide-menu a").click(function() { openSlider() })
 
-								}, function() {
-									$dscr.animate({ height: $initHeight}, 600);
-									$switch.html("+");
-								});
 						});
+
+						function openSlider()
+
+						{
+							var open_height = $(".slide-content").attr("box_h") + "px";
+							$(".slide-content").animate({"height": open_height}, {duration: "slow" });
+							$(".slide-menu").html('<a href="#">Close</a>');
+							$(".slide-menu a").click(function() { closeSlider() })
+						}
+
+						function closeSlider()
+
+						{
+							$(".slide-content").animate({"height": sliderHeight}, {duration: "slow" });
+							$(".slide-menu").html('<a href="#">Read More</a>');
+							$(".slide-menu a").click(function() { openSlider() })
+						}
 					</script>
 					
 					<div class="span4">
