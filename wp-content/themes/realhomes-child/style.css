@@ -242,7 +242,8 @@ h3.search-results-header { float: left; margin: 0; }
 .agent-widget .agent-btn:hover { color: #fff; background: #006267; }
 .section3 h3 { margin: 0; padding: 5px 15px; background: #02888f; color: #fff; }
 .slide-content { overflow: hidden; min-height: 140px; }
-#slide-content3 { min-height: 370px; }
+#slide-content3 { min-height: 403px; }
+.slide-content .slide-menu { margin-bottom: 30px; }
 .slide-content .table { margin-bottom: 0; }
 .slide-menu button { color: #02888f; display: block; padding: 10px 5px; width: 100%; outline: none; text-align: center; border: 1px solid #ccc; background: #fff; border-top-width: 2px; position: relative; text-transform: uppercase; }
 .slide-menu button:hover, .slide-menu button:active { color: #02888f; background: #f7f7f7; }
