@@ -338,83 +338,97 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						</div>
 					</div>
 					
-					<script type="text/javascript">
-						var sliderHeight = "140px";
-						var viewMoreTxt = '<i class="fa fa-chevron-down"></i> View More';
-						var viewLessTxt = '<i class="fa fa-chevron-up"></i> View Less';
- 
-						$(document).ready(function(){
-							$('.slide-content').each(function () {
-								var current = $(this);
-								current.attr("box_h", current.height());
-							});
-
-							$(".slide-content").css("height", sliderHeight);
-							$(".slide-menu").html('<a href="#">'+viewMoreTxt+'</a>');
-							$(".slide-menu a").each(function() {
-								var button = $(this);
-								var target = button.attr('href');
-								button.click(function(e){
-									openSlider( button, target );
-									e.preventDefault();
-								});
-							});
-							//$(".slide-menu a").click(function(e) { openSlider( $(this).attr('href') ); e.preventDefault(); })
-
-						});
-
-						function openSlider( clicker, sliderDiv )
-
-						{
-							var open_height = $(sliderDiv).attr("box_h") + "px";
-							$(sliderDiv).animate({"height": open_height}, {duration: "slow" });
-							clicker.parent().html('<a href="#">'+viewLessTxt+'</a>');
-							clicker.click(function(e) { closeSlider( clicker, sliderDiv ); e.preventDefault(); })
-						}
-
-						function closeSlider( clicker, sliderDiv )
-
-						{
-							$(sliderDiv).animate({"height": sliderHeight}, {duration: "slow" });
-							clicker.parent().html('<a href="#">'+viewMoreTxt+'</a>');
-							clicker.click(function(e) { openSlider( clicker, sliderDiv ); e.preventDefault(); })
-						}
-					</script>
-					
 					<div class="span4">
 						<?php if( implode( $interior_features ) )
 							echo '<h3>Interior Features</h3>'; ?>
 						
-						<table class="table table-striped table-hover interior">
-							<tbody>
-							<?php								
-							foreach( $interior_features as $key => $val ) {
-								if( !empty($val) ) {
-									echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
-								}
-							}
-							?>
-							</tbody>
-						</table>
+						<div class="slide-wrapper">
+							<div id="slide-content2" class="slide-content">
+								<table class="table table-striped table-hover interior">
+									<tbody>
+									<?php								
+									foreach( $interior_features as $key => $val ) {
+										if( !empty($val) ) {
+											echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+										}
+									}
+									?>
+									</tbody>
+								</table>
+							</div>
+							<div class="slide-menu">
+								<a href="#slide-content2"><i class="fa fa-chevron-down"></i> View More</a>
+							</div>
+						</div>
 					</div>
 					
 					<div class="span4">
 						<?php if( implode( $property_features ) )
 							echo '<h3>Property Features</h3>'; ?>
 							
-						<table class="table table-striped table-hover features">
-							<tbody>
-							<?php								
-							foreach( $property_features as $key => $val ) {
-								if( !empty($val) ) {
-									echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
-								}
-							}
-							?>
-							</tbody>
-						</table>
+						<div class="slide-wrapper">
+							<div id="slide-content3" class="slide-content">
+								<table class="table table-striped table-hover features">
+									<tbody>
+									<?php								
+									foreach( $property_features as $key => $val ) {
+										if( !empty($val) ) {
+											echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+										}
+									}
+									?>
+									</tbody>
+								</table>
+								</div>
+							<div class="slide-menu">
+								<a href="#slide-content1"><i class="fa fa-chevron-down"></i> View More</a>
+							</div>
+						</div>
 					</div>
 				</div>
+				
+				<script type="text/javascript">
+					var sliderHeight = "140px";
+					var viewMoreTxt = '<i class="fa fa-chevron-down"></i> View More';
+					var viewLessTxt = '<i class="fa fa-chevron-up"></i> View Less';
+
+					$(document).ready(function(){
+						$('.slide-content').each(function () {
+							var current = $(this);
+							current.attr("box_h", current.height());
+						});
+
+						$(".slide-content").css("height", sliderHeight);
+						$(".slide-menu").html('<a href="#">'+viewMoreTxt+'</a>');
+						$(".slide-menu a").each(function() {
+							var button = $(this);
+							var target = button.attr('href');
+							button.click(function(e){
+								openSlider( button, target );
+								e.preventDefault();
+							});
+						});
+						//$(".slide-menu a").click(function(e) { openSlider( $(this).attr('href') ); e.preventDefault(); })
+
+					});
+
+					function openSlider( clicker, sliderDiv )
+
+					{
+						var open_height = $(sliderDiv).attr("box_h") + "px";
+						$(sliderDiv).animate({"height": open_height}, {duration: "slow" });
+						clicker.parent().html('<a href="#">'+viewLessTxt+'</a>');
+						clicker.click(function(e) { closeSlider( clicker, sliderDiv ); e.preventDefault(); })
+					}
+
+					function closeSlider( clicker, sliderDiv )
+
+					{
+						$(sliderDiv).animate({"height": sliderHeight}, {duration: "slow" });
+						clicker.parent().html('<a href="#">'+viewMoreTxt+'</a>');
+						clicker.click(function(e) { openSlider( clicker, sliderDiv ); e.preventDefault(); })
+					}
+				</script>
 				
 			</div><!-- end main-wrap -->
 			
