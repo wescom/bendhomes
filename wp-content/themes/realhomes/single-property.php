@@ -333,7 +333,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 							</div>
 							<div class="slide-menu">
-								<a href="">Read More</a>
+								<a href=""><i class="fa fa-chevron-down"></i> View More</a>
 							</div>
 						</div>
 					</div>
