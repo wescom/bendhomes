@@ -385,15 +385,21 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				</div>
 				
 				<div class="row-fluid section4">
-					<div class="span8">
+					<div class="span4">
 						<div class="sponsor-block sponsor2">
-							<div class="sample-ad" style="width:728px;height:90px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:90px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
+							<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:100px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
 						</div>
 					</div>
 					
 					<div class="span4">
 						<div class="property-post">
 							<?php echo do_shortcode('[BH_CUSTOM_POSTS limit="1" excerpt_length="20" columns="1" orderby="rand" show_pagination="no"]'); ?>
+						</div>
+					</div>
+					
+					<div class="span4">
+						<div class="sponsor-block sponsor2">
+							<div class="sample-ad" style="width:320px;height:100px;background:#ccc;color:#333;text-align:center;margin:30px auto;line-height:100px;border:1px solid #aaa;font-size:24px;">Sample Ad</div>
 						</div>
 					</div>
 				</div>
