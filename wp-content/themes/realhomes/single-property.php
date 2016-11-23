@@ -86,6 +86,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						
 			// Basic Fields
 			$price = intval(get_field('REAL_HOMES_property_price'));
+			$sqft = intval(get_field('REAL_HOMES_property_size'));
+			$price_per_sqft = intval($price / $sqft);
+			if(!empty($price_per_sqft)) $price_per_sqft = '$'. $price_per_sqft;
 			$video = get_field('REAL_HOMES_tour_video_url');
 			$hoa = get_field('REAL_HOMES_property_features_hoa');
 			$hoa_amount = intval(get_field('REAL_HOMES_property_features_hoa_amount'));
@@ -98,10 +101,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$main_items = [
 				'Beds' => get_field('REAL_HOMES_property_bedrooms'),
 				'Baths' => get_field('REAL_HOMES_property_bathrooms'),
-				'SqFt' => intval(get_field('REAL_HOMES_property_size')),
+				'SqFt' => $sqft,
 				'Acres' => get_field('REAL_HOMES_exterior_acres'),
 				'Built' => get_field('REAL_HOMES_property_features_year_built'),
-				'$/SqFt' => intval($price / $sqft),
+				'$/SqFt' => $price_per_sqft,
 			];
 			
 			// Schools
