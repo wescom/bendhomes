@@ -198,7 +198,7 @@ h3.search-results-header { float: left; margin: 0; }
 
 /* --- Single Property Styles --- */
 .quick-header-info { padding: 5px 10px 15px; font-size: 14px; text-transform: uppercase; color: #777; line-height: 26px; }
-.quick-header-info span { display: inline-block; letter-spacing: .02em; margin-right: 20px; }
+.quick-header-info span { display: inline-block; letter-spacing: .02em; margin-right: 11px; }
 .quick-header-info .header-price { font-size: 16px; }
 .rail-ad-wrapper{padding:20px 0}
 .rail-standard-agent-wrapper{ font-size: 14px; line-height: 150%; margin-top: 20px; border-top: 1px solid #d2d2d2; padding-top: 15px; }
@@ -250,7 +250,7 @@ h3.search-results-header { float: left; margin: 0; }
 .slide-menu button:before { content: "\f077"; font-family: "FontAwesome"; font-size: 14px; color: #aaa; margin-right: 10px; }
 .slide-menu button.collapsed:before { content: "\f078"; }
 .property-openhouse{ padding-top: 7px; border-top: 1px solid #d2d2d2; margin-top: 7px; }
-.property-openhouse .oh_time{font-weight:700; background: #FFDB00; padding-left: 5px;}
+.property-openhouse .oh_time{font-weight:700; background: #FFDB00; padding-left: 5px; padding-right: 5px; margin-right: 5px; color: #555; }
 .property-post .custom-post.one .custom-post-item { min-height: 0; margin-left: 0; margin-right: 0; padding-bottom: 35px; }
 .property-post .custom-post.one .custom-post-image { margin: 0; }
 
