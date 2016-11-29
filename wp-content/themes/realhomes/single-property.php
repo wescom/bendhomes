@@ -47,11 +47,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			
 			$id = get_the_ID();	
 			
-			if($id == '308135') {
-				//$images = '308136,308137,308138,308139,308140,308141,308142,308143,308144,308145,308146,308147,308148,308149,308150,308151,308152,308153,308154,308155,308156,308157,308158,308159,308160';
-				//update_post_meta('308135', 'REAL_HOMES_property_images', $images );
+			// TESTING HACK: Only used on 20200 Marsh Road, Bend, OR 97703, MLS# 201610323 for testing to get images added to the post meta fields correctly, since TinyMCE is causing a .js error, and not allowing me to add images via the admin.
+			/*if($id == '308135') {
+				$images = '308136,308137,308138,308139,308140,308141,308142,308143,308144,308145,308146,308147,308148,308149,308150,308151,308152,308153,308154,308155,308156,308157,308158,308159,308160';
+				update_post_meta('308135', 'REAL_HOMES_property_images', $images );
 				update_post_meta('308135', 'REAL_HOMES_tour_video_image', '308144' );
-			}
+			}*/
 
 			// MLS Number
 			$mls_number = get_field( 'REAL_HOMES_property_id' );
