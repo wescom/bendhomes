@@ -124,6 +124,10 @@ function dataPreProc($proparr,$scenarioset) {
 			
 			'latitude' => $propitem['Latitude'],
 			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -164,6 +168,10 @@ function dataPreProc($proparr,$scenarioset) {
 			
 			'latitude' => $propitem['Latitude'],
 			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -222,6 +230,10 @@ function dataPreProc($proparr,$scenarioset) {
 			
 			'latitude' => $propitem['Latitude'],
 			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -287,6 +299,10 @@ function dataPreProc($proparr,$scenarioset) {
 			
 			'latitude' => $propitem['Latitude'],
 			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -346,6 +362,10 @@ function dataPreProc($proparr,$scenarioset) {
 			
 			'latitude' => $propitem['Latitude'],
 			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -409,6 +429,10 @@ function dataPreProc($proparr,$scenarioset) {
 			
 			'latitude' => $propitem['Latitude'],
 			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -750,6 +774,26 @@ function dataPropertyWPinsert($myproperty) {
                       }
                   }
               } // end gallery if
+			  
+			  // Attach Street Address Post Meta
+			  if( isset ( $myproperty['street_address'] ) && ! empty ( $myproperty['street_address'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_address', sanitize_text_field( $myproperty['street_address'] ) );
+              }
+			  
+			  // Attach City Post Meta
+			  if( isset ( $myproperty['city'] ) && ! empty ( $myproperty['city'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_city', sanitize_text_field( $myproperty['city'] ) );
+              }
+			  
+			  // Attach State Post Meta
+			  if( isset ( $myproperty['state'] ) && ! empty ( $myproperty['state'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_state', sanitize_text_field( $myproperty['state'] ) );
+              }
+			  
+			  // Attach Zipcode Post Meta
+			  if( isset ( $myproperty['zip'] ) && ! empty ( $myproperty['zip'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_zip', sanitize_text_field( $myproperty['zip'] ) );
+              }
 			  
 			  // Attach County Post Meta
               if( isset( $myproperty['county'] ) && ( $myproperty['county'] != "" ) ) {
