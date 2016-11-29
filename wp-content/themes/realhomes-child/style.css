@@ -102,14 +102,14 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .main-menu { margin:0 20px 0 0; float:right }
 .main-menu ul { list-style:none; margin:0 }
 .main-menu ul li { float:left; position:relative }
-.main-menu.is-viewable ul li.current-menu-ancestor>a,.main-menu.is-viewable ul li.current-menu-item>a,.main-menu.is-viewable ul li.current-menu-parent>a,.main-menu.is-viewable ul li.current_page_item>a,.main-menu.is-viewable ul li:hover>a{ color:#fff; background-color:#09969b }
+.main-menu.is-viewable ul li.current-menu-ancestor>a,.main-menu.is-viewable ul li.current-menu-item>a,.main-menu.is-viewable ul li.current-menu-parent>a,.main-menu.is-viewable ul li.current_page_item>a,.main-menu.is-viewable ul li:hover>a{ color:#fff; }
 .main-menu ul li a{ color:#afb4b5; font-size:14px; display:block; padding:14px 15px }
 .main-menu ul li ul{ display:none; width:220px; padding:0; position:absolute; top:48px; left:0; z-index:888 }
-.main-menu.is-viewable ul li ul { background-color:#09969b; }
+.main-menu.is-viewable ul li ul, .main-menu.is-viewable ul li ul li ul { background-color: #fff; border: 1px solid #d2d2d2; border-top: none; box-shadow: 3px 3px 15px rgba(0,0,0,.25); }
 .main-menu ul li ul li{ float:none; margin:0 }
 .main-menu.is-viewable ul li ul li:hover>a{ background-color:#006267 }
 .main-menu ul li ul li a{ font-size:13px; padding:10px 10px 12px; color:#fff }
-.main-menu.is-viewable ul li ul li ul{ background-color:#09969b; border-left: 5px solid #006267; top:0; left:220px }
+.main-menu.is-viewable ul li ul li ul{ border-left: 5px solid #d2d2d2; top:0; left:220px }
 .main-menu.is-viewable ul li ul li ul li:hover>a{ background-color:#006267 }
 .main-menu.is-viewable ul > li:last-child > ul { left: auto; right: 0; }
 
