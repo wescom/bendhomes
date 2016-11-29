@@ -281,7 +281,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								<?php if( implode( $schools ) )
 									echo '<h3>School Information</h3>'; ?>
 									
-								<table class="table table-striped table-hover schools">
+								<table class="table table-striped table-hover schools" style="margin-bottom:0">
 									<tbody>
 										<?php								
 										foreach( $schools as $key => $val ) {
@@ -290,9 +290,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 											}
 										}
 										?>
-										<tr><td colspan="2"><a href="http://www.greatschools.org/search/search.page?distance=15" target="_blank">School Ratings &amp; Info</a></td></tr>
 									</tbody>
 								</table>
+								<div class="text-right">
+									<a href="http://www.greatschools.org/search/search.page?distance=15" target="_blank">School Ratings &amp; Info</a>
+								</div>
 							</div>
 
 						</div>
