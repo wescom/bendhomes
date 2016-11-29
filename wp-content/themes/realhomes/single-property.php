@@ -45,7 +45,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
            
            	<?php
            	/* Advance Search Form for Homepage */
-            get_template_part('bend-homes/advance-search');
+            get_template_part('bend-homes/simple-search');
 			?>
 			
 			<?php while( have_posts() ): the_post();
