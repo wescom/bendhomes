@@ -37,15 +37,15 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
     ?>
 
     <!--div class="page-spacer"></div-->
-    <div class="simple-search-wrap">
-   <div class="container">
-	<div class="row">
-    <?php
-	get_template_part('bend-homes/advance-search');
-	?>
-	   </div>
+	<div class="simple-search-wrap">
+		<div class="container">
+			<div class="row">
+				<?php
+				get_template_part('bend-homes/advance-search');
+				?>
+			</div>
 		</div>
-</div>
+	</div>
     
     <!-- Content -->
     <div class="container contents detail">
