@@ -103,6 +103,16 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			$zoning = get_field('REAL_HOMES_property_features_zoning');
 			$county = get_the_term_list( $id, 'county' );
 			$area = get_the_term_list( $id, 'area' );
+			
+			// Property Address Fields
+			$property_address = [
+				'Latitude' => get_fiel('REAL_HOMES_property_latitude'),
+				'Longitude' => get_field('REAL_HOMES_property_longitude'),
+				'Street' => get_field('REAL_HOMES_property_street_address'),
+				'City' => get_field('REAL_HOMES_property_city'),
+				'State' => get_field('REAL_HOMES_property_state'),
+				'Zip' => get_field('REAL_HOMES_property_zip'),
+			];
 
 			// Main Fields
 			$main_items = [
@@ -292,9 +302,13 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 										?>
 									</tbody>
 								</table>
+								<?php if( !empty($latitude) && !empty($longitude) ) { ?>
+									
 								<div class="text-right">
-									<a href="http://www.greatschools.org/search/search.page?distance=15&gradeLevels%5B%5D=e&gradeLevels%5B%5D=m&gradeLevels%5B%5D=h&locationSearchString=<?php echo urlencode( bh_the_title() ); ?>&locationType=street_address&normalizedAddress=<?php echo urlencode( bh_the_title() ); ?>" target="_blank">School Ratings &amp; Info</a>
+									<a href="http://www.greatschools.org/search/search.page?distance=15&gradeLevels%5B%5D=e&gradeLevels%5B%5D=m&gradeLevels%5B%5D=h&lat=<?php echo $property_address['Latitude']; ?>&lon=<?php echo $property_address['Longitude']; ?>&city=<?php echo $property_address['City']; ?>&state=<?php echo $property_address['State']; ?>&locationSearchString=<?php echo urlencode( bh_the_title() ); ?>&locationType=street_address&normalizedAddress=<?php echo urlencode( bh_the_title() ); ?>" target="_blank">School Ratings &amp; Info</a>
 								</div>
+								
+								<?php } ?>
 							</div>
 
 						</div>
