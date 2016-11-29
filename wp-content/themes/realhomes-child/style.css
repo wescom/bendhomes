@@ -261,15 +261,20 @@ h3.search-results-header { float: left; margin: 0; }
 
 /* --- Simple Search Form --- */
 .simple-search-wrap { background: #252A2B; margin-bottom: 30px; padding: 10px; }
-.simple-search-form { margin: 0; }
+.simple-search-wrap .advance-search { background: none; border: none; }
+.simple-search-wrap .as-form-wrap { padding: 0; }
+.simple-search-wrap .advance-search .advance-search-form, .simple-search-wrap .advance-search .more-option-trigger { margin: 0; }
 .simple-search-wrap label { color: #ccc; font-weight: 300; letter-spacing: .05em; margin-bottom: 0px; text-transform: uppercase; font-size: 12px; }
-.simple-search-wrap .option-bar { float: left; width: 25%; }
-.simple-search-wrap .option-bar input[type="text"] { width: 90%; background-color: #fff; }
-.simple-search-wrap .option-bar .selectwrap input[type="text"] { width: 82%; }
+.simple-search-wrap .option-bar { float: left; width: 20%; margin: 0; height: auto; }
+.simple-search-wrap .option-bar input[type="text"] { width: 88%; background-color: #fff; }
+.simple-search-wrap .option-bar .selectwrap input[type="text"] { width: 78%; }
 /*.simple-search-wrap .option-bar.input { display: inline-block; width: 80%; margin: 0; }
 .simple-search-wrap .option-bar.input input { display: block; width: 100%; padding: 5px 0; text-indent: 10px; margin: 0; letter-spacing: .05em; font-weight: 400; border-radius: 3px; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); font-size: 16px; }
 .simple-search-wrap .option-bar.submit { display: inline-block; width: 19%; margin: 0; }*/
-.simple-search-wrap .option-bar.submit input[type="submit"] { margin-top: 20px; width: 100%; text-transform: uppercase; font-family: "Open Sans", sans-serif; letter-spacing: .05em; font-weight: 300; font-size: 14px; }
+.simple-search-wrap .advance-search-form .real-btn { margin-top: 20px; width: 100%; text-transform: uppercase; font-family: "Open Sans", sans-serif; letter-spacing: .05em; font-weight: 300; font-size: 14px; }
+.simple-search-wrap .advance-search .more-option-trigger a { color: #d2d2d2; font-weight: 300; font-size: 12px; letter-spacing: .05em; }
+.simple-search-wrap .advance-search .more-option-trigger a:hover { color: #fff; }
+
 
 /* --- Single Company Template Styles --- */
 .company-agent { text-align: center; float: left; margin: 0; padding: 0; min-height: 240px; width: 20%; }
