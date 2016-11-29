@@ -325,7 +325,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								<?php								
 								foreach( $interior_features as $key => $val ) {
 									if( !empty($val) ) {
-										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, str_replace(',', ', ', $val) );
 									}
 								}
 								?>
@@ -345,7 +345,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								<?php								
 								foreach( $exterior_features as $key => $val ) {
 									if( !empty($val) ) {
-										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, str_replace(',', ', ', $val) );
 									}
 								}
 								?>
@@ -367,7 +367,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								<?php								
 								foreach( $property_features as $key => $val ) {
 									if( !empty($val) ) {
-										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, $val );
+										echo sprintf( '<tr><td>%s</td><td class="text-right">%s</td></tr>', $key, str_replace(',', ', ', $val) );
 									}
 								}
 								?>
