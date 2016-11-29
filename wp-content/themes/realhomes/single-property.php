@@ -300,6 +300,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				
 				<div class="row-fluid section2">
 					<div class="span5">
+						<?php
+						// Show share bar icons
+						echo do_shortcode('[SHARE_BAR]');
+						?>
+						
 						<div class="description">
 							<h3>Description</h3>
 							<div class="desc-content">
@@ -314,11 +319,16 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 					<div class="span7">
 						<?php
-						// Show share bar icons
-						echo do_shortcode('[SHARE_BAR]');
-						
 						// Mortgage calculator
 						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]<div class="mort-sponsor"><h4>Find what the real terms of your loan could be&hellip;</h4>[EVERGREEN_LOANS]</div>[/MORT_CALC_FORM]'); ?>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="sponsor-block sponsor3">
+							<div class="sample-ad" style="width:728px;height:90px;background:#ccc;color:#333;text-align:center;margin:0 auto 10px;line-height:90px;border:1px solid #aaa;font-size:24px;">Ad: 728x90</div>
+						</div>
 					</div>
 				</div>
 				
