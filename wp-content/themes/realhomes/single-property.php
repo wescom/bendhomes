@@ -42,6 +42,11 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
     <div class="container contents detail">
         <div class="row">
            <!--******* Begin Custom Design *******-->
+           
+           	<?php
+           	/* Advance Search Form for Homepage */
+            get_template_part('bend-homes/advance-search');
+			?>
 			
 			<?php while( have_posts() ): the_post();
 			
