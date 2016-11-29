@@ -272,7 +272,7 @@ h3.search-results-header { float: left; margin: 0; }
 .simple-search-wrap .option-bar.input input { display: block; width: 100%; padding: 5px 0; text-indent: 10px; margin: 0; letter-spacing: .05em; font-weight: 400; border-radius: 3px; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); font-size: 16px; }
 .simple-search-wrap .option-bar.submit { display: inline-block; width: 19%; margin: 0; }*/
 .simple-search-wrap .advance-search-form .real-btn { margin-top: 20px; width: 100%; text-transform: uppercase; font-family: "Open Sans", sans-serif; letter-spacing: .05em; font-weight: 300; font-size: 14px; }
-.simple-search-wrap .advance-search .more-option-trigger a { color: #d2d2d2; font-weight: 300; font-size: 12px; letter-spacing: .05em; }
+.simple-search-wrap .advance-search .more-option-trigger a { color: #d2d2d2; font-weight: 300; font-size: 12px; letter-spacing: .05em; float: right; }
 .simple-search-wrap .advance-search .more-option-trigger a:hover { color: #fff; }
 
 
