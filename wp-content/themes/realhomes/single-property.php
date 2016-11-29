@@ -106,7 +106,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			
 			// Property Address Fields
 			$property_address = [
-				'Latitude' => get_fiel('REAL_HOMES_property_latitude'),
+				'Latitude' => get_field('REAL_HOMES_property_latitude'),
 				'Longitude' => get_field('REAL_HOMES_property_longitude'),
 				'Street' => get_field('REAL_HOMES_property_street_address'),
 				'City' => get_field('REAL_HOMES_property_city'),
