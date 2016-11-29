@@ -293,7 +293,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 									</tbody>
 								</table>
 								<div class="text-right">
-									<a href="http://www.greatschools.org/search/search.page?distance=15" target="_blank">School Ratings &amp; Info</a>
+									<a href="http://www.greatschools.org/search/search.page?distance=15&gradeLevels%5B%5D=e&gradeLevels%5B%5D=m&gradeLevels%5B%5D=h&locationSearchString=<?php echo urlencode( bh_the_title() ); ?>&locationType=street_address&normalizedAddress=<?php echo urlencode( bh_the_title() ); ?>" target="_blank">School Ratings &amp; Info</a>
 								</div>
 							</div>
 
