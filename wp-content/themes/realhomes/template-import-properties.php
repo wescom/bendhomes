@@ -122,6 +122,8 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -160,6 +162,8 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -216,6 +220,8 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -279,6 +285,8 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -336,6 +344,8 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -397,6 +407,8 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -957,6 +969,16 @@ function dataPropertyWPinsert($myproperty) {
 			  // Attach Number of Units Post Meta
 			  if( isset ( $myproperty['number_units'] ) &&  ! empty ( $myproperty['number_units'] ) ) {
                   update_post_meta( $property_id, 'REAL_HOMES_property_features_number_units', sanitize_text_field( $myproperty['number_units'] ) );
+              }
+			  
+			  // Attach Latitude Post Meta
+			  if( isset ( $myproperty['latitude'] ) &&  ! empty ( $myproperty['latitude'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_latitude', sanitize_text_field( $myproperty['latitude'] ) );
+              }
+			  
+			  // Attach Longitudee Post Meta
+			  if( isset ( $myproperty['longitude'] ) &&  ! empty ( $myproperty['longitude'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_longitude', sanitize_text_field( $myproperty['longitude'] ) );
               }
 			  
 			  // Attach Land Road Type Post Meta
