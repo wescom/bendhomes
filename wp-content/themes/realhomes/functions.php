@@ -661,7 +661,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                                 'inspiry_google_map_arguments',
                                 $google_map_arguments
                             ),
-                            '//maps.google.com/maps/api/js'
+                            '//maps.google.com/maps/api/js?key=AIzaSyBzmtlh7yHJ_EuPTJ3XsFF-YsVp-Hn-qtA'
                         )
                     ),
                     array(),
