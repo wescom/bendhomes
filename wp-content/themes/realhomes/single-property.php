@@ -327,7 +327,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="sponsor-block sponsor3">
-							<div class="sample-ad" style="width:728px;height:90px;background:#ccc;color:#333;text-align:center;margin:0 auto 10px;line-height:90px;border:1px solid #aaa;font-size:24px;">Ad: 728x90</div>
+							<div class="sample-ad" style="width:728px;height:90px;background:#ccc;color:#333;text-align:center;margin:0 auto 40px;line-height:90px;border:1px solid #aaa;font-size:24px;">Ad: 728x90</div>
 						</div>
 					</div>
 				</div>

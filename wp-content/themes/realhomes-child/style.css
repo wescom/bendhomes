@@ -60,7 +60,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .mort-calc-form-wrap.has-content .mort-content-wrap h4 { font-size: 16px; text-transform: uppercase; line-height: 140%; margin-bottom: 30px; text-align: center; margin-top: 0; padding-top: 25px; padding-bottom: 25px; }
 .mort-sponsor p { font-weight: bold; color: #51A0AD; font-style: italic; }
 
-.share-bar-wrap { margin: 0 0 30px; padding-left: 30%; }
+.share-bar-wrap { margin: 0 0 30px; /*padding-left: 30%;*/ }
 .share-bar-wrap > .actions { display: block; width: 33.3333%; float: left; }
 .share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share { display: block; }
 .share-bar-wrap .actions > a, .share-bar-wrap .actions .fav-btn, .share-bar-wrap .actions #share-bar-share, .share-bar-wrap .actions #fav_output { padding: 16px 10px; text-align: center; color: #fff; font-weight: 400; font-size: 14px; text-transform: uppercase; background: #02888f; letter-spacing: .05em; border-left: 1px solid #fff; cursor: pointer; }
