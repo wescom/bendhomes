@@ -166,7 +166,7 @@ if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
                     'tab' => 'details',
                 ),
 				array(
-                    'id' => "{$prefix}property_address",
+                    'id' => "{$prefix}property_street_address",
                     'name' => __('Street Address', 'framework'),
                     'desc' => __('Street Address', 'framework'),
                     'type' => 'text',

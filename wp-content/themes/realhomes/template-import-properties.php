@@ -668,9 +668,9 @@ function dataPropertyWPinsert($myproperty) {
                   update_post_meta( $property_id, 'REAL_HOMES_property_garage', sanitize_text_field( $myproperty['garages'] ) );
               }
 
-              // Attach Address Post Meta
+              // Attach Street Address Post Meta
               if( isset ( $myproperty['address'] ) && ! empty ( $myproperty['address'] ) ) {
-                  update_post_meta( $property_id, 'REAL_HOMES_property_address', sanitize_text_field( $myproperty['address'] ) );
+                  update_post_meta( $property_id, 'REAL_HOMES_property_street_address', sanitize_text_field( $myproperty['address'] ) );
               }
 
               // Attach Address Post Meta
