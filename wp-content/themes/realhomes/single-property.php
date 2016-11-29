@@ -287,9 +287,9 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								</table>
 							</div>
 							
+							<?php if( implode( $schools ) ) { ?>
 							<div class="schools">
-								<?php if( implode( $schools ) )
-									echo '<h3>School Information</h3>'; ?>
+								<h3>School Information</h3>
 									
 								<table class="table table-striped table-hover schools" style="margin-bottom:0">
 									<tbody>
@@ -302,14 +302,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 										?>
 									</tbody>
 								</table>
-								<?php if( implode($schools) && !empty($latitude) && !empty($longitude) ) { ?>
 									
 								<div class="text-right">
 									<a href="http://www.greatschools.org/search/search.page?distance=15&gradeLevels%5B%5D=e&gradeLevels%5B%5D=m&gradeLevels%5B%5D=h&lat=<?php echo $property_address['Latitude']; ?>&lon=<?php echo $property_address['Longitude']; ?>&city=<?php echo $property_address['City']; ?>&state=<?php echo $property_address['State']; ?>&locationSearchString=<?php echo urlencode( bh_the_title() ); ?>&locationType=street_address&normalizedAddress=<?php echo urlencode( bh_the_title() ); ?>" target="_blank">School Ratings &amp; Info</a>
 								</div>
-								
-								<?php } ?>
 							</div>
+							<?php } ?>
 
 						</div>
 					</div>
