@@ -290,6 +290,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 											}
 										}
 										?>
+										<tr><td colspan="2"><a href="http://www.greatschools.org/search/search.page?distance=15" target="_blank">School Ratings &amp; Info</a></td></tr>
 									</tbody>
 								</table>
 							</div>
