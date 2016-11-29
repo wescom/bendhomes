@@ -112,6 +112,8 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .main-menu.is-viewable ul li ul li ul{ border-left: 5px solid #d2d2d2; top:0; left:220px }
 .main-menu.is-viewable ul li ul li ul li:hover>a{ background-color:#006267; color: #fff !important; }
 .main-menu.is-viewable ul > li:last-child > ul { left: auto; right: 0; }
+.main-menu ul li:hover > a, .main-menu ul li ul, .main-menu ul li ul li a, .main-menu ul li ul li ul, .main-menu ul li ul li ul li a { color: #444 !important; }
+.main-menu ul li.current-menu-ancestor > a, .main-menu ul li.current-menu-parent > a, .main-menu ul li.current-menu-item > a, .main-menu ul li.current_page_item > a { color: #fff !important; }
 
 #menu-toggle { float: left; display: none; padding: 0 0 0 10px; border: 1px solid #999; text-align: center; border-radius: 2px; line-height: 1; }
 #menu-toggle i { font-size: 22px; margin: 0; line-height: 30px; }
