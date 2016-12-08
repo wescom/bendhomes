@@ -1103,7 +1103,7 @@ function tbb_share_bar( $atts ) {
 	
 	<?php
 	
-	add_action('wp_footer', 'tbb_share_modal');
+	add_action('custom_footer_scripts', 'tbb_share_modal');
 	function tbb_share_modal() {
 		global $current_user;
 		get_currentuserinfo();
