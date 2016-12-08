@@ -258,6 +258,8 @@ h3.search-results-header { float: left; margin: 0; }
 .schools > div { padding: 5px 10px; color: #777; font-weight: 300; font-size: 12px; }
 .schools > div a { color: #777; }
 .schools > div a:hover { text-decoration: underline; }
+.sponsor-block.sponsor1 { margin-bottom: 30px; }
+.sponsor-block.sponsor2, .sponsor-block.sponsor3 { margin-bottom: 10px; }
 
 /* --- Simple Search Form --- */
 .simple-search-wrap { background: #252A2B; margin-bottom: 30px; padding: 10px; }
