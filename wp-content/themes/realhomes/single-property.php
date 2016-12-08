@@ -429,7 +429,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						</div>
 						
 						<div class="sponsor-block sponsor3">
-							<div class="sample-ad" style="width:300px;height:250px;background:#ccc;color:#333;text-align:center;margin:0 auto 10px;line-height:250px;border:1px solid #aaa;font-size:24px;">Ad: 300x250</div>
+							<!--div class="sample-ad" style="width:300px;height:250px;background:#ccc;color:#333;text-align:center;margin:0 auto 10px;line-height:250px;border:1px solid #aaa;font-size:24px;">Ad: 300x250</div-->
 							<?php do_action('dfp_ad_spot','rectangle2'); ?>
 						</div>
 					</div>
