@@ -15,7 +15,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 .advance-search-form .real-btn { background-position: center center; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -o-transition: all .3s ease; transition: all .3s ease; }
 .advance-search-form .real-btn.submitting { padding-right: 30px; background: url(images/loader.gif) no-repeat right center #006267; border-right: 10px solid #006267; }
 .featured-properties-carousel.open-houses { border-top: 1px solid #dedede; border-bottom: 1px solid #dedede; }#acww-more{display: none !important; }
-.text-green { color: #598F28; }
+.text-green { color: #02888f; }
 .user-nav .mort-calc { color: #fff; border-radius: 2px; padding: 3px 10px; background: #02888F; letter-spacing: .1em; font-weight: 400; margin-right: 10px; }
 .user-nav .mort-calc:after { content: none; }
 .user-nav .mort-calc:hover, .user-nav .mort-calc:active { color: #fff; background: #767c15; }
@@ -36,7 +36,7 @@ div.ppt{display:none!important}.dfp-ad{margin:0 auto;text-align:center}.ad-wrapp
 #property-slider-two.flexslider .slides li img { width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
 
 .mort-calc-form-wrap { border:1px solid #d2d2d2; padding: 10px 20px 0; background: #fff; }
-.mort-calc-form-wrap h2 { color: #598F28; margin: 0; }
+.mort-calc-form-wrap h2 { color: #02888f; margin: 0; }
 .mort-calc-form-wrap h3 { font-size: 16px; text-transform: uppercase; line-height: 150%; margin-bottom: 0; }
 .mort-calc-form-wrap h3 span { display: block; font-size: 24px; }
 .mort-calc-form-wrap .form-wrap { margin-top: 10px; }
@@ -215,7 +215,7 @@ h3.search-results-header { float: left; margin: 0; }
 .tabs-wrap .nav-tabs>li>a:hover { border-bottom-color: #d2d2d2; }
 .tabs-wrap .nav-tabs>.active>a:hover { border-bottom-color: #fff; }
 .tabs-wrap #property-slider-two-wrapper { margin-bottom: 10px; }
-.main-items-wrap .property-price { background: #fff; border: 1px solid #d2d2d2; line-height: 70px; font-size: 2.25em; color: #598F28; margin: 0; }
+.main-items-wrap .property-price { background: #fff; border: 1px solid #d2d2d2; line-height: 70px; font-size: 2.25em; color: #02888f; margin: 0; }
 .main-items { background: #fff; border-right: 1px solid #d2d2d2; border-left: 1px solid #d2d2d2; padding: 15px 0; }
 .main-items .item { display: block; float: left; width: 16.666667%; margin: 0; padding: 0; }
 .main-items .item span { display: block; text-align: center; text-transform: uppercase; font-size: 14px; }
