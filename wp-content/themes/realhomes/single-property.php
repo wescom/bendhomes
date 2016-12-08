@@ -351,7 +351,6 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="sponsor-block sponsor1">
-							<!--div class="sample-ad" style="width:728px;height:90px;background:#ccc;color:#333;text-align:center;margin:0 auto 40px;line-height:90px;border:1px solid #aaa;font-size:24px;">Ad: 728x90</div-->
 							<?php do_action('dfp_ad_spot','leadmid'); ?>
 						</div>
 					</div>
@@ -424,12 +423,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					
 					<div class="span4">
 						<div class="sponsor-block sponsor2">
-							<!--div class="sample-ad" style="width:300px;height:250px;background:#ccc;color:#333;text-align:center;margin:0 auto 10px;line-height:250px;border:1px solid #aaa;font-size:24px;">Ad: 300x250</div-->
 							<?php do_action('dfp_ad_spot','rectangle1'); ?>
 						</div>
 						
 						<div class="sponsor-block sponsor3">
-							<!--div class="sample-ad" style="width:300px;height:250px;background:#ccc;color:#333;text-align:center;margin:0 auto 10px;line-height:250px;border:1px solid #aaa;font-size:24px;">Ad: 300x250</div-->
 							<?php do_action('dfp_ad_spot','rectangle2'); ?>
 						</div>
 					</div>
