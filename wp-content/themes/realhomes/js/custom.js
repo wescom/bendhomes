@@ -3,6 +3,10 @@
     "use strict";
 	
     $(document).ready(function() {
+		
+		$('.slide-menu button').click(function(){
+			$(this).text(function(i,old){return old=='View More' ?  'View Less' : 'View More';});
+		});
 
         /*-----------------------------------------------------------------------------------*/
         /* For RTL Languages

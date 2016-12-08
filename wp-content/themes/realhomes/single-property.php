@@ -652,5 +652,4 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
         </div><!-- End contents row -->
     </div><!-- End Content -->
     
-<script>$('.slide-menu button').click(function(){$(this).text(function(i,old){return old=='View More' ?  'View Less' : 'View More';});});</script>
 <?php get_footer(); ?>
