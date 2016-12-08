@@ -22,70 +22,81 @@ global $post;   // property
 function display_sidebar_agent_box( $args ) {
     global $post;
     ?>
-	<section class="widget">
+	<section class="agent-widget clearfix">
 		<?php
-		if ( isset( $args[ 'agent_title_text' ] ) && ! empty( $args[ 'agent_title_text' ] ) ) {
-			?><h3 class="title"><div><small>Listing Agent:</small></div><?php echo str_replace( 'Agent ', '', $args[ 'agent_title_text' ] ); ?></h3><?php
+		// Display Image
+		if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
+			if ( isset( $args[ 'profile_image_id' ] ) && ( 0 < $args[ 'profile_image_id' ] ) ) {
+				echo wp_get_attachment_image( $args[ 'profile_image_id' ], 'agent-image' );
+			} elseif ( isset( $args[ 'agent_email' ] ) ) {
+				echo get_avatar( $args[ 'agent_email' ], '210' );
+			}
+		} else {
+			if ( isset( $args[ 'agent_id' ] ) && has_post_thumbnail( $args[ 'agent_id' ] ) ) {
+				?>
+				<a class="agent-image" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>">
+					<?php echo get_the_post_thumbnail( $args[ 'agent_id' ], 'agent-image' ); ?>
+				</a>
+				<?php
+			}
 		}
 		?>
+		
 		<div class="agent-info">
+		
 			<?php
-			if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
-				if ( isset( $args[ 'profile_image_id' ] ) && ( 0 < $args[ 'profile_image_id' ] ) ) {
-					echo wp_get_attachment_image( $args[ 'profile_image_id' ], 'agent-image' );
-				} elseif ( isset( $args[ 'agent_email' ] ) ) {
-					echo get_avatar( $args[ 'agent_email' ], '210' );
-				}
-			} else {
-				if ( isset( $args[ 'agent_id' ] ) && has_post_thumbnail( $args[ 'agent_id' ] ) ) {
-					?>
-					<a href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>">
-						<?php echo get_the_post_thumbnail( $args[ 'agent_id' ], 'agent-image' ); ?>
-					</a>
-					<?php
-				}
+			if ( isset( $args[ 'agent_title_text' ] ) && ! empty( $args[ 'agent_title_text' ] ) ) { ?>
+				<h3 class="title">Listing Agent: <strong>
+				<a href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php echo str_replace( 'Agent ', '', $args[ 'agent_title_text' ] ); ?></a>
+				</strong></h3>
+				<?php
 			}
-			?>
-			<ul class="contacts-list">
+			
+			if ( isset( $args[ 'agent_brokerage' ] ) && ! empty( $args[ 'agent_brokerage' ] ) ) { ?>
+			<div class="agent-office-name">
+				<?php echo $args[ 'agent_brokerage' ]; ?>
+			</div>
+			<?php } ?>
+
+			<div class="contacts-list">
 			<?php
 				if ( isset( $args[ 'agent_office_phone' ] ) && ! empty( $args[ 'agent_office_phone' ] ) ) {
 					?>
-					<li class="office">
-						<?php include( get_template_directory() . '/images/icon-phone.svg' );
-						_e( 'Office', 'framework' ); ?> : <a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_office_phone' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?></a>
-					</li>
+					<span class="office">
+						<a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_office_phone' ]); ?>"><?php echo $args[ 'agent_office_phone' ]; ?></a> (Office)
+					</span>
 					<?php
 				}
 				if ( isset( $args[ 'agent_mobile' ] ) && ! empty( $args[ 'agent_mobile' ] ) ) {
 					?>
-					<li class="mobile">
-						<?php include( get_template_directory() . '/images/icon-mobile.svg' );
-						_e( 'Mobile', 'framework' ); ?> : <a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_mobile' ]; ?></a>
-					</li>
+					<span class="mobile">
+						<a href="tel:<?php echo preg_replace("/[^0-9]/", "", $args[ 'agent_mobile' ]); ?>"><?php echo $args[ 'agent_mobile' ]; ?></a> (Cell)
+					</span>
 					<?php
 				}
 				if ( isset( $args[ 'agent_office_fax' ] ) && ! empty( $args[ 'agent_office_fax' ] ) ) {
 					?>
-					<li class="fax">
-						<?php include( get_template_directory() . '/images/icon-printer.svg' );
-						_e( 'Fax', 'framework' ); ?> : <?php echo $args[ 'agent_office_fax' ]; ?>
-					</li>
+					<span class="fax">
+						<?php echo $args[ 'agent_office_fax' ]; ?> (Fax)
+					</span>
 					<?php
 				}
 			?>
-			</ul>
-      <?php // brokerageBlock($args[ 'agent_id' ]); ?>
-			<p><?php
-				echo $args[ 'agent_description' ];
-        brokerageBlock($args[ 'agent_id' ]);
-				if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
-					?><a class="real-btn" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
-				} else {
-					?><a class="real-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'View Agent Profile & Properties', 'framework' ); ?></a><?php
-				}
-			?></p>
-            <p><img class="reciprocity-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/brslogosm.gif" alt="Broker Reciprocity Logo" /></p>
+			</div>
+		
 		</div>
+		
+		<?php
+		//echo $args[ 'agent_description' ];
+		//brokerageBlock($args[ 'agent_id' ]);
+
+		if ( isset( $args[ 'display_author' ] ) && ( $args[ 'display_author' ] ) ) {
+			?><a class="agent-btn" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php _e( 'Know More', 'framework' ); ?></a><?php
+		} else {
+			?><a class="agent-btn" href="<?php echo get_permalink( $args[ 'agent_id' ] ); ?>"><?php _e( 'View Profile & Properties', 'framework' ); ?></a><?php
+		}
+		?>
+		<img class="reciprocity-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/brslogosm.gif" alt="Broker Reciprocity Logo" />
 
 		<?php
 		if ( isset( $args[ 'agent_email' ] ) && !empty($args[ 'agent_email' ]) ) {

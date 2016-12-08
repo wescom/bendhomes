@@ -14,7 +14,7 @@ if ( ! function_exists( 'add_to_favorite' ) ) {
 			$user_id = intval( $_POST[ 'user_id' ] );
 			if ( $property_id > 0 && $user_id > 0 ) {
 				if ( add_user_meta( $user_id, 'favorite_properties', $property_id ) ) {
-					_e( 'Added to Favorites', 'framework' );
+					_e( 'Added', 'framework' );
 				} else {
 					_e( 'Failed!', 'framework' );
 				}

@@ -2,6 +2,25 @@
 // Shortcodes
 
 
+// Filters shortcode content to format html tags
+add_filter('shortcode_content', 'shortcode_content');
+function shortcode_content($content) {
+	// p and br tag fix for wordpress autop
+	$bogus_br_start_end = "^<br \/>\s*|<br \/>\s*$";
+	$br_between_scs = "(\])<br \/>\s*?(\[)";
+	$bogus_p_start_end = "^<\/p>\s*|\s*<p>$";
+	$p_with_sc = "<p>(\[.*\]|\[[^\]]*\][^\[]*\[[^\]]*\])<\/p>|<p>(\[)|(\])<\/p>"; // Detect them brackets!
+
+	$content = preg_replace("/{$bogus_br_start_end}|{$br_between_scs}/", "\$1\$2", $content);
+	$content = preg_replace("/{$bogus_p_start_end}|{$p_with_sc}/", "\$1\$2\$3", $content);
+
+	// render internal shortcodes... cause wordpress doesn't
+	$content = do_shortcode($content);
+
+	return $content;
+}
+
+
 // Creates address with schema.org tags
 add_shortcode('SCHEMA_ADDRESS', 'tbb_schema_address');
 function tbb_schema_address( $atts ) {
@@ -121,8 +140,9 @@ function tbb_evergreen_home_loads() {
     
     <div style="text-align: center; margin-bottom: 1.5em;">
         <a href="https://www.evergreenhomeloans.com/bend/?ref=bh" target="_blank" onclick="trackOutboundLink('https://www.evergreenhomeloans.com/bend/?ref=bh', 'Evergreen 1'); return false;">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo.jpg" width="325" height="103" alt="Mortage Calculator Sponsored by Evergreen Home Loans" />
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo2.png" width="200" height="117" alt="Evergreen Home Loans" />
         </a>
+		<p>Helping people buy homes</p>
         <div class="modal-address"><i class="fa fa-map-marker"></i> 685 SE 3rd St., Bend OR, 97702<br><a href="tel:5413185500" onclick="trackOutboundLink('tel:5413185500', 'Evergreen Ph'); return false;"><i class="fa fa-mobile-phone"></i> (541) 318-5500</a></div>
     </div>
     
@@ -274,7 +294,8 @@ function tbb_custom_posts( $defaults ) {
 		'columns' => '2',
 		'order' => 'ASC',
 		'orderby' => 'name',
-		'show_search' => ''
+		'show_search' => '',
+		'show_pagination' => ''
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
@@ -542,7 +563,7 @@ function tbb_custom_posts( $defaults ) {
 				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $title );
 				
-				if( $defaults['type'] == 'property' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
+				if( $defaults['type'] == 'property' || $defaults['type'] == 'post' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
 					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', 
 									get_framework_excerpt( $defaults['excerpt_length'] ) );
 				}
@@ -569,7 +590,11 @@ function tbb_custom_posts( $defaults ) {
 			
 		endwhile;
 	
-	$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $custom_posts->max_num_pages) );
+	if(empty( $defaults['show_pagination'] )) {
+		$output .= sprintf( '</div>%s</div>', get_theme_ajax_pagination( $custom_posts->max_num_pages) );
+	} else {
+		$output .= '</div></div>';
+	}
 	
 	endif;
 			
@@ -831,7 +856,7 @@ function tbb_display_agents( $defaults ) {
 // http://www.loansanddebts.com/view.php?file=calculator_code.php
 // http://ravingroo.com/decoded/download-simple-mortgage-payment-calculator.php
 add_shortcode('MORT_CALC_FORM', 'tbb_mortgage_calc_form');
-function tbb_mortgage_calc_form( $atts ) {
+function tbb_mortgage_calc_form( $atts, $content = null ) {
 	$atts = shortcode_atts( array(
 		'id' => '',
 		'class' => ''
@@ -839,6 +864,8 @@ function tbb_mortgage_calc_form( $atts ) {
 	
 	$id = sanitize_text_field( $atts['id'] );
 	$class = sanitize_text_field( $atts['class'] );
+	$content = apply_filters('shortcode_content', $content);
+	$span_check = !empty($content) ? 'span8' : 'span12';
 	
 	$sale_price              = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
     $annual_interest_percent = 3.5; // percent
@@ -913,65 +940,76 @@ function tbb_mortgage_calc_form( $atts ) {
 	}	
 	</script>
 	
-	<div class="mort-calc-form-wrap <?php echo $class; ?>">
-		<div class="mort-calc">
+	<div class="mort-calc-form-wrap clearfix <?php echo $class; if(!empty($content)) echo ' has-content'; ?>">
+		<div class="mort-calc clearfix">
 			
-			<h3 class="text-center">Monthly Payment Estimator</h3>
-			<h2 id="monthly-payment" class="text-center">
-				$<?php echo number_format($monthly_payment); ?> per month
-			</h2>
-			<div class="text-center">
-				<small>Loan Amount: <strong id="loan-amt">$<?php echo number_format($financing_price); ?></strong></small>
-			</div>
+			<div class="row-fluid">
+				<div class="<?php echo $span_check; ?>">
 			
-			<div class="form-wrap">
-				<form name="mortgagecalc" method="POST">
-				
-					<div class="row-fluid">
-						<div class="form-item span12 price-item dollar"><label for="price" class="text-center">Listing Price</label>
-							<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
-							<div class="smpc-error" id="priceError"></div>
-						</div>
+					<h3 class="text-center">Monthly Payment Estimator</h3>
+					<h2 id="monthly-payment" class="text-center">
+						$<?php echo number_format($monthly_payment); ?> per month
+					</h2>
+					<div class="text-center">
+						<small>Loan Amount: <strong id="loan-amt">$<?php echo number_format($financing_price); ?></strong></small>
 					</div>
-					<div class="row-fluid">
-						<div class="form-item span6 interest-item percent"><label for="rate">Interest Rate</label>
-							<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
-							<div class="smpc-error" id="rateError"></div>
-						</div>
-						<div class="form-item span6 term-item time"><label for="years">Loan Type</label>
-							<span class="selectwrap">
-								<select id="mort-term-value" class="search-select" onChange="myPayment();" onkeyup="this.onchange();" name="years">
-									<option value="5">5 Years</option>
-									<option value="10">10 Years</option>
-									<option value="15">15 Years</option>
-									<option value="20">20 Years</option>
-									<option value="25">25 Years</option>
-									<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
-									<option value="35">35 Years</option>
-								</select>
-							</span>
-							<div class="smpc-error" id="yearsError"></div>
-						</div>
-					</div>
-					<div class="row-fluid">
-						<div class="form-item span6 down-item dollar"><label for="down">Down Payment</label>
-							<div class="down">
-								<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
-								<div id="down-percent">(<?php echo $down_percent; ?>%)</div>
+
+					<div class="form-wrap">
+						<form name="mortgagecalc" method="POST">
+
+							<div class="row-fluid">
+								<div class="form-item span12 price-item dollar"><label for="price" class="text-center">Listing Price</label>
+									<input id="mort-price-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="price" value="<?php echo $sale_price; ?>"> 
+									<div class="smpc-error" id="priceError"></div>
+								</div>
 							</div>
-							<div class="smpc-error" id="downError"></div>
-						</div>
-						<div class="form-item span6 taxes-item percent"><label for="taxes">Est. Tax &amp; Insurance</label>
-							<div class="taxes">
-								<input id="mort-taxes-value" type="text" onkeypress="return validNumber(event)" onChange="findtaxpermonth(); myPayment();" onkeyup="this.onchange();" name="taxes" value="<?php echo $tax_insurance; ?>"> 
-								<div id="taxes-per">($<?php echo round($tax_ins_per_month); ?>/mo.)</div>
+							<div class="row-fluid">
+								<div class="form-item span6 interest-item percent"><label for="rate">Interest Rate</label>
+									<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" value="<?php echo $annual_interest_percent; ?>"> 
+									<div class="smpc-error" id="rateError"></div>
+								</div>
+								<div class="form-item span6 term-item time"><label for="years">Loan Type</label>
+									<span class="selectwrap">
+										<select id="mort-term-value" class="search-select" onChange="myPayment();" onkeyup="this.onchange();" name="years">
+											<option value="5">5 Years</option>
+											<option value="10">10 Years</option>
+											<option value="15">15 Years</option>
+											<option value="20">20 Years</option>
+											<option value="25">25 Years</option>
+											<option value="<?php echo $year_term; ?>" selected="selected">30 Years</option>
+											<option value="35">35 Years</option>
+										</select>
+									</span>
+									<div class="smpc-error" id="yearsError"></div>
+								</div>
 							</div>
-							<div class="smpc-error" id="taxesError"></div>
-						</div>
+							<div class="row-fluid">
+								<div class="form-item span6 down-item dollar"><label for="down">Down Payment</label>
+									<div class="down">
+										<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
+										<div id="down-percent">(<?php echo $down_percent; ?>%)</div>
+									</div>
+									<div class="smpc-error" id="downError"></div>
+								</div>
+								<div class="form-item span6 taxes-item percent"><label for="taxes">Est. Tax &amp; Insurance</label>
+									<div class="taxes">
+										<input id="mort-taxes-value" type="text" onkeypress="return validNumber(event)" onChange="findtaxpermonth(); myPayment();" onkeyup="this.onchange();" name="taxes" value="<?php echo $tax_insurance; ?>"> 
+										<div id="taxes-per">($<?php echo round($tax_ins_per_month); ?>/mo.)</div>
+									</div>
+									<div class="smpc-error" id="taxesError"></div>
+								</div>
+							</div>
+
+							<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
+						</form>
 					</div>
-					
-					<?php //<!--input type=button onClick="return myPayment()" value=Calculate--> ?>
-				</form>
+				</div>
+			
+				<?php
+				if( !empty( $content ) )
+					echo sprintf('<div class="span4"><div class="mort-content-wrap"><div class="mort-content">%s</div></div></div>', $content );
+				?>
+			
 			</div>
 			
 		</div><!-- end class mort-calc -->
@@ -980,3 +1018,191 @@ function tbb_mortgage_calc_form( $atts ) {
 	<?php
 	return ob_get_clean();
 }
+
+
+// Creates the Share Bar on single properties
+if ( ! function_exists( 'tbb_is_added_to_favorite' ) ) {
+	/**
+	 * Check if a property is already added to favorites of a given user
+	 *
+	 * @param $user_id
+	 * @param $property_id
+	 * @return bool
+	 */
+	function tbb_is_added_to_favorite( $user_id, $property_id ) {
+		global $wpdb;
+		$results = $wpdb->get_results( "SELECT * FROM $wpdb->usermeta WHERE meta_key='favorite_properties' AND meta_value=" . $property_id . " AND user_id=" . $user_id );
+		if ( isset( $results[ 0 ]->meta_value ) && ( $results[ 0 ]->meta_value == $property_id ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+add_shortcode('SHARE_BAR', 'tbb_share_bar');
+function tbb_share_bar( $atts ) {
+	$atts = shortcode_atts( array(
+		'class' => ''
+	), $atts );
+	
+	$class = sanitize_text_field( $atts['class'] );
+	
+	$fav_button = get_option('theme_enable_fav_button');
+	$property_id = get_the_ID();
+	$current_url = home_url().''.$_SERVER['REQUEST_URI'];
+	
+	ob_start(); ?>
+	
+	<div class="share-bar-wrap clearfix <?php echo $class; ?>">
+		<!-- Share Dropdown -->
+		<span class="actions">
+			<div class="dropdown">
+				<a id="share-bar-share" class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-share-square-o"></i> Share</a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					<li role="presentation"><a href="#share-bar-modal" data-toggle="modal"><i class="fa fa-envelope"></i> Email this listing</a></li>
+					<li role="presentation"><a href="javascript:var w = window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode($current_url); ?>', 'sharer', 'toolbar=0,status=0,scrollbars=1,width=660,height=400'); w.focus();" title="Add to Facebook"><i class="fa fa-facebook"></i> Share on Facebook</a></li>
+					<li role="presentation"><a href="javascript:var w = window.open('https://plusone.google.com/share?url=<?php echo urlencode($current_url); ?>', 'gplusshare', 'toolbar=0,status=0,scrollbars=1,width=600,height=450'); w.focus();" title="Share on Google+"><i class="fa fa-google-plus"></i> Share on Google+</a></li>
+					<li role="presentation"><a href="javascript:var w = window.open('http://twitter.com/home?status=Check+out+this+real+estate+listing%3A+<?php echo urlencode($current_url); ?>', 'twittersharer', 'toolbar=0,status=0,scrollbars=1,width=400,height=325'); w.focus();" title="Share on Twitter"><i class="fa fa-twitter"></i> Share on Twitter</a></li>
+					<li role="presentation"><a href="javascript:var w = window.open('http://pinterest.com/pin/create/button/?url=<?php echo urlencode($current_url); ?>&media=<?php echo the_post_thumbnail_url('full'); ?>&description=<?php echo urlencode(the_title()); ?>', 'pinterestshare', 'toolbar=0,status=0,scrollbars=1,width=748,height=450'); w.focus();" title="Share on Pinterest"><i class="fa fa-pinterest"></i> Share on Pinterest</a></li>
+				</ul>
+			</div>
+		</span>
+		
+		<!-- Add to favorite -->
+		<span class="add-to-fav actions">
+			<?php
+			if( is_user_logged_in() ){
+				$user_id = get_current_user_id();
+				if ( tbb_is_added_to_favorite( $user_id, $property_id ) ) {
+					?>
+					<div id="fav_output" class="show fav-btn"><i class="fa fa-heart"></i> <span id="fav_target">Favorited</span></div>
+					<?php
+				} else {
+					?>
+					<form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" id="add-to-favorite-form">
+						<input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+						<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" />
+						<input type="hidden" name="action" value="add_to_favorite" />
+					</form>
+					<div id="fav_output"><i class="fa fa-heart-o"></i> <span id="fav_target" class="dim"></span></div>
+					<a id="add-to-favorite" class="fav-btn" href="#"><i class="fa fa-heart-o"></i> Favorite</a>
+				<?php
+				}
+			} else {
+				?><a href="#login-modal" class="fav-btn" data-toggle="modal"><i class="fa fa-heart-o"></i> Favorite</a><?php
+			}
+			?>
+		</span>
+		
+		<!-- Print -->
+		<span class="actions">
+			<a id="share-bar-print" href="javascript:window.print()"><i class="fa fa-print"></i> Print</a>
+		</span>
+	</div>
+	
+	<?php
+	
+	add_action('wp_footer', 'tbb_share_modal');
+	function tbb_share_modal() {
+		global $current_user;
+		get_currentuserinfo();
+		$current_url = home_url().''.$_SERVER['REQUEST_URI'];
+		$current_user = wp_get_current_user();
+		$current_user_email = is_user_logged_in() ? $current_user->user_email : '';
+		
+		ob_start(); ?>
+		
+		<div id="share-bar-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Share This" aria-hidden="true">
+			<div class="modal-scrollable">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				</div>
+				<div class="modal-body"> 
+					<h2 class="text-center">Email This Listing<small><?php echo the_title(); ?></small></h2>
+					
+					<div class="row-fluid share-boxes">
+						<div id="email-form">
+							<form action="" method="post" id="share-with-friend" >
+								<h4 class="muted text-center">FROM</h4>
+								<div class="row-fluid">
+									<div class="form-item span6">
+										<label for="yourname">Your Name:</label>
+										<input type="text" name="yourname" id="yourname" class="required" />
+									</div>
+									<div class="form-item span6">
+										<label for="youremail">Your Email:</label>
+										<input type="text" name="youremail" id="youremail" class="required" value="<?php echo $current_user_email; ?>" />
+									</div>
+								</div>
+								<h4 class="muted text-center">TO</h4>
+								<div class="row-fluid">
+									<div class="form-item span12">
+										<label for="friendemail">Recipient's Email:</label>
+										<input type="text" name="friendemail" id="friendemail" class="required" />
+									</div>
+								</div>
+								<div class="row-fluid">
+									<div class="form-item span12">
+										<label for="message">Message:</label>
+										<textarea name="message" id="message">Take a look at this property I found on BendHomes.com: <?php echo $current_url; ?></textarea>
+									</div>
+								</div>
+								<div class="text-center">
+									<input type="hidden" name="listingtitle" value="<?php echo the_title(); ?>" />
+									<input type="button" value="Send Email" id="submit" class="btn real-btn btn-large" />
+									<span id="success" style="color:#02888f;"></span>
+								</div>
+							</form>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+		$(document).ready(function(){$("#share-with-friend").validate({rules:{yourname:"required",youremail:{required:!0,email:!0},friendemail:{required:!0,email:!0}},errorPlacement:function(e,i){e.insertAfter($(i))}}),$("#submit").click(function(){return $("#submit").attr("disabled","disabled"),$("#share-with-friend").valid()?($("#share-with-friend").submit(),$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>",$("#share-with-friend").serialize(),function(e){$("#success").html(e).fadeIn("slow"),setTimeout(function(){$("#share-bar-modal").modal("hide")},1500)}),!1):($("#submit").removeAttr("disabled"),!1)})});
+		</script>
+		
+		<?php echo ob_get_clean();
+	} // end wp_footer function
+	
+	return ob_get_clean();
+	
+	/* Unminified script used above for form validation
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#share-with-friend').validate({
+			rules: {
+				"yourname": "required",
+				"youremail": {
+					required: true,
+					email: true
+				},
+				"friendemail": {
+					required: true,
+					email: true
+				}
+			},
+			errorPlacement: function (error, element) {
+				error.insertAfter($(element));
+			}
+		});
+
+
+		$('#submit').click(function(){
+			$('#submit').attr("disabled","disabled");
+			if ( $('#share-with-friend').valid() ) {
+				$('#share-with-friend').submit();
+				$.post("<?php echo plugins_url().'/tbb-functions/post.php'; ?>", $("#share-with-friend").serialize(),  function(response) {   
+					$('#success').html(response).fadeIn('slow');
+					setTimeout(function() { $('#share-bar-modal').modal('hide'); }, 1500);
+				}); return false;
+			} else { $('#submit').removeAttr("disabled"); return false; }
+
+		});
+	});
+	</script>*/
+	
+} // end SHARE_BAR shortcode

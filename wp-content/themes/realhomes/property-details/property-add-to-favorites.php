@@ -13,7 +13,7 @@ if( $fav_button == "true" ) {
             $property_id = get_the_ID();
             if ( is_added_to_favorite( $user_id, $property_id ) ) {
                 ?>
-                <div id="fav_output" class="show"><i class="fa fa-star-o dim"></i>&nbsp;<span id="fav_target" class="dim"><?php _e('Added to Favorites','framework'); ?></span></div>
+                <div id="fav_output" class="show"><i class="fa fa-star-o dim"></i>&nbsp;<span id="fav_target" class="dim"><?php _e('Added','framework'); ?></span></div>
                 <?php
             } else {
                 ?>

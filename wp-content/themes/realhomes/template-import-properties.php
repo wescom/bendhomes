@@ -122,6 +122,12 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -160,6 +166,12 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -216,6 +228,12 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -279,6 +297,12 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -336,6 +360,12 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -397,6 +427,12 @@ function dataPreProc($proparr,$scenarioset) {
             'agent_id' => $bhagentid,
             'action' => $postaction, // give api db status, and pre-existing wp id, if exists
 			
+			'latitude' => $propitem['Latitude'],
+			'longitude' => $propitem['Longitude'],
+			'street_address' => $propitem['StreetNumber'].' '.$propitem['StreetNumberModifier'].' '.$propitem['StreetName'].' '.$propitem['StreetSuffix'],
+			'city' => $propitem['City'],
+			'state' => $propitem['State'],
+			'zip' => $propitem['ZipCode'],
 			'listing-date' => $propitem['ListingDate'],
 			'county' => $propitem['County'],
 			'area' => $propitem['Area'],
@@ -636,9 +672,9 @@ function dataPropertyWPinsert($myproperty) {
                   update_post_meta( $property_id, 'REAL_HOMES_property_garage', sanitize_text_field( $myproperty['garages'] ) );
               }
 
-              // Attach Address Post Meta
+              // Attach Street Address Post Meta
               if( isset ( $myproperty['address'] ) && ! empty ( $myproperty['address'] ) ) {
-                  update_post_meta( $property_id, 'REAL_HOMES_property_address', sanitize_text_field( $myproperty['address'] ) );
+                  update_post_meta( $property_id, 'REAL_HOMES_property_street_address', sanitize_text_field( $myproperty['address'] ) );
               }
 
               // Attach Address Post Meta
@@ -742,6 +778,26 @@ function dataPropertyWPinsert($myproperty) {
                       }
                   }
               } // end gallery if
+			  
+			  // Attach Street Address Post Meta
+			  if( isset ( $myproperty['street_address'] ) && ! empty ( $myproperty['street_address'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_address', sanitize_text_field( $myproperty['street_address'] ) );
+              }
+			  
+			  // Attach City Post Meta
+			  if( isset ( $myproperty['city'] ) && ! empty ( $myproperty['city'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_city', sanitize_text_field( $myproperty['city'] ) );
+              }
+			  
+			  // Attach State Post Meta
+			  if( isset ( $myproperty['state'] ) && ! empty ( $myproperty['state'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_state', sanitize_text_field( $myproperty['state'] ) );
+              }
+			  
+			  // Attach Zipcode Post Meta
+			  if( isset ( $myproperty['zip'] ) && ! empty ( $myproperty['zip'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_zip', sanitize_text_field( $myproperty['zip'] ) );
+              }
 			  
 			  // Attach County Post Meta
               if( isset( $myproperty['county'] ) && ( $myproperty['county'] != "" ) ) {
@@ -961,6 +1017,16 @@ function dataPropertyWPinsert($myproperty) {
 			  // Attach Number of Units Post Meta
 			  if( isset ( $myproperty['number_units'] ) &&  ! empty ( $myproperty['number_units'] ) ) {
                   update_post_meta( $property_id, 'REAL_HOMES_property_features_number_units', sanitize_text_field( $myproperty['number_units'] ) );
+              }
+			  
+			  // Attach Latitude Post Meta
+			  if( isset ( $myproperty['latitude'] ) &&  ! empty ( $myproperty['latitude'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_latitude', sanitize_text_field( $myproperty['latitude'] ) );
+              }
+			  
+			  // Attach Longitudee Post Meta
+			  if( isset ( $myproperty['longitude'] ) &&  ! empty ( $myproperty['longitude'] ) ) {
+                  update_post_meta( $property_id, 'REAL_HOMES_property_longitude', sanitize_text_field( $myproperty['longitude'] ) );
               }
 			  
 			  // Attach Land Road Type Post Meta
