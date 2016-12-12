@@ -317,7 +317,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 
 			<div class="row-fluid section2">
 				<?php $desc_class = $on_status != 'Sold' ? 'span5' : 'span12'; ?>
-				<div class="<?php $desc_class; ?>">
+				<div class="<?php echo $desc_class; ?>">
 					<?php
 					if( $on_status != 'Sold' ) {
 						// Show share bar icons
