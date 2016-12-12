@@ -230,7 +230,13 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 
 						<div id="overview" class="tab-content">
 							<div class="tab-pane active" id="tab-photos">
-								<?php get_template_part('property-details/property-slider-two'); ?>
+								<?php 
+								if( $on_status != 'Sold' ) {
+									get_template_part('property-details/property-slider-two'); 
+								} else {
+									echo the_post_thumbnail( 'property-detail-slider-image-two' );
+								}
+								?>
 							</div>
 							<div class="tab-pane" id="tab-map">
 								<?php get_template_part('property-details/property-map'); ?>
