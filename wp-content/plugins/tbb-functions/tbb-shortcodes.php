@@ -501,7 +501,7 @@ function tbb_custom_posts( $defaults ) {
 					
 					$newness = '';
 					if( !empty( $listing_date ) ) {
-						$newness = sprintf( '<div class="newness">On Site: <strong>%s<strong></div>' , $onsite );
+						$newness = sprintf( '<div class="newness">On Site: <strong>%s</strong></div>' , $onsite );
 					}
 					
 					$property_status = inspiry_get_figure_caption( $id );
