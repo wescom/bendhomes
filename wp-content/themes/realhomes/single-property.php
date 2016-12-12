@@ -274,6 +274,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 									?>
 								</tbody>
 							</table>
+							
+							<div class="text-right">
+								<a href="https://dial.deschutes.org/Search/general?value=<?php echo urlencode($property_address['Street']); ?>" target="_blank">View more on dial.deschutes.org</a>
+							</div>
 						</div>
 
 						<?php if( implode( $schools ) ) { ?>
