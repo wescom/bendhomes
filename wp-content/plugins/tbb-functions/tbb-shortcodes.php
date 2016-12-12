@@ -501,7 +501,7 @@ function tbb_custom_posts( $defaults ) {
 					
 					$newness = '';
 					if( !empty( $listing_date ) ) {
-						$newness = sprintf( '<div class="newness">On Site: <strong>%s<strong></div>' , $onsite );
+						$newness = sprintf( '<div class="newness">On Site: <strong>%s</strong></div>' , $onsite );
 					}
 					
 					$property_status = inspiry_get_figure_caption( $id );
@@ -583,7 +583,7 @@ function tbb_custom_posts( $defaults ) {
 				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $title );
 				
-				if( $defaults['type'] == 'property' || $defaults['type'] == 'post' && $defaults['excerpt_length'] != 0 && !empty(get_the_content()) ) {
+				if( $defaults['type'] == 'property' || $defaults['type'] == 'post' && $defaults['excerpt_length'] != '0' && !empty(get_the_content()) ) {
 					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', 
 									get_framework_excerpt( $defaults['excerpt_length'] ) );
 				}
