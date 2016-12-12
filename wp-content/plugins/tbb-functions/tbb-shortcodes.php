@@ -286,6 +286,7 @@ function tbb_custom_posts( $defaults ) {
 		'categories' => '',
 		'featured_image' => '',
 		'excerpt_length' => '12',
+		'show_excerpt' => '',
 		'meta_key' => '',
 		'meta_value' => '',
 		'meta_value_type' => 'CHAR',
@@ -583,9 +584,11 @@ function tbb_custom_posts( $defaults ) {
 				$output .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $title );
 				
-				if( $defaults['type'] == 'property' || $defaults['type'] == 'post' && $defaults['excerpt_length'] != '0' && !empty(get_the_content()) ) {
-					$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', 
-									get_framework_excerpt( $defaults['excerpt_length'] ) );
+				if( empty( $defaults['show_excerpt'] ) ) {
+					if( $defaults['type'] == 'property' || $defaults['type'] == 'post' && !empty(get_the_content()) ) {
+						$output .= sprintf( '<p class="custom-post-excerpt">%s</p>', 
+										get_framework_excerpt( $defaults['excerpt_length'] ) );
+					}
 				}
 				
 				$output .= $additional_meta;
