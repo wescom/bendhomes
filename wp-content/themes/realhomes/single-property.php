@@ -234,7 +234,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 								if( $on_status != 'Sold' ) {
 									get_template_part('property-details/property-slider-two'); 
 								} else {
-									echo sprintf('<div id="property-slider-two-wrapper" class="clearfix">%s</div>', get_the_post_thumbnail( 'property-detail-slider-image-two' ) );
+									$featured_image = get_the_post_thumbnail( $id, 'property-detail-slider-image-two' );
+									echo sprintf('<div id="property-slider-two-wrapper" class="clearfix">%s</div>', $featured_image );
 								}
 								?>
 							</div>
