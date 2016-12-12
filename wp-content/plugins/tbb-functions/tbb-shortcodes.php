@@ -429,6 +429,14 @@ function tbb_custom_posts( $defaults ) {
 			
 		}
 	
+		if( $defaults['type'] == 'property' ) {
+			
+			$total_properties = $custom_posts->found_posts;
+			
+			$output .= sprintf('<div class="found-properties"><h4>Total Properties: %s</div>', $total_properties);
+			
+		}
+	
 		if( $defaults['type'] == 'agent' ) {
 			
 			$current_url = home_url() .'/agents/';
