@@ -193,15 +193,17 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					<span class="header-price text-green"><strong>$<?php echo number_format($price); ?></strong></span>
 					<span class="header-type"><?php echo $property_type; ?></span>
 					<?php echo $status_list; ?>
-					<span class="header-mls"><?php echo $mls; ?></span>
-					<div>
-						<?php if( !empty($listing_date))
-						echo sprintf('<span class="newness">On Site: <strong>%s</strong></span>', $onsite); ?>
-						<span class="updated">Updated: <strong><?php properties_updated_timestamp(); ?></strong></span>
-					</div>
-					<?php 
-					// open house info, if array_change_key_case
-					get_template_part('bend-homes/open-house-fragment');
+					<?php if( $on_status != 'Sold' ) { ?>
+						<span class="header-mls"><?php echo $mls; ?></span>
+						<div>
+							<?php if( !empty($listing_date))
+							echo sprintf('<span class="newness">On Site: <strong>%s</strong></span>', $onsite); ?>
+							<span class="updated">Updated: <strong><?php properties_updated_timestamp(); ?></strong></span>
+						</div>
+						<?php 
+						// open house info, if array_change_key_case
+						get_template_part('bend-homes/open-house-fragment');
+					}
 					?>
 				</div>
 			</div>
@@ -307,10 +309,13 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 			</div>
 
 			<div class="row-fluid section2">
-				<div class="span5">
+				<?php $desc_class = $on_status != 'Sold' ? 'span5' : 'span12'; ?>
+				<div class="<?php $desc_class; ?>">
 					<?php
-					// Show share bar icons
-					echo do_shortcode('[SHARE_BAR]');
+					if( $on_status != 'Sold' ) {
+						// Show share bar icons
+						echo do_shortcode('[SHARE_BAR]');
+					}
 					?>
 
 					<div class="description">
@@ -325,11 +330,13 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						?>
 					</div>
 				</div>
-				<div class="span7">
-					<?php
-					// Mortgage calculator
-					echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]<div class="mort-sponsor"><h4>Find what the real terms of your loan could be&hellip;</h4>[EVERGREEN_LOANS]</div>[/MORT_CALC_FORM]'); ?>
-				</div>
+				<?php if( $on_status != 'Sold' ) { ?>
+					<div class="span7">
+						<?php
+						// Mortgage calculator
+						echo do_shortcode('[MORT_CALC_FORM id="'. $id .'"]<div class="mort-sponsor"><h4>Find what the real terms of your loan could be&hellip;</h4>[EVERGREEN_LOANS]</div>[/MORT_CALC_FORM]'); ?>
+					</div>
+				<?php } ?>
 			</div>
 
 			<div class="row-fluid">
@@ -340,6 +347,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 				</div>
 			</div>
 
+		<?php if( $on_status != 'Sold' ) { ?>
+		
 			<div class="row-fluid section3">
 				<div class="span4">
 					<?php if( implode( $interior_features ) ) { ?>
@@ -415,6 +424,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					</div>
 				</div>
 			</div>
+
+		<?php } ?>
 
 		</div><!-- end main-wrap -->
 
