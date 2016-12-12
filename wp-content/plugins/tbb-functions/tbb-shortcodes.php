@@ -511,9 +511,9 @@ function tbb_custom_posts( $defaults ) {
 					$square_feet = intval( get_post_meta( $id, 'REAL_HOMES_property_size', true ) );
 					
 						//if( $bedrooms != 0 && $bathrooms != 0 ) { $spacer = ' / '; } else { $spacer = ''; }
-						$bedrooms = $bedrooms != 0 ? sprintf( '<span class="bd">%s <span>%s Bd</span></span>', $bed_icon, $bedrooms ) : '';
-						$bathrooms = $bathrooms != 0 ? sprintf( '<span class="ba">%s <span>%s Ba</span></span>', $bath_icon, $bathrooms ) : '';
-						$square_feet = sprintf('<span class="sqft">%s %s SqFt</span>', $sqft_icon, $square_feet );
+						$bedrooms = $bedrooms != 0 ? sprintf( '<span class="bd"><span>%s Bd</span></span>', $bedrooms ) : '';
+						$bathrooms = $bathrooms != 0 ? sprintf( '<span class="ba"><span>%s Ba</span></span>', $bathrooms ) : '';
+						$square_feet = sprintf('<span class="sqft">%s SqFt</span>', $square_feet );
 					
 					$additional_meta = sprintf( '%s<div class="extra-meta property-meta"><span class="bdba">%s%s</span>%s</div>', 
 											$newness, $bedrooms, $bathrooms, $square_feet );
