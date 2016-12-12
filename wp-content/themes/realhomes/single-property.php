@@ -223,7 +223,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<ul class="nav nav-tabs" id="prop-tabs">
 							<li class="active"><a href="#tab-photos" data-toggle="tab">Photos</a></li>
 							<li><a href="#tab-map" data-toggle="tab">Map</a></li>
-							<?php if(!empty($video)) { ?>
+							<?php if( !empty($video) && $on_status != 'Sold' ) { ?>
 							<li><a href="#tab-video" data-toggle="tab">Video</a></li>
 							<?php } ?>
 						</ul>
@@ -242,7 +242,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 							<div class="tab-pane" id="tab-map">
 								<?php get_template_part('property-details/property-map'); ?>
 							</div>
-							<?php if(!empty($video)) { ?>
+							<?php if( !empty($video) && $on_status != 'Sold' ) { ?>
 							<div class="tab-pane" id="tab-video">
 								<?php get_template_part('property-details/property-video'); ?>
 							</div>
