@@ -256,7 +256,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						</div>
 
 						<div class="basic-info2">
-							<table class="table table-striped table-hover">
+							<table class="table table-striped table-hover" style="margin-bottom:0">
 								<tbody>
 									<?php 
 									if(!empty($hoa))
