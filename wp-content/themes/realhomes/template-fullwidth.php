@@ -5,6 +5,16 @@
 
 get_header();
 ?>
+    
+<div class="simple-search-wrap">
+	<div class="container">
+		<div class="row">
+			<?php
+			get_template_part('bend-homes/simple-search');
+			?>
+		</div>
+	</div>
+</div>
 
     <!-- Page Head -->
     <?php get_template_part("banners/default_page_banner"); ?>
