@@ -484,6 +484,26 @@ function tbb_custom_posts( $defaults ) {
 					$property_agents = array_unique( $property_agents );
 					$brokerage = get_post_meta( $property_agents[0], 'brk_office_name',true );
 					
+					// Number of days on market. $onsite.
+					$today = time();
+					$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
+					$date1 = new DateTime();
+					$date2 = new DateTime( $listing_date );
+					$date_diff = ($date2->diff($date1)->format("%a")) - 1; 
+					$onsite = $date_diff .' Days on Market';
+
+					if( $onsite == '0 Days on Market' || $onsite = '-1 Days on Market' ) {
+						$onsite = 'New Today';
+					} 
+					if( $onsite == '1 Days on Market' ) {
+						$onsite = '1 Day on Market';
+					}
+					
+					$newness = '';
+					if( !empty( $listing_date ) ) {
+						$newness = sprintf( '<div class="newness">On Site: <strong>%s<strong></div>' , $onsite );
+					}
+					
 					$property_status = inspiry_get_figure_caption( $id );
 					$property_price = sprintf( '<h5 class="property-price">%s%s%s</h5>', get_property_price(), inspiry_get_property_types( $id ), $property_status );
 					$bedrooms = floatval( get_post_meta( $id, 'REAL_HOMES_property_bedrooms', true ) );
@@ -495,8 +515,8 @@ function tbb_custom_posts( $defaults ) {
 						$bathrooms = $bathrooms != 0 ? sprintf( '<span class="ba">%s <span>%s Ba</span></span>', $bath_icon, $bathrooms ) : '';
 						$square_feet = sprintf('<span class="sqft">%s %s SqFt</span>', $sqft_icon, $square_feet );
 					
-					$additional_meta = sprintf( '<div class="extra-meta property-meta"><span class="bdba">%s%s</span>%s</div>', 
-											$bedrooms, $bathrooms, $square_feet );
+					$additional_meta = sprintf( '%s<div class="extra-meta property-meta"><span class="bdba">%s%s</span>%s</div>', 
+											$newness, $bedrooms, $bathrooms, $square_feet );
 											
 					$broker = sprintf( '<div class="brokerage-label bl-small"><p>%s</p><img src="%s/images/idx-small.gif" width="45" height="35" alt="Broker Reciprocity"></div>', 
 									$brokerage, get_template_directory_uri() );

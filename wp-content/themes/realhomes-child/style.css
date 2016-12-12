@@ -316,7 +316,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.one .custom-post-item, .custom-post.two .custom-post-item { min-height: 210px; }
 .search-results.post-type-archive-company .custom-post.one .custom-post-item, .search-results.post-type-archive-company .custom-post.two .custom-post-item { min-height: 0; }
 .custom-post.four .custom-post-item { padding-bottom: 30px; }
-.custom-post h4 { font-weight: 400; text-transform: capitalize; margin: 0 0 10px; font-size: 18px; }
+.custom-post h4 { font-weight: 400; margin: 0 0 15px; font-size: 15px; font-family: "Open Sans", sans-serif; }
 .inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; width: auto; }
 .custom-post a { color: #394041; }
 .custom-post a:hover { color: #02888f; }
@@ -340,8 +340,8 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post-excerpt { font-size: .85em; }
 .custom-post img { max-width: 100%; height: auto; max-height: 200px; display: block; margin: auto; }
 .custom-post.one img { max-height: none; }
-.custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 16px; font-weight: 400; margin-top: 0; margin-bottom: 15px; position: relative; }
-.custom-post .property-price small { color: #fff; }
+.custom-post .property-price { background: #006267; color: #fff; padding: 8px 10px; font-size: 22px; font-weight: 400; margin-top: 0; margin-bottom: 15px; position: relative; }
+.custom-post .property-price small { color: #fff; font-size: 12px; display: block; margin-top: 8px; font-family: "Open Sans", sans-serif; letter-spacing: .05em; }
 .post-property .custom-post.one .brokerage-label.bl-small img { float: left; }
 .post-property .custom-post .extra-meta.property-meta { background: #eee; border: 1px solid #ddd; }
 .post-property .custom-post .extra-meta.property-meta span { display: inline-block; padding: 0 3px; }
