@@ -23,6 +23,9 @@
 		case 'county' :
 			$banner_sub_title = ' County';
 			break;
+		case 'area' :
+			$banner_sub_title = ' Area';
+			break;
 	}
     ?>
     <?php /* <div class="page-head" style="background-repeat: no-repeat;background-position: center top;background-image: url('<?php echo $banner_image_path; ?>'); background-size: cover; "> */ ?>
