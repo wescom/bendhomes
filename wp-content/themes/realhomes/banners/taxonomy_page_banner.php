@@ -9,7 +9,8 @@
     // Banner Sub Title
     $banner_sub_title = !empty($current_term->description) ? ' | '. $current_term->description : '';
 
-	switch( is_tax() ) {
+	$taxonomy = get_query_var( 'taxonomy' );
+	switch( $taxonomy ) {
 		case 'elementary_school' :
 			$banner_sub_title = ' Elementary School';
 			break;
