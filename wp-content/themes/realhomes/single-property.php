@@ -76,8 +76,10 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 		if( $onsite == '0 Days on Market' || $onsite = '-1 Days on Market' ) {
 			$onsite = 'New Today';
 		} 
-		if( $onsite == '1 Days on Market' ) {
+		else if( $onsite == '1 Days on Market' ) {
 			$onsite = '1 Day on Market';
+		} else {
+			$onsite = $date_diff .' Days on Market';
 		}
 
 		// Basic Fields
