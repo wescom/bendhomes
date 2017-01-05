@@ -200,7 +200,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 						<span class="header-mls"><?php echo $mls; ?></span>
 						<div>
 							<?php if( !empty($listing_date))
-							echo sprintf('<span class="newness">On Site: <strong>%s</strong></span>', $onsite); ?>
+							echo sprintf('<span class="newness">On Site: <strong>%s</strong></span> <span>Listing Date: %s</span>', $onsite, $listing_date); ?>
 							<span class="updated">Updated: <strong><?php properties_updated_timestamp(); ?></strong></span>
 						</div>
 						<?php 
