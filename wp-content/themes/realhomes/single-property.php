@@ -77,12 +77,12 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 		//$date2 = new DateTime( $listing_date );
 		//$date_diff = ($date2->diff($date1)->format("%a")); 
 
-		/*if( $onsite == '0 Days on Market' || $onsite = '-1 Days on Market' ) {
+		if( $onsite == '0 Days' ) {
 			$onsite = 'New Today';
 		} 
-		if( $onsite == '1 Days on Market' ) {
-			$onsite = '1 Day on Market';
-		}*/
+		if( $onsite == '1 Days' ) {
+			$onsite = 'New Yesterday';
+		}
 
 		// Basic Fields
 		$price = intval(get_field('REAL_HOMES_property_price'));
