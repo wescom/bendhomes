@@ -66,14 +66,16 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 		endif;
 
 		// Number of days on market. $onsite.
-		$today = date_create( '2017-01-05' );
-		$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
+		$strNow = current_time( 'mysql' );
+		$strListingDate = get_field( 'REAL_HOMES_property_listing_date' );
+		$dteStart = new DateTime($strNow); 
+   		$dteEnd   = new DateTime($strListingDate);
+		$dteDiff  = $dteStart->diff($dteEnd)->d;
+		$onsite = $dteDiff .' Days';
+		
 		//$date1 = new DateTime();
-		$listing_date = date_create( $listing_date );
 		//$date2 = new DateTime( $listing_date );
 		//$date_diff = ($date2->diff($date1)->format("%a")); 
-		$interval = date_diff( $today, $listing_date );
-		$onsite = $interval->format('%a Days');
 
 		/*if( $onsite == '0 Days on Market' || $onsite = '-1 Days on Market' ) {
 			$onsite = 'New Today';
@@ -198,8 +200,8 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 					<?php if( $on_status != 'Sold' ) { ?>
 						<span class="header-mls"><?php echo $mls; ?></span>
 						<div>
-							<?php if( !empty($listing_date))
-							echo sprintf('<span class="newness">On Site: <strong>%s</strong></span> <span>Listing Date: %s</span>', $onsite, $listing_date); ?>
+							<?php if( !empty($strListingDate))
+							echo sprintf('<span class="newness">On Site: <strong>%s</strong></span> <span>Listing Date: %s</span>', $onsite, $strListingDate); ?>
 							<span class="updated">Updated: <strong><?php properties_updated_timestamp(); ?></strong></span>
 						</div>
 						<?php 
