@@ -70,7 +70,7 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 		$strListingDate = get_field( 'REAL_HOMES_property_listing_date' );
 		$dteStart = new DateTime($strNow); 
    		$dteEnd   = new DateTime($strListingDate);
-		$dteDiff  = $dteStart->diff($dteEnd)->d;
+		$dteDiff  = $dteStart->diff($dteEnd)->days;
 		$onsite = $dteDiff .' Days';
 		
 		//$date1 = new DateTime();
