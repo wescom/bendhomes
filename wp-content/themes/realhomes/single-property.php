@@ -66,15 +66,16 @@ get_template_part('bend-homes/property-details/property-agent-for-sidebar');
 		endif;
 
 		// Number of days on market. $onsite.
-		$now = date( 'Y-m-d', strtotime( current_time( 'mysql' ) ) );
-		$now = new DateTime( $now );
+		$now = current_time( 'mysql' );
+		$now = date( 'Y-m-d', strtotime( $now ) );
+		$today = date_create( $now );
 		$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
 		//$date1 = new DateTime();
-		$listing_date = new DateTime( $listing_date );
+		$listing_date = date_create( $listing_date );
 		//$date2 = new DateTime( $listing_date );
 		//$date_diff = ($date2->diff($date1)->format("%a")); 
-		$diff = $now->diff( $listing_date );
-		$onsite = $diff->d .' Days on Market';
+		$interval = date_diff( $today, $listing_date );
+		$onsite = $interval->format('%a Days');
 
 		/*if( $onsite == '0 Days on Market' || $onsite = '-1 Days on Market' ) {
 			$onsite = 'New Today';
