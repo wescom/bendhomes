@@ -494,22 +494,22 @@ function tbb_custom_posts( $defaults ) {
 					$brokerage = get_post_meta( $property_agents[0], 'brk_office_name',true );
 					
 					// Number of days on market. $onsite.
-					$today = time();
-					$listing_date = get_field( 'REAL_HOMES_property_listing_date' );
-					$date1 = new DateTime();
-					$date2 = new DateTime( $listing_date );
-					$date_diff = ($date2->diff($date1)->format("%a")) - 1; 
-					$onsite = $date_diff .' Days on Market';
+					$strNow = current_time( 'mysql' );
+					$strListingDate = get_field( 'REAL_HOMES_property_listing_date' );
+					$dteStart = new DateTime($strNow); 
+					$dteEnd   = new DateTime($strListingDate);
+					$dteDiff  = $dteStart->diff($dteEnd)->days;
+					$onsite = $dteDiff .' Days on Market'; 
 
-					if( $onsite == '0 Days on Market' || $onsite = '-1 Days on Market' ) {
+					if( $onsite == '0 Days on Market' ) {
 						$onsite = 'New Today';
 					} 
 					if( $onsite == '1 Days on Market' ) {
-						$onsite = '1 Day on Market';
+						$onsite = 'New Yesterday';
 					}
 					
 					$newness = '';
-					if( !empty( $listing_date ) ) {
+					if( !empty( $strListingDate ) ) {
 						$newness = sprintf( '<div class="newness">On Site: <strong>%s</strong></div>' , $onsite );
 					}
 					
