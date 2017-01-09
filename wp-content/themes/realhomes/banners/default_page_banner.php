@@ -28,7 +28,7 @@
     <div class="page-head">
         <?php if(!('true' == get_option('theme_banner_titles'))): ?>
         <div class="container">
-            <div class="wrap clearfix">
+            <div class="wrap clearfix">hh
                 <h1 class="page-title"><?php
                   echo $banner_title;
 				  if(isset($_GET['type'])) $banner_sub_title = ucfirst($_GET['type']);
