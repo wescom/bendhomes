@@ -6,7 +6,7 @@ get_header();
     <div class="page-head">
         <div class="container">
             <div class="wrap clearfix">
-                <h1 class="page-title">zz<?php _e( 'All Properties By', 'framework' ); ?></h1>
+                <h1 class="page-title"><?php _e( 'All Properties By', 'framework' ); ?></h1>
             </div>
         </div>
     </div><!-- End Page Head -->

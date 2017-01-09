@@ -48,8 +48,10 @@ get_header();
     <?php /*     <div class="page-head" style="background-repeat: no-repeat;background-position: center top;background-image: url('<?php echo $banner_image_path; ?>'); "> */ ?>
     <div class="page-head">
         <div class="container">
-            <div class="wrap clearfix">bb
-              <h1 class="page-title"><?php echo /* $banner_title .' | '.  */ $banner_details; ?></h1>
+            <div class="wrap clearfix">
+              <h1 class="page-title"><?php echo /* $banner_title .' | '.  */ $banner_details; ?>
+                  <img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" />
+              </h1>
             </div>
         </div>
     </div><!-- End Page Head -->

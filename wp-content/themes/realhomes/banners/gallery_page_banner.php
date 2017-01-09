@@ -35,7 +35,7 @@ if(empty($banner_sub_title)){
     <?php if(!('true' == get_option('theme_banner_titles'))): ?>
     <div class="container">
         <div class="wrap clearfix">
-            <h1 class="page-title">mm<?php echo $banner_title .' | '. $banner_sub_title; ?></h1>
+            <h1 class="page-title"><?php echo $banner_title .' | '. $banner_sub_title; ?></h1>
         </div>
     </div>
     <?php endif; ?>

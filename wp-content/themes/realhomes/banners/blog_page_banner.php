@@ -25,7 +25,7 @@
         <?php if(!('true' == get_option('theme_banner_titles'))): ?>
         <div class="container">
             <div class="wrap clearfix">
-              <h1 class="page-title">yy<?php echo $banner_title .' | '. $banner_details; ?></h1>
+              <h1 class="page-title"><?php echo $banner_title .' | '. $banner_details; ?></h1>
             </div>
         </div>
         <?php endif; ?>
