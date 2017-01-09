@@ -33,7 +33,9 @@
         <?php if(!('true' == get_option('theme_banner_titles'))): ?>
         <div class="container">
             <div class="wrap clearfix">
-                <h1 class="page-title"><?php echo $banner_title .''. $banner_sub_title; ?></h1>
+                <h1 class="page-title"><?php echo $banner_title .''. $banner_sub_title; ?>
+                	<img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" />
+                </h1>
             </div>
         </div>
         <?php endif; ?>
