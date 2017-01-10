@@ -578,7 +578,8 @@
 
   // Janelle Contreras - hack to have menu read different then section display name for Prime Lending
   var plText = $('#menu-item-159236').html();
-  plText = plText.replace("Financing tips powered by:", "Financing tips powered by Prime Lending");
+  var imgText = '<img src="dev.bendhomes.com/wp-content/uploads/2017/01/PrimeLendingLogo3.png" width="80px" />';
+  plText = plText.replace("Financing tips powered by:", "Financing tips powered by: "+imgText);
   $('#menu-item-159236').html(plText);
 
 }());
