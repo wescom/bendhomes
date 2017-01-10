@@ -370,6 +370,12 @@ h3.search-results-header { float: left; margin: 0; }
 
 h1.page-title > img { padding-left: 10px;}
 
+#menu-item-159236 {
+	background-image: url('dev.bendhomes.com/wp-content/uploads/2017/01/PrimeLendingLogo3.png');
+	background-repeat: no-repeat;
+	background-position: right;
+	padding-right: 5px;
+}
 
 @media(max-width: 1200px) {
 	.company-agent { width: 25%; }
