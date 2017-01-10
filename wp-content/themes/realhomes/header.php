@@ -216,8 +216,7 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
                                 <?php
                                 wp_nav_menu( array(
                                     'theme_location' => 'main-menu',
-                                    'menu_class' => 'clearfix',
-                                    'after' => 'xx'
+                                    'menu_class' => 'clearfix'
                                 ));
                                 ?>
                             </nav>
