@@ -576,4 +576,6 @@
   jQuery.sidr = sidr;
   jQuery.fn.sidr = fnSidr;
 
+  $('#menu-item-159236').text("Financing tips powered by Prime Lending");
+
 }());
