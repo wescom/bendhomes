@@ -17,9 +17,9 @@
                 <span><?php _e('Posted on', 'framework'); ?> <span class="date"> <?php the_time('F d, Y'); ?></span></span>
                 <span><?php _e('by', 'framework'); ?>
                     <span class="author-link"><?php the_author() ?>
-                        <img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" width="80px"/>
                     </span> 
                     <?php _e('in', 'framework'); ?> <?php the_category(', '); ?> 
+                    <img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" width="80px"/>
                 </span>
             </small>
         </header>
