@@ -223,7 +223,7 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
                                 wp_nav_menu( array(
                                     'theme_location' => 'main-menu',
                                     'menu_class' => 'clearfix',
-                                    'after' => $imgUrl
+                                    'after' => '<img src="'.$imgUrl.'" width="80px"></img>'
                                 ));
                                 ?>
                             </nav>
