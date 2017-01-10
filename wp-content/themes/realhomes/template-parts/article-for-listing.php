@@ -15,7 +15,7 @@
             <h3 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
             <small class="post-meta <?php echo $format; ?>-meta thumb-<?php echo has_post_thumbnail()?'exist':'not-exist'; ?>">
                 <span><?php _e('Posted on', 'framework'); ?> <span class="date"> <?php the_time('F d, Y'); ?></span></span>
-                <span><?php _e('by', 'framework'); ?> <span class="author-link"><?php the_author() ?></span> <?php _e('in', 'framework'); ?> <?php the_category(', '); ?> </span>
+                <span><?php _e('by', 'framework'); ?> x<span class="author-link"><?php the_author() ?></span> <?php _e('in', 'framework'); ?> <?php the_category(', '); ?> </span>
             </small>
         </header>
         <p><?php framework_excerpt(30);  ?></p>
