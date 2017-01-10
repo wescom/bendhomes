@@ -576,8 +576,9 @@
   jQuery.sidr = sidr;
   jQuery.fn.sidr = fnSidr;
 
-  var plText = $('#menu-item-159236').text("Financing tips powered by Prime Lending");
+  var plText = $('#menu-item-159236').text();
   plText = plText.replace("Financing tips powered by:", "Financing tips powered by Prime Lending");
+  console.log("menu hack: "+plText);
   $('#menu-item-159236').text(plText);
 
 }());
