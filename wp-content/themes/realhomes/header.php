@@ -217,7 +217,7 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
                                 wp_nav_menu( array(
                                     'theme_location' => 'main-menu',
                                     'menu_class' => 'clearfix',
-                                    'items_wrap' => '<ul><li id="item-id"><?php __( 'Menu:', 'textdomain' ); ?><img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" width="80px"/></li>%3$s</ul>'
+                                    'items_wrap' => '<ul><li id="item-id"><?php __( 'Menu:', 'textdomain' ); ?></li>%3$s</ul>'
                                 ));
                                 ?>
                             </nav>
