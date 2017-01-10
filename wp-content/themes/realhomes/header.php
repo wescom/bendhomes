@@ -214,9 +214,16 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
                         <div id="sidr">
                             <nav class="main-menu">
                                 <?php
+                                if (function_exists('z_taxonomy_image_url')) {
+                                    $imgUrl = z_taxonomy_image_url();
+                                } else {
+                                    $imgUrl = "";
+                                }
+
                                 wp_nav_menu( array(
                                     'theme_location' => 'main-menu',
-                                    'menu_class' => 'clearfix'
+                                    'menu_class' => 'clearfix',
+                                    'after' => $imgUrl
                                 ));
                                 ?>
                             </nav>
