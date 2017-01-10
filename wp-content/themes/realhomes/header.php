@@ -223,7 +223,7 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
                                 wp_nav_menu( array(
                                     'theme_location' => 'main-menu',
                                     'menu_class' => 'clearfix',
-                                    'after' => '<img src="'.$imgUrl.'" width="80px"></img>'
+                                    'after' => '<img src="'.if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url();.'" width="80px"></img>'
                                 ));
                                 ?>
                             </nav>
