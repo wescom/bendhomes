@@ -46,11 +46,15 @@ function hide_item($item) {
         }
 
         echo " - postid: ".$postId;
+
+        $query = 'update wp_posts set post_status = "private" where ID = '.$postId; // from wp_postmeta where meta_value = "'.$item.'"';
+        echo " - query: ".$query;
+
 }
 
 echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">hello world!</p>';
 
-$ourFile = ABSPATH.'/_retsapi/IdTextFiles/badIds.txt';    //"../../../_retsapi/IdTextFiles/badIds.txt";
+$ourFile = ABSPATH.'/_retsapi/IdTextFiles/badIds.txt';
 $ourString = file_get_contents($ourFile);
 
 if ($ourString === FALSE) {
