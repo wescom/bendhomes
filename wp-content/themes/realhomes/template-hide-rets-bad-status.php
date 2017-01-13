@@ -45,12 +45,19 @@ function hide_item($item) {
                 }
         }
 
-        echo " - postid: ".$postId;
+        if ($postId > 0) {
 
-        $query = 'update wp_posts set post_status = "private" where ID = '.$postId; // from wp_postmeta where meta_value = "'.$item.'"';
-        echo " - query: ".$query;
-        //$result = $conn->query($query);
-        //echo '- did it.';
+	        echo " - postid: ".$postId;
+
+	        $query = 'update wp_posts set post_status = "private" where ID = '.$postId; // from wp_postmeta where meta_value = "'.$item.'"';
+	        echo " - query: ".$query;
+	        //$result = $conn->query($query);
+	        //echo '- did it.';
+
+	        $conn->close();
+	    } else {
+	    	echo " - not in wp database.";
+	    }
 
 }
 
