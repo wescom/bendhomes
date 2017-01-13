@@ -58,6 +58,7 @@ function hide_item($item) {
 	    } else {
 	    	echo " - not in wp database.";
 	    }
+	    $conn->close();
 
 }
 
@@ -73,16 +74,20 @@ if ($ourString === FALSE) {
 
 $ourArray = explode(",", $ourString);
 
+$cnt = 0;
 foreach($ourArray as $item) {
 	echo '<p>'.$item;
 
-	//if ($item == 201502782) {
+	if ($cnt >= 2200 && cnt < 2300) {
 		hide_item($item);
 		//break 2;
-	//}
+	}
 
 	echo '</p>';
+	$cnt++;
 }
+echo "count = ".$cnt;
+
 
 
 ?>
