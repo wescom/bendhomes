@@ -23,7 +23,7 @@ include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';*/
 function hide_item($item) {
 	$db = array(
 	    'host' => 'localhost',
-	    'username' => 'bendhomeuser',
+	    'username' => 'bendhomesuser',
 	    'password' => '1Tf1tb7BvmWWgjrU',
 	    'database' => 'bendhomes_dev'
 	  );
