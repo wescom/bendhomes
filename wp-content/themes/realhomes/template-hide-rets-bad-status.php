@@ -49,6 +49,8 @@ function hide_item($item) {
 
         $query = 'update wp_posts set post_status = "private" where ID = '.$postId; // from wp_postmeta where meta_value = "'.$item.'"';
         echo " - query: ".$query;
+        $result = $conn->query($query);
+        echo '- did it.';
 
 }
 
@@ -69,7 +71,10 @@ $ourArray = explode(",", $ourString);
 foreach($ourArray as $item) {
 	echo '<p>'.$item;
 
-	hide_item($item);
+	if ($item == 201500098) {
+		hide_item($item);
+		break;
+	}
 
 	echo '</p>';
 
