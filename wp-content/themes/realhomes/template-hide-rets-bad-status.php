@@ -20,6 +20,34 @@ include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';*/
 
+function hide_item($item) {
+	$db = array(
+	    'host' => 'localhost',
+	    'username' => 'bendhomeuser',
+	    'password' => '1Tf1tb7BvmWWgjrU',
+	    'database' => 'bh_rets'
+	  );
+
+       $conn = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+
+        $query = 'select post_id from wp_postmeta where meta_value = "'.$item.'"';
+        $result = $conn->query($query);
+
+        $postId = 0;
+        if ($result->num_rows > 0) {
+
+                while($row = $result->fetch_assoc()) {
+                    $postId = $row['post_id'];
+                }
+        }
+
+        echo " - postid: ".$postId;
+}
+
 echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">hello world!</p>';
 
 $ourFile = ABSPATH.'/_retsapi/IdTextFiles/badIds.txt';    //"../../../_retsapi/IdTextFiles/badIds.txt";
@@ -35,7 +63,11 @@ if ($ourString === FALSE) {
 $ourArray = explode(",", $ourString);
 
 foreach($ourArray as $item) {
-	echo '<p>'.$item.'</p>';
+	echo '<p>'.$item;
+
+	hide_item($item);
+
+	echo '</p>';
 
 	//$mlsposts = bhLookupPostByMLS($item);
 
