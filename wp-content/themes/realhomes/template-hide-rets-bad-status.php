@@ -8,21 +8,28 @@
 
 ini_set('max_execution_time', 0);
 date_default_timezone_set('America/Los_Angeles');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 /* #### INCLUDES ##### */
 include_once ABSPATH . 'wp-admin/includes/media.php';
 include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
-include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
-echo "Hello world!";
+/* #### INCLUDES ##### */
+/*include_once ABSPATH . 'wp-admin/includes/media.php';
+include_once ABSPATH . 'wp-admin/includes/file.php';
+include_once ABSPATH . 'wp-admin/includes/image.php';
+include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';*/
+
+echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">hello world!</p>';
+
+$ourFile = "../../_retsapi/IdTextFiles/badIds.txt";
+$ourString = file_get_contents($ourFile);
+
+echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$ourString.'</p>';
 
 //$daysBack = 365;
 
-$//theTm = time();
+//theTm = time();
 //bh_write_to_log('Entered template-delete-old-properties.php ','propertiesDeleteEntry'.$theTm);
 
 /*foreach($scenarios as $scenario) {
