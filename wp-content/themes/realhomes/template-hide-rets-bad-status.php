@@ -51,8 +51,8 @@ function hide_item($item) {
 
 	        $query = 'update wp_posts set post_status = "private" where ID = '.$postId; // from wp_postmeta where meta_value = "'.$item.'"';
 	        echo " - query: ".$query;
-	        //$result = $conn->query($query);
-	        //echo '- did it.';
+	        $result = $conn->query($query);
+	        echo '- did it.';
 
 	        $conn->close();
 	    } else {
