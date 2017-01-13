@@ -71,10 +71,10 @@ $ourArray = explode(",", $ourString);
 foreach($ourArray as $item) {
 	echo '<p>'.$item;
 
-	/*if ($item == 201500098) {
+	if ($item == 201502782) {
 		hide_item($item);
 		break 2;
-	}*/
+	}
 
 	echo '</p>';
 }
