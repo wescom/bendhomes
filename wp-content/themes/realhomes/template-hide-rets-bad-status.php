@@ -1,6 +1,6 @@
 <?php
 /*
-*  Template Name: Delete Old Properties Template
+*  Template Name: Hide Rets Bad Status
 */
 /*
 *  Author: Janelle Contreras
