@@ -25,14 +25,20 @@ echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">hello
 $ourFile = ABSPATH.'/_retsapi/IdTextFiles/badIds.txt';    //"../../../_retsapi/IdTextFiles/badIds.txt";
 $ourString = file_get_contents($ourFile);
 
-echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">hello world! 222</p>';
-
 if ($ourString === FALSE) {
 	$error = error_get_last();
 	echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">ERROR '.$error['message'].'</p>';
 } else {
 	echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$ourString.'</p>';
 }
+
+$ourArray = explode(",", $ourString);
+
+foreach($ourArray as $item) {
+	echo '<p>'.$item.'</p>';
+}
+
+
 
 //$daysBack = 365;
 
