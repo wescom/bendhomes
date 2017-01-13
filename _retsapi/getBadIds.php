@@ -15,9 +15,9 @@
         foreach($ourArray as $item) {
                 $numsArr = explode("-", $item);
                 if (in_array($numsArr[0], $retsArray)){
-                        echo $item." good";
+                        echo "<pre>".$item." - good</pre>";
                 } else {
-                        echo $item."bad";
+                        echo "<pre>".$item."bad</pre>";
                         $badString .= $numsArr[1].",";
                         $badCount++;
                 }
