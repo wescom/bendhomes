@@ -35,13 +35,13 @@ if ($ourString === FALSE) {
 $ourArray = explode(",", $ourString);
 
 foreach($ourArray as $item) {
-	echo '<p>'.$item;
+	echo '<p>'.$item.'</p>';
 
 	$mlsposts = bhLookupPostByMLS($item);
 
-	$bhpropertyid = $mlsposts[0];
+	//$bhpropertyid = $mlsposts[0];
 
-	echo ' - wp id: '.$bhpropertyid.'</p>';
+	//echo ' - wp id: '.$bhpropertyid.'</p>';
 
 	//$wasSuccess = bhDeleteProperty($propItem, $rc);
 
