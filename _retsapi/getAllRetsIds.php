@@ -150,7 +150,7 @@ function runRetsQuery($qvars) {
           'Format' => 'COMPACT',
           'Limit' => $qvars['count'],
           'StandardNames' => 0, // give system names
-          'Select' => 'ListingRid',
+          'Select' => 'ListingRid, Status',
       ]
   );
 
@@ -171,7 +171,7 @@ function runRetsQuery($qvars) {
    //   $puid = $universalkeys[$qvars['resource']][$qvars['class']];
    //   $dt2 = date('Y-m-d H:i:s');
       $idString.= $prop['ListingRid'].",";
-      echo '<pre style="background-color: green; color: #fff;">id: '.$prop['ListingRid'].'</pre>';;
+     // echo '<pre style="background-color: green; color: #fff;">id: '.$prop['ListingRid'].'</pre>';;
   }
    echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
 
