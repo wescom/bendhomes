@@ -25,7 +25,7 @@ function hide_item($item) {
 	    'host' => 'localhost',
 	    'username' => 'bendhomeuser',
 	    'password' => '1Tf1tb7BvmWWgjrU',
-	    'database' => 'bh_rets'
+	    'database' => 'bendhomes_dev'
 	  );
 
        $conn = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
