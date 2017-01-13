@@ -71,28 +71,12 @@ $ourArray = explode(",", $ourString);
 foreach($ourArray as $item) {
 	echo '<p>'.$item;
 
-	if ($item == 201500098) {
+	/*if ($item == 201500098) {
 		hide_item($item);
-		break;
-	}
+		break 2;
+	}*/
 
 	echo '</p>';
-
-	//$mlsposts = bhLookupPostByMLS($item);
-
-	//$bhpropertyid = $mlsposts[0];
-
-	//echo ' - wp id: '.$bhpropertyid.'</p>';
-
-	//$wasSuccess = bhDeleteProperty($propItem, $rc);
-
-	/*if ($bhpropertyid > 0) { 
-	    bhDeleteWPImages($bhpropertyid);
-	    wp_delete_post($bhpropertyid);
-	    	
-	} else {
-	    echo "<p>Property was not in wordpress database";
-	}*/
 }
 
 
