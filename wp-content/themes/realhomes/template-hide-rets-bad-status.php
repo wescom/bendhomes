@@ -37,7 +37,7 @@ $ourArray = explode(",", $ourString);
 foreach($ourArray as $item) {
 	echo '<p>'.$item.'</p>';
 
-	$mlsposts = bhLookupPostByMLS($item);
+	//$mlsposts = bhLookupPostByMLS($item);
 
 	//$bhpropertyid = $mlsposts[0];
 
