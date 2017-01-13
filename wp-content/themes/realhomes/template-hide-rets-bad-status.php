@@ -18,12 +18,14 @@ include_once ABSPATH . 'wp-admin/includes/file.php';
 include_once ABSPATH . 'wp-admin/includes/image.php';
 include_once WP_PLUGIN_DIR . '/'.'bh-importer/functions.php';
 
-$daysBack = 365;
+echo "Hello world!";
 
-$theTm = time();
-bh_write_to_log('Entered template-delete-old-properties.php ','propertiesDeleteEntry'.$theTm);
+//$daysBack = 365;
 
-foreach($scenarios as $scenario) {
+$//theTm = time();
+//bh_write_to_log('Entered template-delete-old-properties.php ','propertiesDeleteEntry'.$theTm);
+
+/*foreach($scenarios as $scenario) {
 
 	$resource = $scenario['resource'];
   	$class = $scenario['class'];
@@ -50,8 +52,8 @@ foreach($scenarios as $scenario) {
 	    	echo "<p>Property was not in wordpress database";
 	    }
 	}
-}
+}*/
 
-bh_write_to_log('Completed template-delete-old-properties.php ','propertiesDeleteEntry'.$theTm);
+//bh_write_to_log('Completed template-delete-old-properties.php ','propertiesDeleteEntry'.$theTm);
 
 ?>
