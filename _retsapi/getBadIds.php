@@ -1,10 +1,10 @@
 <?php
 
-        $file = "retsIds.txt";
+        $file = "./IdTextFiles/retsIds.txt";
         $retsString = file_get_contents($file);
         echo "rets: ".$retsString;
 
-        $ourFile = "ourIds.txt";
+        $ourFile = "./IdTextFiles/ourIds.txt";
         $ourString = file_get_contents($ourFile);
 
         $ourArray = explode(",", $ourString);
@@ -23,7 +23,7 @@
                 }
         }
 
-        $badFile = "badIds.txt";
+        $badFile = "./IdTextFiles/badIds.txt";
         file_put_contents($badFile, $badString);
         echo " Bad property count: ".$badCount;
 

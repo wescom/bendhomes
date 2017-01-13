@@ -87,6 +87,6 @@ $db = array(
 
         echo "idString: ".$idString;
 
-        $file = "ourIds.txt";
+        $file = "./IdTextFiles/ourIds.txt";
         file_put_contents($file, $idString);
 ?>

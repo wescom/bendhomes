@@ -206,7 +206,7 @@ foreach($scenarios as $qvars) {
 }
 
 echo 'idString = '.$idString;
-$file = 'retsIds.txt';
+$file = './IdTextFiles/retsIds.txt';
 file_put_contents($file, $idString);
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
