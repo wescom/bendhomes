@@ -36,6 +36,22 @@ $ourArray = explode(",", $ourString);
 
 foreach($ourArray as $item) {
 	echo '<p>'.$item.'</p>';
+
+	$mlsposts = bhLookupPostByMLS($propItem['MLNumber']);
+
+	$bhpropertyid = $mlsposts[0];
+	 $log = $propItem['MLNumber']." wpID: ".$bhpropertyid." status: ".$propItem['Status']." lastMod: ".$propItem["LastModifiedDateTime"];
+	 echo "<p>mls: ".$log."</p>";
+
+	//$wasSuccess = bhDeleteProperty($propItem, $rc);
+
+	/*if ($bhpropertyid > 0) { 
+	    bhDeleteWPImages($bhpropertyid);
+	    wp_delete_post($bhpropertyid);
+	    	
+	} else {
+	    echo "<p>Property was not in wordpress database";
+	}*/
 }
 
 
