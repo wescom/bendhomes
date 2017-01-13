@@ -28,7 +28,8 @@ $ourString = file_get_contents($ourFile);
 echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">hello world! 222</p>';
 
 if ($ourString === FALSE) {
-	echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">ERROR</p>';
+	$error = error_get_last();
+	echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">ERROR '.$error['message'].'</p>';
 } else {
 	echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$ourString.'</p>';
 }
