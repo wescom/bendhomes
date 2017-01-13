@@ -25,7 +25,13 @@ echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">hello
 $ourFile = "../../../_retsapi/IdTextFiles/badIds.txt";
 $ourString = file_get_contents($ourFile);
 
-echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$ourString.'</p>';
+echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">hello world! 222</p>';
+
+if ($ourString === FALSE) {
+	echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">ERROR</p>';
+} else {
+	echo '<p style="background-color: brown; color: #ffffff; padding: 0.25em;">'.$ourString.'</p>';
+}
 
 //$daysBack = 365;
 
