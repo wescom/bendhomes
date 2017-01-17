@@ -30,6 +30,8 @@
                 $conn->close();
         }
 
+
+
         $file = "./IdTextFiles/retsIds.txt";
         $retsString = file_get_contents($file);
         echo "rets: ".$retsString;
@@ -56,7 +58,6 @@
         $badFile = "./IdTextFiles/badIds.txt";
         file_put_contents($badFile, $badString);
         echo " Bad property count: ".$badCount;
-
 
         markBadInOurRets($badString);
 

@@ -1,39 +1,30 @@
 <?php
 //include("inc/retsabspath.php");
-//include("/var/www/html/_retsapi/inc/getBadIdsHeader.php");
+include("/var/www/html/_retsapi/inc/header.php");
 ini_set('max_execution_time', 0);
 
 $centralcount = 999999;
 $lastDatePulled = 0;
 $idString = "";
-
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
+  ),
+  'Agent_MEMB'=> array(
+    'count' => $centralcount,
+    'fotos' => 'yes',
+    'resource' => 'Agent',
+    'class' => 'MEMB'
+  ),
+  'Office_OFFI'=> array(
+    'count' => $centralcount,
+    'fotos' => 'no',
+    'resource' => 'Office',
+    'class' => 'OFFI'
   )
-);
-
-$universalkeys = array(
-  'ActiveAgent' => array(
-    'MEMB' => 'MemberNumber'
-    // 'MEMB' => '(IsActive=1)'
-  ),
-  'Agent' => array(
-    'MEMB' => 'MemberNumber'
-    // 'MEMB' => '(IsActive=1)'
-  ),
-  'MemberAssociation' => array(
-    'ASSC' => 'MemberNumber'
-  ),
-  'Office' => array(
-    'OFFI' => 'OfficeNumber'
-  ),
-  'OfficeAssociation' => array(
-    'ASSC' => 'OfficeAssociationKey'
-  ),
 );
 
 /* ##### ######### ##### */
@@ -50,18 +41,18 @@ function buildRetsQuery($fqvars) {
   // It looks up the last time it was run, and queries from last modified forward
   // we store it as simple .txt file based on the query in use
   // $fnamerecent = '/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt';
-  //$fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
+  $fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
 
-  //$pulldate = array();
-  //$pulldate['now'] = (int) time();
+  $pulldate = array();
+  $pulldate['now'] = (int) time();
 
-  //if(file_exists($fnamerecent)) {
- //   $pulldate['recent'] = file_get_contents($fnamerecent);
- //   $pulldate['recent'] = (int) $pulldate['recent'];
- // } else {
-  //  $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
-  //}
-  //$lastDatePulled = $pulldate['recent'];
+  if(file_exists($fnamerecent)) {
+    $pulldate['recent'] = file_get_contents($fnamerecent);
+    $pulldate['recent'] = (int) $pulldate['recent'];
+  } else {
+    $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+  }
+  $lastDatePulled = $pulldate['recent'];
   $pulldate['retsquery'] = "2001-06-01T00:00:00-08:00"; //date('c',$pulldate['recent']);
   $funiversalqueries = universalqueries($pulldate['retsquery']);
 
@@ -98,35 +89,6 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
 /* ##### RETS QUERY #### */
 /* ##### ######### ##### */
 
-function universalqueries($pulltime) {
-
-  $manual_mls = (isset($_GET['mls']) ? $_GET['mls'] : NULL);
-
-  $universalqueries = array(
-  
-    'ActiveAgent' => array(
-      'MEMB' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
-      // 'MEMB' => '(IsActive=1)'
-    ),
-    'Agent' => array(
-      'MEMB' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
-      // 'MEMB' => '(IsActive=1)'
-    ),
-    'MemberAssociation' => array(
-      'ASSC' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
-    ),
-    'Office' => array(
-      'OFFI' => '(OfficeNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
-    ),
-    'OfficeAssociation' => array(
-      'ASSC' => '(OfficeAssociationKey=0+), (PictureModifiedDateTime='.$pulltime.'+)',
-    ),
-  );
-
-  return $universalqueries;
-}
-
-
 function runRetsQuery($qvars) {
   global $universalkeys;
   global $rets;
@@ -135,27 +97,6 @@ function runRetsQuery($qvars) {
   $query = buildRetsQuery($qvars);
 
   print_r($query);
-
-  // setup your configuration
-  $config = new \PHRETS\Configuration;
-  $config->setLoginUrl('http://rets172lax.raprets.com:6103/CentralOregon/COAR/Login.aspx');
-  $config->setUsername('BBUL');
-  $config->setPassword('JGrady');
-
-  // optional.  value shown below are the defaults used when not overridden
-  $config->setRetsVersion('1.7.2'); // see constants from \PHRETS\Versions\RETSVersion
-  // $config->setUserAgent('PHRETS/2.0');
-  $config->setUserAgent('BBulletin/1.72');
-  // $config->setUserAgentPassword($rets_user_agent_password); // string password, if given
-  $config->setHttpAuthenticationMethod('digest'); // or 'basic' if required
-  $config->setOption('use_post_method', false); // boolean
-  $config->setOption('disable_follow_location', false); // boolean
-
-  // get a session ready using the configuration
-  $rets = new \PHRETS\Session($config);
-
-  // make the first request
-  $connect = $rets->Login();
 
   $results = $rets->Search(
       $qvars['resource'],
@@ -167,7 +108,7 @@ function runRetsQuery($qvars) {
           'Format' => 'COMPACT',
           'Limit' => $qvars['count'],
           'StandardNames' => 0, // give system names
-          'Select' => 'MemberNumber',
+          'Select' => $qvars['resource'].'_'.$qvars['class'].', Status',
       ]
   );
 
@@ -199,6 +140,10 @@ function runRetsQuery($qvars) {
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
 
+/* ##### ######### ####### */
+/* ##### GET ALL DATA #### */
+/* ##### ######### ####### */
+
 echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
 foreach($scenarios as $qvars) {
@@ -218,9 +163,9 @@ foreach($scenarios as $qvars) {
 
 }
 
-//echo 'idString = '.$idString;
-//$file = './IdTextFiles/retsIds.txt';
-//file_put_contents($file, $idString);
+echo 'idString = '.$idString;
+$file = './IdTextFiles/retsIds.txt';
+file_put_contents($file, $idString);
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>
