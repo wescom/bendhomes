@@ -102,22 +102,24 @@ function universalqueries($pulltime) {
 
   $manual_mls = (isset($_GET['mls']) ? $_GET['mls'] : NULL);
 
+  $universalqueries = array(
+  
     'ActiveAgent' => array(
-      'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'MEMB' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
       // 'MEMB' => '(IsActive=1)'
     ),
     'Agent' => array(
-      'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'MEMB' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
       // 'MEMB' => '(IsActive=1)'
     ),
     'MemberAssociation' => array(
-      'ASSC' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'ASSC' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
     ),
     'Office' => array(
-      'OFFI' => '(OfficeNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'OFFI' => '(OfficeNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
     ),
     'OfficeAssociation' => array(
-      'ASSC' => '(OfficeAssociationKey=0+), (LastModifiedDateTime='.$pulltime.'+)',
+      'ASSC' => '(OfficeAssociationKey=0+), (PictureModifiedDateTime='.$pulltime.'+)',
     ),
   );
 
