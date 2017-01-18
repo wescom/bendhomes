@@ -183,9 +183,6 @@ function processData($qvars, $itemsarr) {
   }
 
   foreach($itemsarr as $prop) {
-    echo "q".$qvars['resource']."  c".$qvars['class'];
-    $puid = $universalkeys[$qvars['resource']][$qvars['class']];
-    echo "puid: ".$puid;
     $photos = $rets->GetObject($qvars['resource'], 'Photo', $dataType,'*', 0);
     if ($qvars['fotos'] == 'yes') {
       unset($photos);
