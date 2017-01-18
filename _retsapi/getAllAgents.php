@@ -188,7 +188,7 @@ function saveToDB($itemsarr, $qvars){
     $escarray = array_map('mysql_real_escape_string', $array);
 
 
-    $query = "INSERT INTO ".$qvars['class']."_".$qvars['resource'];
+    $query = "INSERT INTO ".$qvars['resource']."_".$qvars['class'];
     $query .= " (`".implode("`, `", array_keys($escarray))."`)";
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
     $query .= "ON DUPLICATE KEY UPDATE ";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
