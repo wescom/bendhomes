@@ -274,21 +274,25 @@ foreach($scenarios as $qvars) {
     $file = './IdTextFiles/'.$qvars['resource'].'.txt';
     file_put_contents($file, $idList);*/
     // 2. this is second step, use the ids you got previous and chunk them up in reasonable imports
-    $start = 300;
-    $end = 400;
+    $start = 0;
+    $count = 200;
     $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
     $idString = file_get_contents($idFile);
     echo '<pre> file ids: '.$idString.'</pre>';
     $idArray = explode(",", $idString);
-    $pieceArray = array_slice($idArray, $start, $end);
-    $pieceString = implode(",", $pieceArray);
-    echo '<pre> piece ids: '.$pieceString.'</pre>';
-    $all_agent_data = getAllAgentData($qvars, $pullDate, $pieceString);
-    echo '<pre>';
-    print_r($all_agent_data);
-    echo '</pre>';
-    $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-    saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+    if (sizeof($idArray) > $start) {
+      $pieceArray = array_slice($idArray, $start, $count);
+      $pieceString = implode(",", $pieceArray);
+      echo '<pre> piece ids: '.$pieceString.'</pre>';
+      $all_agent_data = getAllAgentData($qvars, $pullDate, $pieceString);
+      echo '<pre>';
+      print_r($all_agent_data);
+      echo '</pre>';
+      $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+    } else {
+      echo '<pre style="color:red">At end of array.</pre>';
+    }
 
 
   } else {
