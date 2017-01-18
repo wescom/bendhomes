@@ -117,13 +117,19 @@ function runRetsQuery($qvars, $datePulled) {
   $temparr = $results->toArray();
   // refactor arr with keys supplied by universalkeys in header
   $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
-
   $idString = "";
+
+  if ($qvars['class'] == 'OFFI') {
+      $dataType = 'OfficeNumber'
+  } else {
+      $dataType = 'MemberNumber'
+  }
+
   foreach ($itemsarr as $prop) {
 
    //   $puid = $universalkeys[$qvars['resource']][$qvars['class']];
    //   $dt2 = date('Y-m-d H:i:s');
-      $idString.= $prop['ListingRid'].",";
+      $idString.= $prop[$dataType].",";
      // echo '<pre style="background-color: green; color: #fff;">id: '.$prop['ListingRid'].'</pre>';;
   }
    echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).' - '.$idString.'</pre>';
