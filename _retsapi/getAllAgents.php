@@ -58,7 +58,7 @@ function getSetPullDate() {
     $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
   }
 
-  $pulldate['retsquery'] = '2001-01-01T00:00:00-08:00'; //date('c',$pulldate['recent']);
+  $pulldate['retsquery'] = date('c',$pulldate['recent']);
   echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
   return $pulldate['retsquery'];
 }
@@ -253,9 +253,42 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
 
 echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
-$pullDate = getSetPullDate();
+$updateByIdListFile = false;  // only used manually to pull all data in from text file of ids
+
+if ($updateByIdListFile == false) {
+  $pullDate = getSetPullDate(); 
+} else {
+  $pullDate = '2001-01-01T00:00:00-08:00'; //set this to however far back you want to pull from
+}
 
 foreach($scenarios as $qvars) {
+
+  if ($updateByIdListFile == true) {
+    // Comment out part 2 first and run to get ids, then uncomment part 2 and comment part 1 out and run.
+    // 1. This is first step - get all the ids for the time range you are doing
+    /*$idList = runRetsQuery($qvars, $pullDate);
+    echo '<pre>';
+    print_r($idList);
+    echo '</pre>';
+    $file = './IdTextFiles/'.$qvars['resource'].'.txt';*/
+    // 2. this is second step, use the ids you got previous and chunk them up in reasonable imports
+    $start = 0;
+    $start = 100;
+    $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
+    $idString = file_get_contents($ourFile);
+    $idArray = explode(",", $ourString);
+    $pieceArray = array_slice($idArray, $start, $end);
+    $pieceString = implode(",", $pieceArray);
+    echo '<pre> piece ids: '.$pieceString.'</pre>';
+    /*$all_agent_data = getAllAgentData($qvars, $pullDate, $pieceString);
+    echo '<pre>';
+    print_r($all_agent_data);
+    echo '</pre>';
+    $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+    saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);*/
+
+
+  } else {
   // 1. Get ids of Agents that have updated since last pull date
    $idList = runRetsQuery($qvars, $pullDate);
    echo '<pre>';
@@ -263,12 +296,13 @@ foreach($scenarios as $qvars) {
    echo '</pre>';
    $file = './IdTextFiles/'.$qvars['resource'].'.txt';
    file_put_contents($file, $idList);
-   //$all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
-   /*echo '<pre>';
+   $all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
+   echo '<pre>';
    print_r($all_agent_data);
-   echo '</pre>';*/
-   //$all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-   //saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+   echo '</pre>';
+   $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+   saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+  }
 
 }
 
