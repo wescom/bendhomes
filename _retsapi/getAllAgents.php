@@ -104,7 +104,6 @@ function runRetsQuery($qvars, $datePulled) {
           'Format' => 'COMPACT',
           'Limit' => $qvars['count'],
           'StandardNames' => 0, // give system names
-          'Select' => $qvars['resource'].'_'.$qvars['class'].', Status',
       ]
   );
 
