@@ -101,7 +101,7 @@ class Rets_DB {
 }
 
 $agents_query = new Rets_DB();
-$agents = $agents_query -> select("select * from ActiveAgent_MEMB WHERE OfficeName = 'Duke Warner Realty'");
+$agents = $agents_query -> select("select * from ActiveAgent_MEMB WHERE FullName = 'Karen Banks'");
 
 //print_r($agents);
 
