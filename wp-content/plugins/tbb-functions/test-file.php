@@ -17,38 +17,8 @@ print($file);*/
 
 
 
-/*$db = array(
-    'host' => 'localhost',
-    'username' => 'phrets',
-    'password' => 'hCqaQvMKW9wJKQwS',
-    'database' => 'bh_rets'
-);
 
-$idString = "";
-
-$conn = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
-
-if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-}
-
-$query = "select ListingRid, MLNumber from Property_BUSI";
-$result = $conn->query($query);
-
-if ($result->num_rows > 0) {
-
-		while($row = $result->fetch_assoc()) {
-				//echo "<pre>id: ".$row['ListingRid']."</pre>";
-				$idString .= $row['ListingRid']."-".$row['MLNumber']."<br>";
-		}
-}
-
-$conn->close();
-
-echo "idString: ".$idString;*/
-
-
-
+//  https://www.binpress.com/tutorial/using-php-with-mysql-the-right-way/17
 class Rets_DB {
     // The database connection
     protected static $connection;
@@ -130,15 +100,28 @@ class Rets_DB {
     }
 }
 
-$business = new Rets_DB();
-$offices = $business -> select("select ListingRid, MLNumber from Property_BUSI");
+ 
+$member_num = !empty($_GET['num']) ? 'WHERE MemberNumber =' .$_GET['num'] : '';
 
-//print_r($offices);
+$agents_query = new Rets_DB();
+$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
 
-$office;
-foreach( $offices as $row ) {
-	$office .= $row['ListingRid'] .' - '. $row['MLNumber'] .'<br>';
+//print_r($agents);
+
+$agent;
+foreach( $agents as $row ) {
+	$agent .= 
+		'<p>
+		Name: ' .$row['FullName'] .'<br>
+		Is Active: '. $row['IsActive'] .'<br>
+		Member Number: '. $row['MemberNumber'] .'<br>
+		MLS ID: '. $row['MLSID'] .'<br>
+		Office MLS ID: '. $row['OfficeMLSID'] .'<br>
+		Office Name: '. $row['OfficeName'] .'<br>
+		Office Number: '. $row['OfficeNumber'] .'<br>
+		Is Featured: '. $row['featured'] .
+		'</p>';
 }
 
-echo $office;
+echo $agent;
 
