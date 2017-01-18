@@ -211,9 +211,9 @@ foreach($scenarios as $qvars) {
    echo '</pre>';
    $all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
    echo '<pre>';
-   print_r($all_agent_data);
+   //print_r($all_agent_data);
    echo '</pre>';
-   //processData($qvars, $rets_data);
+   processData($qvars, $all_agent_data);
 
 }
 
