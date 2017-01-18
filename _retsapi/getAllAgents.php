@@ -77,11 +77,6 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
   return $newarray;
 }
 
-
-/* ##### ######### ##### */
-/* ##### RETS QUERY #### */
-/* ##### ######### ##### */
-
 /* ##### ######### ##### */
 /* ##### RETS QUERY #### */
 /* ##### ######### ##### */
@@ -187,6 +182,7 @@ function processData($qvars, $itemsarr) {
       unset($photos);
       $photos = $rets->GetObject($qvars['resource'], 'Photo', $dataType,'*', 0);
       foreach($photos as $photo) {
+        echo "objId: ".$photo->getObjectId();
         if ($photo->getObjectId() != '*') {
           $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
           $photobinary = $photo->getContent();
@@ -196,10 +192,6 @@ function processData($qvars, $itemsarr) {
       }
     }
   }
-}
-
-function getDataType($class){
-
 }
 
 /* ##### ######### ####### */
