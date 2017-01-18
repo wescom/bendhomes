@@ -107,8 +107,6 @@ function runRetsQuery($qvars, $datePulled) {
       ]
   );
 
-     //$results = $rets->Search(Class=RESI&SearchType=Property&Count=1&Limit=NONE&QueryType=DMQL2&Format=COMPACT&Select= ListingRid,LastModifiedDateTime,PictureModifiedDateTime,PictureCount&Query=(ListingRid=1+),(LastModifiedDateTime=2017-01-01T00:00:00-08:00+));
-
    echo '<pre>';
 //   print_r($results);
    echo '</pre>';
@@ -117,8 +115,8 @@ function runRetsQuery($qvars, $datePulled) {
   $temparr = $results->toArray();
   // refactor arr with keys supplied by universalkeys in header
   $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
-  $idString = "";
 
+  /*$idString = "";
   if ($qvars['class'] == 'OFFI') {
       $dataType = 'OfficeNumber';
   } else {
@@ -126,15 +124,30 @@ function runRetsQuery($qvars, $datePulled) {
   }
 
   foreach ($itemsarr as $prop) {
-
-   //   $puid = $universalkeys[$qvars['resource']][$qvars['class']];
-   //   $dt2 = date('Y-m-d H:i:s');
       $idString.= $prop[$dataType].",";
-     // echo '<pre style="background-color: green; color: #fff;">id: '.$prop['ListingRid'].'</pre>';;
-  }
-   echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).' - '.$idString.'</pre>';
+  }*/
+  //echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).' - '.$idString.'</pre>';
 
   return $itemsarr;
+}
+
+function processData($qvars, $itemsarr) {
+  foreach($itemsarr as $prop)
+  if ($qvars['fotos'] == 'yes') {
+    unset($photos);
+    foreach($photos as $photo) {
+      if ($photo->getObjectId() != '*') {
+        if ($qvars['class'] == 'OFFI') {
+          $dataType = 'OfficeNumber';
+        } else {
+          $dataType = 'MemberNumber';
+        }
+        $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
+        $photobinary = $photo->getContent();
+        file_put_contents($fnamebackup, $photobinary, LOCK_EX);
+      }
+    }
+  }
 }
 
 /* ##### ######### ####### */
@@ -151,6 +164,7 @@ foreach($scenarios as $qvars) {
    echo '<pre>';
    print_r($rets_data);
    echo '</pre>';
+   processData($qvars, $rets_data);
 
 }
 
