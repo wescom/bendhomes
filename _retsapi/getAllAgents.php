@@ -58,7 +58,7 @@ function getSetPullDate() {
     $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
   }
 
-  $pulldate['retsquery'] = '2017-01-16T00:00:00-08:00'; //date('c',$pulldate['recent']);
+  $pulldate['retsquery'] = '2017-01-10T00:00:00-08:00'; //date('c',$pulldate['recent']);
   echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
   return $pulldate['retsquery'];
 }
@@ -179,7 +179,7 @@ function saveToDB($itemsarr, $qvars){
   $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
   unset($db);
   if($qvars['class'] == 'OFFI') {
-    $tableItemsArray = ['something','IsActive','LastModifiedDateTime','MLSID','OfficeName','OfficeNumber','OfficePhone','OfficePhoneComplete','StreetAddress','StreetCity','StreetState','StreetZipCode','lastPullTime']; 
+    $tableItemsArray = ['IDX','IsActive','LastModifiedDateTime','MLSID','OfficeName','OfficeNumber','OfficePhone','OfficePhoneComplete','StreetAddress','StreetCity','StreetState','StreetZipCode','lastPullTime']; 
   } else {
     $tableItemsArray = ['FullName','IsActive','LastModifiedDateTime','MLSID','OfficeMLSID','OfficeName','OfficeNumber','images','lastPullTime'];
   }
