@@ -101,7 +101,7 @@ function runRetsQuery($qvars, $datePulled) {
       [
           'QueryType' => 'DMQL2', // it's always use DMQL2
           'Count' => 1, // count and records
-          'Format' => 'COMPACT',
+          'Format' => 'COMPACT-DECODED',
           'Limit' => $qvars['count'],
           'StandardNames' => 0, // give system names
           'Select' => $dataType,
@@ -150,7 +150,7 @@ function getAllAgentData($qvars, $pullDate, $idList) {
       [
           'QueryType' => 'DMQL2', // it's always use DMQL2
           'Count' => 1, // count and records
-          'Format' => 'COMPACT',
+          'Format' => 'COMPACT-DECODED',
           'Limit' => $qvars['count'],
           'StandardNames' => 0, // give system names
       ]
