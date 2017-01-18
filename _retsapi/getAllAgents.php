@@ -169,7 +169,7 @@ foreach($scenarios as $qvars) {
    echo '<pre>';
    print_r($rets_data);
    echo '</pre>';
-   processData($qvars, $rets_data);
+   //processData($qvars, $rets_data);
 
 }
 
