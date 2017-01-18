@@ -58,7 +58,7 @@ function getSetPullDate() {
     $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
   }
 
-  $pulldate['retsquery'] = date('c',$pulldate['recent']);
+  $pulldate['retsquery'] = '2017-01-16T00:00:00-08:00'; //date('c',$pulldate['recent']);
   echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
   return $pulldate['retsquery'];
 }
