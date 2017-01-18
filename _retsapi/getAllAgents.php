@@ -132,19 +132,22 @@ function runRetsQuery($qvars, $datePulled) {
 }
 
 function processData($qvars, $itemsarr) {
-  foreach($itemsarr as $prop)
-  if ($qvars['fotos'] == 'yes') {
-    unset($photos);
-    foreach($photos as $photo) {
-      if ($photo->getObjectId() != '*') {
-        if ($qvars['class'] == 'OFFI') {
-          $dataType = 'OfficeNumber';
-        } else {
-          $dataType = 'MemberNumber';
+  foreach($itemsarr as $prop) {
+    $puid = $universalkeys[$qvars['resource']][$qvars['class']];
+    $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
+    if ($qvars['fotos'] == 'yes') {
+      unset($photos);
+      foreach($photos as $photo) {
+        if ($photo->getObjectId() != '*') {
+          if ($qvars['class'] == 'OFFI') {
+            $dataType = 'OfficeNumber';
+          } else {
+            $dataType = 'MemberNumber';
+          }
+          $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
+          $photobinary = $photo->getContent();
+          file_put_contents($fnamebackup, $photobinary, LOCK_EX);
         }
-        $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
-        $photobinary = $photo->getContent();
-        file_put_contents($fnamebackup, $photobinary, LOCK_EX);
       }
     }
   }
