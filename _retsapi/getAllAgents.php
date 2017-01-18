@@ -130,7 +130,7 @@ function runRetsQuery($qvars, $datePulled) {
         $idString.= $prop[$dataType];
         $isFirst = 0;
       } else {
-        $idString.= $prop[$dataType].",";
+        $idString.= ",".$prop[$dataType];
       }
   }
   echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).' - '.$idString.'</pre>';
