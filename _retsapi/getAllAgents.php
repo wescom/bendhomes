@@ -12,12 +12,12 @@ $scenarios = array(
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
   ),
-  'Agent_MEMB'=> array(
+  /*'Agent_MEMB'=> array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Agent',
     'class' => 'MEMB'
-  ),
+  ),*/
   'Office_OFFI'=> array(
     'count' => $centralcount,
     'fotos' => 'no',
@@ -167,11 +167,32 @@ function getAllAgentData($qvars, $pullDate, $idList) {
   return $itemsarr;
 }
 
-function saveToDB($prop, $qvars, $photoName){
+function saveToDB($itemsarr, $qvars){
+
   echo "saving to db";
+  $db = array(
+    'host' => 'localhost',
+    'username' => 'phrets',
+    'password' => 'hCqaQvMKW9wJKQwS',
+    'database' => 'bh_rets'
+  );
+  //$dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
+  //unset($db);
+
+  foreach($itemsarr as $key => $array) {
+    $escarray = array_map('mysql_real_escape_string', $array);
+
+    $query = = "REPLACE INTO ".$qvars['class']."_".$qvars['resource'];
+    $query .= " (`".implode("`, `", array_keys($escarray))."`)";
+    $query .= " VALUES ('".implode("', '", $escarray)."') ";
+
+    echo '<pre style="color:red">Query: '.$query.'</pre>'
+  }
+
+  
 }
 
-function processData($qvars, $itemsarr) {
+function getPhotos($qvars, $itemsarr, $pullDate) {
   global $universalkeys;
   global $rets;
   if ($qvars['class'] == 'OFFI') {
@@ -191,13 +212,16 @@ function processData($qvars, $itemsarr) {
           $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
           $photobinary = $photo->getContent();
           file_put_contents($photoName, $photobinary, LOCK_EX);
-          echo "<pre style='color:blue'>Saving photo: ".$photoName."</pre>";
+          //echo "<pre style='color:blue'>Saving photo: ".$photoName."</pre>";
 
         }
       }
     }
-    saveToDB($prop, $qvars, $photoName);
+    $itemsarr[$prop[$puid]]['images'] = $photoName;
+    $itemsarr[$prop[$puid]]['lastPullTime'] = $pullDate;
+   
   }
+  return $itemsarr;
 }
 
 /* ##### ######### ####### */
@@ -218,7 +242,8 @@ foreach($scenarios as $qvars) {
    echo '<pre>';
    print_r($all_agent_data);
    echo '</pre>';
-   processData($qvars, $all_agent_data);
+   $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+   saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
 
 }
 
