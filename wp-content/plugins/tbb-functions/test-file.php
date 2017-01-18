@@ -101,7 +101,7 @@ class Rets_DB {
 }
 
 $agents_query = new Rets_DB();
-$agents = $agents_query -> select("select * from ActiveAgent_MEMB WHERE OfficeName = 'Sunriver Realty'");
+$agents = $agents_query -> select("select * from ActiveAgent_MEMB WHERE MemberNumber = '89'");
 
 //print_r($agents);
 
