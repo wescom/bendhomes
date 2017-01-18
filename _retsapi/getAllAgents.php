@@ -161,6 +161,11 @@ function getAllAgentData($qvars, $pullDate, $idList) {
           'StandardNames' => 0, // give system names
       ]
   );
+
+  echo '<pre>';
+  print_r($results);
+  echo '</pre>';
+
   // convert from objects to array, easier to process
   $temparr = $results->toArray();
   // refactor arr with keys supplied by universalkeys in header
