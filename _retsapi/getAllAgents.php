@@ -156,9 +156,9 @@ function getAllAgentData($qvars, $pullDate, $idList) {
       ]
   );
 
-  echo '<pre>';
+  //echo '<pre>';
   //print_r($results);
-  echo '</pre>';
+  //echo '</pre>';
 
   // convert from objects to array, easier to process
   $temparr = $results->toArray();
@@ -169,7 +169,7 @@ function getAllAgentData($qvars, $pullDate, $idList) {
 
 function saveToDB($itemsarr, $qvars){
 
-  echo "saving to db";
+  //echo "saving to db";
   $db = array(
     'host' => 'localhost',
     'username' => 'phrets',
@@ -203,9 +203,9 @@ function saveToDB($itemsarr, $qvars){
 
       }
     }
-    echo '<pre style="color:red">Query: '.$query.'</pre>';
+    //echo '<pre style="color:red">Query: '.$query.'</pre>';
     if (mysqli_query($dbConnection, $query)) {
-        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+        //echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
     } else {
         echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
     }
@@ -234,7 +234,7 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
           $photoPath = RETSABSPATH.'/imagesAgents/'.$photoName;
           $photobinary = $photo->getContent();
           file_put_contents($photoName, $photobinary, LOCK_EX);
-          echo "<pre style='color:blue'>Saving photo: ".$photoPath."</pre>";
+          //echo "<pre style='color:blue'>Saving photo: ".$photoPath."</pre>";
 
         }
       }
@@ -259,14 +259,14 @@ foreach($scenarios as $qvars) {
   // 1. Get ids of Agents that have updated since last pull date
    $idList = runRetsQuery($qvars, $pullDate);
    echo '<pre>';
-   //print_r($rets_data);
+   print_r($idList);
    echo '</pre>';
-   $all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
-   echo '<pre>';
+   //$all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
+   /*echo '<pre>';
    print_r($all_agent_data);
-   echo '</pre>';
-   $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-   saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+   echo '</pre>';*/
+   //$all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+   //saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
 
 }
 
