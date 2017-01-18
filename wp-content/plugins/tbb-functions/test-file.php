@@ -101,10 +101,10 @@ class Rets_DB {
 }
 
 $member_num;
-$member_num = $_GET['num'];
+$member_num = 'WHERE MemberNumber =' .$_GET['num'];
 
 $agents_query = new Rets_DB();
-$agents = $agents_query -> select("select * from ActiveAgent_MEMB WHERE MemberNumber = {$member_num}");
+$agents = $agents_query -> select("select * from ActiveAgent_MEMB {$member_num}");
 
 //print_r($agents);
 
