@@ -123,13 +123,48 @@ function runRetsQuery($qvars, $datePulled) {
   // refactor arr with keys supplied by universalkeys in header
   $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
-  /*$idString = "";
-
+  $idString = "";
+  $isFirst = 1;
   foreach ($itemsarr as $prop) {
-      $idString.= $prop[$dataType].",";
-  }*/
-  //echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).' - '.$idString.'</pre>';
+      if($isFirst == 1) {
+        $idString.= $prop[$dataType]
+        $isFirst = 0;
+      } else {
+        $idString.= $prop[$dataType].",";
+      }
+  }
+  echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).' - '.$idString.'</pre>';
+  return $itemsarr;
+}
 
+function getAllAgentData($qvars, $pullDate, $idList) {
+  global $universalkeys;
+  global $rets;
+
+  if ($qvars['class'] == 'OFFI') {
+      $dataType = 'OfficeNumber';
+  } else {
+      $dataType = 'MemberNumber';
+  }
+
+  $query = "(".$dataType."=".$idList.")";
+
+  $results = $rets->Search(
+      $qvars['resource'],
+      $qvars['class'],
+      $query,
+      [
+          'QueryType' => 'DMQL2', // it's always use DMQL2
+          'Count' => 1, // count and records
+          'Format' => 'COMPACT',
+          'Limit' => $qvars['count'],
+          'StandardNames' => 0, // give system names
+      ]
+  );
+  // convert from objects to array, easier to process
+  $temparr = $results->toArray();
+  // refactor arr with keys supplied by universalkeys in header
+  $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
   return $itemsarr;
 }
 
@@ -165,9 +200,13 @@ $pullDate = getSetPullDate();
 
 foreach($scenarios as $qvars) {
   // 1. Get ids of Agents that have updated since last pull date
-   $rets_data = runRetsQuery($qvars, $pullDate);
+   $idList = runRetsQuery($qvars, $pullDate);
    echo '<pre>';
-   print_r($rets_data);
+   //print_r($rets_data);
+   echo '</pre>';
+   $all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
+   echo '<pre>';
+   print_r($all_agent_data);
    echo '</pre>';
    //processData($qvars, $rets_data);
 
