@@ -167,6 +167,10 @@ function getAllAgentData($qvars, $pullDate, $idList) {
   return $itemsarr;
 }
 
+function saveToDB($prop, $qvars, $photoName){
+  echo "saving to db";
+}
+
 function processData($qvars, $itemsarr) {
   global $universalkeys;
   global $rets;
@@ -188,9 +192,11 @@ function processData($qvars, $itemsarr) {
           $photobinary = $photo->getContent();
           file_put_contents($photoName, $photobinary, LOCK_EX);
           echo "<pre style='color:blue'>Saving photo: ".$photoName."</pre>";
+
         }
       }
     }
+    saveToDB($prop, $qvars, $photoName);
   }
 }
 
@@ -210,7 +216,7 @@ foreach($scenarios as $qvars) {
    echo '</pre>';
    $all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
    echo '<pre>';
-   //print_r($all_agent_data);
+   print_r($all_agent_data);
    echo '</pre>';
    processData($qvars, $all_agent_data);
 
