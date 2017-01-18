@@ -178,20 +178,26 @@ function saveToDB($itemsarr, $qvars){
   );
   //$dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
   //unset($db);
+  if($qvars['class'] == 'OFFI') {
+    $tableItemsArray = ['something','IsActive','LastModifiedDateTime','MLSID','OfficeName','OfficeNumber','OfficePhone','OfficePhoneComplete','StreetAddress','StreetCity','StreetState','StreetZipCode','lastPullTime']; 
+  } else {
+    $tableItemsArray = ['FullName','IsActive','LastModifiedDateTime','MLSID','OfficeMLSID','OfficeName','OfficeNumber','images','lastPullTime'];
+  }
 
   foreach($itemsarr as $key => $array) {
     $escarray = array_map('mysql_real_escape_string', $array);
 
+
     $query = "INSERT INTO ".$qvars['class']."_".$qvars['resource'];
     $query .= " (`".implode("`, `", array_keys($escarray))."`)";
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
-    $query .= "ON DUPLICATE KEY UPDATE MemberNumber = VALUES(".$array['MemberNumber'].")";
+    $query .= "ON DUPLICATE KEY UPDATE ";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
 
-    echo '<pre style="color:red">Query: ';
-    foreach($escarray as $item) {
-      echo "- ".$item;
+    
+    foreach($tableItemsArray as $item) {
+      $query .= $item." = VALUES(".$item.")";
     }
-    echo '</pre>';
+    echo '<pre style="color:red">Query: '.$query.'</pre>';
   }
 
   
