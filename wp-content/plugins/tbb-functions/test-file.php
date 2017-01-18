@@ -135,3 +135,10 @@ $offices = $business -> select("select ListingRid, MLNumber from Property_BUSI")
 
 print_r($offices);
 
+$office;
+foreach( $offices as $row ) {
+	$office .= $row['ListingRid'] - $row['MLNumber'] .'<br>';
+}
+
+echo $office;
+
