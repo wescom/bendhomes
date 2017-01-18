@@ -4,8 +4,7 @@ include("/var/www/html/_retsapi/inc/header.php");
 ini_set('max_execution_time', 0);
 
 $centralcount = 999999;
-$lastDatePulled = 0;
-$idString = "";
+
 $scenarios = array(
   'ActiveAgent_MEMB' => array(
     'count' => $centralcount,
@@ -32,15 +31,22 @@ $scenarios = array(
 /* ##### ######### ##### */
 
 /* ##### Build RETS db query ##### */
-function buildRetsQuery($fqvars) {
-  global $lastDatePulled;
+function buildRetsQuery($fqvars, $pullDate) {
+  
   $resource = $fqvars['resource'];
   $class = $fqvars['class'];
 
-  // we do this date store and pull for the query.
-  // It looks up the last time it was run, and queries from last modified forward
-  // we store it as simple .txt file based on the query in use
-  // $fnamerecent = '/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt';
+  $funiversalqueries = universalqueries($pullDate);
+
+  // first part, resource and class uses the minimum unique key for query, then last modified
+  // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+  $usethisquery = ''.$funiversalqueries[$resource][$class].'';
+  return $usethisquery;
+}
+
+function getSetPullDate() {
+
+
   $fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
 
   $pulldate = array();
@@ -52,19 +58,10 @@ function buildRetsQuery($fqvars) {
   } else {
     $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
   }
-  $lastDatePulled = $pulldate['recent'];
-  $pulldate['retsquery'] = "2001-06-01T00:00:00-08:00"; //date('c',$pulldate['recent']);
-  $funiversalqueries = universalqueries($pulldate['retsquery']);
 
-  // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
-
+  $pulldate['retsquery'] = "2017-01-10T00:00:00-08:00"; //date('c',$pulldate['recent']);
   echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
-//  file_put_contents($fnamerecent,$pulldate['now']);
-
-  // first part, resource and class uses the minimum unique key for query, then last modified
-  // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
-  $usethisquery = ''.$funiversalqueries[$resource][$class].'';
-  return $usethisquery;
+  return $pulldate['retsquery'];
 }
 
 /* ##### Refactor returned data with key supplied by universalkeys in header file ##### */
@@ -89,12 +86,11 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
 /* ##### RETS QUERY #### */
 /* ##### ######### ##### */
 
-function runRetsQuery($qvars) {
+function runRetsQuery($qvars, $datePulled) {
   global $universalkeys;
   global $rets;
-  global $lastDatePulled;
 
-  $query = buildRetsQuery($qvars);
+  $query = buildRetsQuery($qvars, $datePulled);
 
   print_r($query);
 
@@ -123,7 +119,7 @@ function runRetsQuery($qvars) {
   // refactor arr with keys supplied by universalkeys in header
   $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
-  global $idString;
+  var $idString = "";
   foreach ($itemsarr as $prop) {
 
    //   $puid = $universalkeys[$qvars['resource']][$qvars['class']];
@@ -131,7 +127,7 @@ function runRetsQuery($qvars) {
       $idString.= $prop['ListingRid'].",";
      // echo '<pre style="background-color: green; color: #fff;">id: '.$prop['ListingRid'].'</pre>';;
   }
-   echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+   echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).' - '.$idString.'</pre>';
 
   return $itemsarr;
 }
@@ -140,32 +136,19 @@ function runRetsQuery($qvars) {
 /* ##### GET ALL DATA #### */
 /* ##### ######### ####### */
 
-/* ##### ######### ####### */
-/* ##### GET ALL DATA #### */
-/* ##### ######### ####### */
-
 echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
+$pullDate = getSetPullDate();
+
 foreach($scenarios as $qvars) {
-  // 1. Get RETS data
-  $rets_data = runRetsQuery($qvars);
+  // 1. Get ids of Agents that have updated since last pull date
+   $rets_data = runRetsQuery($qvars, $pullDate);
    echo '<pre>';
    print_r($rets_data);
    echo '</pre>';
 
-  /*
-  echo '<pre style="background-color: brown; color: #fff;">';
-  echo $rets_data['ListingAgentFullName'].'<br/>';
-  echo $rets_data['ListingAgentMLSID'].'<br/>';
-  echo $rets_data['ListingAgentNumber'].'<br/>';
-  echo '</pre>';
-  */
-
 }
 
-echo 'idString = '.$idString;
-$file = './IdTextFiles/retsIds.txt';
-file_put_contents($file, $idString);
 echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
 ?>
