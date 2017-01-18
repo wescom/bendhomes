@@ -230,10 +230,11 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
       $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
       foreach($photos as $photo) {
         if ($photo->getObjectId() != '*') {
-          $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
+          $photoName = $prop[$dataType].'_'.$photo->getObjectId().'.jpg';
+          $photoPath = RETSABSPATH.'/imagesAgents/'.$photoName;
           $photobinary = $photo->getContent();
           file_put_contents($photoName, $photobinary, LOCK_EX);
-          echo "<pre style='color:blue'>Saving photo: ".$photoName."</pre>";
+          echo "<pre style='color:blue'>Saving photo: ".$photoPath."</pre>";
 
         }
       }
