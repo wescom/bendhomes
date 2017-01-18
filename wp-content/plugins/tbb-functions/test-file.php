@@ -133,13 +133,5 @@ class Rets_DB {
 $business = new Rets_DB();
 $offices = $business -> select("select ListingRid, MLNumber from Property_BUSI");
 
-$office;
+print_r($offices);
 
-if( $offices->num_rows > 0 ) {
-	while($row = $offices->fetch_assoc()) {
-		//echo "<pre>id: ".$row['ListingRid']."</pre>";
-		$office .= $row['ListingRid']."-".$row['MLNumber']."<br>";
-	}
-}
-
-echo $office;
