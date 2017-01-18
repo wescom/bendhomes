@@ -134,7 +134,7 @@ function runRetsQuery($qvars, $datePulled) {
       }
   }
   echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).' - '.$idString.'</pre>';
-  return $itemsarr;
+  return $idString
 }
 
 function getAllAgentData($qvars, $pullDate, $idList) {
