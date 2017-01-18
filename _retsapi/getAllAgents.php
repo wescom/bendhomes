@@ -196,7 +196,7 @@ function saveToDB($itemsarr, $qvars){
     $isFirst = 1;
     foreach($tableItemsArray as $item) {
       if ($isFirst == 1) {
-        $query .= $item." = VALUES(".$item.")"
+        $query .= $item." = VALUES(".$item.")";
         $isFirst = 0;
       } else {
         $query .= ", ".$item." = VALUES(".$item.")";
