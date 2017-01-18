@@ -130,15 +130,15 @@ class Rets_DB {
     }
 }
 
-$business = new Rets_DB();
-$offices = $business -> select("select ListingRid, MLNumber from Property_BUSI");
+$agents_query = new Rets_DB();
+$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
 
-//print_r($offices);
+print_r($agents);
 
-$office;
-foreach( $offices as $row ) {
-	$office .= $row['ListingRid'] .' - '. $row['MLNumber'] .'<br>';
+/*$agent;
+foreach( $agents as $row ) {
+	$agent .= $row['ListingRid'] .' - '. $row['MLNumber'] .'<br>';
 }
 
-echo $office;
+echo $agent;*/
 
