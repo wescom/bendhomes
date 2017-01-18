@@ -187,7 +187,11 @@ function saveToDB($itemsarr, $qvars){
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
     $query .= "ON DUPLICATE KEY UPDATE MemberNumber = VALUES(".$array['MemberNumber'].")";
 
-    echo '<pre style="color:red">Query: '.$escarray.'</pre>';
+    echo '<pre style="color:red">Query: ';
+    foreach($escarray as $item) {
+      echo "- ".$item;
+    }
+    echo '</pre>';
   }
 
   
