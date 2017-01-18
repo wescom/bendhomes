@@ -177,9 +177,9 @@ function processData($qvars, $itemsarr) {
     $dataType = 'MemberNumber';
   }
 
-  foreach($itemsarr as $prop) 
+  foreach($itemsarr as $prop)  {
     $puid = $universalkeys[$qvars['resource']][$qvars['class']];
-    
+
     if ($qvars['fotos'] == 'yes') {
       unset($photos);
       $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
