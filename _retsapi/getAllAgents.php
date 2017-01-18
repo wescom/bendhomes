@@ -59,7 +59,7 @@ function getSetPullDate() {
   }
 
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
-  echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
+  
   return $pulldate['retsquery'];
 }
 
@@ -260,19 +260,21 @@ if ($updateByIdListFile == true) {
 } else {
   $pullDate = getSetPullDate();
 }
+echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
 
 foreach($scenarios as $qvars) {
 
   if ($updateByIdListFile == true) {
     // Comment out part 2 first and run to get ids, then uncomment part 2 and comment part 1 out and run.
     // 1. This is first step - get all the ids for the time range you are doing
-    /*$idList = runRetsQuery($qvars, $pullDate);
+    $idList = runRetsQuery($qvars, $pullDate);
     echo '<pre>';
     print_r($idList);
     echo '</pre>';
-    $file = './IdTextFiles/'.$qvars['resource'].'.txt';*/
+    $file = './IdTextFiles/'.$qvars['resource'].'.txt';
+    file_put_contents($file, $idList);
     // 2. this is second step, use the ids you got previous and chunk them up in reasonable imports
-    $start = 0;
+    /*$start = 0;
     $end = 100;
     $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
     $idString = file_get_contents($idFile);
@@ -280,7 +282,7 @@ foreach($scenarios as $qvars) {
     $idArray = explode(",", $idString);
     $pieceArray = array_slice($idArray, $start, $end);
     $pieceString = implode(",", $pieceArray);
-    echo '<pre> piece ids: '.$pieceString.'</pre>';
+    echo '<pre> piece ids: '.$pieceString.'</pre>';*/
     /*$all_agent_data = getAllAgentData($qvars, $pullDate, $pieceString);
     echo '<pre>';
     print_r($all_agent_data);
