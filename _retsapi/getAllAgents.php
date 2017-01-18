@@ -174,20 +174,21 @@ function getAllAgentData($qvars, $pullDate, $idList) {
 }
 
 function processData($qvars, $itemsarr) {
+  if ($qvars['class'] == 'OFFI') {
+    $dataType = 'OfficeNumber';
+  } else {
+    $dataType = 'MemberNumber';
+  }
+
   foreach($itemsarr as $prop) {
     echo "q".$qvars['resource']."  c".$qvars['class'];
     $puid = $universalkeys[$qvars['resource']][$qvars['class']];
     echo "puid: ".$puid;
-    $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
+    $photos = $rets->GetObject($qvars['resource'], 'Photo', $dataType,'*', 0);
     if ($qvars['fotos'] == 'yes') {
       unset($photos);
       foreach($photos as $photo) {
         if ($photo->getObjectId() != '*') {
-          if ($qvars['class'] == 'OFFI') {
-            $dataType = 'OfficeNumber';
-          } else {
-            $dataType = 'MemberNumber';
-          }
           $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
           $photobinary = $photo->getContent();
           file_put_contents($fnamebackup, $photobinary, LOCK_EX);
@@ -195,6 +196,10 @@ function processData($qvars, $itemsarr) {
       }
     }
   }
+}
+
+function getDataType($class){
+
 }
 
 /* ##### ######### ####### */
