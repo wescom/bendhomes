@@ -182,7 +182,7 @@ function saveToDB($itemsarr, $qvars){
   foreach($itemsarr as $key => $array) {
     $escarray = array_map('mysql_real_escape_string', $array);
 
-    $query = = "REPLACE INTO ".$qvars['class']."_".$qvars['resource'];
+    $query = "REPLACE INTO ".$qvars['class']."_".$qvars['resource'];
     $query .= " (`".implode("`, `", array_keys($escarray))."`)";
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
 
