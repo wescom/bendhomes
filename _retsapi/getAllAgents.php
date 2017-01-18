@@ -190,7 +190,8 @@ function processData($qvars, $itemsarr) {
         if ($photo->getObjectId() != '*') {
           $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
           $photobinary = $photo->getContent();
-          file_put_contents($fnamebackup, $photobinary, LOCK_EX);
+          file_put_contents($photoName, $photobinary, LOCK_EX);
+          echo "<pre style='color:blue'>Saving photo: ".$photoName."</pre>";
         }
       }
     }
