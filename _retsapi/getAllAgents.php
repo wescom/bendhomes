@@ -176,8 +176,8 @@ function saveToDB($itemsarr, $qvars){
     'password' => 'hCqaQvMKW9wJKQwS',
     'database' => 'bh_rets'
   );
-  //$dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
-  //unset($db);
+  $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
+  unset($db);
   if($qvars['class'] == 'OFFI') {
     $tableItemsArray = ['something','IsActive','LastModifiedDateTime','MLSID','OfficeName','OfficeNumber','OfficePhone','OfficePhoneComplete','StreetAddress','StreetCity','StreetState','StreetZipCode','lastPullTime']; 
   } else {
@@ -204,9 +204,13 @@ function saveToDB($itemsarr, $qvars){
       }
     }
     echo '<pre style="color:red">Query: '.$query.'</pre>';
+    if (mysqli_query($dbConnection, $query)) {
+        $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+    } else {
+        $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+    }
   }
-
-  
+  mysqli_close($dbConnection);
 }
 
 function getPhotos($qvars, $itemsarr, $pullDate) {
@@ -227,9 +231,9 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
       foreach($photos as $photo) {
         if ($photo->getObjectId() != '*') {
           $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
-          //$photobinary = $photo->getContent();
-          //file_put_contents($photoName, $photobinary, LOCK_EX);
-          //echo "<pre style='color:blue'>Saving photo: ".$photoName."</pre>";
+          $photobinary = $photo->getContent();
+          file_put_contents($photoName, $photobinary, LOCK_EX);
+          echo "<pre style='color:blue'>Saving photo: ".$photoName."</pre>";
 
         }
       }
