@@ -186,7 +186,7 @@ function saveToDB($itemsarr, $qvars){
     $query .= " (`".implode("`, `", array_keys($escarray))."`)";
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
 
-    echo '<pre style="color:red">Query: '.$query.'</pre>'
+    echo '<pre style="color:red">Query: '.$query.'</pre>';
   }
 
   
