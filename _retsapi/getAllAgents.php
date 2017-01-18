@@ -182,9 +182,10 @@ function saveToDB($itemsarr, $qvars){
   foreach($itemsarr as $key => $array) {
     $escarray = array_map('mysql_real_escape_string', $array);
 
-    $query = "REPLACE INTO ".$qvars['class']."_".$qvars['resource'];
+    $query = "INSERT INTO ".$qvars['class']."_".$qvars['resource'];
     $query .= " (`".implode("`, `", array_keys($escarray))."`)";
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
+    $query .= "ON DUPLICATE KEY UPDATE ListingRid = VALUES(".$key['ListingRid'].")";
 
     echo '<pre style="color:red">Query: '.$query.'</pre>';
   }
@@ -210,8 +211,8 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
       foreach($photos as $photo) {
         if ($photo->getObjectId() != '*') {
           $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
-          $photobinary = $photo->getContent();
-          file_put_contents($photoName, $photobinary, LOCK_EX);
+          //$photobinary = $photo->getContent();
+          //file_put_contents($photoName, $photobinary, LOCK_EX);
           //echo "<pre style='color:blue'>Saving photo: ".$photoName."</pre>";
 
         }
