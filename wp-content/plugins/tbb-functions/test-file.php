@@ -24,8 +24,31 @@ $db = array(
     'database' => 'bh_rets'
 );
 
+$idString = "";
 
-$bh_rets_db = new wpdb( 'phrets', 'hCqaQvMKW9wJKQwS', 'bh_rets', 'localhost' );
+$conn = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+
+if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+}
+
+$query = "select ListingRid, MLNumber from Property_BUSI";
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+
+		while($row = $result->fetch_assoc()) {
+				//echo "<pre>id: ".$row['ListingRid']."</pre>";
+				$idString .= $row['ListingRid']."-".$row['MLNumber']."<br>";
+		}
+}
+
+$conn->close();
+
+echo "idString: ".$idString;
+
+
+/*$bh_rets_db = new wpdb( 'phrets', 'hCqaQvMKW9wJKQwS', 'bh_rets', 'localhost' );
 
 $offices_query = $bh_rets_db->query( 'select ListingRid, MLNumber from Property_RESI' );
 
@@ -39,4 +62,4 @@ if( $offices_query->num_rows > 0 ) {
 	
 }
 
-echo $office;
+echo $office;*/
