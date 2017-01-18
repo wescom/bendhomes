@@ -133,7 +133,7 @@ class Rets_DB {
 $agents_query = new Rets_DB();
 $agents = $agents_query -> select("select * from ActiveAgent_MEMB");
 
-print_r($agents);
+//print_r($agents);
 
 $agent;
 foreach( $agents as $row ) {
