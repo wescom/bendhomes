@@ -163,7 +163,7 @@ function getAllAgentData($qvars, $pullDate, $idList) {
   );
 
   echo '<pre>';
-  print_r($results);
+  //print_r($results);
   echo '</pre>';
 
   // convert from objects to array, easier to process
