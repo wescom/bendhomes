@@ -224,7 +224,7 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
 
   foreach($itemsarr as $prop)  {
     $puid = $universalkeys[$qvars['resource']][$qvars['class']];
-
+    $photoName = "";
     if ($qvars['fotos'] == 'yes') {
       unset($photos);
       $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
@@ -237,9 +237,10 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
 
         }
       }
+      $itemsarr[$prop[$puid]]['images'] = $photoName;
+      $itemsarr[$prop[$puid]]['lastPullTime'] = $pullDate;
     }
-    $itemsarr[$prop[$puid]]['images'] = $photoName;
-    $itemsarr[$prop[$puid]]['lastPullTime'] = $pullDate;
+    
    
   }
   return $itemsarr;
