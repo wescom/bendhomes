@@ -119,7 +119,7 @@ function runRetsQuery($qvars, $datePulled) {
   // refactor arr with keys supplied by universalkeys in header
   $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
-  var $idString = "";
+  $idString = "";
   foreach ($itemsarr as $prop) {
 
    //   $puid = $universalkeys[$qvars['resource']][$qvars['class']];
