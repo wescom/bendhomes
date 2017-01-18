@@ -127,7 +127,7 @@ function runRetsQuery($qvars, $datePulled) {
   $isFirst = 1;
   foreach ($itemsarr as $prop) {
       if($isFirst == 1) {
-        $idString.= $prop[$dataType]
+        $idString.= $prop[$dataType];
         $isFirst = 0;
       } else {
         $idString.= $prop[$dataType].",";
