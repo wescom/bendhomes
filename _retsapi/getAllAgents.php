@@ -94,6 +94,12 @@ function runRetsQuery($qvars, $datePulled) {
 
   print_r($query);
 
+  if ($qvars['class'] == 'OFFI') {
+      $dataType = 'OfficeNumber';
+  } else {
+      $dataType = 'MemberNumber';
+  }
+
   $results = $rets->Search(
       $qvars['resource'],
       $qvars['class'],
@@ -104,6 +110,7 @@ function runRetsQuery($qvars, $datePulled) {
           'Format' => 'COMPACT',
           'Limit' => $qvars['count'],
           'StandardNames' => 0, // give system names
+          'Select' => $dataType,
       ]
   );
 
@@ -117,11 +124,6 @@ function runRetsQuery($qvars, $datePulled) {
   $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
   /*$idString = "";
-  if ($qvars['class'] == 'OFFI') {
-      $dataType = 'OfficeNumber';
-  } else {
-      $dataType = 'MemberNumber';
-  }
 
   foreach ($itemsarr as $prop) {
       $idString.= $prop[$dataType].",";
