@@ -120,9 +120,9 @@ function runRetsQuery($qvars, $datePulled) {
   $idString = "";
 
   if ($qvars['class'] == 'OFFI') {
-      $dataType = 'OfficeNumber'
+      $dataType = 'OfficeNumber';
   } else {
-      $dataType = 'MemberNumber'
+      $dataType = 'MemberNumber';
   }
 
   foreach ($itemsarr as $prop) {
