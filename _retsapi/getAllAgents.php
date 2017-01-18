@@ -183,9 +183,9 @@ function processData($qvars, $itemsarr) {
   }
 
   foreach($itemsarr as $prop) {
-    $photos = $rets->GetObject($qvars['resource'], 'Photo', $dataType,'*', 0);
     if ($qvars['fotos'] == 'yes') {
       unset($photos);
+      $photos = $rets->GetObject($qvars['resource'], 'Photo', $dataType,'*', 0);
       foreach($photos as $photo) {
         if ($photo->getObjectId() != '*') {
           $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
