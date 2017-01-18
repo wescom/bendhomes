@@ -205,9 +205,9 @@ function saveToDB($itemsarr, $qvars){
     }
     echo '<pre style="color:red">Query: '.$query.'</pre>';
     if (mysqli_query($dbConnection, $query)) {
-        $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
     } else {
-        $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
     }
   }
   mysqli_close($dbConnection);
