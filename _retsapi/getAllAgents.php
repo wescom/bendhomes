@@ -176,6 +176,7 @@ function getAllAgentData($qvars, $pullDate, $idList) {
 function processData($qvars, $itemsarr) {
   foreach($itemsarr as $prop) {
     $puid = $universalkeys[$qvars['resource']][$qvars['class']];
+    echo "puid: ".$puid;
     $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
     if ($qvars['fotos'] == 'yes') {
       unset($photos);
