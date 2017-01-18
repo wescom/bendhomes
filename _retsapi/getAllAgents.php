@@ -185,7 +185,7 @@ function saveToDB($itemsarr, $qvars){
     $query = "INSERT INTO ".$qvars['class']."_".$qvars['resource'];
     $query .= " (`".implode("`, `", array_keys($escarray))."`)";
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
-    $query .= "ON DUPLICATE KEY UPDATE ListingRid = VALUES(".$key['ListingRid'].")";
+    $query .= "ON DUPLICATE KEY UPDATE ListingRid = VALUES(".$array['ListingRid'].")";
 
     echo '<pre style="color:red">Query: '.$query.'</pre>';
   }
