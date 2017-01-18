@@ -193,9 +193,15 @@ function saveToDB($itemsarr, $qvars){
     $query .= " VALUES ('".implode("', '", $escarray)."') ";
     $query .= "ON DUPLICATE KEY UPDATE ";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
 
-    
+    $isFirst = 1;
     foreach($tableItemsArray as $item) {
-      $query .= $item." = VALUES(".$item.")";
+      if ($isFirst == 1) {
+        $query .= $item." = VALUES(".$item.")"
+        $isFirst = 0;
+      } else {
+        $query .= ", ".$item." = VALUES(".$item.")";
+
+      }
     }
     echo '<pre style="color:red">Query: '.$query.'</pre>';
   }
