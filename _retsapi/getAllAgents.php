@@ -47,7 +47,7 @@ function buildRetsQuery($fqvars, $pullDate) {
 function getSetPullDate() {
 
 
-  $fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
+  /*$fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
 
   $pulldate = array();
   $pulldate['now'] = (int) time();
@@ -57,7 +57,7 @@ function getSetPullDate() {
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
     $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
-  }
+  }*/
 
   $pulldate['retsquery'] = "2017-01-10T00:00:00-08:00"; //date('c',$pulldate['recent']);
   echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
