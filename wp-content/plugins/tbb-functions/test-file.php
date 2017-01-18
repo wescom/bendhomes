@@ -135,10 +135,20 @@ $agents = $agents_query -> select("select * from ActiveAgent_MEMB");
 
 print_r($agents);
 
-/*$agent;
+$agent;
 foreach( $agents as $row ) {
-	$agent .= $row['ListingRid'] .' - '. $row['MLNumber'] .'<br>';
+	$agent .= 
+		'<p>
+		Name: ' .$row['FullName'] .'<br>
+		Is Active: '. $row['IsActive'] .'<br>
+		Member Number: '. $row['MemberNumber'] .'<br>
+		MLS ID: '. $row['MLSID'] .'<br>
+		Office MLS ID: '. $row['OfficeMLSID'] .'<br>
+		Office Name: '. $row['OfficeName'] .'<br>
+		Office Number: '. $row['OfficeNumber'] .'<br>
+		Is Featured: '. $row['featured'] .
+		'</p>';
 }
 
-echo $agent;*/
+echo $agent;
 
