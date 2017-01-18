@@ -1,8 +1,8 @@
 <?php 
 
-$rets_test = $wpdb->select('bh_rets');
-$test_agents = $rets_test->get_results("SELECT * FROM ActiveAgent_MEMB;");
-print_r($test_agents);
+//$rets_test = $wpdb->select('bh_rets');
+//$test_agents = $rets_test->get_results("SELECT * FROM ActiveAgent_MEMB;");
+//print_r($test_agents);
 
 get_header();
 
