@@ -274,8 +274,8 @@ foreach($scenarios as $qvars) {
     $file = './IdTextFiles/'.$qvars['resource'].'.txt';
     file_put_contents($file, $idList);*/
     // 2. this is second step, use the ids you got previous and chunk them up in reasonable imports
-    $start = 0;
-    $end = 100;
+    $start = 101;
+    $end = 200;
     $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
     $idString = file_get_contents($idFile);
     echo '<pre> file ids: '.$idString.'</pre>';
