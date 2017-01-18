@@ -133,11 +133,11 @@ class Rets_DB {
 $business = new Rets_DB();
 $offices = $business -> select("select ListingRid, MLNumber from Property_BUSI");
 
-print_r($offices);
+//print_r($offices);
 
 $office;
 foreach( $offices as $row ) {
-	$office .= $row['ListingRid'] - $row['MLNumber'] .'<br>';
+	$office .= $row['ListingRid'] .' - '. $row['MLNumber'] .'<br>';
 }
 
 echo $office;
