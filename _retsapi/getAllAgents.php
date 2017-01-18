@@ -46,8 +46,7 @@ function buildRetsQuery($fqvars, $pullDate) {
 
 function getSetPullDate() {
 
-
-  /*$fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
+  $fnamerecent = RETSABSPATH.'/newPullDates/AgentsOffices.txt';
 
   $pulldate = array();
   $pulldate['now'] = (int) time();
@@ -57,9 +56,9 @@ function getSetPullDate() {
     $pulldate['recent'] = (int) $pulldate['recent'];
   } else {
     $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
-  }*/
+  }
 
-  $pulldate['retsquery'] = "2017-01-16T00:00:00-08:00"; //date('c',$pulldate['recent']);
+  $pulldate['retsquery'] = date('c',$pulldate['recent']);
   echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
   return $pulldate['retsquery'];
 }
@@ -184,7 +183,6 @@ function processData($qvars, $itemsarr) {
       unset($photos);
       $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
       foreach($photos as $photo) {
-        echo "objId: ".$photo->getObjectId();
         if ($photo->getObjectId() != '*') {
           $photoName = RETSABSPATH.'/imagesAgents/'.$prop[$dataType].'_'.$photo->getObjectId().'.jpg';
           $photobinary = $photo->getContent();
