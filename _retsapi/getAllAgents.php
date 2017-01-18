@@ -283,12 +283,12 @@ foreach($scenarios as $qvars) {
     $pieceArray = array_slice($idArray, $start, $end);
     $pieceString = implode(",", $pieceArray);
     echo '<pre> piece ids: '.$pieceString.'</pre>';
-    /*$all_agent_data = getAllAgentData($qvars, $pullDate, $pieceString);
+    $all_agent_data = getAllAgentData($qvars, $pullDate, $pieceString);
     echo '<pre>';
     print_r($all_agent_data);
     echo '</pre>';
     $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-    saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);*/
+    saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
 
 
   } else {
