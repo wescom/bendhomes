@@ -255,12 +255,12 @@ foreach($scenarios as $qvars) {
    echo '<pre>';
    print_r($idList);
    echo '</pre>';
-   //$all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
+   $all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
    echo '<pre>';
-   //print_r($all_agent_data);
+   print_r($all_agent_data);
    echo '</pre>';
-   //$all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-   //saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+   $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+   saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
 
 }
 
