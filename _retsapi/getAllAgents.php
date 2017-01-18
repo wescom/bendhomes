@@ -174,6 +174,8 @@ function getAllAgentData($qvars, $pullDate, $idList) {
 }
 
 function processData($qvars, $itemsarr) {
+  global $universalkeys;
+  global $rets;
   if ($qvars['class'] == 'OFFI') {
     $dataType = 'OfficeNumber';
   } else {
