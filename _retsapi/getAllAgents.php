@@ -203,9 +203,9 @@ function saveToDB($itemsarr, $qvars){
 
       }
     }
-    //echo '<pre style="color:red">Query: '.$query.'</pre>';
+    echo '<pre style="color:red">Query: '.$query.'</pre>';
     if (mysqli_query($dbConnection, $query)) {
-        //echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
     } else {
         echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
     }
@@ -234,7 +234,7 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
           $photoPath = RETSABSPATH.'/imagesAgents/'.$photoName;
           $photobinary = $photo->getContent();
           file_put_contents($photoPath, $photobinary, LOCK_EX);
-          //echo "<pre style='color:blue'>Saving photo: ".$photoPath."</pre>";
+          echo "<pre style='color:blue'>Saving photo: ".$photoPath."</pre>";
 
         }
       }
