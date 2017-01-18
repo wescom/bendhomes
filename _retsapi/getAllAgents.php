@@ -262,7 +262,7 @@ foreach($scenarios as $qvars) {
    print_r($idList);
    echo '</pre>';
    $file = './IdTextFiles/allRetsAgentIds.txt';
-   file_put_contents($file, $idString);
+   file_put_contents($file, $idList);
    //$all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
    /*echo '<pre>';
    print_r($all_agent_data);
