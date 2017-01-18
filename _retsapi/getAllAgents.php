@@ -233,7 +233,7 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
           $photoName = $prop[$dataType].'_'.$photo->getObjectId().'.jpg';
           $photoPath = RETSABSPATH.'/imagesAgents/'.$photoName;
           $photobinary = $photo->getContent();
-          file_put_contents($photoName, $photobinary, LOCK_EX);
+          file_put_contents($photoPath, $photobinary, LOCK_EX);
           //echo "<pre style='color:blue'>Saving photo: ".$photoPath."</pre>";
 
         }
@@ -261,7 +261,7 @@ foreach($scenarios as $qvars) {
    echo '<pre>';
    print_r($idList);
    echo '</pre>';
-   $file = './IdTextFiles/allRetsAgentIds.txt';
+   $file = './IdTextFiles/$qvars['resource'].txt';
    file_put_contents($file, $idList);
    //$all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
    /*echo '<pre>';
