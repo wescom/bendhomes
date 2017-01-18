@@ -275,8 +275,8 @@ foreach($scenarios as $qvars) {
     $start = 0;
     $end = 100;
     $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
-    $idString = file_get_contents($ourFile);
-    $idArray = explode(",", $ourString);
+    $idString = file_get_contents($idFile);
+    $idArray = explode(",", $idString);
     $pieceArray = array_slice($idArray, $start, $end);
     $pieceString = implode(",", $pieceArray);
     echo '<pre> piece ids: '.$pieceString.'</pre>';
