@@ -8,18 +8,22 @@ Author: Jarel Culley
 Author URI: http://www.bendbulletin.com
 */
 
+if( ! defined( 'ABSPATH' ) )
+	exit;
+
 
 /**
  * Upon activation of the plugin, see if we are running the required version and deploy theme in defined.
  */
 function tbb_custom_functions_activation() {
-    if ( version_compare( get_bloginfo( 'version' ), '3.0', '<' ) ) {
+    if ( version_compare( get_bloginfo( 'version' ), '4.0', '<' ) ) {
         deactivate_plugins( __FILE__  );
-        wp_die( __('WordPress 3.0 and higher required. The plugin has now disabled itself. On a side note why are you running an old version :( Upgrade!','index') );
+        wp_die( __('WordPress 4.0 and higher required. The plugin has now disabled itself. On a side note why are you running an old version :( Upgrade!','index') );
     }
 }
 
 /* Constants */
+define( 'TBB_VERSION', '1.0.1' );
 define('TBB_FUNCTIONS_URL', plugin_dir_url(__FILE__));
 define('TBB_FUNCTIONS_DIR', plugin_dir_path(__FILE__));
 
@@ -27,13 +31,21 @@ define('TBB_FUNCTIONS_DIR', plugin_dir_path(__FILE__));
 /***** 
  * Include necessary files
 *****/
-require_once('admin/dashboard_widget.php');
-require_once('admin/functions.php');
-require_once('admin/pages-metabox.php');
-require_once('post-types/post-type-company.php');
-require_once('admin/settings-company.php');
-require_once('admin/settings-agents.php');
-require_once('tbb-shortcodes.php');
+require_once( TBB_FUNCTIONS_DIR . 'admin/dashboard_widget.php' );
+require_once( TBB_FUNCTIONS_DIR . 'admin/pages-metabox.php' );
+
+require_once( TBB_FUNCTIONS_DIR . 'admin/functions.php' );
+
+require_once( TBB_FUNCTIONS_DIR . 'rets-connect.class.php' );
+
+require_once( TBB_FUNCTIONS_DIR . 'admin/offices.php' );
+require_once( TBB_FUNCTIONS_DIR . 'admin/agents.php' );
+
+require_once( TBB_FUNCTIONS_DIR . 'post-types/post-type-company.php' );
+//require_once( TBB_FUNCTIONS_DIR . 'admin/settings-company.php' );
+//require_once( TBB_FUNCTIONS_DIR . 'admin/settings-agents.php' );
+
+require_once( TBB_FUNCTIONS_DIR . 'tbb-shortcodes.php' );
 
 
 // Enqueue Additional Files
