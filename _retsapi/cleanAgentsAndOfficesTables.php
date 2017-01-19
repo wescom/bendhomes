@@ -83,7 +83,7 @@ function runRetsQuery($qvars, $datePulled) {
         $idString.= ",".$prop[$dataType];
       }*/
   }
-  echo '<pre style="color: green;">RETS Ids - count: '.sizeof($idArray).' - '.implode("'",$idArray).'</pre>';
+  echo '<pre style="color: green;">RETS Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
   return $idArray;
 }
 
@@ -135,6 +135,7 @@ function getOurIds($qvars){
   }
 
   $query = "select ".$idType." from ".$qvars['resource'].'_'.$qvars['class'];
+  echo '<p>'.$query.'</p>'
   $result = $conn->query($query);
 
   $idArray = [];
@@ -143,7 +144,7 @@ function getOurIds($qvars){
       array_push($idArray, $row[$idType]);
     }
   }
-  echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).' - '.implode("'",$idArray).'</pre>';
+  echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
   return $idArray;
 }
 
