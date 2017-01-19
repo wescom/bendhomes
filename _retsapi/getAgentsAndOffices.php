@@ -46,7 +46,7 @@ function buildRetsQuery($fqvars, $pullDate) {
 
 function getSetPullDate() {
 
-  $file = RETSABSPATH.'/newPullDates/AgentsOffices.txt';
+  //$file = RETSABSPATH.'/newPullDates/AgentsOffices.txt';
 
   $pulldate = array();
   $pulldate['now'] = (int) time();
@@ -234,7 +234,7 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
       foreach($photos as $photo) {
         if ($photo->getObjectId() != '*') {
           $photoName = $prop[$dataType].'_'.$photo->getObjectId().'.jpg';
-          $photoPath = RETSABSPATH.'/imagesAgents/'.$photoName;
+          $photoPath = '/var/www/html/_retsapi/imagesAgents/'.$photoName;
           $photobinary = $photo->getContent();
           file_put_contents($photoPath, $photobinary, LOCK_EX);
           echo "<pre style='color:blue'>Saving photo: ".$photoPath."</pre>";
@@ -274,7 +274,7 @@ foreach($scenarios as $qvars) {
     echo '<pre>';
     print_r($idList);
     echo '</pre>';
-    $file = './IdTextFiles/'.$qvars['resource'].'.txt';
+    $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'.txt';
     file_put_contents($file, $idList);
     // ***********  End part 1 ***********
     // *********** 2. this is second step, use the ids you got previous and chunk them up in reasonable imports ************
@@ -305,7 +305,7 @@ foreach($scenarios as $qvars) {
    echo '<pre>';
    print_r($idList);
    echo '</pre>';
-   $file = './IdTextFiles/'.$qvars['resource'].'_time.txt';
+   $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'_time.txt';
    file_put_contents($file, $idList);
    $all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
    echo '<pre>';
