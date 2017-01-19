@@ -114,7 +114,7 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
   return $newarray;
 }
 
-function deletBadIds($badIdsArray) {
+function deletBadIds($badIdsArray, $qvars) {
   $db = array(
     'host' => 'localhost',
     'username' => 'phrets',
@@ -208,7 +208,7 @@ foreach($scenarios as $qvars) {
   $badIdsArray = compareAndGetBads($retsIdArray, $ourIdArray);
 
   if (sizeof($badIdsArray) > 0) {
-    deletBadIds($badIdsArray);
+    deletBadIds($badIdsArray, $qvars);
   } else {
     echo '<p>Empty array - no bad ids to delete...</p>';
   }
