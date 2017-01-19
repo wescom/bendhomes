@@ -120,7 +120,7 @@ class Rets_Agents {
 			
 			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</>';
+				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</div>';
 			
 				if( empty( $show_search ) ) {
 			
@@ -212,16 +212,15 @@ class Rets_Agents {
 		
 		return $html;
 		
-    }
+    } // end render
 	
-	public function create_slug($string){
-		
-		$slug = strtolower( $string );
-		
-		$slug = preg_replace( '/[^A-Za-z0-9-]+/', '-', $string );
+	public function create_slug( $string ) {
+				
+		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
 	   
 		return $slug;
-	}
+		
+	} // end create_slug
 	
 } 
 new Rets_Agents();
