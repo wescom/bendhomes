@@ -68,7 +68,7 @@ class Rets_Agents {
 					
 					$has_image_class = !empty( $agent[''] ) ? 'with-image' : 'without-image';
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
-					$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['images'];
+					$image_url = !empty( $agent['images'] ) ? home_url() .'/_retsapi/imagesAgents/'. $agent['images'] : '';
 					
 					// Begin item output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
