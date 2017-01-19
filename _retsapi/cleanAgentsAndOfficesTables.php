@@ -134,10 +134,10 @@ function deletBadIds($badIdsArray) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $query = "DELETE from ".$qvars['resource'].'_'.$qvars['class']." WHERE ".$idType." IN (".implode(", ",$idArray).")";
+  $query = "DELETE from ".$qvars['resource'].'_'.$qvars['class']." WHERE ".$idType." IN (".implode(", ",$badIdsArray).")";
   echo '<p>'.$query.'</p>';
   
-
+  mysqli_close($conn);
   //$result = $conn->query($query);
 }
 
@@ -171,6 +171,8 @@ function getOurIds($qvars){
     }
   }
   echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
+  mysqli_close($conn);
+  
   return $idArray;
 }
 
