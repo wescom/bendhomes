@@ -98,9 +98,9 @@ class Rets_Agents {
 					
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
 					
-					/*$image_url = !empty( $agent['images'] ) ? 
+					$image_url = !empty( $agent['images'] ) ? 
 						home_url() .'/_retsapi/imagesAgents/'. $agent['images'] : 
-						get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';*/
+						get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
 					
 					$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 					
@@ -108,8 +108,8 @@ class Rets_Agents {
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $class, $has_image_class, $category_classes );
 					
-						//$html .= sprintf( '<figure class="custom-post-image image-agent-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
-								//$count, '#', $image_url, $agent['FullName'], $agent['OfficeName'] );
+						$html .= sprintf( '<figure class="custom-post-image image-agent-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
+								$count, '#', $image_url, $agent['FullName'], $agent['OfficeName'] );
 					
 						$html .= sprintf( '<h4 class="custom-post-title"><a href="">%s</a></h4>', $agent['FullName'] );
 					
