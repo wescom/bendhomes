@@ -122,7 +122,7 @@ function getOurIds($qvars){
     'database' => 'bh_rets'
   );
 
-  if ($qvars['class']= "OFFI") {
+  if ($qvars['class'] == "OFFI") {
     $idType = "OfficeNumber";
   } else {
     $idType = "MemberNumber";
