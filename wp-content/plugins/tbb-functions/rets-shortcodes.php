@@ -75,10 +75,7 @@ class Rets_Agents {
 		$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 		$startAt = $limit * ($page - 1);
 		
-		$agents_query = new Rets_DB();
-		//$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
-		
-		$agents = $agents_query->select("
+		$query = "
 			SELECT ActiveAgent_MEMB.FullName,
 			ActiveAgent_MEMB.MemberNumber,
 			ActiveAgent_MEMB.IsActive,
@@ -104,7 +101,11 @@ class Rets_Agents {
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 			WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 
 			{$sort_order}
-		");
+		";
+		
+		$agents_query = new Rets_DB();
+		
+		$agents = $agents_query->select( $query );
 		
 		//print_r( $agents );
 		
@@ -116,7 +117,7 @@ class Rets_Agents {
 			
 			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<h4>'. $total_agents .'Total Agents</h4>';
+				$html .= '<h4>'. number_format( $total_agents ) .' Total Agents</h4>';
 			
 				if( empty( $show_search ) ) {
 			
