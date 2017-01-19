@@ -55,10 +55,9 @@ class Rets_Agents {
 				break;
 		}
 		
-		$sort_order = '';
+		$sort_order = 'ORDER BY FullName RAND()';
 		
 		if( !empty( $order ) && !empty( $orderby ) ) {
-			if( $order == "random" || $order == 'rand' ) $order = 'RAND()';
 			$sort_order = 'ORDER BY '. $orderby .' '. $order;
 		}
 		
