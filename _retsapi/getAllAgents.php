@@ -46,7 +46,7 @@ function buildRetsQuery($fqvars, $pullDate) {
 
 function getSetPullDate() {
 
-  $fnamerecent = RETSABSPATH.'/newPullDates/AgentsOffices.txt';
+  $file = RETSABSPATH.'/newPullDates/AgentsOffices.txt';
 
   $pulldate = array();
   $pulldate['now'] = (int) time();
@@ -59,6 +59,7 @@ function getSetPullDate() {
   //}
 
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
+  file_put_contents($file, "Last Pulled: ".$pulldate['retsquery']);
   
   return $pulldate['retsquery'];
 }
