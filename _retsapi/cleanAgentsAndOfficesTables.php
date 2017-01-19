@@ -172,7 +172,7 @@ function getOurIds($qvars){
   }
   echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
   mysqli_close($conn);
-  
+
   return $idArray;
 }
 
@@ -203,7 +203,11 @@ foreach($scenarios as $qvars) {
 
   $badIdsArray = compareAndGetBads($retsIdArray, $ourIdArray);
 
-  deletBadIds($badIdsArray);
+  if (sizeof($badIdsArray) > 0) {
+    deletBadIds($badIdsArray);
+  } else {
+    echo '<p>Empty array - no bad ids to delete...</p>';
+  }
 
 }
 
