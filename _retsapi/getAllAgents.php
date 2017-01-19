@@ -289,11 +289,10 @@ foreach($scenarios as $qvars) {
       print_r($all_agent_data);
       echo '</pre>';
       $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);*/
+      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
     } else {
       echo '<pre style="color:red">At end of array.</pre>';
-    }
-
+    }*/
 
   } else {
   // 1. Get ids of Agents that have updated since last pull date
