@@ -169,6 +169,7 @@ $pullDate = '2001-01-01T00:00:00-08:00';
 
 foreach($scenarios as $qvars) {
   
+  print_r($qvars);
   $retsIdArray = runRetsQuery($qvars, $pullDate);
 
 
