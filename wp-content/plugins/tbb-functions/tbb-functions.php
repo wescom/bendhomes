@@ -46,6 +46,7 @@ require_once( TBB_FUNCTIONS_DIR . 'post-types/post-type-company.php' );
 //require_once( TBB_FUNCTIONS_DIR . 'admin/settings-agents.php' );
 
 require_once( TBB_FUNCTIONS_DIR . 'tbb-shortcodes.php' );
+require_once( TBB_FUNCTIONS_DIR . 'rets-shortcodes.php' );
 
 
 // Enqueue Additional Files
