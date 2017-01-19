@@ -84,7 +84,7 @@ class Rets_Agents {
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 		");
 		
-		print_r( $agents );
+		//print_r( $agents );
 		
 		if( $agents ) {
 			
@@ -95,8 +95,14 @@ class Rets_Agents {
 				foreach( $agents as $agent ) {
 					
 					$has_image_class = !empty( $agent[''] ) ? 'with-image' : 'without-image';
+					
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
-					$image_url = !empty( $agent['images'] ) ? home_url() .'/_retsapi/imagesAgents/'. $agent['images'] : '';
+					
+					$image_url = !empty( $agent['images'] ) ? 
+						home_url() .'/_retsapi/imagesAgents/'. $agent['images'] : 
+						get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+					
+					$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 					
 					// Begin item output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
@@ -108,7 +114,7 @@ class Rets_Agents {
 						$html .= sprintf( '<h4 class="custom-post-title"><a href="">%s</a></h4>', $agent['FullName'] );
 					
 						$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
-									$agent['OfficeName'], $agent['OfficeNumber'], $agent['MemberNumber'] );
+									$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', '' );
 					
@@ -140,7 +146,7 @@ class Rets_Agents {
 			
 		}
 		
-		//return $html;
+		return $html;
 		
     }
 	
