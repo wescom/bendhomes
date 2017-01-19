@@ -137,8 +137,12 @@ function deletBadIds($badIdsArray) {
   $query = "DELETE from ".$qvars['resource'].'_'.$qvars['class']." WHERE ".$idType." IN (".implode(", ",$badIdsArray).")";
   echo '<p>'.$query.'</p>';
   
+  if($conn->query($query)) {
+    echo "<p>Success!!!!</p>";
+  } else {
+    echo "<p>Error: ".mysqli_error($conn)."</p>";
+  }
   mysqli_close($conn);
-  //$result = $conn->query($query);
 }
 
 function getOurIds($qvars){
