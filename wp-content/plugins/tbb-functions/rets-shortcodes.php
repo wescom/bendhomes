@@ -22,7 +22,7 @@ class Rets_Agents {
 				'orderby' => '',
 				'class' => '',
 				'columns' => 3,
-				'show_search' => true,
+				'show_search' => '',
 			), $args
 		);
 
@@ -55,6 +55,23 @@ class Rets_Agents {
 				break;
 		}
 		
+		$sort_order = '';
+		
+		if( !empty( $order ) && !empty( $orderby ) ) {
+			$sort_order = 'ORDER BY '. $orderby .' '. $order;
+		}
+		
+		// Enable order A-Z & Z-A select field if url contains ?sort= param
+		$url_sort = '';
+		$url_sort = $_GET['sort'];
+
+		if( $url_sort == 'a-z' ) {
+			$sort_order = 'ORDER BY FullName ASC';
+		}
+		if( $url_sort == 'z-a' ) {
+			$sort_order = 'ORDER BY FullName DESC';
+		}
+		
 		$agents_query = new Rets_DB();
 		//$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
 		
@@ -82,6 +99,8 @@ class Rets_Agents {
 			FROM ActiveAgent_MEMB
 			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+			WHERE ActiveAgent_MEMB.OfficeNumber != 99999 
+			{$sort_order}
 		");
 		
 		//print_r( $agents );
@@ -91,6 +110,46 @@ class Rets_Agents {
 			$count = 1;
 			
 			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
+			
+				if( empty( $show_search ) ) {
+			
+					$html .= '<div class="custom-search-wrap">';
+						$html .= '
+							<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
+								<input type="text" class="search-field" name="s" placeholder="Find an agent"/>
+								<input type="hidden" name="post_type" value="agent" />
+								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
+							</form>
+						';
+					$html .= '</div>';
+
+				}
+
+				$current_url = home_url() .'/rets-agents/';
+				$html .= '<div class="order-box option-bar small clearfix">';
+					$html .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
+
+						$option_values = '';
+						if( $url_sort == 'a-z' ) {
+							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+						} elseif( $url_sort == 'z-a' ) {
+							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+						} else {
+							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+						}
+						$html .= $option_values;
+
+					$html .= '</select></span>';
+				$html .= '</div>';
+				$html .= '<script>
+							document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
+							</script>';
 			
 				foreach( $agents as $agent ) {
 					
