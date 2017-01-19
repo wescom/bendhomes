@@ -40,7 +40,7 @@ function runRetsQuery($qvars, $datePulled) {
 
   $query = buildRetsQuery($qvars, $datePulled);
 
-  print_r($query);
+  //print_r($query);
 
   if ($qvars['class'] == 'OFFI') {
       $dataType = 'OfficeNumber';
@@ -135,7 +135,6 @@ function getOurIds($qvars){
   }
 
   $query = "select ".$idType." from ".$qvars['resource'].'_'.$qvars['class'];
-  echo '<p>'.$query.'</p>';
   $result = $conn->query($query);
 
   $idArray = [];
@@ -151,18 +150,16 @@ function getOurIds($qvars){
 function compareAndGetBads($retsIdArray, $ourIdArray) {
   // anything that is in ours but not rets, should be deleted from ours
   $badIds = "";
-  $isFirst = 1;
+  $idArray = [];
   foreach($ourIdArray as $item) {
     if (in_array($item, $retsIdArray)){
         //echo "<pre>".$item." - good</pre>";
       } else {
-        if ($isFirst == 1){
-          $badIds = $item;
-          $isFirst = 0;
-        }
-        //echo "<pre>".$item."bad - delete from our table </pre>";
+        array_push($idArray, $item);
       }
   }
+  echo '<pre style="color: red;">BAD Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
+  return $idArray
 }
 
 $pullDate = '2001-01-01T00:00:00-08:00';
@@ -174,16 +171,10 @@ foreach($scenarios as $qvars) {
 
 
   $ourIdArray = getOurIds($qvars);
-  /*$ourIdArray = explode(",", $ourIddList);
-  echo '<pre>';
-  print_r($ourIdArray);
-  echo '</pre>';
 
-  $badIdsList = compareAndGetBads($retsIdArray, $ourIdArray);
-  $badIdArray = explode(",", $badIdsList);
-  echo '<pre>';
-  print_r($badIdArray);
-  echo '</pre>';*/
+
+  $badIdsArray= compareAndGetBads($retsIdArray, $ourIdArray);
+
 
 }
 
