@@ -56,7 +56,35 @@ class Rets_Agents {
 		}
 		
 		$agents_query = new Rets_DB();
-		$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
+		//$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
+		
+		$agents = $agents_query -> select("
+			SELECT ActiveAgent_MEMB.FullName,
+			ActiveAgent_MEMB.MemberNumber,
+			ActiveAgent_MEMB.IsActive,
+			ActiveAgent_MEMB.images,
+			Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+			Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+			Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+			Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+			Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+			Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+			Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+			Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+			Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+			# Agent_MEMB.IsActive,
+			Office_OFFI.OfficeName,
+			Office_OFFI.OfficePhoneComplete,
+			Office_OFFI.StreetAddress,
+			Office_OFFI.StreetCity,
+			Office_OFFI.StreetState,
+			Office_OFFI.StreetZipCode
+			FROM ActiveAgent_MEMB
+			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+		");
+		
+		print_r( $agents );
 		
 		if( $agents ) {
 			
@@ -112,7 +140,7 @@ class Rets_Agents {
 			
 		}
 		
-		return $html;
+		//return $html;
 		
     }
 	
