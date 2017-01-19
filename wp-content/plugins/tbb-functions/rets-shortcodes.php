@@ -2,6 +2,8 @@
 // Shortcodes built pulling directly from the RETS database instead of wordpress.
 // Uses the Rets_DB class found in rets-connect.class.php
 
+
+// Creates agents list on /agents page
 class Rets_Agents {
 	
 	public static $args;
@@ -23,6 +25,7 @@ class Rets_Agents {
 				'class' => '',
 				'columns' => 3,
 				'show_search' => '',
+				'linkto' => 'agent'
 			), $args
 		);
 
@@ -117,7 +120,7 @@ class Rets_Agents {
 			
 			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<h4>'. number_format( $total_agents ) .' Total Agents</h4>';
+				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</>';
 			
 				if( empty( $show_search ) ) {
 			
@@ -173,19 +176,21 @@ class Rets_Agents {
 					
 					$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 					
+					$permalink = home_url() .'/'. $linkto .'/?name='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
+					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $class, $has_image_class, $category_classes );
 					
 						$html .= sprintf( '<figure class="custom-post-image image-agent-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
-								$count, '#', $image_url, $agent['FullName'], $agent['OfficeName'] );
+								$count, $permalink, $image_url, $agent['FullName'], $agent['OfficeName'] );
 					
-						$html .= sprintf( '<h4 class="custom-post-title"><a href="">%s</a></h4>', $agent['FullName'] );
+						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $agent['FullName'] );
 					
 						$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
 									$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
 					
-						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', '' );
+						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 					
 					$html .= '</div></div>';
 					// End agent ouput
@@ -209,89 +214,14 @@ class Rets_Agents {
 		
     }
 	
+	public function create_slug($string){
+		
+		$slug = strtolower( $string );
+		
+		$slug = preg_replace( '/[^A-Za-z0-9-]+/', '-', $string );
+	   
+		return $slug;
+	}
+	
 } 
 new Rets_Agents();
-
-
-class Paginator {
- 
-    private $_conn;
-	private $_limit;
-	private $_page;
-	private $_query;
-	private $_total;
-	
-	public function __construct( $conn, $query ) {
-     
-		$this->_conn = $conn;
-		$this->_query = $query;
-
-		$rs= $this->_conn->query( $this->_query );
-		$this->_total = $rs->num_rows;
-
-	}
-	
-	public function getData( $limit = 10, $page = 1 ) {
-     
-		$this->_limit   = $limit;
-		$this->_page    = $page;
-
-		if ( $this->_limit == 'all' ) {
-			$query      = $this->_query;
-		} else {
-			$query      = $this->_query . " LIMIT " . ( ( $this->_page - 1 ) * $this->_limit ) . ", $this->_limit";
-		}
-		$rs             = $this->_conn->query( $query );
-
-		while ( $row = $rs->fetch_assoc() ) {
-			$results[]  = $row;
-		}
-
-		$result         = new stdClass();
-		$result->page   = $this->_page;
-		$result->limit  = $this->_limit;
-		$result->total  = $this->_total;
-		$result->data   = $results;
-
-		return $result;
-	}
-	
-	public function createLinks( $links, $list_class ) {
-		if ( $this->_limit == 'all' ) {
-			return '';
-		}
-
-		$last       = ceil( $this->_total / $this->_limit );
-
-		$start      = ( ( $this->_page - $links ) > 0 ) ? $this->_page - $links : 1;
-		$end        = ( ( $this->_page + $links ) < $last ) ? $this->_page + $links : $last;
-
-		$html       = '<ul class="' . $list_class . '">';
-
-		$class      = ( $this->_page == 1 ) ? "disabled" : "";
-		$html       .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . ( $this->_page - 1 ) . '">&laquo;</a></li>';
-
-		if ( $start > 1 ) {
-			$html   .= '<li><a href="?limit=' . $this->_limit . '&page=1">1</a></li>';
-			$html   .= '<li class="disabled"><span>...</span></li>';
-		}
-
-		for ( $i = $start ; $i <= $end; $i++ ) {
-			$class  = ( $this->_page == $i ) ? "active" : "";
-			$html   .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . $i . '">' . $i . '</a></li>';
-		}
-
-		if ( $end < $last ) {
-			$html   .= '<li class="disabled"><span>...</span></li>';
-			$html   .= '<li><a href="?limit=' . $this->_limit . '&page=' . $last . '">' . $last . '</a></li>';
-		}
-
-		$class      = ( $this->_page == $last ) ? "disabled" : "";
-		$html       .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . ( $this->_page + 1 ) . '">&raquo;</a></li>';
-
-		$html       .= '</ul>';
-
-		return $html;
-	}
- 
-}
