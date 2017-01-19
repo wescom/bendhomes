@@ -5,7 +5,7 @@ date_default_timezone_set('America/Los_Angeles');
 
 // pull in the packages managed by Composer
 include("retsabspath.php");
-include(RETSABSPATH."/vendor/autoload.php");
+include('/var/www/html/_retsapi/vendor/autoload.php');
 
 // setup your configuration
 $config = new \PHRETS\Configuration;
