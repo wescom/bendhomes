@@ -83,7 +83,7 @@ function runRetsQuery($qvars, $datePulled) {
         $idString.= ",".$prop[$dataType];
       }*/
   }
-  echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($idArray).' - '.$idArray.'</pre>';
+  echo '<pre style="color: green;">RETS Ids - count: '.sizeof($idArray).' - '.implode("'",$idArray).'</pre>';
   return $idArray;
 }
 
@@ -137,20 +137,14 @@ function getOurIds($qvars){
   $query = "select ".$idType." from ".$qvars['resource'].'_'.$qvars['class'];
   $result = $conn->query($query);
 
+  $idArray = [];
   if ($result->num_rows > 0) {
-    $firstOne = 1;
     while($row = $result->fetch_assoc()) {
-      //echo "<pre>id: ".$row['ListingRid']."</pre>";
-      if ($firstOne == 1){
-        $idString = $row[$idType];
-        $firstOne = 0;
-      } else {
-        $idString .= ",".$row[$idType];
-      }
+      array_push($idArray, $row[$idType];);
     }
   }
-
-  return $idString;
+  echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).' - '.implode("'",$idArray).'</pre>';
+  return $idArray;
 }
 
 function compareAndGetBads($retsIdArray, $ourIdArray) {
@@ -173,14 +167,12 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
 $pullDate = '2001-01-01T00:00:00-08:00';
 
 foreach($scenarios as $qvars) {
+  
   $retsIdArray = runRetsQuery($qvars, $pullDate);
-  //$retsIdArray = explode(",", $retsIdList);
-  echo '<pre>';
-  print_r($retsIdArray);
-  echo '</pre>';
 
-  /*$ourIdList = getOurIds($qvars);
-  $ourIdArray = explode(",", $ourIddList);
+
+  $ourIdArray = getOurIds($qvars);
+  /*$ourIdArray = explode(",", $ourIddList);
   echo '<pre>';
   print_r($ourIdArray);
   echo '</pre>';
