@@ -173,8 +173,8 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
 $pullDate = '2001-01-01T00:00:00-08:00';
 
 foreach($scenarios as $qvars) {
-  $retsIdList = runRetsQuery($qvars, $pullDate);
-  $retsIdArray = explode(",", $retsIdList);
+  $retsIdArray = runRetsQuery($qvars, $pullDate);
+  //$retsIdArray = explode(",", $retsIdList);
   echo '<pre>';
   print_r($retsIdArray);
   echo '</pre>';
