@@ -87,6 +87,20 @@ function runRetsQuery($qvars, $datePulled) {
   return $idArray;
 }
 
+/* ##### Build RETS db query ##### */
+function buildRetsQuery($fqvars, $pullDate) {
+  
+  $resource = $fqvars['resource'];
+  $class = $fqvars['class'];
+
+  $funiversalqueries = universalqueries($pullDate);
+
+  // first part, resource and class uses the minimum unique key for query, then last modified
+  // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+  $usethisquery = ''.$funiversalqueries[$resource][$class].'';
+  return $usethisquery;
+}
+
 function getOurIds($qvars){
   $db = array(
     'host' => 'localhost',
