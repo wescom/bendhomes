@@ -114,7 +114,7 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
   return $newarray;
 }
 
-function deletBadIds($badIdsArray) {
+function deletBadIds($badIdsArray, $qvars) {
   $db = array(
     'host' => 'localhost',
     'username' => 'phrets',
@@ -134,11 +134,15 @@ function deletBadIds($badIdsArray) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $query = "DELETE from ".$qvars['resource'].'_'.$qvars['class']." WHERE ".$idType." IN (".implode(", ",$idArray).")";
+  $query = "DELETE from ".$qvars['resource'].'_'.$qvars['class']." WHERE ".$idType." IN (".implode(", ",$badIdsArray).")";
   echo '<p>'.$query.'</p>';
   
-
-  //$result = $conn->query($query);
+  if($conn->query($query)) {
+    echo "<p>Success!!!!</p>";
+  } else {
+    echo "<p>Error: ".mysqli_error($conn)."</p>";
+  }
+  mysqli_close($conn);
 }
 
 function getOurIds($qvars){
@@ -171,6 +175,8 @@ function getOurIds($qvars){
     }
   }
   echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
+  mysqli_close($conn);
+
   return $idArray;
 }
 
@@ -201,7 +207,11 @@ foreach($scenarios as $qvars) {
 
   $badIdsArray = compareAndGetBads($retsIdArray, $ourIdArray);
 
-  deletBadIds($badIdsArray);
+  if (sizeof($badIdsArray) > 0) {
+    deletBadIds($badIdsArray, $qvars);
+  } else {
+    echo '<p>Empty array - no bad ids to delete...</p>';
+  }
 
 }
 
