@@ -140,7 +140,7 @@ function getOurIds($qvars){
   $idArray = [];
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-      array_push($idArray, $row[$idType];);
+      array_push($idArray, $row[$idType]);
     }
   }
   echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).' - '.implode("'",$idArray).'</pre>';
