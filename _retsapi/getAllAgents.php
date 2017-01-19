@@ -311,8 +311,8 @@ foreach($scenarios as $qvars) {
    echo '<pre>';
    print_r($all_agent_data);
    echo '</pre>';
-   //$all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-   //saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+   $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+   saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
   }
 
 }
