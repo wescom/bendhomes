@@ -135,7 +135,7 @@ function getOurIds($qvars){
   }
 
   $query = "select ".$idType." from ".$qvars['resource'].'_'.$qvars['class'];
-  echo '<p>'.$query.'</p>'
+  echo '<p>'.$query.'</p>';
   $result = $conn->query($query);
 
   $idArray = [];
