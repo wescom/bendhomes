@@ -100,7 +100,7 @@ class Rets_Agents {
 			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 			WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 
-			{$sort_order}
+			ORDERBY FullName RAND()
 		");
 		
 		//print_r( $agents );
