@@ -253,7 +253,7 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
 
 echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
-$updateByIdListFile = true;  // only used manually to pull all data in from text file of ids
+$updateByIdListFile = false;  // only used manually to pull all data in from text file of ids
 
 if ($updateByIdListFile == true) {
   $pullDate = '2001-01-01T00:00:00-08:00'; //set this to however far back you want to pull from
@@ -267,14 +267,14 @@ foreach($scenarios as $qvars) {
   if ($updateByIdListFile == true) {
     // Comment out part 2 first and run to get ids, then uncomment part 2 and comment part 1 out and run.
     // 1. This is first step - get all the ids for the time range you are doing
-    /*$idList = runRetsQuery($qvars, $pullDate);
+    $idList = runRetsQuery($qvars, $pullDate);
     echo '<pre>';
     print_r($idList);
     echo '</pre>';
     $file = './IdTextFiles/'.$qvars['resource'].'.txt';
-    file_put_contents($file, $idList);*/
+    file_put_contents($file, $idList);
     // 2. this is second step, use the ids you got previous and chunk them up in reasonable imports
-    $start = 2200; // start index
+    /*$start = 2200; // start index
     $count = 200; // how many past start to grab
     $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
     $idString = file_get_contents($idFile);
@@ -289,7 +289,7 @@ foreach($scenarios as $qvars) {
       print_r($all_agent_data);
       echo '</pre>';
       $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);*/
     } else {
       echo '<pre style="color:red">At end of array.</pre>';
     }
