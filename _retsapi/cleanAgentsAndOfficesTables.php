@@ -159,7 +159,7 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
       }
   }
   echo '<pre style="color: red;">BAD Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
-  return $idArray
+  return $idArray;
 }
 
 $pullDate = '2001-01-01T00:00:00-08:00';
