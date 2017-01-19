@@ -17,7 +17,7 @@ class Rets_Agents {
 		$html = '';
 		$defaults = shortcode_atts(
 			array(
-				'limit' => 20,
+				'limit' => 50,
 				'order' => '',
 				'orderby' => '',
 				'class' => '',
@@ -72,6 +72,9 @@ class Rets_Agents {
 			$sort_order = 'ORDER BY FullName DESC';
 		}
 		
+		$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+		$startAt = $limit * ($page - 1);
+		
 		$agents_query = new Rets_DB();
 		//$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
 		
@@ -107,9 +110,13 @@ class Rets_Agents {
 		
 		if( $agents ) {
 			
+			$total_agents = mysqli_num_rows( $agents );
+			
 			$count = 1;
 			
 			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
+			
+				$html .= '<h4>'. $total_agents .'Total Agents</h4>';
 			
 				if( empty( $show_search ) ) {
 			
@@ -152,18 +159,20 @@ class Rets_Agents {
 							</script>';
 			
 				foreach( $agents as $agent ) {
-					
-					$has_image_class = !empty( $agent[''] ) ? 'with-image' : 'without-image';
-					
+										
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
 					
-					$image_url = !empty( $agent['images'] ) ? 
-						home_url() .'/_retsapi/imagesAgents/'. $agent['images'] : 
-						get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+					if( !empty( $agent['images'] ) ) {
+						$has_image_class = 'width-image';
+						$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['images'];
+					} else {
+						$has_image_class = 'without-image';
+						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+					}
 					
 					$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 					
-					// Begin item output
+					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $class, $has_image_class, $category_classes );
 					
@@ -177,20 +186,8 @@ class Rets_Agents {
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', '' );
 					
-						/*$html .= 
-							'<p>
-							Name: ' .$agent['FullName'] .'<br>
-							Is Active: '. $agent['IsActive'] .'<br>
-							Member Number: '. $agent['MemberNumber'] .'<br>
-							MLS ID: '. $agent['MLSID'] .'<br>
-							Office MLS ID: '. $agent['OfficeMLSID'] .'<br>
-							Office Name: '. $agent['OfficeName'] .'<br>
-							Office Number: '. $agent['OfficeNumber'] .'<br>
-							Is Featured: '. $agent['featured'] .
-							'</p>';*/
-					
 					$html .= '</div></div>';
-					// End item ouput
+					// End agent ouput
 					
 					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
@@ -201,6 +198,8 @@ class Rets_Agents {
 					
 				}
 			
+			
+			
 			$html .= sprintf( '</div>%s</div>', 'Pagination goes here' );
 			
 		}
@@ -209,6 +208,89 @@ class Rets_Agents {
 		
     }
 	
-}
- 
+} 
 new Rets_Agents();
+
+
+class Paginator {
+ 
+    private $_conn;
+	private $_limit;
+	private $_page;
+	private $_query;
+	private $_total;
+	
+	public function __construct( $conn, $query ) {
+     
+		$this->_conn = $conn;
+		$this->_query = $query;
+
+		$rs= $this->_conn->query( $this->_query );
+		$this->_total = $rs->num_rows;
+
+	}
+	
+	public function getData( $limit = 10, $page = 1 ) {
+     
+		$this->_limit   = $limit;
+		$this->_page    = $page;
+
+		if ( $this->_limit == 'all' ) {
+			$query      = $this->_query;
+		} else {
+			$query      = $this->_query . " LIMIT " . ( ( $this->_page - 1 ) * $this->_limit ) . ", $this->_limit";
+		}
+		$rs             = $this->_conn->query( $query );
+
+		while ( $row = $rs->fetch_assoc() ) {
+			$results[]  = $row;
+		}
+
+		$result         = new stdClass();
+		$result->page   = $this->_page;
+		$result->limit  = $this->_limit;
+		$result->total  = $this->_total;
+		$result->data   = $results;
+
+		return $result;
+	}
+	
+	public function createLinks( $links, $list_class ) {
+		if ( $this->_limit == 'all' ) {
+			return '';
+		}
+
+		$last       = ceil( $this->_total / $this->_limit );
+
+		$start      = ( ( $this->_page - $links ) > 0 ) ? $this->_page - $links : 1;
+		$end        = ( ( $this->_page + $links ) < $last ) ? $this->_page + $links : $last;
+
+		$html       = '<ul class="' . $list_class . '">';
+
+		$class      = ( $this->_page == 1 ) ? "disabled" : "";
+		$html       .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . ( $this->_page - 1 ) . '">&laquo;</a></li>';
+
+		if ( $start > 1 ) {
+			$html   .= '<li><a href="?limit=' . $this->_limit . '&page=1">1</a></li>';
+			$html   .= '<li class="disabled"><span>...</span></li>';
+		}
+
+		for ( $i = $start ; $i <= $end; $i++ ) {
+			$class  = ( $this->_page == $i ) ? "active" : "";
+			$html   .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . $i . '">' . $i . '</a></li>';
+		}
+
+		if ( $end < $last ) {
+			$html   .= '<li class="disabled"><span>...</span></li>';
+			$html   .= '<li><a href="?limit=' . $this->_limit . '&page=' . $last . '">' . $last . '</a></li>';
+		}
+
+		$class      = ( $this->_page == $last ) ? "disabled" : "";
+		$html       .= '<li class="' . $class . '"><a href="?limit=' . $this->_limit . '&page=' . ( $this->_page + 1 ) . '">&raquo;</a></li>';
+
+		$html       .= '</ul>';
+
+		return $html;
+	}
+ 
+}
