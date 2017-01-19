@@ -78,7 +78,7 @@ class Rets_Agents {
 		$agents_query = new Rets_DB();
 		//$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
 		
-		$agents = $agents_query -> select("
+		$agents = $agents_query->select("
 			SELECT ActiveAgent_MEMB.FullName,
 			ActiveAgent_MEMB.MemberNumber,
 			ActiveAgent_MEMB.IsActive,
@@ -110,7 +110,7 @@ class Rets_Agents {
 		
 		if( $agents ) {
 			
-			$total_agents = mysqli_num_rows( $agents );
+			$total_agents = $agents->num_rows;
 			
 			$count = 1;
 			
