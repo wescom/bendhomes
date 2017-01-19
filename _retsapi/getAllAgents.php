@@ -12,12 +12,12 @@ $scenarios = array(
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
   ),
-  /*'Agent_MEMB'=> array(
+  'Agent_MEMB'=> array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Agent',
     'class' => 'MEMB'
-  ),*/
+  ),
   'Office_OFFI'=> array(
     'count' => $centralcount,
     'fotos' => 'no',
@@ -309,8 +309,8 @@ foreach($scenarios as $qvars) {
    echo '<pre>';
    print_r($all_agent_data);
    echo '</pre>';
-   $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-   saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+   //$all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+   //saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
   }
 
 }
