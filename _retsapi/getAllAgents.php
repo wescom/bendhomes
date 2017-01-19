@@ -260,7 +260,7 @@ if ($updateByIdListFile == true) {
 } else {
   $pullDate = getSetPullDate();
 }
-echo '<p style="background-color: orange;">using date: '.$pulldate.'</p>';
+echo '<p style="background-color: orange;">using date: '.$pullDate.'</p>';
 
 foreach($scenarios as $qvars) {
 
