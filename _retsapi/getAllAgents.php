@@ -179,10 +179,12 @@ function saveToDB($itemsarr, $qvars){
   );
   $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
   unset($db);
-  if($qvars['class'] == 'OFFI') {
+  if($qvars['resource'] == 'Office') {
     $tableItemsArray = ['IDX','IsActive','LastModifiedDateTime','MLSID','OfficeName','OfficeNumber','OfficePhone','OfficePhoneComplete','StreetAddress','StreetCity','StreetState','StreetZipCode','lastPullTime']; 
-  } else {
+  } else if ($qvars['resource'] == 'ActiveAgent') {
     $tableItemsArray = ['FullName','IsActive','LastModifiedDateTime','MLSID','OfficeMLSID','OfficeName','OfficeNumber','images','lastPullTime'];
+  } else {
+    $tableItemsArray = ['ContactAddlPhoneType1','ContactPhoneAreaCode1','ContactPhoneNumber1','ContactAddlPhoneType2','ContactPhoneAreaCode2','ContactPhoneNumber2','ContactAddlPhoneType3','ContactPhoneAreaCode3','ContactPhoneNumber3','FullName','IsActive','LastModifiedDateTime','MemberNumber','MLSID','images','lastPullTime'];
   }
 
   foreach($itemsarr as $key => $array) {
