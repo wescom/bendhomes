@@ -51,12 +51,12 @@ function getSetPullDate() {
   $pulldate = array();
   $pulldate['now'] = (int) time();
 
-  if(file_exists($fnamerecent)) {
-    $pulldate['recent'] = file_get_contents($fnamerecent);
-    $pulldate['recent'] = (int) $pulldate['recent'];
-  } else {
-    $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
-  }
+  //if(file_exists($fnamerecent)) {
+  //  $pulldate['recent'] = file_get_contents($fnamerecent);
+  //  $pulldate['recent'] = (int) $pulldate['recent'];
+  //} else {
+    $pulldate['recent'] = strtotime("-2 hour"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+  //}
 
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
   
@@ -266,14 +266,15 @@ foreach($scenarios as $qvars) {
 
   if ($updateByIdListFile == true) {
     // Comment out part 2 first and run to get ids, then uncomment part 2 and comment part 1 out and run.
-    // 1. This is first step - get all the ids for the time range you are doing
+    // **********  1. This is first step - get all the ids for the time range you are doing *************
     $idList = runRetsQuery($qvars, $pullDate);
     echo '<pre>';
     print_r($idList);
     echo '</pre>';
     $file = './IdTextFiles/'.$qvars['resource'].'.txt';
     file_put_contents($file, $idList);
-    // 2. this is second step, use the ids you got previous and chunk them up in reasonable imports
+    // ***********  End part 1 ***********
+    // *********** 2. this is second step, use the ids you got previous and chunk them up in reasonable imports ************
     /*$start = 2200; // start index
     $count = 200; // how many past start to grab
     $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
@@ -293,6 +294,7 @@ foreach($scenarios as $qvars) {
     } else {
       echo '<pre style="color:red">At end of array.</pre>';
     }*/
+    // ***********  End part 2 ***********
 
   } else {
   // 1. Get ids of Agents that have updated since last pull date
