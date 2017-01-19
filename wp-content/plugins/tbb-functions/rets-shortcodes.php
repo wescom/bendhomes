@@ -110,7 +110,7 @@ class Rets_Agents {
 		
 		if( $agents ) {
 			
-			$total_agents = $agents->num_rows;
+			$total_agents = count( $agents );
 			
 			$count = 1;
 			
