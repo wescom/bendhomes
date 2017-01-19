@@ -101,6 +101,19 @@ function buildRetsQuery($fqvars, $pullDate) {
   return $usethisquery;
 }
 
+/* ##### Refactor returned data with key supplied by universalkeys in header file ##### */
+function refactorarr($itemsarray,$ukeys,$qvars) {
+  $newarray = array();
+  foreach ($itemsarray as $prop) {
+    foreach($prop as $key => $val) {
+      if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
+        $newarray[$val] = $prop;
+      }
+    }
+  }
+  return $newarray;
+}
+
 function getOurIds($qvars){
   $db = array(
     'host' => 'localhost',
