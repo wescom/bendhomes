@@ -114,6 +114,33 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
   return $newarray;
 }
 
+function deletBadIds($badIdsArray) {
+  $db = array(
+    'host' => 'localhost',
+    'username' => 'phrets',
+    'password' => 'hCqaQvMKW9wJKQwS',
+    'database' => 'bh_rets'
+  );
+
+  if ($qvars['class'] == "OFFI") {
+    $idType = "OfficeNumber";
+  } else {
+    $idType = "MemberNumber";
+  }
+
+  $conn = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+
+  $query = "DELETE from ".$qvars['resource'].'_'.$qvars['class']." WHERE ".$idType." IN (".implode(", ",$idArray).")";
+  echo '<p>'.$query.'</p>';
+  
+
+  //$result = $conn->query($query);
+}
+
 function getOurIds($qvars){
   $db = array(
     'host' => 'localhost',
@@ -165,16 +192,16 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
 $pullDate = '2001-01-01T00:00:00-08:00';
 
 foreach($scenarios as $qvars) {
-  
-  print_r($qvars);
+
   $retsIdArray = runRetsQuery($qvars, $pullDate);
 
 
   $ourIdArray = getOurIds($qvars);
 
 
-  $badIdsArray= compareAndGetBads($retsIdArray, $ourIdArray);
+  $badIdsArray = compareAndGetBads($retsIdArray, $ourIdArray);
 
+  deletBadIds($badIdsArray);
 
 }
 
