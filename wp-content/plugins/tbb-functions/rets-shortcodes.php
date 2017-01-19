@@ -55,7 +55,7 @@ class Rets_Agents {
 				break;
 		}
 		
-		$sort_order = 'ORDER BY FullName RAND()';
+		$sort_order = '';
 		
 		if( !empty( $order ) && !empty( $orderby ) ) {
 			$sort_order = 'ORDER BY '. $orderby .' '. $order;
@@ -99,7 +99,7 @@ class Rets_Agents {
 			FROM ActiveAgent_MEMB
 			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-			WHERE ActiveAgent_MEMB.OfficeNumber != 99999 
+			WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 
 			{$sort_order}
 		");
 		
