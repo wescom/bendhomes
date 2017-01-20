@@ -62,12 +62,11 @@ foreach($scenarios as $qvars) {
 
   if (sizeof($missingIdsArray) > 0) {
 
-      $missingIdsList = implode(",", $missingIdsArray);
-      $all_agent_data = getAllAgentData($qvars, $pullDate, $missingIdsList);
+      $all_agent_data = getAllAgentData($qvars, $pullDate, $missingIdsArray);
       echo '<pre>';
       print_r($all_agent_data);
       echo '</pre>';
-      $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+      $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data);
       saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
 
   } else {

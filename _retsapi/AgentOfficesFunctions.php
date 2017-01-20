@@ -1,6 +1,6 @@
 <?php
 
-function getPhotos($qvars, $itemsarr, $pullDate) {
+function getPhotos($qvars, $itemsarr) {
   global $universalkeys;
   global $rets;
   if ($qvars['class'] == 'OFFI') {
@@ -84,7 +84,7 @@ function saveToDB($itemsarr, $qvars){
   mysqli_close($dbConnection);
 }
 
-function getAllAgentData($qvars, $pullDate, $idList) {
+function getAllAgentData($qvars, $pullDate, $idArray) {
   global $universalkeys;
   global $rets;
 
@@ -93,6 +93,8 @@ function getAllAgentData($qvars, $pullDate, $idList) {
   } else {
       $dataType = 'MemberNumber';
   }
+
+  $idList = implode(",", $idArray);
 
   $query = "(".$dataType."=".$idList.")";
 

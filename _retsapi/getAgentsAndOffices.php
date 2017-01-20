@@ -71,12 +71,12 @@ foreach($scenarios as $qvars) {
   if ($updateByIdListFile == true) {
     // Comment out part 2 first and run to get ids, then uncomment part 2 and comment part 1 out and run.
     // **********  1. This is first step - get all the ids for the time range you are doing *************
-    $idList = runRetsQuery($qvars, $pullDate);
+    $idArray = runRetsQuery($qvars, $pullDate);
     echo '<pre>';
-    print_r($idList);
+    print_r($idArray);
     echo '</pre>';
     $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'.txt';
-    file_put_contents($file, $idList);
+    file_put_contents($file, implode(",", $idArray););
     // ***********  End part 1 ***********
     // *********** 2. this is second step, use the ids you got previous and chunk them up in reasonable imports ************
     /*$start = 0; // start index
