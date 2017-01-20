@@ -1,6 +1,6 @@
 <?php
 
-include("/var/www/html/_retsapi/inc/header.php");
+include_once("/var/www/html/_retsapi/inc/header.php");
 ini_set('max_execution_time', 0);
 
 function getScenarios (){
