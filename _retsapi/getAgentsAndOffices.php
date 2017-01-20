@@ -81,9 +81,9 @@ foreach($scenarios as $qvars) {
   } else {
   // 1. Get ids of Agents that have updated since last pull date
    $idArray = runRetsQuery($qvars, $pullDate);
-   echo '<pre>';
+   /*echo '<pre>';
    print_r($idArray);
-   echo '</pre>';
+   echo '</pre>';*/
    $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'_time.txt';
    file_put_contents($file, implode(",", $idArray));
    $all_agent_data = getAllAgentData($qvars, $pullDate, $idArray);
