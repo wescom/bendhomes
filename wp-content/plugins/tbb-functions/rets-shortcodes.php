@@ -224,3 +224,32 @@ class Rets_Agents {
 	
 } 
 new Rets_Agents();
+
+
+// Creates single agent page content linked from agents list shortcode above
+class Rets_Agent {
+	
+	public static $args;
+	
+    public function __construct() {
+		
+        add_shortcode('rets_agent', array($this, 'render'));
+		
+    }
+     
+    public function render( $args ) {
+		
+		$html = '';
+		$defaults = shortcode_atts(
+			array(
+				'class' => '',
+				'linkto' => 'agents'
+			), $args
+		);
+
+		extract( $defaults );
+		
+	}
+	
+}
+new Rets_Agent();
