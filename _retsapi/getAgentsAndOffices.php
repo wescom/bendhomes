@@ -54,7 +54,7 @@ foreach($scenarios as $qvars) {
     print_r($idArray);
     echo '</pre>';
     $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'.txt';
-    file_put_contents($file, implode(",", $idArray););
+    file_put_contents($file, implode(",", $idArray));
     // ***********  End part 1 ***********
     // *********** 2. this is second step, use the ids you got previous and chunk them up in reasonable imports ************
     /*$start = 0; // start index
