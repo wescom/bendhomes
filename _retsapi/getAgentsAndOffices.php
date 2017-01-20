@@ -213,7 +213,7 @@ function saveToDB($itemsarr, $qvars){
         echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
     }
   }
-  //mysqli_close($dbConnection);
+  mysqli_close($dbConnection);
 }
 
 function getPhotos($qvars, $itemsarr, $pullDate) {
