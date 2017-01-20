@@ -84,7 +84,7 @@ function saveToDB($itemsarr, $qvars){
   }
 
   foreach($itemsarr as $key => $array) {
-    $escarray = array_map('mysql_real_escape_string', $array);
+    $escarray = array_map('mysqli_real_escape_string', $array);
 
 
     $query = "INSERT INTO ".$qvars['resource']."_".$qvars['class'];
