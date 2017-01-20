@@ -13,12 +13,12 @@ $scenarios = array(
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
   ),
-  /*'Agent_MEMB'=> array(
+  'Agent_MEMB'=> array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Agent',
     'class' => 'MEMB'
-  ),*/
+  ),
   'Office_OFFI'=> array(
     'count' => $centralcount,
     'fotos' => 'no',
@@ -62,13 +62,13 @@ foreach($scenarios as $qvars) {
 
   if (sizeof($missingIdsArray) > 0) {
 
-      $missingIdsList = implode(",", $missingIdsArray);
+      /*$missingIdsList = implode(",", $missingIdsArray);
       $all_agent_data = getAllAgentData($qvars, $pullDate, $missingIdsList);
       echo '<pre>';
       print_r($all_agent_data);
       echo '</pre>';
       $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);*/
 
   } else {
     echo '<p>Empty array - no missing agents or offices.</p>';
