@@ -410,7 +410,7 @@ function executeCleanAgentsAndOfficesTables() {
 
   $pullDate = '2001-01-01T00:00:00-08:00';
 
-  foreach($scenarios as $qvars) {
+  /*foreach($scenarios as $qvars) {
 
     $retsIdArray = runRetsQuery($qvars, $pullDate);
 
@@ -426,7 +426,8 @@ function executeCleanAgentsAndOfficesTables() {
       echo '<p>Empty array - no bad ids to delete...</p>';
     }
 
-  }
+  }*/
+  echo "hello!!!";
 }
 
 ?>
