@@ -1,6 +1,6 @@
 <?php
 
-include("/var/www/html/_retsapi/AgentOfficesFunctions.php");
+include_once("/var/www/html/_retsapi/AgentOfficesFunctions.php");
 
 executeCleanAgentsAndOfficesTables();
 
