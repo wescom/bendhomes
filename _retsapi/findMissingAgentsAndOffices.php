@@ -62,16 +62,16 @@ foreach($scenarios as $qvars) {
 
   if (sizeof($missingIdsArray) > 0) {
 
-      $missingIdsList = implode(",", $missingIdsArray);
+      /*$missingIdsList = implode(",", $missingIdsArray);
       $all_agent_data = getAllAgentData($qvars, $pullDate, $missingIdsList);
       echo '<pre>';
       print_r($all_agent_data);
       echo '</pre>';
       $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
-      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
+      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);*/
 
   } else {
-    echo '<p>Empty array - no bad ids to delete...</p>';
+    echo '<p>Empty array - no missing agents or offices.</p>';
   }
 
 }
