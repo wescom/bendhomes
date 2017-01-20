@@ -75,6 +75,11 @@ function saveToDB($itemsarr, $qvars){
   );
   $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
   unset($db);
+
+  if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+
   if($qvars['resource'] == 'Office') {
     $tableItemsArray = ['IDX','IsActive','LastModifiedDateTime','MLSID','OfficeName','OfficeNumber','OfficePhone','OfficePhoneComplete','StreetAddress','StreetCity','StreetState','StreetZipCode','lastPullTime']; 
   } else if ($qvars['resource'] == 'ActiveAgent') {
