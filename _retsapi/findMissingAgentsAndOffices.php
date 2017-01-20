@@ -220,7 +220,7 @@ foreach($scenarios as $qvars) {
   $ourIdArray = getOurIds($qvars);
 
 
-  $missingIdsArray = $findMissingIds($retsIdArray, $ourIdArray);
+  $missingIdsArray = findMissingIds($retsIdArray, $ourIdArray);
   //$badIdsArray = compareAndGetBads($retsIdArray, $ourIdArray);
 
   if (sizeof($missingIdsArray) > 0) {
