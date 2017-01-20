@@ -64,6 +64,22 @@ function getPhotos($qvars, $itemsarr) {
   return $itemsarr;
 }
 
+function filter(&$array) {
+    $clean = array();
+    foreach($array as $key => &$value ) {
+        if( is_array($value) ) {
+            filter($value);
+        } else {
+            $value = trim(strip_tags($value));
+            if (get_magic_quotes_gpc()) {
+                $data = stripslashes($value);
+            }
+            $data = mysql_real_escape_string($value);
+        }
+    }
+}
+
+
 function saveToDB($itemsarr, $qvars){
 
   //echo "saving to db";
@@ -89,7 +105,11 @@ function saveToDB($itemsarr, $qvars){
   }
 
   foreach($itemsarr as $key => $array) {
-    $escarray = array_map('mysql_real_escape_string', $array);
+    //$escarray = array_map('mysql_real_escape_string', $array);
+    foreach ($array as $key => $value) 
+    {
+      $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
+    }
 
 
     $query = "INSERT INTO ".$qvars['resource']."_".$qvars['class'];
