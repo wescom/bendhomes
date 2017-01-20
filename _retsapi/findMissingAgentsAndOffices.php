@@ -12,12 +12,12 @@ $scenarios = array(
     'resource' => 'ActiveAgent',
     'class' => 'MEMB'
   ),
-  'Agent_MEMB'=> array(
+  /*'Agent_MEMB'=> array(
     'count' => $centralcount,
     'fotos' => 'yes',
     'resource' => 'Agent',
     'class' => 'MEMB'
-  ),
+  ),*/
   'Office_OFFI'=> array(
     'count' => $centralcount,
     'fotos' => 'no',
