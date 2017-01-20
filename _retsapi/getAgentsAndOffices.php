@@ -4,28 +4,6 @@ include("/var/www/html/_retsapi/inc/header.php");
 include("/var/www/html/_retsapi/AgentOfficesFunctions.php");
 ini_set('max_execution_time', 0);
 
-$centralcount = 999999;
-
-$scenarios = array(
-  'ActiveAgent_MEMB' => array(
-    'count' => $centralcount,
-    'fotos' => 'yes',
-    'resource' => 'ActiveAgent',
-    'class' => 'MEMB'
-  ),
-  'Agent_MEMB'=> array(
-    'count' => $centralcount,
-    'fotos' => 'yes',
-    'resource' => 'Agent',
-    'class' => 'MEMB'
-  ),
-  'Office_OFFI'=> array(
-    'count' => $centralcount,
-    'fotos' => 'no',
-    'resource' => 'Office',
-    'class' => 'OFFI'
-  )
-);
 
 /* ##### ######### ##### */
 /* ##### FUNCTIONS ##### */
@@ -102,17 +80,17 @@ foreach($scenarios as $qvars) {
 
   } else {
   // 1. Get ids of Agents that have updated since last pull date
-   $idList = runRetsQuery($qvars, $pullDate);
+   $idArray = runRetsQuery($qvars, $pullDate);
    echo '<pre>';
-   print_r($idList);
+   print_r($idArray);
    echo '</pre>';
    $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'_time.txt';
-   file_put_contents($file, $idList);
-   $all_agent_data = getAllAgentData($qvars, $pullDate, $idList);
+   file_put_contents($file, implode(",", $idArray););
+   $all_agent_data = getAllAgentData($qvars, $pullDate, $idArray);
    echo '<pre>';
    print_r($all_agent_data);
    echo '</pre>';
-   $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+   $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data);
    saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
   }
 

@@ -4,29 +4,6 @@ include("/var/www/html/_retsapi/inc/header.php");
 include("/var/www/html/_retsapi/AgentOfficesFunctions.php");
 ini_set('max_execution_time', 0);
 
-$centralcount = 999999;
-
-$scenarios = array(
-  'ActiveAgent_MEMB' => array(
-    'count' => $centralcount,
-    'fotos' => 'yes',
-    'resource' => 'ActiveAgent',
-    'class' => 'MEMB'
-  ),
-  'Agent_MEMB'=> array(
-    'count' => $centralcount,
-    'fotos' => 'yes',
-    'resource' => 'Agent',
-    'class' => 'MEMB'
-  ),
-  'Office_OFFI'=> array(
-    'count' => $centralcount,
-    'fotos' => 'no',
-    'resource' => 'Office',
-    'class' => 'OFFI'
-  )
-);
-
 /* ##### ######### ##### */
 /* ##### FUNCTIONS ##### */
 /* ##### ######### ##### */
