@@ -406,7 +406,7 @@ function executeGetAgentsAndOffices() {
 
 function executeCleanAgentsAndOfficesTables() {
 
-  $scenarios = getScenarios();
+  //$scenarios = getScenarios();
 
   $pullDate = '2001-01-01T00:00:00-08:00';
 
