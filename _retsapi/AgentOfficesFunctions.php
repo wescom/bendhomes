@@ -5,26 +5,29 @@ ini_set('max_execution_time', 0);
 
 $centralcount = 999999;
 
-$scenarios = array(
-  'ActiveAgent_MEMB' => array(
-    'count' => $centralcount,
-    'fotos' => 'yes',
-    'resource' => 'ActiveAgent',
-    'class' => 'MEMB'
-  ),
-  'Agent_MEMB'=> array(
-    'count' => $centralcount,
-    'fotos' => 'yes',
-    'resource' => 'Agent',
-    'class' => 'MEMB'
-  ),
-  'Office_OFFI'=> array(
-    'count' => $centralcount,
-    'fotos' => 'no',
-    'resource' => 'Office',
-    'class' => 'OFFI'
-  )
-);
+function getScenarios (){
+  $scenarios = array(
+    'ActiveAgent_MEMB' => array(
+      'count' => $centralcount,
+      'fotos' => 'yes',
+      'resource' => 'ActiveAgent',
+      'class' => 'MEMB'
+    ),
+    'Agent_MEMB'=> array(
+      'count' => $centralcount,
+      'fotos' => 'yes',
+      'resource' => 'Agent',
+      'class' => 'MEMB'
+    ),
+    'Office_OFFI'=> array(
+      'count' => $centralcount,
+      'fotos' => 'no',
+      'resource' => 'Office',
+      'class' => 'OFFI'
+    )
+  );
+  return $scenarios;
+}
 
 function getPhotos($qvars, $itemsarr) {
   global $universalkeys;
@@ -295,6 +298,8 @@ function executeGetAgentsAndOffices() {
       $pullDate = getSetPullDate();
     }
     echo '<p style="background-color: orange;">using date: '.$pullDate.'</p>';
+    
+    $scenarios = getScenarios();
 
     foreach($scenarios as $qvars) {
 
