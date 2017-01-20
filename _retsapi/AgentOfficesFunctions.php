@@ -175,7 +175,7 @@ function getOurIds($qvars){
       array_push($idArray, $row[$idType]);
     }
   }
-  echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
+  echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
   mysqli_close($conn);
 
   return $idArray;
@@ -261,7 +261,7 @@ function runRetsQuery($qvars, $datePulled) {
         $idString.= ",".$prop[$dataType];
       }*/
   }
-  echo '<pre style="color: green;">RETS Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
+  echo '<pre style="color: green;">RETS Ids - count: '.sizeof($idArray).'</pre>';
   return $idArray;
 }
 
