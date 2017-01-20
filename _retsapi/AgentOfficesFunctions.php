@@ -427,7 +427,7 @@ function executeCleanAgentsAndOfficesTables() {
     }
 
   }
-  echo "hello!!!";
+
 }
 
 ?>
