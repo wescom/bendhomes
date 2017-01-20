@@ -55,11 +55,11 @@ function getSetPullDate() {
   //  $pulldate['recent'] = file_get_contents($fnamerecent);
   //  $pulldate['recent'] = (int) $pulldate['recent'];
   //} else {
-    $pulldate['recent'] = strtotime("-2 hour"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+  $pulldate['recent'] = strtotime("-2 hour"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
   //}
 
   $pulldate['retsquery'] = date('c',$pulldate['recent']);
-  file_put_contents($file, "Last Pulled: ".$pulldate['retsquery']);
+  //file_put_contents($file, "Last Pulled: ".$pulldate['retsquery']);
   
   return $pulldate['retsquery'];
 }
@@ -242,7 +242,9 @@ function getPhotos($qvars, $itemsarr, $pullDate) {
         }
       }
       $itemsarr[$prop[$puid]]['images'] = $photoName;
-      $itemsarr[$prop[$puid]]['lastPullTime'] = $pullDate;
+
+      $pulldate = (int) time();
+      $itemsarr[$prop[$puid]]['lastPullTime'] = date('c',$pulldate);
     }
     
    
