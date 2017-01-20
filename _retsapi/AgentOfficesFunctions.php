@@ -3,9 +3,8 @@
 include("/var/www/html/_retsapi/inc/header.php");
 ini_set('max_execution_time', 0);
 
-$centralcount = 999999;
-
 function getScenarios (){
+  $centralcount = 999999;
   $scenarios = array(
     'ActiveAgent_MEMB' => array(
       'count' => $centralcount,
@@ -298,7 +297,7 @@ function executeGetAgentsAndOffices() {
       $pullDate = getSetPullDate();
     }
     echo '<p style="background-color: orange;">using date: '.$pullDate.'</p>';
-    
+
     $scenarios = getScenarios();
 
     foreach($scenarios as $qvars) {
