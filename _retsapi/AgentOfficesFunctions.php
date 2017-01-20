@@ -1,5 +1,8 @@
 <?php
 
+include("/var/www/html/_retsapi/inc/header.php");
+ini_set('max_execution_time', 0);
+
 $centralcount = 999999;
 
 $scenarios = array(
