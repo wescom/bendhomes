@@ -1,6 +1,7 @@
 <?php
 //include("inc/retsabspath.php");
 include("/var/www/html/_retsapi/inc/header.php");
+include("var/www/html/_retsapi/AgentOfficesFunctions");
 ini_set('max_execution_time', 0);
 
 $centralcount = 999999;
@@ -210,6 +211,39 @@ function findMissingIds($retsIdArray, $ourIdArray) {
   return $idArray;
 }
 
+function getAllAgentData($qvars, $pullDate, $idList) {
+  global $universalkeys;
+  global $rets;
+
+  if ($qvars['class'] == 'OFFI') {
+      $dataType = 'OfficeNumber';
+  } else {
+      $dataType = 'MemberNumber';
+  }
+
+  $query = "(".$dataType."=".$idList.")";
+
+  $results = $rets->Search(
+      $qvars['resource'],
+      $qvars['class'],
+      $query,
+      [
+          'QueryType' => 'DMQL2', // it's always use DMQL2
+          'Count' => 1, // count and records
+          'Format' => 'COMPACT-DECODED',
+          'Limit' => $qvars['count'],
+          'StandardNames' => 0, // give system names
+      ]
+  );
+
+  // convert from objects to array, easier to process
+  $temparr = $results->toArray();
+  // refactor arr with keys supplied by universalkeys in header
+  $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
+  return $itemsarr;
+}
+
+
 $pullDate = '2001-01-01T00:00:00-08:00';
 
 foreach($scenarios as $qvars) {
@@ -224,7 +258,9 @@ foreach($scenarios as $qvars) {
   //$badIdsArray = compareAndGetBads($retsIdArray, $ourIdArray);
 
   if (sizeof($missingIdsArray) > 0) {
-    //deletBadIds($badIdsArray, $qvars);
+      $missingIdsList = implode(",", $missingIdsArray);
+      $all_agent_data_wPhotos = getPhotos($qvars, $all_agent_data, $pullDate);
+      saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
   } else {
     echo '<p>Empty array - no bad ids to delete...</p>';
   }
