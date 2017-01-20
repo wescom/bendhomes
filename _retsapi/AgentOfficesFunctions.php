@@ -74,7 +74,6 @@ function saveToDB($itemsarr, $qvars){
     'database' => 'bh_rets'
   );
   $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
-
   unset($db);
   if($qvars['resource'] == 'Office') {
     $tableItemsArray = ['IDX','IsActive','LastModifiedDateTime','MLSID','OfficeName','OfficeNumber','OfficePhone','OfficePhoneComplete','StreetAddress','StreetCity','StreetState','StreetZipCode','lastPullTime']; 
@@ -85,7 +84,7 @@ function saveToDB($itemsarr, $qvars){
   }
 
   foreach($itemsarr as $key => $array) {
-    $escarray = array_map('mysqli_real_escape_string', $dbConnection, $array);
+    $escarray = array_map('mysql_real_escape_string', $array);
 
 
     $query = "INSERT INTO ".$qvars['resource']."_".$qvars['class'];
