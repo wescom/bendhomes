@@ -411,7 +411,7 @@ function executeGetAgentsAndOffices() {
           $pieceArray = array_slice($idArray, $start, $count);
           $pieceString = implode(",", $pieceArray);
           echo '<pre> piece ids: '.$pieceString.'</pre>';
-          $all_agent_data = getAllAgentData($qvars, $pullDate, $pieceString);
+          $all_agent_data = getAllAgentData($qvars, $pullDate, $pieceArray);
           echo '<pre>';
           print_r($all_agent_data);
           echo '</pre>';
