@@ -133,7 +133,7 @@ class Rets_Agents {
 
 				}
 
-				$current_url = home_url() .'/rets-agents/';
+				$current_url = home_url() .''. $_SERVER['PHP_SELF'];
 				$html .= '<div class="order-box option-bar small clearfix">';
 					$html .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
 
@@ -250,7 +250,11 @@ class Rets_Agent {
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
 		$id = mysql_real_escape_string( floatval( $id ) );
 	
-		$query = "SELECT * FROM ActiveAgent_MEMB WHERE MemberNumber = {$id}";
+		$query = "
+			SELECT * FROM ActiveAgent_MEMB 
+			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+			WHERE ActiveAgent_MEMB.MemberNumber = {$id}
+		";
 		
 		$agent_query = new Rets_DB();
 		
