@@ -428,8 +428,9 @@ function executeGetAgentsAndOffices() {
        /*echo '<pre>';
        print_r($idArray);
        echo '</pre>';*/
-       $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'_time.txt';
-       file_put_contents($file, implode(",", $idArray));
+       $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'_'.date("D").'.txt';
+       $writeData = date("h:i:s")." - ".implode(",", $idArray);
+       file_put_contents($file, $writeData);
        $all_agent_data = getAllAgentData($qvars, $pullDate, $idArray);
        echo '<pre>';
        print_r($all_agent_data);
