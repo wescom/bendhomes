@@ -377,7 +377,7 @@ function executeGetAgentsAndOffices() {
 
     echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
-    $updateByIdListFile = false;  // only used manually to pull all data in from text file of ids
+    $updateByIdListFile = true;  // only used manually to pull all data in from text file of ids
 
     if ($updateByIdListFile == true) {
       $pullDate = '2001-01-01T00:00:00-08:00'; //set this to however far back you want to pull from
