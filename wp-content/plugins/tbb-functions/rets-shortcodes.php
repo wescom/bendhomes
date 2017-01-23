@@ -223,6 +223,7 @@ class Rets_Agents {
 new Rets_Agents();
 
 
+
 // Creates single agent page content linked from agents list shortcode above
 class Rets_Agent {
 	
@@ -264,7 +265,50 @@ class Rets_Agent {
 			
 			print_r( $agent );
 			
+			$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
+					
+			if( !empty( $agent['images'] ) ) {
+				$has_image_class = 'width-image';
+				$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['images'];
+			} else {
+				$has_image_class = 'without-image';
+				$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+			}
+
+			$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
+			
+			$html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
+						
+				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
+
+					$html .= sprintf('<img src="%s" alt="" width="" height="" class="alignleft" />', $image_url );
+
+					$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
+
+					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
+								$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
+			
+				$html .= '</div></div></div>';
+			
+				if( $agent['featured'] == 1 ) {
+						
+				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties">';
+					
+					$html .= '<p>Property List Here...</p>';
+
+				$html .= '</div></div></div>';
+				
+				}
+			
+			$html .= '</div>';
+			
 		}
+		
+		return $html;
+		
+	}
+	
+	public function get_agent_properties( $id ) {
 		
 	}
 	
