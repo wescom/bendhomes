@@ -397,8 +397,12 @@ function executeGetAgentsAndOffices() {
         echo '<pre>';
         print_r($idArray);
         echo '</pre>';
-        $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'.txt';
-        file_put_contents($file, implode(",", $idArray));
+        //$file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'.txt';
+        //file_put_contents($file, implode(",", $idArray));
+
+        $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'_'.date("D").'.txt';
+        $writeData = date("h:i:s")." - ".implode(",", $idArray);
+        file_put_contents($file, $writeData, FILE_APPEND);
         // ***********  End part 1 ***********
         // *********** 2. this is second step, use the ids you got previous and chunk them up in reasonable imports ************
         /*$start = 0; // start index
@@ -430,7 +434,7 @@ function executeGetAgentsAndOffices() {
        echo '</pre>';*/
        $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'_'.date("D").'.txt';
        $writeData = date("h:i:s")." - ".implode(",", $idArray);
-       file_put_contents($file, $writeData);
+       file_put_contents($file, $writeData, FILE_APPEND);
        $all_agent_data = getAllAgentData($qvars, $pullDate, $idArray);
        echo '<pre>';
        print_r($all_agent_data);
