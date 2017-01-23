@@ -338,7 +338,7 @@ class Rets_Companies {
 				'class' => '',
 				'columns' => 3,
 				'show_search' => '',
-				'linkto' => 'agent'
+				'linkto' => 'company'
 			), $args
 		);
 
@@ -523,3 +523,85 @@ class Rets_Companies {
 	
 } 
 new Rets_Companies();
+
+// Creates single company page content linked from agents list shortcode above
+class Rets_Company {
+	
+	public static $args;
+	
+    public function __construct() {
+		
+        add_shortcode('rets_company', array($this, 'render'));
+		
+    }
+     
+    public function render( $args ) {
+		
+		$html = '';
+		$defaults = shortcode_atts(
+			array(
+				'class' => '',
+				'linkto' => 'companies',
+				'member_number' => ''
+			), $args
+		);
+
+		extract( $defaults );
+		
+		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
+		$id = mysql_real_escape_string( floatval( $id ) );
+	
+		$query = "
+			SELECT * FROM Offices_OFFI 
+			WHERE AOfficeNumber = {$id}
+		";
+		
+		$company_query = new Rets_DB();
+		
+		$company = $company_query->select( $query )[0];
+		
+		if( $company ) {
+			
+			print_r( $company );
+			
+			$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
+
+			$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
+			
+			$html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
+						
+				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
+
+					$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $company['OfficeName'] );
+
+					$html .= sprintf('<h1 class="agent-name">%s</h1>', $company['OfficeName'] );
+
+					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
+								$company['OfficeName'], $office_address, $company['OfficePhoneComplete'] );
+			
+				$html .= '</div></div></div>';
+			
+				if( $company['featured'] == 1 ) {
+						
+				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties">';
+					
+					$html .= '<p>Property List Here...</p>';
+
+				$html .= '</div></div></div>';
+				
+				}
+			
+			$html .= '</div>';
+			
+		}
+		
+		return $html;
+		
+	}
+	
+	public function get_company_properties( $id ) {
+		
+	}
+	
+}
+new Rets_Company();
