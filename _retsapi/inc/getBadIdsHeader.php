@@ -5,7 +5,7 @@ date_default_timezone_set('America/Los_Angeles');
 
 // pull in the packages managed by Composer
 include("retsabspath.php");
-include('/var/www/html/_retsapi/vendor/autoload.php');
+include(RETSABSPATH."/vendor/autoload.php");
 
 // setup your configuration
 $config = new \PHRETS\Configuration;
@@ -32,7 +32,7 @@ function universalqueries($pulltime) {
 
   $manual_mls = (isset($_GET['mls']) ? $_GET['mls'] : NULL);
 
-  $universalqueries = array(
+    $universalqueries = array(
     'Property' => array(
       'BUSI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'COMM' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
@@ -40,7 +40,7 @@ function universalqueries($pulltime) {
       'LAND' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'MULT' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)',
       'RESI' => '(ListingRid=0+), (LastModifiedDateTime='.$pulltime.'+)'
-	    //'RESI' => '(MLNumber=201603385)'
+            //'RESI' => '(MLNumber=201603385)'
     ),
     'ActiveAgent' => array(
       'MEMB' => '(MemberNumber=0+), (LastModifiedDateTime='.$pulltime.'+)',
@@ -80,7 +80,7 @@ function universalqueriesPic($pulltime) {
       'MULT' => '(ListingRid=0+), (PictureModifiedDateTime='.$pulltime.'+)',
       'RESI' => '(ListingRid=0+), (PictureModifiedDateTime='.$pulltime.'+)'
     //'RESI' => '(MLNumber=201604586)'
-    ),
+    ) /*,
     'ActiveAgent' => array(
       'MEMB' => '(MemberNumber=0+), (PictureModifiedDateTime='.$pulltime.'+)',
       // 'MEMB' => '(IsActive=1)'
@@ -100,7 +100,7 @@ function universalqueriesPic($pulltime) {
     ),
     'OpenHouse' => array(
       'OPEN' => '(OpenHouseRid=0+)',
-    ),
+    ),*/
   );
 
   return $universalqueries;
@@ -114,7 +114,7 @@ $universalkeys = array(
     'LAND' => 'ListingRid',
     'MULT' => 'ListingRid',
     'RESI' => 'ListingRid'
-  ),
+  )/*,
   'ActiveAgent' => array(
     'MEMB' => 'MemberNumber'
     // 'MEMB' => '(IsActive=1)'
@@ -134,7 +134,7 @@ $universalkeys = array(
   ),
   'OpenHouse' => array(
     'OPEN' => 'OpenHouseRid'
-  ),
+  ),*/
 );
 
 ?>

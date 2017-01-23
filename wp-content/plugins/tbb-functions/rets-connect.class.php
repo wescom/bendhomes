@@ -1,21 +1,7 @@
-<?php // Functions testing file. Not used for production
+<?php
 
-// These are our demo API keys, you can use them!
-/*$username = "simplyrets";
-$password = "simplyrets";
-$remote_url = 'https://api.simplyrets.com/properties';
-
-$opts = array(
-    'http'=>array(
-        'method'=>"GET",
-        'header' => "Authorization: Basic " . base64_encode("$username:$password")
-    )
-);
-$context = stream_context_create($opts);
-$file = file_get_contents($remote_url, false, $context);
-print($file);*/
-
-
+if( ! defined( 'ABSPATH' ) )
+	exit;
 
 
 //  https://www.binpress.com/tutorial/using-php-with-mysql-the-right-way/17
@@ -99,29 +85,3 @@ class Rets_DB {
         return "'" . $connection -> real_escape_string($value) . "'";
     }
 }
-
- 
-$member_num = !empty($_GET['num']) ? 'WHERE MemberNumber =' .$_GET['num'] : '';
-
-$agents_query = new Rets_DB();
-$agents = $agents_query -> select("select * from ActiveAgent_MEMB");
-
-//print_r($agents);
-
-$agent;
-foreach( $agents as $row ) {
-	$agent .= 
-		'<p>
-		Name: ' .$row['FullName'] .'<br>
-		Is Active: '. $row['IsActive'] .'<br>
-		Member Number: '. $row['MemberNumber'] .'<br>
-		MLS ID: '. $row['MLSID'] .'<br>
-		Office MLS ID: '. $row['OfficeMLSID'] .'<br>
-		Office Name: '. $row['OfficeName'] .'<br>
-		Office Number: '. $row['OfficeNumber'] .'<br>
-		Is Featured: '. $row['featured'] .
-		'</p>';
-}
-
-echo $agent;
-

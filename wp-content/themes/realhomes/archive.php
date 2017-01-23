@@ -49,7 +49,9 @@ get_header();
     <div class="page-head">
         <div class="container">
             <div class="wrap clearfix">
-              <h1 class="page-title"><?php echo /* $banner_title .' | '.  */ $banner_details; ?></h1>
+              <h1 class="page-title"><?php echo /* $banner_title .' | '.  */ $banner_details; ?>
+                  <img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" width="250px"/>
+              </h1>
             </div>
         </div>
     </div><!-- End Page Head -->

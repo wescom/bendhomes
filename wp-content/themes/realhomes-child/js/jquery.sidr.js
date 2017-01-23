@@ -576,4 +576,10 @@
   jQuery.sidr = sidr;
   jQuery.fn.sidr = fnSidr;
 
+  // Janelle Contreras - hack to have menu read different then section display name for Prime Lending
+  var plText = $('#menu-item-159236').html();
+  var imgText = '<img src="http://www.bendhomes.com/wp-content/uploads/2017/01/PrimeLendingLogo4.png" width="80px" />';
+  plText = plText.replace("Financing tips powered by:", "Financing tips powered by: "+imgText);
+  $('#menu-item-159236').html(plText);
+
 }());

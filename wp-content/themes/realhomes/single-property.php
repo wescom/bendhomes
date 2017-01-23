@@ -1,4 +1,9 @@
 <?php 
+
+//$rets_test = $wpdb->select('bh_rets');
+//$test_agents = $rets_test->get_results("SELECT * FROM ActiveAgent_MEMB;");
+//print_r($test_agents);
+
 get_header();
 
 $theme_property_detail_variation = get_option('theme_property_detail_variation');
