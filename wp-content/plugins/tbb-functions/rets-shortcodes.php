@@ -552,7 +552,7 @@ class Rets_Company {
 		$id = mysql_real_escape_string( floatval( $id ) );
 	
 		$query = "
-			SELECT * FROM Offices_OFFI 
+			SELECT * FROM Office_OFFI 
 			WHERE OfficeNumber = {$id}
 		";
 		
