@@ -542,7 +542,7 @@ class Rets_Company {
 			array(
 				'class' => '',
 				'linkto' => 'companies',
-				'member_number' => ''
+				'office_number' => ''
 			), $args
 		);
 
