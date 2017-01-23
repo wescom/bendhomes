@@ -314,3 +314,212 @@ class Rets_Agent {
 	
 }
 new Rets_Agent();
+
+
+// Creates companies list on /companies page
+class Rets_Companies {
+	
+	public static $args;
+	
+    public function __construct() {
+		
+        add_shortcode('rets_companies', array($this, 'render'));
+		
+    }
+     
+    public function render( $args ) {
+		
+		$html = '';
+		$defaults = shortcode_atts(
+			array(
+				'limit' => 50,
+				'order' => '',
+				'orderby' => '',
+				'class' => '',
+				'columns' => 3,
+				'show_search' => '',
+				'linkto' => 'agent'
+			), $args
+		);
+
+		extract( $defaults );
+		
+		switch( $columns ) {
+			case "6":
+				$cols_per_row = 6;
+				$cols = "six";
+				break;
+			case "5":
+				$cols_per_row = 5;
+				$cols = "five";
+				break;
+			case "4":
+				$cols_per_row = 4;
+				$cols = "four";
+				break;
+			case "3":
+				$cols_per_row = 3;
+				$cols = "three";
+				break;
+			case "2":
+				$cols_per_row = 2;
+				$cols = "two";
+				break;
+			case "1":
+				$cols_per_row = 1;
+				$cols = "one";
+				break;
+		}
+		
+		$sort_order = '';
+		
+		if( !empty( $order ) && !empty( $orderby ) ) {
+			$sort_order = 'ORDER BY '. $orderby .' '. $order;
+		}
+		
+		// Enable order A-Z & Z-A select field if url contains ?sort= param
+		$url_sort = '';
+		$url_sort = $_GET['sort'];
+
+		if( $url_sort == 'a-z' ) {
+			$sort_order = 'ORDER BY OfficeName ASC';
+		}
+		if( $url_sort == 'z-a' ) {
+			$sort_order = 'ORDER BY OfficeName DESC';
+		}
+		
+		$query = "
+			SELECT Office_OFFI.IsActive,
+			Office_OFFI.MLSID,
+			Office_OFFI.OfficeName,
+			Office_OFFI.OfficeNumber,
+			Office_OFFI.OfficePhone,
+			Office_OFFI.OfficePhoneComplete,
+			Office_OFFI.StreetAddress,
+			Office_OFFI.StreetCity,
+			Office_OFFI.StreetState,
+			Office_OFFI.StreetZipCode,
+			Office_OFFI.OfficeDescription,
+			Office_OFFI.DisplayName,
+			Office_OFFI.featured
+			FROM Office_OFFI
+			{$sort_order}
+		";
+		
+		$companies_query = new Rets_DB();
+		
+		$companies = $companies_query->select( $query );
+		
+		//print_r( $agents );
+		
+		if( $companies ) {
+			
+			$total_companies = count( $companies );
+			
+			$count = 1;
+			
+			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
+			
+				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_companies ) .' Total Companies</div>';
+			
+				if( empty( $show_search ) ) {
+			
+					$html .= '<div class="custom-search-wrap">';
+						$html .= '
+							<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
+								<input type="text" class="search-field" name="s" placeholder="Find an agent"/>
+								<input type="hidden" name="post_type" value="agent" />
+								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
+							</form>
+						';
+					$html .= '</div>';
+
+				}
+
+				$current_url = home_url() .''. $_SERVER['PHP_SELF'];
+				$html .= '<div class="order-box option-bar small clearfix">';
+					$html .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
+
+						$option_values = '';
+						if( $url_sort == 'a-z' ) {
+							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+						} elseif( $url_sort == 'z-a' ) {
+							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+						} else {
+							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
+							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
+							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
+						}
+						$html .= $option_values;
+
+					$html .= '</select></span>';
+				$html .= '</div>';
+				$html .= '<script>
+							document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
+							</script>';
+			
+				foreach( $companies as $company ) {
+										
+					$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
+					
+					/*if( !empty( $company['images'] ) ) {
+						$has_image_class = 'width-image';
+						$image_url = home_url() .'/_retsapi/imagesAgents/'. $company['images'];
+					} else {
+						$has_image_class = 'without-image';
+						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+					}*/
+					
+					$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $agent['StreetZipCode'];
+					
+					$permalink = home_url() .'/'. $linkto .'/?agent='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
+					
+					// Begin agent output
+					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
+							$count, $cols, $class, $has_image_class, $category_classes );
+					
+						$html .= sprintf( '<figure class="custom-post-image image-agent-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
+								$count, $permalink, $image_url, $company['OfficeName'] );
+
+					
+						$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
+									$company['OfficeName'], $office_address, $company['OfficePhoneComplete'] );
+					
+						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+					
+					$html .= '</div></div>';
+					// End agent ouput
+					
+					$clearfix_test = $count / $cols_per_row;
+					if( is_int( $clearfix_test ) ) {
+						$html .= '<div class="clearfix"></div>';
+					}
+
+					$count++;
+					
+				}
+			
+			
+			
+			$html .= sprintf( '</div>%s</div>', 'Pagination goes here' );
+			
+		}
+		
+		return $html;
+		
+    } // end render
+	
+	public function create_slug( $string ) {
+				
+		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
+	   
+		return $slug;
+		
+	} // end create_slug
+	
+} 
+new Rets_Companies();
