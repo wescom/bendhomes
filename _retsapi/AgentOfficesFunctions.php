@@ -401,7 +401,7 @@ function executeGetAgentsAndOffices() {
         file_put_contents($file, implode(",", $idArray));*/
         // ***********  End part 1 ***********
         // *********** 2. this is second step, use the ids you got previous and chunk them up in reasonable imports ************
-        $start = 400; // start index
+        $start = 600; // start index
         $count = 200; // how many past start to grab
         $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
         $idString = file_get_contents($idFile);
