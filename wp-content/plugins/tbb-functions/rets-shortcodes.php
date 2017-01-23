@@ -548,13 +548,15 @@ class Rets_Company {
 
 		extract( $defaults );
 		
-		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
+		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $office_number;
 		$id = mysql_real_escape_string( floatval( $id ) );
 	
 		$query = "
 			SELECT * FROM Offices_OFFI 
 			WHERE OfficeNumber = {$id}
 		";
+		
+		$html .= sprintf('<div>Hello freaking world</div>');
 		
 		$company_query = new Rets_DB();
 		
