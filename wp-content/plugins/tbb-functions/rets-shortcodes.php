@@ -476,7 +476,7 @@ class Rets_Companies {
 					
 					$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $agent['StreetZipCode'];
 					
-					$permalink = home_url() .'/'. $linkto .'/?agent='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
+					$permalink = home_url() .'/'. $linkto .'/?agent='. $this->create_slug( $company['OfficeName'] ) .'&id='. $company['MemberNumber'];
 					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
