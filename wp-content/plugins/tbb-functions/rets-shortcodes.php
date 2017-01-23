@@ -708,12 +708,14 @@ class Rets_Company_Agents {
 			WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 AND ActiveAgent_MEMB.OfficeNumber = {id}
 			 {$sort_order}
 		";
+
+		print_r($query);
 		
 		$agents_query = new Rets_DB();
 		
 		$agents = $agents_query->select( $query );
 		
-		//print_r( $agents );
+		print_r( $agents );
 		
 		if( $agents ) {
 			
