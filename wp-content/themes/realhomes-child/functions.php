@@ -424,11 +424,11 @@ if(is_admin()) new PropertySettingsPage;
 
 // Temporary fix to reditect non admin users so we can work on the live site.
 // Uncomment this action out to get logged in, then reactivate it again.
-add_action( 'admin_init', 'bh_redirect_non_admin_user', 999 );
+add_action( 'init', 'bh_redirect_non_admin_user' );
 function bh_redirect_non_admin_user(){
-    if ( !current_user_can('administrator') ){
-        //wp_redirect( 'http://adhosting.wescompapers.com/bendhomes-com/' );  
-		//exit;
-		header( 'Location: http://adhosting.wescompapers.com/bendhomes-com/');
+	global $pagenow;
+    if ( !defined( 'DOING_AJAX' ) && !current_user_can('administrator') && !$pagenow === 'wp-login.php' ){
+        wp_redirect( 'http://adhosting.wescompapers.com/bendhomes-com/' );  
+		exit;
     } 
 }
