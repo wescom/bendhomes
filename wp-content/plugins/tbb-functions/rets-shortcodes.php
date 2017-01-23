@@ -338,7 +338,7 @@ class Rets_Companies {
 				'class' => '',
 				'columns' => 3,
 				'show_search' => '',
-				'linkto' => 'companies'
+				'linkto' => 'company'
 			), $args
 		);
 
@@ -428,7 +428,7 @@ class Rets_Companies {
 						$html .= '
 							<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
 								<input type="text" class="search-field" name="s" placeholder="Find an agent"/>
-								<input type="hidden" name="post_type" value="company" />
+								<input type="hidden" name="post_type" value="companies" />
 								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
 							</form>
 						';
