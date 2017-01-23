@@ -102,8 +102,8 @@ require_once( get_template_directory() . '/bend-homes/bh-functions.php' );
  */
 // commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'include/agent-post-type.php' );        // Agent
 require_once( INSPIRY_FRAMEWORK . 'include/property-post-type.php' );     // Property
-require_once( INSPIRY_FRAMEWORK . 'include/partners-post-type.php' );     // Partner
-require_once( INSPIRY_FRAMEWORK . 'include/slide-post-type.php' );        // Slide
+// commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'include/partners-post-type.php' );     // Partner
+// commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'include/slide-post-type.php' );        // Slide
 
 
 /**
