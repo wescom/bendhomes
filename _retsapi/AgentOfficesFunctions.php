@@ -393,15 +393,15 @@ function executeGetAgentsAndOffices() {
       if ($updateByIdListFile == true) {
         // Comment out part 2 first and run to get ids, then uncomment part 2 and comment part 1 out and run.
         // **********  1. This is first step - get all the ids for the time range you are doing *************
-        $idArray = runRetsQuery($qvars, $pullDate);
+        /*$idArray = runRetsQuery($qvars, $pullDate);
         echo '<pre>';
         print_r($idArray);
         echo '</pre>';
         $file = '/var/www/html/_retsapi/IdTextFiles/'.$qvars['resource'].'.txt';
-        file_put_contents($file, implode(",", $idArray));
+        file_put_contents($file, implode(",", $idArray));*/
         // ***********  End part 1 ***********
         // *********** 2. this is second step, use the ids you got previous and chunk them up in reasonable imports ************
-        /*$start = 0; // start index
+        $start = 0; // start index
         $count = 200; // how many past start to grab
         $idFile = "./IdTextFiles/".$qvars['resource'].'.txt';;
         $idString = file_get_contents($idFile);
@@ -419,7 +419,7 @@ function executeGetAgentsAndOffices() {
           saveToDB($all_agent_data_wPhotos, $qvars, $pullDate);
         } else {
           echo '<pre style="color:red">At end of array.</pre>';
-        }*/
+        }
         // ***********  End part 2 ***********
 
       } else {
