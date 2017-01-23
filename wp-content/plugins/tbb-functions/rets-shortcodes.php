@@ -476,7 +476,7 @@ class Rets_Companies {
 					
 					$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $agent['StreetZipCode'];
 					
-					$permalink = home_url() .'/'. $linkto .'/?company='. $this->create_slug( $company['OfficeName'] ) .'&id='. $company['MemberNumber'];
+					$permalink = home_url() .'/'. $linkto .'/?company='. $this->create_slug( $company['OfficeName'] ) .'&id='. $company['OfficeNumber'];
 					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
@@ -553,7 +553,7 @@ class Rets_Company {
 	
 		$query = "
 			SELECT * FROM Offices_OFFI 
-			WHERE AOfficeNumber = {$id}
+			WHERE OfficeNumber = {$id}
 		";
 		
 		$company_query = new Rets_DB();
