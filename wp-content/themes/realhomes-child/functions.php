@@ -426,9 +426,9 @@ if(is_admin()) new PropertySettingsPage;
 // Uncomment this action out to get logged in, then reactivate it again.
 add_action( 'admin_init', 'bh_redirect_non_admin_user', 999 );
 function bh_redirect_non_admin_user(){
-    if ( !current_user_can('administrator') ){
+    //if ( !current_user_can('administrator') ){
         //wp_redirect( 'http://adhosting.wescompapers.com/bendhomes-com/' );  
 		//exit;
 		header( 'Location: http://adhosting.wescompapers.com/bendhomes-com/');
-    } 
+    //} 
 }
