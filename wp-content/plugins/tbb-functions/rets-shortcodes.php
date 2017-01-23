@@ -173,7 +173,7 @@ class Rets_Agents {
 					
 					$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 					
-					$permalink = home_url() .'/'. $linkto .'/?name='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
+					$permalink = home_url() .'/'. $linkto .'/?agent='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
 					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
@@ -259,7 +259,7 @@ class Rets_Agent {
 		
 		$agent_query = new Rets_DB();
 		
-		$agent = $agent_query->select( $query );
+		$agent = $agent_query->select( $query )[0];
 		
 		if( $agent ) {
 			
@@ -281,7 +281,7 @@ class Rets_Agent {
 						
 				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
 
-					$html .= sprintf('<img src="%s" alt="" width="" height="" class="alignleft" />', $image_url );
+					$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
 
 					$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
