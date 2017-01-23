@@ -75,9 +75,6 @@ class Rets_Agents {
 			$sort_order = 'ORDER BY FullName DESC';
 		}
 		
-		$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
-		$startAt = $limit * ($page - 1);
-		
 		$query = "
 			SELECT ActiveAgent_MEMB.FullName,
 			ActiveAgent_MEMB.MemberNumber,
@@ -243,11 +240,27 @@ class Rets_Agent {
 		$defaults = shortcode_atts(
 			array(
 				'class' => '',
-				'linkto' => 'agents'
+				'linkto' => 'agents',
+				'member_number' => ''
 			), $args
 		);
 
 		extract( $defaults );
+		
+		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
+		$id = mysql_real_escape_string( floatval( $id ) );
+	
+		$query = "SELECT * FROM ActiveAgent_MEMB WHERE MemberNumber = {$id}";
+		
+		$agent_query = new Rets_DB();
+		
+		$agent = $agent_query->select( $query );
+		
+		if( $agent ) {
+			
+			print_r( $agent );
+			
+		}
 		
 	}
 	
