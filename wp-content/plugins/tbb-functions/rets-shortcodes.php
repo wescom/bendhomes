@@ -556,8 +556,8 @@ class Rets_Company {
 			WHERE OfficeNumber = {$id}
 		";
 		
-		$html .= sprintf('<div>Hello freaking world</div>');
-		
+		$html .= sprintf('<div>Hello freaking world '.$query.' </div>');
+
 		$company_query = new Rets_DB();
 		
 		$company = $company_query->select( $query )[0];
