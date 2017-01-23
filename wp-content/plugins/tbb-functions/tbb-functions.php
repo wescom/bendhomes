@@ -41,9 +41,9 @@ require_once( TBB_FUNCTIONS_DIR . 'rets-connect.class.php' );
 require_once( TBB_FUNCTIONS_DIR . 'admin/offices.php' );
 require_once( TBB_FUNCTIONS_DIR . 'admin/agents.php' );
 
-require_once( TBB_FUNCTIONS_DIR . 'post-types/post-type-company.php' );
+//require_once( TBB_FUNCTIONS_DIR . 'post-types/post-type-company.php' );
 //require_once( TBB_FUNCTIONS_DIR . 'admin/settings-company.php' );
-require_once( TBB_FUNCTIONS_DIR . 'admin/settings-agents.php' );
+//require_once( TBB_FUNCTIONS_DIR . 'admin/settings-agents.php' );
 
 require_once( TBB_FUNCTIONS_DIR . 'tbb-shortcodes.php' );
 require_once( TBB_FUNCTIONS_DIR . 'rets-shortcodes.php' );
