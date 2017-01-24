@@ -19,7 +19,7 @@ class Rets_Agents {
 		$html = '';
 		$defaults = shortcode_atts(
 			array(
-				'limit' => 50,
+				'limit' => 500,
 				'order' => '',
 				'orderby' => '',
 				'class' => '',
