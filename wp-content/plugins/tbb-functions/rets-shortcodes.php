@@ -670,8 +670,8 @@ class Rets_Company {
 				}
 
                 $html .= '<ul class="contacts-list">';
-                if(!empty($company_office_phone)){
-                	$html . = 'a phone number';
+                //if(!empty($company_office_phone)){
+                	$html .= 'a phone number';
                     /*$html. = '<li class="office">';
 					//$html . = include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework');
 					$html .= ':'; 
