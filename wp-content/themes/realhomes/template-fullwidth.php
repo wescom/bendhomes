@@ -25,7 +25,7 @@ get_header();
     	<div style="position: absolute; top: 50%; width: 100%; background: rgba(0,0,0,.35); height: 300px; margin-top: -150px; color: #fff;">
 			<div class="container">
 				<div class="clearfix">
-					<h1 class="page-title" style="color:#fff;margin-top:50px;text-transform:none;">Welcome to BendHomes.com</h1>
+					<h1 class="page-title" style="color:#fff;margin-top:100px;font-size:58px;text-transform:none;">Welcome to BendHomes.com</h1>
 					<h2 style="color: #fff;">Central Oregon’s Most Comprehensive Real Estate Resource</h2>
 				</div>
 			</div>
