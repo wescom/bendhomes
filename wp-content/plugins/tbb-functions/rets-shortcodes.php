@@ -638,6 +638,26 @@ class Rets_Company {
 
 			$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
 			
+			/*$html .= '<article class="about-company company-single clearfix"><div class="detail"><div class="row-fluid">';
+
+			$companyImage = '';
+			if ($companyImage) {
+				$html .= '<div class="span3"><figure class="agent-pic">';
+                $html .= '<a title="'.$companyImage.'" href="">';
+                $html .= '<img src = "" />';
+                $html .= '</a></figure></div>';
+                $html .= '<div class="span9">';
+            } else {
+            	$html .= '<div class="span12">';
+            }
+
+            // Company Contact Info
+            $company_office_phone = get_field( 'company_office_phone' );
+            $company_office_fax = get_field( 'company_office_fax' );
+            $company_office_address = get_field( 'company_office_address' );
+
+			$html .= '</div></div></article>';*/
+
 			$html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
 						
 				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
@@ -662,8 +682,8 @@ class Rets_Company {
 				}
 			
 			$html .= '</div>';
+			do_shortcode('[rets_company_agents']);
 
-			do_shortcode('rets_company_agents');
 			
 		}
 		
