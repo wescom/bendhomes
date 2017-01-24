@@ -612,7 +612,7 @@ class Rets_Companies {
 			
 			
 			
-			$html .= sprintf( '</div>%s</div>', 'Pagination goes here' );
+			//$html .= sprintf( '</div>%s</div>', 'Pagination goes here' );
 			
 		}
 		
