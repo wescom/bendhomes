@@ -634,6 +634,7 @@ class Rets_Company {
 			
 			print_r( $company );
 			
+			$company_featured = $company['featured'] == 1 ? 'featured' : 'not-featured';
 			$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
 
 			$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
@@ -642,7 +643,6 @@ class Rets_Company {
 
 			$html .= '<div class="row-fluid">';
 
-			$html .= 'images: '.$company['images'];
 			if( !empty( $company['images'] ) ) {
 				$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
 				$html .= '<div class="span3"><figure class="agent-pic">';
@@ -654,6 +654,41 @@ class Rets_Company {
 			} else {
 				$html .= '<div class="span12">';
 			}
+			// Company Contact Info
+            $company_office_phone = $company['OfficePhoneComplete'];
+            $company_office_fax = $company['OfficeFax'];
+            $company_office_address = $company['StreetAddress'] .' '. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
+
+            if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
+
+                $html .= '<h5 class="company-featured-'.$company_featured.'">'.$company['OfficeName'].'</h5>';
+                                                
+                if(!empty($company_office_address) && $company_featured == 1){
+                    $html .= do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
+                } else {
+					$html .= '<p>'. $company_office_address .'</p>';
+				}
+
+                                               /* <ul class="contacts-list">
+                                                    <?php
+                                                    if(!empty($company_office_phone)){
+                                                        ?><li class="office">
+														<?php include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework'); ?> : 
+														<?php if( $company_featured == 1 ) {
+															echo '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>';
+														} else {
+															echo $company_office_phone;
+														} ?>
+                                                        </li><?php
+                                                    }
+                                                    if(!empty($company_office_fax)){
+                                                        ?><li class="fax"><?php include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework'); ?>  : <?php echo $company_office_fax; ?></li><?php
+                                                    }
+                                                    ?>
+                                                </ul>
+                                                <?php
+                                            }*/
+            }
 
 			$html .= '</div><!-- end span9 or span12 -->';
 			$html .= '</div><!-- end .row-fluid -->';
