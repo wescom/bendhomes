@@ -713,7 +713,7 @@ class Rets_Company_Agents {
 		
 		$agents = $agents_query->select( $query );
 		
-		print_r( $agents );
+		//print_r( $agents );
 		
 		if( $agents ) {
 			
