@@ -123,7 +123,7 @@ require_once( INSPIRY_FRAMEWORK . 'admin/theme-settings.php' );
 /**
  * Meta Boxes
  */
-// commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'meta-box/inspiry-meta-box.php' );
+require_once( INSPIRY_FRAMEWORK . 'meta-box/inspiry-meta-box.php' );
 
 
 /**
