@@ -92,7 +92,6 @@ class Rets_Agents {
 				Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
 				Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
 				Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
-				# Agent_MEMB.IsActive,
 				Office_OFFI.OfficeName,
 				Office_OFFI.OfficePhoneComplete,
 				Office_OFFI.StreetAddress,
@@ -122,7 +121,6 @@ class Rets_Agents {
 				Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
 				Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
 				Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
-				# Agent_MEMB.IsActive,
 				Office_OFFI.OfficeName,
 				Office_OFFI.OfficePhoneComplete,
 				Office_OFFI.StreetAddress,
@@ -151,7 +149,9 @@ class Rets_Agents {
 		
 		if( $agents ) {
 			
-			//$total_agents = count( $agents );
+			$total_agents = count( $agents );
+			
+			$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents) .' Total Agents</div>';
 			
 			$count = 1;
 			
