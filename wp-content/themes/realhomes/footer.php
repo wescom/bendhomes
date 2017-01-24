@@ -42,7 +42,7 @@ $home_url = home_url();
                               <li><a href="<?php echo $home_url; ?>/advertise-bend-homes/">Advertise With Us</a></li>
                               <li><a href="mailto:info@bendhomes.com">Contact Us</a></li>
                             </ul>
-                          <p>Listings updated:  <?php properties_updated_timestamp(); ?></p>
+                          <?php /*<p>Listings updated:  <?php properties_updated_timestamp(); ?></p>*/ ?>
                           <?php echo do_shortcode('
 						  	[SCHEMA_ADDRESS 
 								name="Bend Homes" 
@@ -64,11 +64,11 @@ $home_url = home_url();
                         <div class="span4">
                             <h4>Popular Searches</h4>
                             <ul>
-                              <li><a href="<?php echo $home_url; ?>/property-search/?location=bend">Bend Oregon Real Estate</a></li>
+                              <li><a href="http://bendhomes.idxbroker.com/i/bend">Bend Oregon Real Estate</a></li>
                               <li><a href="http://www.todaysnewjobs.com/" target="_blank">Bend Oregon Jobs</a></li>
-                              <li><a href="<?php echo $home_url; ?>/property-search/?location=sisters">Homes For Sale in Sisters Oregon</a></li>
-                              <li><a href="<?php echo $home_url; ?>/property-search/?location=redmond">Homes For Sale in Redmond Oregon</a></li>
-                              <li><a href="<?php echo $home_url; ?>/property-search/?type=land">Land For Sale in Bend Oregon</a></li>
+                              <li><a href="http://bendhomes.idxbroker.com/i/sisters">Homes For Sale in Sisters Oregon</a></li>
+                              <li><a href="http://bendhomes.idxbroker.com/i/redmond">Homes For Sale in Redmond Oregon</a></li>
+                              <li><a href="http://bendhomes.idxbroker.com/idx/results/listings?idxID=a098&pt=4&city[]=3587&per=25&srt=newest">Land For Sale in Bend Oregon</a></li>
                               <li><a href="<?php echo $home_url; ?>/events/">Things to do in Bend Oregon</a></li>
                             </ul>
                         </div>
