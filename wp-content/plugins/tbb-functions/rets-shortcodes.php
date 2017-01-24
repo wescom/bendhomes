@@ -671,16 +671,16 @@ class Rets_Company {
 
                 $html .= '<ul class="contacts-list">';
                 if(!empty($company_office_phone)){
-                	$html .= 'a phone number';
-                    /*$html. = '<li class="office">';
+
+                    $html .= '<li class="office">';
 					//$html . = include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework');
-					$html .= ':'; 
-					if( $company_featured == 1 ) {
+					$html .= ':xx'; 
+					/*if( $company_featured == 1 ) {
 						$html .= '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>';
 					} else {
 						$html .= $company_office_phone;
-					} 
-                    $html .= '</li>';*/
+					} */
+                    $html .= '</li>';
                 }
                 /*if(!empty($company_office_fax)){
                     $html .= '<li class="fax">';
