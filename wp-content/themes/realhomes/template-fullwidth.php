@@ -20,12 +20,14 @@ get_header();
     <?php //get_template_part("banners/default_page_banner"); ?>
     
     <?php if( is_front_page() ) { ?>
-    <div class="page-head" style="text-align: center;">
+    <div class="page-head" style="text-align: center; position: relative;">
     	<img src="<?php echo home_url(); ?>/wp-content/uploads/2013/08/old-mill-district-bend-oregon.jpg" alt="" width="1600" height="500" />
-    	<div class="container">
-    		<div class="wrap clearfix">
-				<h1 class="page-title">Welcome to BendHomes.com</h1>
-				<?php echo do_shortcode('[idx-platinum-widget id="20817-34207" ]'); ?>
+    	<div style="position: absolute; top: 100px; width: 100%;">
+			<div class="container">
+				<div class="wrap clearfix">
+					<h1 class="page-title">Welcome to BendHomes.com</h1>
+					<?php echo do_shortcode('[idx-platinum-widget id="20817-34207" ]'); ?>
+				</div>
 			</div>
 		</div>
 	</div>
