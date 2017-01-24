@@ -501,11 +501,12 @@ class Rets_Companies {
 			";
 		}
 		
+		$html .= 'query: '.$query;
 		$companies_query = new Rets_DB();
 		
 		$companies = $companies_query->select( $query );
 		
-		//print_r( $agents );
+		//print_r( $companies);
 		
 		if( $companies ) {
 			
