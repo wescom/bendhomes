@@ -695,7 +695,6 @@ class Rets_Company_Agents {
 			Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
 			Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
 			Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
-			# Agent_MEMB.IsActive,
 			Office_OFFI.OfficeName,
 			Office_OFFI.OfficePhoneComplete,
 			Office_OFFI.StreetAddress,
