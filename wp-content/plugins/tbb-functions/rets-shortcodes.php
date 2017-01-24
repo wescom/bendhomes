@@ -103,6 +103,7 @@ class Rets_Agents {
 				LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 				LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 				WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 
+				AND (AND Office_OFFI.featured = 1 OR ActiveAgent.featured = 1)
 				{$sort_order}
 				LIMIT {$limit}
 			";
@@ -137,6 +138,7 @@ class Rets_Agents {
 			";
 		}
 		
+		$html .= 'query: '.$query;
 		$agents_query = new Rets_DB();
 		
 		$agents = $agents_query->select( $query );
