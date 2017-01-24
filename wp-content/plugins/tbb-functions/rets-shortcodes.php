@@ -856,37 +856,9 @@ class Rets_Company_Agents {
 			$total_agents = count( $agents );
 			
 			$count = 1;
-			
-			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
-			
+
 				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</div>';
 			
-
-				$current_url = home_url() .''. $_SERVER['PHP_SELF'];
-				$html .= '<div class="order-box option-bar small clearfix">';
-					$html .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
-
-						$option_values = '';
-						if( $url_sort == 'a-z' ) {
-							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
-							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
-							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
-						} elseif( $url_sort == 'z-a' ) {
-							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
-							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
-							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
-						} else {
-							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
-							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
-							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
-						}
-						$html .= $option_values;
-
-					$html .= '</select></span>';
-				$html .= '</div>';
-				$html .= '<script>
-							document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
-							</script>';
 			
 				$html .= '<div class="agents-list-wrap clearfix">';
 				foreach( $agents as $agent ) {
@@ -939,10 +911,6 @@ class Rets_Company_Agents {
 					
 				}
 				$html .= '</div>';
-			
-			
-			
-			$html .= sprintf( '</div>%s</div>', 'Pagination goes here' );
 			
 		}
 		
