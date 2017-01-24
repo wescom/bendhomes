@@ -704,7 +704,7 @@ class Rets_Company_Agents {
 			FROM ActiveAgent_MEMB
 			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-			WHERE ActiveAgent_MEMB.OfficeNumber = {$id}
+			WHERE Office_OFFI.OfficeNumber = {$id}
 		";
 
 		print_r($query);
