@@ -638,7 +638,10 @@ class Rets_Company {
 
 			$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
 			
-			$html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
+			$html .= '<article class="about-company company-single clearfix"><div class="detail"><div class="row-fluid">';
+			$html .= 'A company</div></div></article>';
+
+			/*$html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
 						
 				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
 
@@ -661,7 +664,7 @@ class Rets_Company {
 				
 				}
 			
-			$html .= '</div>';
+			$html .= '</div>';*/
 
 			$html .= do_shortcode('[rets_company_agents][/rets_company_agents]');
 			
