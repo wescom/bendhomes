@@ -106,9 +106,6 @@ class Rets_Agents {
 		
 		$agents_query = new Rets_DB();
 		
-		$total_agents = $agents_query->query( "SELECT COUNT(*) FROM ActiveAgent_MEMB" );
-		print_r($total_agents);
-		
 		$agents = $agents_query->select( $query );
 		
 		//print_r( $agents );
