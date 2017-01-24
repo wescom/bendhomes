@@ -497,8 +497,8 @@ class Rets_Companies {
 					$html .= '<div class="custom-search-wrap">';
 						$html .= '
 							<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
-								<input type="text" class="search-field" name="s" placeholder="Find an agent"/>
-								<input type="hidden" name="post_type" value="companies" />
+								<input type="text" class="search-field" name="s" placeholder="Find an office"/>
+								<input type="hidden" name="post_type" value="offices" />
 								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
 							</form>
 						';
@@ -507,30 +507,7 @@ class Rets_Companies {
 				}
 
 				$current_url = home_url() .''. $_SERVER['PHP_SELF'];
-				$html .= '<div class="order-box option-bar small clearfix">';
-					$html .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
-
-						$option_values = '';
-						if( $url_sort == 'a-z' ) {
-							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
-							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
-							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
-						} elseif( $url_sort == 'z-a' ) {
-							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
-							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
-							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
-						} else {
-							$option_values .= '<option value="'. $current_url .'">Order: Random</option>';
-							$option_values .= '<option value="'. $current_url .'?sort=a-z">Order: A - Z</option>';
-							$option_values .= '<option value="'. $current_url .'?sort=z-a">Order: Z - A</option>';
-						}
-						$html .= $option_values;
-
-					$html .= '</select></span>';
-				$html .= '</div>';
-				$html .= '<script>
-							document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
-							</script>';
+				
 			
 				foreach( $companies as $company ) {
 										
