@@ -106,13 +106,16 @@ class Rets_Agents {
 		
 		$agents_query = new Rets_DB();
 		
+		$total_agents = $agents_query->query( "SELECT COUNT(*) FROM ActiveAgent_MEMB.IsActive" );
+		$total_agents = mysql_fetch_row( $total_agents )[0];
+		
 		$agents = $agents_query->select( $query );
 		
 		//print_r( $agents );
 		
 		if( $agents ) {
 			
-			$total_agents = count( $agents );
+			//$total_agents = count( $agents );
 			
 			$count = 1;
 			
