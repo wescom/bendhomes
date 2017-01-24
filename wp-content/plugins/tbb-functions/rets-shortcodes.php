@@ -134,7 +134,8 @@ class Rets_Agents {
 
 				}
 
-				$current_url = home_url() .''. $_SERVER['PHP_SELF'];
+				$current_url = $this->get_current_url();
+			
 				$html .= '<div class="order-box option-bar small clearfix">';
 					$html .= '<span class="selectwrap"><select id="sort-order" class="sort-order search-select">';
 
@@ -220,10 +221,18 @@ class Rets_Agents {
 		
 	} // end create_slug
 	
+	public function get_current_url() {
+		
+		$url = home_url() .''. $_SERVER['REQUEST_URI'];
+		
+		return $url;
+	}
+	
 	// http://www.phpfreaks.com/tutorial/basic-pagination
 	public function pagination( $per_page, $total_pages, $range ) {
 		
 		$html = '';
+		$current_url = $this->get_current_url();
 		
 		if (isset($_GET['page']) && is_numeric($_GET['page'])) {
 		   $page = (int) $_GET['page'];
@@ -242,9 +251,9 @@ class Rets_Agents {
 		$offset = ( $page - 1 ) * $per_page;
 		
 		if( $page > 1 ) {
-			$html .= '<a href="'. $_SERVER['PHP_SELF'] .'?page=1"><<</a>';
+			$html .= '<a href="'. $current_url .'?page=1"><<</a>';
 			$prev_page = $page - 1;
-			$html .= '<a href="'. $_SERVER['PHP_SELF'] .'?page=$prev_page"><</a>';
+			$html .= '<a href="'. $current_url .'?page=$prev_page"><</a>';
 		}
 		
 		for ($x = ($page - $range); $x < (($page + $range) + 1); $x++) {
@@ -257,7 +266,7 @@ class Rets_Agents {
 			  // if not current page...
 			  } else {
 				 // make it a link
-				 $html .= ' <a href="'. $_SERVER['PHP_SELF'] .'page='. $x .'">'. $x .'</a> ';
+				 $html .= ' <a href="'. $current_url .'?page='. $x .'">'. $x .'</a> ';
 			  } // end else
 		   } // end if 
 		}
@@ -265,9 +274,9 @@ class Rets_Agents {
 		if ($page != $total_pages) {
 		   $next_page = $page + 1;
 			// echo forward link for next page 
-		   $html .= ' <a href="'. $_SERVER['PHP_SELF'] .'?page=$next_page">></a> ';
+		   $html .= ' <a href="'. $current_url .'?page='. $next_page .'">></a> ';
 		   // echo forward link for lastpage
-		   $html .= '<a href="'. $_SERVER['PHP_SELF'] .'?page=$total_pages">>></a> ';
+		   $html .= '<a href="'. $current_url .'?page='. $total_pages .'">>></a> ';
 		}
 		
 		return $html;
