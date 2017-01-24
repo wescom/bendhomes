@@ -669,10 +669,10 @@ class Rets_Company {
 					$html .= '<p>'. $company_office_address .'</p>';
 				}
 
-                /*$html .= '<ul class="contacts-list">';
+                $html .= '<ul class="contacts-list">';
                 if(!empty($company_office_phone)){
                     $html. = '<li class="office">';
-					$html . = include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework');
+					//$html . = include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework');
 					$html .= ':'; 
 					if( $company_featured == 1 ) {
 						$html .= '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>';
@@ -681,15 +681,15 @@ class Rets_Company {
 					} 
                     $html .= '</li>';
                 }
-                if(!empty($company_office_fax)){
+                /*if(!empty($company_office_fax)){
                     $html .= '<li class="fax">';
                     $html .=  include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework');
                     $html .= ':';
                     $html .= $company_office_fax;
                     $html .= '</li>';
-                }
+                }*/
 
-                $html .= '</ul>';*/
+                $html .= '</ul>';
             }
 
 			$html .= '</div><!-- end span9 or span12 -->';
