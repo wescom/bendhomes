@@ -459,26 +459,47 @@ class Rets_Companies {
 
 		$searchString = '';
 		$searchString = $_GET['search'];
-		$html .= 'serach: '.$searchString;
-		
-		$query = "
-			SELECT Office_OFFI.IsActive,
-			Office_OFFI.MLSID,
-			Office_OFFI.OfficeName,
-			Office_OFFI.OfficeNumber,
-			Office_OFFI.OfficePhone,
-			Office_OFFI.OfficePhoneComplete,
-			Office_OFFI.StreetAddress,
-			Office_OFFI.StreetCity,
-			Office_OFFI.StreetState,
-			Office_OFFI.StreetZipCode,
-			Office_OFFI.OfficeDescription,
-			Office_OFFI.DisplayName,
-			Office_OFFI.featured
-			FROM Office_OFFI
-			WHERE IsActive = 'T' AND featured = 1
-			{$sort_order}
-		";
+		//$html .= 'serach: '.$searchString;
+
+		if ($searchString == '') {
+			$query = "
+				SELECT Office_OFFI.IsActive,
+				Office_OFFI.MLSID,
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficeNumber,
+				Office_OFFI.OfficePhone,
+				Office_OFFI.OfficePhoneComplete,
+				Office_OFFI.StreetAddress,
+				Office_OFFI.StreetCity,
+				Office_OFFI.StreetState,
+				Office_OFFI.StreetZipCode,
+				Office_OFFI.OfficeDescription,
+				Office_OFFI.DisplayName,
+				Office_OFFI.featured
+				FROM Office_OFFI
+				WHERE IsActive = 'T' AND featured = 1
+				{$sort_order}
+			";
+		} else {
+			$query = "
+				SELECT Office_OFFI.IsActive,
+				Office_OFFI.MLSID,
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficeNumber,
+				Office_OFFI.OfficePhone,
+				Office_OFFI.OfficePhoneComplete,
+				Office_OFFI.StreetAddress,
+				Office_OFFI.StreetCity,
+				Office_OFFI.StreetState,
+				Office_OFFI.StreetZipCode,
+				Office_OFFI.OfficeDescription,
+				Office_OFFI.DisplayName,
+				Office_OFFI.featured
+				FROM Office_OFFI
+				WHERE IsActive = 'T' AND 'Office_OFFI.OfficeName LIKE '%{$searchString}%'
+				{$sort_order}
+			";
+		}
 		
 		$companies_query = new Rets_DB();
 		
