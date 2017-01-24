@@ -638,8 +638,26 @@ class Rets_Company {
 
 			$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
 			
-			$html .= '<article class="about-company company-single clearfix"><div class="detail"><div class="row-fluid">';
-			$html .= 'A company</div></div></article>';
+			$html .= '<article class="about-company company-single clearfix"><div class="detail">';
+
+			$html .= '<div class="row-fluid">';
+
+			if( !empty( $company['images'] ) ) {
+				$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
+				$html .= '<div class="span3"><figure class="agent-pic">';
+                $html .= '<a title="" href="">';
+                $html .= '<img src="'.$image_url.'"/>';
+                $html .= '</a></figure></div>';
+
+                $html .= '<div class="span9">';
+			} else {
+				$html .= '<div class="span12">';
+			}
+
+			$html .= '</div><!-- end span9 or span12 -->';
+			$html .= '</div><!-- end .row-fluid -->';
+
+			$html .= '</div></article>';
 
 			/*$html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
 						
