@@ -662,6 +662,8 @@ class Rets_Company {
 				}
 			
 			$html .= '</div>';
+
+			new Rets_Company_Agents();
 			
 		}
 		
@@ -895,4 +897,4 @@ class Rets_Company_Agents {
 	} // end create_slug
 	
 } 
-new Rets_Company_Agents();
+
