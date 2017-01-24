@@ -840,7 +840,7 @@ class Rets_Company_Agents {
 						$html .= '<div class="company-agent">';
 						$html .= '<a class="company-agent-inner" href="'.$permalink.'">';
 						$html .= '<figure class="agent-image">'
-						$html .= '<img src="%s" alt="%s" width="" height="" />', $image_url, $agent_name, $image[1], $image[2] );
+						$html .= sprintf('<img src="%s" alt="%s" width="" height="" />', $image_url, $agent_name);
 						$html .= '</figure>';                                                        
 						$html .= '<div class="agent-name">'.$agent['FullName'].'</div>';
 						$html .= '</a></div></div>';
