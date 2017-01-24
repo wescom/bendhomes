@@ -663,7 +663,7 @@ class Rets_Company {
 			
 			$html .= '</div>';
 
-			new Rets_Company_Agents();
+			do_shortcode('rets_company_agents');
 			
 		}
 		
@@ -897,4 +897,4 @@ class Rets_Company_Agents {
 	} // end create_slug
 	
 } 
-
+new Rets_Company_Agents();
