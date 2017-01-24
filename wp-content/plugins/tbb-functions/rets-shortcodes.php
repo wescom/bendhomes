@@ -101,6 +101,7 @@ class Rets_Agents {
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 			WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 
 			{$sort_order}
+			LIMIT {$limit}
 		";
 		
 		$agents_query = new Rets_DB();
@@ -203,7 +204,7 @@ class Rets_Agents {
 			
 			
 			
-			$html .= sprintf( '</div>%s</div>', 'Pagination goes here' );
+			$html .= sprintf( '</div>%s</div>', $this->pagination( $limit, $total_agents, '3' ) );
 			
 		}
 		
@@ -218,6 +219,60 @@ class Rets_Agents {
 		return $slug;
 		
 	} // end create_slug
+	
+	// http://www.phpfreaks.com/tutorial/basic-pagination
+	public function pagination( $per_page, $total_pages, $range ) {
+		
+		$html = '';
+		
+		if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+		   $page = (int) $_GET['page'];
+		} else {
+		   $page = 1;
+		}
+		
+		if( $page > $total_pages ) {
+			$page = $total_pages;
+		}
+		
+		if( $page < 1 ) {
+			$page = 1;
+		}
+		
+		$offset = ( $page - 1 ) * $per_page;
+		
+		if( $page > 1 ) {
+			$html .= '<a href="'. $_SERVER['PHP_SELF'] .'?page=1"><<</a>';
+			$prev_page = $page - 1;
+			$html .= '<a href="'. $_SERVER['PHP_SELF'] .'?page=$prev_page"><</a>';
+		}
+		
+		for ($x = ($page - $range); $x < (($page + $range) + 1); $x++) {
+		   // if it's a valid page number...
+		   if (($x > 0) && ($x <= $total_pages)) {
+			  // if we're on current page...
+			  if ($x == $page) {
+				 // 'highlight' it but don't make a link
+				 $html .= ' [<b>'. $x .'</b>] ';
+			  // if not current page...
+			  } else {
+				 // make it a link
+				 $html .= ' <a href="'. $_SERVER['PHP_SELF'] .'page='. $x .'">'. $x .'</a> ';
+			  } // end else
+		   } // end if 
+		}
+		
+		if ($page != $total_pages) {
+		   $next_page = $page + 1;
+			// echo forward link for next page 
+		   $html .= ' <a href="'. $_SERVER['PHP_SELF'] .'?page=$next_page">></a> ';
+		   // echo forward link for lastpage
+		   $html .= '<a href="'. $_SERVER['PHP_SELF'] .'?page=$total_pages">>></a> ';
+		}
+		
+		return $html;
+		
+	} // end pagination
 	
 } 
 new Rets_Agents();
@@ -292,9 +347,9 @@ class Rets_Agent {
 			
 				if( $agent['featured'] == 1 ) {
 						
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties">';
+				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 					
-					$html .= '<p>Property List Here...</p>';
+					$html .= sprintf('<h3>Properties Listed By </h3>', $agent['FullName'] );
 
 				$html .= '</div></div></div>';
 				
