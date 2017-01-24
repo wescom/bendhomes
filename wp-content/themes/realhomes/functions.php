@@ -101,7 +101,7 @@ require_once( get_template_directory() . '/bend-homes/bh-functions.php' );
  * Custom Post Types
  */
 // commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'include/agent-post-type.php' );        // Agent
-require_once( INSPIRY_FRAMEWORK . 'include/property-post-type.php' );     // Property
+// commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'include/property-post-type.php' );     // Property
 // commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'include/partners-post-type.php' );     // Partner
 // commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'include/slide-post-type.php' );        // Slide
 
@@ -123,7 +123,7 @@ require_once( INSPIRY_FRAMEWORK . 'admin/theme-settings.php' );
 /**
  * Meta Boxes
  */
-require_once( INSPIRY_FRAMEWORK . 'meta-box/inspiry-meta-box.php' );
+// commented out by Jarel: require_once( INSPIRY_FRAMEWORK . 'meta-box/inspiry-meta-box.php' );
 
 
 /**
