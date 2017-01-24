@@ -663,6 +663,7 @@ class Rets_Company {
 			
 			$html .= '</div>';
 
+			$html .= do_shortcode('[rets_company_agents][/rets_company_agents]');
 			
 		}
 		
