@@ -219,7 +219,7 @@ class Rets_Agents {
 	   
 		return $slug;
 		
-	} // end create_slug
+	}
 	
 	public function get_current_url() {
 		
@@ -283,7 +283,7 @@ class Rets_Agents {
 		
 		return $html;
 		
-	} // end pagination
+	}
 	
 } 
 new Rets_Agents();
