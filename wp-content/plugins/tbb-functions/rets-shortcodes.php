@@ -771,7 +771,6 @@ class Rets_Company_Agents {
 		
 		if( $agents ) {
 			
-			$html .= "<div>Have agents</div>";
 			$total_agents = count( $agents );
 			
 			$count = 1;
@@ -780,19 +779,6 @@ class Rets_Company_Agents {
 			
 				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</div>';
 			
-				if( empty( $show_search ) ) {
-			
-					$html .= '<div class="custom-search-wrap">';
-						$html .= '
-							<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
-								<input type="text" class="search-field" name="s" placeholder="Find an agent"/>
-								<input type="hidden" name="post_type" value="agent" />
-								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
-							</form>
-						';
-					$html .= '</div>';
-
-				}
 
 				$current_url = home_url() .''. $_SERVER['PHP_SELF'];
 				$html .= '<div class="order-box option-bar small clearfix">';
@@ -820,6 +806,7 @@ class Rets_Company_Agents {
 							document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
 							</script>';
 			
+				$html .= '<div class="agents-list-wrap clearfix">';
 				foreach( $agents as $agent ) {
 										
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
@@ -835,9 +822,17 @@ class Rets_Company_Agents {
 					$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 					
 					$permalink = home_url() .'/'. $linkto .'/?agent='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
-					
+														
+						$html .= '<div class="company-agent">';
+						$html .= '<a class="company-agent-inner" href="'.$permalink.'">';
+						$html .= '<figure class="agent-image">'
+						$html .= '<img src="%s" alt="%s" width="" height="" />', $image_url, $agent_name, $image[1], $image[2] );
+						$html .= '</figure>';                                                        
+						$html .= '<div class="agent-name">'.$agent['FullName'].'</div>';
+						$html .= '</a></div></div>';
+
 					// Begin agent output
-					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
+					/*$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $class, $has_image_class, $category_classes );
 					
 						$html .= sprintf( '<figure class="custom-post-image image-agent-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
@@ -851,7 +846,7 @@ class Rets_Company_Agents {
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 					
 					$html .= '</div></div>';
-					// End agent ouput
+					// End agent ouput*/
 					
 					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
