@@ -681,7 +681,7 @@ class Rets_Company {
 						$html .= $company_office_phone;
 					} 
                     $html .= '</li>';*/
-                }
+                //}
                 /*if(!empty($company_office_fax)){
                     $html .= '<li class="fax">';
                     $html .=  include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework');
