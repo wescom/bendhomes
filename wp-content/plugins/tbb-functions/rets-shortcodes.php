@@ -669,9 +669,10 @@ class Rets_Company {
 					$html .= '<p>'. $company_office_address .'</p>';
 				}
 
-                /*$html .= '<ul class="contacts-list">';
+                $html .= '<ul class="contacts-list">';
                 if(!empty($company_office_phone)){
-                    $html. = '<li class="office">';
+                	$html . = 'a phone number';
+                    /*$html. = '<li class="office">';
 					//$html . = include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework');
 					$html .= ':'; 
 					if( $company_featured == 1 ) {
@@ -679,8 +680,8 @@ class Rets_Company {
 					} else {
 						$html .= $company_office_phone;
 					} 
-                    $html .= '</li>';
-                }*/
+                    $html .= '</li>';*/
+                }
                 /*if(!empty($company_office_fax)){
                     $html .= '<li class="fax">';
                     $html .=  include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework');
