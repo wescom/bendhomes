@@ -717,6 +717,7 @@ class Rets_Company_Agents {
 		
 		if( $agents ) {
 			
+			$html .= "<div>Have agents</div>";
 			$total_agents = count( $agents );
 			
 			$count = 1;
