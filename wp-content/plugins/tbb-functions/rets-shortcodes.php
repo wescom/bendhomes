@@ -673,7 +673,7 @@ class Rets_Company {
                 if(!empty($company_office_phone)){
 
                     $html .= '<li class="office">';
-					//$html . = include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework');
+					$html .= include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework');
 					$html .= ':'; 
 					if( $company_featured == 1 ) {
 						$html .= '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>';
