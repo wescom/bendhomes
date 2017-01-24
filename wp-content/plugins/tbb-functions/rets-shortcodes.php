@@ -73,35 +73,69 @@ class Rets_Agents {
 		} if( $url_sort == 'z-a' ) {
 			$sort_order = 'ORDER BY FullName DESC';
 		}
+
+		$searchString = '';
+		$searchString = $_GET['search'];
 		
-		$query = "
-			SELECT ActiveAgent_MEMB.FullName,
-			ActiveAgent_MEMB.MemberNumber,
-			ActiveAgent_MEMB.IsActive,
-			ActiveAgent_MEMB.images,
-			Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
-			Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
-			Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
-			Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
-			Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
-			Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
-			Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
-			Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
-			Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
-			# Agent_MEMB.IsActive,
-			Office_OFFI.OfficeName,
-			Office_OFFI.OfficePhoneComplete,
-			Office_OFFI.StreetAddress,
-			Office_OFFI.StreetCity,
-			Office_OFFI.StreetState,
-			Office_OFFI.StreetZipCode
-			FROM ActiveAgent_MEMB
-			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
-			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-			WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 
-			{$sort_order}
-			LIMIT {$limit}
-		";
+		if ($searchString == '') {
+			$query = "
+				SELECT ActiveAgent_MEMB.FullName,
+				ActiveAgent_MEMB.MemberNumber,
+				ActiveAgent_MEMB.IsActive,
+				ActiveAgent_MEMB.images,
+				Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+				Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+				Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+				Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+				Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+				Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+				Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+				Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+				Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+				# Agent_MEMB.IsActive,
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficePhoneComplete,
+				Office_OFFI.StreetAddress,
+				Office_OFFI.StreetCity,
+				Office_OFFI.StreetState,
+				Office_OFFI.StreetZipCode
+				FROM ActiveAgent_MEMB
+				LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+				LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+				WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 
+				{$sort_order}
+				LIMIT {$limit}
+			";
+		} else {
+			$query = "
+				SELECT ActiveAgent_MEMB.FullName,
+				ActiveAgent_MEMB.MemberNumber,
+				ActiveAgent_MEMB.IsActive,
+				ActiveAgent_MEMB.images,
+				Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+				Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+				Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+				Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+				Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+				Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+				Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+				Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+				Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+				# Agent_MEMB.IsActive,
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficePhoneComplete,
+				Office_OFFI.StreetAddress,
+				Office_OFFI.StreetCity,
+				Office_OFFI.StreetState,
+				Office_OFFI.StreetZipCode
+				FROM ActiveAgent_MEMB
+				LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+				LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+				WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 AND ActiveAgent_MEMB.FullName LIKE '%{$searchString}%'
+				{$sort_order}
+				LIMIT {$limit}
+			";
+		}
 		
 		$agents_query = new Rets_DB();
 		
@@ -127,8 +161,8 @@ class Rets_Agents {
 			
 					$html .= '<div class="custom-search-wrap">';
 						$html .= '
-							<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
-								<input type="text" class="search-field" name="s" placeholder="Find an agent"/>
+							<form role="search" action="'. site_url('/') .'agents" method="get" id="searchform">
+								<input type="text" class="search-field" name="search" placeholder="Find an agent"/>
 								<input type="hidden" name="post_type" value="agent" />
 								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
 							</form>
