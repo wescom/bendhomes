@@ -681,7 +681,7 @@ class Rets_Company_Agents {
 			$sort_order = 'ORDER BY FullName DESC';
 		}
 		
-		$query = "
+		/*$query = "
 			SELECT ActiveAgent_MEMB.FullName,
 			ActiveAgent_MEMB.MemberNumber,
 			ActiveAgent_MEMB.IsActive,
@@ -705,7 +705,9 @@ class Rets_Company_Agents {
 			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 			WHERE Office_OFFI.OfficeNumber = {$id}
-		";
+		";*/
+
+		$query = "select * from ActiveAgent_MEMB where OfficeNumber = 3";
 
 		print_r($query);
 		
