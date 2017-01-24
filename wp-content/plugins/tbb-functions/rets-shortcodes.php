@@ -642,6 +642,7 @@ class Rets_Company {
 
 			$html .= '<div class="row-fluid">';
 
+			$html .= 'images: '.$company['images'];
 			if( !empty( $company['images'] ) ) {
 				$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
 				$html .= '<div class="span3"><figure class="agent-pic">';
