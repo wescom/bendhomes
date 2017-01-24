@@ -682,19 +682,21 @@ class Rets_Company {
 					} 
                     $html .= '</li>';
                 }
-                /*if(!empty($company_office_fax)){
+                if(!empty($company_office_fax)){
                     $html .= '<li class="fax">';
                     $html .=  include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework');
                     $html .= ':';
                     $html .= $company_office_fax;
                     $html .= '</li>';
-                }*/
+                }
 
                 $html .= '</ul>';
             }
 
 			$html .= '</div><!-- end span9 or span12 -->';
 			$html .= '</div><!-- end .row-fluid -->';
+
+			$html .= do_shortcode('[rets_company_agents][/rets_company_agents]');
 
 			$html .= '</div></article>';
 
@@ -723,7 +725,7 @@ class Rets_Company {
 			
 			$html .= '</div>';*/
 
-			$html .= do_shortcode('[rets_company_agents][/rets_company_agents]');
+			
 			
 		}
 		
