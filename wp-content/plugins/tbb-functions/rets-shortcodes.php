@@ -707,8 +707,6 @@ class Rets_Company_Agents {
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 			WHERE Office_OFFI.OfficeNumber = {$id}
 		";
-
-		print_r($query);
 		
 		$agents_query = new Rets_DB();
 		
