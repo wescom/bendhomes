@@ -14,7 +14,10 @@
 
 <?php if ( ! dynamic_sidebar( 'footer-fourth-column' ) ) : ?>
 <?php endif; ?>
-*/ ?>
+*/ 
+
+$home_url = home_url();
+?>
 
 <!-- Start Footer -->
 <footer id="footer-wrapper">
@@ -35,8 +38,8 @@
                               <a target="_blank" href="https://www.yelp.com/biz/bend-homes-bend"><span class="fa fa-yelp chiclet-yelp"></span></a>
                             </div>
                             <ul>
-                              <li><a href="/about-bend-homes/">About Us</a></li>
-                              <li><a href="/advertise-bend-homes/">Advertise With Us</a></li>
+                              <li><a href="<?php echo $home_url; ?>/about-bend-homes/">About Us</a></li>
+                              <li><a href="<?php echo $home_url; ?>/advertise-bend-homes/">Advertise With Us</a></li>
                               <li><a href="mailto:info@bendhomes.com">Contact Us</a></li>
                             </ul>
                           <p>Listings updated:  <?php properties_updated_timestamp(); ?></p>
@@ -61,12 +64,12 @@
                         <div class="span4">
                             <h4>Popular Searches</h4>
                             <ul>
-                              <li><a href="/property-search/?location=bend">Bend Oregon Real Estate</a></li>
+                              <li><a href="<?php echo $home_url; ?>/property-search/?location=bend">Bend Oregon Real Estate</a></li>
                               <li><a href="http://www.todaysnewjobs.com/" target="_blank">Bend Oregon Jobs</a></li>
-                              <li><a href="/property-search/?location=sisters">Homes For Sale in Sisters Oregon</a></li>
-                              <li><a href="/property-search/?location=redmond">Homes For Sale in Redmond Oregon</a></li>
-                              <li><a href="/property-search/?type=land">Land For Sale in Bend Oregon</a></li>
-                              <li><a href="/events/">Things to do in Bend Oregon</a></li>
+                              <li><a href="<?php echo $home_url; ?>/property-search/?location=sisters">Homes For Sale in Sisters Oregon</a></li>
+                              <li><a href="<?php echo $home_url; ?>/property-search/?location=redmond">Homes For Sale in Redmond Oregon</a></li>
+                              <li><a href="<?php echo $home_url; ?>/property-search/?type=land">Land For Sale in Bend Oregon</a></li>
+                              <li><a href="<?php echo $home_url; ?>/events/">Things to do in Bend Oregon</a></li>
                             </ul>
                         </div>
 

@@ -6,18 +6,18 @@
 get_header();
 ?>
     
-<div class="simple-search-wrap">
+<!--div class="simple-search-wrap">
 	<div class="container">
 		<div class="row">
 			<?php
-			get_template_part('bend-homes/simple-search');
+			//get_template_part('bend-homes/simple-search');
 			?>
 		</div>
 	</div>
-</div>
+</div-->
 
     <!-- Page Head -->
-    <?php get_template_part("banners/default_page_banner"); ?>
+    <?php //get_template_part("banners/default_page_banner"); ?>
 
     <!-- Content -->
     <div class="container contents single">
@@ -43,7 +43,7 @@ get_header();
                                 </article>
                                 <?php
                             endwhile;
-                            comments_template();
+                            //comments_template();
                         endif;
                         ?>
                     </div>
