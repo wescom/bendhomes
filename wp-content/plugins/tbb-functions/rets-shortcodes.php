@@ -634,7 +634,7 @@ class Rets_Company {
 			
 			print_r( $company );
 			
-			$company_featured = $company['featured'] == 1 ? 'featured' : 'not-featured';
+			$company_featured = $company['featured'];
 			$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
 
 			$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
