@@ -550,7 +550,7 @@ class Rets_Companies {
 			
 			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_companies ) .' Total Companies</div>';
+				
 			
 				if( empty( $show_search ) ) {
 			
@@ -567,7 +567,7 @@ class Rets_Companies {
 				}
 
 				$current_url = home_url() .''. $_SERVER['PHP_SELF'];
-				
+				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_companies ) .' Total Companies</div>';
 			
 				foreach( $companies as $company ) {
 										
