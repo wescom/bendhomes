@@ -19,7 +19,7 @@ class Rets_Agents {
 		$html = '';
 		$defaults = shortcode_atts(
 			array(
-				'limit' => 500,
+				'limit' => 50,
 				'order' => '',
 				'orderby' => '',
 				'class' => '',
@@ -136,7 +136,6 @@ class Rets_Agents {
 			";
 		}
 		
-		$html .= 'query: '.$query;
 		$agents_query = new Rets_DB();
 		
 		$agents = $agents_query->select( $query );
