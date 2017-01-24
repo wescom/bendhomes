@@ -225,7 +225,7 @@ class Rets_Agents {
 		
 		$base_url = explode('/', $_SERVER['REQUEST_URI']);
 		
-		$url = home_url() .''. $base_url[1];
+		$url = home_url() .'/'. $base_url[1];
 		
 		return $url;
 	}
