@@ -18,6 +18,10 @@ get_header();
 
     <!-- Page Head -->
     <?php //get_template_part("banners/default_page_banner"); ?>
+    
+    <div class="page-head" style="text-align: center;">
+    	<img src="<?php echo home_url(); ?>/wp-content/uploads/2013/08/old-mill-district-bend-oregon.jpg" alt="" width="1600" height="500" />
+	</div>
 
     <!-- Content -->
     <div class="container contents single">
