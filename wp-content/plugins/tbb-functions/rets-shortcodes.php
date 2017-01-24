@@ -780,6 +780,10 @@ class Rets_Company_Agents {
 		$agents_query = new Rets_DB();
 		
 		$agents = $agents_query->select( $query );
+
+		if ($sort_order == '') {
+			shuffle($agents);
+		}
 		
 		//print_r( $agents );
 		
@@ -820,7 +824,7 @@ class Rets_Company_Agents {
 							document.getElementById("sort-order").onchange = function() { if (this.selectedIndex!==0) { window.location.href = this.value; } };
 							</script>';
 			
-				//$html .= '<div class="agents-list-wrap clearfix">';
+				$html .= '<div class="agents-list-wrap clearfix">';
 				foreach( $agents as $agent ) {
 										
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
@@ -837,16 +841,16 @@ class Rets_Company_Agents {
 					
 					$permalink = home_url() .'/'. $linkto .'/?agent='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
 														
-						/*$html .= '<div class="company-agent">';
+						$html .= '<div class="company-agent">';
 						$html .= '<a class="company-agent-inner" href="'.$permalink.'">';
-						$html .= '<figure class="agent-image">'
+						$html .= '<figure class="agent-image">';
 						$html .= '<img src="'.$image_url.'" alt="'.$agent['FullName'].'" width="" height="" />';
 						$html .= '</figure>';                                                        
 						$html .= '<div class="agent-name">'.$agent['FullName'].'</div>';
-						$html .= '</a></div></div>';*/
+						$html .= '</a></div>';
 
 					// Begin agent output
-					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
+					/*$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $class, $has_image_class, $category_classes );
 					
 						$html .= sprintf( '<figure class="custom-post-image image-agent-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
@@ -859,17 +863,18 @@ class Rets_Company_Agents {
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 					
-					$html .= '</div></div>';
+					$html .= '</div></div>';*/
 					// End agent ouput
 					
-					$clearfix_test = $count / $cols_per_row;
+					/*$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
 						$html .= '<div class="clearfix"></div>';
 					}
 
-					$count++;
+					$count++;*/
 					
 				}
+				$html .= '</div>';
 			
 			
 			
