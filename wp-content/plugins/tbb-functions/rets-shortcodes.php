@@ -403,7 +403,7 @@ class Rets_Companies {
 			Office_OFFI.DisplayName,
 			Office_OFFI.featured
 			FROM Office_OFFI
-			WHERE IsActive = 'T'
+			WHERE IsActive = 'T' AND featured = 1
 			{$sort_order}
 		";
 		
