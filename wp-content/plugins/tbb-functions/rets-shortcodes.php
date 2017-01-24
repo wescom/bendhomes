@@ -632,7 +632,7 @@ class Rets_Company {
 		
 		if( $company ) {
 			
-			print_r( $company );
+			//print_r( $company );
 			
 			$company_featured = $company['featured'];
 			$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
