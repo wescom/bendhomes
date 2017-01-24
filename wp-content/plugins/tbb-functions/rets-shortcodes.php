@@ -456,6 +456,10 @@ class Rets_Companies {
 		if( $url_sort == 'z-a' ) {
 			$sort_order = 'ORDER BY OfficeName DESC';
 		}
+
+		$searchString = '';
+		$searchString = $_GET['search'];
+		$html .= 'serach: '.$searchString;
 		
 		$query = "
 			SELECT Office_OFFI.IsActive,
@@ -496,9 +500,9 @@ class Rets_Companies {
 			
 					$html .= '<div class="custom-search-wrap">';
 						$html .= '
-							<form role="search" action="'. site_url('/') .'" method="get" id="searchform">
-								<input type="text" class="search-field" name="s" placeholder="Find an office"/>
-								<input type="hidden" name="post_type" value="offices" />
+							<form role="search" action="'. site_url('/') .'/companies" method="get" id="searchform">
+								<input type="text" class="search-field" name="search" placeholder="Find an office"/>
+								<!--<input type="hidden" name="post_type" value="offices" />-->
 								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
 							</form>
 						';
