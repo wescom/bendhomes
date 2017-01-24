@@ -496,7 +496,7 @@ class Rets_Companies {
 				Office_OFFI.DisplayName,
 				Office_OFFI.featured
 				FROM Office_OFFI
-				WHERE IsActive = 'T' AND 'Office_OFFI.OfficeName LIKE '%{$searchString}%'
+				WHERE IsActive = 'T' AND Office_OFFI.OfficeName LIKE '%{$searchString}%'
 				{$sort_order}
 			";
 		}
