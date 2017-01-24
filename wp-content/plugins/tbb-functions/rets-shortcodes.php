@@ -513,13 +513,13 @@ class Rets_Companies {
 										
 					$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
 					
-					/*if( !empty( $company['images'] ) ) {
+					if( !empty( $company['images'] ) ) {
 						$has_image_class = 'width-image';
-						$image_url = home_url() .'/_retsapi/imagesAgents/'. $company['images'];
+						$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
 					} else {
 						$has_image_class = 'without-image';
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
-					}*/
+					}
 					
 					$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $agent['StreetZipCode'];
 					
