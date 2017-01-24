@@ -121,7 +121,7 @@ class Rets_Agents {
 			
 			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</div>';
+				//$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</div>';
 			
 				if( empty( $show_search ) ) {
 			
