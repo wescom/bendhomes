@@ -417,8 +417,7 @@ class PropertySettingsPage {
 	
 	
 }
-
-if(is_admin()) new PropertySettingsPage;
+//if(is_admin()) new PropertySettingsPage;
 
 
 
