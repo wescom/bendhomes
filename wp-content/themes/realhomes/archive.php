@@ -50,7 +50,7 @@ get_header();
         <div class="container">
             <div class="wrap clearfix">
               <h1 class="page-title"><?php echo /* $banner_title .' | '.  */ $banner_details; ?>
-                  <img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" width="250px"/>
+                  <img src="<?php //if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" width="250px"/>
               </h1>
             </div>
         </div>
@@ -76,4 +76,4 @@ get_header();
         </div><!-- End contents row -->
     </div><!-- End Content -->
 
-<?php get_footer(); ?>
+<?php get_footer();

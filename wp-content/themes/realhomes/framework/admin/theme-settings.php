@@ -61,37 +61,37 @@ if (!function_exists('of_options'))
 		*	Access the property-feature terms via an Array
 		*/
         $features_array = array();
-        $features_terms = get_terms('property-feature');
+        /* Jarel: $features_terms = get_terms('property-feature');
         foreach ($features_terms as $feature_term){
             $features_array[$feature_term->slug] = $feature_term->name;
-        }
+        }*/
 
         /*
         *	Access the property-status terms via an Array
         */
         $statuses_array = array();
-        $status_terms = get_terms('property-status');
+        /* Jarel: $status_terms = get_terms('property-status');
         foreach ($status_terms as $status_term){
             $statuses_array[$status_term->slug] = $status_term->name;
-        }
+        }*/
 
         /*
         *	Access the property-city terms via an Array
         */
         $cities_array = array();
-        $city_terms = get_terms('property-city');
+        /* Jarel: $city_terms = get_terms('property-city');
         foreach ($city_terms as $city_term){
             $cities_array[$city_term->slug] = $city_term->name;
-        }
+        }*/
 
         /*
         *	Access the property-type terms via an Array
         */
         $types_array = array();
-        $type_terms = get_terms('property-type');
+        /* Jarel: $type_terms = get_terms('property-type');
         foreach ($type_terms as $type_term){
             $types_array[$type_term->slug] = $type_term->name;
-        }
+        }*/
 
         /*
         *	Numbers Array
