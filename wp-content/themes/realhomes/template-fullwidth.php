@@ -26,7 +26,7 @@ get_header();
 			<div class="container">
 				<div class="clearfix">
 					<h1 class="page-title" style="color:#fff;margin-top:100px;font-size:58px;text-transform:none;">Welcome to BendHomes.com</h1>
-					<h2 style="color: #fff;">Central Oregon’s Most Comprehensive Real Estate Resource</h2>
+					<div class="header-search"><?php echo do_shortcode('[idx-omnibar styles="1" extra="0" min_price="1" ]'); ?></div>
 				</div>
 			</div>
 		</div>
