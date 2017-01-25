@@ -369,15 +369,21 @@ class Rets_Agent {
 			
 			print_r( $agent );
 			
-			$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
+			$category_classes = 'not_featured';
+			if ($agent['ActiveAgent_MEMB.featured'] == 1 || $agent['Office_OFFI.featured']) {
+				$category_classes = 'featured';
+			}
+			$html .= 'class: '.$category_class;
+			//$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
 					
-			if( !empty( $agent['images'] ) ) {
+			if( !empty( $agent['ActiveAgent_MEMB.images'] ) ) {
 				$has_image_class = 'width-image';
 				$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['ActiveAgent_MEMB.images'];
 			} else {
 				$has_image_class = 'without-image';
 				$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
 			}
+			$html .= 'image: '.$image_url;
 
 			$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 			
