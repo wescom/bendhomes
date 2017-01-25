@@ -98,61 +98,17 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
                         ?>
 
 
-                        <?php
-                        $enable_user_nav = get_option('theme_enable_user_nav');
-                        if( $enable_user_nav == "true" ){
-                            ?>
-                            <div class="user-nav clearfix">
-                            
-                            	<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
-                                
-                                <?php /*<a href="#mortgage-calculator" class="mort-calc" data-toggle="modal" onClick="ga('send', 'pageview', '<?php echo tbb_current_url( 'mortcalc=viewed' ); ?>');"><i class="fa fa-calculator"></i>Mortgage Calculator</a>*/ ?>
-                                
-                                <?php
-                                if(is_user_logged_in()){
+						<div class="user-nav clearfix">
 
-                                    $profile_url = get_option('theme_profile_url');
-                                    $submit_url = get_option('theme_submit_url');
-                                    $my_properties_url = get_option('theme_my_properties_url');
-                                    $favorites_url = get_option('theme_favorites_url');
+							<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
 
-                                    if( !empty( $favorites_url ) ) {
-                                        ?><a href="<?php echo $favorites_url; ?>"><i class="fa fa-star"></i><?php _e('Favorites','framework'); ?></a><?php
-                                    }
+							<a href="http://bendhomes.idxbroker.com/idx/search/advanced">Advanced Search</a>
 
-                                    if( !empty( $submit_url ) ) {
-                                        ?><a href="<?php echo $submit_url; ?>"><i class="fa fa-plus-circle"></i><?php _e('Submit','framework'); ?></a><?php
-                                    }
+							<a href="http://bendhomes.idxbroker.com/idx/userlogin">Login / Register</a>
 
-                                    if( !empty( $my_properties_url ) ) {
-                                        ?><a href="<?php echo $my_properties_url; ?>"><i class="fa fa-th-list"></i><?php _e('My Properties','framework'); ?></a><?php
-                                    }
+							<a href="http://bendhomes.idxbroker.com/idx/myaccount">Profile</a>
 
-                                    if( !empty( $profile_url ) ) {
-                                        ?><a href="<?php echo $profile_url; ?>"><i class="fa fa-user"></i><?php _e('Profile','framework'); ?></a><?php
-                                    } else {
-                                        ?><a href="<?php echo network_admin_url( 'profile.php' ); ?>"><i class="fa fa-user"></i><?php _e('Profile','framework'); ?></a><?php
-                                    }
-
-                                    ?><a class="last" href="<?php echo wp_logout_url( home_url() ); ?>"><i class="fa fa-sign-out"></i><?php _e('Logout','framework'); ?></a><?php
-
-                                }else{
-                                    $theme_login_url = get_option('theme_login_url');
-                                    if(!empty($theme_login_url)){
-                                        ?>
-                                        <a class="last" href="<?php echo $theme_login_url; ?>"><i class="fa fa-sign-in"></i><?php _e('Login / Register','framework'); ?></a>
-                                        <?php
-                                    }else{
-                                        ?>
-                                        <a class="last" href="#login-modal" data-toggle="modal"><i class="fa fa-sign-in"></i><?php _e('Login / Register','framework'); ?></a>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                            </div>
-                            <?php
-                        }
-                        ?>
+						</div>
 
                     </div>
 
