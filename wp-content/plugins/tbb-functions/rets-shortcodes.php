@@ -369,11 +369,11 @@ class Rets_Agent {
 			
 			print_r( $agent );
 			
-			$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
+			$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
 					
 			if( !empty( $agent['images'] ) ) {
 				$has_image_class = 'width-image';
-				$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['images'];
+				$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['ActiveAgent_MEMB.images'];
 			} else {
 				$has_image_class = 'without-image';
 				$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
