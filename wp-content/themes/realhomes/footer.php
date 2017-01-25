@@ -1,6 +1,6 @@
-<?php //get_template_part("template-parts/carousel_partners"); ?>
+<?php get_template_part("template-parts/carousel_partners"); ?>
 
-<?php //get_template_part("bend-homes/template-parts/footer-banner-ad"); ?>
+<?php get_template_part("bend-homes/template-parts/footer-banner-ad"); ?>
 
 <?php /* Set aside PHP for nowrap
 <?php if ( ! dynamic_sidebar( 'footer-first-column' ) ) : ?>
