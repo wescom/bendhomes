@@ -367,7 +367,7 @@ class Rets_Agent {
 		
 		if( $agent ) {
 			
-			print_r( $agent );
+			//print_r( $agent );
 			
 			$category_classes = 'not_featured';
 			if ($agent['ActiveAgent_MEMB.featured'] == 1 || $agent['Office_OFFI.featured']) {
