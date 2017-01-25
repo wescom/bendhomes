@@ -243,7 +243,7 @@ class Rets_Agents {
 			
 			
 			
-			$html .= sprintf( '</div>%s</div>', $this->pagination( $limit, $total_agents, '3' ) );
+			//$html .= sprintf( '</div>%s</div>', $this->pagination( $limit, $total_agents, '3' ) );
 			
 		}
 		
@@ -269,7 +269,7 @@ class Rets_Agents {
 	}
 	
 	// http://www.phpfreaks.com/tutorial/basic-pagination
-	public function pagination( $per_page, $total_pages, $range ) {
+	/*public function pagination( $per_page, $total_pages, $range ) {
 		
 		$html = '';
 		$current_url = $this->get_current_url();
@@ -321,7 +321,7 @@ class Rets_Agents {
 		
 		return $html;
 		
-	}
+	}*/
 	
 } 
 new Rets_Agents();
