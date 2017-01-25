@@ -76,4 +76,4 @@ get_header();
         </div><!-- End contents row -->
     </div><!-- End Content -->
 
-<?php get_footer(); ?>
+<?php get_footer();
