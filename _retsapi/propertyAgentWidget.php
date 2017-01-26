@@ -62,6 +62,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                         $agPageUrl = str_replace('--', '-', $agPageUrl);
                         $agNum = $row['OfficeNumber'];
                         $agImage = str_replace('png', 'jpg', $row['images']);
+                        $agImage = "http://www.bendhomes.com/_retsapi/imagesAgents/".$agImage;
                         $agOfficeName = $row['OfficeName'];
                         $agOfficePhone = $row['OfficePhoneComplete'];
                         if ($row['ContactAddlPhoneType_1'] == 'Cellular'){
@@ -82,7 +83,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
 
                 $returnText = '<section class="agent-widget clearfix">';
                 $returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-                //$returnText .=  '<image src="http://www.bendhomes.com/_retsapi/imagesAgents/'.$agImage.'" />';
+                $returnText .=  '<image src="{{image}}" />';
                 $returnText .=  '</a>';
                 $returnText .=  '<div class="agent-info">';
                 $returnText .=  '<h3 class="title">Listing Agent: <strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></h3>';
