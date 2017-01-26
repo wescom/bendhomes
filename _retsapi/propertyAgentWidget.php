@@ -82,7 +82,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
 
                 $returnText = '<section class="agent-widget clearfix">';
                 $returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-                $returnText .=  '<image src="http://www.bendhomes.com/_retsapi/imagesAgents/'.$agImage.'" />';
+                //$returnText .=  '<image src="http://www.bendhomes.com/_retsapi/imagesAgents/'.$agImage.'" />';
                 $returnText .=  '</a>';
                 $returnText .=  '<div class="agent-info">';
                 $returnText .=  '<h3 class="title">Listing Agent: <strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></h3>';
@@ -102,7 +102,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
 
         $returnText = str_replace('"', '\"', $returnText);
         $returnText = str_replace('/', '\/', $returnText);
-        echo 'callback({"html": "'.$returnText.'"})';
+        echo 'callback({"html": "'.$returnText.'", "image", "'.$agImage.'"})';
         //echo '{"html": "'.$returnText.'"}';
 
 
