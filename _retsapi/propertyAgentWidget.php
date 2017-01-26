@@ -25,7 +25,25 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
         $agImage = "";
         $isFeatured = "";
         //echo '<pre style="color: blue;">Agent ID: '.$agId.'</pre>';
-        $query = "select * from ActiveAgent_MEMB ";
+        $query = "select ActiveAgent_MEMB.FullName,
+                ActiveAgent_MEMB.MemberNumber,
+                ActiveAgent_MEMB.IsActive,
+                ActiveAgent_MEMB.images,
+                Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+                Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+                Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+                Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+                Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+                Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+                Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+                Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+                Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+                Office_OFFI.OfficeName,
+                Office_OFFI.OfficePhoneComplete,
+                Office_OFFI.StreetAddress,
+                Office_OFFI.StreetCity,
+                Office_OFFI.StreetState,
+                Office_OFFI.StreetZipCode from ActiveAgent_MEMB ";
         $query .= "LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber ";
         $query .= "where MemberNumber = ".$agId. " AND (Office_OFFI.featured = 1 || ActiveAgent_MEMB.featured = 1)";
         //echo $query;
