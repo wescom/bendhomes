@@ -6,6 +6,4 @@
 
         cleanAgentsLookupByMLSTable();
 
-        echo "xxx";
-
 ?>
