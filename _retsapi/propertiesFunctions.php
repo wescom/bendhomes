@@ -325,8 +325,8 @@ function cleanAgentsLookupByMLSTable() {
         } else {
                 echo "No missing Ids to get.";
         }
-        echo "<pre>Rets: ".implode(", ",$rets_ids)."</pre>";
-        echo "<pre>Ours: ".implode(", ",$our_ids)."</pre>";
+        //echo "<pre>Rets: ".implode(", ",$rets_ids)."</pre>";
+        //echo "<pre>Ours: ".implode(", ",$our_ids)."</pre>";
 }
 
 ?>
