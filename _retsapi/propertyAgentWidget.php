@@ -56,7 +56,6 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
         //echo $query;
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
-                echo "Is featured!!! ";
                 while($row = $result->fetch_assoc()) {
                         $agName = $row['FullName'];
                         $agPageUrl = str_replace(' ', '-', $agName);
