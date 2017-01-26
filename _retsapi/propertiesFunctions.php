@@ -1,0 +1,332 @@
+<?php
+
+include("/var/www/html/_retsapi/inc/header.php");
+include("/var/databaseIncludes/retsDBInfo.php");
+
+function getScenarios() {
+
+        $centralcount = 999999;
+        $scenarios = array(
+                'Property_BUSI' => array(
+                        'count' => $centralcount,
+                        'fotos' => 'yes',
+                        'resource' => 'Property',
+                        'class' => 'BUSI'
+                ),
+                'Property_COMM' => array(
+                        'count' => $centralcount,
+                        'fotos' => 'yes',
+                        'resource' => 'Property',
+                        'class' => 'COMM'
+                ),
+                'Property_FARM' => array(
+                        'count' => $centralcount,
+                        'fotos' => 'yes',
+                        'resource' => 'Property',
+                        'class' => 'FARM'
+                ),
+                'Property_LAND' => array(
+                        'count' => $centralcount,
+                        'fotos' => 'yes',
+                        'resource' => 'Property',
+                        'class' => 'LAND'
+                ),
+                'Property_MULT' => array(
+                        'count' => $centralcount,
+                        'fotos' => 'yes',
+                        'resource' => 'Property',
+                        'class' => 'MULT'
+                ),
+                'Property_RESI' => array(
+                        'count' => $centralcount,
+                        'fotos' => 'yes',
+                        'resource' => 'Property',
+                        'class' => 'RESI'
+                )
+        );
+        return $scenarios;
+}
+
+/* ##### Build RETS db query ##### */
+function buildRetsQuery($fqvars, $pullDate) {
+        $resource = $fqvars['resource'];
+        $class = $fqvars['class'];
+
+        //$pullDate = "2001-06-01T00:00:00-08:00"; //date('c',$pulldate['recent']);
+        $funiversalqueries = universalqueries($pullDate);
+
+        echo '<p style="background-color: orange;">using date: '.$pullDate.'</p>';
+
+        // first part, resource and class uses the minimum unique key for query, then last modified
+        // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+        $usethisquery = ''.$funiversalqueries[$resource][$class].'';
+        return $usethisquery;
+}
+
+/* ##### Refactor returned data with key supplied by universalkeys in header file ##### */
+function refactorarr($itemsarray,$ukeys,$qvars) {
+        $newarray = array();
+        foreach ($itemsarray as $prop) {
+                foreach($prop as $key => $val) {
+                        if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
+                                $newarray[$val] = $prop;
+                        }
+                }
+        }
+        return $newarray;
+}
+
+function getSetPullDate() {
+
+        $pulldate = array();
+        $pulldate['now'] = (int) time();
+
+        $pulldate['recent'] = strtotime("-2 days"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+        $pulldate['retsquery'] = date('c',$pulldate['recent']);
+
+        return $pulldate['retsquery'];
+}
+
+/* ##### ######### ##### */
+/* ##### RETS QUERY #### */
+/* ##### ######### ##### */
+
+function runRetsQuery($qvars, $pullDate) {
+        global $universalkeys;
+        global $rets;
+
+        print_r($qvars);
+        $query = buildRetsQuery($qvars, $pullDate);
+        //print_r($query);
+
+        $results = $rets->Search(
+                $qvars['resource'],
+                $qvars['class'],
+                $query,
+                        [
+                        'QueryType' => 'DMQL2', // it's always use DMQL2
+                        'Count' => 1, // count and records
+                        'Format' => 'COMPACT',
+                        'Limit' => $qvars['count'],
+                        'StandardNames' => 0, // give system names
+                        'Select' => 'ListingRid, ListingAgentNumber, MLNumber',
+                ]
+        );
+
+        echo '<pre>';
+        //   print_r($results);
+        echo '</pre>';
+
+        // convert from objects to array, easier to process
+        $temparr = $results->toArray();
+        // refactor arr with keys supplied by universalkeys in header
+        $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
+
+
+        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+
+        return $itemsarr;
+}
+
+function saveToOurTable($itemsarr) {
+        $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+        if (mysqli_connect_errno()) {
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+        //$start = 0; // start index
+        //$count = 5000; // how many past start to grab
+        //$pieceArray = array_slice($itemsarr, $start, $count);
+        $pieceArray = $itemsarr;
+        foreach($pieceArray as $key => $array) {
+                //$escarray = array_map('mysql_real_escape_string', $array);
+                foreach ($array as $key => $value)
+                {
+                        $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
+                }
+                $query = "INSERT INTO AgentLookupByMLS ";
+                $query .= " (`".implode("`, `", array_keys($escarray))."`)";
+                $query .= " VALUES ('".implode("', '", $escarray)."') ";
+                $query .= "ON DUPLICATE KEY UPDATE ListingAgentNumber = VALUES(ListingAgentNumber)";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
+                echo '<p>Query: '.$query.'</p>';
+                if (mysqli_query($dbConnection, $query)) {
+                        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+                } else {
+                        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+                }
+        }
+        mysqli_close($dbConnection);
+}
+
+function saveMissingToOurTable($itemsarr) {
+        $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+        //print_r($itemsarr);
+        if (mysqli_connect_errno()) {
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+        foreach($itemsarr as $key => $array) {
+                //$escarray = array_map('mysql_real_escape_string', $array);
+                foreach ($array as $key => $value)
+                {
+                        $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
+                }
+                //$escarray = array_map('mysql_real_escape_string', $array);
+                $query = "INSERT INTO AgentLookupByMLS ";
+                $query .= " (`ListingRid`, `MLNumber`, `ListingAgentNumber`)";
+                $query .= " VALUES ('".$escarray['ListingRid']."', '".$escarray['MLNumber']."', '".$escarray['ListingAgentNumber']."' ) ";
+                $query .= "ON DUPLICATE KEY UPDATE ListingAgentNumber = VALUES(ListingAgentNumber)";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
+                echo '<p>Query: '.$query.'</p>';
+                if (mysqli_query($dbConnection, $query)) {
+                        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+                } else {
+                        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+                }
+        }
+        mysqli_close($dbConnection);
+}
+
+function getAllOurIds() {
+        $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+
+        $query = "select ListingRid from AgentLookupByMLS ORDER BY ListingRid ASC";
+        $result = $conn->query($query);
+
+        $idArray = [];
+        if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                        array_push($idArray, $row['ListingRid']);
+                }
+        }
+        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
+        mysqli_close($conn);
+
+        return $idArray;
+}
+
+function compareAndGetBads($retsIdArray, $ourIdArray) {
+        // anything that is in ours but not rets, should be deleted from ours
+        $badIds = "";
+        $count = 0;
+        $idArray = [];
+        $idArray = array_diff($ourIdArray, $retsIdArray);
+        echo '<pre style="color: red;">'.$count.', BAD Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
+        return $idArray;
+}
+
+function deleteBadIds($idArray) {
+
+        $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+
+        $query = "DELETE from AgentLookupByMLS WHERE ListingRid IN (".implode(", ",$idArray).")";
+        echo '<p>'.$query.'</p>';
+
+        if($conn->query($query)) {
+                echo "<p>Success!!!!</p>";
+        } else {
+                echo "<p>Error: ".mysqli_error($conn)."</p>";
+        }
+        mysqli_close($conn);
+
+}
+
+function getMissingProps($qvars, $pullDate, $idArray) {
+        global $universalkeys;
+        global $rets;
+
+        $idList = implode(",", $idArray);
+
+        $query = "(ListingRid=".$idList.")";
+
+        $results = $rets->Search(
+                $qvars['resource'],
+                $qvars['class'],
+                $query,
+                [
+                        'QueryType' => 'DMQL2', // it's always use DMQL2
+                        'Count' => 1, // count and records
+                        'Format' => 'COMPACT-DECODED',
+                        'Limit' => $qvars['count'],
+                        'StandardNames' => 0, // give system names
+                ]
+        );
+
+        // convert from objects to array, easier to process
+        $temparr = $results->toArray();
+        // refactor arr with keys supplied by universalkeys in header
+        $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
+        return $itemsarr;
+}
+
+function executeUpdateAgentsLookupByMLSTable() {
+
+        echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
+
+        $pullDate = getSetPullDate();
+//      $pullDate = '2001-01-01T00:00:00-08:00';
+
+        $scenarios = getScenarios();
+
+        foreach($scenarios as $qvars) {
+
+                // 1. Get RETS data
+                echo '<pre style="color:green">'.$qvars['class'].'</pre>';
+                $rets_data = runRetsQuery($qvars, $pullDate);
+                saveToOurTable($rets_data);
+                echo '<pre>';
+                print_r($rets_data);
+                echo '</pre>';
+
+        }
+
+        echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
+
+}
+
+function cleanAgentsLookupByMLSTable() {
+
+        $pullDate = '2001-01-01T00:00:00-08:00';
+        $scenarios = getScenarios();
+
+        $our_ids = getAllOurIds();
+        $rets_ids = [];
+        foreach($scenarios as $qvars) {
+                $rets_data = runRetsQuery($qvars, $pullDate);
+                foreach ($rets_data as $itm) {
+                        array_push($rets_ids, $itm['ListingRid']);
+                }
+
+        }
+        sort($rets_ids);
+
+        $badIds = compareAndGetBads($rets_ids, $our_ids);
+        if (sizeof($badIds) > 0) {
+                deleteBadIds($badIds);
+
+                echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
+        } else {
+                echo "No Bad Ids to delete.";
+        }
+
+        $missingIds = compareAndGetBads($our_ids, $rets_ids);
+        if (sizeof($missingIds) > 0) {
+                foreach($scenarios as $qvars) {
+                        $rets_data = getMissingProps($qvars, $pullDate, $missingIds);
+                        saveMissingToOurTable($rets_data);
+                }
+                echo "<pre>Missing Ids: ".implode(", ",$missingIds)."</pre>";
+        } else {
+                echo "No missing Ids to get.";
+        }
+        echo "<pre>Rets: ".implode(", ",$rets_ids)."</pre>";
+        echo "<pre>Ours: ".implode(", ",$our_ids)."</pre>";
+}
+
+?>
