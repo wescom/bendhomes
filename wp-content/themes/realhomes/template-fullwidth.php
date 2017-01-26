@@ -22,10 +22,10 @@ get_header();
     <?php if( is_front_page() ) { ?>
     <div class="page-head" style="text-align: center; position: relative;">
     	<img src="<?php echo home_url(); ?>/wp-content/uploads/2013/08/old-mill-district-bend-oregon.jpg" alt="" width="1600" height="500" />
-    	<div style="position: absolute; top: 50%; width: 100%; background: rgba(0,0,0,.35); height: 300px; margin-top: -150px; color: #fff;">
+    	<div class="banner-search-wrap">
 			<div class="container">
 				<div class="clearfix">
-					<h1 class="page-title" style="color:#fff;margin-top:100px;font-size:58px;text-transform:none;">Welcome to BendHomes.com</h1>
+					<h1 class="page-title">Welcome to BendHomes.com</h1>
 					<div class="header-search"><?php echo do_shortcode('[idx-omnibar styles="1" extra="0" min_price="1" ]'); ?></div>
 				</div>
 			</div>
