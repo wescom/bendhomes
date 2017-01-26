@@ -59,7 +59,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 while($row = $result->fetch_assoc()) {
                         $agName = $row['FullName'];
                         $agPageUrl = str_replace(' ', '-', $agName);
-                        $agPageUrl = str_replace('--', '-', $agName);
+                        $agPageUrl = str_replace('--', '-', $agPageUrl);
                         $agNum = $row['OfficeNumber'];
                         $agImage = str_replace('png', 'jpg', $row['images']);
                         $agOfficeName = $row['OfficeName'];
