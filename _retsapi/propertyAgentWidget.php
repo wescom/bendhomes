@@ -28,17 +28,24 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
         $query = "select * from ActiveAgent_MEMB ";
         $query .= "LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber ";
         $query .= "where MemberNumber = ".$agId. " AND (Office_OFFI.featured = 1 || ActiveAgent_MEMB.featured = 1)";
-        echo $query;
+        //echo $query;
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
                 echo "Is featured!!! ";
                 while($row = $result->fetch_assoc()) {
                         $agName = $row['FullName'];
+                        $agPageUrl = str_replace(' ', '-', $agName);
                         $agNum = $row['OfficeNumber'];
                         $agImage = $row['images'];
                 }
+                echo '<section class="agent-widget clearfix">';
+                echo '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
+                echo '<image src="http://www.bendhomes.com/_retsapi/imagesAgents/'.$agImage.'" />';
+                echo '</a>';
         } else {
-                echo "Agent not featured!!!!";
+                echo '<div class="agent- company-featured-false position-sidebar">';
+                echo '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
+                echo '</div>';
         }
         echo "name: ".$agName." num: ".$agNum." im: ".$agImage;
         mysqli_close($conn);
