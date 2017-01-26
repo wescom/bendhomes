@@ -3,7 +3,7 @@
 include_once '/var/databaseIncludes/retsDBInfo.php';
 
         $mls = $_GET["mls"];
-        $mls = 201610228;
+        //$mls = 201610228;
 
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
@@ -78,25 +78,29 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                                 $agFax = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
                         }
                 }
-                echo '<section class="agent-widget clearfix">';
-                echo '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-                echo '<image src="http://www.bendhomes.com/_retsapi/imagesAgents/'.$agImage.'" />';
-                echo '</a>';
-                echo '<div class="agent-info">';
-                echo '<h3 class="title">Listing Agent: <strong><a href="'.$agPageUrl.'">'.$agName.'</a></strong></h3>';
-                echo '<div class="agent-office-name">'.$agOfficeName.'</div>';
-                echo '<div class="contacts-list">';
-                echo '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone).'">'.$agOfficePhone.'</a> (Office)</span>';
-                echo '<span class="mobile"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell).'">'.$agCell.'</a> (Cell)</span>';
-                echo '<span class="fax"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax).'">'.$agFax.'</a> (Fax)</span>';
-                echo '</div><!-- contacts-list -->';
-                echo '</div><!-- agent-info -->';
+
+                $returnText = '<section class="agent-widget clearfix">';
+                $returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
+                $returnText .=  '<image src="http://www.bendhomes.com/_retsapi/imagesAgents/'.$agImage.'" />';
+                $returnText .=  '</a>';
+                $returnText .=  '<div class="agent-info">';
+                $returnText .=  '<h3 class="title">Listing Agent: <strong><a href="'.$agPageUrl.'">'.$agName.'</a></strong></h3>';
+                $returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
+                $returnText .=  '<div class="contacts-list">';
+                $returnText .=  '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone).'">'.$agOfficePhone.'</a> (Office)</span>';
+                $returnText .=  '<span class="mobile"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell).'">'.$agCell.'</a> (Cell)</span>';
+                $returnText .=  '<span class="fax"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax).'">'.$agFax.'</a> (Fax)</span>';
+                $returnText .=  '</div><!-- contacts-list -->';
+                $returnText .=  '</div><!-- agent-info -->';
         } else {
-                echo '<div class="agent- company-featured-false position-sidebar">';
-                echo '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
-                echo '</div>';
+                $returnText .=  '<div class="agent- company-featured-false position-sidebar">';
+                $returnText .=  '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
+                $returnText .=  '</div>';
         }
         mysqli_close($conn);
+
+        //echo pageData({"html": $returnText });
+        {"html": $returnText}
 
 
 
