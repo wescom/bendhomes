@@ -36,7 +36,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                         $agName = $row['FullName'];
                         $agPageUrl = str_replace(' ', '-', $agName);
                         $agNum = $row['OfficeNumber'];
-                        $agImage = $row['images'];
+                        $agImage = str_replace('png', 'jpg', $row['images']);
                 }
                 echo '<section class="agent-widget clearfix">';
                 echo '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
