@@ -46,7 +46,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 Office_OFFI.StreetZipCode from ActiveAgent_MEMB ";
         $query .= "LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber ";
         $query .= "where MemberNumber = ".$agId. " AND (Office_OFFI.featured = 1 || ActiveAgent_MEMB.featured = 1)";
-        //echo $query;
+        echo $query;
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
                 echo "Is featured!!! ";
