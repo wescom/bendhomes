@@ -356,7 +356,25 @@ class Rets_Agent {
 		$id = mysql_real_escape_string( floatval( $id ) );
 	
 		$query = "
-			SELECT * FROM ActiveAgent_MEMB 
+			SELECT ActiveAgent_MEMB.FullName,
+				ActiveAgent_MEMB.MemberNumber,
+				ActiveAgent_MEMB.IsActive,
+				ActiveAgent_MEMB.images,
+				Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+				Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+				Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+				Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+				Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+				Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+				Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+				Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+				Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficePhoneComplete,
+				Office_OFFI.StreetAddress,
+				Office_OFFI.StreetCity,
+				Office_OFFI.StreetState,
+				Office_OFFI.StreetZipCode
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 			WHERE ActiveAgent_MEMB.MemberNumber = {$id}
 		";
@@ -971,4 +989,3 @@ class Rets_Company_Agents {
 	
 } 
 new Rets_Company_Agents();
-
