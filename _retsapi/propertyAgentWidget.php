@@ -24,29 +24,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
         $agNum = "";
         $agImage = "";
         $isFeatured = "";
-        //echo '<pre style="color: blue;">Agent ID: '.$agId.'</pre>';
-        /*$query = "select ActiveAgent_MEMB.FullName,
-                ActiveAgent_MEMB.MemberNumber,
-                ActiveAgent_MEMB.IsActive,
-                ActiveAgent_MEMB.images,
-                Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
-                Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
-                Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
-                Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
-                Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
-                Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
-                Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
-                Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
-                Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
-                Office_OFFI.OfficeName,
-                Office_OFFI.OfficePhoneComplete,
-                Office_OFFI.StreetAddress,
-                Office_OFFI.StreetCity,
-                Office_OFFI.StreetState,
-                Office_OFFI.StreetZipCode from ActiveAgent_MEMB ";
-        $query .= "LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber ";
-        $query .= "where MemberNumber = ".$agId. " AND (Office_OFFI.featured = 1 OR ActiveAgent_MEMB.featured = 1)";
-*/
+
         $query = "
                         SELECT ActiveAgent_MEMB.FullName,
                         ActiveAgent_MEMB.MemberNumber,
@@ -84,11 +62,33 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                         $agPageUrl = str_replace(' ', '-', $agName);
                         $agNum = $row['OfficeNumber'];
                         $agImage = str_replace('png', 'jpg', $row['images']);
+                        $agOfficeName = $row['OfficeName'];
+                        $agOfficePhone = $row['OfficePhoneComplete'];
+                        if ($row['ContactAddlPhoneType_1'] == 'Cellular'){
+                                $agCell = $row['ContactPhoneAreaCode_1']."-".$row['ContactPhoneNumber_1'];
+                        } elseif ($row['ContactAddlPhoneType_2'] == 'Cellular'){
+                                $agCell = $row['ContactPhoneAreaCode_2']."-".$row['ContactPhoneNumber_2'];
+                        } elseif ($row['ContactAddlPhoneType_1'] == 'Cellular'){
+                                $agCell = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
+                        }
+                        if ($row['ContactAddlPhoneType_1'] == 'Fax'){
+                                $agFax = $row['ContactPhoneAreaCode_1']."-".$row['ContactPhoneNumber_1'];
+                        } elseif ($row['ContactAddlPhoneType_2'] == 'Fax'){
+                                $agFax = $row['ContactPhoneAreaCode_2']."-".$row['ContactPhoneNumber_2'];
+                        } elseif ($row['ContactAddlPhoneType_1'] == 'Fax'){
+                                $agFax = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
+                        }
                 }
                 echo '<section class="agent-widget clearfix">';
                 echo '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
                 echo '<image src="http://www.bendhomes.com/_retsapi/imagesAgents/'.$agImage.'" />';
                 echo '</a>';
+                echo '<div class="agent-info">';
+                echo '<div class="agent-office-name">'.$agOfficeName.'</div>';
+                echo '<div class="contacts-list">';
+                echo '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone).'">'.$agOfficePhone.'</a> (Office)</span>';
+                echo '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell).'">'.$agCell.'</a> (Cell)</span>';
+                echo '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax.'">'.$agFax.'</a> (Fax)</span>';
         } else {
                 echo '<div class="agent- company-featured-false position-sidebar">';
                 echo '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
