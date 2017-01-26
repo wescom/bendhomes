@@ -69,7 +69,6 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                                 Office_OFFI.StreetZipCode
                         LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
                         WHERE ActiveAgent_MEMB.MemberNumber = {$agId}
-                        AND (Office_OFFI.featured = 1 OR ActiveAgent_MEMB.featured = 1)
                 ";
 
         echo $query;
