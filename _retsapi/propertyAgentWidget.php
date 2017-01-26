@@ -84,6 +84,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 echo '<image src="http://www.bendhomes.com/_retsapi/imagesAgents/'.$agImage.'" />';
                 echo '</a>';
                 echo '<div class="agent-info">';
+                echo '<h3 class="title">Listing Agent: <strong><a href="'.$agPageUrl.'">'.$agName.'</a></strong></h3>';
                 echo '<div class="agent-office-name">'.$agOfficeName.'</div>';
                 echo '<div class="contacts-list">';
                 echo '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone).'">'.$agOfficePhone.'</a> (Office)</span>';
@@ -96,7 +97,6 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 echo '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
                 echo '</div>';
         }
-        echo "name: ".$agName." num: ".$agNum." im: ".$agImage;
         mysqli_close($conn);
 
 
