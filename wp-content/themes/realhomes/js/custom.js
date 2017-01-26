@@ -26,14 +26,14 @@
 		/*-----------------------------------------------------------------------------------*/
         /* Mailchimp Form Validation
         /*-----------------------------------------------------------------------------------*/
-		$('form.validate').each(function() {
+		/*$('form.validate').each(function() {
 			$(this).validate({
 				errorPlacement: function (error, element) {
 				  error.insertAfter($(element).parent());
 				  $(element).parent().addClass('error');
 				}
 			});
-		});
+		});*/
 		
 		/*-----------------------------------------------------------------------------------*/
         /* Tooltips
