@@ -379,6 +379,7 @@ class Rets_Agent {
 			WHERE ActiveAgent_MEMB.MemberNumber = {$id}
 		";
 		
+		
 		$agent_query = new Rets_DB();
 		
 		$agent = $agent_query->select( $query )[0];
