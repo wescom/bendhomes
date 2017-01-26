@@ -87,8 +87,10 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 echo '<div class="agent-office-name">'.$agOfficeName.'</div>';
                 echo '<div class="contacts-list">';
                 echo '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone).'">'.$agOfficePhone.'</a> (Office)</span>';
-                echo '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell).'">'.$agCell.'</a> (Cell)</span>';
-                echo '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax).'">'.$agFax.'</a> (Fax)</span>';
+                echo '<span class="mobile"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell).'">'.$agCell.'</a> (Cell)</span>';
+                echo '<span class="fax"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax).'">'.$agFax.'</a> (Fax)</span>';
+                echo '</div><!-- contacts-list -->';
+                echo '</div><!-- agent-info -->';
         } else {
                 echo '<div class="agent- company-featured-false position-sidebar">';
                 echo '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
