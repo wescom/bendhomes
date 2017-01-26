@@ -100,7 +100,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
         mysqli_close($conn);
 
         //echo pageData({"html": $returnText });
-        {"html": $returnText}
+        echo '{"html": $returnText}';
 
 
 
