@@ -53,7 +53,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                         AND ActiveAgent_MEMB.MemberNumber = {$agId}
                 ";
 
-        echo $query;
+        //echo $query;
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
                 echo "Is featured!!! ";
