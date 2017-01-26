@@ -99,8 +99,8 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
         }
         mysqli_close($conn);
 
-        $returnText = str_replace($returnText, '"', '\"');
-        $returnText = str_replace($returnText, '/', '\/');
+        $returnText = str_replace('"', '\"', $returnText);
+        $returnText = str_replace('/', '\/', $returnText);
         //echo pageData({"html": $returnText });
         echo '{"html": "'.$returnText.'"}';
 
