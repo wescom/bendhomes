@@ -20,8 +20,7 @@ get_header();
     <?php //get_template_part("banners/default_page_banner"); ?>
     
     <?php if( is_front_page() ) { ?>
-    <div class="page-head" style="text-align: center; position: relative;">
-    	<img src="<?php echo home_url(); ?>/wp-content/uploads/2013/08/old-mill-district-bend-oregon.jpg" alt="" width="1600" height="500" />
+    <div class="page-head">
     	<div class="banner-search-wrap">
 			<div class="container">
 				<div class="clearfix">
