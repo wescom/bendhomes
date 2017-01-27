@@ -83,7 +83,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
 
                 $returnText = '<section class="agent-widget clearfix">';
                 $returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-                $returnText .=  '<image src="{json.image}" />';
+                $returnText .=  '<image src="{$agImage}" />';
                 $returnText .=  '</a>';
                 $returnText .=  '<div class="agent-info">';
                 $returnText .=  '<h3 class="title">Listing Agent: <strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></h3>';
