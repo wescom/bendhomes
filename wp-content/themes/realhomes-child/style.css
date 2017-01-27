@@ -272,6 +272,7 @@ h3.search-results-header { float: left; margin: 0; }
 .IDX-featuredAgentWrap .agent-widget .agent-info { margin-left: 45%; padding: 0; }
 .IDX-featuredAgentWrap .widget .agent-info .contacts-list { margin-top: 0; }
 .IDX-featuredAgentWrap .agent-widget .contacts-list span a { font-size: 14px; line-height: 150%; padding-right: 5px; }
+.IDX-featuredAgentWrap .rail-button-agent-wrapper { float: none; }
 
 
 /* --- Simple Search Form --- */
