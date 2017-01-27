@@ -90,9 +90,12 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 $returnText .=  '<h3 class="title">Listing Agent: <strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></h3>';
                 $returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
                 $returnText .=  '<div class="contacts-list">';
-                $returnText .=  '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone).'">'.$agOfficePhone.'</a> (Office)</span>';
-                $returnText .=  '<span class="mobile"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell).'">'.$agCell.'</a> (Cell)</span>';
-                $returnText .=  '<span class="fax"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax).'">'.$agFax.'</a> (Fax)</span>';
+                if ($agOfficePhone != "")
+                        $returnText .=  '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone).'">'.$agOfficePhone.'</a> (Office)</span>';
+                if ($agCell != "")
+                        $returnText .=  '<span class="mobile"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell).'">'.$agCell.'</a> (Cell)</span>';
+                if ($agFax != "")
+                        $returnText .=  '<span class="fax"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax).'">'.$agFax.'</a> (Fax)</span>';
                 $returnText .=  '</div><!-- contacts-list -->';
                 $returnText .=  '</div><!-- agent-info -->';
         } else {
