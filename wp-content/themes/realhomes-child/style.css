@@ -265,7 +265,7 @@ h3.search-results-header { float: left; margin: 0; }
 .sponsor-block.sponsor1 { margin-bottom: 30px; }
 .sponsor-block.sponsor2, .sponsor-block.sponsor3 { margin-bottom: 10px; }
 
-#IDX-featuredAgent-42205 { border: none; border-radius: 0; box-shadow: none; }
+#IDX-featuredAgent-42205 { border: none !important; border-radius: 0 !important; box-shadow: none !important; }
 .IDX-featuredAgentWrap .agent-widget { border: none; margin-bottom: 0; padding: 10px; }
 .IDX-featuredAgentWrap .widget .title { padding: 0 0 10px; }
 .IDX-featuredAgentWrap .agent-widget .agent-image { width: 40%; margin-right: 5%; }
