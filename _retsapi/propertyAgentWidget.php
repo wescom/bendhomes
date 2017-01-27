@@ -104,7 +104,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
 
         $returnText = str_replace('"', '\"', $returnText);
         $returnText = str_replace('/', '\/', $returnText);
-        echo 'callback({"html":"'.$returnText.'})';
+        echo 'callback({"html":"'.$returnText.'"})';
         //echo '{"html": "'.$returnText.'"}';
 
 
