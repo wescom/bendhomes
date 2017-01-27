@@ -103,6 +103,8 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
 							<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
 
 							<a href="http://bendhomes.idxbroker.com/idx/search/advanced">Advanced Search</a>
+							
+							<a href="http://bendhomes.idxbroker.com/idx/map/mapsearch">Map Search</a>
 
 							<a href="http://bendhomes.idxbroker.com/idx/userlogin">Login / Register</a>
 
