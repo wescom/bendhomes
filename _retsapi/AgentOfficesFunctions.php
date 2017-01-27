@@ -248,7 +248,7 @@ function runRetsQuery($qvars, $datePulled) {
   if ($qvars['class'] == 'OFFI') {
       $dataType = 'OfficeNumber';
   } else {
-      $dataType = 'MemberNumber, FullName';
+      $dataType = 'MemberNumber';
   }
 
   $results = $rets->Search(
