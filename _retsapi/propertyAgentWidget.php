@@ -97,7 +97,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 $returnText .=  '</div><!-- agent-info -->';
         } else {
                 $returnText .=  '<div class="agent- company-featured-false position-sidebar">';
-                $returnText .=  '<div class="rail-button-agent-wrapper"><a href="/agents/" class="button">Find an Agent</a></div>';
+                $returnText .=  '<div class="rail-button-agent-wrapper"><a href="http://www.bendhomes.com/agents/" class="button">Find an Agent</a></div>';
                 $returnText .=  '</div>';
         }
         mysqli_close($conn);
