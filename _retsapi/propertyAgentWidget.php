@@ -82,7 +82,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                         }
                 }
 
-                $returnText = '<section class="agent-widget clearfix">';
+                $returnText = '<section class="rets-agent agent-widget clearfix">';
 				$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
                 $returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
                 $returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
