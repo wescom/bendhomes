@@ -56,11 +56,12 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
         //echo $query;
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
+                $agFax = "";
                 while($row = $result->fetch_assoc()) {
                         $agName = $row['FullName'];
                         $agPageUrl = str_replace(' ', '-', $agName);
                         $agPageUrl = str_replace('--', '-', $agPageUrl);
-                        $agNum = $row['OfficeNumber'];
+                        $agNum = $row['Office_OFFI.OfficePhoneComplete'];
                         $agImage = str_replace('png', 'jpg', $row['images']);
                         //$agImage = "http://www.bendhomes.com/_retsapi/imagesAgents/".$agImage;
                         $agOfficeName = $row['OfficeName'];
