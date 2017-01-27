@@ -62,7 +62,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                         $agPageUrl = str_replace('--', '-', $agPageUrl);
                         $agNum = $row['OfficeNumber'];
                         $agImage = str_replace('png', 'jpg', $row['images']);
-                        $agImage = "http://www.bendhomes.com/_retsapi/imagesAgents/".$agImage;
+                        //$agImage = "http://www.bendhomes.com/_retsapi/imagesAgents/".$agImage;
                         $agOfficeName = $row['OfficeName'];
                         $agOfficePhone = $row['OfficePhoneComplete'];
                         if ($row['ContactAddlPhoneType_1'] == 'Cellular'){
