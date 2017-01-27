@@ -328,119 +328,117 @@ new Rets_Agents();
 
 
 
-// Creates single agent page content linked from agents list shortcode above
 class Rets_Agent {
-	
-	public static $args;
-	
+
+        public static $args;
+
     public function __construct() {
-		
+
         add_shortcode('rets_agent', array($this, 'render'));
-		
+
     }
-     
+
     public function render( $args ) {
-		
-		$html = '';
-		$defaults = shortcode_atts(
-			array(
-				'class' => '',
-				'linkto' => 'agents',
-				'member_number' => ''
-			), $args
-		);
 
-		extract( $defaults );
-		
-		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
-		$id = mysql_real_escape_string( floatval( $id ) );
-	
-		$query = "
-			SELECT ActiveAgent_MEMB.FullName,
-				ActiveAgent_MEMB.MemberNumber,
-				ActiveAgent_MEMB.IsActive,
-				ActiveAgent_MEMB.images,
-				Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
-				Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
-				Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
-				Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
-				Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
-				Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
-				Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
-				Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
-				Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
-				Office_OFFI.OfficeName,
-				Office_OFFI.OfficePhoneComplete,
-				Office_OFFI.StreetAddress,
-				Office_OFFI.StreetCity,
-				Office_OFFI.StreetState,
-				Office_OFFI.StreetZipCode
-			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-			WHERE ActiveAgent_MEMB.MemberNumber = {$id}
-		";
-		
-		
-		$agent_query = new Rets_DB();
-		
-		$agent = $agent_query->select( $query )[0];
-		
-		if( $agent ) {
-			
-			//print_r( $agent );
-			
-			$category_classes = 'not_featured';
-			if ($agent['ActiveAgent_MEMB.featured'] == 1 || $agent['Office_OFFI.featured']) {
-				$category_classes = 'featured';
-			}
-			$html .= 'class: '.$category_class;
-			//$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
-					
-			if( !empty( $agent['ActiveAgent_MEMB.images'] ) ) {
-				$has_image_class = 'width-image';
-				$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['ActiveAgent_MEMB.images'];
-			} else {
-				$has_image_class = 'without-image';
-				$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
-			}
-			$html .= 'image: '.$image_url;
+                $html = '';
+                $defaults = shortcode_atts(
+                        array(
+                                'class' => '',
+                                'linkto' => 'agents',
+                                'member_number' => ''
+                        ), $args
+                );
 
-			$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
-			
-			$html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
-						
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
+                extract( $defaults );
 
-					$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
+                $id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
+                $id = mysql_real_escape_string( floatval( $id ) );
 
-					$html .= sprintf('<h1 class="agent-name">%s xxyy</h1>', $agent['FullName'] );
+                $query = "
+                        SELECT ActiveAgent_MEMB.FullName,
+                        ActiveAgent_MEMB.MemberNumber,
+                        ActiveAgent_MEMB.IsActive,
+                        ActiveAgent_MEMB.images as 'theImage',
+                        Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+                        Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+                        Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+                        Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+                        Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+                        Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+                        Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+                        Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+                        Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+                        Office_OFFI.OfficeName,
+                        Office_OFFI.OfficePhoneComplete,
+                        Office_OFFI.StreetAddress,
+                        Office_OFFI.StreetCity,
+                        Office_OFFI.StreetState,
+                        Office_OFFI.StreetZipCode
+                        FROM ActiveAgent_MEMB
+                        LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+                        LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+                        WHERE ActiveAgent_MEMB.MemberNumber = {$id}
 
-					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
-								$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
-			
-				$html .= '</div></div></div>';
-			
-				if( $agent['featured'] == 1 ) {
-						
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
-					
-					$html .= sprintf('<h3>Properties Listed By </h3>', $agent['FullName'] );
+                ";
+                                //echo 'query '.$query.'<br>';  
+                $agent_query = new Rets_DB();
 
-				$html .= '</div></div></div>';
-				
-				}
-			
-			$html .= '</div>';
-			
-		}
-		
-		return $html;
-		
-	}
-	
-	public function get_agent_properties( $id ) {
-		
-	}
-	
+                $agent = $agent_query->select( $query )[0];
+
+                if( $agent ) {
+
+                        //print_r( $agent );
+
+                        $category_classes = 'not_featured';
+                        if ($agent['ActiveAgent_MEMB.featured'] == 1 || $agent['Office_OFFI.featured']) {
+                                $category_classes = 'featured';
+                        }
+                        //$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
+                        if( !empty( $agent['theImage'] ) ) {
+                                $has_image_class = 'width-image';
+                                $image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['theImage'];
+                        } else {
+                                $has_image_class = 'without-image';
+                                $image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+                        }
+
+                        $office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
+
+                        $html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
+
+                                $html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
+
+                                        $html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
+
+                                        $html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
+
+                                        $html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>',
+                                                                $agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
+
+                                $html .= '</div></div></div>';
+                                
+                                if( $agent['featured'] == 1 ) {
+
+                                $html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
+
+                                        $html .= sprintf('<h3>Properties Listed By </h3>', $agent['FullName'] );
+
+                                $html .= '</div></div></div>';
+
+                                }
+
+                        $html .= '</div>';
+
+                }
+
+                return $html;
+
+        }
+
+        public function get_agent_properties( $id ) {
+
+        }
+
 }
 new Rets_Agent();
 
