@@ -150,7 +150,7 @@ class Rets_Agents {
 			
 			$total_agents = count( $agents );
 			
-			$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents) .' Total Agents xxxy</div>';
+			$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents) .' Total Agents</div>';
 			
 			$count = 1;
 			
