@@ -86,7 +86,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 $returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
                 $returnText .=  '<image src="'.$agImage.'" />';
                 $returnText .=  '</a><br>';
-                $returnText .=  '<div class="agent-info">';
+                $returnText .=  '<div class="agent-info clearfix">';
                 $returnText .=  '<h3 class="title">Listing Agent: <strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></h3>';
                 $returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
                 $returnText .=  '<div class="contacts-list">';
