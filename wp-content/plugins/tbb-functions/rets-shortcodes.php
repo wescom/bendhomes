@@ -412,7 +412,7 @@ class Rets_Agent {
 
 					$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
 
-					$html .= sprintf('<h1 class="agent-name">%s xxyy</h1>', $agent['FullName'] );
+					$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
 					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
 								$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
