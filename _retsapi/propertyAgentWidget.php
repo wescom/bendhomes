@@ -82,12 +82,12 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                         }
                 }
 
-                $returnText = '<section class="agent-widget clearfix">';
+                $returnText = '<section class="rets-agent agent-widget clearfix">';
+				$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
                 $returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-                $returnText .=  '<image src="'.$agImage.'" />';
-                $returnText .=  '</a><br>';
+                $returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
+                $returnText .=  '</a>';
                 $returnText .=  '<div class="agent-info clearfix">';
-                $returnText .=  '<h3 class="title">Listing Agent: <strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></h3>';
                 $returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
                 $returnText .=  '<div class="contacts-list">';
                 if ($agOfficePhone != "")
@@ -99,7 +99,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 $returnText .=  '</div><!-- contacts-list -->';
                 $returnText .=  '</div><!-- agent-info -->';
         } else {
-                $returnText .=  '<div class="agent- company-featured-false position-sidebar">';
+                $returnText .=  '<div class="rets-agent position-sidebar">';
                 $returnText .=  '<div class="rail-button-agent-wrapper"><a href="http://www.bendhomes.com/agents/" class="button">Find an Agent</a></div>';
                 $returnText .=  '</div>';
         }
