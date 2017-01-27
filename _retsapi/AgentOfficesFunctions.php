@@ -473,11 +473,11 @@ function executeCleanAgentsAndOfficesTables() {
 
 function executeFindMisingAgentsAndOffices() {
 
-  $scenarios = getScenarios();
+    $scenarios = getScenarios();
 
-  $pullDate = '2001-01-01T00:00:00-08:00';
+    $pullDate = '2001-01-01T00:00:00-08:00';
 
-  foreach($scenarios as $qvars) {
+    foreach($scenarios as $qvars) {
 
     $retsIdArray = runRetsQuery($qvars, $pullDate);
 
@@ -502,6 +502,18 @@ function executeFindMisingAgentsAndOffices() {
     }
 
   }
+}
+
+function executeUpdatePropertiesTable() {
+
+    $scenarios = getScenarios();
+
+    $pullDate = '2001-01-01T00:00:00-08:00';
+
+    $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
+    echo '<pre>';
+    print_r($retsIdArray);
+    echo '</pre>';
 }
 
 ?>
