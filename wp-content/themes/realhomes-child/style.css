@@ -272,7 +272,7 @@ h3.search-results-header { float: left; margin: 0; }
 .rets-agent.agent-widget .agent-info { margin-left: 45%; padding: 0; }
 .rets-agent.widget .agent-info .contacts-list { margin-top: 0; }
 .rets-agent.agent-widget .contacts-list span a { font-size: 14px; line-height: 150%; padding-right: 5px; }
-/*.rets-agent .rail-button-agent-wrapper { float: none; }*/
+.rets-agent .rail-button-agent-wrapper { float: none; }
 
 
 /* --- Simple Search Form --- */
