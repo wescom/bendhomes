@@ -236,7 +236,7 @@ h3.search-results-header { float: left; margin: 0; }
 .agent-widget a:hover { color: #006267; }
 .agent-widget > a { float: left; width: 100px; margin: 0 15px 0 0; }
 .agent-widget .agent-image { width: 125px; float: left; margin: 0 15px 10px 0; }
-.agent-widget .agent-info { margin-left: 140px; }
+.agent-widget .agent-info { margin-left: 0px; }
 .agent-widget h3 { margin: 0; padding: 0 45px 3px 0; line-height: 18px; font-size: 12px; font-family: "Open Sans", sans-serif; text-transform: uppercase; font-weight: 400; color: #777; }
 .agent-widget h3 strong { display: block; font-size: 18px; }
 .agent-widget .agent-office-name { padding-bottom: 5px; }
