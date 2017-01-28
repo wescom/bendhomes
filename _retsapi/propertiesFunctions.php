@@ -134,7 +134,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
 
     //$query = buildRetsQuery($qvars, $pullDate);
 
-    $idList = implode(",", $idArray);
+    $idList = implode(",", $idArray['ListingRid']);
 
     $query = "(ListingRid=".$idList.")";
 
@@ -422,10 +422,10 @@ function executeUpdatePropertiesTable() {
                 $pieceArray = array_slice($retsIdArray, $start, $count);
 
                 //echo implode(',', $pieceArray)
-               // $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
+                $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
 
                 echo '<pre>';
-                print_r($pieceArray);
+                print_r($retsReturnData);
                 echo '</pre>';
             } else {
                 echo '<pre style="color:red">At end of array.</pre>';
