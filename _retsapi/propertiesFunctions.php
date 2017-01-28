@@ -140,7 +140,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
 
     $idList = implode(",", $idListArray);
 
-    //$query = "(ListingRid=".$idList.")";
+    $query = "(ListingRid=".$idList.")";
 
     print_r($query);
 
