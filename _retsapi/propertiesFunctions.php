@@ -128,6 +128,43 @@ function runRetsQuery($qvars, $pullDate) {
         return $itemsarr;
 }
 
+function getAllRetsIdsQuery($qvars, $pullDate) {
+        global $universalkeys;
+        global $rets;
+
+        print_r($qvars);
+        $query = buildRetsQuery($qvars, $pullDate);
+        //print_r($query);
+
+        $results = $rets->Search(
+                $qvars['resource'],
+                $qvars['class'],
+                $query,
+                        [
+                        'QueryType' => 'DMQL2', // it's always use DMQL2
+                        'Count' => 1, // count and records
+                        'Format' => 'COMPACT',
+                        'Limit' => $qvars['count'],
+                        'StandardNames' => 0, // give system names
+                        'Select' => 'ListingRid',
+                ]
+        );
+
+        echo '<pre>';
+        print_r($results);
+        echo '</pre>';
+
+        // convert from objects to array, easier to process
+        $temparr = $results->toArray();
+        // refactor arr with keys supplied by universalkeys in header
+        $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
+
+
+        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+
+        return $itemsarr;
+}
+
 function saveToOurTable($itemsarr) {
         $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
@@ -327,6 +364,18 @@ function cleanAgentsLookupByMLSTable() {
         }
         //echo "<pre>Rets: ".implode(", ",$rets_ids)."</pre>";
         //echo "<pre>Ours: ".implode(", ",$our_ids)."</pre>";
+}
+
+function executeUpdatePropertiesTable() {
+
+    $scenarios = getScenarios();
+
+    $pullDate = '2001-01-01T00:00:00-08:00';
+
+    $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
+    echo '<pre>';
+    print_r($retsIdArray);
+    echo '</pre>';
 }
 
 ?>

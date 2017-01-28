@@ -504,16 +504,5 @@ function executeFindMisingAgentsAndOffices() {
   }
 }
 
-function executeUpdatePropertiesTable() {
-
-    $scenarios = getScenarios();
-
-    $pullDate = '2001-01-01T00:00:00-08:00';
-
-    $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
-    echo '<pre>';
-    print_r($retsIdArray);
-    echo '</pre>';
-}
 
 ?>
