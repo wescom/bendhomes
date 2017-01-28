@@ -419,7 +419,7 @@ function executeUpdatePropertiesTable() {
             $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
 
             if (sizeof($retsIdArray) > $start) {
-                $pieceArray = array_slice($idArray, $start, $count);
+                $pieceArray = array_slice($retsIdArray, $start, $count);
 
                 $retsReturnData = getProperyData($qvars, $pullDate, $pieceArray);
 
