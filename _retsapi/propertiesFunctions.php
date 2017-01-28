@@ -128,6 +128,45 @@ function runRetsQuery($qvars, $pullDate) {
         return $itemsarr;
 }
 
+function getPropertyData($qvars, $pullDate, $idArray){
+    global $universalkeys;
+    global $rets;
+
+    //$query = buildRetsQuery($qvars, $pullDate);
+
+    $idList = implode(",", $idArray);
+
+    $query = "(ListingRid=".$idList.")";
+
+    print_r($query);
+
+    $results = $rets->Search(
+        $qvars['resource'],
+        $qvars['class'],
+        $query,
+        [
+            'QueryType' => 'DMQL2', // it's always use DMQL2
+            'Count' => 1, // count and records
+            'Format' => 'COMPACT-DECODED',
+            'Limit' => $qvars['count'],
+            'StandardNames' => 0, // give system names
+        ]
+    );
+
+    echo '<pre>';
+        //print_r($results);
+    echo '</pre>';
+
+    // convert from objects to array, easier to process
+    $temparr = $results->toArray();
+    // refactor arr with keys supplied by universalkeys in header
+    $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
+
+    echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+
+    return $itemsarr;
+}
+
 function getAllRetsIdsQuery($qvars, $pullDate) {
         global $universalkeys;
         global $rets;
@@ -372,12 +411,24 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
+    $start = 0; // start index
+    $count = 10; // how many past start to grab
+
     foreach($scenarios as $qvars) {
 
             $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
-            echo '<pre>';
-            print_r($retsIdArray);
-            echo '</pre>';
+
+            if (sizeof($idArray) > $start) {
+                $pieceArray = array_slice($idArray, $start, $count);
+
+                $retsReturnData = getProperyData($qvars, $pullDate, $pieceArray);
+
+                echo '<pre>';
+                print_r($retsReturnData);
+                echo '</pre>';
+            } else {
+                echo '<pre style="color:red">At end of array.</pre>';
+            }
     }
 }
 
