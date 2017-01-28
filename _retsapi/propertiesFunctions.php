@@ -133,10 +133,14 @@ function getPropertyData($qvars, $pullDate, $idArray){
     global $rets;
 
     //$query = buildRetsQuery($qvars, $pullDate);
+    $idListArray = [];
+    foreach ($idArray as $itm) {
+        array_push($idListArray, $itm['ListingRid']);
+    }
 
-    $idList = implode(",", $idArray['ListingRid']);
+    $idList = implode(",", $idListArray);
 
-    $query = "(ListingRid=".$idList.")";
+    //$query = "(ListingRid=".$idList.")";
 
     print_r($query);
 
