@@ -421,7 +421,7 @@ function executeUpdatePropertiesTable() {
             if (sizeof($retsIdArray) > $start) {
                 $pieceArray = array_slice($retsIdArray, $start, $count);
 
-                $retsReturnData = getProperyData($qvars, $pullDate, $pieceArray);
+                $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
 
                 echo '<pre>';
                 print_r($retsReturnData);
