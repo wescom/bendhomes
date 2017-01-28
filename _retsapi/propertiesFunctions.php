@@ -421,10 +421,11 @@ function executeUpdatePropertiesTable() {
             if (sizeof($retsIdArray) > $start) {
                 $pieceArray = array_slice($retsIdArray, $start, $count);
 
-                $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
+                //echo implode(',', $pieceArray)
+               // $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
 
                 echo '<pre>';
-                print_r($retsReturnData);
+                print_r($pieceArray);
                 echo '</pre>';
             } else {
                 echo '<pre style="color:red">At end of array.</pre>';
