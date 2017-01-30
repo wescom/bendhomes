@@ -274,8 +274,9 @@ h3.search-results-header { float: left; margin: 0; }
 .rets-agent.agent-widget .contacts-list span a { font-size: 14px; line-height: 150%; padding-right: 5px; }
 .rets-agent .rail-button-agent-wrapper { float: none; }
 
-.rets-companies .company-meta { font-size: 16px; }
-.rets-companies .company-meta h3 { line-height: 130%; }
+.rets-companies .custom-post.without-image .custom-post-item { min-height: 170px; }
+.rets-companies .custom-post .company-meta { font-size: 16px; }
+.rets-companies .custom-post .company-meta h3 { line-height: 130%; }
 
 /* --- Rets Sidebar Search Form --- */
 #IDX-quicksearch-41723 .IDX-quicksearchForm, .IDX-quicksearchWrapper .IDX-quicksearchForm .IDX-qsFieldWrap, #IDX-qsPtLabel-41723, #IDX-qsCityListLabel-41723 { display: block !important; }
