@@ -480,7 +480,8 @@ class Rets_Companies {
 				Office_OFFI.StreetZipCode,
 				Office_OFFI.OfficeDescription,
 				Office_OFFI.DisplayName,
-				Office_OFFI.featured
+				Office_OFFI.featured,
+				Office_OFFI.images
 				FROM Office_OFFI
 				WHERE IsActive = 'T' AND featured = 1
 				{$sort_order}
@@ -499,7 +500,8 @@ class Rets_Companies {
 				Office_OFFI.StreetZipCode,
 				Office_OFFI.OfficeDescription,
 				Office_OFFI.DisplayName,
-				Office_OFFI.featured
+				Office_OFFI.featured,
+				Office_OFFI.images
 				FROM Office_OFFI
 				WHERE IsActive = 'T' AND Office_OFFI.OfficeName LIKE '%{$searchString}%'
 				{$sort_order}
@@ -658,7 +660,7 @@ class Rets_Company {
 
 			if( !empty( $company['images'] ) ) {
 				$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
-				$html .= '<div class="span3"><figure class="agent-pic">';
+				$html .= '<div class="span3"><figure class="company-pic">';
                 $html .= '<a title="" href="">';
                 $html .= '<img src="'.$image_url.'"/>';
                 $html .= '</a></figure></div>';
