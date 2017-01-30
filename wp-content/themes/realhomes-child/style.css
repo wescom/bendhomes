@@ -274,6 +274,15 @@ h3.search-results-header { float: left; margin: 0; }
 .rets-agent.agent-widget .contacts-list span a { font-size: 14px; line-height: 150%; padding-right: 5px; }
 .rets-agent .rail-button-agent-wrapper { float: none; }
 
+.rets-companies .extra-meta > div { font-size: 18px; font-family: "Roboto Slab",Helvetica,Arial,sans-serif; }
+
+/* --- Rets Sidebar Search Form --- */
+#IDX-quicksearch-41723 .IDX-quicksearchForm, .IDX-quicksearchWrapper .IDX-quicksearchForm .IDX-qsFieldWrap, #IDX-qsPtLabel-41723, #IDX-qsCityListLabel-41723 { display: block !important; }
+#IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsSelectInput { width: 100%; }
+#IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsInput { margin: 0; width: 100%; padding: 4px 0; text-indent: 15px; }
+#IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsInput.IDX-qsButtonInput { text-indent: 0; background: #02888f; border: 1px solid #02888f; color: #fff; font-family: "Roboto Slab"; font-size: 16px; padding: 10px; border-radius: 3px; margin-bottom: 10px; }
+#IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsInput.IDX-qsButtonInput:hover { background: #006267; border-color: #006267; }
+
 
 /* --- Simple Search Form --- */
 .simple-search-wrap { background: #252A2B; margin-bottom: 30px; padding: 10px; }
