@@ -563,8 +563,8 @@ class Rets_Companies {
 								$count, $permalink, $image_url, $company['OfficeName'] );
 
 					
-						$html .= sprintf( '<div class="extra-meta company-meta"><div><h3>%s</h3><div>%s</div></div>%s</div>', 
-									$company['OfficeName'], $office_address, $company['OfficePhoneComplete'] );
+						$html .= sprintf( '<div class="extra-meta company-meta"><div><h3>%s</h3><div>%s</div></div><a href="tel:%s">%s</a></div>', 
+									$company['OfficeName'], $office_address, $this->phone_link( $company['OfficePhoneComplete'] ), $company['OfficePhoneComplete'] );
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 					
@@ -579,11 +579,7 @@ class Rets_Companies {
 					$count++;
 					
 				}
-			
-			
-			
-			//$html .= sprintf( '</div>%s</div>', 'Pagination goes here' );
-			
+						
 		}
 		
 		return $html;
@@ -597,6 +593,14 @@ class Rets_Companies {
 		return $slug;
 		
 	} // end create_slug
+	
+	public function phone_link( $string ) {
+		
+		$slug = preg_replace( '/[^A-Za-z0-9-]+/', '', $string );
+		
+		return $slug;
+		
+	} // end phone_link
 	
 } 
 new Rets_Companies();
