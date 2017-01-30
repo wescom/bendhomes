@@ -154,7 +154,7 @@ class Rets_Agents {
 			
 			$count = 1;
 			
-			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
+			$html .= '<div class="custom-posts-wrapper post-agent rets-agents"><div class="custom-posts-container clearfix">';
 			
 				//$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</div>';
 			
@@ -268,66 +268,12 @@ class Rets_Agents {
 		return $url;
 	}
 	
-	// http://www.phpfreaks.com/tutorial/basic-pagination
-	/*public function pagination( $per_page, $total_pages, $range ) {
-		
-		$html = '';
-		$current_url = $this->get_current_url();
-		
-		if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-		   $page = (int) $_GET['page'];
-		} else {
-		   $page = 1;
-		}
-		
-		if( $page > $total_pages ) {
-			$page = $total_pages;
-		}
-		
-		if( $page < 1 ) {
-			$page = 1;
-		}
-		
-		$offset = ( $page - 1 ) * $per_page;
-		
-		if( $page > 1 ) {
-			$html .= '<a href="'. $current_url .'?page=1"><<</a>';
-			$prev_page = $page - 1;
-			$html .= '<a href="'. $current_url .'?page=$prev_page"><</a>';
-		}
-		
-		for ($x = ($page - $range); $x < (($page + $range) + 1); $x++) {
-		   // if it's a valid page number...
-		   if (($x > 0) && ($x <= $total_pages)) {
-			  // if we're on current page...
-			  if ($x == $page) {
-				 // 'highlight' it but don't make a link
-				 $html .= ' [<b>'. $x .'</b>] ';
-			  // if not current page...
-			  } else {
-				 // make it a link
-				 $html .= ' <a href="'. $current_url .'?page='. $x .'">'. $x .'</a> ';
-			  } // end else
-		   } // end if 
-		}
-		
-		if ($page != $total_pages) {
-		   $next_page = $page + 1;
-			// echo forward link for next page 
-		   $html .= ' <a href="'. $current_url .'?page='. $next_page .'">></a> ';
-		   // echo forward link for lastpage
-		   $html .= '<a href="'. $current_url .'?page='. $total_pages .'">>></a> ';
-		}
-		
-		return $html;
-		
-	}*/
-	
 } 
 new Rets_Agents();
 
 
 
+// Display a single agent
 class Rets_Agent {
 
         public static $args;
@@ -404,7 +350,7 @@ class Rets_Agent {
 
                         $office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 
-                        $html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
+                        $html .= sprintf( '<div class="post-agent rets-agent agent-%s agent-%s">', $id, $category_classes );
 
                                 $html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
 
@@ -441,6 +387,7 @@ class Rets_Agent {
 
 }
 new Rets_Agent();
+
 
 
 // Creates companies list on /companies page
@@ -571,7 +518,7 @@ class Rets_Companies {
 			
 			$count = 1;
 			
-			$html .= '<div class="custom-posts-wrapper post-agent"><div class="custom-posts-container clearfix">';
+			$html .= '<div class="custom-posts-wrapper post-companies rets-companies"><div class="custom-posts-container clearfix">';
 			
 				
 			
@@ -653,6 +600,8 @@ class Rets_Companies {
 	
 } 
 new Rets_Companies();
+
+
 
 // Creates single company page content linked from agents list shortcode above
 class Rets_Company {
@@ -793,12 +742,10 @@ class Rets_Company {
 		
 	}
 	
-	public function get_company_properties( $id ) {
-		
-	}
-	
 }
 new Rets_Company();
+
+
 
 // Creates agents list on /agents page
 class Rets_Company_Agents {
