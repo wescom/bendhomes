@@ -559,11 +559,11 @@ class Rets_Companies {
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $class, $has_image_class, $category_classes );
 					
-						$html .= sprintf( '<figure class="custom-post-image image-agent-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
+						$html .= sprintf( '<figure class="custom-post-image image-company-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
 								$count, $permalink, $image_url, $company['OfficeName'] );
 
 					
-						$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
+						$html .= sprintf( '<div class="extra-meta company-meta"><div><h3>%s</h3><div>%s</div></div>%s</div>', 
 									$company['OfficeName'], $office_address, $company['OfficePhoneComplete'] );
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
