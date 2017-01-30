@@ -546,7 +546,7 @@ class Rets_Companies {
 					$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
 					
 					if( !empty( $company['images'] ) ) {
-						$has_image_class = 'width-image';
+						$has_image_class = 'with-image';
 						$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
 					} else {
 						$has_image_class = 'without-image';
@@ -561,7 +561,7 @@ class Rets_Companies {
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $class, $has_image_class, $category_classes );
 					
-						$html .= sprintf( '<figure class="custom-post-image image-company-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s, for %s" /></a></figure>', 
+						$html .= sprintf( '<figure class="custom-post-image image-company-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s" /></a></figure>', 
 								$count, $permalink, $image_url, $company['OfficeName'] );
 
 					
