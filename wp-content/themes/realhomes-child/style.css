@@ -274,10 +274,6 @@ h3.search-results-header { float: left; margin: 0; }
 .rets-agent.agent-widget .contacts-list span a { font-size: 14px; line-height: 150%; padding-right: 5px; }
 .rets-agent .rail-button-agent-wrapper { float: none; }
 
-.rets-companies .custom-post.without-image .custom-post-item { min-height: 170px; }
-.rets-companies .custom-post .company-meta { font-size: 16px; }
-.rets-companies .custom-post .company-meta h3 { line-height: 130%; font-size: 20px; }
-
 /* --- Rets Sidebar Search Form --- */
 #IDX-quicksearch-41723 .IDX-quicksearchForm, .IDX-quicksearchWrapper .IDX-quicksearchForm .IDX-qsFieldWrap, #IDX-qsPtLabel-41723, #IDX-qsCityListLabel-41723 { display: block !important; }
 #IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsSelectInput { width: 100%; }
@@ -343,7 +339,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.four .custom-post-item { padding-bottom: 30px; }
 .custom-post h4 { font-weight: 400; margin: 0 0 15px; font-size: 15px; font-family: "Open Sans", sans-serif; }
 .inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; width: auto; }
-.custom-post a { color: #394041; }
+.custom-post a { color: #02888f; }
 .custom-post a:hover { color: #02888f; }
 .custom-post a.more-details { display: inline-block; font-size: 14px; margin: 0 0 -1px 0; padding: 0 10px; background: #02888f; color: #fff; position: absolute; right: 0; bottom: 0; }
 .post-property .custom-post.two a.more-details, .post-property .custom-post.three a.more-details, .post-property .custom-post.four a.more-details, .post-property .custom-post.five a.more-details, .post-property .custom-post.six a.more-details { position: static; background: none; color: #394041; padding: 0; margin: 0; }
@@ -377,6 +373,10 @@ h3.search-results-header { float: left; margin: 0; }
 .post-property .without-image .property-price:before { content: "No Image"; font-family: Helvetica, Arial, sans-serif; display: block; position: absolute; bottom: 100%; width: 100%; left: 0; height: 120px; background: #eee; line-height: 120px; text-align: center; color: #bcbcbc; }
 .custom-posts-wrapper.post-agent .selectwrap { float: right; margin-right: 6px; width: 204px; }
 .custom-posts-wrapper.post-agent .selectwrap .selectbox-wrapper ul { margin: 0 !important }
+
+.rets-companies .custom-post.without-image .custom-post-item { min-height: 170px; }
+.rets-companies .custom-post .company-meta { font-size: 16px; }
+.rets-companies .custom-post .company-meta h3 { line-height: 130%; font-size: 20px; }
 
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
