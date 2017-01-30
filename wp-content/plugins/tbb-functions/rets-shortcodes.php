@@ -674,7 +674,7 @@ class Rets_Company {
 
             if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
 
-                $html .= '<h5 class="company-featured-'.$company_featured.'">'.$company['OfficeName'].'</h5>';
+                $html .= '<h1 class="company-featured-'.$company_featured.'">'.$company['OfficeName'].'</h1>';
                                                 
                 if(!empty($company_office_address) && $company_featured == 1){
                     $html .= do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
@@ -686,10 +686,9 @@ class Rets_Company {
                 if(!empty($company_office_phone)){
 
                     $html .= '<li class="office">';
-					$html .= include( get_template_directory() . '/images/icon-phone.svg' ); _e('Office', 'framework');
-					$html .= ':'; 
+					$html .= 'Office: '; 
 					if( $company_featured == 1 ) {
-						$html .= '<a href="tel:'. str_replace("-", '', $company_office_phone) .'">'. $company_office_phone .'</a>';
+						$html .= '<a href="tel:'. $this->phone_link( $company_office_phone ) .'">'. $company_office_phone .'</a>';
 					} else {
 						$html .= $company_office_phone;
 					} 
@@ -697,8 +696,7 @@ class Rets_Company {
                 }
                 if(!empty($company_office_fax)){
                     $html .= '<li class="fax">';
-                    $html .=  include( get_template_directory() . '/images/icon-printer.svg' ); _e('Fax', 'framework');
-                    $html .= ':';
+                    $html .= 'Fax: ';
                     $html .= $company_office_fax;
                     $html .= '</li>';
                 }
@@ -711,40 +709,21 @@ class Rets_Company {
 
 			$html .= do_shortcode('[rets_company_agents][/rets_company_agents]');
 
-			$html .= '</div></article>';
-
-			/*$html .= sprintf( '<div class="post-agent agent-%s agent-%s">', $id, $category_classes );
-						
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
-
-					$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $company['OfficeName'] );
-
-					$html .= sprintf('<h1 class="agent-name">%s</h1>', $company['OfficeName'] );
-
-					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
-								$company['OfficeName'], $office_address, $company['OfficePhoneComplete'] );
-			
-				$html .= '</div></div></div>';
-			
-				if( $company['featured'] == 1 ) {
-						
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties">';
-					
-					$html .= '<p>Property List Here...</p>';
-
-				$html .= '</div></div></div>';
-				
-				}
-			
-			$html .= '</div>';*/
-
-			
+			$html .= '</div></article>';			
 			
 		}
 		
 		return $html;
 		
 	}
+	
+	public function phone_link( $string ) {
+		
+		$slug = preg_replace( '/\D/', '', $string );
+		
+		return $slug;
+		
+	} // end phone_link
 	
 }
 new Rets_Company();
@@ -872,6 +851,7 @@ class Rets_Company_Agents {
 			
 			
 				$html .= '<div class="agents-list-wrap clearfix">';
+			
 				foreach( $agents as $agent ) {
 										
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
@@ -913,12 +893,12 @@ class Rets_Company_Agents {
 					$html .= '</div></div>';*/
 					// End agent ouput
 					
-					/*$clearfix_test = $count / $cols_per_row;
+					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
 						$html .= '<div class="clearfix"></div>';
 					}
 
-					$count++;*/
+					$count++;
 					
 				}
 				$html .= '</div>';
