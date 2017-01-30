@@ -596,7 +596,7 @@ class Rets_Companies {
 	
 	public function phone_link( $string ) {
 		
-		$slug = preg_replace( '/[^A-Za-z0-9-]+/', '', $string );
+		$slug = preg_replace( '/\D/', '', $string );
 		
 		return $slug;
 		
