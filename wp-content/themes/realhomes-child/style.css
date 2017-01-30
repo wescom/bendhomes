@@ -460,9 +460,9 @@ h1.page-title > img { padding-left: 10px;}
 	.company-agent { width: 50%; }	
 }
 
-@media(min-width: 980px) {
+/*@media(min-width: 980px) {
 	.custom-post.without-image .custom-post-item { min-height: 345px; }
-}
+}*/
 
 @media(min-width: 1200px) {
 	.home-recent-posts figure { min-height: 163px; }	
