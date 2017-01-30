@@ -747,7 +747,7 @@ class Rets_Company_Agents {
 		$defaults = shortcode_atts(
 			array(
 				'class' => '',
-				'columns' => 3,
+				'columns' => 4,
 				'linkto' => 'agent'
 			), $args
 		);
@@ -840,9 +840,7 @@ class Rets_Company_Agents {
 						$has_image_class = 'without-image';
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
 					}
-					
-					$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
-					
+										
 					$permalink = home_url() .'/'. $linkto .'/?agent='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
 														
 						/*$html .= '<div class="company-agent">';
@@ -861,9 +859,6 @@ class Rets_Company_Agents {
 								$count, $permalink, $image_url, $agent['FullName'], $agent['OfficeName'] );
 					
 						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', $permalink, $agent['FullName'] );
-					
-						$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>', 
-									$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 					
