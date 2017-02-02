@@ -1007,12 +1007,6 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	</div><!-- end class mort-calc-form-wrap -->
 	
 	<script type="text/javascript">
-	$(document).ready(function(){
-		var getPrice = $('.IDX-field-listingPrice .IDX-text').text();
-		var priceNum = getPrice.value.replace(/\D/g, '');
-		$('#mort-price-value').val(priceNum);
-	});
-		
 	function validNumber(fieldinput){ var unicode=fieldinput.charCode? fieldinput.charCode : fieldinput.keyCode;if ((unicode!=8) && (unicode!=46)) { if (unicode<48||unicode>57) return false; } }
 		
 	function addCommas(nStr){nStr+='';x=nStr.split('.');x1=x[0];x2=x.length>1?'.'+x[1]:'';var rgx=/(\d+)(\d{3})/;while(rgx.test(x1)){x1=x1.replace(rgx,'$1'+','+'$2');}return x1+x2;}
@@ -1049,7 +1043,13 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+' per month';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
-	}	
+	}
+		
+	$(document).ready(function(){
+		var getPrice = $('.IDX-field-listingPrice .IDX-text').text();
+		var priceNum = getPrice.value.replace(/\D/g, '');
+		$('#mort-price-value').val(priceNum);
+	});
 	</script>
 	
 	<?php
