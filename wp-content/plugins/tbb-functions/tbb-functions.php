@@ -72,6 +72,10 @@ function string_sanitize($s) {
 }
 
 
+// Enable shortcodes in text widgets
+add_filter('widget_text','do_shortcode');
+
+
 /*add_action('wp_footer', 'add_mailchimp_scripts_footer');
 function add_mailchimp_scripts_footer() {
 	ob_start(); ?>
