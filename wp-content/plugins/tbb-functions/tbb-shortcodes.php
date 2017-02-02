@@ -932,9 +932,11 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	ob_start(); ?>
 	
 	<script type="text/javascript">
-	var getPrice = $('.IDX-field-listingPrice .IDX-text').text();
-	var priceNum = getPrice.value.replace(/\D/g, '');
-	$('#mort-price-value').val(priceNum);
+	$(document).ready(function(){
+		var getPrice = $('.IDX-field-listingPrice .IDX-text').text();
+		var priceNum = getPrice.value.replace(/\D/g, '');
+		$('#mort-price-value').val(priceNum);
+	});
 		
 	function validNumber(fieldinput){ var unicode=fieldinput.charCode? fieldinput.charCode : fieldinput.keyCode;if ((unicode!=8) && (unicode!=46)) { if (unicode<48||unicode>57) return false; } }
 		
