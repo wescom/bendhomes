@@ -931,52 +931,6 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	
 	ob_start(); ?>
 	
-	<script type="text/javascript">
-	$(document).ready(function(){
-		var getPrice = $('.IDX-field-listingPrice .IDX-text').text();
-		var priceNum = getPrice.value.replace(/\D/g, '');
-		$('#mort-price-value').val(priceNum);
-	});
-		
-	function validNumber(fieldinput){ var unicode=fieldinput.charCode? fieldinput.charCode : fieldinput.keyCode;if ((unicode!=8) && (unicode!=46)) { if (unicode<48||unicode>57) return false; } }
-		
-	function addCommas(nStr){nStr+='';x=nStr.split('.');x1=x[0];x2=x.length>1?'.'+x[1]:'';var rgx=/(\d+)(\d{3})/;while(rgx.test(x1)){x1=x1.replace(rgx,'$1'+','+'$2');}return x1+x2;}
-		
-	function findpercentdown(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var percentdown=(downpayment/price)*100;document.getElementById('down-percent').innerHTML = '('+percentdown.toFixed(0)+'%)';}
-		
-	function findtaxpermonth(){var price=document.mortgagecalc.price.value;var taxpercent=document.mortgagecalc.taxes.value;var taxpermonth=(price/12)*(taxpercent/100);document.getElementById('taxes-per').innerHTML = '($'+taxpermonth.toFixed(0)+'/mo)';}
-		
-	function findloanamount(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var loanamount=price-downpayment;document.getElementById('loan-amt').innerHTML = '$'+addCommas(loanamount);}
-
-	function myPayment(){
-	document.getElementById('priceError').innerHTML = ''; document.getElementById('downError').innerHTML = ''; document.getElementById('yearsError').innerHTML = ''; document.getElementById('rateError').innerHTML = '';
-
-	// Form validation checking
-	if ((document.mortgagecalc.price.value === null) || (document.mortgagecalc.price.value.length === 0) || (isNaN(document.mortgagecalc.price.value) === true)){
-		//document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
-	} else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true)){
-		//document.getElementById('downError').innerHTML = 'Numeric value required. Example: 50000';
-	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true)){
-		//document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
-	} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true)){
-		//document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 3.25';
-	} else if ((document.mortgagecalc.taxes.value === null) || (document.mortgagecalc.taxes.value.length === 0) || (isNaN(document.mortgagecalc.taxes.value) === true)){
-		//document.getElementById('taxesError').innerHTML = 'Numeric value required. Example: 1.5';
-	} else{
-	// Set variables from form data
-	var price = document.mortgagecalc.price.value;
-	var downpayment = document.mortgagecalc.down.value;
-	var loanprincipal = price - downpayment;
-	var months = document.mortgagecalc.years.value * 12;
-	var interest = document.mortgagecalc.rate.value / 1200;
-	var taxpermonth = (price / 12) * (document.mortgagecalc.taxes.value / 100);
-	// Calculate mortgage payment and display result
-	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+' per month';
-	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
-	}
-	}	
-	</script>
-	
 	<div class="mort-calc-form-wrap clearfix <?php echo $class; if(!empty($content)) echo ' has-content'; ?>">
 		<div class="mort-calc clearfix">
 			
@@ -1051,6 +1005,52 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 			
 		</div><!-- end class mort-calc -->
 	</div><!-- end class mort-calc-form-wrap -->
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var getPrice = $('.IDX-field-listingPrice .IDX-text').text();
+		var priceNum = getPrice.value.replace(/\D/g, '');
+		$('#mort-price-value').val(priceNum);
+	});
+		
+	function validNumber(fieldinput){ var unicode=fieldinput.charCode? fieldinput.charCode : fieldinput.keyCode;if ((unicode!=8) && (unicode!=46)) { if (unicode<48||unicode>57) return false; } }
+		
+	function addCommas(nStr){nStr+='';x=nStr.split('.');x1=x[0];x2=x.length>1?'.'+x[1]:'';var rgx=/(\d+)(\d{3})/;while(rgx.test(x1)){x1=x1.replace(rgx,'$1'+','+'$2');}return x1+x2;}
+		
+	function findpercentdown(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var percentdown=(downpayment/price)*100;document.getElementById('down-percent').innerHTML = '('+percentdown.toFixed(0)+'%)';}
+		
+	function findtaxpermonth(){var price=document.mortgagecalc.price.value;var taxpercent=document.mortgagecalc.taxes.value;var taxpermonth=(price/12)*(taxpercent/100);document.getElementById('taxes-per').innerHTML = '($'+taxpermonth.toFixed(0)+'/mo)';}
+		
+	function findloanamount(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var loanamount=price-downpayment;document.getElementById('loan-amt').innerHTML = '$'+addCommas(loanamount);}
+
+	function myPayment(){
+	document.getElementById('priceError').innerHTML = ''; document.getElementById('downError').innerHTML = ''; document.getElementById('yearsError').innerHTML = ''; document.getElementById('rateError').innerHTML = '';
+
+	// Form validation checking
+	if ((document.mortgagecalc.price.value === null) || (document.mortgagecalc.price.value.length === 0) || (isNaN(document.mortgagecalc.price.value) === true)){
+		//document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
+	} else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true)){
+		//document.getElementById('downError').innerHTML = 'Numeric value required. Example: 50000';
+	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true)){
+		//document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
+	} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true)){
+		//document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 3.25';
+	} else if ((document.mortgagecalc.taxes.value === null) || (document.mortgagecalc.taxes.value.length === 0) || (isNaN(document.mortgagecalc.taxes.value) === true)){
+		//document.getElementById('taxesError').innerHTML = 'Numeric value required. Example: 1.5';
+	} else{
+	// Set variables from form data
+	var price = document.mortgagecalc.price.value;
+	var downpayment = document.mortgagecalc.down.value;
+	var loanprincipal = price - downpayment;
+	var months = document.mortgagecalc.years.value * 12;
+	var interest = document.mortgagecalc.rate.value / 1200;
+	var taxpermonth = (price / 12) * (document.mortgagecalc.taxes.value / 100);
+	// Calculate mortgage payment and display result
+	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+' per month';
+	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
+	}
+	}	
+	</script>
 	
 	<?php
 	return ob_get_clean();
