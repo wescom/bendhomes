@@ -35,6 +35,12 @@
 			});
 		});*/
 		
+		$("#IDX-mortgageLink").attr('href', '#paymentmodal').attr('data-toggle', 'modal');
+		$('#IDX-mortgageLink').on('click', function(e){
+			e.preventDefault();
+			//$('#paymentmodal').modal('show');
+		});
+		
 		/*-----------------------------------------------------------------------------------*/
         /* Tooltips
         /*-----------------------------------------------------------------------------------*/

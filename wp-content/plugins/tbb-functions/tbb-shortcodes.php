@@ -138,12 +138,12 @@ add_shortcode( 'EVERGREEN_LOANS', 'tbb_evergreen_home_loads' );
 function tbb_evergreen_home_loads() {
 	ob_start(); ?>
     
-    <div style="text-align: center; margin-bottom: 1.5em;">
+    <div style="text-align: center;">
         <a href="https://www.evergreenhomeloans.com/bend/?ref=bh" target="_blank" onclick="trackOutboundLink('https://www.evergreenhomeloans.com/bend/?ref=bh', 'Evergreen 1'); return false;">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/evergreen-home-loans-logo2.png" width="200" height="117" alt="Evergreen Home Loans" />
         </a>
-		<p>Helping people buy homes</p>
-        <div class="modal-address"><i class="fa fa-map-marker"></i> 685 SE 3rd St., Bend OR, 97702<br><a href="tel:5413185500" onclick="trackOutboundLink('tel:5413185500', 'Evergreen Ph'); return false;"><i class="fa fa-mobile-phone"></i> (541) 318-5500</a></div>
+		<div style="margin-bottom: 10px;">Helping people buy homes</div>
+        <div class="address"><i class="fa fa-map-marker"></i> 685 SE 3rd St., Bend OR, 97702<br><a href="tel:5413185500" onclick="trackOutboundLink('tel:5413185500', 'Evergreen Ph'); return false;"><i class="fa fa-mobile-phone"></i> (541) 318-5500</a></div>
     </div>
     
     <?php
@@ -1016,7 +1016,27 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	function findtaxpermonth(){var price=document.mortgagecalc.price.value;var taxpercent=document.mortgagecalc.taxes.value;var taxpermonth=(price/12)*(taxpercent/100);document.getElementById('taxes-per').innerHTML = '($'+taxpermonth.toFixed(0)+'/mo)';}
 		
 	function findloanamount(){var price=document.mortgagecalc.price.value;var downpayment=document.mortgagecalc.down.value;var loanamount=price-downpayment;document.getElementById('loan-amt').innerHTML = '$'+addCommas(loanamount);}
+		
+	// Get initial property price from listing and calculate all variables for monthly payment and fill form
+	var initprice = document.getElementById('IDX-detailsMainInfo').getElementsByClassName('IDX-text')[1].innerHTML.replace(/\D/g,'');
+	var initdown = initprice * ( 20 / 100 );
+	var initloanprincipal = initprice - initdown;
+	var initmonths = document.mortgagecalc.years.value * 12;
+	var initinterest = document.mortgagecalc.rate.value / 1200;
+	var inittaxpermonth = (initprice / 12) * (document.mortgagecalc.taxes.value / 100);
+	// Calculate  initial mortgage payment and display result
+	var initmonthlypayment = (initloanprincipal * initinterest / (1 - (Math.pow(1/(1 + initinterest), initmonths))) + inittaxpermonth).toFixed(0);
+	
+	document.getElementById('mort-price-value').value = initprice;
+	document.getElementById('mort-down-value').value = initdown;
+	document.getElementById('monthly-payment').innerHTML = '$' + addCommas(initmonthlypayment) + ' per month';	
+	document.getElementById('loan-amt').innerHTML = '$' + addCommas(initloanprincipal);
+	document.getElementById('taxes-per').innerHTML = '$' + Math.round(inittaxpermonth) + '/mo.';
+		
+	var estimatedpayment = '<div id="est-payment"><a href="#paymentmodal" data-toggle="modal"><i class="fa fa-calculator"></i> $' + addCommas(initmonthlypayment) + '/mo.</a></div>';
+	document.getElementById('IDX-detailsMainInfo').getElementsByClassName('IDX-field-listingPrice')[0].insertAdjacentHTML('beforeend', estimatedpayment);
 
+	// Set up dynamic form
 	function myPayment(){
 	document.getElementById('priceError').innerHTML = ''; document.getElementById('downError').innerHTML = ''; document.getElementById('yearsError').innerHTML = ''; document.getElementById('rateError').innerHTML = '';
 
@@ -1044,12 +1064,6 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
 	}
-		
-	$(document).ready(function(){
-		var getPrice = $('.IDX-field-listingPrice .IDX-text').text();
-		var priceNum = getPrice.value.replace(/\D/g, '');
-		$('#mort-price-value').val(priceNum);
-	});
 	</script>
 	
 	<?php

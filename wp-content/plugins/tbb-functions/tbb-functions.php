@@ -76,17 +76,6 @@ function string_sanitize($s) {
 add_filter('widget_text','do_shortcode');
 
 
-/*add_action('wp_footer', 'add_mailchimp_scripts_footer');
-function add_mailchimp_scripts_footer() {
-	ob_start(); ?>
-    
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-	<?php
-	$output = ob_get_clean();
-	echo $output;	
-}*/
-
-
 // Disable stupid emojicons scripts wordpress adds by default into the header.
 add_action( 'init', 'disable_wp_emojicons' );
 function disable_wp_emojicons() {
@@ -146,4 +135,26 @@ function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
 		return ! is_user_logged_in();
 	}
 	return $is_loadable;
+}
+
+
+// Add Mortgage Calculator Modal to Footer
+add_action('wp_footer', 'tbb_add_modal_to_footer');
+function tbb_add_modal_to_footer() {
+	ob_start(); ?>
+	<!-- Mortgage Calculator Modal -->
+	<div id="paymentmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		</div>
+		<div class="modal-body">
+			<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
+			<div class="mort-sponsor">
+				<h4>Find what the real terms of your loan could be&hellip;</h4>
+				<?php echo do_shortcode('[EVERGREEN_LOANS]'); ?>
+			</div>
+		</div>
+	</div>
+	<?php
+	echo ob_get_clean();
 }
