@@ -41,6 +41,7 @@ $home_url = home_url();
                               <li><a href="<?php echo $home_url; ?>/about-bend-homes/">About Us</a></li>
                               <li><a href="<?php echo $home_url; ?>/advertise-bend-homes/">Advertise With Us</a></li>
                               <li><a href="mailto:info@bendhomes.com">Contact Us</a></li>
+							  <li><a href="http://bendhomes.idxbroker.com/idx/sitemap">Sitemap</a></li>
                             </ul>
                           <?php /*<p>Listings updated:  <?php properties_updated_timestamp(); ?></p>*/ ?>
                           <?php echo do_shortcode('
