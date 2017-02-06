@@ -2,7 +2,7 @@
 
 <?php get_template_part("bend-homes/template-parts/footer-banner-ad"); ?>
 
-<?php /* Set aside PHP for nowrap
+<?php /* Set aside PHP for nowrap test
 <?php if ( ! dynamic_sidebar( 'footer-first-column' ) ) : ?>
 <?php endif; ?>
 
