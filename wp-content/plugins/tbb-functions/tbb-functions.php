@@ -99,10 +99,43 @@ function disable_emojicons_tinymce( $plugins ) {
 
 add_action('wp_head', 'tbb_custom_analytics_scripts', '999');
 function tbb_custom_analytics_scripts() {
+	$analytics = "";
+	
+	// Link IDX Broker to BendHomes in analytics
 	if( is_page( array('577379', '577465') ) ) {
-		echo '<!-- Jarel IDX Script -->';
+		$analytics .= "
+			<!-- Cross Script GA: idxbroker -> bendhomes -->
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-1815236-10', 'auto', {'allowLinker': true});
+			  ga('require', 'linker');
+  			  ga('linker:autoLink', ['bendhomes.com'] );
+			  ga('send', 'pageview');
+
+			</script>
+		";
+		
+	// Vice versa: Link BendHomes to IDX Broker in analytics
 	} else {
-		echo '<!-- Jarel NON IDX Script -->';
+		$analytics .= "
+			<!-- Cross Script GA: bendhomes -> idxbroker -->
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-1815236-10', 'auto', {'allowLinker': true});
+			  ga('require', 'linker');
+  			  ga('linker:autoLink', ['bendhomes.idxbroker.com'] );
+			  ga('send', 'pageview');
+
+			</script>
+		";
 	}
 }
 
