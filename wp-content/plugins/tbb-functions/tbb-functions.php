@@ -137,6 +137,8 @@ function tbb_custom_analytics_scripts() {
 			</script>
 		";
 	}
+	
+	echo $analytics;
 }
 
 
