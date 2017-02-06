@@ -96,6 +96,17 @@ function disable_emojicons_tinymce( $plugins ) {
 }
 
 
+
+add_action('wp_head', 'tbb_custom_analytics_scripts');
+function tbb_custom_analytics_scripts() {
+	if( is_page( array('577379', '577465') ) ) {
+		echo '<!-- Jarel IDX Script -->';
+	} else {
+		echo '<!-- Jarel NON IDX Script -->';
+	}
+}
+
+
 // Filter to only search Agents by name, ie post_title.
 add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
 function tbb_search_by_title_only( $search, &$wp_query ) {
