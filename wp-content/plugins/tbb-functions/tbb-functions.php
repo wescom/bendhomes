@@ -1,4 +1,4 @@
-<?php
+<?php // test
 /*
 Plugin Name: Wescom Custom Functions
 Plugin URI: mailto:jculley@bendbulletin.com
