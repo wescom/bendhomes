@@ -1,4 +1,4 @@
-<?php
+<?php // test
 
 include_once '/var/databaseIncludes/retsDBInfo.php';
 
