@@ -97,7 +97,7 @@ function disable_emojicons_tinymce( $plugins ) {
 
 
 
-add_action('wp_head', 'tbb_custom_analytics_scripts');
+add_action('wp_head', 'tbb_custom_analytics_scripts', '999');
 function tbb_custom_analytics_scripts() {
 	if( is_page( array('577379', '577465') ) ) {
 		echo '<!-- Jarel IDX Script -->';
