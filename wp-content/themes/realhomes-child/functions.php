@@ -59,6 +59,9 @@ function child_theme_head_script() {
    		$link_array = explode('/',$urlLink);
     	$sectionKey = $link_array[count($link_array) - 2];  
    		echo "sectionKey5 = ".$sectionKey;
+
+   		$theCat = get_the_category( $id = false );
+   		var_dump($theCat);
    	}
    ?>
   <script type='text/javascript'>
