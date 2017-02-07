@@ -62,8 +62,7 @@ function child_theme_head_script() {
    	}
    ?>
   <script type='text/javascript'>
-  	var getKey = '<?php echo json_encode($sectionKey); ?>';
-  	console.log('getKey: '+getKey);
+  	var getKey = <?php echo json_encode($sectionKey); ?>;
     <?php 
 
 	/* Unminified JS code. Minified code added below.
