@@ -55,7 +55,7 @@ add_action( 'wp_head', 'child_theme_head_script' );
 function child_theme_head_script() { 
    if (current_user_can('administrator')) {
    		$sectionKey = single_cat_title();  
-   		echo "sectionKey = ".$sectionKey;
+   		echo "sectionKey2 = ".$sectionKey;
    		var_dump($sectionkey);
    	}
    ?>
