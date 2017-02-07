@@ -52,7 +52,12 @@ add_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
 
 // Add scripts to wp_head()
 add_action( 'wp_head', 'child_theme_head_script' );
-function child_theme_head_script() { ?>
+function child_theme_head_script() { 
+   if (current_user_can('administrator')) {
+   		$sectionKey = get_the_category();  
+   		echo "sectionKey = ".$sectionKey;
+   	}
+   ?>
   <script type='text/javascript'>
     <?php 
 	/* Unminified JS code. Minified code added below.
