@@ -54,8 +54,10 @@ add_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
 add_action( 'wp_head', 'child_theme_head_script' );
 function child_theme_head_script() { 
    if (current_user_can('administrator')) {
-   		$sectionKey = $_SERVER['REQUEST_URI'];  
-   		echo "sectionKey2 = ".$sectionKey;
+   		$sectionKey = $_SERVER['REQUEST_URI'];
+   		$link_array = explode('/',$sectionKey);
+    	echo $page = end($link_array);  
+   		//echo "sectionKey2 = ".$sectionKey;
    	}
    ?>
   <script type='text/javascript'>
