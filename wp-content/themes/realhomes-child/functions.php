@@ -63,7 +63,7 @@ function child_theme_head_script() {
    		$theCat = get_the_category( $id = false );
    		var_dump($theCat);
    		foreach($theCat as $ct){
-   			echo "ct: ".$theCat;
+   			echo "ct: ".$ct;
    		}
    	}
    ?>
