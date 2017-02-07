@@ -61,7 +61,7 @@ function child_theme_head_script() {
    	}
    ?>
   <script type='text/javascript'>
-  	var getKey = "<?php echo $sectionKey; ?>";
+  	var getKey = "<?php echo 'some stuff'; ?>";
   	console.log('getKey: '+getKey);
     <?php 
 	/* Unminified JS code. Minified code added below.
