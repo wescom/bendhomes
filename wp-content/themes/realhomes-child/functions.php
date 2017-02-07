@@ -64,6 +64,10 @@ function child_theme_head_script() {
   	var getKey = "<?php echo 'some stuff'; ?>";
   	console.log('getKey: '+getKey);
     <?php 
+
+    if (current_user_can('administrator')) {
+    	echo "hello";
+    }
 	/* Unminified JS code. Minified code added below.
 	
 	// DFP init
