@@ -58,7 +58,7 @@ function child_theme_head_script() {
    		$urlLink = $_SERVER['REQUEST_URI'];
    		$link_array = explode('/',$urlLink);
     	$sectionKey = $link_array[count($link_array) - 2];  
-   		echo "sectionKey5 = ".$sectionKey;
+   		echo "sectionKey6 = ".$sectionKey;
 
    		$theCat = get_the_category( $id = false );
    		var_dump($theCat);
