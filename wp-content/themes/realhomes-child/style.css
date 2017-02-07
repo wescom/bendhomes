@@ -47,7 +47,8 @@ footer a:hover { text-decoration: underline; }
 .mort-calc-form-wrap .form-item { margin-bottom: 10px; position: relative; }
 .mort-calc-form-wrap .form-item .down, .mort-calc-form-wrap .form-item .taxes { position: relative; }
 .mort-calc-form-wrap .form-item #down-percent, .mort-calc-form-wrap .form-item #taxes-per { position: absolute; top: 14px; font-size: 16px; right: 15px; font-weight: 300; color: #999; }
-.mort-calc-form-wrap input[type="text"], .mort-calc-form-wrap select { color: #777; background-color: #fff; width: 100%; padding: 10px 0; text-indent: 40px; letter-spacing: .05em; font-size: 18px; font-weight: 400; border-radius: 3px; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }
+.mort-calc-form-wrap input[type="text"], .mort-calc-form-wrap select { color: #777; background-color: #fff; width: 100%; padding: 10px 0; text-indent: 40px; letter-spacing: .05em; font-size: 18px; font-weight: 400; border-radius: 5px; box-shadow: inset 0 2px 3px rgba(0,0,0,.1); }
+.mort-calc-form-wrap select { height: 45px; }
 .mort-calc-form-wrap .selectwrap input { background: url(images/dropdown-arrow-lg.png) no-repeat right top #fff; }
 .mort-calc-form-wrap label { font-size: 14px; color: #777; text-transform: uppercase; }
 .mort-calc-form-wrap #mort-price-value { text-align: center; width: 80%; margin: auto; display: block; max-width: 400px; text-indent: 0; }
@@ -63,6 +64,23 @@ footer a:hover { text-decoration: underline; }
 .mort-calc-form-wrap.has-content .mort-content-wrap { padding-left: 10px; padding-right: 10px; }
 .mort-calc-form-wrap.has-content .mort-content-wrap h4 { font-size: 16px; text-transform: uppercase; line-height: 140%; margin-bottom: 30px; text-align: center; margin-top: 0; padding-top: 25px; padding-bottom: 25px; }
 .mort-sponsor p { font-weight: bold; color: #51A0AD; font-style: italic; }
+
+.modal-body .mort-calc-form-wrap { border: none; padding: 0 30px; }
+.modal { border-top: 8px solid #FF6600; }
+.modal-header { border: none; }
+.modal-header .close { font-size: 26px; }
+.modal-body { padding: 0; width: 100%; }
+#paymentmodal.modal { position: absolute; margin-top: 0; top: 50px; }
+#paymentmodal .modal-body { max-height: none; padding-bottom: 20px; }
+#paymentmodal .mort-sponsor h4 { text-align: center; margin-top: 0; }
+
+#text-10 .textwidget { padding: 10px; }
+#text-10 .textwidget .address a { font-size: 16px; font-weight: bold; color: #02888f; }
+
+.featured-properties .IDX-showcaseTable .IDX-showcaseContainer { border: 1px solid #d2d2d2 !important; box-shadow: none !important; }
+.featured-properties .IDX-showcaseContainer .IDX-showcaseAddress, .featured-properties .IDX-showcaseContainer .IDX-showcaseCityStateZip { font-size: 16px; line-height: 140%; font-weight: 100; }
+.featured-properties .IDX-showcaseContainer .IDX-showcasePrice { font-size: 22px; line-height: 150%; font-weight: 800; letter-spacing: .05em; color: #02888f; padding-top: 8px; }
+.featured-properties .IDX-showcaseContainer .IDX-showcaseBeds, .featured-properties .IDX-showcaseContainer .IDX-showcaseBaths { display: inline-block !important; font-size: 13px; letter-spacing: .05em; padding: 0 5px; color: #777; }
 
 .share-bar-wrap { margin: 0 0 30px; /*padding-left: 30%;*/ }
 .share-bar-wrap > .actions { display: block; width: 33.3333%; float: left; }
@@ -274,6 +292,13 @@ h3.search-results-header { float: left; margin: 0; }
 .rets-agent.agent-widget .contacts-list span a { font-size: 14px; line-height: 150%; padding-right: 5px; }
 .rets-agent .rail-button-agent-wrapper { float: none; }
 
+/* --- Rets Sidebar Search Form --- */
+#IDX-quicksearch-41723 .IDX-quicksearchForm, .IDX-quicksearchWrapper .IDX-quicksearchForm .IDX-qsFieldWrap, #IDX-qsPtLabel-41723, #IDX-qsCityListLabel-41723 { display: block !important; }
+#IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsSelectInput { width: 100%; }
+#IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsInput { margin: 0; width: 100%; padding: 4px 0; text-indent: 10px; }
+#IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsInput.IDX-qsButtonInput { text-indent: 0; background: #02888f; border: 1px solid #02888f; color: #fff; font-family: "Roboto Slab"; font-size: 16px; padding: 10px; border-radius: 3px; margin-bottom: 10px; }
+#IDX-quicksearch-41723 .IDX-quicksearchForm .IDX-qsInput.IDX-qsButtonInput:hover { background: #006267; border-color: #006267; }
+
 
 /* --- Simple Search Form --- */
 .simple-search-wrap { background: #252A2B; margin-bottom: 30px; padding: 10px; }
@@ -332,7 +357,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.four .custom-post-item { padding-bottom: 30px; }
 .custom-post h4 { font-weight: 400; margin: 0 0 15px; font-size: 15px; font-family: "Open Sans", sans-serif; }
 .inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; width: auto; }
-.custom-post a { color: #394041; }
+.custom-post a { color: #02888f; }
 .custom-post a:hover { color: #02888f; }
 .custom-post a.more-details { display: inline-block; font-size: 14px; margin: 0 0 -1px 0; padding: 0 10px; background: #02888f; color: #fff; position: absolute; right: 0; bottom: 0; }
 .post-property .custom-post.two a.more-details, .post-property .custom-post.three a.more-details, .post-property .custom-post.four a.more-details, .post-property .custom-post.five a.more-details, .post-property .custom-post.six a.more-details { position: static; background: none; color: #394041; padding: 0; margin: 0; }
@@ -366,6 +391,10 @@ h3.search-results-header { float: left; margin: 0; }
 .post-property .without-image .property-price:before { content: "No Image"; font-family: Helvetica, Arial, sans-serif; display: block; position: absolute; bottom: 100%; width: 100%; left: 0; height: 120px; background: #eee; line-height: 120px; text-align: center; color: #bcbcbc; }
 .custom-posts-wrapper.post-agent .selectwrap { float: right; margin-right: 6px; width: 204px; }
 .custom-posts-wrapper.post-agent .selectwrap .selectbox-wrapper ul { margin: 0 !important }
+
+.rets-companies .custom-post.without-image .custom-post-item { min-height: 170px; }
+.rets-companies .custom-post .company-meta { font-size: 16px; }
+.rets-companies .custom-post .company-meta h3 { line-height: 130%; font-size: 20px; }
 
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
@@ -449,9 +478,9 @@ h1.page-title > img { padding-left: 10px;}
 	.company-agent { width: 50%; }	
 }
 
-@media(min-width: 980px) {
+/*@media(min-width: 980px) {
 	.custom-post.without-image .custom-post-item { min-height: 345px; }
-}
+}*/
 
 @media(min-width: 1200px) {
 	.home-recent-posts figure { min-height: 163px; }	

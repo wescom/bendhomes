@@ -363,7 +363,7 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 
 			// register styles
 			wp_register_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '', 'all' );
-			wp_register_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '', 'all' );
+			//wp_register_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '', 'all' );
 			wp_register_style( 'pretty-photo-css', get_template_directory_uri() . '/js/prettyphoto/css/prettyPhoto.min.css', array(), '', 'all' );
 			wp_register_style( 'swipebox', get_template_directory_uri() . '/js/swipebox/css/swipebox.min.css', array(), '', 'all' );
 			wp_register_style( 'main-css', get_template_directory_uri() . '/css/main.min.css', array(), '', 'all' );
@@ -384,7 +384,7 @@ if ( ! function_exists( 'load_theme_styles' ) ) {
 			}*/
 
 			// Font awesome css
-			wp_enqueue_style( 'font-awesome' );
+			//wp_enqueue_style( 'font-awesome' );
 
 			// Flex Slider
 			wp_dequeue_style( 'flexslider' );       // dequeue flexslider if it registered by some plugin
@@ -490,6 +490,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
 			wp_deregister_script('jquery-ui-core');
 			wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', false, '', true);
 			wp_register_script('jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js', array('jquery'), '', true);
+			wp_register_script('font-awesome-cdn', 'https://use.fontawesome.com/1511927457.js', array('jquery'), '', false);
 
             // flexslider
 	        wp_dequeue_script( 'flexslider' );      // dequeue flexslider if it is enqueue by some plugin
@@ -610,6 +611,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
 
             // Enqueue Scripts that are needed on all the pages
             wp_enqueue_script( 'jquery' );
+			wp_enqueue_script( 'font-awesome-cdn' );
             wp_enqueue_script( 'jquery-ui-core' );
             wp_enqueue_script( 'jquery-ui-autocomplete' );
             wp_enqueue_script( 'flexslider' );  // use this flexslider if NOT using geo directory

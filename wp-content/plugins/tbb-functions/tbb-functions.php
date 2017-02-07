@@ -1,4 +1,4 @@
-<?php
+<?php // test
 /*
 Plugin Name: Wescom Custom Functions
 Plugin URI: mailto:jculley@bendbulletin.com
@@ -72,15 +72,8 @@ function string_sanitize($s) {
 }
 
 
-/*add_action('wp_footer', 'add_mailchimp_scripts_footer');
-function add_mailchimp_scripts_footer() {
-	ob_start(); ?>
-    
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-	<?php
-	$output = ob_get_clean();
-	echo $output;	
-}*/
+// Enable shortcodes in text widgets
+add_filter('widget_text','do_shortcode');
 
 
 // Disable stupid emojicons scripts wordpress adds by default into the header.
@@ -100,6 +93,52 @@ function disable_wp_emojicons() {
 }
 function disable_emojicons_tinymce( $plugins ) {
   if ( is_array( $plugins ) ) { return array_diff( $plugins, array( 'wpemoji' ) ); } else { return array(); }
+}
+
+
+
+add_action('wp_head', 'tbb_custom_analytics_scripts', '999');
+function tbb_custom_analytics_scripts() {
+	$analytics = "";
+	
+	// Link IDX Broker to BendHomes in analytics
+	if( is_page( array('577379', '577465') ) ) {
+		$analytics .= "
+			<!-- Cross Script GA: idxbroker -> bendhomes -->
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-1815236-10', 'auto', {'allowLinker': true});
+			  ga('require', 'linker');
+  			  ga('linker:autoLink', ['bendhomes.com'] );
+			  ga('send', 'pageview');
+
+			</script>
+		";
+		
+	// Vice versa: Link BendHomes to IDX Broker in analytics
+	} else {
+		$analytics .= "
+			<!-- Cross Script GA: bendhomes -> idxbroker -->
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-1815236-10', 'auto', {'allowLinker': true});
+			  ga('require', 'linker');
+  			  ga('linker:autoLink', ['bendhomes.idxbroker.com'] );
+			  ga('send', 'pageview');
+
+			</script>
+		";
+	}
+	
+	echo $analytics;
 }
 
 
@@ -142,4 +181,26 @@ function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
 		return ! is_user_logged_in();
 	}
 	return $is_loadable;
+}
+
+
+// Add Mortgage Calculator Modal to Footer
+add_action('wp_footer', 'tbb_add_modal_to_footer');
+function tbb_add_modal_to_footer() {
+	ob_start(); ?>
+	<!-- Mortgage Calculator Modal -->
+	<div id="paymentmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		</div>
+		<div class="modal-body">
+			<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
+			<div class="mort-sponsor">
+				<h4>Find what the real terms of your loan could be&hellip;</h4>
+				<?php echo do_shortcode('[EVERGREEN_LOANS]'); ?>
+			</div>
+		</div>
+	</div>
+	<?php
+	echo ob_get_clean();
 }
