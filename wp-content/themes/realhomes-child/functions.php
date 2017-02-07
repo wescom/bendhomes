@@ -61,7 +61,7 @@ function child_theme_head_script() {
    		echo "sectionKey6 = ".$sectionKey;
 
    		$theCat = get_the_category( $id = false );
-   		$theCat = get_category($theCat);
+
    		echo "ss ".$theCat;
    		
    	}
