@@ -56,7 +56,7 @@ function child_theme_head_script() {
    if (current_user_can('administrator')) {
    		$sectionKey = $_SERVER['REQUEST_URI'];
    		$link_array = explode('/',$sectionKey);
-    	echo $page = end($link_array);  
+    	echo $page = $link_array[count($link_array) - 2];  
    		echo "sectionKey2 = ".$page;
    	}
    ?>
