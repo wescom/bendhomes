@@ -61,7 +61,7 @@ function child_theme_head_script() {
    		echo "sectionKey6 = ".$sectionKey;
 
    		$theCat = get_the_category( $id = false );
-   		var_dump($theCat);
+   		var_dump($theCat[0]);
    		
    	}
    ?>
