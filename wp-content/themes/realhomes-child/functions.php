@@ -56,6 +56,7 @@ function child_theme_head_script() {
    if (current_user_can('administrator')) {
    		$sectionKey = get_the_category();  
    		echo "sectionKey = ".$sectionKey;
+   		var_dump($sectionkey);
    	}
    ?>
   <script type='text/javascript'>
