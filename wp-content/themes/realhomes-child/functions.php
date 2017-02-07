@@ -53,15 +53,16 @@ add_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
 // Add scripts to wp_head()
 add_action( 'wp_head', 'child_theme_head_script' );
 function child_theme_head_script() { 
+    $sectionKey = "";
    if (current_user_can('administrator')) {
    		$urlLink = $_SERVER['REQUEST_URI'];
    		$link_array = explode('/',$urlLink);
     	$sectionKey = $link_array[count($link_array) - 2];  
-   		echo "sectionKey3 = ".$sectionKey;
+   		echo "sectionKey4 = ".$sectionKey;
    	}
    ?>
   <script type='text/javascript'>
-  	var getKey = "<?php echo 'some stuff'; ?>";
+  	var getKey = '<?php echo $sectionKey; ?>';
   	console.log('getKey: '+getKey);
     <?php 
 
