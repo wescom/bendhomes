@@ -57,7 +57,7 @@ function child_theme_head_script() {
    		$sectionKey = $_SERVER['REQUEST_URI'];
    		$link_array = explode('/',$sectionKey);
     	echo $page = end($link_array);  
-   		//echo "sectionKey2 = ".$sectionKey;
+   		echo "sectionKey2 = ".$page;
    	}
    ?>
   <script type='text/javascript'>
