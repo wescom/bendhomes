@@ -54,7 +54,7 @@ add_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
 add_action( 'wp_head', 'child_theme_head_script' );
 function child_theme_head_script() { 
    if (current_user_can('administrator')) {
-   		$sectionKey = get_the_category();  
+   		$sectionKey = single_cat_title();  
    		echo "sectionKey = ".$sectionKey;
    		var_dump($sectionkey);
    	}
