@@ -62,7 +62,7 @@ function child_theme_head_script() {
 
    		$theCat = get_the_category( $id = false );
 
-   		echo "ss ".$theCat[0]->cat_name;
+   		echo "ss ".$theCat[0]->slug;
    		
    	}
    ?>
