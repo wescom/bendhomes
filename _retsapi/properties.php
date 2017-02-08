@@ -19,6 +19,8 @@ $qvars['fotos'] = (isset($_GET['photos']) ? $_GET['photos'] : 'yes');
 <head>
 <?php
 
+
+
 // $system = $rets->GetSystemMetadata();
 // var_dump($system);
 
