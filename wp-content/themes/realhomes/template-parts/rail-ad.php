@@ -12,6 +12,6 @@
 </div>
 
 <div class="sponsor-block sponsor2 ad-square">
-	<?php do_action('dfp_ad_spot','rectangle2'); ?>
-	<?php //echo do_shortcode('[dfp_ad type="rectangle2" class="square"]'); ?>
+	<?php //do_action('dfp_ad_spot','rectangle2'); ?>
+	<?php echo do_shortcode('[dfp_ad type="rectangle2" class="square"]'); ?>
 </div>
