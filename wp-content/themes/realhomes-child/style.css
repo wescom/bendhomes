@@ -331,8 +331,8 @@ h3.search-results-header { float: left; margin: 0; }
 
 
 /* --- Sidebar Widget Styling --- */
-#text-11.widget, #text-12.widget { border: none; background: none; }
-#text-11.widget .textwidget, #text-12.widget .textwidget { padding: 0; }
+#text-11.widget, #text-12.widget, #text-13.widget { border: none; background: none; }
+#text-11.widget .textwidget, #text-12.widget .textwidget, #text-13.widget .textwidget { padding: 0; }
 
 /* --- Property status colors --- */
 .property-item figure figcaption.for-sale, .post-property .property-price figcaption.for-sale { background:rgba(255, 255, 255, 0.8) !important; font-weight: bold !important; color: #598f28 !important; }
