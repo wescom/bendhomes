@@ -331,6 +331,7 @@ h3.search-results-header { float: left; margin: 0; }
 
 
 /* --- Sidebar Widget Styling --- */
+#text-10.widget { background: #fff; }
 #text-11.widget, #text-12.widget, #text-13.widget { border: none; background: none; }
 #text-11.widget .textwidget, #text-12.widget .textwidget, #text-13.widget .textwidget { padding: 0; }
 
