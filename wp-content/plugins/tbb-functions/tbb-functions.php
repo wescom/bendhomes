@@ -187,7 +187,10 @@ function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
 // Add Mortgage Calculator Modal to Footer
 add_action('wp_footer', 'tbb_add_modal_to_footer');
 function tbb_add_modal_to_footer() {
-	ob_start(); ?>
+	ob_start(); 
+
+	if( is_page( array('577379', '577465') ) ) {
+	?>
 	<!-- Mortgage Calculator Modal -->
 	<div id="paymentmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-header">
@@ -197,10 +200,11 @@ function tbb_add_modal_to_footer() {
 			<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
 			<div class="mort-sponsor">
 				<h4>Find what the real terms of your loan could be&hellip;</h4>
-				<?php echo do_shortcode('[EVERGREEN_LOANS]'); ?>
+				<?php echo do_shortcode('[dfp_ad type="mortcalc" class="small-square"]'); ?>
 			</div>
 		</div>
 	</div>
 	<?php
+	}
 	echo ob_get_clean();
 }
