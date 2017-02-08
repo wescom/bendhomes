@@ -198,10 +198,6 @@ function tbb_add_modal_to_footer() {
 		</div>
 		<div class="modal-body">
 			<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
-			<div class="mort-sponsor">
-				<h4>Find what the real terms of your loan could be&hellip;</h4>
-				<?php echo do_shortcode('[dfp_ad type="mortcalc" class="small-square"]'); ?>
-			</div>
 		</div>
 	</div>
 	<?php
