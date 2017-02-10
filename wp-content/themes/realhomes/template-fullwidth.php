@@ -21,7 +21,7 @@ get_header();
     
     <?php 
 	if( is_front_page() ) {
-		if( current_user_can('administrator')) { 
+		if( current_user_can('edit_posts')) { 
 
 		$slides_array = [
 			[
@@ -50,9 +50,6 @@ get_header();
 				'content' => get_field('imagecontent5')
 			],
 		];
-			
-			//print_r( $slides_array );
-
 		?>
 			
 		<div id="home-flexslider" class="clearfix">
