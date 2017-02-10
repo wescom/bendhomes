@@ -26,26 +26,31 @@ if( is_front_page() ) {
 		[
 			'image' => get_field('imageslide1'),
 			'link' => get_field('imagelink1'),
+			'office' => get_field('imageoffice1'),
 			'content' => get_field('imagecontent1')
 		],
 		[
 			'image' => get_field('imageslide2'),
 			'link' => get_field('imagelink2'),
+			'office' => get_field('imageoffice2'),
 			'content' => get_field('imagecontent2')
 		],
 		[
 			'image' => get_field('imageslide3'),
 			'link' => get_field('imagelink3'),
+			'office' => get_field('imageoffice3'),
 			'content' => get_field('imagecontent3')
 		],
 		[
 			'image' => get_field('imageslide4'),
 			'link' => get_field('imagelink4'),
+			'office' => get_field('imageoffice4'),
 			'content' => get_field('imagecontent4')
 		],
 		[
 			'image' => get_field('imageslide5'),
 			'link' => get_field('imagelink5'),
+			'office' => get_field('imageoffice5'),
 			'content' => get_field('imagecontent5')
 		],
 	];
@@ -69,6 +74,7 @@ if( is_front_page() ) {
 								<div class="desc-wrap">
 									<div class="slide-description">
 										<h3><a href="'. $slide['link'] .'">'. $slide['content'] .'</a></h3>
+										<div>'. $slide['office'] .'</div>
 										<a href="'. $slide['link'] .'" class="know-more">View Property</a>
 									</div>
 								</div>
