@@ -84,6 +84,15 @@ get_header();
 				</ul>
 			</div>
 		</div>
+		
+		<div class="banner-search-wrap">
+			<div class="container">
+				<div class="clearfix">
+					<h1 class="page-title">Welcome to BendHomes.com</h1>
+					<div class="header-search"><?php echo do_shortcode('[idx-omnibar styles="1" extra="0" min_price="1" ]'); ?></div>
+				</div>
+			</div>
+		</div>
 			
 		<?php } else { // Display current header area if not admin while I'm working on a new crappy banner above. ?>
 			
