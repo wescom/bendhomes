@@ -19,7 +19,13 @@ get_header();
     <!-- Page Head -->
     <?php //get_template_part("banners/default_page_banner"); ?>
     
-    <?php if( is_front_page() ) { ?>
+    <?php if( is_front_page() ) {
+		if( current_user_can('administrator')) {
+			echo '<!--Im an admin-->';
+		} else {
+			echo '<!-- Not an admin -->';
+		}
+	?>
     <div class="page-head">
     	<div class="banner-search-wrap">
 			<div class="container">
