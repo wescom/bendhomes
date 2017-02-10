@@ -24,23 +24,23 @@ get_header();
 		if( current_user_can('administrator')) { 
 
 		$slides_array = [
-			'slide1' => [
+			[
 				'image' => get_field('imageslide1'),
 				'link' => get_field('imagelink1'),
 			],
-			'slide2' => [
+			[
 				'image' => get_field('imageslide2'),
 				'link' => get_field('imagelink2'),
 			],
-			'slide3' => [
+			[
 				'image' => get_field('imageslide3'),
 				'link' => get_field('imagelink3'),
 			],
-			'slide4' => [
+			[
 				'image' => get_field('imageslide4'),
 				'link' => get_field('imagelink4'),
 			],
-			'slide5' => [
+			[
 				'image' => get_field('imageslide5'),
 				'link' => get_field('imagelink5'),
 			],
