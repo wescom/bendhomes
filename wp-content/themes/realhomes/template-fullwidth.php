@@ -27,22 +27,27 @@ get_header();
 			[
 				'image' => get_field('imageslide1'),
 				'link' => get_field('imagelink1'),
+				'content' => get_field('imagecontent1')
 			],
 			[
 				'image' => get_field('imageslide2'),
 				'link' => get_field('imagelink2'),
+				'content' => get_field('imagecontent2')
 			],
 			[
 				'image' => get_field('imageslide3'),
 				'link' => get_field('imagelink3'),
+				'content' => get_field('imagecontent3')
 			],
 			[
 				'image' => get_field('imageslide4'),
 				'link' => get_field('imagelink4'),
+				'content' => get_field('imagecontent4')
 			],
 			[
 				'image' => get_field('imageslide5'),
 				'link' => get_field('imagelink5'),
+				'content' => get_field('imagecontent5')
 			],
 		];
 			
@@ -60,8 +65,17 @@ get_header();
 							
 							$image = wp_get_attachment_image_src( $slide['image'], 'property_detail_slider_image_two' );
 							
-							echo sprintf('<li><a href="%s"><img src="%s" alt="" width="%s" height="%s" /></a></li>',
-										$slide['link'], $image[0], $image[1], $image[2] );
+							$content = '
+							<div class="desc-wrap">
+                        		<div class="slide-description">
+                            		<h3><a href="">'. $slide['content'] .'</a></h3>
+									<a href="'. $slide['link'] .'" class="know-more">View Property</a>
+								</div>
+							</div>
+							';
+							
+							echo sprintf('<li>%s<a href="%s"><img src="%s" alt="" width="%s" height="%s" /></a></li>',
+										$content, $slide['link'], $image[0], $image[1], $image[2] );
 						}	
 					}
 					?>
