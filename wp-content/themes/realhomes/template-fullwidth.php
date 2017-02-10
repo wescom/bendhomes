@@ -70,13 +70,14 @@ get_header();
 								$content = '
 								<div class="desc-wrap">
 									<div class="slide-description">
-										<h3><a href="">'. $slide['content'] .'</a></h3>
+										<h3><a href="'. $slide['link'] .'">'. $slide['content'] .'</a></h3>
 										<a href="'. $slide['link'] .'" class="know-more">View Property</a>
 									</div>
 								</div>
 								';
 							}
 							
+							// Output the slide
 							echo sprintf('<li>%s<a href="%s"><img src="%s" alt="" width="%s" height="%s" /></a></li>',
 										$content, $slide['link'], $image[0], $image[1], $image[2] );
 						}	
