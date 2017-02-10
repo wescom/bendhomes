@@ -65,14 +65,17 @@ get_header();
 							
 							$image = wp_get_attachment_image_src( $slide['image'], 'property_detail_slider_image_two' );
 							
-							$content = '
-							<div class="desc-wrap">
-                        		<div class="slide-description">
-                            		<h3><a href="">'. $slide['content'] .'</a></h3>
-									<a href="'. $slide['link'] .'" class="know-more">View Property</a>
+							$content = '';
+							if( !empty( $slide['content'] ) ) {
+								$content = '
+								<div class="desc-wrap">
+									<div class="slide-description">
+										<h3><a href="">'. $slide['content'] .'</a></h3>
+										<a href="'. $slide['link'] .'" class="know-more">View Property</a>
+									</div>
 								</div>
-							</div>
-							';
+								';
+							}
 							
 							echo sprintf('<li>%s<a href="%s"><img src="%s" alt="" width="%s" height="%s" /></a></li>',
 										$content, $slide['link'], $image[0], $image[1], $image[2] );
