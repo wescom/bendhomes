@@ -21,11 +21,46 @@ get_header();
     
     <?php 
 	if( is_front_page() ) {
-		if( current_user_can('administrator')) {
+		if( current_user_can('administrator')) { 
+
+		$slides_array = [
+			'slide1' => [
+				'image' => get_field('imageslide1'),
+				'link' => get_field('imagelink1'),
+			],
+			'slide2' => [
+				'image' => get_field('imageslide2'),
+				'link' => get_field('imagelink2'),
+			],
+			'slide3' => [
+				'image' => get_field('imageslide3'),
+				'link' => get_field('imagelink3'),
+			],
+			'slide4' => [
+				'image' => get_field('imageslide4'),
+				'link' => get_field('imagelink4'),
+			],
+			'slide5' => [
+				'image' => get_field('imageslide5'),
+				'link' => get_field('imagelink5'),
+			],
+		];
 			
-			echo '<h1>Welcome to Bendhomes.com</h1>';
+			print_r( $slides_array );
+
+		?>
 			
-		} else { // Display current header area if not admin while I'm working on a new crappy banner above. ?>
+		<div id="home-flexslider" class="clearfix">
+			<div class="flexslider loading">
+				<ul class="slides">
+				
+					<li><a href=""><img src="" alt="" width="" height="" /></a></li>
+				
+				</ul>
+			</div>
+		</div>
+			
+		<?php } else { // Display current header area if not admin while I'm working on a new crappy banner above. ?>
 			
 			<div class="page-head">
 				<div class="banner-search-wrap">
