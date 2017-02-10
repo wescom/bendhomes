@@ -3,7 +3,7 @@
  * Register meta boxes
  */
 
-add_filter( 'rwmb_meta_boxes', 'inspiry_register_meta_boxes' );
+//add_filter( 'rwmb_meta_boxes', 'inspiry_register_meta_boxes' );
 
 if( !function_exists( 'inspiry_register_meta_boxes' ) ) {
     function inspiry_register_meta_boxes( $meta_boxes ) {
