@@ -46,7 +46,7 @@ get_header();
 			],
 		];
 			
-			print_r( $slides_array );
+			//print_r( $slides_array );
 
 		?>
 			
@@ -54,7 +54,17 @@ get_header();
 			<div class="flexslider loading">
 				<ul class="slides">
 				
-					<li><a href=""><img src="" alt="" width="" height="" /></a></li>
+					<?php
+					foreach( $slides_array as $slide ) {
+						if( !empty( $slide['image'] ) ) {
+							
+							$image = wp_get_attachment_image_src( $slide['image'], 'property_detail_slider_image_two' );
+							
+							echo sprintf('<li><a href="%s"><img src="%s" alt="" width="%s" height="%s" /></a></li>',
+										$slide['link'], $image[0], $image[1], $image[2] );
+						}	
+					}
+					?>
 				
 				</ul>
 			</div>
