@@ -225,7 +225,7 @@ h3.search-results-header { float: left; margin: 0; }
 .banner-search-wrap .idx-omnibar-form button { width: 25%; border: 1px solid #02888f; background: #02888f; color: #fff; font-size: 16px; font-weight: 100; letter-spacing: .05em; height: 46px; text-transform: uppercase; }
 .banner-search-wrap .idx-omnibar-form button:hover { background: #006267; border-color: #006267; }
 .page-head { background: url("http://www.bendhomes.com/wp-content/uploads/2013/08/old-mill-district-bend-oregon.jpg") no-repeat center center; background-size: cover; text-align: center; position: relative; padding: 50px 0; }
-.page-head h1.page-title { color: #fff; padding: 10px; background: rgba(0,0,0,.5); }
+.page-head h1.page-title { padding: 10px; background: #fff; background: rgba(255,255,255,.85); }
 .home .page-head { height: 500px; min-height: 500px; padding: 0; }
 .page-head .banner-search-wrap { position: absolute; top: 50%; width: 100%; background: rgba(0,0,0,.35); padding-top: 0; padding-bottom: 0; height: 280px; margin-top: -140px; color: #fff; }
 .page-head .banner-search-wrap h1 { color:#fff; margin-top: 70px; margin-bottom: 40px; font-size:58px; text-transform:none; }
