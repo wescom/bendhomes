@@ -171,7 +171,8 @@ function getPropertyData($qvars, $pullDate, $idArray){
         
         $pullNumber = explode('T', $prop['LastModifiedDateTime']);
         $pullNumber = str_replace("-", "", $pullNumber[0]);
-        echo "Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber."</br>";
+        $todayNumber = str_replace("-", "", date('Y-m-d'));
+        echo "Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
         $puid = $universalkeys[$qvars['resource']][$qvars['class']];
         if ($qvars['fotos'] == 'yes') {
             unset($photos);
