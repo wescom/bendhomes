@@ -187,10 +187,19 @@ function getPropertyData($qvars, $pullDate, $idArray){
     // remove any old 'sold' properties from array
     //$itemsarr = removeOldSoldsFromArray($itemsarr);
 
+    $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
     
     // get the property photos and save locally as well as add to properties array
     foreach($itemsarr as $prop) {
+        $savePhoto = 1;  
+
+        // if old 'sold' property, set flag to not save the photos to our site
+        $pullNumber = explode('T', $prop['LastModifiedDateTime']);
+        $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
         
+        if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
+            $savePhoto = 0; // set flag to not save
+        }
         
             $puid = $universalkeys[$qvars['resource']][$qvars['class']];
             if ($qvars['fotos'] == 'yes') {
@@ -205,7 +214,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                 $photolist = array();
                 foreach ($photos as $photo) {
                     $photopreferred = $photo->getPreferred();
-                    if($photo->getObjectId() != '*') {
+                    if(($photo->getObjectId() != '*') && ($savePhoto == 1)) {
                         $haveOne = 1;
                         $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
                         $photolist[] = $photofilename;
