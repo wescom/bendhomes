@@ -65,13 +65,9 @@ function buildRetsQuery($fqvars, $pullDate) {
 
 /* ##### Refactor returned data with key supplied by universalkeys in header file ##### */
 function refactorarr($itemsarray,$ukeys,$qvars) {
+        
         $newarray = array();
         foreach ($itemsarray as $prop) {
-            $pullNumber = explode('T', $prop['LastModifiedDateTime']);
-            $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
-            $todayNumber = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
-            echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
-
             foreach($prop as $key => $val) {
                 if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
                     $newarray[$val] = $prop;
@@ -79,6 +75,18 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
             }
         }
         return $newarray;
+}
+
+function removeOldSoldsFromArray($itemsarr) {
+    $todayNumber = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
+    $newarray = array();
+    foreach($itemsarr as $prop){
+        $pullNumber = explode('T', $prop['LastModifiedDateTime']);
+        $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
+        echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
+        $newarray[$val] = $prop;
+    }
+    return $newarray;
 }
 
 function getSetPullDate() {
@@ -170,6 +178,9 @@ function getPropertyData($qvars, $pullDate, $idArray){
     $temparr = $results->toArray();
     // refactor arr with keys supplied by universalkeys in header
     $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
+
+    // remove any old 'sold' properties from array
+    $itemsarr = removeOldSoldsFromArray($itemsarr);
 
     // get the property photos and save locally as well as add to properties array
     foreach($itemsarr as $prop) {
