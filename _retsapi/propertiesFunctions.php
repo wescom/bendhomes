@@ -70,7 +70,7 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
             $pullNumber = explode('T', $prop['LastModifiedDateTime']);
             $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
             $todayNumber = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
-            echo "Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
+            echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
 
             foreach($prop as $key => $val) {
                 if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
