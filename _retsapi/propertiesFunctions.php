@@ -88,7 +88,7 @@ function removeOldSoldsFromArray($itemsarr) {
             echo "Skipping ".$prop['ListingRid']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
         } else {
             echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
-            $newarray[$val] = $prop;
+            array_push($newarray, $prop);
         }
         
     }
@@ -502,7 +502,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 300; // start index
+    $start = 0; // start index
     $count = 100; // how many past start to grab
 
     foreach($scenarios as $qvars) {
