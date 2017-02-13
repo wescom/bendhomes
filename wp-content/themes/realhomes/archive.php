@@ -50,7 +50,9 @@ get_header();
         <div class="container">
             <div class="wrap clearfix">
               <h1 class="page-title"><?php echo /* $banner_title .' | '.  */ $banner_details; ?>
-                  <img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" width="250px"/>
+                 <?php if (function_exists('z_taxonomy_image_url')) {
+                  	echo '<img src="'. z_taxonomy_image_url() .'" style="width: 250px; height: auto;" />';
+				 } ?>
               </h1>
             </div>
         </div>
