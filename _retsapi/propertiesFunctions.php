@@ -251,7 +251,7 @@ function savePropertyData($qvars, $itemsarr) {
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
-
+    $reportout = "";
     $dbtable = $qvars['resource'].'_'.$qvars['class'];
 
     foreach($itemsarr as $key => $array) {
@@ -271,8 +271,8 @@ function savePropertyData($qvars, $itemsarr) {
     }
 
     echo '</pre>';
-    return $reportout;
     mysqli_close($dbConnection);
+    return $reportout;
 }
 
 function saveToOurTable($itemsarr) {
