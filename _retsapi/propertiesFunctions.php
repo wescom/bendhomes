@@ -85,7 +85,7 @@ function removeOldSoldsFromArray($itemsarr) {
         $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
         
         if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
-            echo "Skipping**** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
+            echo "Skipping ".$prop['MLNumber']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
         } else {
             echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
             $newarray[$val] = $prop;
@@ -502,8 +502,8 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 10; // start index
-    $count = 90; // how many past start to grab
+    $start = 300; // start index
+    $count = 100; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
