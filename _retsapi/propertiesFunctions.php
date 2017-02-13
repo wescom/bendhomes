@@ -177,8 +177,10 @@ function getPropertyData($qvars, $pullDate, $idArray){
                 $itemsarr[$prop[$puid]]['imagepref'] = '';
             }
             $fnamestor = NULL;
+            $haveOne = 0;
             $photolist = array();
             foreach ($photos as $photo) {
+                $haveOne = 1;
                 $photopreferred = $photo->getPreferred();
                 if($photo->getObjectId() != '*') {
                     $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
@@ -188,7 +190,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                     file_put_contents($fname, $photobinary, LOCK_EX);
                 }
             }
-            if( ($photopreferred == NULL) && ($qvars['resource'] == 'Property')) {
+            if( ($photopreferred == NULL) && ($qvars['resource'] == 'Property') && ($haveOne == 1)) {
                 $photopreferred = $photolist[0];
             }
             $itemsarr[$prop[$puid]]['images'] = implode("|",$photolist);
@@ -238,6 +240,37 @@ function getAllRetsIdsQuery($qvars, $pullDate) {
         echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
 
         return $itemsarr;
+}
+
+function savePropertyData($qvars, $itemsarr) {
+    $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+
+    $dbtable = $qvars['resource'].'_'.$qvars['class']
+
+    foreach($itemsarr as $key => $array) {
+        echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
+      
+        // escape the array for db username
+        $escarray = array_map('mysql_real_escape_string', $array);
+
+        $query  = "REPLACE INTO ".$dbtable;
+        $query .= " (`".implode("`, `", array_keys($escarray))."`)";
+        $query .= " VALUES ('".implode("', '", $escarray)."') ";
+
+        if (mysqli_query($dbConnection, $query)) {
+            $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+        } else {
+            $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+        }
+    }
+
+    echo '</pre>';
+    return $reportout;
+    mysqli_close($dbConnection);
 }
 
 function saveToOurTable($itemsarr) {
@@ -460,7 +493,7 @@ function executeUpdatePropertiesTable() {
                 //echo implode(',', $pieceArray)
                 $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
 
-//              $retsReturnData = getPropertyPhotos($qvars, $retsReturnData);
+                savePropertyData($qvars, $retsReturnData);
 
                 echo '<pre>';
                 print_r($retsReturnData);
