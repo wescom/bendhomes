@@ -67,11 +67,16 @@ function buildRetsQuery($fqvars, $pullDate) {
 function refactorarr($itemsarray,$ukeys,$qvars) {
         $newarray = array();
         foreach ($itemsarray as $prop) {
-                foreach($prop as $key => $val) {
-                        if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
-                                $newarray[$val] = $prop;
-                        }
+            $pullNumber = explode('T', $prop['LastModifiedDateTime']);
+            $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
+            $todayNumber = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
+            echo "Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
+
+            foreach($prop as $key => $val) {
+                if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
+                    $newarray[$val] = $prop;
                 }
+            }
         }
         return $newarray;
 }
@@ -169,10 +174,6 @@ function getPropertyData($qvars, $pullDate, $idArray){
     // get the property photos and save locally as well as add to properties array
     foreach($itemsarr as $prop) {
         
-        $pullNumber = explode('T', $prop['LastModifiedDateTime']);
-        $pullNumber = str_replace("-", "", $pullNumber[0]);
-        $todayNumber = str_replace("-", "", date('Y-m-d'));
-        echo "Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
         $puid = $universalkeys[$qvars['resource']][$qvars['class']];
         if ($qvars['fotos'] == 'yes') {
             unset($photos);
