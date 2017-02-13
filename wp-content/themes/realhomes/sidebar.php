@@ -5,7 +5,7 @@
         <?php
         if ( ! dynamic_sidebar( 'default-sidebar' ) ) :
         endif;
-        get_template_part( 'template-parts/rail-ad' );
+        //get_template_part( 'template-parts/rail-ad' );
         ?>
     </aside>
     <!-- End Sidebar -->

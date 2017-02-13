@@ -166,6 +166,38 @@ function getPropertyData($qvars, $pullDate, $idArray){
     // refactor arr with keys supplied by universalkeys in header
     $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
+    // get the property photos and save locally as well as add to properties array
+    foreach($itemsarr as $prop) {
+        $puid = $universalkeys[$qvars['resource']][$qvars['class']];
+        if ($qvars['fotos'] == 'yes') {
+            unset($photos);
+            $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
+            $itemsarr[$prop[$puid]]['images'] = '';
+            if($qvars['resource'] == 'Property') {
+                $itemsarr[$prop[$puid]]['imagepref'] = '';
+            }
+            $fnamestor = NULL;
+            $photolist = array();
+            foreach ($photos as $photo) {
+                $photopreferred = $photo->getPreferred();
+                if($photo->getObjectId() != '*') {
+                    $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
+                    $photolist[] = $photofilename;
+                    $fname = 'var/www/html/_retsapi/imagesProperties/'.$photofilename;
+                    $photobinary = $photo->getContent();
+                    file_put_contents($fname, $photobinary, LOCK_EX);
+                }
+            }
+            if( ($photopreferred == NULL) && ($qvars['resource'] == 'Property')) {
+                $photopreferred = $photolist[0];
+            }
+            $itemsarr[$prop[$puid]]['images'] = implode("|",$photolist);
+            if($qvars['resource'] == 'Property') {
+                $itemsarr[$prop[$puid]]['imagepref'] = $photopreferred;
+            }
+        }
+    }
+
     echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
 
     return $itemsarr;
@@ -427,6 +459,8 @@ function executeUpdatePropertiesTable() {
 
                 //echo implode(',', $pieceArray)
                 $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
+
+//              $retsReturnData = getPropertyPhotos($qvars, $retsReturnData);
 
                 echo '<pre>';
                 print_r($retsReturnData);
