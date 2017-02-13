@@ -249,7 +249,7 @@ function savePropertyData($qvars, $itemsarr) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
 
-    $dbtable = $qvars['resource'].'_'.$qvars['class']
+    $dbtable = $qvars['resource'].'_'.$qvars['class'];
 
     foreach($itemsarr as $key => $array) {
         echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
