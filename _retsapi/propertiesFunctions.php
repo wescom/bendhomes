@@ -78,13 +78,19 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
 }
 
 function removeOldSoldsFromArray($itemsarr) {
-    $todayNumber = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
+    $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
     $newarray = array();
     foreach($itemsarr as $prop){
         $pullNumber = explode('T', $prop['LastModifiedDateTime']);
         $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
-        echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
-        $newarray[$val] = $prop;
+        
+        if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
+            echo "Skipping**** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
+        } else {
+            echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
+            $newarray[$val] = $prop;
+        }
+        
     }
     return $newarray;
 }
