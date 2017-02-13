@@ -198,7 +198,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
         }
     }
 
-    echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+    echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr).'</pre>';
 
     return $itemsarr;
 }
