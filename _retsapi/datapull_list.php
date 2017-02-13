@@ -76,86 +76,86 @@ $scenarios = array(
 
 /* ##### Build RETS db query ##### */
 function buildRetsQuery($fqvars) {
-  global $lastDatePulled;
-  $resource = $fqvars['resource'];
-  $class = $fqvars['class'];
+    global $lastDatePulled;
+    $resource = $fqvars['resource'];
+    $class = $fqvars['class'];
 
-  // we do this date store and pull for the query.
-  // It looks up the last time it was run, and queries from last modified forward
-  // we store it as simple .txt file based on the query in use
-  // $fnamerecent = '/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt';
-  $fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
+    // we do this date store and pull for the query.
+    // It looks up the last time it was run, and queries from last modified forward
+    // we store it as simple .txt file based on the query in use
+    // $fnamerecent = '/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt';
+    $fnamerecent = RETSABSPATH.'/pulldates/'.$resource.'_'.$class.'.txt';
 
-  $pulldate = array();
-  $pulldate['now'] = (int) time();
+    $pulldate = array();
+    $pulldate['now'] = (int) time();
 
-  if(file_exists($fnamerecent)) {
-    $pulldate['recent'] = file_get_contents($fnamerecent);
-    $pulldate['recent'] = (int) $pulldate['recent'];
-  } else {
-    $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
-  }
-  $lastDatePulled = $pulldate['recent'];
-  $pulldate['retsquery'] = date('c',$pulldate['recent']);
-  $funiversalqueries = universalqueries($pulldate['retsquery']);
+    if(file_exists($fnamerecent)) {
+        $pulldate['recent'] = file_get_contents($fnamerecent);
+        $pulldate['recent'] = (int) $pulldate['recent'];
+    } else {
+        $pulldate['recent'] = strtotime("-1 day"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+    }
+    $lastDatePulled = $pulldate['recent'];
+    $pulldate['retsquery'] = date('c',$pulldate['recent']);
+    $funiversalqueries = universalqueries($pulldate['retsquery']);
 
-  // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
+    // $pulldate['recent'] = file_get_contents('/Users/justingrady/web_dev/phpretstest/pulldates/'.$resource.'_'.$class.'.txt');
 
-  echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
-  file_put_contents($fnamerecent,$pulldate['now']);
+    echo '<p style="background-color: orange;">using date: '.$pulldate['retsquery'].'</p>';
+    file_put_contents($fnamerecent,$pulldate['now']);
 
-  // first part, resource and class uses the minimum unique key for query, then last modified
-  // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
-  $usethisquery = ''.$funiversalqueries[$resource][$class].'';
-  return $usethisquery;
+    // first part, resource and class uses the minimum unique key for query, then last modified
+    // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
+    $usethisquery = ''.$funiversalqueries[$resource][$class].'';
+    return $usethisquery;
 }
 
 /* ##### Refactor returned data with key supplied by universalkeys in header file ##### */
 function refactorarr($itemsarray,$ukeys,$qvars) {
-  $newarray = array();
-  foreach ($itemsarray as $prop) {
-    foreach($prop as $key => $val) {
-      if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
-        $newarray[$val] = $prop;
-      }
+    $newarray = array();
+    foreach ($itemsarray as $prop) {
+        foreach($prop as $key => $val) {
+            if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
+              $newarray[$val] = $prop;
+            }
+        }
     }
-  }
-  return $newarray;
+    return $newarray;
 }
 
 /* ##### Populate API bh_rets database with data ##### */
 function dbpopulate($items,$dbtable) {
-  $db = array(
-    'host' => 'localhost',
-    'username' => 'phrets',
-    'password' => 'hCqaQvMKW9wJKQwS',
-    'database' => 'bh_rets'
-  );
-  $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
-  unset($db);
-  // echo '<pre style="margin: 1em 0; border: 1px solid #333; background-color: #ececec;">';
-  $reportout = '<h4>db table: '.$dbtable.'</h4>';
-  $i = 0;
-  foreach($items as $key => $array) {
-    echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
-    
-    // escape the array for db username
-    $escarray = array_map('mysql_real_escape_string', $array);
+    $db = array(
+        'host' => 'localhost',
+        'username' => 'phrets',
+        'password' => 'hCqaQvMKW9wJKQwS',
+        'database' => 'bh_rets'
+    );
+    $dbConnection = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
+    unset($db);
+    // echo '<pre style="margin: 1em 0; border: 1px solid #333; background-color: #ececec;">';
+    $reportout = '<h4>db table: '.$dbtable.'</h4>';
+    $i = 0;
+    foreach($items as $key => $array) {
+      echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
+      
+      // escape the array for db username
+      $escarray = array_map('mysql_real_escape_string', $array);
 
-    // $query  = "INSERT INTO ".$dbtable;
-    $query  = "REPLACE INTO ".$dbtable;
-    $query .= " (`".implode("`, `", array_keys($escarray))."`)";
-    $query .= " VALUES ('".implode("', '", $escarray)."') ";
+      // $query  = "INSERT INTO ".$dbtable;
+      $query  = "REPLACE INTO ".$dbtable;
+      $query .= " (`".implode("`, `", array_keys($escarray))."`)";
+      $query .= " VALUES ('".implode("', '", $escarray)."') ";
 
-    if (mysqli_query($dbConnection, $query)) {
-        $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
-    } else {
-        $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+      if (mysqli_query($dbConnection, $query)) {
+          $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+      } else {
+          $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+      }
+      $i++;
     }
-    $i++;
-  }
-  echo '</pre>';
-  return $reportout;
+    echo '</pre>';
+    return $reportout;
 }
 
 /* ##### ######### ##### */
