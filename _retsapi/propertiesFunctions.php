@@ -65,7 +65,6 @@ function buildRetsQuery($fqvars, $pullDate) {
 
 /* ##### Refactor returned data with key supplied by universalkeys in header file ##### */
 function refactorarr($itemsarray,$ukeys,$qvars) {
-        
         $newarray = array();
         foreach ($itemsarray as $prop) {
             foreach($prop as $key => $val) {
@@ -77,7 +76,7 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
         return $newarray;
 }
 
-/*function removeOldSoldsFromArray($itemsarr) {
+function removeOldSoldsFromArray($itemsarr) {
     $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
     $newarray = array();
     foreach($itemsarr as $prop){
@@ -88,12 +87,16 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
             echo "Skipping ".$prop['ListingRid']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         } else {
             echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
-            array_push($newarray, $prop);
+            foreach($prop as $key => $val) {
+                if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
+                    $newarray[$val] = $prop;
+                }
+            }
         }
         
     }
     return $newarray;
-}*/
+}
 
 function getSetPullDate() {
 
@@ -186,19 +189,13 @@ function getPropertyData($qvars, $pullDate, $idArray){
     $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
     // remove any old 'sold' properties from array
-    //$itemsarr = removeOldSoldsFromArray($itemsarr);
+    $itemsarr = removeOldSoldsFromArray($itemsarr);
 
-    $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
+    
     // get the property photos and save locally as well as add to properties array
     foreach($itemsarr as $prop) {
         
-        $pullNumber = explode('T', $prop['LastModifiedDateTime']);
-        $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
         
-        if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
-            echo "Skipping ".$prop['ListingRid']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
-            unset($prop);
-        } else {
             $puid = $universalkeys[$qvars['resource']][$qvars['class']];
             if ($qvars['fotos'] == 'yes') {
                 unset($photos);
@@ -229,7 +226,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                     $itemsarr[$prop[$puid]]['imagepref'] = $photopreferred;
                 }
             }
-        }
+        
     }
 
     echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr).'</pre>';
