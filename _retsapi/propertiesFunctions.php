@@ -183,7 +183,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                 if($photo->getObjectId() != '*') {
                     $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
                     $photolist[] = $photofilename;
-                    $fname = 'var/www/html/_retsapi/imagesProperties/'.$photofilename;
+                    $fname = '/var/www/html/_retsapi/imagesProperties/'.$photofilename;
                     $photobinary = $photo->getContent();
                     file_put_contents($fname, $photobinary, LOCK_EX);
                 }
