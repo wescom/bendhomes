@@ -197,6 +197,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
         
         if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
             echo "Skipping ".$prop['ListingRid']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+            unset($prop);
         } else {
             $puid = $universalkeys[$qvars['resource']][$qvars['class']];
             if ($qvars['fotos'] == 'yes') {
