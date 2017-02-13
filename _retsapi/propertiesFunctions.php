@@ -77,7 +77,7 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
         return $newarray;
 }
 
-function removeOldSoldsFromArray($itemsarr) {
+/*function removeOldSoldsFromArray($itemsarr) {
     $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
     $newarray = array();
     foreach($itemsarr as $prop){
@@ -93,7 +93,7 @@ function removeOldSoldsFromArray($itemsarr) {
         
     }
     return $newarray;
-}
+}*/
 
 function getSetPullDate() {
 
@@ -186,42 +186,48 @@ function getPropertyData($qvars, $pullDate, $idArray){
     $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
     // remove any old 'sold' properties from array
-    $itemsarr = removeOldSoldsFromArray($itemsarr);
+    //$itemsarr = removeOldSoldsFromArray($itemsarr);
 
+    $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
     // get the property photos and save locally as well as add to properties array
     foreach($itemsarr as $prop) {
         
-        $puid = $universalkeys[$qvars['resource']][$qvars['class']];
-        if ($qvars['fotos'] == 'yes') {
-            unset($photos);
-            $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
-            $itemsarr[$prop[$puid]]['images'] = '';
-            if($qvars['resource'] == 'Property') {
-                $itemsarr[$prop[$puid]]['imagepref'] = '';
-            }
-            $fnamestor = NULL;
-            $haveOne = 0;
-            $photolist = array();
-            foreach ($photos as $photo) {
-                $photopreferred = $photo->getPreferred();
-                if($photo->getObjectId() != '*') {
-                    $haveOne = 1;
-                    $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
-                    $photolist[] = $photofilename;
-                    $fname = '/var/www/html/_retsapi/imagesProperties/'.$photofilename;
-                    $photobinary = $photo->getContent();
-                    file_put_contents($fname, $photobinary, LOCK_EX);
+        $pullNumber = explode('T', $prop['LastModifiedDateTime']);
+        $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
+        
+        if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
+            echo "Skipping ".$prop['ListingRid']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+        } else {
+            $puid = $universalkeys[$qvars['resource']][$qvars['class']];
+            if ($qvars['fotos'] == 'yes') {
+                unset($photos);
+                $photos = $rets->GetObject($qvars['resource'], 'Photo', $prop[$puid],'*', 0);
+                $itemsarr[$prop[$puid]]['images'] = '';
+                if($qvars['resource'] == 'Property') {
+                    $itemsarr[$prop[$puid]]['imagepref'] = '';
+                }
+                $fnamestor = NULL;
+                $haveOne = 0;
+                $photolist = array();
+                foreach ($photos as $photo) {
+                    $photopreferred = $photo->getPreferred();
+                    if($photo->getObjectId() != '*') {
+                        $haveOne = 1;
+                        $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
+                        $photolist[] = $photofilename;
+                        $fname = '/var/www/html/_retsapi/imagesProperties/'.$photofilename;
+                        $photobinary = $photo->getContent();
+                        file_put_contents($fname, $photobinary, LOCK_EX);
+                    }
+                }
+                if( ($photopreferred == NULL) && ($qvars['resource'] == 'Property') && ($haveOne == 1)) {
+                    $photopreferred = $photolist[0];
+                }
+                $itemsarr[$prop[$puid]]['images'] = implode("|",$photolist);
+                if($qvars['resource'] == 'Property') {
+                    $itemsarr[$prop[$puid]]['imagepref'] = $photopreferred;
                 }
             }
-            if( ($photopreferred == NULL) && ($qvars['resource'] == 'Property') && ($haveOne == 1)) {
-                $photopreferred = $photolist[0];
-            }
-            //$itemsarr[$prop[$puid]]['images'] = implode("|",$photolist);
-            //if($qvars['resource'] == 'Property') {
-                //$itemsarr[$prop[$puid]]['imagepref'] = $photopreferred;
-            //}
-            $prop['images'] = implode("|", $photolist);
-            $prop['imagepref'] = $photopreferred;
         }
     }
 
