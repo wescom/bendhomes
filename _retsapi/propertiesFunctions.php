@@ -87,11 +87,7 @@ function removeOldSoldsFromArray($itemsarr) {
             echo "Skipping ".$prop['ListingRid']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         } else {
             echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
-            foreach($prop as $key => $val) {
-                if($key == $ukeys[$qvars['resource']][$qvars['class']]) {
-                    $newarray[$val] = $prop;
-                }
-            }
+            array_push($newarray, $prop);
         }
         
     }
@@ -189,7 +185,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
     $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
     // remove any old 'sold' properties from array
-    $itemsarr = removeOldSoldsFromArray($itemsarr);
+    //$itemsarr = removeOldSoldsFromArray($itemsarr);
 
     
     // get the property photos and save locally as well as add to properties array
@@ -230,6 +226,8 @@ function getPropertyData($qvars, $pullDate, $idArray){
     }
 
     echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr).'</pre>';
+
+    $itemsarr = removeOldSoldsFromArray($itemsarr);
 
     return $itemsarr;
 }
