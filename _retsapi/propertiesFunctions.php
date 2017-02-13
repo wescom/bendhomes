@@ -168,7 +168,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
 
     // get the property photos and save locally as well as add to properties array
     foreach($itemsarr as $prop) {
-        if ($itemsarr['status'] == 'sold'){
+        if ($prop['status'] == 'sold'){
             echo "Sold!!!!!";
         }
         $puid = $universalkeys[$qvars['resource']][$qvars['class']];
