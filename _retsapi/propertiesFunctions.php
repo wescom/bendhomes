@@ -180,9 +180,9 @@ function getPropertyData($qvars, $pullDate, $idArray){
             $haveOne = 0;
             $photolist = array();
             foreach ($photos as $photo) {
-                $haveOne = 1;
                 $photopreferred = $photo->getPreferred();
                 if($photo->getObjectId() != '*') {
+                    $haveOne = 1;
                     $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
                     $photolist[] = $photofilename;
                     $fname = '/var/www/html/_retsapi/imagesProperties/'.$photofilename;
@@ -252,7 +252,6 @@ function savePropertyData($qvars, $itemsarr) {
     $dbtable = $qvars['resource'].'_'.$qvars['class'];
 
     foreach($itemsarr as $key => $array) {
-        echo '<span style="background-color: #ff6600; color: #fff; fobnt-weight: bold;">count: '.$i.'</span><br/>';
       
         // escape the array for db username
         $escarray = array_map('mysql_real_escape_string', $array);
