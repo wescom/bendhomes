@@ -227,6 +227,7 @@ h3.search-results-header { float: left; margin: 0; }
 .page-head { background: url("http://www.bendhomes.com/wp-content/uploads/2013/08/old-mill-district-bend-oregon.jpg") no-repeat center center; background-size: cover; text-align: center; position: relative; padding: 50px 0; }
 .page-head h1.page-title { padding: 10px; background: #fff; background: rgba(255,255,255,.85); }
 .home .page-head { height: 500px; min-height: 500px; padding: 0; }
+.page-head h1.page-title > img { padding-left: 10px; width: 250px; }
 .page-head .banner-search-wrap { position: absolute; top: 50%; width: 100%; background: rgba(0,0,0,.35); padding-top: 0; padding-bottom: 0; height: 280px; margin-top: -140px; color: #fff; }
 .page-head .banner-search-wrap h1 { color:#fff; margin-top: 70px; margin-bottom: 40px; font-size:58px; text-transform:none; }
 
@@ -428,7 +429,6 @@ h3.search-results-header { float: left; margin: 0; }
 .pum-content input#mc-embedded-subscribe.real-btn.btn { display: block; font-size: 20px; height: auto; float: none; padding: 16px 20px; width: 100%; text-transform: uppercase; font-weight: bold; }
 #pum-353717 .pum-content + .pum-close, .pum-theme-default-theme .pum-content + .pum-close { width: 34px; height: 34px; top: -18px; right: -8px; background: #888; border-radius: 50%; color: #fff; border: 3px solid #fff; box-shadow: 1px 1px 3px 0px rgba( 2, 2, 2, 0.23 ); font-weight: bold; font-size: 16px; }
 
-h1.page-title > img { padding-left: 10px;}
 
 @media(max-width: 1200px) {
 	.company-agent { width: 25%; }
