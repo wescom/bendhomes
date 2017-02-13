@@ -85,7 +85,7 @@ function removeOldSoldsFromArray($itemsarr) {
         $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
         
         if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
-            echo "Skipping ".$prop['MLNumber']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
+            echo "Skipping ".$prop['ListingRid']." **** Status: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
         } else {
             echo "Status3: ".$prop['Status']." Last Modified: ".$prop['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$todayNumber."</br>";
             $newarray[$val] = $prop;
