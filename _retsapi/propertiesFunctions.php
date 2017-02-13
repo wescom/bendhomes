@@ -374,6 +374,29 @@ function getAllOurIds() {
         return $idArray;
 }
 
+function getAllOurPropertyIds($qvars) {
+        $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+
+        $dbtable = $qvars['resource'].'_'.$qvars['class'];
+        $query = "select ListingRid from ".$dbtable."ORDER BY ListingRid ASC";
+        $result = $conn->query($query);
+
+        $idArray = [];
+        if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                        array_push($idArray, $row['ListingRid']);
+                }
+        }
+        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
+        mysqli_close($conn);
+
+        return $idArray;
+}
+
 function compareAndGetBads($retsIdArray, $ourIdArray) {
         // anything that is in ours but not rets, should be deleted from ours
         $badIds = "";
@@ -384,7 +407,7 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
         return $idArray;
 }
 
-function deleteBadIds($idArray) {
+function deleteBadIds($qvars, $idArray) {
 
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
@@ -393,6 +416,27 @@ function deleteBadIds($idArray) {
         }
 
         $query = "DELETE from AgentLookupByMLS WHERE ListingRid IN (".implode(", ",$idArray).")";
+        echo '<p>'.$query.'</p>';
+
+        if($conn->query($query)) {
+                echo "<p>Success!!!!</p>";
+        } else {
+                echo "<p>Error: ".mysqli_error($conn)."</p>";
+        }
+        mysqli_close($conn);
+
+}
+
+function deleteBadPropertyIds($idArray) {
+
+        $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+
+        $dbtable = $qvars['resource'].'_'.$qvars['class'];
+        $query = "DELETE from ".$dbtable." WHERE ListingRid IN (".implode(", ",$idArray).")";
         echo '<p>'.$query.'</p>';
 
         if($conn->query($query)) {
@@ -499,9 +543,20 @@ function cleanAgentsLookupByMLSTable() {
 function cleanPropertiesTable() {
     $scenarios = getScenarios();
 
+    $pullDate = '2001-01-01T00:00:00-08:00';
+
     foreach($scenarios as $qvars) {
 
-        $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
+        $rets_ids = getAllRetsIdsQuery($qvars, $pullDate);
+        $our_ids = getAllOurPropertyIds($qvars);
+
+        $badIds = compareAndGetBads($our_ids, $rets_ids);
+        if (sizeof($badIds) > 0) {
+            deleteBadPropertyIds($qvars, $badIds);
+            echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
+        } else {
+            echo "No Bad Ids to delete.";
+        }
 
     }
 }
@@ -512,7 +567,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 25500; // start index
+    $start = 26000; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
