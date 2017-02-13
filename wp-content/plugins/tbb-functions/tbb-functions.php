@@ -174,7 +174,7 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 
 
 // Only show Mailchimp newsletter popup if user is not logged in or on the login page.
-add_filter( 'popmake_popup_is_loadable', 'tbb_popup_not_logged_in', 10, 2 );
+//add_filter( 'popmake_popup_is_loadable', 'tbb_popup_not_logged_in', 10, 2 );
 function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
 	//if( $popup_id == 292579 ) {	// Devsite
 	if( $popup_id == 353717 ) { 		// Livesite
@@ -187,7 +187,10 @@ function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
 // Add Mortgage Calculator Modal to Footer
 add_action('wp_footer', 'tbb_add_modal_to_footer');
 function tbb_add_modal_to_footer() {
-	ob_start(); ?>
+	ob_start(); 
+
+	if( is_page( array('577379', '577465') ) ) {
+	?>
 	<!-- Mortgage Calculator Modal -->
 	<div id="paymentmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-header">
@@ -195,12 +198,9 @@ function tbb_add_modal_to_footer() {
 		</div>
 		<div class="modal-body">
 			<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
-			<div class="mort-sponsor">
-				<h4>Find what the real terms of your loan could be&hellip;</h4>
-				<?php echo do_shortcode('[EVERGREEN_LOANS]'); ?>
-			</div>
 		</div>
 	</div>
 	<?php
+	}
 	echo ob_get_clean();
 }
