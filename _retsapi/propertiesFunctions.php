@@ -216,10 +216,12 @@ function getPropertyData($qvars, $pullDate, $idArray){
             if( ($photopreferred == NULL) && ($qvars['resource'] == 'Property') && ($haveOne == 1)) {
                 $photopreferred = $photolist[0];
             }
-            $itemsarr[$prop[$puid]]['images'] = implode("|",$photolist);
-            if($qvars['resource'] == 'Property') {
-                $itemsarr[$prop[$puid]]['imagepref'] = $photopreferred;
-            }
+            //$itemsarr[$prop[$puid]]['images'] = implode("|",$photolist);
+            //if($qvars['resource'] == 'Property') {
+                //$itemsarr[$prop[$puid]]['imagepref'] = $photopreferred;
+            //}
+            $prop['images'] = implode("|", $photolist);
+            $prop['imagepref'] = $photopreferred;
         }
     }
 
@@ -435,15 +437,17 @@ function deleteBadPropertyIds($idArray) {
                 die("Connection failed: " . $conn->connect_error);
         }
 
+
+
         $dbtable = $qvars['resource'].'_'.$qvars['class'];
         $query = "DELETE from ".$dbtable." WHERE ListingRid IN (".implode(", ",$idArray).")";
         echo '<p>'.$query.'</p>';
 
-        if($conn->query($query)) {
+        /*if($conn->query($query)) {
                 echo "<p>Success!!!!</p>";
         } else {
                 echo "<p>Error: ".mysqli_error($conn)."</p>";
-        }
+        }*/
         mysqli_close($conn);
 
 }
