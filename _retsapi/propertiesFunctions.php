@@ -209,6 +209,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                 if($qvars['resource'] == 'Property') {
                     $itemsarr[$prop[$puid]]['imagepref'] = '';
                 }
+                $photopreferred == NULL;
                 $fnamestor = NULL;
                 $haveOne = 0;
                 $photolist = array();
