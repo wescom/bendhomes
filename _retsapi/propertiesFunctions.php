@@ -199,7 +199,8 @@ function getPropertyData($qvars, $pullDate, $idArray){
         
         if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
             $savePhoto = 0; // set flag to not save
-        }
+            echo "not processing photos...";
+        } else {
         
             $puid = $universalkeys[$qvars['resource']][$qvars['class']];
             if ($qvars['fotos'] == 'yes') {
@@ -213,7 +214,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                 $fnamestor = NULL;
                 $haveOne = 0;
                 $photolist = array();
-                if ($savePhoto == 1) {
+
                     foreach ($photos as $photo) {
                         $photopreferred = $photo->getPreferred();
                         if($photo->getObjectId() != '*') {
@@ -225,9 +226,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                             file_put_contents($fname, $photobinary, LOCK_EX);
                         }
                     }
-                } else {
-                    echo "not saving photos...";
-                }
+
                 if( ($photopreferred == NULL) && ($qvars['resource'] == 'Property') && ($haveOne == 1)) {
                     $photopreferred = $photolist[0];
                 }
@@ -236,7 +235,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                     $itemsarr[$prop[$puid]]['imagepref'] = $photopreferred;
                 }
             }
-        
+        }
     }
 
     echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr).'</pre>';
