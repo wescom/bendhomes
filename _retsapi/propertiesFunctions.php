@@ -302,10 +302,10 @@ function savePropertyData($qvars, $itemsarr) {
         $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
 
         if (($escarray['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
-            echo "Skipping ".$escarray['ListingRid']." - ".$escarray['LastModifiedDateTime']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+            echo "Skipping ".$escarray['ListingRid']." - ".$escarray['MLNumber']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         } else {
 
-            echo "Adding ".$escarray['ListingRid']." - ".$escarray['LastModifiedDateTime']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+            echo "Adding ".$escarray['ListingRid']." - ".$escarray['MLNumber']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         
             $query  = "REPLACE INTO ".$dbtable;
             $query .= " (`".implode("`, `", array_keys($escarray))."`)";
@@ -618,7 +618,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 98600; // start index
+    $start = 97000; // start index
     $count = 100; // how many past start to grab
 
     foreach($scenarios as $qvars) {
