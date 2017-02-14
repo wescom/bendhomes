@@ -479,6 +479,17 @@ function deleteBadPropertyIds($idArray) {
 
 }
 
+function deleteOldSolds($qvars){
+    $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $dbtable = $qvars['resource'].'_'.$qvars['class'];
+    //$query = 
+}
+
 function getMissingProps($qvars, $idArray) {
         global $universalkeys;
         global $rets;
@@ -596,6 +607,8 @@ function cleanPropertiesTable() {
         echo '<pre>'.$returnString;
         echo '</pre>';
 
+        deleteOldSolds($qvars);
+
     }
 }
 
@@ -605,7 +618,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 25500; // start index
+    $start = 26000; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
