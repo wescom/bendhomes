@@ -479,7 +479,7 @@ function deleteBadPropertyIds($idArray) {
 
 }
 
-function getMissingProps($qvars, $pullDate, $idArray) {
+function getMissingProps($qvars, $idArray) {
         global $universalkeys;
         global $rets;
 
@@ -560,7 +560,7 @@ function cleanAgentsLookupByMLSTable() {
         $missingIds = compareAndGetBads($our_ids, $rets_ids);
         if (sizeof($missingIds) > 0) {
                 foreach($scenarios as $qvars) {
-                        $rets_data = getMissingProps($qvars, $pullDate, $missingIds);
+                        $rets_data = getMissingProps($qvars, $missingIds);
                         saveMissingToOurTable($rets_data);
                 }
                 echo "<pre>Missing Ids: ".implode(", ",$missingIds)."</pre>";
@@ -590,7 +590,11 @@ function cleanPropertiesTable() {
         }
 
         $missing_ids = compareAndGetBads($our_ids, $rets_ids);
-
+        $itemarr = getMissingProps($qvars, $missing_ids);
+        $retsReturnData = getPropertyData($qvars, $pullDate, $itemarr);
+        $returnString = savePropertyData($qvars, $retsReturnData);
+        echo '<pre>'.$returnString;
+        echo '</pre>';
 
     }
 }
@@ -601,7 +605,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 25000; // start index
+    $start = 25500; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
