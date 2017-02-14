@@ -236,7 +236,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
 
     echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr).'</pre>';
 
-    $itemsarr = removeOldSoldsFromArray($itemsarr);
+    //$itemsarr = removeOldSoldsFromArray($itemsarr);
 
     return $itemsarr;
 }
@@ -287,20 +287,31 @@ function savePropertyData($qvars, $itemsarr) {
     $reportout = "";
     $dbtable = $qvars['resource'].'_'.$qvars['class'];
 
+    $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
+
     foreach($itemsarr as $key => $array) {
       
         // escape the array for db username
         $escarray = array_map('mysql_real_escape_string', $array);
         echo "<p style='backgrond-color:green'>status: ".$escarray['Status']."</p>";
+        $pullNumber = explode('T', $escarray['LastModifiedDateTime']);
+        $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
 
-        $query  = "REPLACE INTO ".$dbtable;
-        $query .= " (`".implode("`, `", array_keys($escarray))."`)";
-        $query .= " VALUES ('".implode("', '", $escarray)."') ";
-
-        if (mysqli_query($dbConnection, $query)) {
-            $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+        if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
+            echo "Skipping ".$escarray['ListingRid']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         } else {
-            $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+
+            echo "Adding ".$escarray['ListingRid']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+        
+            $query  = "REPLACE INTO ".$dbtable;
+            $query .= " (`".implode("`, `", array_keys($escarray))."`)";
+            $query .= " VALUES ('".implode("', '", $escarray)."') ";
+
+            if (mysqli_query($dbConnection, $query)) {
+                $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+            } else {
+                $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+            }
         }
     }
 
@@ -596,11 +607,14 @@ function executeUpdatePropertiesTable() {
                 //echo implode(',', $pieceArray)
                 $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
 
-                savePropertyData($qvars, $retsReturnData);
-
                 echo '<pre>';
                 print_r($retsReturnData);
                 echo '</pre>';
+
+                $returnString = savePropertyData($qvars, $retsReturnData);
+                echo '<pre>'.$returnString;
+                echo '</pre>';
+                
             } else {
                 echo '<pre style="color:red">At end of array.</pre>';
             }
