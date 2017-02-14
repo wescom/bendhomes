@@ -54,6 +54,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 ";
 
         //echo $query;
+        $returnText = "";
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
                 $agFax = "";
@@ -61,7 +62,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                         $agName = $row['FullName'];
                         $agPageUrl = str_replace(' ', '-', $agName);
                         $agPageUrl = str_replace('--', '-', $agPageUrl);
-                        $agNum = $row['Office_OFFI.OfficePhoneComplete'];
+                        $agNum = $row['OfficePhoneComplete'];
                         $agImage = str_replace('png', 'jpg', $row['images']);
                         $agImage = "http://www.bendhomes.com/_retsapi/imagesAgents/".$agImage;
                         $agOfficeName = $row['OfficeName'];
@@ -83,7 +84,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
                 }
 
                 $returnText = '<section class="rets-agent agent-widget clearfix">';
-				$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
+		$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
                 $returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
                 $returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
                 $returnText .=  '</a>';
