@@ -293,11 +293,11 @@ function savePropertyData($qvars, $itemsarr) {
       
         // escape the array for db username
         $escarray = array_map('mysql_real_escape_string', $array);
-        echo "<p style='backgrond-color:green'>status: ".$escarray['Status']."</p>";
+        //echo "<p style='backgrond-color:green'>status: ".$escarray['Status']."</p>";
         $pullNumber = explode('T', $escarray['LastModifiedDateTime']);
         $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
 
-        if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
+        if (($escarray['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
             echo "Skipping ".$escarray['ListingRid']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         } else {
 
