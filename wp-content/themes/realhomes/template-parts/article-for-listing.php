@@ -19,7 +19,7 @@
                     <span class="author-link"><?php the_author() ?>
                     </span> 
                     <?php _e('in', 'framework'); ?> <?php the_category(', '); ?> 
-                    <img src="<?php if (function_exists('z_taxonomy_image_url')) echo z_taxonomy_image_url(); ?>" width="80px"/>
+                    <?php if (function_exists('z_taxonomy_image')) z_taxonomy_image(); ?>
                 </span>
             </small>
         </header>
