@@ -315,7 +315,7 @@ function savePropertyData($qvars, $itemsarr) {
         }
     }
 
-    echo '</pre>';
+    //echo '</pre>';
     mysqli_close($dbConnection);
     return $reportout;
 }
@@ -594,7 +594,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 500; // start index
+    $start = 0; // start index
     $count = 100; // how many past start to grab
 
     foreach($scenarios as $qvars) {
@@ -607,9 +607,9 @@ function executeUpdatePropertiesTable() {
                 //echo implode(',', $pieceArray)
                 $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
 
-                echo '<pre>';
+                /*echo '<pre>';
                 print_r($retsReturnData);
-                echo '</pre>';
+                echo '</pre>';*/
 
                 $returnString = savePropertyData($qvars, $retsReturnData);
                 echo '<pre>'.$returnString;
