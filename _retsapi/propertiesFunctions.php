@@ -291,6 +291,7 @@ function savePropertyData($qvars, $itemsarr) {
       
         // escape the array for db username
         $escarray = array_map('mysql_real_escape_string', $array);
+        echo "<p style='backgrond-color:green'>status: ".$escarray['Status']."</p>";
 
         $query  = "REPLACE INTO ".$dbtable;
         $query .= " (`".implode("`, `", array_keys($escarray))."`)";
@@ -583,7 +584,7 @@ function executeUpdatePropertiesTable() {
     $pullDate = '2001-01-01T00:00:00-08:00';
 
     $start = 500; // start index
-    $count = 100; // how many past start to grab
+    $count = 20; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
