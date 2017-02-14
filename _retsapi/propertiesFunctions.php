@@ -302,10 +302,10 @@ function savePropertyData($qvars, $itemsarr) {
         $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
 
         if (($escarray['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
-            //echo "Skipping ".$escarray['ListingRid']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+            echo "Skipping ".$escarray['ListingRid']." - ".$escarray['LastModifiedDateTime']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         } else {
 
-            echo "Adding ".$escarray['ListingRid']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+            echo "Adding ".$escarray['ListingRid']." - ".$escarray['LastModifiedDateTime']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         
             $query  = "REPLACE INTO ".$dbtable;
             $query .= " (`".implode("`, `", array_keys($escarray))."`)";
