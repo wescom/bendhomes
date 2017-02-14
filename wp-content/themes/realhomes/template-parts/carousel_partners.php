@@ -3,7 +3,7 @@ $show_partners = get_option('theme_show_partners');
 
 if($show_partners == 'true'){
     ?>
-    <div class="container page-carousel">
+    <div id="page-carousel" class="container page-carousel">
         <div class="row-fluid">
             <div class="span12">
                 <section class="brands-carousel clearfix">
