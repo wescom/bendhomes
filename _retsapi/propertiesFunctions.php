@@ -582,8 +582,8 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 26000; // start index
-    $count = 50; // how many past start to grab
+    $start = 0; // start index
+    $count = 100; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
