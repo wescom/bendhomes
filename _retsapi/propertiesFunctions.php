@@ -199,7 +199,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
         
         if (($prop['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
             $savePhoto = 0; // set flag to not save
-            echo "not processing photos...";
+            //echo "not processing photos...";
         } else {
         
             $puid = $universalkeys[$qvars['resource']][$qvars['class']];
@@ -598,7 +598,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 8000; // start index
+    $start = 8500; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
