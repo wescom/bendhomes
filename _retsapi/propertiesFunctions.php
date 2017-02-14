@@ -581,13 +581,16 @@ function cleanPropertiesTable() {
         $rets_ids = getAllRetsIdsQuery($qvars, $pullDate);
         $our_ids = getAllOurPropertyIds($qvars);
 
-        $badIds = compareAndGetBads($our_ids, $rets_ids);
+        $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
             deleteBadPropertyIds($qvars, $badIds);
             echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
         } else {
             echo "No Bad Ids to delete.";
         }
+
+        $missing_ids = compareAndGetBads($our_ids, $rets_ids);
+
 
     }
 }
@@ -598,7 +601,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 24500; // start index
+    $start = 25000; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
