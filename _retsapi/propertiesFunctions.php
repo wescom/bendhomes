@@ -212,16 +212,20 @@ function getPropertyData($qvars, $pullDate, $idArray){
                 $fnamestor = NULL;
                 $haveOne = 0;
                 $photolist = array();
-                foreach ($photos as $photo) {
-                    $photopreferred = $photo->getPreferred();
-                    if(($photo->getObjectId() != '*') && ($savePhoto == 1)) {
-                        $haveOne = 1;
-                        $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
-                        $photolist[] = $photofilename;
-                        $fname = '/var/www/html/_retsapi/imagesProperties/'.$photofilename;
-                        $photobinary = $photo->getContent();
-                        file_put_contents($fname, $photobinary, LOCK_EX);
+                if ($savePhoto == 1) {
+                    foreach ($photos as $photo) {
+                        $photopreferred = $photo->getPreferred();
+                        if($photo->getObjectId() != '*') {
+                            $haveOne = 1;
+                            $photofilename = $prop[$puid].'-'.$photo->getObjectId().'.jpg';
+                            $photolist[] = $photofilename;
+                            $fname = '/var/www/html/_retsapi/imagesProperties/'.$photofilename;
+                            $photobinary = $photo->getContent();
+                            file_put_contents($fname, $photobinary, LOCK_EX);
+                        }
                     }
+                } else {
+                    echo "not saving photos...";
                 }
                 if( ($photopreferred == NULL) && ($qvars['resource'] == 'Property') && ($haveOne == 1)) {
                     $photopreferred = $photolist[0];
