@@ -99,7 +99,7 @@ function getSetPullDate() {
         $pulldate = array();
         $pulldate['now'] = (int) time();
 
-        $pulldate['recent'] = strtotime("-3 days"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+        $pulldate['recent'] = strtotime("-2 days"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
         $pulldate['retsquery'] = date('c',$pulldate['recent']);
 
         return $pulldate['retsquery'];
@@ -457,10 +457,6 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
 }*/
 
 function deleteBadPropertyIds($idArray) {
-
-        foreach($idArray as $id){
-            unlink('imagesProperties/'.$id.'*.jpg');
-        }
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
         if ($conn->connect_error) {
@@ -470,6 +466,10 @@ function deleteBadPropertyIds($idArray) {
         $dbtable = $qvars['resource'].'_'.$qvars['class'];
         $query = "DELETE from ".$dbtable." WHERE ListingRid IN (".implode(", ",$idArray).")";
         echo '<p>'.$query.'</p>';
+
+        foreach($idArray as $id){
+            unlink('imagesProperties/'.$id.'*.jpg');
+        }
 
         /*if($conn->query($query)) {
                 echo "<p>Success!!!!</p>";
@@ -593,6 +593,8 @@ function cleanPropertiesTable() {
         $rets_ids = getAllRetsIdsQuery($qvars, $pullDate);
         $our_ids = getAllOurPropertyIds($qvars);
 
+        echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
+        echo "<pre>OurIds: ".implode(", ",$rets_ids)."</pre>";
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
             deleteBadPropertyIds($qvars, $badIds);
@@ -601,14 +603,14 @@ function cleanPropertiesTable() {
             echo "No Bad Ids to delete.";
         }
 
-        $missing_ids = compareAndGetBads($our_ids, $rets_ids);
+        /*$missing_ids = compareAndGetBads($our_ids, $rets_ids);
         $itemarr = getMissingProps($qvars, $missing_ids);
         $retsReturnData = getPropertyData($qvars, $pullDate, $itemarr);
         $returnString = savePropertyData($qvars, $retsReturnData);
         echo '<pre>'.$returnString;
-        echo '</pre>';
+        echo '</pre>';*/
 
-        deleteOldSolds($qvars);
+        //deleteOldSolds($qvars);
 
     }
 }
