@@ -458,13 +458,14 @@ function deleteBadIds($qvars, $idArray) {
 
 function deleteBadPropertyIds($idArray) {
 
+        foreach($idArray as $id){
+            unlink('imagesProperties/'.$id.'*.jpg');
+        }
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
         if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
         }
-
-
 
         $dbtable = $qvars['resource'].'_'.$qvars['class'];
         $query = "DELETE from ".$dbtable." WHERE ListingRid IN (".implode(", ",$idArray).")";
@@ -618,7 +619,7 @@ function executeUpdatePropertiesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
 
-    $start = 95500; // start index
+    $start = 95000; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
