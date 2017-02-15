@@ -590,14 +590,15 @@ function cleanPropertiesTable() {
 
     foreach($scenarios as $qvars) {
 
-        $rets_ids = getAllRetsIdsQuery($qvars, $pullDate);
+        //$rets_ids = getAllRetsIdsQuery($qvars, $pullDate);
+        $rets_ids = runRetsQuery($qvars, $pullDate);
         $our_ids = getAllOurPropertyIds($qvars);
 
         echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
         echo "<pre>OurIds: ".implode(", ",$rets_ids)."</pre>";
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
-            deleteBadPropertyIds($qvars, $badIds);
+            //deleteBadPropertyIds($qvars, $badIds);
             echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
         } else {
             echo "No Bad Ids to delete.";
