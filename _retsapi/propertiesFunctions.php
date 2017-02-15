@@ -302,7 +302,7 @@ function savePropertyData($qvars, $itemsarr) {
         $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
 
         if (($escarray['Status'] == "Sold") && ($pullNumber < $xMonthsAgo)){
-            echo "Skipping ".$escarray['ListingRid']." - ".$escarray['MLNumber']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+            //echo "Skipping ".$escarray['ListingRid']." - ".$escarray['MLNumber']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         } else {
 
             echo "Adding ".$escarray['ListingRid']." - ".$escarray['MLNumber']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
@@ -620,7 +620,7 @@ function executeUpdatePropertiesTable() {
     $pullDate = '2001-01-01T00:00:00-08:00';
     //$pullDate = getSetPullDate();
 
-    $start = 89500; // start index
+    $start = 89000; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
