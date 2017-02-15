@@ -324,7 +324,7 @@ function savePropertyData($qvars, $itemsarr) {
     return $reportout;
 }
 
-function saveToOurTable($itemsarr) {
+/*function saveToOurTable($itemsarr) {
         $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
         if (mysqli_connect_errno()) {
@@ -352,9 +352,9 @@ function saveToOurTable($itemsarr) {
                 }
         }
         mysqli_close($dbConnection);
-}
+}*/
 
-function saveMissingToOurTable($itemsarr) {
+/*function saveMissingToOurTable($itemsarr) {
         $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
         //print_r($itemsarr);
         if (mysqli_connect_errno()) {
@@ -379,9 +379,9 @@ function saveMissingToOurTable($itemsarr) {
                 }
         }
         mysqli_close($dbConnection);
-}
+}*/
 
-function getAllOurIds() {
+/*function getAllOurIds() {
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
         if ($conn->connect_error) {
@@ -401,7 +401,7 @@ function getAllOurIds() {
         mysqli_close($conn);
 
         return $idArray;
-}
+}*/
 
 function getAllOurPropertyIds($qvars) {
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
@@ -436,7 +436,7 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
         return $idArray;
 }
 
-function deleteBadIds($qvars, $idArray) {
+/*function deleteBadIds($qvars, $idArray) {
 
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
@@ -454,7 +454,7 @@ function deleteBadIds($qvars, $idArray) {
         }
         mysqli_close($conn);
 
-}
+}*/
 
 function deleteBadPropertyIds($idArray) {
 
@@ -519,7 +519,7 @@ function getMissingProps($qvars, $idArray) {
         return $itemsarr;
 }
 
-function executeUpdateAgentsLookupByMLSTable() {
+/*function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
@@ -542,9 +542,9 @@ function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
-}
+}*/
 
-function cleanAgentsLookupByMLSTable() {
+/*function cleanAgentsLookupByMLSTable() {
 
         $pullDate = '2001-01-01T00:00:00-08:00';
         $scenarios = getScenarios();
@@ -581,7 +581,7 @@ function cleanAgentsLookupByMLSTable() {
         }
         //echo "<pre>Rets: ".implode(", ",$rets_ids)."</pre>";
         //echo "<pre>Ours: ".implode(", ",$our_ids)."</pre>";
-}
+}*/
 
 function cleanPropertiesTable() {
     $scenarios = getScenarios();
@@ -618,6 +618,7 @@ function executeUpdatePropertiesTable() {
     $scenarios = getScenarios();
 
     $pullDate = '2001-01-01T00:00:00-08:00';
+    //$pullDate = getSetPullDate();
 
     $start = 94000; // start index
     $count = 500; // how many past start to grab
