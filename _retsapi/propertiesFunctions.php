@@ -99,7 +99,7 @@ function getSetPullDate() {
         $pulldate = array();
         $pulldate['now'] = (int) time();
 
-        $pulldate['recent'] = strtotime("-2 days"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+        $pulldate['recent'] = strtotime("-3 days"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
         $pulldate['retsquery'] = date('c',$pulldate['recent']);
 
         return $pulldate['retsquery'];
@@ -617,18 +617,20 @@ function executeUpdatePropertiesTable() {
 
     $scenarios = getScenarios();
 
-    $pullDate = '2001-01-01T00:00:00-08:00';
-    //$pullDate = getSetPullDate();
+    //$pullDate = '2001-01-01T00:00:00-08:00';
+    $pullDate = getSetPullDate();
 
-    $start = 26000; // start index
-    $count = 500; // how many past start to grab
+    //$start = 26000; // start index
+    //$count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
             $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
 
             if (sizeof($retsIdArray) > $start) {
-                $pieceArray = array_slice($retsIdArray, $start, $count);
+                //$pieceArray = array_slice($retsIdArray, $start, $count);
+                $pieceArray = $retsIdArray;
+
 
                 //echo implode(',', $pieceArray)
                 $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
