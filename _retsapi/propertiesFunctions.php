@@ -635,9 +635,9 @@ function executeUpdatePropertiesTable() {
                 //echo implode(',', $pieceArray)
                 $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
 
-                /*echo '<pre>';
+                echo '<pre>';
                 print_r($retsReturnData);
-                echo '</pre>';*/
+                echo '</pre>';
 
                 $returnString = savePropertyData($qvars, $retsReturnData);
                 echo '<pre>'.$returnString;
