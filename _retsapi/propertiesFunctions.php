@@ -457,7 +457,7 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
 
 }*/
 
-function deleteBadPropertyIds($idArray) {
+function deleteBadPropertyIds($qvars, $idArray) {
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
         if ($conn->connect_error) {
