@@ -205,11 +205,11 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
 	  'partners5' => $code1 .'11',
 	  //'siderail2' => $code1 .'10',
 		
-	  'rectangle1' => $code1 .'-5',
-	  'rectangle2' => $code1 .'-6',
-	  'mortcalc'   => $code1 .'-12',
-	  'rectangle3' => $code1 .'-13',
-	  'rectangle4' => $code1 .'-14'
+	  'rectangle1' => $code1 .'5',
+	  'rectangle2' => $code1 .'6',
+	  'mortcalc'   => $code1 .'12',
+	  'rectangle3' => $code1 .'13',
+	  'rectangle4' => $code1 .'14'
     );
     $dispid = 'div-gpt-ad-'.$posid[$position];
     ?>
@@ -247,11 +247,11 @@ function dfp_ad_shortcode( $atts ) {
 		'partners3' => $code1 .'9',
 		'partners4' => $code1 .'10',
 		'partners5' => $code1 .'11',
-		'rectangle1' => $code1 .'-5',
-		'rectangle2' => $code1 .'-6',
-		'mortcalc'   => $code1 .'-12',
-		'rectangle3' => $code1 .'-13',
-		'rectangle4' => $code1 .'-14'
+		'rectangle1' => $code1 .'5',
+		'rectangle2' => $code1 .'6',
+		'mortcalc'   => $code1 .'12',
+		'rectangle3' => $code1 .'13',
+		'rectangle4' => $code1 .'14'
     );
     $dispid = 'div-gpt-ad-'.$posid[$type];
 	
