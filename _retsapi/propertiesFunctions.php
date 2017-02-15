@@ -591,12 +591,18 @@ function cleanPropertiesTable() {
     foreach($scenarios as $qvars) {
 
         //$rets_ids = getAllRetsIdsQuery($qvars, $pullDate);
-        $rets_ids = runRetsQuery($qvars, $pullDate);
-        $our_ids = getAllOurPropertyIds($qvars);
+        $rets_ids = [];
+        $rets_idArray = runRetsQuery($qvars, $pullDate);
+        foreach($rets_idArray as $id) {
+            array_push($rets_ids, $id['ListingRid']);
+        }
 
-        //echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
-        var_dump($rets_ids);
+        echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
+        //var_dump($rets_ids);
+
+        $our_ids = getAllOurPropertyIds($qvars);
         echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
+        
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
             //deleteBadPropertyIds($qvars, $badIds);
