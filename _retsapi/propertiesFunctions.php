@@ -412,6 +412,7 @@ function getAllOurPropertyIds($qvars) {
 
         $dbtable = $qvars['resource'].'_'.$qvars['class'];
         $query = "select ListingRid from ".$dbtable."ORDER BY ListingRid ASC";
+        echo "<br>query: ".$query."<br>";
         $result = $conn->query($query);
 
         $idArray = [];
@@ -602,7 +603,7 @@ function cleanPropertiesTable() {
 
         $our_ids = getAllOurPropertyIds($qvars);
         echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
-        
+
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
             //deleteBadPropertyIds($qvars, $badIds);
