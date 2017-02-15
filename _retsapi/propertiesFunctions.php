@@ -606,7 +606,7 @@ function cleanPropertiesTable() {
 
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
-            //deleteBadPropertyIds($qvars, $badIds);
+            deleteBadPropertyIds($qvars, $badIds);
             echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
         } else {
             echo "No Bad Ids to delete.";
