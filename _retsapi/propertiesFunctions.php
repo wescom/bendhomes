@@ -411,7 +411,7 @@ function getAllOurPropertyIds($qvars) {
         }
 
         $dbtable = $qvars['resource'].'_'.$qvars['class'];
-        $query = "select ListingRid from ".$dbtable."ORDER BY ListingRid ASC";
+        $query = "select ListingRid from ".$dbtable." ORDER BY ListingRid ASC";
         echo "<br>query: ".$query."<br>";
         $result = $conn->query($query);
 
