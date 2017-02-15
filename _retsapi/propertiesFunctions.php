@@ -469,14 +469,14 @@ function deleteBadPropertyIds($qvars, $idArray) {
         echo '<p>'.$query.'</p>';
 
         foreach($idArray as $id){
-            unlink('imagesProperties/'.$id.'*.jpg');
+            unlink('/var/www/html/_retsapi/imagesProperties/'.$id.'*.jpg');
         }
 
-        /*if($conn->query($query)) {
+        if($conn->query($query)) {
                 echo "<p>Success!!!!</p>";
         } else {
                 echo "<p>Error: ".mysqli_error($conn)."</p>";
-        }*/
+        }
         mysqli_close($conn);
 
 }
