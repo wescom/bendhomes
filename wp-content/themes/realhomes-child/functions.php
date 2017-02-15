@@ -119,25 +119,28 @@ function child_theme_head_script() {
 		}
 		var gadsgenerateId = 1459980402618;
 		var gadssectionkey = getKey;
-		var slot01 = googletag.defineSlot('/38749147/BendHomes-topLeaderboard', sizetopleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-0').addService(googletag.pubads());
-		var slot02 = googletag.defineSlot('/38749147/BendHomes-middleLeaderboard', sizemidleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-1').addService(googletag.pubads());
-		var slot03 = googletag.defineSlot('/38749147/BendHomes-Rectangle', sizerail, 'div-gpt-ad-' + gadsgenerateId + '-2').addService(googletag.pubads());
-		var slot04 = googletag.defineSlot('/38749147/BendHomes-bottomLeaderboard', sizebottomleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-3').addService(googletag.pubads());
-		// Single property skyscrapers, not used anymore
-		//var slot05 = googletag.defineSlot('/38749147/BendHomes-wideskyscraper', sizerail, 'div-gpt-ad-' + gadsgenerateId + '-4').addService(googletag.pubads());
-		//var slot06 = googletag.defineSlot('/38749147/BendHomes-wideskyscraper2', sizerail, 'div-gpt-ad-' + gadsgenerateId + '-10').addService(googletag.pubads());
+		
+		var slot01 = googletag.defineSlot('/38749147/BendHomes-topLeaderboard', sizetopleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-1').addService(googletag.pubads());
+		
+		var slot02 = googletag.defineSlot('/38749147/BendHomes-middleLeaderboard', sizemidleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-2').addService(googletag.pubads());
+		
+		var slot03 = googletag.defineSlot('/38749147/BendHomes-Rectangle', sizerail, 'div-gpt-ad-' + gadsgenerateId + '-3').addService(googletag.pubads());
+		
+		var slot04 = googletag.defineSlot('/38749147/BendHomes-bottomLeaderboard', sizebottomleaderboard, 'div-gpt-ad-' + gadsgenerateId + '-4').addService(googletag.pubads());
 		
 		// Single property square ads
-		var slot05 = googletag.defineSlot('/38749147/BendHomes-Rectangle', sizeSquared, 'div-gpt-ad-1481219839325-0').addService(googletag.pubads());
-		var slot06 = googletag.defineSlot('/38749147/BendHomes-Rectangle2', sizeSquared, 'div-gpt-ad-1481223431350-0').addService(googletag.pubads());
-		var slot07 = googletag.defineSlot('/38749147/BendHomes-Partners1', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-5').addService(googletag.pubads());
-		var slot08 = googletag.defineSlot('/38749147/BendHomes-Partners2', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-6').addService(googletag.pubads());
-		var slot09 = googletag.defineSlot('/38749147/BendHomes-Partners3', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-7').addService(googletag.pubads());
-		var slot10 = googletag.defineSlot('/38749147/BendHomes-Partners4', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-8').addService(googletag.pubads());
-		var slot11 = googletag.defineSlot('/38749147/BendHomes-Partners5', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-9').addService(googletag.pubads());
+		var slot05 = googletag.defineSlot('/38749147/BendHomes-Rectangle', sizeSquared, 'div-gpt-ad-' + gadsgenerateId + '-5').addService(googletag.pubads());
+		var slot06 = googletag.defineSlot('/38749147/BendHomes-Rectangle2', sizeSquared, 'div-gpt-ad-' + gadsgenerateId + '-6').addService(googletag.pubads());
+		var slot07 = googletag.defineSlot('/38749147/BendHomes-Partners1', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-7').addService(googletag.pubads());
+		var slot08 = googletag.defineSlot('/38749147/BendHomes-Partners2', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-8').addService(googletag.pubads());
+		var slot09 = googletag.defineSlot('/38749147/BendHomes-Partners3', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-9').addService(googletag.pubads());
+		var slot10 = googletag.defineSlot('/38749147/BendHomes-Partners4', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-10').addService(googletag.pubads());
+		var slot11 = googletag.defineSlot('/38749147/BendHomes-Partners5', sizePartners, 'div-gpt-ad-' + gadsgenerateId + '-11').addService(googletag.pubads());
+		var slot12 = googletag.defineSlot('/38749147/BendHomes-MortCalc', sizeSmallSquare, 'div-gpt-ad-' + gadsgenerateId + '-12').addService(googletag.pubads());
+		var slot13 = googletag.defineSlot('/38749147/BendHomes-Rectangle3', sizeSquared, 'div-gpt-ad-' + gadsgenerateId + '-13').addService(googletag.pubads());
+		var slot14 = googletag.defineSlot('/38749147/BendHomes-Rectangle4', sizeSquared, 'div-gpt-ad-' + gadsgenerateId + '-14').addService(googletag.pubads());
 		
 		// Mortgage Calculator ad
-		var slot12 = googletag.defineSlot('/38749147/BendHomes-MortCalc', sizeSmallSquare, 'div-gpt-ad-1486507604128-0').addService(googletag.pubads());
 		slot01.setTargeting("section", [gadssectionkey]);
 		slot02.setTargeting("section", [gadssectionkey]);
 		slot03.setTargeting("section", [gadssectionkey]);
@@ -149,6 +152,10 @@ function child_theme_head_script() {
 		slot09.setTargeting("section", [gadssectionkey]);
 		slot10.setTargeting("section", [gadssectionkey]);
 		slot11.setTargeting("section", [gadssectionkey]);
+		slot12.setTargeting("section", [gadssectionkey]);
+		slot13.setTargeting("section", [gadssectionkey]);
+		slot14.setTargeting("section", [gadssectionkey]);
+		
 		googletag.pubads().collapseEmptyDivs();
 		googletag.enableServices();
 		$(window).resize(function () {
@@ -164,12 +171,18 @@ function child_theme_head_script() {
 // Make all edits to the script above, then use https://javascript-minifier.com/ to replace everything below.
 // This will help keep things more readable but still have a minified version of the code for production.
 ?>
-function refreshAd(e){googletag.pubads().refresh()}var getKey=<?php echo json_encode($sectionKey); ?>,googletag=googletag||{};googletag.cmd=googletag.cmd||[],function(){var e=document.createElement("script");e.async=!0,e.type="text/javascript";var g="https:"==document.location.protocol;e.src=(g?"https:":"http:")+"//www.googletagservices.com/tag/js/gpt.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}(),googletag.cmd.push(function(){var e,g,t,o,a,d,n,i=document.documentElement.clientWidth;i>=320&&768>i?(e=[320,50],g=[320,50],t=[320,50],o=[[180,150],[160,600]],a=[180,180],d=[300,250],n=[200,200]):i>=768&&992>i?(e=[320,50],g=[320,50],t=[320,50],o=[160,600],a=[180,180],d=[300,250],n=[200,200]):i>=992?(e=[[970,90],[728,90]],g=[728,90],t=[[970,90],[728,90]],o=[160,600],a=[180,180],d=[300,250],n=[200,200]):(e=[728,90],g=[728,90],t=[728,90],o=[160,600],a=[180,180],d=[300,250],n=[200,200]);var s=1459980402618,r=getKey,l=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+s+"-0").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+s+"-1").addService(googletag.pubads()),p=googletag.defineSlot("/38749147/BendHomes-Rectangle",o,"div-gpt-ad-"+s+"-2").addService(googletag.pubads()),v=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",t,"div-gpt-ad-"+s+"-3").addService(googletag.pubads()),m=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-1481219839325-0").addService(googletag.pubads()),S=googletag.defineSlot("/38749147/BendHomes-Rectangle2",d,"div-gpt-ad-1481223431350-0").addService(googletag.pubads()),u=googletag.defineSlot("/38749147/BendHomes-Partners1",a,"div-gpt-ad-"+s+"-5").addService(googletag.pubads()),b=googletag.defineSlot("/38749147/BendHomes-Partners2",a,"div-gpt-ad-"+s+"-6").addService(googletag.pubads()),f=googletag.defineSlot("/38749147/BendHomes-Partners3",a,"div-gpt-ad-"+s+"-7").addService(googletag.pubads()),B=googletag.defineSlot("/38749147/BendHomes-Partners4",a,"div-gpt-ad-"+s+"-8").addService(googletag.pubads()),H=googletag.defineSlot("/38749147/BendHomes-Partners5",a,"div-gpt-ad-"+s+"-9").addService(googletag.pubads());googletag.defineSlot("/38749147/BendHomes-MortCalc",n,"div-gpt-ad-1486507604128-0").addService(googletag.pubads());l.setTargeting("section",[r]),c.setTargeting("section",[r]),p.setTargeting("section",[r]),v.setTargeting("section",[r]),m.setTargeting("section",[r]),S.setTargeting("section",[r]),u.setTargeting("section",[r]),b.setTargeting("section",[r]),f.setTargeting("section",[r]),B.setTargeting("section",[r]),H.setTargeting("section",[r]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([l,c,p,v])})});
+function refreshAd(e){googletag.pubads().refresh()}var getKey=<?php echo json_encode($sectionKey); ?>,googletag=googletag||{};googletag.cmd=googletag.cmd||[],function(){var e=document.createElement("script");e.async=!0,e.type="text/javascript";var g="https:"==document.location.protocol;e.src=(g?"https:":"http:")+"//www.googletagservices.com/tag/js/gpt.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}(),googletag.cmd.push(function(){var e,g,t,o,a,d,n,i=document.documentElement.clientWidth;i>=320&&768>i?(e=[320,50],g=[320,50],t=[320,50],o=[[180,150],[160,600]],a=[180,180],d=[300,250],n=[200,200]):i>=768&&992>i?(e=[320,50],g=[320,50],t=[320,50],o=[160,600],a=[180,180],d=[300,250],n=[200,200]):i>=992?(e=[[970,90],[728,90]],g=[728,90],t=[[970,90],[728,90]],o=[160,600],a=[180,180],d=[300,250],n=[200,200]):(e=[728,90],g=[728,90],t=[728,90],o=[160,600],a=[180,180],d=[300,250],n=[200,200]);var s=1459980402618,r=getKey,l=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+s+"-1").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+s+"-2").addService(googletag.pubads()),p=googletag.defineSlot("/38749147/BendHomes-Rectangle",o,"div-gpt-ad-"+s+"-3").addService(googletag.pubads()),v=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",t,"div-gpt-ad-"+s+"-4").addService(googletag.pubads()),m=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-"+s+"-5").addService(googletag.pubads()),S=googletag.defineSlot("/38749147/BendHomes-Rectangle2",d,"div-gpt-ad-"+s+"-6").addService(googletag.pubads()),u=googletag.defineSlot("/38749147/BendHomes-Partners1",a,"div-gpt-ad-"+s+"-7").addService(googletag.pubads()),b=googletag.defineSlot("/38749147/BendHomes-Partners2",a,"div-gpt-ad-"+s+"-8").addService(googletag.pubads()),f=googletag.defineSlot("/38749147/BendHomes-Partners3",a,"div-gpt-ad-"+s+"-9").addService(googletag.pubads()),B=googletag.defineSlot("/38749147/BendHomes-Partners4",a,"div-gpt-ad-"+s+"-10").addService(googletag.pubads()),H=googletag.defineSlot("/38749147/BendHomes-Partners5",a,"div-gpt-ad-"+s+"-11").addService(googletag.pubads()),T=googletag.defineSlot("/38749147/BendHomes-MortCalc",n,"div-gpt-ad-"+s+"-12").addService(googletag.pubads()),h=googletag.defineSlot("/38749147/BendHomes-Rectangle3",d,"div-gpt-ad-"+s+"-13").addService(googletag.pubads()),E=googletag.defineSlot("/38749147/BendHomes-Rectangle4",d,"div-gpt-ad-"+s+"-14").addService(googletag.pubads());l.setTargeting("section",[r]),c.setTargeting("section",[r]),p.setTargeting("section",[r]),v.setTargeting("section",[r]),m.setTargeting("section",[r]),S.setTargeting("section",[r]),u.setTargeting("section",[r]),b.setTargeting("section",[r]),f.setTargeting("section",[r]),B.setTargeting("section",[r]),H.setTargeting("section",[r]),T.setTargeting("section",[r]),h.setTargeting("section",[r]),E.setTargeting("section",[r]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([l,c,p,v])})});
+	
+	
+	
+/*function refreshAd(e){googletag.pubads().refresh()}var getKey=<?php echo json_encode($sectionKey); ?>,googletag=googletag||{};googletag.cmd=googletag.cmd||[],function(){var e=document.createElement("script");e.async=!0,e.type="text/javascript";var g="https:"==document.location.protocol;e.src=(g?"https:":"http:")+"//www.googletagservices.com/tag/js/gpt.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}(),googletag.cmd.push(function(){var e,g,t,o,a,d,n,i=document.documentElement.clientWidth;i>=320&&768>i?(e=[320,50],g=[320,50],t=[320,50],o=[[180,150],[160,600]],a=[180,180],d=[300,250],n=[200,200]):i>=768&&992>i?(e=[320,50],g=[320,50],t=[320,50],o=[160,600],a=[180,180],d=[300,250],n=[200,200]):i>=992?(e=[[970,90],[728,90]],g=[728,90],t=[[970,90],[728,90]],o=[160,600],a=[180,180],d=[300,250],n=[200,200]):(e=[728,90],g=[728,90],t=[728,90],o=[160,600],a=[180,180],d=[300,250],n=[200,200]);var s=1459980402618,r=getKey,l=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+s+"-0").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+s+"-1").addService(googletag.pubads()),p=googletag.defineSlot("/38749147/BendHomes-Rectangle",o,"div-gpt-ad-"+s+"-2").addService(googletag.pubads()),v=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",t,"div-gpt-ad-"+s+"-3").addService(googletag.pubads()),m=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-1481219839325-0").addService(googletag.pubads()),S=googletag.defineSlot("/38749147/BendHomes-Rectangle2",d,"div-gpt-ad-1481223431350-0").addService(googletag.pubads()),u=googletag.defineSlot("/38749147/BendHomes-Partners1",a,"div-gpt-ad-"+s+"-5").addService(googletag.pubads()),b=googletag.defineSlot("/38749147/BendHomes-Partners2",a,"div-gpt-ad-"+s+"-6").addService(googletag.pubads()),f=googletag.defineSlot("/38749147/BendHomes-Partners3",a,"div-gpt-ad-"+s+"-7").addService(googletag.pubads()),B=googletag.defineSlot("/38749147/BendHomes-Partners4",a,"div-gpt-ad-"+s+"-8").addService(googletag.pubads()),H=googletag.defineSlot("/38749147/BendHomes-Partners5",a,"div-gpt-ad-"+s+"-9").addService(googletag.pubads());googletag.defineSlot("/38749147/BendHomes-MortCalc",n,"div-gpt-ad-1486507604128-0").addService(googletag.pubads());l.setTargeting("section",[r]),c.setTargeting("section",[r]),p.setTargeting("section",[r]),v.setTargeting("section",[r]),m.setTargeting("section",[r]),S.setTargeting("section",[r]),u.setTargeting("section",[r]),b.setTargeting("section",[r]),f.setTargeting("section",[r]),B.setTargeting("section",[r]),H.setTargeting("section",[r]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([l,c,p,v])})});*/
 </script>
   
   <?php
 }
-// Google DFP postion rener
+
+
+// Google DFP postion render
 add_action('dfp_ad_spot', 'dfp_ad_render', 10, 1);
 if ( ! function_exists( 'dfp_ad_render' ) ) {
   function dfp_ad_render($position) {
@@ -181,20 +194,22 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
     // siderail
 	$code1 = '1459980402618-';
     $posid = array(
-      'leadheader' => $code1 .'0',
-      'leadmid' => $code1 .'1',
-      'leadfooter' => $code1 .'3',
-      'siderail' => $code1 .'4',
-      'partners1' => $code1 .'5',
-      'partners2' => $code1 .'6',
-      'partners3' => $code1 .'7',
-      'partners4' => $code1 .'8',
-	  'partners5' => $code1 .'9',
-	  'siderail2' => $code1 .'10',
+      'leadheader' => $code1 .'1',
+      'leadmid' => $code1 .'2',
+      'leadfooter' => $code1 .'4',
+      'siderail' => $code1 .'3',
+      'partners1' => $code1 .'7',
+      'partners2' => $code1 .'8',
+      'partners3' => $code1 .'9',
+      'partners4' => $code1 .'10',
+	  'partners5' => $code1 .'11',
+	  //'siderail2' => $code1 .'10',
 		
-	  'rectangle1' => '1481219839325-0',
-	  'rectangle2' => '1481223431350-0',
-	  'mortcalc'   => '1486507604128-0'
+	  'rectangle1' => $code1 .'5',
+	  'rectangle2' => $code1 .'6',
+	  'mortcalc'   => $code1 .'12',
+	  'rectangle3' => $code1 .'13',
+	  'rectangle4' => $code1 .'14'
     );
     $dispid = 'div-gpt-ad-'.$posid[$position];
     ?>
@@ -208,6 +223,9 @@ if ( ! function_exists( 'dfp_ad_render' ) ) {
     <?php
   }
 }
+
+
+// Google DFP position shortcode render
 add_shortcode('dfp_ad', 'dfp_ad_shortcode');
 function dfp_ad_shortcode( $atts ) {
 	$atts = shortcode_atts( array(
@@ -220,19 +238,20 @@ function dfp_ad_shortcode( $atts ) {
 	
 	$code1 = '1459980402618-';
     $posid = array(
-		'leadheader' => $code1 .'0',
-		'leadmid' => $code1 .'1',
-		'leadfooter' => $code1 .'3',
-		'siderail' => $code1 .'4',
-		'partners1' => $code1 .'5',
-		'partners2' => $code1 .'6',
-		'partners3' => $code1 .'7',
-		'partners4' => $code1 .'8',
-		'partners5' => $code1 .'9',
-		'siderail2' => $code1 .'10',
-		'rectangle1' => '1481219839325-0',
-		'rectangle2' => '1481223431350-0',
-		'mortcalc'   => '1486507604128-0'
+		'leadheader' => $code1 .'1',
+		'leadmid' => $code1 .'2',
+		'leadfooter' => $code1 .'4',
+		'siderail' => $code1 .'3',
+		'partners1' => $code1 .'7',
+		'partners2' => $code1 .'8',
+		'partners3' => $code1 .'9',
+		'partners4' => $code1 .'10',
+		'partners5' => $code1 .'11',
+		'rectangle1' => $code1 .'5',
+		'rectangle2' => $code1 .'6',
+		'mortcalc'   => $code1 .'12',
+		'rectangle3' => $code1 .'13',
+		'rectangle4' => $code1 .'14'
     );
     $dispid = 'div-gpt-ad-'.$posid[$type];
 	
@@ -244,6 +263,8 @@ function dfp_ad_shortcode( $atts ) {
 	
 	return $html;
 }
+
+
 // Displays property image "basename" underneath the Homepage Slider metabox on Propery
 // edit screen, to make searching for property images easier.
 add_action('admin_head','tbb_admin_load_property_script');
