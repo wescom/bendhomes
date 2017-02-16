@@ -405,12 +405,8 @@ function saveToAgentLookupTable($itemsarr) {
         if (mysqli_connect_errno()) {
                 echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
-        //$start = 0; // start index
-        //$count = 5000; // how many past start to grab
-        //$pieceArray = array_slice($itemsarr, $start, $count);
         $pieceArray = $itemsarr;
         foreach($pieceArray as $key => $array) {
-                //$escarray = array_map('mysql_real_escape_string', $array);
                 foreach ($array as $key => $value)
                 {
                         $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
@@ -581,6 +577,24 @@ function getAllOurLookupIds() {
         if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                         array_push($idArray, $row['ListingRid']);
+                }
+        }
+        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
+        mysqli_close($conn);
+        return $idArray;
+}
+
+function getAllOurOpenHouseIds(){
+    $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+        $query = "select OpenHouseRid from OpenHouse_OPEN ORDER BY OpenHouseRid ASC";
+        $result = $conn->query($query);
+        $idArray = [];
+        if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                        array_push($idArray, $row['OpenHouseRid']);
                 }
         }
         echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
@@ -766,8 +780,6 @@ function executeUpdateOpenHousesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
     //$pullDate = getSetPullDate("-3 hours");
-    //$start = 95000; // start index
-    //$count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
@@ -793,6 +805,43 @@ function executeUpdateOpenHousesTable() {
             } else {
                 echo '<pre style="color:red">At end of array.</pre>';
             }
+    }
+}
+
+function cleanOpenHousesTable() {
+    $centralcount = 999999;
+    $scenarios = array(
+        'OpenHouse_OPEN'=> array(
+            'count' => $centralcount,
+            'fotos' => 'no',
+            'resource' => 'OpenHouse',
+            'class' => 'OPEN'
+        )
+    );
+
+    $pullDate = '2001-01-01T00:00:00-08:00';
+    //$pullDate = getSetPullDate("-3 hours");
+
+    foreach($scenarios as $qvars) {
+
+        $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
+
+        /*foreach($rets_idArray as $id) {
+            array_push($rets_ids, $id['ListingRid']);
+        }*/
+        echo "<pre>RetsIds: ".implode(", ",$retsIdArray)."</pre>";
+
+        $our_ids = getAllOurOpenHouseIds($qvars);
+        echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
+
+        $badIds = compareAndGetBads($rets_ids, $our_ids);
+        if (sizeof($badIds) > 0) {
+            //deletePropertyIds($qvars, $badIds);
+            echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
+        } else {
+            echo " No Bad Ids to delete.\n\r";
+        }*/
+
     }
 }
 
