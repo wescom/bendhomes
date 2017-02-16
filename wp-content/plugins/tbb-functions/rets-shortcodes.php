@@ -383,20 +383,20 @@ class Rets_Agent {
 
 			$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 			
-			$agOfficePhone = $row['OfficePhoneComplete'];
-			if ($row['ContactAddlPhoneType_1'] == 'Cellular'){
-					$agCell = $row['ContactPhoneAreaCode_1']."-".$row['ContactPhoneNumber_1'];
-			} elseif ($row['ContactAddlPhoneType_2'] == 'Cellular'){
-					$agCell = $row['ContactPhoneAreaCode_2']."-".$row['ContactPhoneNumber_2'];
-			} elseif ($row['ContactAddlPhoneType_1'] == 'Cellular'){
-					$agCell = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
+			$office_phone = $agent['OfficePhoneComplete'];
+			if ($agent['ContactAddlPhoneType_1'] == 'Cellular'){
+					$agent_cell = $agent['ContactPhoneAreaCode_1']."-".$agent['ContactPhoneNumber_1'];
+			} elseif ($agent['ContactAddlPhoneType_2'] == 'Cellular'){
+					$agent_cell = $agent['ContactPhoneAreaCode_2']."-".$agent['ContactPhoneNumber_2'];
+			} elseif ($agent['ContactAddlPhoneType_1'] == 'Cellular'){
+					$agent_cell = $agent['ContactPhoneAreaCode_3']."-".$agent['ContactPhoneNumber_3'];
 			}
-			if ($row['ContactAddlPhoneType_1'] == 'Fax'){
-					$agFax = $row['ContactPhoneAreaCode_1']."-".$row['ContactPhoneNumber_1'];
-			} elseif ($row['ContactAddlPhoneType_2'] == 'Fax'){
-					$agFax = $row['ContactPhoneAreaCode_2']."-".$row['ContactPhoneNumber_2'];
-			} elseif ($row['ContactAddlPhoneType_1'] == 'Fax'){
-					$agFax = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
+			if ($agent['ContactAddlPhoneType_1'] == 'Fax'){
+					$agent_fax = $agent['ContactPhoneAreaCode_1']."-".$agent['ContactPhoneNumber_1'];
+			} elseif ($agent['ContactAddlPhoneType_2'] == 'Fax'){
+					$agent_fax = $agent['ContactPhoneAreaCode_2']."-".$agent['ContactPhoneNumber_2'];
+			} elseif ($agent['ContactAddlPhoneType_1'] == 'Fax'){
+					$agent_fax = $agent['ContactPhoneAreaCode_3']."-".$agent['ContactPhoneNumber_3'];
 			}
 			
 			$html .= sprintf( '<div class="post-agent rets-agent agent-%s agent-%s">', $id, $category_classes );
@@ -412,14 +412,14 @@ class Rets_Agent {
 			
 					$html .=  '<div class="contacts-list">';
 					
-						if ( $agOfficePhone != "" )
-							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> (Office)</div>', $this->phone_link($agOfficePhone), $agOfficePhone );
+						if ( !empty($office_phone) )
+							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> (Office)</div>', $this->phone_link($office_phone), $office_phone );
 			
-						if ( $agCell != "" )
-							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> (Cell)</div>', $this->phone_link($agCell), $agCell );
+						if ( !empty($agent_cell) )
+							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> (Cell)</div>', $this->phone_link($agent_cell), $agent_cell );
 			
-						if ( $agFax != "" )
-							$html .=  $html .= sprintf( '<div class="office">%s (Fax)</div>', $agFax );
+						if ( !empty($agent_fax) )
+							$html .=  $html .= sprintf( '<div class="office">%s (Fax)</div>', $agent_fax );
 			
 					$html .=  '</div>';
 
