@@ -287,7 +287,7 @@ function getOpenHouseData($qvars, $pullDate, $idArray){
     $idListArray = [];
 
     foreach ($idArray as $itm) {
-        array_push($idListArray, $itm[$getVal]);
+        array_push($idListArray, $itm['OpenHouseRid']);
     }
 
     $idList = implode(",", $idListArray);
