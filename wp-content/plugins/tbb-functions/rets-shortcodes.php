@@ -436,8 +436,7 @@ class Rets_Agent {
 					
 					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-						//$html .= sprintf('<h3>Properties Listed By %s</h3>', $agent['FullName'] );
-					
+						// Output property listings for agent via next shortcode built below
 						$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
 
 					$html .= '</div></div></div>';
@@ -466,6 +465,7 @@ new Rets_Agent();
 
 
 // Creates property listings for a single agent
+// This can also display all listings for a single agent by passing their agent ID number into the "agent_id" shortcode parameter.
 class Rets_Agent_Listings {
 	
 	public static $args;
@@ -482,7 +482,6 @@ class Rets_Agent_Listings {
 		$defaults = shortcode_atts(
 			array(
 				'agent_id' => '',
-				'limit' => '',
 				'class' => '',
 				'columns' => 3,
 			), $args
