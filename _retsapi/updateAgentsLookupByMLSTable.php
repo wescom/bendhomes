@@ -2,8 +2,10 @@
 
         include_once("/var/www/html/_retsapi/propertiesFunctions.php");
 
-        executeUpdateAgentsLookupByMLSTable();
+        //executeUpdateAgentsLookupByMLSTable();
 
-        cleanAgentsLookupByMLSTable();
+        //cleanAgentsLookupByMLSTable();
+
+        executeUpdateOpenHousesTable(); 
 
 ?>
