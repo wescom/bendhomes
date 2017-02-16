@@ -840,7 +840,7 @@ function cleanOpenHousesTable() {
             echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
         } else {
             echo " No Bad Ids to delete.\n\r";
-        }*/
+        }
 
     }
 }
