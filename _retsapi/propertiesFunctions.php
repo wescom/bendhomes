@@ -678,7 +678,7 @@ function executeUpdatePropertiesTable() {
     $pullDate = '2001-01-01T00:00:00-08:00';
     //$pullDate = getSetPullDate("-3 hours");
 
-    $start = 95500; // start index
+    $start = 95000; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
@@ -706,5 +706,42 @@ function executeUpdatePropertiesTable() {
             }
     }
 }
+
+function executeUpdateOpenHousesTable() {
+    $centralcount = 999999;
+    $scenarios = array(
+        'OpenHouse_OPEN'=> array(
+            'count' => $centralcount,
+            'fotos' => 'no',
+            'resource' => 'OpenHouse',
+            'class' => 'OPEN'
+        )
+    );
+
+    $pullDate = '2001-01-01T00:00:00-08:00';
+    //$pullDate = getSetPullDate("-3 hours");
+
+    foreach($scenarios as $qvars) {
+
+        $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
