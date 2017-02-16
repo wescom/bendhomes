@@ -382,42 +382,81 @@ class Rets_Agent {
 			}
 
 			$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
-
+			
+			$office_phone = $agent['OfficePhoneComplete'];
+			if ($agent['ContactAddlPhoneType_1'] == 'Cellular'){
+					$agent_cell = $agent['ContactPhoneAreaCode_1']."-".$agent['ContactPhoneNumber_1'];
+			} elseif ($agent['ContactAddlPhoneType_2'] == 'Cellular'){
+					$agent_cell = $agent['ContactPhoneAreaCode_2']."-".$agent['ContactPhoneNumber_2'];
+			} elseif ($agent['ContactAddlPhoneType_1'] == 'Cellular'){
+					$agent_cell = $agent['ContactPhoneAreaCode_3']."-".$agent['ContactPhoneNumber_3'];
+			}
+			if ($agent['ContactAddlPhoneType_1'] == 'Fax'){
+					$agent_fax = $agent['ContactPhoneAreaCode_1']."-".$agent['ContactPhoneNumber_1'];
+			} elseif ($agent['ContactAddlPhoneType_2'] == 'Fax'){
+					$agent_fax = $agent['ContactPhoneAreaCode_2']."-".$agent['ContactPhoneNumber_2'];
+			} elseif ($agent['ContactAddlPhoneType_1'] == 'Fax'){
+					$agent_fax = $agent['ContactPhoneAreaCode_3']."-".$agent['ContactPhoneNumber_3'];
+			}
+			
 			$html .= sprintf( '<div class="post-agent rets-agent agent-%s agent-%s">', $id, $category_classes );
 
 				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
 
-						$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
+					$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
 
-						$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
+					$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
-						$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>',
-												$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
+					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div>',
+											$agent['OfficeName'], $office_address );
+			
+					$html .=  '<div class="contacts-list">';
+					
+						if ( !empty($office_phone) )
+							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Office)</small></div>', 
+											$this->phone_link($office_phone), $office_phone );
+			
+						if ( !empty($agent_cell) )
+							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Cell)</small></div>', 
+											$this->phone_link($agent_cell), $agent_cell );
+			
+						if ( !empty($agent_fax) )
+							$html .= sprintf( '<div class="office">%s <small>(Fax)</small></div>', 
+											$agent_fax );
+			
+					$html .=  '</div>';
 
 				$html .= '</div></div></div>';
 
-				if( $agent['featured'] == 1 ) {
+				// Used for testing agent properties. Shortcode is the next function class below.
+				// Remove administrator check when ready to go live.
+				if( $agent['featured'] == 1 && current_user_can('administrator') ) {
+					
+					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
+						$html .= sprintf('<h3>Properties Listed By %s</h3>', $agent['FullName'] );
+					
+						$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
 
-						$html .= sprintf('<h3>Properties Listed By </h3>', $agent['FullName'] );
-
-				$html .= '</div></div></div>';
+					$html .= '</div></div></div>';
 
 				}
 
 			$html .= '</div>';
-			
-			// Used for testing agent properties. Shortcode is the next function below.
-			if(current_user_can('administrator')) {
-				$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent_test-wrapper"] ');	
-			}
 
 		}
 
 		return $html;
 
 	}
+	
+	public function phone_link( $string ) {
+		
+		$slug = preg_replace( '/\D/', '', $string );
+		
+		return $slug;
+		
+	} // end phone_link
 
 }
 new Rets_Agent();
@@ -488,7 +527,7 @@ class Rets_Agent_Listings {
 			Property_RESI.State,
 			Property_RESI.ZipCode,
 			Property_RESI.Bedrooms,
-			Property_RESI.Bathrooms,
+			Property_RESI.Bathrooms
 			FROM Property_RESI
 			WHERE Status = 'Active'
 			AND ShowAddressToPublic = 1
