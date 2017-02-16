@@ -535,6 +535,8 @@ class Rets_Agent_Listings {
 
 						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $address );
+					
+						$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($listing['ListingPrice']) );
 
 						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
 								floatval($listing['Bedrooms']), floatval($listing['Bathrooms']) );
