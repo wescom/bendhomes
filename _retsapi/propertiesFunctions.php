@@ -773,14 +773,14 @@ function executeUpdateOpenHousesTable() {
 
 
                 //echo implode(',', $pieceArray)
-                //$retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
+                $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
 
                 echo '<pre>';
-                print_r($retsReturnData);
+                //print_r($retsReturnData);
                 echo '</pre>';
 
-                //$returnString = savePropertyData($qvars, $retsReturnData);
-               // $returnString = saveOpenHouseData($qvars, $retsReturnData);
+                $returnString = savePropertyData($qvars, $retsReturnData);
+                $returnString = saveOpenHouseData($qvars, $retsReturnData);
                 echo '<pre>'.$returnString;
                 echo '</pre>';
                 
