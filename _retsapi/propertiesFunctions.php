@@ -779,7 +779,7 @@ function executeUpdateOpenHousesTable() {
                 //print_r($retsReturnData);
                 echo '</pre>';
 
-                $returnString = savePropertyData($qvars, $retsReturnData);
+                //$returnString = savePropertyData($qvars, $retsReturnData);
                 $returnString = saveOpenHouseData($qvars, $retsReturnData);
                 echo '<pre>'.$returnString;
                 echo '</pre>';
