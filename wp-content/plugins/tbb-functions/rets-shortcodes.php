@@ -475,7 +475,7 @@ class Rets_Agent_Listings {
 			
 			$html .= '<div class="custom-posts-wrapper post-listings rets-agent-listings"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_listings ) .' Total Listings</div>';
+				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_listings ) .' Listings</div>';
 			
 				foreach( $listings as $listing ) {
 					
@@ -489,7 +489,7 @@ class Rets_Agent_Listings {
 					
 					$address = $listing['StreetNumber'] .' '. $listing['StreetName'] .' '. $listing['StreetSuffix'] .' '. $listing['City'] .', '. $listing['State'] .' '. $listing['ZipCode'];
 					
-					$permalink = '#';
+					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $listing['MLNumber'] .'/'. sanitize_title( $address );
 					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', 
@@ -501,8 +501,8 @@ class Rets_Agent_Listings {
 						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
 								$permalink, $address );
 
-						$html .= sprintf( '<div class="listing-meta listing-beds">%s</div><div class="listing-meta listing-baths">%s</div>', 
-								$listing['Bedrooms'], $listing['Bathrooms'] );
+						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
+								floatval($listing['Bedrooms']), floatval($listing['Bathrooms']) );
 					
 					$html .= '</div></div>';
 					// End agent ouput
