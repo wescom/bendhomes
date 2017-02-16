@@ -488,9 +488,10 @@ class Rets_Agent_Listings {
 			Property_RESI.State,
 			Property_RESI.ZipCode,
 			Property_RESI.Bedrooms,
-			Property_RESI.Bathrooms
+			Property_RESI.Bathrooms,
 			FROM Property_RESI
 			WHERE Status = 'Active'
+			AND LastModifiedDateTime < CONCAT( curdate(), '06:00:00' )
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
@@ -500,7 +501,7 @@ class Rets_Agent_Listings {
 		
 		$listings = $listings_query->select( $query );
 		
-		print_r( $listings );
+		//print_r( $listings );
 		
 		if( $listings ) {
 			
