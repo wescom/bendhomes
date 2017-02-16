@@ -401,11 +401,13 @@ class Rets_Agent {
 			
 			$html .= sprintf( '<div class="post-agent rets-agent agent-%s agent-%s">', $id, $category_classes );
 
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
+				$html .= '<div class="agent-info-wrap"><div class="row-fluid">';
 
-					$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
+					
+					$html .= sprintf('<div class="span4"><img src="%s" alt="%s" width="" height="" class="alignleft" /></div>', 
+									 $image_url, $agent['FullName'] );
 
-					$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
+					$html .= sprintf('<div class="span8"><h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
 					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div>',
 											$agent['OfficeName'], $office_address );
@@ -424,18 +426,17 @@ class Rets_Agent {
 							$html .= sprintf( '<div class="office">%s <small>(Fax)</small></div>', 
 											$agent_fax );
 			
-					$html .=  '</div>';
+					$html .=  '</div></div>';
 
-				$html .= '</div></div></div>';
+				$html .= '</div></div>';
 
 				// Used for testing agent properties. Shortcode is the next function class below.
 				// Remove administrator check when ready to go live.
-				if( $agent['featured'] == 1 && current_user_can('administrator') ) {
+				if( current_user_can('administrator') ) {
 					
 					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-						$html .= sprintf('<h3>Properties Listed By %s</h3>', $agent['FullName'] );
-					
+						// Output property listings for agent via next shortcode built below
 						$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
 
 					$html .= '</div></div></div>';
@@ -464,6 +465,7 @@ new Rets_Agent();
 
 
 // Creates property listings for a single agent
+// This can also display all listings for a single agent by passing their agent ID number into the "agent_id" shortcode parameter.
 class Rets_Agent_Listings {
 	
 	public static $args;
@@ -480,7 +482,6 @@ class Rets_Agent_Listings {
 		$defaults = shortcode_atts(
 			array(
 				'agent_id' => '',
-				'limit' => '',
 				'class' => '',
 				'columns' => 3,
 			), $args
