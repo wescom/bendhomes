@@ -145,6 +145,35 @@ function runRetsQuery($qvars, $pullDate) {
 
         return $itemsarr;
 }
+function runAgentRetsQuery($qvars, $pullDate) {
+        global $universalkeys;
+        global $rets;
+        print_r($qvars);
+        $query = buildRetsQuery($qvars, $pullDate);
+        //print_r($query);
+        $results = $rets->Search(
+                $qvars['resource'],
+                $qvars['class'],
+                $query,
+                        [
+                        'QueryType' => 'DMQL2', // it's always use DMQL2
+                        'Count' => 1, // count and records
+                        'Format' => 'COMPACT',
+                        'Limit' => $qvars['count'],
+                        'StandardNames' => 0, // give system names
+                        'Select' => 'ListingRid, ListingAgentNumber, MLNumber',
+                ]
+        );
+        echo '<pre>';
+        print_r($results);
+        echo '</pre>';
+        // convert from objects to array, easier to process
+        $temparr = $results->toArray();
+        // refactor arr with keys supplied by universalkeys in header
+        $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
+        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+        return $itemsarr;
+}
 
 function getPropertyData($qvars, $pullDate, $idArray){
     global $universalkeys;
@@ -325,6 +354,35 @@ function savePropertyData($qvars, $itemsarr) {
     return $reportout;
 }
 
+function saveToAgentLookupTable($itemsarr) {
+        $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+        if (mysqli_connect_errno()) {
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+        //$start = 0; // start index
+        //$count = 5000; // how many past start to grab
+        //$pieceArray = array_slice($itemsarr, $start, $count);
+        $pieceArray = $itemsarr;
+        foreach($pieceArray as $key => $array) {
+                //$escarray = array_map('mysql_real_escape_string', $array);
+                foreach ($array as $key => $value)
+                {
+                        $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
+                }
+                $query = "INSERT INTO AgentLookupByMLS ";
+                $query .= " (`".implode("`, `", array_keys($escarray))."`)";
+                $query .= " VALUES ('".implode("', '", $escarray)."') ";
+                $query .= "ON DUPLICATE KEY UPDATE ListingAgentNumber = VALUES(ListingAgentNumber)";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
+                echo '<p>Query: '.$query.'</p>';
+                if (mysqli_query($dbConnection, $query)) {
+                        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+                } else {
+                        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+                }
+        }
+        mysqli_close($dbConnection);
+}
+
 
 function getAllOurPropertyIds($qvars) {
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
@@ -439,7 +497,7 @@ function getMissingProps($qvars, $idArray) {
         return $itemsarr;
 }
 
-/*function executeUpdateAgentsLookupByMLSTable() {
+function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
@@ -452,8 +510,8 @@ function getMissingProps($qvars, $idArray) {
 
                 // 1. Get RETS data
                 echo '<pre style="color:green">'.$qvars['class'].'</pre>';
-                $rets_data = runRetsQuery($qvars, $pullDate);
-                saveToOurTable($rets_data);
+                $rets_data = runAgentsRetsQuery($qvars, $pullDate);
+                saveToAgentLookupTable($rets_data);
                 echo '<pre>';
                 print_r($rets_data);
                 echo '</pre>';
@@ -462,7 +520,7 @@ function getMissingProps($qvars, $idArray) {
 
         echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
 
-}*/
+}
 
 /*function cleanAgentsLookupByMLSTable() {
 
