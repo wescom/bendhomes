@@ -382,6 +382,8 @@ class Rets_Agent {
 			}
 
 			$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
+			
+			$phone_link = sprintf( '<a href="tel:%s">%s</a>', $this->phone_link( $agent['OfficePhoneComplete'] ), $agent['OfficePhoneComplete'] );
 
 			$html .= sprintf( '<div class="post-agent rets-agent agent-%s agent-%s">', $id, $category_classes );
 
@@ -392,7 +394,7 @@ class Rets_Agent {
 						$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
 						$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>',
-												$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
+												$agent['OfficeName'], $office_address, $phone_link );
 
 				$html .= '</div></div></div>';
 
@@ -418,6 +420,14 @@ class Rets_Agent {
 		return $html;
 
 	}
+	
+	public function phone_link( $string ) {
+		
+		$slug = preg_replace( '/\D/', '', $string );
+		
+		return $slug;
+		
+	} // end phone_link
 
 }
 new Rets_Agent();
