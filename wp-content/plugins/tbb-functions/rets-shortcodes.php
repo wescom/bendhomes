@@ -505,12 +505,13 @@ class Rets_Agent_Listings {
 		if( $listings ) {
 			
 			$total_listings = count( $listings );
+			$total_text = $total_listings == 1 ? 'Listing' : 'Listings';
 			
 			$count = 1;
 			
-			$html .= '<div class="custom-posts-wrapper post-listings rets-agent-listings"><div class="custom-posts-container clearfix">';
+			$html .= '<div class="custom-posts-wrapper post-listings rets-agent-listings '. $class .'"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_listings ) .' Listings</div>';
+				$html .= '<div class="total-listings">'. number_format( $total_listings ) .' '. $total_text .'</div>';
 			
 				foreach( $listings as $listing ) {
 					
@@ -522,19 +523,23 @@ class Rets_Agent_Listings {
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
 					}
 					
-					$address = $listing['StreetNumber'] .' '. rets_get_short_direction( $listing['StreetDirection'] ) .' '. $listing['StreetName'] .' '. $listing['StreetSuffix'] .' '. $listing['City'] .', '. $listing['State'] .' '. $listing['ZipCode'];
+					$address1 = $listing['StreetNumber'] .' '. rets_get_short_direction( $listing['StreetDirection'] ) .' '. $listing['StreetName'] .' '. $listing['StreetSuffix'];
 					
-					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $listing['MLNumber'] .'/'. sanitize_title( $address );
+					$address2 = $listing['City'] .', '. $listing['State'] .' '. $listing['ZipCode'];
+					
+					$full_address = $address1 .' '. $address2;
+					
+					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $listing['MLNumber'] .'/'. sanitize_title( $full_address );
 					
 					// Begin agent output
-					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', 
-							$count, $cols, $class, $has_image_class );
+					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s"><div class="custom-post-item clearfix">', 
+							$count, $cols, $has_image_class );
 					
 						$html .= sprintf( '<figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure>', 
 								$count, $permalink, $image_url );
 
-						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
-								$permalink, $address );
+						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s"><div>%s</div><div>%s</div></a></h4>', 
+								$permalink, $address1, $address2 );
 					
 						$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($listing['ListingPrice']) );
 
