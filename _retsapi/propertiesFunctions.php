@@ -871,8 +871,8 @@ function executeUpdatePropertiesTable() {
             $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
 
             if (sizeof($retsIdArray) > $start) {
-                //$pieceArray = array_slice($retsIdArray, $start, $count);
-                $pieceArray = $retsIdArray;
+                $pieceArray = array_slice($retsIdArray, $start, $count);
+                //$pieceArray = $retsIdArray;
 
 
                 //echo implode(',', $pieceArray)
