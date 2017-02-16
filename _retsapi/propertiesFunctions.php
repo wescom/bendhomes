@@ -561,7 +561,7 @@ function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
-        $pullDate = getSetPullDate("-7 days");
+        $pullDate = getSetPullDate("-3 hours");
 //      $pullDate = '2001-01-01T00:00:00-08:00';
 
         $scenarios = getScenarios();
@@ -678,7 +678,7 @@ function executeUpdatePropertiesTable() {
     $pullDate = '2001-01-01T00:00:00-08:00';
     //$pullDate = getSetPullDate("-3 hours");
 
-    $start = 96000; // start index
+    $start = 95500; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
