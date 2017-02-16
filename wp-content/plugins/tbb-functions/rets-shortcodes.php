@@ -413,13 +413,16 @@ class Rets_Agent {
 					$html .=  '<div class="contacts-list">';
 					
 						if ( !empty($office_phone) )
-							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> (Office)</div>', $this->phone_link($office_phone), $office_phone );
+							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Office)</small></div>', 
+											$this->phone_link($office_phone), $office_phone );
 			
 						if ( !empty($agent_cell) )
-							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> (Cell)</div>', $this->phone_link($agent_cell), $agent_cell );
+							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Cell)</small></div>', 
+											$this->phone_link($agent_cell), $agent_cell );
 			
 						if ( !empty($agent_fax) )
-							$html .=  $html .= sprintf( '<div class="office">%s (Fax)</div>', $agent_fax );
+							$html .= sprintf( '<div class="office">%s <small>(Fax)</small></div>', 
+											$agent_fax );
 			
 					$html .=  '</div>';
 
