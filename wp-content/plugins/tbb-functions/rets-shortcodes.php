@@ -410,7 +410,7 @@ class Rets_Agent {
 			
 			// Used for testing agent properties. Shortcode is the next function below.
 			if(current_user_can('administrator')) {
-				$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent_test-wrapper"] ');	
+				$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');	
 			}
 
 		}
