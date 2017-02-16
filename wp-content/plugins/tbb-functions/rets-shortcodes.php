@@ -489,7 +489,7 @@ class Rets_Agent_Listings {
 					
 					$address = $listing['StreetNumber'] .' '. $listing['StreetName'] .' '. $listing['StreetSuffix'] .' '. $listing['City'] .', '. $listing['State'] .' '. $listing['ZipCode'];
 					
-					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $listing['MLNumber'] .'/'. urlencode( $address );
+					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $listing['MLNumber'] .'/'. sanitize_title( $address );
 					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', 
