@@ -499,11 +499,11 @@ function cleanPropertiesTable() {
             array_push($rets_ids, $id['ListingRid']);
         }
 
-        echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
+        //echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
         //var_dump($rets_ids);
 
         $our_ids = getAllOurPropertyIds($qvars);
-        echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
+       // echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
 
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
