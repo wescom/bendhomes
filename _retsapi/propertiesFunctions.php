@@ -181,8 +181,14 @@ function getPropertyData($qvars, $pullDate, $idArray){
 
     //$query = buildRetsQuery($qvars, $pullDate);
     $idListArray = [];
+    if ($qvars['class'] == "OPEN") {
+        $getVal = "OpenHouseRid";
+    } else {
+        $getVal = "ListingRid";
+    }
+    
     foreach ($idArray as $itm) {
-        array_push($idListArray, $itm['ListingRid']);
+        array_push($idListArray, $itm[$getVal]);
     }
 
     $idList = implode(",", $idListArray);
