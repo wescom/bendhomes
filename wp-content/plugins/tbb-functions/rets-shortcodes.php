@@ -434,7 +434,7 @@ class Rets_Agent {
 					
 					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-						$html .= sprintf('<h3>Properties Listed By %s</h3>', $agent['FullName'] );
+						//$html .= sprintf('<h3>Properties Listed By %s</h3>', $agent['FullName'] );
 					
 						$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
 
