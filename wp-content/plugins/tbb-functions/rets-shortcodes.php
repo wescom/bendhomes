@@ -407,7 +407,7 @@ class Rets_Agent {
 
 					$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
-					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>',
+					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div>',
 											$agent['OfficeName'], $office_address );
 			
 					$html .=  '<div class="contacts-list">';
