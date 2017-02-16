@@ -373,11 +373,11 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.four { width: 25%; }
 .custom-post.five { width: 20%; }
 .custom-post.six { width: 16.66667%; }
-.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 20px; border: 1px solid #dedede; background: #fff; position: relative; }
+.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 20px; border: 1px solid #dedede; background: #fff; position: relative; text-align: center; }
 .custom-post.one .custom-post-item, .custom-post.two .custom-post-item { min-height: 210px; }
 .search-results.post-type-archive-company .custom-post.one .custom-post-item, .search-results.post-type-archive-company .custom-post.two .custom-post-item { min-height: 0; }
 .custom-post.four .custom-post-item { padding-bottom: 30px; }
-.custom-post h4 { font-weight: 100; margin: 0 0 15px; font-size: 16px; line-height: 140%; text-align: center; font-family: "Open Sans", sans-serif; }
+.custom-post h4 { font-weight: 100; margin: 0; font-size: 16px; line-height: 140%; text-align: center; font-family: "Open Sans", sans-serif; }
 .custom-post h4 a { color: #333; }
 .inner-wrapper .hentry .custom-post p { margin-bottom: 10px; line-height: 150%; width: auto; }
 .custom-post a { color: #02888f; }
@@ -402,7 +402,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post-excerpt { font-size: .85em; }
 .custom-post img { max-width: 100%; height: auto; max-height: 200px; display: block; margin: auto; }
 .custom-post.one img { max-height: none; }
-.custom-post .property-price { font-size: 22px; line-height: 150%; font-weight: 800; letter-spacing: .05em; color: #02888f; padding-top: 8px; }
+.custom-post .property-price { font-size: 22px; line-height: 150%; font-weight: 800; letter-spacing: .05em; color: #02888f; padding-top: 8px; margin: 0; text-align: center; }
 .custom-post .property-price small { color: #fff; font-size: 12px; display: block; margin-top: 8px; font-family: "Open Sans", sans-serif; letter-spacing: .05em; }
 .custom-post .listing-meta { display: inline-block !important; font-size: 13px; letter-spacing: .05em; padding: 0 5px; color: #777; text-align: center; }
 .custom-post .newness { font-size: 13px; }

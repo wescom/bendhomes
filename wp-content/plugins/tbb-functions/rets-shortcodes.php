@@ -488,7 +488,7 @@ class Rets_Agent_Listings {
 			Property_RESI.State,
 			Property_RESI.ZipCode,
 			Property_RESI.Bedrooms,
-			Property_RESI.Bathrooms
+			Property_RESI.Bathrooms,
 			FROM Property_RESI
 			WHERE Status = 'Active'
 			AND ShowAddressToPublic = 1
@@ -500,7 +500,7 @@ class Rets_Agent_Listings {
 		
 		$listings = $listings_query->select( $query );
 		
-		print_r( $listings );
+		//print_r( $listings );
 		
 		if( $listings ) {
 			
