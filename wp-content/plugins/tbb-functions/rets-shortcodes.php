@@ -3,6 +3,40 @@
 // Uses the Rets_DB class found in rets-connect.class.php
 
 
+// Returns an abbreviated street direction. i.e. Northeast => NE
+function rets_get_short_direction( $name ) {
+	switch( $name ) {
+		case 'North' :
+			$name = 'N';
+			break;
+		case 'East' :
+			$name = 'E';
+			break;
+		case 'South' :
+			$name = 'S';
+			break;
+		case 'West' :
+			$name = 'W';
+			break;
+		case 'Northeast' :
+			$name = 'NE';
+			break;
+		case 'Northwest' :
+			$name = 'NW';
+			break;
+		case 'Southeast' :
+			$name = 'SE';
+			break;
+		case 'Southwest' :
+			$name = 'SW';
+			break;
+		default:
+			return $name;
+	}
+	return $name;
+}
+
+
 // Creates agents list on /agents page
 class Rets_Agents {
 	
@@ -447,6 +481,7 @@ class Rets_Agent_Listings {
 			Property_RESI.ListingPrice,
 			Property_RESI.imagepref,
 			Property_RESI.StreetNumber,
+			Property_RESI.StreetDirection,
 			Property_RESI.StreetName,
 			Property_RESI.StreetSuffix,
 			Property_RESI.City,
@@ -487,7 +522,7 @@ class Rets_Agent_Listings {
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
 					}
 					
-					$address = $listing['StreetNumber'] .' '. $listing['StreetName'] .' '. $listing['StreetSuffix'] .' '. $listing['City'] .', '. $listing['State'] .' '. $listing['ZipCode'];
+					$address = $listing['StreetNumber'] .' '. rets_get_short_direction( $listing['StreetDirection'] ) .' '. $listing['StreetName'] .' '. $listing['StreetSuffix'] .' '. $listing['City'] .', '. $listing['State'] .' '. $listing['ZipCode'];
 					
 					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $listing['MLNumber'] .'/'. sanitize_title( $address );
 					
