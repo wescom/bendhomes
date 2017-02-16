@@ -4,6 +4,6 @@
 
         executeUpdatePropertiesTable();
 
-        cleanPropertiesTable();
+        //cleanPropertiesTable();
 
 ?>
