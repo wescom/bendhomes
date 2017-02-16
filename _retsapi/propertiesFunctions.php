@@ -383,6 +383,33 @@ function saveToAgentLookupTable($itemsarr) {
         mysqli_close($dbConnection);
 }
 
+function saveMissingToLookupTable($itemsarr) {
+        $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+        //print_r($itemsarr);
+        if (mysqli_connect_errno()) {
+                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+        foreach($itemsarr as $key => $array) {
+                //$escarray = array_map('mysql_real_escape_string', $array);
+                foreach ($array as $key => $value)
+                {
+                        $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
+                }
+                //$escarray = array_map('mysql_real_escape_string', $array);
+                $query = "INSERT INTO AgentLookupByMLS ";
+                $query .= " (`ListingRid`, `MLNumber`, `ListingAgentNumber`)";
+                $query .= " VALUES ('".$escarray['ListingRid']."', '".$escarray['MLNumber']."', '".$escarray['ListingAgentNumber']."' ) ";
+                $query .= "ON DUPLICATE KEY UPDATE ListingAgentNumber = VALUES(ListingAgentNumber)";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
+                echo '<p>Query: '.$query.'</p>';
+                if (mysqli_query($dbConnection, $query)) {
+                        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+                } else {
+                        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+                }
+        }
+        mysqli_close($dbConnection);
+}
+
 
 function getAllOurPropertyIds($qvars) {
         $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
@@ -497,6 +524,39 @@ function getMissingProps($qvars, $idArray) {
         return $itemsarr;
 }
 
+function getAllOurLookupIds() {
+        $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+        $query = "select ListingRid from AgentLookupByMLS ORDER BY ListingRid ASC";
+        $result = $conn->query($query);
+        $idArray = [];
+        if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                        array_push($idArray, $row['ListingRid']);
+                }
+        }
+        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
+        mysqli_close($conn);
+        return $idArray;
+}
+
+function deleteBadLookupIds($idArray) {
+        $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+        $query = "DELETE from AgentLookupByMLS WHERE ListingRid IN (".implode(", ",$idArray).")";
+        echo '<p>'.$query.'</p>';
+        if($conn->query($query)) {
+                echo "<p>Success!!!!</p>";
+        } else {
+                echo "<p>Error: ".mysqli_error($conn)."</p>";
+        }
+        mysqli_close($conn);
+}
+
 function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
@@ -522,15 +582,15 @@ function executeUpdateAgentsLookupByMLSTable() {
 
 }
 
-/*function cleanAgentsLookupByMLSTable() {
+function cleanAgentsLookupByMLSTable() {
 
         $pullDate = '2001-01-01T00:00:00-08:00';
         $scenarios = getScenarios();
 
-        $our_ids = getAllOurIds();
+        $our_ids = getAllOurLookupIds();
         $rets_ids = [];
         foreach($scenarios as $qvars) {
-                $rets_data = runRetsQuery($qvars, $pullDate);
+                $rets_data = runAgentsRetsQuery($qvars, $pullDate);
                 foreach ($rets_data as $itm) {
                         array_push($rets_ids, $itm['ListingRid']);
                 }
@@ -540,7 +600,7 @@ function executeUpdateAgentsLookupByMLSTable() {
 
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
-                deleteBadIds($badIds);
+                deleteBadLookupIds($badIds);
 
                 echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
         } else {
@@ -551,7 +611,7 @@ function executeUpdateAgentsLookupByMLSTable() {
         if (sizeof($missingIds) > 0) {
                 foreach($scenarios as $qvars) {
                         $rets_data = getMissingProps($qvars, $missingIds);
-                        saveMissingToOurTable($rets_data);
+                        saveMissingToLookupTable($rets_data);
                 }
                 echo "<pre>Missing Ids: ".implode(", ",$missingIds)."</pre>";
         } else {
@@ -559,7 +619,7 @@ function executeUpdateAgentsLookupByMLSTable() {
         }
         //echo "<pre>Rets: ".implode(", ",$rets_ids)."</pre>";
         //echo "<pre>Ours: ".implode(", ",$our_ids)."</pre>";
-}*/
+}
 
 function cleanPropertiesTable() {
     $scenarios = getScenarios();
