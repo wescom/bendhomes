@@ -375,7 +375,7 @@ function saveOpenHouseData($qvars, $itemsarr) {
     $dbtable = $qvars['resource'].'_'.$qvars['class'];
 
     foreach($itemsarr as $key => $array) {
-      
+        echo "xxxxx";
         // escape the array for db username
         //$escarray = array_map('mysql_real_escape_string', $array);
         foreach ($array as $key => $value) {
