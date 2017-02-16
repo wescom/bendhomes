@@ -294,7 +294,10 @@ function savePropertyData($qvars, $itemsarr) {
     foreach($itemsarr as $key => $array) {
       
         // escape the array for db username
-        $escarray = array_map('mysql_real_escape_string', $array);
+        //$escarray = array_map('mysql_real_escape_string', $array);
+        foreach ($array as $key => $value) {
+            $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
+        }
         //echo "<p style='backgrond-color:green'>status: ".$escarray['Status']."</p>";
         $pullNumber = explode('T', $escarray['LastModifiedDateTime']);
         $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
