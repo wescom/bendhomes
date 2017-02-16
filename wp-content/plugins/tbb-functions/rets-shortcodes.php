@@ -491,7 +491,6 @@ class Rets_Agent_Listings {
 			Property_RESI.Bathrooms,
 			FROM Property_RESI
 			WHERE Status = 'Active'
-			AND ListingDate < curdate()
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
