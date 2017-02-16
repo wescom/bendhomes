@@ -145,7 +145,7 @@ function runRetsQuery($qvars, $pullDate) {
 
         return $itemsarr;
 }
-function runAgentRetsQuery($qvars, $pullDate) {
+function runAgentsRetsQuery($qvars, $pullDate) {
         global $universalkeys;
         global $rets;
         print_r($qvars);
