@@ -279,6 +279,11 @@ function getAllRetsIdsQuery($qvars, $pullDate) {
         print_r($qvars);
         $query = buildRetsQuery($qvars, $pullDate);
         //print_r($query);
+        if ($qvars['class'] == "OPEN") {
+            $getVal = "OpenHouseRid";
+        } else {
+            $getVal = "ListingRid";
+        }
 
         $results = $rets->Search(
                 $qvars['resource'],
@@ -290,12 +295,12 @@ function getAllRetsIdsQuery($qvars, $pullDate) {
                         'Format' => 'COMPACT',
                         'Limit' => $qvars['count'],
                         'StandardNames' => 0, // give system names
-                        'Select' => 'ListingRid',
+                        'Select' => $getVal,
                 ]
         );
 
         echo '<pre>';
-        //print_r($results);
+        print_r($results);
         echo '</pre>';
 
         // convert from objects to array, easier to process
@@ -346,6 +351,41 @@ function savePropertyData($qvars, $itemsarr) {
             } else {
                 $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
             }
+        }
+    }
+
+    //echo '</pre>';
+    mysqli_close($dbConnection);
+    return $reportout;
+}
+
+function saveOpenHouseData($qvars, $itemsarr) {
+    $dbConnection = mysqli_connect(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
+    $reportout = "";
+    $dbtable = $qvars['resource'].'_'.$qvars['class'];
+
+    foreach($itemsarr as $key => $array) {
+      
+        // escape the array for db username
+        //$escarray = array_map('mysql_real_escape_string', $array);
+        foreach ($array as $key => $value) {
+            $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
+        }
+
+        echo "Adding ".$escarray['ListingRid']." - ".$escarray['MLNumber']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+        
+        $query  = "REPLACE INTO ".$dbtable;
+        $query .= " (`".implode("`, `", array_keys($escarray))."`)";
+        $query .= " VALUES ('".implode("', '", $escarray)."') ";
+
+        if (mysqli_query($dbConnection, $query)) {
+            $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+        } else {
+            $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
         }
     }
 
@@ -720,10 +760,33 @@ function executeUpdateOpenHousesTable() {
 
     $pullDate = '2001-01-01T00:00:00-08:00';
     //$pullDate = getSetPullDate("-3 hours");
+    //$start = 95000; // start index
+    //$count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
         $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
+
+        if (sizeof($retsIdArray) > $start) {
+                //$pieceArray = array_slice($retsIdArray, $start, $count);
+                $pieceArray = $retsIdArray;
+
+
+                //echo implode(',', $pieceArray)
+                //$retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
+
+                echo '<pre>';
+                print_r($retsReturnData);
+                echo '</pre>';
+
+                //$returnString = savePropertyData($qvars, $retsReturnData);
+               // $returnString = saveOpenHouseData($qvars, $retsReturnData);
+                echo '<pre>'.$returnString;
+                echo '</pre>';
+                
+            } else {
+                echo '<pre style="color:red">At end of array.</pre>';
+            }
     }
 }
 
