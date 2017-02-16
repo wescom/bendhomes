@@ -442,34 +442,16 @@ class Rets_Agent_Listings {
 				break;
 		}
 		
-		/*
-				SELECT Office_OFFI.IsActive,
-				Office_OFFI.MLSID,
-				Office_OFFI.OfficeName,
-				Office_OFFI.OfficeNumber,
-				Office_OFFI.OfficePhone,
-				Office_OFFI.OfficePhoneComplete,
-				Office_OFFI.StreetAddress,
-				Office_OFFI.StreetCity,
-				Office_OFFI.StreetState,
-				Office_OFFI.StreetZipCode,
-				Office_OFFI.OfficeDescription,
-				Office_OFFI.DisplayName,
-				Office_OFFI.featured,
-				Office_OFFI.images
-				FROM Office_OFFI
-				WHERE IsActive = 'T' AND featured = 1
-		*/
-		
 		$query = "
 			SELECT Property_RESI.MLNumber,
-			Property_RESI.ListingOfficeName,
 			Property_RESI.ListingPrice,
-			Property_RESI.PropertySubtype1,
+			Property_RESI.imagepref,
 			Property_RESI.StreetNumber,
 			Property_RESI.StreetName,
 			Property_RESI.StreetSuffix,
 			Property_RESI.City,
+			Property_RESI.State,
+			Property_RESI.ZipCode,
 			Property_RESI.Bedrooms,
 			Property_RESI.Bathrooms
 			FROM Property_RESI
@@ -485,7 +467,7 @@ class Rets_Agent_Listings {
 		
 		print_r( $listings );
 		
-		/*if( $listings ) {
+		if( $listings ) {
 			
 			$total_listings = count( $listings );
 			
@@ -497,29 +479,30 @@ class Rets_Agent_Listings {
 			
 				foreach( $listings as $listing ) {
 					
-					if( !empty( $listing['images'] ) ) {
+					if( !empty( $listing['imagepref'] ) ) {
 						$has_image_class = 'with-image';
-						$image_url = home_url() .'/_retsapi/imagesOffices/'. $listing['images'];
+						$image_url = home_url() .'/_retsapi/imagesProperties/'. $listing['imagepref'];
 					} else {
 						$has_image_class = 'without-image';
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
 					}
 					
-					$office_address = $listing['StreetAddress'] .'<br>'. $listing['StreetCity'] .', '. $listing['StreetState'] .' '. $agent['StreetZipCode'];
+					$address = $listing['StreetNumber'] .' '. $listing['StreetName'] .' '. $listing['StreetSuffix'] .' '. $listing['City'] .', '. $listing['State'] .' '. $listing['ZipCode'];
 					
-					$permalink = 'LINK_TO_IDX_LISTING';
+					$permalink = '#';
 					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $class, $has_image_class );
 					
-						$html .= sprintf( '<figure class="custom-post-image image-company-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure>', 
+						$html .= sprintf( '<figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure>', 
 								$count, $permalink, $image_url );
 
-					
+						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s">%s</a></h4>', 
+								$permalink, $address );
 
-					
-						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+						$html .= sprintf( '<div class="listing-meta listing-beds">%s</div><div class="listing-meta listing-baths">%s</div>', 
+								$listing['Bedrooms'], $listing['Bathrooms'] );
 					
 					$html .= '</div></div>';
 					// End agent ouput
@@ -535,7 +518,9 @@ class Rets_Agent_Listings {
 			
 			$html .= '</div></div>';
 			
-		}*/
+		}
+		
+		return $html;
 		
 	}
 	
