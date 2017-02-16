@@ -372,7 +372,7 @@ function deleteBadPropertyIds($qvars, $idArray) {
         echo '<p>'.$query.'</p>';
 
         foreach($idArray as $id){
-            foreach(glob('/var/www/html/_retsapi/imagesProperties/'.$id.'*.jpg') as $file)
+            foreach(glob('/var/www/html/_retsapi/imagesProperties/'.$id.'-*.jpg') as $file)
             unlink($file);
         }
 
