@@ -371,10 +371,10 @@ function deleteBadPropertyIds($qvars, $idArray) {
         $query = "DELETE from ".$dbtable." WHERE ListingRid IN (".implode(", ",$idArray).")";
         echo '<p>'.$query.'</p>';
 
-        foreach($idArray as $id){
+        /*foreach($idArray as $id){
             foreach(glob('/var/www/html/_retsapi/imagesProperties/'.$id.'*.jpg') as $file)
-            //unlink($file);
-        }
+            unlink($file);
+        }*/
 
         if($conn->query($query)) {
                 echo "<p>Success!!!!</p>";
