@@ -373,11 +373,11 @@ function deleteBadPropertyIds($qvars, $idArray) {
             unlink($file);
         }
 
-        /*if($conn->query($query)) {
+        if($conn->query($query)) {
                 echo "<p>Success!!!!</p>";
         } else {
                 echo "<p>Error: ".mysqli_error($conn)."</p>";
-        }*/
+        }
         mysqli_close($conn);
 
 }
