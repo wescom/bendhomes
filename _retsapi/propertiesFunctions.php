@@ -99,7 +99,7 @@ function getSetPullDate() {
         $pulldate = array();
         $pulldate['now'] = (int) time();
 
-        $pulldate['recent'] = strtotime("-2 days"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+        $pulldate['recent'] = strtotime("-3 hours"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
         $pulldate['retsquery'] = date('c',$pulldate['recent']);
 
         return $pulldate['retsquery'];
@@ -510,7 +510,7 @@ function cleanPropertiesTable() {
             deleteBadPropertyIds($qvars, $badIds);
             echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
         } else {
-            echo "No Bad Ids to delete.";
+            echo " No Bad Ids to delete.\n\r";
         }
 
         /*$missing_ids = compareAndGetBads($our_ids, $rets_ids);

@@ -2,7 +2,7 @@
 
         include_once("/var/www/html/_retsapi/propertiesFunctions.php");
 
-        //executeUpdatePropertiesTable();
+        executeUpdatePropertiesTable();
 
         cleanPropertiesTable();
 
