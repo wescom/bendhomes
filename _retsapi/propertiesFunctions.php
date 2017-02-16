@@ -94,12 +94,12 @@ function refactorarr($itemsarray,$ukeys,$qvars) {
     return $newarray;
 }*/
 
-function getSetPullDate() {
+function getSetPullDate($minusString) {
 
         $pulldate = array();
         $pulldate['now'] = (int) time();
 
-        $pulldate['recent'] = strtotime("-3 hours"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
+        $pulldate['recent'] = strtotime($minusString); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
         $pulldate['retsquery'] = date('c',$pulldate['recent']);
 
         return $pulldate['retsquery'];
@@ -501,7 +501,7 @@ function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
-        $pullDate = getSetPullDate();
+        $pullDate = getSetPullDate("-3 hours");
 //      $pullDate = '2001-01-01T00:00:00-08:00';
 
         $scenarios = getScenarios();
@@ -616,7 +616,7 @@ function executeUpdatePropertiesTable() {
     $scenarios = getScenarios();
 
     $pullDate = '2001-01-01T00:00:00-08:00';
-    //$pullDate = getSetPullDate();
+    //$pullDate = getSetPullDate("-3 hours");
 
     $start = 96000; // start index
     $count = 500; // how many past start to grab
