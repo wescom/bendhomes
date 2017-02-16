@@ -279,6 +279,50 @@ function getPropertyData($qvars, $pullDate, $idArray){
     return $itemsarr;
 }
 
+function getOpenHouseData($qvars, $pullDate, $idArray){
+    global $universalkeys;
+    global $rets;
+
+    //$query = buildRetsQuery($qvars, $pullDate);
+    $idListArray = [];
+
+    foreach ($idArray as $itm) {
+        array_push($idListArray, $itm[$getVal]);
+    }
+
+    $idList = implode(",", $idListArray);
+
+    $query = "(OpenHouseRid=".$idList.")";
+
+    print_r($query);
+
+    $results = $rets->Search(
+        $qvars['resource'],
+        $qvars['class'],
+        $query,
+        [
+            'QueryType' => 'DMQL2', // it's always use DMQL2
+            'Count' => 1, // count and records
+            'Format' => 'COMPACT-DECODED',
+            'Limit' => $qvars['count'],
+            'StandardNames' => 0, // give system names
+        ]
+    );
+
+    echo '<pre>';
+        //print_r($results);
+    echo '</pre>';
+
+    // convert from objects to array, easier to process
+    $temparr = $results->toArray();
+    // refactor arr with keys supplied by universalkeys in header
+    $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
+
+    echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr).'</pre>';
+
+    return $itemsarr;
+}
+
 function getAllRetsIdsQuery($qvars, $pullDate) {
         global $universalkeys;
         global $rets;
@@ -793,7 +837,7 @@ function executeUpdateOpenHousesTable() {
 
 
                 //echo implode(',', $pieceArray)
-                $retsReturnData = getPropertyData($qvars, $pullDate, $pieceArray);
+                $retsReturnData = getOpenHouseData($qvars, $pullDate, $pieceArray);
 
                 echo '<pre>';
                 //print_r($retsReturnData);
