@@ -385,7 +385,7 @@ function deleteBadPropertyIds($qvars, $idArray) {
 
 }
 
-function deleteOldSolds($qvars){
+function returnOldSolds($qvars){
     $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
     if ($conn->connect_error) {
@@ -393,7 +393,22 @@ function deleteOldSolds($qvars){
     }
 
     $dbtable = $qvars['resource'].'_'.$qvars['class'];
-    //$query = 
+    $query = "SELECT ListingRid, LastModifiedDateTime from ".$dbtable." where status = 'Sold'"; 
+
+    $result = $conn->query($query);
+    $idArray = [];
+    if ($result->num_rows > 0) {
+        $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
+
+        while($row = $result->fetch_assoc()) {
+            $pullNumber = explode('T', $row['LastModifiedDateTime']);
+            $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
+            if ($xMonthsAgo < $pullNumber) {
+                array_push($idArray, $row['ListingRid']);
+            }
+        }
+    }
+    return $idArray;
 }
 
 function getMissingProps($qvars, $idArray) {
@@ -495,18 +510,18 @@ function cleanPropertiesTable() {
 
     foreach($scenarios as $qvars) {
 
-        //$rets_ids = getAllRetsIdsQuery($qvars, $pullDate);
+        // Checking for any ids we have in our table that are no longer
+        // in the rets feed and then removing them from our table.
+
         $rets_ids = [];
         $rets_idArray = runRetsQuery($qvars, $pullDate);
         foreach($rets_idArray as $id) {
             array_push($rets_ids, $id['ListingRid']);
         }
-
         //echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
-        //var_dump($rets_ids);
 
         $our_ids = getAllOurPropertyIds($qvars);
-       // echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
+        // echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
 
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
@@ -523,7 +538,15 @@ function cleanPropertiesTable() {
         echo '<pre>'.$returnString;
         echo '</pre>';*/
 
-        //deleteOldSolds($qvars);
+        // looking for any properties with a status of 'Sold' that are older 
+        // than 6 months and then deleting them from our database
+        $oldIdsArray = returnOldSolds($qvars);
+        if (sizeof($oldIdsArray) > 0){
+            //deleteBadPropertyIds($qvars, $oldIdsArray);
+            echo "<pre>Old Ids to delete: ".implode(", ", $oldIdsArray)."</pre>";
+        } else {
+            echo " No old solds to delete.\r\n";
+        }
 
     }
 }
@@ -535,7 +558,7 @@ function executeUpdatePropertiesTable() {
     $pullDate = '2001-01-01T00:00:00-08:00';
     //$pullDate = getSetPullDate();
 
-    $start = 97500; // start index
+    $start = 97000; // start index
     $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
