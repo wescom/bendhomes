@@ -500,7 +500,7 @@ class Rets_Agent_Listings {
 		
 		$listings = $listings_query->select( $query );
 		
-		print_r( $listings );
+		//print_r( $listings );
 		
 		if( $listings ) {
 			
