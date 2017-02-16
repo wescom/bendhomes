@@ -561,7 +561,7 @@ function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
-        $pullDate = getSetPullDate("-5 days");
+        $pullDate = getSetPullDate("-7 days");
 //      $pullDate = '2001-01-01T00:00:00-08:00';
 
         $scenarios = getScenarios();
