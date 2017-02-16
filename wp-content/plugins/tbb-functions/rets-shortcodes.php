@@ -430,7 +430,7 @@ class Rets_Agent {
 
 				// Used for testing agent properties. Shortcode is the next function class below.
 				// Remove administrator check when ready to go live.
-				if( $agent['featured'] == 1 && current_user_can('administrator') ) {
+				if( current_user_can('administrator') ) {
 					
 					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
