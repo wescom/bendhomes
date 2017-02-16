@@ -186,7 +186,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
     } else {
         $getVal = "ListingRid";
     }
-    
+
     foreach ($idArray as $itm) {
         array_push($idListArray, $itm[$getVal]);
     }
@@ -382,12 +382,12 @@ function saveOpenHouseData($qvars, $itemsarr) {
             $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
         }
 
-        echo "Adding ".$escarray['ListingRid']." - ".$escarray['MLNumber']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+        echo "Adding ".$escarray['OpenHouseRid']." - ".$escarray['MLNumber']."</br>";
         
         $query  = "REPLACE INTO ".$dbtable;
         $query .= " (`".implode("`, `", array_keys($escarray))."`)";
         $query .= " VALUES ('".implode("', '", $escarray)."') ";
-
+        echo "Query: ".$query."<br>";
         if (mysqli_query($dbConnection, $query)) {
             $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
         } else {
@@ -724,16 +724,16 @@ function executeUpdatePropertiesTable() {
     $pullDate = '2001-01-01T00:00:00-08:00';
     //$pullDate = getSetPullDate("-3 hours");
 
-    $start = 95000; // start index
-    $count = 500; // how many past start to grab
+    //$start = 95000; // start index
+    //$count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
             $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
 
             if (sizeof($retsIdArray) > $start) {
-                $pieceArray = array_slice($retsIdArray, $start, $count);
-                //$pieceArray = $retsIdArray;
+                //$pieceArray = array_slice($retsIdArray, $start, $count);
+                $pieceArray = $retsIdArray;
 
 
                 //echo implode(',', $pieceArray)
