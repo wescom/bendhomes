@@ -276,7 +276,7 @@ new Rets_Agents();
 // Display a single agent
 class Rets_Agent {
 
-        public static $args;
+    public static $args;
 
     public function __construct() {
 
@@ -286,107 +286,261 @@ class Rets_Agent {
 
     public function render( $args ) {
 
-                $html = '';
-                $defaults = shortcode_atts(
-                        array(
-                                'class' => '',
-                                'linkto' => 'agents',
-                                'member_number' => ''
-                        ), $args
-                );
+		$html = '';
+		$defaults = shortcode_atts(
+			array(
+				'class' => '',
+				'linkto' => 'agents',
+				'member_number' => ''
+			), $args
+		);
 
-                extract( $defaults );
+		extract( $defaults );
 
-                $id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
-                $id = mysql_real_escape_string( floatval( $id ) );
+		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
+		$id = mysql_real_escape_string( floatval( $id ) );
 
-                $query = "
-                        SELECT ActiveAgent_MEMB.FullName,
-                        ActiveAgent_MEMB.MemberNumber,
-                        ActiveAgent_MEMB.IsActive,
-                        ActiveAgent_MEMB.images as 'theImage',
-                        Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
-                        Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
-                        Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
-                        Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
-                        Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
-                        Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
-                        Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
-                        Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
-                        Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
-                        Office_OFFI.OfficeName,
-                        Office_OFFI.OfficePhoneComplete,
-                        Office_OFFI.StreetAddress,
-                        Office_OFFI.StreetCity,
-                        Office_OFFI.StreetState,
-                        Office_OFFI.StreetZipCode
-                        FROM ActiveAgent_MEMB
-                        LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
-                        LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-                        WHERE ActiveAgent_MEMB.MemberNumber = {$id}
+		$query = "
+			SELECT ActiveAgent_MEMB.FullName,
+			ActiveAgent_MEMB.MemberNumber,
+			ActiveAgent_MEMB.IsActive,
+			ActiveAgent_MEMB.images as 'theImage',
+			Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+			Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+			Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+			Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+			Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+			Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+			Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+			Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+			Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+			Office_OFFI.OfficeName,
+			Office_OFFI.OfficePhoneComplete,
+			Office_OFFI.StreetAddress,
+			Office_OFFI.StreetCity,
+			Office_OFFI.StreetState,
+			Office_OFFI.StreetZipCode
+			FROM ActiveAgent_MEMB
+			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+			WHERE ActiveAgent_MEMB.MemberNumber = {$id}
+		";
+						//echo 'query '.$query.'<br>';  
+		$agent_query = new Rets_DB();
 
-                ";
-                                //echo 'query '.$query.'<br>';  
-                $agent_query = new Rets_DB();
+		$agent = $agent_query->select( $query )[0];
 
-                $agent = $agent_query->select( $query )[0];
+		if( $agent ) {
 
-                if( $agent ) {
+			//print_r( $agent );
 
-                        //print_r( $agent );
+			$category_classes = 'not_featured';
+			if ($agent['ActiveAgent_MEMB.featured'] == 1 || $agent['Office_OFFI.featured']) {
+					$category_classes = 'featured';
+			}
+			//$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
+			if( !empty( $agent['theImage'] ) ) {
+				$has_image_class = 'width-image';
+				$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['theImage'];
+			} else {
+				$has_image_class = 'without-image';
+				$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+			}
 
-                        $category_classes = 'not_featured';
-                        if ($agent['ActiveAgent_MEMB.featured'] == 1 || $agent['Office_OFFI.featured']) {
-                                $category_classes = 'featured';
-                        }
-                        //$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
-                        if( !empty( $agent['theImage'] ) ) {
-                                $has_image_class = 'width-image';
-                                $image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['theImage'];
-                        } else {
-                                $has_image_class = 'without-image';
-                                $image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
-                        }
+			$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 
-                        $office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
+			$html .= sprintf( '<div class="post-agent rets-agent agent-%s agent-%s">', $id, $category_classes );
 
-                        $html .= sprintf( '<div class="post-agent rets-agent agent-%s agent-%s">', $id, $category_classes );
+				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
 
-                                $html .= '<div class="row-fluid"><div class="span12"><div class="agent-info-wrap">';
+						$html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
 
-                                        $html .= sprintf('<img src="%s" alt="%s" width="" height="" class="alignleft" />', $image_url, $agent['FullName'] );
+						$html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
-                                        $html .= sprintf('<h1 class="agent-name">%s</h1>', $agent['FullName'] );
+						$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>',
+												$agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
 
-                                        $html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div></div>%s</div>',
-                                                                $agent['OfficeName'], $office_address, $agent['OfficePhoneComplete'] );
+				$html .= '</div></div></div>';
 
-                                $html .= '</div></div></div>';
-                                
-                                if( $agent['featured'] == 1 ) {
+				if( $agent['featured'] == 1 ) {
 
-                                $html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
+				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-                                        $html .= sprintf('<h3>Properties Listed By </h3>', $agent['FullName'] );
+						$html .= sprintf('<h3>Properties Listed By </h3>', $agent['FullName'] );
 
-                                $html .= '</div></div></div>';
+				$html .= '</div></div></div>';
 
-                                }
+				}
 
-                        $html .= '</div>';
+			$html .= '</div>';
+			
+			// Used for testing agent properties. Shortcode is the next function below.
+			if(current_user_can('administrator')) {
+				$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent_test-wrapper"] ');	
+			}
 
-                }
+		}
 
-                return $html;
+		return $html;
 
-        }
-
-        public function get_agent_properties( $id ) {
-
-        }
+	}
 
 }
 new Rets_Agent();
+
+
+
+// Creates property listings for a single agent
+class Rets_Agent_Listings {
+	
+	public static $args;
+	
+    public function __construct() {
+		
+        add_shortcode('rets_agent_listings', array($this, 'render'));
+		
+    }
+     
+    public function render( $args ) {
+		
+		$html = '';
+		$defaults = shortcode_atts(
+			array(
+				'agent_id' => '',
+				'limit' => '',
+				'class' => '',
+				'columns' => 3,
+			), $args
+		);
+
+		extract( $defaults );
+		
+		switch( $columns ) {
+			case "6":
+				$cols_per_row = 6;
+				$cols = "six";
+				break;
+			case "5":
+				$cols_per_row = 5;
+				$cols = "five";
+				break;
+			case "4":
+				$cols_per_row = 4;
+				$cols = "four";
+				break;
+			case "3":
+				$cols_per_row = 3;
+				$cols = "three";
+				break;
+			case "2":
+				$cols_per_row = 2;
+				$cols = "two";
+				break;
+			case "1":
+				$cols_per_row = 1;
+				$cols = "one";
+				break;
+		}
+		
+		/*
+				SELECT Office_OFFI.IsActive,
+				Office_OFFI.MLSID,
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficeNumber,
+				Office_OFFI.OfficePhone,
+				Office_OFFI.OfficePhoneComplete,
+				Office_OFFI.StreetAddress,
+				Office_OFFI.StreetCity,
+				Office_OFFI.StreetState,
+				Office_OFFI.StreetZipCode,
+				Office_OFFI.OfficeDescription,
+				Office_OFFI.DisplayName,
+				Office_OFFI.featured,
+				Office_OFFI.images
+				FROM Office_OFFI
+				WHERE IsActive = 'T' AND featured = 1
+		*/
+		
+		$query = "
+			SELECT Property_RESI.MLNumber,
+			Property_RESI.ListingOfficeName,
+			Property_RESI.ListingPrice,
+			Property_RESI.PropertySubtype1,
+			Property_RESI.StreetNumber,
+			Property_RESI.StreetName,
+			Property_RESI.StreetSuffix,
+			Property_RESI.City,
+			Property_RESI.Bedrooms,
+			Property_RESI.Bathrooms
+			FROM Property_RESI
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+			AND ListingAgentNumber = {$agent_id}
+		";
+		
+		$listings_query = new Rets_DB();
+		
+		$listings = $listings_query->select( $query );
+		
+		print_r( $listings );
+		
+		/*if( $listings ) {
+			
+			$total_listings = count( $listings );
+			
+			$count = 1;
+			
+			$html .= '<div class="custom-posts-wrapper post-listings rets-agent-listings"><div class="custom-posts-container clearfix">';
+			
+				$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_listings ) .' Total Listings</div>';
+			
+				foreach( $listings as $listing ) {
+					
+					if( !empty( $listing['images'] ) ) {
+						$has_image_class = 'with-image';
+						$image_url = home_url() .'/_retsapi/imagesOffices/'. $listing['images'];
+					} else {
+						$has_image_class = 'without-image';
+						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+					}
+					
+					$office_address = $listing['StreetAddress'] .'<br>'. $listing['StreetCity'] .', '. $listing['StreetState'] .' '. $agent['StreetZipCode'];
+					
+					$permalink = 'LINK_TO_IDX_LISTING';
+					
+					// Begin agent output
+					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s"><div class="custom-post-item clearfix">', 
+							$count, $cols, $class, $has_image_class );
+					
+						$html .= sprintf( '<figure class="custom-post-image image-company-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure>', 
+								$count, $permalink, $image_url );
+
+					
+
+					
+						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
+					
+					$html .= '</div></div>';
+					// End agent ouput
+					
+					$clearfix_test = $count / $cols_per_row;
+					if( is_int( $clearfix_test ) ) {
+						$html .= '<div class="clearfix"></div>';
+					}
+
+					$count++;
+					
+				}
+			
+			$html .= '</div></div>';
+			
+		}*/
+		
+	}
+	
+}
+new Rets_Agent_Listings();
 
 
 
@@ -581,7 +735,9 @@ class Rets_Companies {
 					$count++;
 					
 				}
-						
+			
+			$html .= '</div></div>';
+			
 		}
 		
 		return $html;
