@@ -428,22 +428,21 @@ class Rets_Agent {
 
 				$html .= '</div></div></div>';
 
-				if( $agent['featured'] == 1 ) {
+				// Used for testing agent properties. Shortcode is the next function class below.
+				// Remove administrator check when ready to go live.
+				if( $agent['featured'] == 1 && current_user_can('administrator') ) {
+					
+					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
+						$html .= sprintf('<h3>Properties Listed By %s</h3>', $agent['FullName'] );
+					
+						$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
 
-						$html .= sprintf('<h3>Properties Listed By </h3>', $agent['FullName'] );
-
-				$html .= '</div></div></div>';
+					$html .= '</div></div></div>';
 
 				}
 
 			$html .= '</div>';
-			
-			// Used for testing agent properties. Shortcode is the next function below.
-			if(current_user_can('administrator')) {
-				$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');	
-			}
 
 		}
 
