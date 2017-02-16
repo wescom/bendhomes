@@ -738,8 +738,9 @@ function executeUpdatePropertiesTable() {
     $pullDate = '2001-01-01T00:00:00-08:00';
     //$pullDate = getSetPullDate("-3 hours");
 
-    //$start = 95000; // start index
-    //$count = 500; // how many past start to grab
+    //$start = 0;
+    $start = 95000; // start index
+    $count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
@@ -785,7 +786,7 @@ function executeUpdateOpenHousesTable() {
 
         $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
 
-        if (sizeof($retsIdArray) > $start) {
+        if (sizeof($retsIdArray) > 0) {
                 //$pieceArray = array_slice($retsIdArray, $start, $count);
                 $pieceArray = $retsIdArray;
 
