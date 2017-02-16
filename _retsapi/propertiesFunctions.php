@@ -351,7 +351,7 @@ function getAllRetsIdsQuery($qvars, $pullDate) {
         );
 
         echo '<pre>';
-        print_r($results);
+        //print_r($results);
         echo '</pre>';
 
         // convert from objects to array, easier to process
@@ -726,6 +726,85 @@ function cleanAgentsLookupByMLSTable() {
         //echo "<pre>Ours: ".implode(", ",$our_ids)."</pre>";
 }
 
+function executeUpdateOpenHousesTable() {
+    $centralcount = 999999;
+    $scenarios = array(
+        'OpenHouse_OPEN'=> array(
+            'count' => $centralcount,
+            'fotos' => 'no',
+            'resource' => 'OpenHouse',
+            'class' => 'OPEN'
+        )
+    );
+
+    $pullDate = '2001-01-01T00:00:00-08:00';
+    //$pullDate = getSetPullDate("-3 hours");
+
+    foreach($scenarios as $qvars) {
+
+        $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
+
+        if (sizeof($retsIdArray) > 0) {
+                //$pieceArray = array_slice($retsIdArray, $start, $count);
+                $pieceArray = $retsIdArray;
+
+
+                //echo implode(',', $pieceArray)
+                $retsReturnData = getOpenHouseData($qvars, $pullDate, $pieceArray);
+
+                echo '<pre>';
+                //print_r($retsReturnData);
+                echo '</pre>';
+
+                //$returnString = savePropertyData($qvars, $retsReturnData);
+                echo "helllloooo";
+                $returnString = saveOpenHouseData($qvars, $retsReturnData);
+                echo '<pre>'.$returnString;
+                echo '</pre>';
+                
+            } else {
+                echo '<pre style="color:red">At end of array.</pre>';
+            }
+    }
+}
+
+function cleanOpenHousesTable() {
+    $centralcount = 999999;
+    $scenarios = array(
+        'OpenHouse_OPEN'=> array(
+            'count' => $centralcount,
+            'fotos' => 'no',
+            'resource' => 'OpenHouse',
+            'class' => 'OPEN'
+        )
+    );
+
+    $pullDate = '2001-01-01T00:00:00-08:00';
+    //$pullDate = getSetPullDate("-3 hours");
+
+    foreach($scenarios as $qvars) {
+
+        $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
+
+        /*foreach($rets_idArray as $id) {
+            array_push($rets_ids, $id['ListingRid']);
+        }*/
+        echo "<pre>RetsIds: ".implode(", ",$retsIdArray)."</pre>";
+
+        $our_ids = getAllOurOpenHouseIds($qvars);
+        echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
+
+        $badIds = compareAndGetBads($rets_ids, $our_ids);
+        if (sizeof($badIds) > 0) {
+            //deletePropertyIds($qvars, $badIds);
+            echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
+        } else {
+            echo " No Bad Ids to delete.\n\r";
+        }
+
+    }
+}
+
 function cleanPropertiesTable() {
     $scenarios = getScenarios();
 
@@ -813,84 +892,6 @@ function executeUpdatePropertiesTable() {
     }
 }
 
-function executeUpdateOpenHousesTable() {
-    $centralcount = 999999;
-    $scenarios = array(
-        'OpenHouse_OPEN'=> array(
-            'count' => $centralcount,
-            'fotos' => 'no',
-            'resource' => 'OpenHouse',
-            'class' => 'OPEN'
-        )
-    );
-
-    $pullDate = '2001-01-01T00:00:00-08:00';
-    //$pullDate = getSetPullDate("-3 hours");
-
-    foreach($scenarios as $qvars) {
-
-        $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
-
-        if (sizeof($retsIdArray) > 0) {
-                //$pieceArray = array_slice($retsIdArray, $start, $count);
-                $pieceArray = $retsIdArray;
-
-
-                //echo implode(',', $pieceArray)
-                $retsReturnData = getOpenHouseData($qvars, $pullDate, $pieceArray);
-
-                echo '<pre>';
-                //print_r($retsReturnData);
-                echo '</pre>';
-
-                //$returnString = savePropertyData($qvars, $retsReturnData);
-                echo "helllloooo";
-                $returnString = saveOpenHouseData($qvars, $retsReturnData);
-                echo '<pre>'.$returnString;
-                echo '</pre>';
-                
-            } else {
-                echo '<pre style="color:red">At end of array.</pre>';
-            }
-    }
-}
-
-function cleanOpenHousesTable() {
-    $centralcount = 999999;
-    $scenarios = array(
-        'OpenHouse_OPEN'=> array(
-            'count' => $centralcount,
-            'fotos' => 'no',
-            'resource' => 'OpenHouse',
-            'class' => 'OPEN'
-        )
-    );
-
-    $pullDate = '2001-01-01T00:00:00-08:00';
-    //$pullDate = getSetPullDate("-3 hours");
-
-    foreach($scenarios as $qvars) {
-
-        $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
-
-        /*foreach($rets_idArray as $id) {
-            array_push($rets_ids, $id['ListingRid']);
-        }*/
-        echo "<pre>RetsIds: ".implode(", ",$retsIdArray)."</pre>";
-
-        $our_ids = getAllOurOpenHouseIds($qvars);
-        echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
-
-        $badIds = compareAndGetBads($rets_ids, $our_ids);
-        if (sizeof($badIds) > 0) {
-            //deletePropertyIds($qvars, $badIds);
-            echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
-        } else {
-            echo " No Bad Ids to delete.\n\r";
-        }
-
-    }
-}
 
 
 
