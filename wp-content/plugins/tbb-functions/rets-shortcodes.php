@@ -1286,12 +1286,12 @@ class Rets_Open_Houses {
 					
 							$timecount = 0;
 					
-							foreach ( $openhouse['DateAndTime'. $timecount] as $key2 => $time ) {
+							foreach ( $openhouse['DateAndTime'. $timecount] as $key2 => $value ) {
 						
 								//$date = new DateTime( $time['Date'] );
 								//$date_format = $date->format('M, jS');
 
-								$html .= sprintf( '<span class="time time-'. $timecount .'">%s, %s</span>', $time['Date'], $time['Time'] );
+								$html .= sprintf( '<span class="time time-'. $timecount .'">%s, %s</span>', $value['Date'], $value['Time'] );
 
 								$timecount++;
 							}
@@ -1346,9 +1346,11 @@ class Rets_Open_Houses {
 			$result[$mls_num]['ZipCode'] = $value['ZipCode'];
 			$result[$mls_num]['Bedrooms'] = $value['Bedrooms'];
 			$result[$mls_num]['Bathrooms'] = $value['Bathrooms']; // 13th array item in list so this total goes above in $index as 13
-			$result[$mls_num]['DateAndTime' . $index] = [
-				'Date' => $value['StartDateTime'],
-				'Time' => $value['TimeComments']
+			$result[$mls_num]['DateAndTime'] = [
+				$index = [
+					'Date' => $value['StartDateTime'],
+					'Time' => $value['TimeComments']
+				]
 			];
 			
 		}
