@@ -1249,7 +1249,7 @@ class Rets_Open_Houses {
 			
 				$html .= '<div class="total-listings">'. number_format( $total_listings ) .' '. $total_text .'</div>';
 			
-				foreach( $openhouses_array as $openhouse ) {
+				foreach( $openhouses_array as $key => $openhouse ) {
 					
 					if( !empty( $openhouse['imagepref'] ) ) {
 						$has_image_class = 'with-image';
@@ -1284,17 +1284,17 @@ class Rets_Open_Houses {
 					
 						$html .= '<div class="open-house-meta">';
 					
-							/*$timecount = 0;
+							$timecount = 0;
 					
-							foreach ( $openhouse['Time'. $timecount] as $time ) {
+							foreach ( $openhouse['Time'. $timecount] as $key2 => $time ) {
 						
 								$date = new DateTime( $time['Date'] );
 								$date_format = $date->format('M, jS');
 
-								$html .= sprintf( '<span class="time time'. $timecount .'">%s, %s</span>', $date_format, $time['Time'] );
+								$html .= sprintf( '<span class="time time-'. $timecount .'">%s, %s</span>', $date_format, $time['Time'] );
 
 								$timecount++;
-							}*/
+							}
 						
 						$html .= '</div>';
 					
