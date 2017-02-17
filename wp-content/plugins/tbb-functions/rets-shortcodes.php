@@ -1230,21 +1230,18 @@ class Rets_Open_Houses {
 			Property_RESI.City,
 			Property_RESI.State,
 			Property_RESI.ZipCode,
-			FROM Property_RESI
-			LEFT JOIN OpenHouse_OPEN
+			FROM OpenHouse_OPEN
+			LEFT JOIN Property_RESI
 			ON Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
-			WHERE Property_RESI.Status = 'Active'
-			AND Property_RESI.ShowAddressToPublic = 1
-			AND Property_RESI.PublishToInternet = 1
 		";
 		
 		$openhouses_query = new Rets_DB();
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-		if( current_user_can('administrator') ) {
+		//if( current_user_can('administrator') ) {
 			print_r( $openhouses );
-		}
+		//}
 		
 		if( $openhouses ) {
 			
