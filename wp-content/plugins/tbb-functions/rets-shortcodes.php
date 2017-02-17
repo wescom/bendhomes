@@ -1240,19 +1240,30 @@ class Rets_Open_Houses {
 		
 		//if( current_user_can('administrator') ) {
 			print_r( $query );
-			print_r( $openhouses );
+			//print_r( $openhouses );
 		//}
 		
-		$output = array();
-		foreach( $openhouses['MLNumber'] as $key ) {
-			$output[$key['id']]['MLNumber'] = $key['MLNumber'];
-			$output[$key['id']]['AgentName'] = $key['AgentFirstName'] .' '. $key['AgentLastName'];
-			$output[$key['id']]['OfficeName'] = $key['OfficeName'];
-			$output[$key['id']]['OfficePhone'] = $key['OfficePhone'];
-			$output[$key['id']]['Time'][] = array( 'StartDate' => $key['StartDateTime'], 'Time' => $key['TimeComments']);
+		$result = array(); //Your minimized array
+		foreach($openhouses as $value){
+			$mls_num = $value['MLNumber'];
+			if(isset($result[$mls_num]))
+				$index = ((count($result[$mls_num]) - 1) / 2) + 1;
+			else
+				$index = 1;
+
+			$result[$mls_num]['MLNumber'] = $mls_num;
+			$result[$mls_num]['AgentFirstName' . $index] = $value['AgentFirstName'];
+			$result[$mls_num]['AgentLastName' . $index] = $value['AgentLastName'];  
+			$result[$mls_num]['OfficeName' . $index] = $value['OfficeName'];
+			$result[$mls_num]['OfficePhone' . $index] = $value['OfficePhone'];
+			$result[$mls_num]['Time' . $index] = [
+				'Date' => $value['StartDateTime'],
+				'Time' => $value['TimeComments']
+			];
 		}
+		$result = array_values($result);
 		
-		//print_r($output);
+		print_r($result);
 		
 		if( $openhouses ) {
 			
