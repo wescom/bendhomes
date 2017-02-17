@@ -1284,7 +1284,7 @@ class Rets_Open_Houses {
 					
 						$html .= '<div class="open-house-meta">';
 					
-							$timecount = 0;
+							/*$timecount = 0;
 					
 							foreach ( $openhouse['Time'. $timecount] as $key2 => $time ) {
 						
@@ -1294,7 +1294,7 @@ class Rets_Open_Houses {
 								$html .= sprintf( '<span class="time time-'. $timecount .'">%s, %s</span>', $date_format, $time['Time'] );
 
 								$timecount++;
-							}
+							}*/
 						
 						$html .= '</div>';
 					
