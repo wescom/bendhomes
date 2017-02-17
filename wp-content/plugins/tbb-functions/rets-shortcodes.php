@@ -1282,7 +1282,7 @@ class Rets_Open_Houses {
 						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
 								floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
 					
-						$html .= '<div class="open-house-meta"></div>';
+						$html .= '<div class="open-house-meta">';
 					
 							/*$timecount = 0;
 					
