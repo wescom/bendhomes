@@ -1267,19 +1267,6 @@ class Rets_Open_Houses {
 					
 					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $openhouse['MLNumber'] .'/'. sanitize_title( $full_address );
 					
-					$timecount = 0;
-					
-					$time_html = '';
-					foreach ( $openhouse['Time'. $timecount] as $time ) {
-						
-						$date = new DateTime( $time['Date'] );
-						$date_format = $date->format('M, jS');
-						
-						$time_html .= sprintf( '<span class="time time'. $timecount .'">%s, %s</span>', $date_format, $time['Time'] );
-						
-						$timecount++;
-					}
-					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s"><div class="custom-post-item clearfix">', 
 							$count, $cols, $has_image_class );
@@ -1295,7 +1282,21 @@ class Rets_Open_Houses {
 						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
 								floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
 					
-						$html .= sprintf( '<div class="open-house-meta">%s</div>', $time_html );
+						$html .= '<div class="open-house-meta"></div>';
+					
+							$timecount = 0;
+					
+							foreach ( $openhouse['Time'. $timecount] as $time ) {
+						
+								$date = new DateTime( $time['Date'] );
+								$date_format = $date->format('M, jS');
+
+								$html .= sprintf( '<span class="time time'. $timecount .'">%s, %s</span>', $date_format, $time['Time'] );
+
+								$timecount++;
+							}
+						
+						$html .= '</div>';
 					
 					$html .= '</div></div>';
 					// End agent ouput
