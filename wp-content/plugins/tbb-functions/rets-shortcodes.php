@@ -1243,7 +1243,9 @@ class Rets_Open_Houses {
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-		print_r( $openhouses );
+		if(current_user_can('administrator')) {
+			print_r( $openhouses );
+		}
 		
 		if( $openhouses ) {
 			
@@ -1305,7 +1307,9 @@ class Rets_Open_Houses {
 			
 		}
 		
+		if(current_user_can('administrator')) {
 		return $html;
+		}
 		
 	}
 	
