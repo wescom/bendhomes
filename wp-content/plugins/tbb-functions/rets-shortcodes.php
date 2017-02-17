@@ -1224,7 +1224,14 @@ class Rets_Open_Houses {
 		";*/
 		
 		$query = "
-			SELECT * FROM OpenHouse_OPEN
+			SELECT AgentFirstName,
+			AgentLastName,
+			OfficeName,
+			OfficePhone,
+			StartDateTime,
+			TimeComments,
+			MLNumber
+			FROM OpenHouse_OPEN
 		";
 		
 		$openhouses_query = new Rets_DB();
