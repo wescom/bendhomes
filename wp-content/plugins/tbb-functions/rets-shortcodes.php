@@ -1170,51 +1170,6 @@ class Rets_Open_Houses {
 		}
 		
 		/*$query = "
-			SELECT Property_RESI.MLNumber,
-			Property_RESI.ListingPrice,
-			Property_RESI.imagepref,
-			Property_RESI.StreetNumber,
-			Property_RESI.StreetDirection,
-			Property_RESI.StreetName,
-			Property_RESI.StreetSuffix,
-			Property_RESI.City,
-			Property_RESI.State,
-			Property_RESI.ZipCode,
-			Property_RESI.Bedrooms,
-			Property_RESI.Bathrooms
-			FROM Property_RESI
-			WHERE Status = 'Active'
-			AND ShowAddressToPublic = 1
-			AND PublishToInternet = 1
-		";*/
-		
-		/*$query = "
-			SELECT ActiveAgent_MEMB.FullName,
-			ActiveAgent_MEMB.MemberNumber,
-			ActiveAgent_MEMB.IsActive,
-			ActiveAgent_MEMB.images,
-			Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
-			Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
-			Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
-			Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
-			Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
-			Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
-			Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
-			Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
-			Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
-			Office_OFFI.OfficeName,
-			Office_OFFI.OfficePhoneComplete,
-			Office_OFFI.StreetAddress,
-			Office_OFFI.StreetCity,
-			Office_OFFI.StreetState,
-			Office_OFFI.StreetZipCode
-			FROM ActiveAgent_MEMB
-			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
-			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-			WHERE Office_OFFI.OfficeNumber = {$id}
-		";*/
-		
-		$query = "
 			SELECT OpenHouse_OPEN.AgentFirstName,
 			OpenHouse_OPEN.AgentLastName,
 			OpenHouse_OPEN.StartDateTime,
@@ -1236,6 +1191,36 @@ class Rets_Open_Houses {
 			
 			FROM OpenHouse_OPEN
 			LEFT JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+		";*/
+		
+		$query = "
+			SELECT OpenHouse_OPEN.AgentFirstName,
+			OpenHouse_OPEN.AgentLastName,
+			OpenHouse_OPEN.StartDateTime,
+			OpenHouse_OPEN.TimeComments,
+			OpenHouse_OPEN.MLNumber,
+			FROM OpenHouse_OPEN
+			LEFT OUTER JOIN Property_RESI OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+			
+			UNION ALL
+			SELECT Property_RESI.MLNumber,
+			Property_RESI.ListingPrice,
+			Property_RESI.imagepref,
+			Property_RESI.StreetNumber,
+			Property_RESI.StreetDirection,
+			Property_RESI.StreetName,
+			Property_RESI.StreetSuffix,
+			Property_RESI.City,
+			Property_RESI.State,
+			Property_RESI.ZipCode,
+			Property_RESI.ShowAddressToPublic,
+			Property_RESI.PublishToInternet
+			FROM Property_RESI
+			LEFT OUTER JOIN Property_RESI on Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
+			
 			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
