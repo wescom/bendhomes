@@ -661,6 +661,21 @@ function deleteBadLookupIds($idArray) {
         mysqli_close($conn);
 }
 
+function deleteOpenHouses($idArray) {
+        $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+        if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+        }
+        $query = "DELETE from OpenHouse_OPEN WHERE OpenHouseRid IN (".implode(", ",$idArray).")";
+        echo '<p>'.$query.'</p>';
+        if($conn->query($query)) {
+                echo "<p>Success!!!!</p>";
+        } else {
+                echo "<p>Error: ".mysqli_error($conn)."</p>";
+        }
+        mysqli_close($conn);
+}
+
 function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
@@ -795,7 +810,7 @@ function cleanOpenHousesTable() {
 
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
-            //deletePropertyIds($qvars, $badIds);
+            deleteOpenHouses($qvars, $badIds);
             echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
         } else {
             echo " No Bad Ids to delete.\n\r";
