@@ -1304,14 +1304,16 @@ class Rets_Open_Houses {
 	public function format_rets_query( $query_array ) {
 			
 		$result = [];
+		
 		foreach( $query_array as $value ) {
+			
 			$count = 0;
 			
 			$mls_num = $value['MLNumber'];
 			
 			if( isset( $result[$mls_num] ) )
 				//$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
-				$index = $count + 1;
+				$index = $result[$mls_num] + 1;
 			else
 				$index = 1;
 
@@ -1331,7 +1333,6 @@ class Rets_Open_Houses {
 				'Time' => $value['TimeComments']
 			];
 			
-			$count++;
 		}
 		
 		return array_values( $result );
