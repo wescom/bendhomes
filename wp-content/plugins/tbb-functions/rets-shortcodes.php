@@ -1231,9 +1231,7 @@ class Rets_Open_Houses {
 			StartDateTime,
 			TimeComments,
 			MLNumber
-			GROUP CONCAT(MLNumber SEPARATOR ',') AS MLNumbers
-			GROUP CONCAT(StartDateTime SEPARATOR ',') AS StartDateTimes
-			GROUP CONCAT(TimeComments SEPARATOR ',') AS TimeCommentss
+			GROUP CONCAT(MLNumber SEPARATOR ',') AS MLNumber
 			FROM OpenHouse_OPEN
 			GROUP BY MLNumber
 		";
