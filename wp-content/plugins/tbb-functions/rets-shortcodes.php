@@ -1116,3 +1116,202 @@ class Rets_Company_Agents {
 	
 } 
 new Rets_Company_Agents();
+
+
+// Displays list of Open Houses linked to IDX page.
+class Rets_Open_Houses {
+	
+	public static $args;
+	
+    public function __construct() {
+		
+        add_shortcode('rets_open_houses', array($this, 'render'));
+		
+    }
+     
+    public function render( $args ) {
+		
+		$html = '';
+		$defaults = shortcode_atts(
+			array(
+				'class' => '',
+				'columns' => 3,
+			), $args
+		);
+
+		extract( $defaults );
+		
+		switch( $columns ) {
+			case "6":
+				$cols_per_row = 6;
+				$cols = "six";
+				break;
+			case "5":
+				$cols_per_row = 5;
+				$cols = "five";
+				break;
+			case "4":
+				$cols_per_row = 4;
+				$cols = "four";
+				break;
+			case "3":
+				$cols_per_row = 3;
+				$cols = "three";
+				break;
+			case "2":
+				$cols_per_row = 2;
+				$cols = "two";
+				break;
+			case "1":
+				$cols_per_row = 1;
+				$cols = "one";
+				break;
+		}
+		
+		/*$query = "
+			SELECT Property_RESI.MLNumber,
+			Property_RESI.ListingPrice,
+			Property_RESI.imagepref,
+			Property_RESI.StreetNumber,
+			Property_RESI.StreetDirection,
+			Property_RESI.StreetName,
+			Property_RESI.StreetSuffix,
+			Property_RESI.City,
+			Property_RESI.State,
+			Property_RESI.ZipCode,
+			Property_RESI.Bedrooms,
+			Property_RESI.Bathrooms
+			FROM Property_RESI
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+		";*/
+		
+		/*$query = "
+			SELECT ActiveAgent_MEMB.FullName,
+			ActiveAgent_MEMB.MemberNumber,
+			ActiveAgent_MEMB.IsActive,
+			ActiveAgent_MEMB.images,
+			Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
+			Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
+			Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
+			Agent_MEMB.ContactAddlPhoneType2 as 'ContactAddlPhoneType_2',
+			Agent_MEMB.ContactPhoneAreaCode2 as 'ContactPhoneAreaCode_2',
+			Agent_MEMB.ContactPhoneNumber2 as 'ContactPhoneNumber_2',
+			Agent_MEMB.ContactAddlPhoneType3 as 'ContactAddlPhoneType_3',
+			Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
+			Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
+			Office_OFFI.OfficeName,
+			Office_OFFI.OfficePhoneComplete,
+			Office_OFFI.StreetAddress,
+			Office_OFFI.StreetCity,
+			Office_OFFI.StreetState,
+			Office_OFFI.StreetZipCode
+			FROM ActiveAgent_MEMB
+			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
+			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
+			WHERE Office_OFFI.OfficeNumber = {$id}
+		";*/
+		
+		$query = "
+			SELECT OpenHouse_OPEN.AgentFirstName, 
+			OpenHouse_OPEN.AgentLastName, 
+			OpenHouse_OPEN.OfficeName, 
+			OpenHouse_OPEN.OfficePhone, 
+			OpenHouse_OPEN.StartDateTime, 
+			OpenHouse_OPEN.TimeComments, 
+			Property_RESI.MLNumber,
+			Property_RESI.ListingPrice,
+			Property_RESI.imagepref,
+			Property_RESI.StreetNumber,
+			Property_RESI.StreetDirection,
+			Property_RESI.StreetName,
+			Property_RESI.StreetSuffix,
+			Property_RESI.City,
+			Property_RESI.State,
+			Property_RESI.ZipCode,
+			FROM Property_RESI
+			LEFT JOIN OpenHouse_OPEN
+			ON Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
+			UNION ALL
+			WHERE Property_RESI.Status = 'Active'
+			AND Property_RESI.ShowAddressToPublic = 1
+			AND Property_RESI.PublishToInternet = 1
+		";
+		
+		$openhouses_query = new Rets_DB();
+		
+		$openhouses = $openhouses_query->select( $query );
+		
+		if(current_user_can('administrator')) {
+			print_r( $openhouses );
+		}
+		
+		if( $openhouses ) {
+			
+			$total_listings = count( $openhouses );
+			$total_text = $total_listings == 1 ? 'Open House' : 'Open Houses';
+			
+			$count = 1;
+			
+			$html .= '<div class="custom-posts-wrapper rets-open-houses '. $class .'"><div class="custom-posts-container clearfix">';
+			
+				$html .= '<div class="total-listings">'. number_format( $total_listings ) .' '. $total_text .'</div>';
+			
+				foreach( $openhouses as $openhouse ) {
+					
+					if( !empty( $openhouse['imagepref'] ) ) {
+						$has_image_class = 'with-image';
+						$image_url = home_url() .'/_retsapi/imagesProperties/'. $openhouse['imagepref'];
+					} else {
+						$has_image_class = 'without-image';
+						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
+					}
+					
+					$address1 = $openhouse['StreetNumber'] .' '. rets_get_short_direction( $openhouse['StreetDirection'] ) .' '. $openhouse['StreetName'] .' '. $openhouse['StreetSuffix'];
+					
+					$address2 = $openhouse['City'] .', '. $openhouse['State'] .' '. $openhouse['ZipCode'];
+					
+					$full_address = $address1 .' '. $address2;
+					
+					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $openhouse['MLNumber'] .'/'. sanitize_title( $full_address );
+					
+					// Begin agent output
+					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s"><div class="custom-post-item clearfix">', 
+							$count, $cols, $has_image_class );
+					
+						$html .= sprintf( '<figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure>', 
+								$count, $permalink, $image_url );
+
+						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s"><div>%s</div><div>%s</div></a></h4>', 
+								$permalink, $address1, $address2 );
+					
+						$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($openhouse['ListingPrice']) );
+
+						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
+								floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
+					
+					$html .= '</div></div>';
+					// End agent ouput
+					
+					$clearfix_test = $count / $cols_per_row;
+					if( is_int( $clearfix_test ) ) {
+						$html .= '<div class="clearfix"></div>';
+					}
+
+					$count++;
+					
+				}
+			
+			$html .= '</div></div>';
+			
+		}
+		
+		if(current_user_can('administrator')) {
+		return $html;
+		}
+		
+	}
+	
+}
+new Rets_Open_Houses();
