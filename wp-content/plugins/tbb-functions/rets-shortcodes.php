@@ -1118,6 +1118,7 @@ class Rets_Company_Agents {
 new Rets_Company_Agents();
 
 
+
 // Displays list of Open Houses linked to IDX page.
 class Rets_Open_Houses {
 	
@@ -1211,9 +1212,7 @@ class Rets_Open_Houses {
 			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 			WHERE Office_OFFI.OfficeNumber = {$id}
-		";*/
-		
-		$query = "
+			
 			SELECT OpenHouse_OPEN.AgentFirstName, 
 			OpenHouse_OPEN.AgentLastName, 
 			OpenHouse_OPEN.OfficeName, 
@@ -1222,6 +1221,10 @@ class Rets_Open_Houses {
 			OpenHouse_OPEN.TimeComments,
 			OpenHouse_OPEN.MLNumber,
 			FROM OpenHouse_OPEN
+		";*/
+		
+		$query = "
+			SELECT * FROM OpenHouse_OPEN
 		";
 		
 		$openhouses_query = new Rets_DB();
@@ -1292,7 +1295,7 @@ class Rets_Open_Houses {
 			
 		}
 		
-		return $html;
+		//return $html;
 		
 	}
 	
