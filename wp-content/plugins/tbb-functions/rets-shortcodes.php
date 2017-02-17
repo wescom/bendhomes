@@ -1313,7 +1313,7 @@ class Rets_Open_Houses {
 			
 			if( isset( $result[$mls_num] ) )
 				//$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
-				$index = count( $result[$mls_num] );
+				$index = count( $result[$mls_num] ) - 10;
 			else
 				$index = 1;
 
