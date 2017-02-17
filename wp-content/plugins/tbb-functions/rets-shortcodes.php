@@ -1249,6 +1249,7 @@ class Rets_Open_Houses {
 			else
 				$index = 1;
 
+			$result[$mls_num] = $mls_num;
 			$result[$mls_num]['MLNumber'] = $mls_num;
 			$result[$mls_num]['AgentName' . $index] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
 			//$result[$mls_num]['AgentLastName' . $index] = $value['AgentLastName'];  
