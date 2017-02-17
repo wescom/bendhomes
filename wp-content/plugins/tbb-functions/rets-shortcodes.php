@@ -1231,7 +1231,6 @@ class Rets_Open_Houses {
 			StartDateTime,
 			TimeComments,
 			MLNumber
-			CONCAT(StartDateTime, ', ', TimeComments) as StartTime
 			FROM OpenHouse_OPEN
 		";
 		
@@ -1241,8 +1240,19 @@ class Rets_Open_Houses {
 		
 		//if( current_user_can('administrator') ) {
 			print_r( $query );
-			print_r( $openhouses );
+			//print_r( $openhouses );
 		//}
+		
+		$output = array();
+		foreach( $openhouses as $key ) {
+			$output[$key['id']]['MLNumber'] = $key['MLNumber'];
+			$output[$key['id']]['AgentName'] = $key['AgentFirstName'] .' '. $key['AgentLastName'];
+			$output[$key['id']]['OfficeName'] = $key['OfficeName'];
+			$output[$key['id']]['OfficePhone'] = $key['OfficePhone'];
+			$output[$key['id']]['Time'][] = array( 'StartDate' => $key['StartDateTime'], 'Time' => $key['TimeComments']);
+		}
+		
+		print_r($output);
 		
 		if( $openhouses ) {
 			
