@@ -1244,7 +1244,7 @@ class Rets_Open_Houses {
 		//}
 		
 		$output = array();
-		foreach( $openhouses as $output['MLNumber'] => $key ) {
+		foreach( $openhouses['MLNumber'] as $key ) {
 			$output[$key['id']]['MLNumber'] = $key['MLNumber'];
 			$output[$key['id']]['AgentName'] = $key['AgentFirstName'] .' '. $key['AgentLastName'];
 			$output[$key['id']]['OfficeName'] = $key['OfficeName'];
