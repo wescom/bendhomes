@@ -1270,7 +1270,7 @@ class Rets_Open_Houses {
 					$timecount = 0;
 					
 					$time_html = '';
-					foreach ( $openhouse['Time'. $timecount] as $time ) {
+					/*foreach ( $openhouse['Time'. $timecount] as $time ) {
 						
 						$date = new DateTime( $time['Date'] );
 						$date_format = $date->format('M, jS');
@@ -1278,7 +1278,7 @@ class Rets_Open_Houses {
 						$time_html .= sprintf( '<span class="time time'. $timecount .'">%s, %s</span>', $date_format, $time['Time'] );
 						
 						$timecount++;
-					}
+					}*/
 					
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s"><div class="custom-post-item clearfix">', 
