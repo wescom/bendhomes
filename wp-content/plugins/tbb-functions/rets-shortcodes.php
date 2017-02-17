@@ -1213,6 +1213,8 @@ class Rets_Open_Houses {
 			Property_RESI.City,
 			Property_RESI.State,
 			Property_RESI.ZipCode,
+			Property_RESI.ShowAddressToPublic,
+			Property_RESI.PublishToInternet
 			
 			FROM OpenHouse_OPEN
 			LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
@@ -1226,12 +1228,12 @@ class Rets_Open_Houses {
 		$openhouses = $openhouses_query->select( $query );
 		
 			print_r( $query );
-			print_r( $openhouses );
+			//print_r( $openhouses );
 		
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
-		//print_r($openhouses_array);
+		print_r($openhouses_array);
 		
 		
 		if( $openhouses ) {
