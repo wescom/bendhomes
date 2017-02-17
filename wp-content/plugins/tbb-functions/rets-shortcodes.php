@@ -1226,8 +1226,6 @@ class Rets_Open_Houses {
 		$query = "
 			SELECT AgentFirstName,
 			AgentLastName,
-			OfficeName,
-			OfficePhone,
 			StartDateTime,
 			TimeComments,
 			MLNumber
@@ -1252,10 +1250,10 @@ class Rets_Open_Houses {
 				$index = 1;
 
 			$result[$mls_num]['MLNumber'] = $mls_num;
-			$result[$mls_num]['AgentFirstName' . $index] = $value['AgentFirstName'];
-			$result[$mls_num]['AgentLastName' . $index] = $value['AgentLastName'];  
-			$result[$mls_num]['OfficeName' . $index] = $value['OfficeName'];
-			$result[$mls_num]['OfficePhone' . $index] = $value['OfficePhone'];
+			$result[$mls_num]['AgentName' . $index] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
+			//$result[$mls_num]['AgentLastName' . $index] = $value['AgentLastName'];  
+			//$result[$mls_num]['OfficeName' . $index] = $value['OfficeName'];
+			//$result[$mls_num]['OfficePhone' . $index] = $value['OfficePhone'];
 			$result[$mls_num]['Time' . $index] = [
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
