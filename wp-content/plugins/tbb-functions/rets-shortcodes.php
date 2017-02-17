@@ -1232,7 +1232,6 @@ class Rets_Open_Houses {
 			TimeComments,
 			MLNumber
 			FROM OpenHouse_OPEN
-			GROUP BY MLNumber
 		";
 		
 		$openhouses_query = new Rets_DB();
