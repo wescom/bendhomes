@@ -1231,7 +1231,7 @@ class Rets_Open_Houses {
 			StartDateTime,
 			TimeComments,
 			MLNumber
-			CONCAT_WS(',', StartDateTime, TimeComments) as StartTime
+			CONCAT(StartDateTime, ', ', TimeComments) as StartTime
 			FROM OpenHouse_OPEN
 		";
 		
