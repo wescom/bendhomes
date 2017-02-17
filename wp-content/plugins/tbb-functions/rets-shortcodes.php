@@ -1235,7 +1235,7 @@ class Rets_Open_Houses {
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
-			print_r($openhouses_array);
+			//print_r($openhouses_array);
 		
 		
 		if( $openhouses_array ) {
@@ -1284,7 +1284,9 @@ class Rets_Open_Houses {
 					
 						$html .= '<div class="open-house-meta">';
 					
-							$timecount = 0;
+							/*$timecount = 0;
+					
+							$times_total = count();
 										
 							foreach ( $openhouse['DateAndTime'. $timecount] as $key2 => $value ) {
 						
@@ -1294,7 +1296,7 @@ class Rets_Open_Houses {
 								$html .= sprintf( '<span class="time time-'. $timecount .'">%s, %s</span>', $value['Date'], $value['Time'] );
 
 								$timecount++;
-							}
+							}*/
 						
 						$html .= '</div>';
 					
