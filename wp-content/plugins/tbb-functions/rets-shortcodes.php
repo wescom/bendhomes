@@ -1226,8 +1226,6 @@ class Rets_Open_Houses {
 		$query = "
 			SELECT AgentFirstName,
 			AgentLastName,
-			OfficeName,
-			OfficePhone,
 			StartDateTime,
 			TimeComments,
 			MLNumber
@@ -1238,21 +1236,14 @@ class Rets_Open_Houses {
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-		//if( current_user_can('administrator') ) {
-			print_r( $query );
-			print_r( $openhouses );
-		//}
+			//print_r( $query );
+			//print_r( $openhouses );
 		
-		$output = array();
-		foreach( $openhouses['MLNumber'] as $key ) {
-			$output[$key['id']]['MLNumber'] = $key['MLNumber'];
-			$output[$key['id']]['AgentName'] = $key['AgentFirstName'] .' '. $key['AgentLastName'];
-			$output[$key['id']]['OfficeName'] = $key['OfficeName'];
-			$output[$key['id']]['OfficePhone'] = $key['OfficePhone'];
-			$output[$key['id']]['Time'][] = array( 'StartDate' => $key['StartDateTime'], 'Time' => $key['TimeComments']);
-		}
 		
-		//print_r($output);
+		$openhouses_array = $this->format_rets_query( $openhouses );
+		
+		print_r($openhouses_array);
+		
 		
 		if( $openhouses ) {
 			
@@ -1315,6 +1306,29 @@ class Rets_Open_Houses {
 		}
 		
 		//return $html;
+		
+	}
+	
+	// Format $query into better array to handle multiple dates/times
+	public function format_rets_query( $query_array ) {
+			
+		$result = [];
+		foreach( $query_array as $value ) {
+			$mls_num = $value['MLNumber'];
+			if( isset( $result[$mls_num] ) )
+				$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
+			else
+				$index = 1;
+
+			$result[$mls_num]['MLNumber'] = $mls_num;
+			$result[$mls_num]['AgentName' . $index] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
+			$result[$mls_num]['Time' . $index] = [
+				'Date' => $value['StartDateTime'],
+				'Time' => $value['TimeComments']
+			];
+		}
+		
+		return array_values( $result );
 		
 	}
 	
