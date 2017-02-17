@@ -1288,10 +1288,10 @@ class Rets_Open_Houses {
 					
 							foreach ( $openhouse['DateAndTime'. $timecount] as $key2 => $time ) {
 						
-								$date = new DateTime( $time['Date'] );
-								$date_format = $date->format('M, jS');
+								//$date = new DateTime( $time['Date'] );
+								//$date_format = $date->format('M, jS');
 
-								$html .= sprintf( '<span class="time time-'. $timecount .'">%s, %s</span>', $date_format, $time['Time'] );
+								$html .= sprintf( '<span class="time time-'. $timecount .'">%s, %s</span>', $time['Date'], $time['Time'] );
 
 								$timecount++;
 							}
