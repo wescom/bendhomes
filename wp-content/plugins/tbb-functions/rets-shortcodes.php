@@ -1202,11 +1202,8 @@ class Rets_Open_Houses {
 			OpenHouse_OPEN.StartDateTime,
 			OpenHouse_OPEN.TimeComments,
 			OpenHouse_OPEN.MLNumber,
-			FROM OpenHouse_OPEN
-			LEFT OUTER JOIN Property_RESI OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			
-			UNION ALL
-			SELECT Property_RESI.MLNumber,
+			Property_RESI.MLNumber,
 			Property_RESI.ListingPrice,
 			Property_RESI.imagepref,
 			Property_RESI.StreetNumber,
@@ -1218,9 +1215,9 @@ class Rets_Open_Houses {
 			Property_RESI.ZipCode,
 			Property_RESI.ShowAddressToPublic,
 			Property_RESI.PublishToInternet
-			FROM Property_RESI
-			LEFT OUTER JOIN Property_RESI on Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
 			
+			FROM OpenHouse_OPEN
+			LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
@@ -1231,12 +1228,12 @@ class Rets_Open_Houses {
 		$openhouses = $openhouses_query->select( $query );
 		
 			print_r( $query );
-			print_r( $openhouses );
+			//print_r( $openhouses );
 		
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
-		//print_r($openhouses_array);
+		print_r($openhouses_array);
 		
 		
 		if( $openhouses ) {
@@ -1316,6 +1313,15 @@ class Rets_Open_Houses {
 
 			$result[$mls_num]['MLNumber'] = $mls_num;
 			$result[$mls_num]['AgentName' . $index] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
+			$result[$mls_num]['ListingPrice' . $index] = $value['ListingPrice'];
+			$result[$mls_num]['imagepref' . $index] = $value['imagepref'];
+			$result[$mls_num]['StreetNumber' . $index] = $value['StreetNumber'];
+			$result[$mls_num]['StreetDirection' . $index] = $value['StreetDirection'];
+			$result[$mls_num]['StreetName' . $index] = $value['StreetName'];
+			$result[$mls_num]['StreetSuffix' . $index] = $value['StreetSuffix'];
+			$result[$mls_num]['City' . $index] = $value['City'];
+			$result[$mls_num]['State' . $index] = $value['State'];
+			$result[$mls_num]['ZipCode' . $index] = $value['ZipCode'];
 			$result[$mls_num]['Time' . $index] = [
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
