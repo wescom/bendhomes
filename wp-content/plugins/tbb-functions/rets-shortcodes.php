@@ -1230,13 +1230,13 @@ class Rets_Open_Houses {
 			Property_RESI.City,
 			Property_RESI.State,
 			Property_RESI.ZipCode,
-			Property_RESI.Bedrooms,
-			Property_RESI.Bathrooms
+			Property_RESI.MLNumber AS column1, OpenHouse_OPEN.MLNumber AS column2
 			FROM Property_RESI
-			LEFT JOIN OpenHouse_OPEN on Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
-			WHERE Property_RESI.Status = 'Active'
-			AND Property_RESI.ShowAddressToPublic = 1
-			AND Property_RESI.PublishToInternet = 1
+			LEFT JOIN OpenHouse_OPEN
+			ON Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
 		";
 		
 		$openhouses_query = new Rets_DB();
