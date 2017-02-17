@@ -1230,10 +1230,10 @@ class Rets_Open_Houses {
 			Property_RESI.City,
 			Property_RESI.State,
 			Property_RESI.ZipCode,
-			Property_RESI.MLNumber AS column1, OpenHouse_OPEN.MLNumber AS column2
-			FROM Property_RESI
-			LEFT JOIN OpenHouse_OPEN
-			ON Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
+			FROM OpenHouse_OPEN
+			JOIN Property_RESI
+			ON OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+			UNION ALL
 			WHERE Status = 'Active'
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
