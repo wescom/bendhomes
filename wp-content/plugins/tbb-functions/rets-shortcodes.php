@@ -1233,7 +1233,6 @@ class Rets_Open_Houses {
 			FROM Property_RESI
 			LEFT JOIN OpenHouse_OPEN
 			ON Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
-			UNION ALL
 			WHERE Property_RESI.Status = 'Active'
 			AND Property_RESI.ShowAddressToPublic = 1
 			AND Property_RESI.PublishToInternet = 1
