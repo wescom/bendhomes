@@ -1310,7 +1310,7 @@ class Rets_Open_Houses {
 				$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
 			else
 				$index = 1;
-
+			
 			$result[$mls_num]['MLNumber'] = $mls_num;
 			$result[$mls_num]['AgentName'] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
 			$result[$mls_num]['ListingPrice'] = $value['ListingPrice'];
@@ -1322,9 +1322,11 @@ class Rets_Open_Houses {
 			$result[$mls_num]['City'] = $value['City'];
 			$result[$mls_num]['State'] = $value['State'];
 			$result[$mls_num]['ZipCode'] = $value['ZipCode'];
-			$result[$mls_num]['Time' . $index] = [
-				'Date' => $value['StartDateTime'],
-				'Time' => $value['TimeComments']
+			$result[$mls_num]['Time'] = [
+				$index = [
+					'Date' => $value['StartDateTime'],
+					'Time' => $value['TimeComments']
+				]
 			];
 		}
 		
