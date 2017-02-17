@@ -1348,11 +1348,9 @@ class Rets_Open_Houses {
 			$result[$mls_num]['ZipCode'] = $value['ZipCode'];
 			$result[$mls_num]['Bedrooms'] = $value['Bedrooms'];
 			$result[$mls_num]['Bathrooms'] = $value['Bathrooms']; // 13th array item in list so this total goes above in $index as 13
-			$result[$mls_num]['DateAndTime'] = [
-				$index[] = [
+			$result[$mls_num]['DateAndTime'. $index] = [
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
-				]
 			];
 			
 		}
