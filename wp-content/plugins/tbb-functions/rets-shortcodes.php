@@ -1197,13 +1197,7 @@ class Rets_Open_Houses {
 		";*/
 		
 		$query = "
-			SELECT OpenHouse_OPEN.AgentFirstName,
-			OpenHouse_OPEN.AgentLastName,
-			OpenHouse_OPEN.StartDateTime,
-			OpenHouse_OPEN.TimeComments,
-			OpenHouse_OPEN.MLNumber,
-			
-			Property_RESI.MLNumber,
+			SELECT Property_RESI.MLNumber,
 			Property_RESI.ListingPrice,
 			Property_RESI.imagepref,
 			Property_RESI.StreetNumber,
@@ -1214,7 +1208,13 @@ class Rets_Open_Houses {
 			Property_RESI.State,
 			Property_RESI.ZipCode,
 			Property_RESI.ShowAddressToPublic,
-			Property_RESI.PublishToInternet
+			Property_RESI.PublishToInternet,
+			
+			OpenHouse_OPEN.AgentFirstName,
+			OpenHouse_OPEN.AgentLastName,
+			OpenHouse_OPEN.StartDateTime,
+			OpenHouse_OPEN.TimeComments,
+			OpenHouse_OPEN.MLNumber,
 			
 			FROM OpenHouse_OPEN
 			LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
