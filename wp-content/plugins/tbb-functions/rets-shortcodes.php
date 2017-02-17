@@ -1240,7 +1240,7 @@ class Rets_Open_Houses {
 		
 		//if( current_user_can('administrator') ) {
 			print_r( $query );
-			//print_r( $openhouses );
+			print_r( $openhouses );
 		//}
 		
 		$output = array();
@@ -1252,7 +1252,7 @@ class Rets_Open_Houses {
 			$output[$key['id']]['Time'][] = array( 'StartDate' => $key['StartDateTime'], 'Time' => $key['TimeComments']);
 		}
 		
-		print_r($output);
+		//print_r($output);
 		
 		if( $openhouses ) {
 			
