@@ -1313,9 +1313,9 @@ class Rets_Open_Houses {
 			
 			if( isset( $result[$mls_num] ) )
 				//$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
-				$index = count( $result[$mls_num] ) - 10;
+				$index = count( $result[$mls_num] ) - 11;
 			else
-				$index = 1;
+				$index = 0;
 
 			$result[$mls_num]['MLNumber'] = $mls_num;
 			$result[$mls_num]['AgentName'] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
