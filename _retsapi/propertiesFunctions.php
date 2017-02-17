@@ -810,7 +810,7 @@ function cleanOpenHousesTable() {
 
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
-            deleteOpenHouses($qvars, $badIds);
+            deleteOpenHouses($badIds);
             echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
         } else {
             echo " No Bad Ids to delete.\n\r";
