@@ -1313,8 +1313,8 @@ class Rets_Open_Houses {
 
 			$result[$mls_num]['MLNumber'] = $mls_num;
 			$result[$mls_num]['AgentName' . $index] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
-			$result[$mls_num]['ListingPrice' . $index] = $value['ListingPrice'];
-			$result[$mls_num]['imagepref' . $index] = $value['imagepref'];
+			$result[$mls_num]['ListingPrice'] = $value['ListingPrice'];
+			$result[$mls_num]['imagepref'] = $value['imagepref'];
 			$result[$mls_num]['StreetNumber' . $index] = $value['StreetNumber'];
 			$result[$mls_num]['StreetDirection' . $index] = $value['StreetDirection'];
 			$result[$mls_num]['StreetName' . $index] = $value['StreetName'];
