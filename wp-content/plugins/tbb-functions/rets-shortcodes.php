@@ -1219,19 +1219,9 @@ class Rets_Open_Houses {
 			OpenHouse_OPEN.OfficeName, 
 			OpenHouse_OPEN.OfficePhone, 
 			OpenHouse_OPEN.StartDateTime, 
-			OpenHouse_OPEN.TimeComments, 
-			Property_RESI.MLNumber,
-			Property_RESI.ListingPrice,
-			Property_RESI.imagepref,
-			Property_RESI.StreetNumber,
-			Property_RESI.StreetDirection,
-			Property_RESI.StreetName,
-			Property_RESI.StreetSuffix,
-			Property_RESI.City,
-			Property_RESI.State,
-			Property_RESI.ZipCode,
-			FROM Property_RESI
-			LEFT JOIN OpenHouse_OPEN on Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
+			OpenHouse_OPEN.TimeComments,
+			OpenHouse_OPEN.MLNumber,
+			FROM OpenHouse_OPEN
 		";
 		
 		$openhouses_query = new Rets_DB();
