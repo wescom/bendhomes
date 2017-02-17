@@ -784,11 +784,11 @@ function cleanOpenHousesTable() {
 
         $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
 
-        /*$rets_ids = [];
+        $rets_ids = [];
         foreach($retsIdArray as $id) {
-            array_push($rets_ids, $id['ListingRid']);
-        }*/
-        echo "<pre>RetsIds: ".implode(", ",$retsIdArray)."</pre>";
+            array_push($rets_ids, $id['OpenHouseRid']);
+        }
+        echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
 
         $our_ids = getAllOurOpenHouseIds($qvars);
         echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
