@@ -1213,10 +1213,14 @@ class Rets_Open_Houses {
 			Property_RESI.City,
 			Property_RESI.State,
 			Property_RESI.ZipCode,
+			Property_RESI.ShowAddressToPublic,
+			Property_RESI.PublishToInternet
 			
 			FROM OpenHouse_OPEN
 			LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
 		";
 		
 		$openhouses_query = new Rets_DB();
