@@ -1202,11 +1202,8 @@ class Rets_Open_Houses {
 			OpenHouse_OPEN.StartDateTime,
 			OpenHouse_OPEN.TimeComments,
 			OpenHouse_OPEN.MLNumber,
-			FROM OpenHouse_OPEN
-			LEFT OUTER JOIN Property_RESI OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			
-			UNION ALL
-			SELECT Property_RESI.MLNumber,
+			Property_RESI.MLNumber,
 			Property_RESI.ListingPrice,
 			Property_RESI.imagepref,
 			Property_RESI.StreetNumber,
@@ -1218,9 +1215,10 @@ class Rets_Open_Houses {
 			Property_RESI.ZipCode,
 			Property_RESI.ShowAddressToPublic,
 			Property_RESI.PublishToInternet
-			FROM Property_RESI
-			LEFT OUTER JOIN Property_RESI on Property_RESI.MLNumber = OpenHouse_OPEN.MLNumber
 			
+			FROM OpenHouse_OPEN
+			
+			LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
