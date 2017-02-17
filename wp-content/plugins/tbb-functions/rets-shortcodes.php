@@ -1229,7 +1229,7 @@ class Rets_Open_Houses {
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-			//print_r( $query );
+			print_r( $query );
 			//print_r( $openhouses );
 		
 		
@@ -1313,7 +1313,7 @@ class Rets_Open_Houses {
 			
 		}
 		
-		//return $html;
+		return $html;
 		
 	}
 	
