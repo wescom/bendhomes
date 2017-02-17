@@ -1292,9 +1292,7 @@ class Rets_Open_Houses {
 			
 		}
 		
-		if( current_user_can('administrator') ) {
 		return $html;
-		}
 		
 	}
 	
