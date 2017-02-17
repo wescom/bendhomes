@@ -1136,7 +1136,7 @@ class Rets_Open_Houses {
 		$defaults = shortcode_atts(
 			array(
 				'class' => '',
-				'columns' => 3,
+				'columns' => 1,
 			), $args
 		);
 
@@ -1213,6 +1213,8 @@ class Rets_Open_Houses {
 			Property_RESI.City,
 			Property_RESI.State,
 			Property_RESI.ZipCode,
+			Property_RESI.Bedrooms,
+			Property_RESI.Bathrooms,
 			Property_RESI.ShowAddressToPublic,
 			Property_RESI.PublishToInternet
 			
@@ -1227,18 +1229,18 @@ class Rets_Open_Houses {
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-			print_r( $query );
+			//print_r( $query );
 			//print_r( $openhouses );
 		
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
-		print_r($openhouses_array);
+			//print_r($openhouses_array);
 		
 		
-		if( $openhouses ) {
+		if( $openhouses_array ) {
 			
-			$total_listings = count( $openhouses );
+			$total_listings = count( $openhouses_array );
 			$total_text = $total_listings == 1 ? 'Open House' : 'Open Houses';
 			
 			$count = 1;
@@ -1247,7 +1249,7 @@ class Rets_Open_Houses {
 			
 				$html .= '<div class="total-listings">'. number_format( $total_listings ) .' '. $total_text .'</div>';
 			
-				foreach( $openhouses as $openhouse ) {
+				foreach( $openhouses_array as $openhouse ) {
 					
 					if( !empty( $openhouse['imagepref'] ) ) {
 						$has_image_class = 'with-image';
@@ -1280,6 +1282,22 @@ class Rets_Open_Houses {
 						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
 								floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
 					
+						$html .= '<div class="open-house-meta"></div>';
+					
+							/*$timecount = 0;
+					
+							foreach ( $openhouse['Time'. $timecount] as $time ) {
+						
+								$date = new DateTime( $time['Date'] );
+								$date_format = $date->format('M, jS');
+
+								$html .= sprintf( '<span class="time time'. $timecount .'">%s, %s</span>', $date_format, $time['Time'] );
+
+								$timecount++;
+							}*/
+						
+						$html .= '</div>';
+					
 					$html .= '</div></div>';
 					// End agent ouput
 					
@@ -1296,7 +1314,7 @@ class Rets_Open_Houses {
 			
 		}
 		
-		//return $html;
+		return $html;
 		
 	}
 	
@@ -1306,14 +1324,12 @@ class Rets_Open_Houses {
 		$result = [];
 		
 		foreach( $query_array as $value ) {
-			
-			$count = 0;
-			
+						
 			$mls_num = $value['MLNumber'];
 			
 			if( isset( $result[$mls_num] ) )
 				//$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
-				$index = count( $result[$mls_num] ) - 11;
+				$index = count( $result[$mls_num] ) - 13;
 			else
 				$index = 0;
 
@@ -1328,6 +1344,8 @@ class Rets_Open_Houses {
 			$result[$mls_num]['City'] = $value['City'];
 			$result[$mls_num]['State'] = $value['State'];
 			$result[$mls_num]['ZipCode'] = $value['ZipCode'];
+			$result[$mls_num]['Bedrooms'] = $value['Bedrooms'];
+			$result[$mls_num]['Bathrooms'] = $value['Bathrooms']; // 13th array item in list so this total goes above in $index as 13
 			$result[$mls_num]['Time' . $index] = [
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
