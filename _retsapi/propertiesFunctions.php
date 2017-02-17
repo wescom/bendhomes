@@ -793,7 +793,7 @@ function cleanOpenHousesTable() {
         $our_ids = getAllOurOpenHouseIds($qvars);
         echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
 
-        $badIds = compareAndGetBads($retsIdArray, $our_ids);
+        $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
             //deletePropertyIds($qvars, $badIds);
             echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
