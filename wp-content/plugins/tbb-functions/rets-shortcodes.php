@@ -1246,17 +1246,17 @@ class Rets_Open_Houses {
 		$result = array(); //Your minimized array
 		foreach($openhouses as $value){
 			$mls_num = $value['MLNumber'];
-			if(isset($result[$mls_num]))
+			/*if(isset($result[$mls_num]))
 				$index = ((count($result[$mls_num]) - 1) / 2) + 1;
 			else
-				$index = 1;
+				$index = 1;*/
 
 			$result[$mls_num]['MLNumber'] = $mls_num;
-			$result[$mls_num]['AgentFirstName' . $index] = $value['AgentFirstName'];
-			$result[$mls_num]['AgentLastName' . $index] = $value['AgentLastName'];  
-			$result[$mls_num]['OfficeName' . $index] = $value['OfficeName'];
-			$result[$mls_num]['OfficePhone' . $index] = $value['OfficePhone'];
-			$result[$mls_num]['Time' . $index] = [
+			$result[$mls_num]['AgentFirstName'] = $value['AgentFirstName'];
+			$result[$mls_num]['AgentLastName'] = $value['AgentLastName'];  
+			$result[$mls_num]['OfficeName'] = $value['OfficeName'];
+			$result[$mls_num]['OfficePhone'] = $value['OfficePhone'];
+			$result[$mls_num]['Time'] = [
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
 			];
