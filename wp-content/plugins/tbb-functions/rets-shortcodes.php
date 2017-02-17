@@ -1236,10 +1236,9 @@ class Rets_Open_Houses {
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-		//if( current_user_can('administrator') ) {
-			print_r( $query );
+			//print_r( $query );
 			//print_r( $openhouses );
-		//}
+		
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
