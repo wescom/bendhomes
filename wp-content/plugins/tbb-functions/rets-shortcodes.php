@@ -1241,27 +1241,10 @@ class Rets_Open_Houses {
 			//print_r( $openhouses );
 		//}
 		
-		$result = array(); //Your minimized array
-		foreach($openhouses as $value){
-			$mls_num = $value['MLNumber'];
-			if(isset($result[$mls_num]))
-				$index = ((count($result[$mls_num]) - 1) / 2) + 1;
-			else
-				$index = 1;
-
-			$result[$mls_num]['MLNumber'] = $mls_num;
-			$result[$mls_num]['AgentName' . $index] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
-			//$result[$mls_num]['AgentLastName' . $index] = $value['AgentLastName'];  
-			//$result[$mls_num]['OfficeName' . $index] = $value['OfficeName'];
-			//$result[$mls_num]['OfficePhone' . $index] = $value['OfficePhone'];
-			$result[$mls_num]['Time' . $index] = [
-				'Date' => $value['StartDateTime'],
-				'Time' => $value['TimeComments']
-			];
-		}
-		$result = array_values($result);
+		$openhouses_array = $this->format_rets_query( $openhouses );
 		
-		print_r($result);
+		print_r($openhouses_array);
+		
 		
 		if( $openhouses ) {
 			
@@ -1324,6 +1307,29 @@ class Rets_Open_Houses {
 		}
 		
 		//return $html;
+		
+	}
+	
+	// Format $query into better array to handle multiple dates/times
+	public function format_rets_query( $query_array ) {
+			
+		$result = [];
+		foreach( $query_array as $value ) {
+			$mls_num = $value['MLNumber'];
+			if( isset( $result[$mls_num] ) )
+				$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
+			else
+				$index = 1;
+
+			$result[$mls_num]['MLNumber'] = $mls_num;
+			$result[$mls_num]['AgentName' . $index] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
+			$result[$mls_num]['Time' . $index] = [
+				'Date' => $value['StartDateTime'],
+				'Time' => $value['TimeComments']
+			];
+		}
+		
+		return array_values( $result );
 		
 	}
 	
