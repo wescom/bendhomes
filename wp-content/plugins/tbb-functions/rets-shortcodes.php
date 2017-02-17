@@ -1197,29 +1197,28 @@ class Rets_Open_Houses {
 		";*/
 		
 		$query = "
-			SELECT OpenHouse_OPEN t1, Property_RESI t2
-			t1.AgentFirstName,
-			t1.AgentLastName,
-			t1.StartDateTime,
-			t1.TimeComments,
-			t1.MLNumber,
+			SELECT OpenHouse_OPEN.AgentFirstName,
+			OpenHouse_OPEN.AgentLastName,
+			OpenHouse_OPEN.StartDateTime,
+			OpenHouse_OPEN.TimeComments,
+			OpenHouse_OPEN.MLNumber,
 			
-			t2.MLNumber,
-			t2.ListingPrice,
-			t2.imagepref,
-			t2.StreetNumber,
-			t2.StreetDirection,
-			t2.StreetName,
-			t2.StreetSuffix,
-			t2.City,
-			t2.State,
-			t2.ZipCode,
-			t2.ShowAddressToPublic,
-			t2.PublishToInternet
+			Property_RESI.MLNumber,
+			Property_RESI.ListingPrice,
+			Property_RESI.imagepref,
+			Property_RESI.StreetNumber,
+			Property_RESI.StreetDirection,
+			Property_RESI.StreetName,
+			Property_RESI.StreetSuffix,
+			Property_RESI.City,
+			Property_RESI.State,
+			Property_RESI.ZipCode,
+			Property_RESI.ShowAddressToPublic,
+			Property_RESI.PublishToInternet
 			
-			FROM t1
-			LEFT OUTER JOIN t2 on t1.MLNumber = t2.MLNumber
-			WHERE t1.MLNumber = t2.MLNumber
+			FROM OpenHouse_OPEN
+			LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 		";
