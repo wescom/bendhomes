@@ -1305,9 +1305,13 @@ class Rets_Open_Houses {
 			
 		$result = [];
 		foreach( $query_array as $value ) {
+			$count = 0;
+			
 			$mls_num = $value['MLNumber'];
+			
 			if( isset( $result[$mls_num] ) )
-				$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
+				//$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
+				$index = $count + 1;
 			else
 				$index = 1;
 
@@ -1326,6 +1330,8 @@ class Rets_Open_Houses {
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
 			];
+			
+			$count++;
 		}
 		
 		return array_values( $result );
