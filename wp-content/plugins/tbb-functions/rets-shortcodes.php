@@ -1235,7 +1235,7 @@ class Rets_Open_Houses {
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
-			//print_r($openhouses_array);
+			print_r($openhouses_array);
 		
 		
 		if( $openhouses_array ) {
