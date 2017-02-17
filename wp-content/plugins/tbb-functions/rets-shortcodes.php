@@ -932,7 +932,7 @@ class Rets_Company {
 			$html .= '</div><!-- end span9 or span12 -->';
 			$html .= '</div><!-- end .row-fluid -->';
 
-			$html .= do_shortcode('[rets_company_agents][/rets_company_agents]');
+			$html .= do_shortcode('[rets_company_agents]');
 
 			$html .= '</div></article>';			
 			
@@ -1242,7 +1242,7 @@ class Rets_Open_Houses {
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-		if(current_user_can('administrator')) {
+		if( current_user_can('administrator') ) {
 			print_r( $openhouses );
 		}
 		
@@ -1306,7 +1306,7 @@ class Rets_Open_Houses {
 			
 		}
 		
-		if(current_user_can('administrator')) {
+		if( current_user_can('administrator') ) {
 		return $html;
 		}
 		
