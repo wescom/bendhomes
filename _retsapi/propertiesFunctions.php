@@ -873,20 +873,20 @@ function executeUpdatePropertiesTable() {
 
     $scenarios = getScenarios();
 
-    $pullDate = '2001-01-01T00:00:00-08:00';
-    //$pullDate = getSetPullDate("-3 hours");
+    //$pullDate = '2001-01-01T00:00:00-08:00';
+    $pullDate = getSetPullDate("-2 hours");
 
     //$start = 0;
-    $start = 54500; // start index
-    $count = 500; // how many past start to grab
+    //$start = 54500; // start index
+    //$count = 500; // how many past start to grab
 
     foreach($scenarios as $qvars) {
 
             $retsIdArray = getAllRetsIdsQuery($qvars, $pullDate);
 
             if (sizeof($retsIdArray) > $start) {
-                $pieceArray = array_slice($retsIdArray, $start, $count);
-                //$pieceArray = $retsIdArray;
+                //$pieceArray = array_slice($retsIdArray, $start, $count);
+                $pieceArray = $retsIdArray;
 
 
                 //echo implode(',', $pieceArray)
