@@ -202,5 +202,44 @@ function tbb_add_modal_to_footer() {
 	</div>
 	<?php
 	}
+	
 	echo ob_get_clean();
 }
+
+
+// Javascript to get url parameters on single property idx page to display Open House info
+add_action('wp_footer', 'tbb_add_openhouses');
+function tbb_add_openhouses() {
+	ob_start();
+	
+	if( is_page( array('577379', '577465') ) ) {
+	?>
+	<script type="text/javascript">
+	var description = document.getElementById('IDX-description');
+	/*function getURLParameter(name) {
+	  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}*/
+	function getUrlVars()
+	{
+			var vars = [], hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for(var i = 0; i < hashes.length; i++)
+			{
+					hash = hashes[i].split('=');                        
+					vars[hash[0]] = hash[1];
+			}
+			return vars;
+	}
+
+	var url_vars = getUrlVars();
+	for(var i in url_vars)
+	{
+			alert(i + " == " + url_vars[i]);
+	}
+	</script>
+	<?php
+	}
+	
+	echo ob_get_clean();
+}
+
