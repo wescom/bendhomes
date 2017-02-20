@@ -216,8 +216,6 @@ function tbb_add_openhouses() {
 	?>
 	<script type="text/javascript">
 	var description = document.getElementById('IDX-description');
-	var openHouse = document.createElement('div');
-	openHouse.setAttribute('id', 'OpenHouse');
 		
 	function getUrlVars() {
 		var vars = [], hash;
@@ -229,17 +227,14 @@ function tbb_add_openhouses() {
 		return vars;
 	}
 
-	/*var url_vars = getUrlVars();
+	var time = [];
+	var url_vars = getUrlVars();
 	for(var i in url_vars) {
 			//alert(i + " == " + url_vars[i]);
-		var time = document.createElement('div');
-		time.setAttribute('class', 'time');
-		var textnode = document.createTextNode(url_vars[i])
-		time.appendChild(textnode);
+		time[time.length] = '<div class="time time-'+ i +'">'+ url_vars[i] +'</div>';
 	}
 		
-	openHouse.appendChild(time);*/
-	description.insertAdjacentHTML('beforebegin', '<div class="OpenHouse"></div>');
+	description.insertAdjacentHTML('beforebegin', '<div id="OpenHouse"><!-- '+ time +' --></div>');
 		
 	</script>
 	<?php
