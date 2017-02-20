@@ -1284,9 +1284,12 @@ class Rets_Open_Houses {
 					
 						$html .= '<div class="open-house-meta">';
 					
-							$array_total = sizeof( $openhouse );
+							$timecount_start = 0;
+							$timecount_end = sizeof( $openhouse ) - 13;
 					
-							$html .= $array_total;
+							for( $i = $timecount_start; $i < $timecount_end; $i++ ) {
+								$html .= '<div>'. $openhouse['DateAndTime'. $i]['Date'] .' - '. $openhouse['DateAndTime'. $i]['Time'] .'</div>';
+							}
 										
 							/*$timecount = 0;
 					
