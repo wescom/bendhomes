@@ -214,7 +214,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
 
     echo '<pre>';
         //print_r($results);
-    echo '</pre>';
+    echo '</pre>\r\n';
 
     // convert from objects to array, easier to process
     $temparr = $results->toArray();
@@ -275,7 +275,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
         }
     }
 
-    echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr).'</pre>';
+    echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr)."</pre>\r\n";
 
     return $itemsarr;
 }
@@ -319,7 +319,7 @@ function getOpenHouseData($qvars, $pullDate, $idArray){
     // refactor arr with keys supplied by universalkeys in header
     $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
-    echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr).'</pre>';
+    echo '<pre style="background-color: brown; color: #fff;">count2: '.sizeof($itemsarr)."</pre>\r\n";
 
     return $itemsarr;
 }
@@ -361,7 +361,7 @@ function getAllRetsIdsQuery($qvars, $pullDate) {
         $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
 
-        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr)."</pre>\r\n";
 
         return $itemsarr;
 }
@@ -399,9 +399,9 @@ function savePropertyData($qvars, $itemsarr) {
             $query .= " VALUES ('".implode("', '", $escarray)."') ";
 
             if (mysqli_query($dbConnection, $query)) {
-                $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+                $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>\r\n";
             } else {
-                $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+                $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>\r\n";;
             }
         }
     }
@@ -434,9 +434,9 @@ function saveOpenHouseData($qvars, $itemsarr) {
         $query .= " VALUES ('".implode("', '", $escarray)."') ";
         echo "Query: ".$query."<br>";
         if (mysqli_query($dbConnection, $query)) {
-            $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+            $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>\r\n";
         } else {
-            $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+            $reportout .= "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>\r\n";;
         }
     }
 
@@ -460,11 +460,11 @@ function saveToAgentLookupTable($itemsarr) {
                 $query .= " (`".implode("`, `", array_keys($escarray))."`)";
                 $query .= " VALUES ('".implode("', '", $escarray)."') ";
                 $query .= "ON DUPLICATE KEY UPDATE ListingAgentNumber = VALUES(ListingAgentNumber)";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
-                echo '<p>Query: '.$query.'</p>';
+                echo '<p>Query: '.$query.'</p>\r\n';
                 if (mysqli_query($dbConnection, $query)) {
-                        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+                        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>\r\n";
                 } else {
-                        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+                        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>\r\n";;
                 }
         }
         mysqli_close($dbConnection);
@@ -489,9 +489,9 @@ function saveMissingToLookupTable($itemsarr) {
                 $query .= "ON DUPLICATE KEY UPDATE ListingAgentNumber = VALUES(ListingAgentNumber)";  //MemberNumber = VALUES(".$array['MemberNumber'].")";
                 echo '<p>Query: '.$query.'</p>';
                 if (mysqli_query($dbConnection, $query)) {
-                        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>";
+                        echo "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>\r\n";
                 } else {
-                        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>";;
+                        echo "<p style='margin: 0; background-color: red; color: #fff;'>Error occurred: " . mysqli_error($dbConnection) . " row</p>\r\n";;
                 }
         }
         mysqli_close($dbConnection);
@@ -516,7 +516,7 @@ function getAllOurPropertyIds($qvars) {
                         array_push($idArray, $row['ListingRid']);
                 }
         }
-        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
+        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray)."</pre>\r\n";
         mysqli_close($conn);
 
         return $idArray;
@@ -528,7 +528,7 @@ function compareAndGetBads($retsIdArray, $ourIdArray) {
         $count = 0;
         $idArray = [];
         $idArray = array_diff($ourIdArray, $retsIdArray);
-        echo '<pre style="color: red;">'.$count.', BAD Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray).'</pre>';
+        echo '<pre style="color: red;">'.$count.', BAD Ids - count: '.sizeof($idArray).' - '.implode(",",$idArray)."</pre>\r\n";
         return $idArray;
 }
 
@@ -549,9 +549,9 @@ function deletePropertyIds($qvars, $idArray) {
         }
 
         if($conn->query($query)) {
-                echo "<p>Success!!!!</p>";
+                echo "<p>Success!!!!</p>\r\n";
         } else {
-                echo "<p>Error: ".mysqli_error($conn)."</p>";
+                echo "<p>Error: ".mysqli_error($conn)."</p>\r\n";
         }
         mysqli_close($conn);
 
@@ -598,7 +598,7 @@ function getAllOurActives($qvars){
             array_push($idArray, $row['ListingRid']);
         }
     }
-    echo '<pre style="color: blue;">OUR Active Ids - count: '.sizeof($idArray).'</pre>';
+    echo '<pre style="color: blue;">OUR Active Ids - count: '.sizeof($idArray)."</pre>\r\n";
     mysqli_close($conn);
     return $idArray;
 }
@@ -644,7 +644,7 @@ function getAllOurLookupIds() {
                         array_push($idArray, $row['ListingRid']);
                 }
         }
-        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
+        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray)."</pre>\r\n";
         mysqli_close($conn);
         return $idArray;
 }
@@ -662,7 +662,7 @@ function getAllOurOpenHouseIds(){
                         array_push($idArray, $row['OpenHouseRid']);
                 }
         }
-        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray).'</pre>';
+        echo '<pre style="color: blue;">OUR Ids - count: '.sizeof($idArray)."</pre>\r\n";
         mysqli_close($conn);
         return $idArray;
 }
@@ -688,11 +688,11 @@ function deleteOpenHouses($idArray) {
                 die("Connection failed: " . $conn->connect_error);
         }
         $query = "DELETE from OpenHouse_OPEN WHERE OpenHouseRid IN (".implode(", ",$idArray).")";
-        echo '<p>'.$query.'</p>';
+        echo '<p>'.$query."</p>\r\n";
         if($conn->query($query)) {
-                echo "<p>Success!!!!</p>";
+                echo "<p>Success!!!!</p>\r\n";
         } else {
-                echo "<p>Error: ".mysqli_error($conn)."</p>";
+                echo "<p>Error: ".mysqli_error($conn)."</p>\r\n";
         }
         mysqli_close($conn);
 }
@@ -709,12 +709,12 @@ function executeUpdateAgentsLookupByMLSTable() {
         foreach($scenarios as $qvars) {
 
                 // 1. Get RETS data
-                echo '<pre style="color:green">'.$qvars['class'].'</pre>';
+                echo '<pre style="color:green">'.$qvars['class']."</pre>\r\n";
                 $rets_data = runAgentsRetsQuery($qvars, $pullDate);
                 saveToAgentLookupTable($rets_data);
                 echo '<pre>';
                 print_r($rets_data);
-                echo '</pre>';
+                echo "</pre>\r\n";
 
         }
 
@@ -742,9 +742,9 @@ function cleanAgentsLookupByMLSTable() {
         if (sizeof($badIds) > 0) {
                 deleteBadLookupIds($badIds);
 
-                echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
+                echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>\r\n";
         } else {
-                echo "No Bad Ids to delete.";
+                echo "No Bad Ids to delete.\r\n";
         }
 
         $missingIds = compareAndGetBads($our_ids, $rets_ids);
@@ -753,9 +753,9 @@ function cleanAgentsLookupByMLSTable() {
                         $rets_data = getMissingProps($qvars, $missingIds);
                         saveMissingToLookupTable($rets_data);
                 }
-                echo "<pre>Missing Ids: ".implode(", ",$missingIds)."</pre>";
+                echo "<pre>Missing Ids: ".implode(", ",$missingIds)."</pre>\r\n";
         } else {
-                echo "No missing Ids to get.";
+                echo "No missing Ids to get.\r\n";
         }
         //echo "<pre>Rets: ".implode(", ",$rets_ids)."</pre>";
         //echo "<pre>Ours: ".implode(", ",$our_ids)."</pre>";
@@ -789,15 +789,15 @@ function executeUpdateOpenHousesTable() {
 
                 echo '<pre>';
                 //print_r($retsReturnData);
-                echo '</pre>';
+                echo "</pre>\r\n";
 
                 //$returnString = savePropertyData($qvars, $retsReturnData);
                 $returnString = saveOpenHouseData($qvars, $retsReturnData);
                 echo '<pre>'.$returnString;
-                echo '</pre>';
+                echo "</pre>\r\n";
                 
             } else {
-                echo '<pre style="color:red">At end of array.</pre>';
+                echo "<pre style="color:red">At end of array.</pre>\r\n";
             }
     }
 }
@@ -824,15 +824,15 @@ function cleanOpenHousesTable() {
         foreach($retsIdArray as $id) {
             array_push($rets_ids, $id['OpenHouseRid']);
         }
-        echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
+        echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>\r\n";
 
         $our_ids = getAllOurOpenHouseIds($qvars);
-        echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>";
+        echo "<pre>OurIds: ".implode(", ",$our_ids)."</pre>\r\n";
 
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
             deleteOpenHouses($badIds);
-            echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
+            echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>\r\n";
         } else {
             echo " No Bad Ids to delete.\n\r";
         }
@@ -934,10 +934,10 @@ function executeUpdatePropertiesTable() {
 
                 $returnString = savePropertyData($qvars, $retsReturnData);
                 echo '<pre>'.$returnString;
-                echo '</pre>';
+                echo "</pre>\r\n";
                 
             } else {
-                echo '<pre style="color:red">At end of array.</pre>';
+                echo '<pre style="color:red">At end of array.</pre>'."\r\n";
             }
     }
 }
