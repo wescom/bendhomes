@@ -865,22 +865,23 @@ function cleanPropertiesTable() {
         $badIds = compareAndGetBads($rets_ids, $our_ids);
         if (sizeof($badIds) > 0) {
             deletePropertyIds($qvars, $badIds);
-            echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>";
+            echo "<pre>Bad Ids: ".implode(", ",$badIds)."</pre>\r\n";
         } else {
-            echo " No Bad Ids to delete.\n\r";
+            echo " No Bad Ids to delete.\r\n";
         }
 
         // Looking for any actives that are in the rets feed but are
         // not in our database and then bringing them in.
         $ourActive_ids = getAllOurActives($qvars);
+        echo '<pre style="color: blue;">Rets Active Ids - count: '.sizeof($rets_activeIds)."\r\n</pre>";
         //$retsActive_ids = getAllActivesFromRets($qvars);
         $missingActive_ids = compareAndGetBads($ourActive_ids, $rets_activeIds);
         if (sizeof($missingActive_ids) > 0) {
-            echo "<pre>Actives we are missing: ".implode(", ", $missingActive_ids)."</pre>";
+            echo "<pre>Actives we are missing: ".implode(", ", $missingActive_ids)."\r\n</pre>";
         //$retsReturnData = getPropertyData($qvars, $pullDate, $missingActive_ids);
         // $returnString = savePropertyData($qvars, $retsReturnData);
         } else {
-            echo " Not missing any actives.\r\n";
+            echo " Not missing any actives.\r\n<br>";
         }
 
         // looking for any properties with a status of 'Sold' that are older 
@@ -888,9 +889,9 @@ function cleanPropertiesTable() {
         $oldIdsArray = returnOldSolds($qvars);
         if (sizeof($oldIdsArray) > 0){
             deletePropertyIds($qvars, $oldIdsArray);
-            echo "<pre>Old solds to delete: ".implode(", ", $oldIdsArray)."</pre>";
+            echo "<pre>Old solds to delete: ".implode(", ", $oldIdsArray)."\r\n</pre>";
         } else {
-            echo " No old solds to delete.\r\n";
+            echo " No old solds to delete.\r\n<br>";
         }
 
     }
