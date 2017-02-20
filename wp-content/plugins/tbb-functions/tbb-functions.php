@@ -215,16 +215,11 @@ function tbb_add_openhouses() {
 	if( is_page( array('577379', '577465') ) ) {
 	?>
 	<script type="text/javascript">
-	var description = document.getElementById('IDX-description');
-	/*function getURLParameter(name) {
-	  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
-	}*/
-	function getUrlVars()
-	{
+	/*var description = document.getElementById('IDX-description');
+	function getUrlVars() {
 			var vars = [], hash;
 			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-			for(var i = 0; i < hashes.length; i++)
-			{
+			for(var i = 0; i < hashes.length; i++) {
 					hash = hashes[i].split('=');                        
 					vars[hash[0]] = hash[1];
 			}
@@ -232,10 +227,33 @@ function tbb_add_openhouses() {
 	}
 
 	var url_vars = getUrlVars();
-	for(var i in url_vars)
-	{
+	for(var i in url_vars) {
 			//alert(i + " == " + url_vars[i]);
+	}*/
+		
+	function getUrlVars() {
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');                        
+				vars[hash[0]] = hash[1];
+		}
+		return vars;
 	}
+		
+	(function($){
+		var html = '<div id="OpenHouses"><h3>Open House Date &amp; Times</h3>';
+		
+		var url_vars = getUrlVars();
+		for(var i in url_vars) {
+				//alert(i + " == " + url_vars[i]);
+			html += '<div class="time'+ i +'">'+ url_vars[i] +'</div>';
+		}
+		
+		var html += '</div>';
+		
+		$('#IDX-description').before(html);
+	})(jQuery);
 	</script>
 	<?php
 	}
