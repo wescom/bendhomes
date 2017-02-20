@@ -977,7 +977,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 							<div class="row-fluid">
 								<div class="form-item span6 down-item dollar"><label for="down">Down Payment</label>
 									<div class="down">
-										<input id="mort-down-value" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
+										<input id="mort-down-value" data-type="number" type="text" onkeypress="return validNumber(event)" onChange="findpercentdown(); findloanamount(); myPayment();" onkeyup="this.onchange();" name="down" value="<?php echo $down_payment; ?>"> 
 										<div id="down-percent">(<?php echo $down_percent; ?>%)</div>
 									</div>
 									<div class="smpc-error" id="downError"></div>
@@ -1064,6 +1064,20 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
 	}
+	$(document).ready(function(){
+		$("input[data-type='number']").keyup(function(event){
+		  // skip for arrow keys
+		  if(event.which >= 37 && event.which <= 40){
+			  event.preventDefault();
+		  }
+		  var $this = $(this);
+		  var num = $this.val().replace(/,/gi, "");
+		  var num2 = num.split(/(?=(?:\d{3})+$)/).join(",");
+		  console.log(num2);
+		  // the following line has been simplified. Revision history contains original.
+		  $this.val(num2);
+	  });
+	});
 	</script>
 	
 	<?php
