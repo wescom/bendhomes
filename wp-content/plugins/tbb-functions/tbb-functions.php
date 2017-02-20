@@ -230,7 +230,7 @@ function tbb_add_openhouses() {
 	var time = [];
 	var url_vars = getUrlVars();
 		console.log(url_vars);
-		console.log(url_vars[0]);
+		console.log(url_vars['dt0']);
 	for(var i in url_vars) {
 		//alert(i + " == " + url_vars[i]);
 		textNode = decodeURI(url_vars[i]);
