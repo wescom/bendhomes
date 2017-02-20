@@ -1286,8 +1286,8 @@ class Rets_Open_Houses {
 					
 							$array_total = sizeof( $openhouse );
 					
-							print_r($array_total);
-					
+							$html .= $array_total;
+										
 							/*$timecount = 0;
 					
 							$times_total = count();
