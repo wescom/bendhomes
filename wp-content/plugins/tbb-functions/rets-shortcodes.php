@@ -1356,7 +1356,7 @@ class Rets_Open_Houses {
 	}
 	
 	// Format date and times for either html output or url string output.
-	public function openhouse_date_times( $format = '' ) {
+	public function openhouse_date_times( $format ) {
 		
 		// Get total number of [DateTime'$i'] keys in array. 13 is total number of other items in array.
 		$timecount_end = sizeof( $openhouse ) - 13;
@@ -1366,7 +1366,7 @@ class Rets_Open_Houses {
 			$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
 			$date_format = $date->format('M jS');
 			
-			if( $format = 'html' ) {
+			if( $format == 'html' ) {
 				$dates_and_times = sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
 							 		$i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
 			}
