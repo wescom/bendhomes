@@ -1229,15 +1229,8 @@ class Rets_Open_Houses {
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-			//print_r( $query );
-			//print_r( $openhouses );
-		
-		
 		$openhouses_array = $this->format_rets_query( $openhouses );
-		
-			print_r($openhouses_array);
-		
-		
+				
 		if( $openhouses_array ) {
 			
 			$total_listings = count( $openhouses_array );
@@ -1249,8 +1242,9 @@ class Rets_Open_Houses {
 			
 				$html .= '<div class="total-listings" style="margin-top:20px;margin-bottom:10px;">'. number_format( $total_listings ) .' '. $total_text .'</div>';
 			
-				foreach( $openhouses_array as $key => $openhouse ) {
+				foreach( $openhouses_array as $openhouse ) {
 					
+					// Get Image
 					if( !empty( $openhouse['imagepref'] ) ) {
 						$has_image_class = 'with-image';
 						$image_url = home_url() .'/_retsapi/imagesProperties/'. $openhouse['imagepref'];
@@ -1259,47 +1253,49 @@ class Rets_Open_Houses {
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
 					}
 					
+					// Get Address
 					$address1 = $openhouse['StreetNumber'] .' '. rets_get_short_direction( $openhouse['StreetDirection'] ) .' '. $openhouse['StreetName'] .' '. $openhouse['StreetSuffix'];
 					
 					$address2 = $openhouse['City'] .', '. $openhouse['State'] .' '. $openhouse['ZipCode'];
 					
 					$full_address = $address1 .' '. $address2;
 					
+					/*for( $i = 0; $i < $timecount_end; $i++ ) {
+
+						$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
+						$date_format = $date->format('M jS');
+
+						$dates_and_times = sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
+										 $i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
+
+					}*/
+					
+					// Get Link
 					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $openhouse['MLNumber'] .'/'. sanitize_title( $full_address );
 					
-					// Begin agent output
+					// Begin open house output
 					$html .= sprintf( '<div class="custom-post custom-post-%s open-house %s %s"><div class="custom-post-item row-fluid">', 
 							$count, $cols, $has_image_class );
 					
 						$html .= sprintf( '<div class="span6"><figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure></div>', 
 								$count, $permalink, $image_url );
+					
+						$html .= '<div class="span6">';
 
-						$html .= sprintf( '<div class="span6"><h4 class="custom-post-title"><a href="%s"><div class="adr1">%s</div><div class="adr2">%s</div></a></h4>', 
-								$permalink, $address1, $address2 );
-					
-						$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($openhouse['ListingPrice']) );
+							$html .= sprintf( '<h4 class="custom-post-title"><a href="%s"><div class="adr1">%s</div><div class="adr2">%s</div></a></h4>', 
+									$permalink, $address1, $address2 );
 
-						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
-								floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
-					
-						$html .= '<div class="open-house-meta">';
-					
-							$timecount_end = sizeof( $openhouse ) - 13; // Get total number of [DateTime'$i'] keys in array. 13 is total number of other items in array.
-					
-							for( $i = 0; $i < $timecount_end; $i++ ) {
-								
-								$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
-								$date_format = $date->format('M jS');
-								
-								$html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
-												 $i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
-								
-							}
+							$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($openhouse['ListingPrice']) );
+
+							$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
+									floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
+
+							$html .= sprintf( '<div class="open-house-meta">%s</div>', $this->openhouse_date_times('html') );
 						
-						$html .= '</div></div>';
+						$html .= '</div>';
 					
 					$html .= '</div></div>';
-					// End agent ouput
+					// End open house ouput
 					
 					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
@@ -1317,6 +1313,8 @@ class Rets_Open_Houses {
 		return $html;
 		
 	}
+	
+	// Supporting functions below
 	
 	// Format $query into better array to handle multiple dates/times for same property
 	public function format_rets_query( $query_array ) {
@@ -1354,6 +1352,28 @@ class Rets_Open_Houses {
 		}
 		
 		return array_values( $result );
+		
+	}
+	
+	// Format date and times for either html output or url string output.
+	public function openhouse_date_times( $format = '' ) {
+		
+		// Get total number of [DateTime'$i'] keys in array. 13 is total number of other items in array.
+		$timecount_end = sizeof( $openhouse ) - 13;
+		
+		for( $i = 0; $i < $timecount_end; $i++ ) {
+
+			$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
+			$date_format = $date->format('M jS');
+			
+			if( $format = 'html' ) {
+				$dates_and_times = sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
+							 		$i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
+			}
+
+		}
+		
+		return $dates_and_times;
 		
 	}
 	
