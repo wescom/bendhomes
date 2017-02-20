@@ -246,7 +246,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                 if($qvars['resource'] == 'Property') {
                     $itemsarr[$prop[$puid]]['imagepref'] = '';
                 }
-                $photopreferred == NULL;
+                $photopreferred = NULL;
                 $fnamestor = NULL;
                 $haveOne = 0;
                 $photolist = array();
@@ -853,6 +853,7 @@ function cleanPropertiesTable() {
         $rets_idArray = runRetsQuery($qvars, $pullDate);
         foreach($rets_idArray as $id) {
             array_push($rets_ids, $id['ListingRid']);
+            echo " x".$id['Status'];
             if($id['Status'] == 'Active') {
                 array_push($rets_activeIds, $id['ListingRid']);
             }
@@ -904,7 +905,7 @@ function executeUpdatePropertiesTable() {
     //$pullDate = '2001-01-01T00:00:00-08:00';
     $pullDate = getSetPullDate("-4 hours");
 
-    //$start = 0;
+    $start = 0;
     //$start = 54500; // start index
     //$count = 500; // how many past start to grab
 
