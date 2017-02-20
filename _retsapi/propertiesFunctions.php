@@ -55,7 +55,7 @@ function buildRetsQuery($fqvars, $pullDate) {
         //$pullDate = "2001-06-01T00:00:00-08:00"; //date('c',$pulldate['recent']);
         $funiversalqueries = universalqueries($pullDate);
 
-        echo '<p style="background-color: orange;">using date: '.$pullDate.'</p>';
+        echo '<p style="background-color: orange;">using date: '.$pullDate."</p>\r\n";
 
         // first part, resource and class uses the minimum unique key for query, then last modified
         // $usethisquery = ''.$funiversalqueries[$resource][$class].', (LastModifiedDateTime='.$pulldate['retsquery'].'+)';
@@ -141,7 +141,7 @@ function runRetsQuery($qvars, $pullDate) {
         $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
 
 
-        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr)."</pre>\r\n";
 
         return $itemsarr;
 }
@@ -171,7 +171,7 @@ function runAgentsRetsQuery($qvars, $pullDate) {
         $temparr = $results->toArray();
         // refactor arr with keys supplied by universalkeys in header
         $itemsarr = refactorarr($temparr, $universalkeys, $qvars);
-        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr).'</pre>';
+        echo '<pre style="background-color: brown; color: #fff;">count: '.sizeof($itemsarr)."</pre>\r\n";
         return $itemsarr;
 }
 
@@ -718,7 +718,7 @@ function executeUpdateAgentsLookupByMLSTable() {
 
         }
 
-        echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS).'</h1>';
+        echo '<h1 style="border: 3px solid orange; color: green; padding: 3px;">completed - '.date(DATE_RSS)."</h1>\r\n";
 
 }
 
@@ -797,7 +797,7 @@ function executeUpdateOpenHousesTable() {
                 echo "</pre>\r\n";
                 
             } else {
-                echo "<pre style="color:red">At end of array.</pre>\r\n";
+                echo "<pre style='color:red'>At end of array.</pre>\r\n";
             }
     }
 }
