@@ -423,6 +423,11 @@ h3.search-results-header { float: left; margin: 0; }
 .rets-agent-listings { border-top: 1px solid #ddd; margin-top: 30px; }
 .rets-agent-listings .total-listings { color: #999; padding: 15px 5px; text-align: center; }
 
+.custom-post.open-house { text-align: left; }
+.custom-post.open-house .custom-post-image { width: 100%; max-width: none; margin-right: 0; }
+.custom-post.open-house h4.custom-post-title { float: none; width: auto; }
+.custom-post.open-house .open-house-meta { font-size: 16px; color: #666; padding-top: 10px; }
+
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
 .pum-container.popmake { background: #fff; border-top: 8px solid #FF6600 !important; }
