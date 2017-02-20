@@ -570,12 +570,12 @@ function returnOldSolds($qvars){
     $idArray = [];
     if ($result->num_rows > 0) {
         $xMonthsAgo = (int)str_replace("-", "", date('Y-m-d', strtotime("-6 months")));
-
+        echo "xMonthsAgo".$xMonthsAgo."<br>";
         while($row = $result->fetch_assoc()) {
             $pullNumber = explode('T', $row['LastModifiedDateTime']);
             $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
             if ($xMonthsAgo < $pullNumber) {
-                array_push($idArray, $row['ListingRid']);
+                array_push($idArray, $row['ListingRid'].'-'.$row['LastModifiedDateTime']);
             }
         }
     }
@@ -861,7 +861,7 @@ function cleanPropertiesTable() {
         $oldIdsArray = returnOldSolds($qvars);
         if (sizeof($oldIdsArray) > 0){
             //deletePropertyIds($qvars, $oldIdsArray);
-            echo "<pre>Old Ids to delete: ".implode(", ", $oldIdsArray)."</pre>";
+            echo "<pre>Old solds to delete: ".implode(", ", $oldIdsArray)."</pre>";
         } else {
             echo " No old solds to delete.\r\n";
         }
