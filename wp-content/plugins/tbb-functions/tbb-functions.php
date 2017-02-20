@@ -235,7 +235,7 @@ function tbb_add_openhouses() {
 		time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
 	}
 		
-	if(url_vars !== 'undefined') {
+	if( typeof url_vars !== 'undefined' && url_vars !== null) {
 		description.insertAdjacentHTML('beforebegin', '<!--div id="OpenHouse"><h3>Open House Times</h3>'+ time +'</div-->');
 	}
 		
