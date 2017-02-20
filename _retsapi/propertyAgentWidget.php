@@ -11,9 +11,14 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
         die("Connection failed: " . $conn->connect_error);
         }
 
-        $query = "select ListingAgentNumber from AgentLookupByMLS where MLNumber = ".$mls;
-        //$query = "select ListingAgentNumber from Property_BUSI, Property_COMM, Property_FARM, ";
-       // $query = "Property_LAND, Property_MULT, Property_RESI where MLNumber = ".$mls;
+        //$query = "select ListingAgentNumber from AgentLookupByMLS where MLNumber = ".$mls;
+        $query = "(select ListingAgentNumber from Property_BUSI where MLNumber = ".$mls.") UNION ";
+        $query .= "(select ListingAgentNumber from Property_COMM where MLNumber = ".$mls.") UNION ";
+        $query .= "(select ListingAgentNumber from Property_FARM where MLNumber = ".$mls.") UNION ";
+        $query .= "(select ListingAgentNumber from Property_LAND where MLNumber = ".$mls.") UNION ";
+        $query .= "(select ListingAgentNumber from Property_MULT where MLNumber = ".$mls.") UNION ";
+        $query .= "(select ListingAgentNumber from Property_RESI where MLNumber = ".$mls.")";
+
         $result = $conn->query($query);
 
         $agId = '';
