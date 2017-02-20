@@ -1284,7 +1284,7 @@ class Rets_Open_Houses {
 					
 						$html .= '<div class="open-house-meta">';
 					
-							$array_total = count( $openhouse );
+							$array_total = sizeof( $openhouse );
 					
 							print_r($array_total);
 					
