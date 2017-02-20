@@ -217,7 +217,7 @@ function tbb_add_openhouses() {
 	<script type="text/javascript">
 	var description = document.getElementById('IDX-description');
 	var openHouse = document.createElement('div');
-	openHouse.setAttribute('class', 'OpenHouse');
+	openHouse.setAttribute('id', 'OpenHouse');
 		
 	function getUrlVars() {
 		var vars = [], hash;
@@ -239,7 +239,7 @@ function tbb_add_openhouses() {
 	}
 		
 	openHouse.appendChild(time);*/
-	description.insertBefore(openHouse);
+	description.insertAdjacentHTML('beforebegin', openHouse);
 		
 	</script>
 	<?php
