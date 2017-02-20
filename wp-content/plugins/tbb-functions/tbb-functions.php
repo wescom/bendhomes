@@ -215,32 +215,28 @@ function tbb_add_openhouses() {
 	if( is_page( array('577379', '577465') ) ) {
 	?>
 	<script type="text/javascript">
-	var description = document.getElementById('IDX-description');
-		
 	function getUrlVars() {
 		var vars = [], hash;
 		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 		for(var i = 0; i < hashes.length; i++) {
-				hash = hashes[i].split('=');                        
-				vars[hash[0]] = hash[1];
+			hash = hashes[i].split('=');                        
+			vars[hash[0]] = hash[1];
 		}
 		return vars;
 	}
 
-	var time = [];
-	var url_vars = getUrlVars();
-		console.log(url_vars);
-		console.log(url_vars['dt0']);
-	for(var i in url_vars) {
-		//alert(i + " == " + url_vars[i]);
-		textNode = decodeURI(url_vars[i]);
-		time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
-	}
-		
+	var description = document.getElementById('IDX-description'),
+		time = [],
+		url_vars = getUrlVars();
+	
 	if(url_vars['dt0'].length) {
-		description.insertAdjacentHTML('beforebegin', '<!--div id="OpenHouse"><h3>Open House Times</h3>'+ url_vars +'</div-->');
+		for(var i in url_vars) {
+			//alert(i + " == " + url_vars[i]);
+			textNode = decodeURI(url_vars[i]);
+			time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
+		}
+		description.insertAdjacentHTML('beforebegin', '<!--div id="OpenHouse"><h3>Open House Times</h3>'+ time +'</div-->');
 	}
-		
 	</script>
 	<?php
 	}
