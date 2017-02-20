@@ -234,10 +234,13 @@ function tbb_add_openhouses() {
 			if(i !== '_ga') {
 				//alert(i + " == " + url_vars[i]);
 				textNode = decodeURI(url_vars[i]);
+				textNode = textNode.replace(',', '');
 				time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
 			}
 		}
-		description.insertAdjacentHTML('beforebegin', '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>'+ time.replace(',', '') +'</div>');
+		console.log(time);
+		
+		description.insertAdjacentHTML('beforebegin', '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>'+ time +'</div>');
 	}
 	</script>
 	<?php
