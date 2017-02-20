@@ -217,7 +217,7 @@ function tbb_add_openhouses() {
 	<script type="text/javascript">
 	var description = document.getElementById('IDX-description');
 		
-	function getUrlVars() {
+	/*function getUrlVars() {
 		var vars = [], hash;
 		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 		for(var i = 0; i < hashes.length; i++) {
@@ -225,10 +225,45 @@ function tbb_add_openhouses() {
 				vars[hash[0]] = hash[1];
 		}
 		return vars;
-	}
+	}*/
+		
+	var _splitUri = (function() {
+    var splitRegExp = new RegExp(
+        '^' +
+            '(?:' +
+            '([^:/?#.]+)' +                         // scheme - ignore special characters
+                                                    // used by other URL parts such as :,
+                                                    // ?, /, #, and .
+            ':)?' +
+            '(?://' +
+            '(?:([^/?#]*)@)?' +                     // userInfo
+            '([\\w\\d\\-\\u0100-\\uffff.%]*)' +     // domain - restrict to letters,
+                                                    // digits, dashes, dots, percent
+                                                    // escapes, and unicode characters.
+            '(?::([0-9]+))?' +                      // port
+            ')?' +
+            '([^?#]+)?' +                           // path
+            '(?:\\?([^#]*))?' +                     // query
+            '(?:#(.*))?' +                          // fragment
+            '$');
+
+    return function (uri) {
+        var split;
+        split = uri.match(splitRegExp);
+        return {
+            'scheme':split[1],
+            'user_info':split[2],
+            'domain':split[3],
+            'port':split[4],
+            'path':split[5],
+            'query_data': split[6],
+            'fragment':split[7]
+        }
+    }; })();
 
 	var time = [];
-	var url_vars = getUrlVars();
+	//var url_vars = getUrlVars();
+	var url_vars = _splitUri();
 	for(var i in url_vars) {
 			//alert(i + " == " + url_vars[i]);
 		time[time.length] = '<div class="time time-'+ i +'">'+ url_vars[i] +'</div>';
