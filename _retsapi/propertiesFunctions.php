@@ -575,7 +575,7 @@ function returnOldSolds($qvars){
             $pullNumber = explode('T', $row['LastModifiedDateTime']);
             $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
             if ($xMonthsAgo < $pullNumber) {
-                array_push($idArray, $row['ListingRid'].'-'.$row['LastModifiedDateTime']);
+                array_push($idArray, $row['ListingRid'].'-'.$pullNumber);
             }
         }
     }
