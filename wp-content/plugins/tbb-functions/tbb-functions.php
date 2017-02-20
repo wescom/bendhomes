@@ -242,7 +242,7 @@ function tbb_add_openhouses() {
 	}
 		
 	(function($){
-		var html = '<div id="OpenHouses"><h3>Open House Date &amp; Times</h3>';
+		var html = '<div id="OpenHouses"><h3>Open House Date and Times</h3></h3>';
 		
 		var url_vars = getUrlVars();
 		for(var i in url_vars) {
@@ -252,7 +252,7 @@ function tbb_add_openhouses() {
 		
 		var html += '</div>';
 		
-		$('#IDX-description').before(html);
+		$('#IDX-description').insertBefore(html);
 	})(jQuery);
 	</script>
 	<?php
