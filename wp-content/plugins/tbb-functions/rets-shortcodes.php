@@ -1235,7 +1235,7 @@ class Rets_Open_Houses {
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
-			//print_r($openhouses_array);
+			print_r($openhouses_array);
 		
 		
 		if( $openhouses_array ) {
@@ -1284,6 +1284,10 @@ class Rets_Open_Houses {
 					
 						$html .= '<div class="open-house-meta">';
 					
+							$array_total = sizeof( $openhouse );
+					
+							$html .= $array_total;
+										
 							/*$timecount = 0;
 					
 							$times_total = count();
