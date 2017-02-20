@@ -880,7 +880,13 @@ function cleanPropertiesTable() {
         $missingActive_ids = compareAndGetBads($ourActive_ids, $rets_activeIds);
         if (sizeof($missingActive_ids) > 0) {
             echo "<pre>Actives we are missing: ".implode(", ", $missingActive_ids)."\r\n</pre>";
-            $retsReturnData = getPropertyData($qvars, $pullDate, $missingActive_ids);
+            $midsArray = [];
+            // need to add the listingRid key to array to get the property data
+            foreach($missingActive_ids as $mid){
+                $data['ListingRid'] = $mid;
+                array_push($midsArray, $data);
+            } 
+            $retsReturnData = getPropertyData($qvars, $pullDate, $midsArray);
             $returnString = savePropertyData($qvars, $retsReturnData);
         } else {
             echo " Not missing any actives.\r\n<br>";
