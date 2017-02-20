@@ -227,11 +227,14 @@ function tbb_add_openhouses() {
 
 	var description = document.getElementById('IDX-description'),
 		time = [],
-		url_vars = getUrlVars();
+		url_vars = getUrlVars(),
+		test = Object.keys(url_vars);
+		
+		console.log(test);
 	
 	if(url_vars['dt0'] && url_vars['dt0'].length) {
 		for(var i in url_vars) {
-			if(i !== '_ga' && Object.keys(url_vars).some(function(k){ return ~k.indexOf("dt" +i) })) {
+			if(i !== '_ga' && Object.keys(url_vars).some(function(k){ return ~k.indexOf("dt") })) {
 				//alert(i + " == " + url_vars[i]);
 				textNode = decodeURI(url_vars[i]);
 				time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
