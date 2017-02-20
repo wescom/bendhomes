@@ -1268,13 +1268,13 @@ class Rets_Open_Houses {
 					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $openhouse['MLNumber'] .'/'. sanitize_title( $full_address );
 					
 					// Begin agent output
-					$html .= sprintf( '<div class="open-house custom-post-%s %s %s"><div class="custom-post-item clearfix row-fluid">', 
+					$html .= sprintf( '<div class="custom-post custom-post-%s open-house %s %s"><div class="custom-post-item clearfix row-fluid">', 
 							$count, $cols, $has_image_class );
 					
-						$html .= sprintf( '<div class="span5"><figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure></div>', 
+						$html .= sprintf( '<div class="span6"><figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure></div>', 
 								$count, $permalink, $image_url );
 
-						$html .= sprintf( '<div class="span7"><h4 class="custom-post-title"><a href="%s"><div>%s</div><div>%s</div></a></h4>', 
+						$html .= sprintf( '<div class="span6"><h4 class="custom-post-title"><a href="%s"><div class="adr1">%s</div><div class="adr2">%s</div></a></h4>', 
 								$permalink, $address1, $address2 );
 					
 						$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($openhouse['ListingPrice']) );
