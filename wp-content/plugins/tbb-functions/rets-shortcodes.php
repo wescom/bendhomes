@@ -1247,7 +1247,7 @@ class Rets_Open_Houses {
 			
 			$html .= '<div class="custom-posts-wrapper rets-open-houses '. $class .'"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<div class="total-listings">'. number_format( $total_listings ) .' '. $total_text .'</div>';
+				$html .= '<div class="total-listings" style="margin-top:20px;margin-bottom:10px;">'. number_format( $total_listings ) .' '. $total_text .'</div>';
 			
 				foreach( $openhouses_array as $key => $openhouse ) {
 					
@@ -1268,7 +1268,7 @@ class Rets_Open_Houses {
 					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $openhouse['MLNumber'] .'/'. sanitize_title( $full_address );
 					
 					// Begin agent output
-					$html .= sprintf( '<div class="custom-post custom-post-%s open-house %s %s"><div class="custom-post-item clearfix row-fluid">', 
+					$html .= sprintf( '<div class="custom-post custom-post-%s open-house %s %s"><div class="custom-post-item row-fluid">', 
 							$count, $cols, $has_image_class );
 					
 						$html .= sprintf( '<div class="span6"><figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure></div>', 
