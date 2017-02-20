@@ -127,7 +127,7 @@ function runRetsQuery($qvars, $pullDate) {
                         'Format' => 'COMPACT',
                         'Limit' => $qvars['count'],
                         'StandardNames' => 0, // give system names
-                        'Select' => 'ListingRid',
+                        'Select' => 'ListingRid, Status',
                 ]
         );
 
