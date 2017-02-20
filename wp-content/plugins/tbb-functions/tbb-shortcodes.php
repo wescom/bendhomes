@@ -1019,8 +1019,8 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 		
 	// Get initial property price from listing and calculate all variables for monthly payment and fill form
 	var initprice = document.getElementById('IDX-detailsMainInfo').getElementsByClassName('IDX-text')[1].innerHTML.replace(/\D/g,'');
-	var initdown = initprice * ( 20 / 100 );
-	var initloanprincipal = initprice - initdown;
+	var initdown = (initprice * ( 20 / 100 )).toFixed(0);
+	var initloanprincipal = (initprice - initdown).toFixed(0);
 	var initmonths = document.mortgagecalc.years.value * 12;
 	var initinterest = document.mortgagecalc.rate.value / 1200;
 	var inittaxpermonth = (initprice / 12) * (document.mortgagecalc.taxes.value / 100);
