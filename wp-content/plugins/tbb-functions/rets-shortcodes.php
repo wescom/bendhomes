@@ -1289,7 +1289,7 @@ class Rets_Open_Houses {
 							for( $i = 0; $i < $timecount_end; $i++ ) {
 								
 								$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
-								$date_format = $date->format('M, jS');
+								$date_format = $date->format('M jS');
 								
 								$html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
 												 $i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
