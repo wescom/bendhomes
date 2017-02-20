@@ -579,6 +579,48 @@ function returnOldSolds($qvars){
             }
         }
     }
+    mysqli_close($conn);
+    return $idArray;
+}
+
+function getAllActivesFromRets($qvars){
+    $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $dbtable = $qvars['resource'].'_'.$qvars['class'];
+    $query = "SELECT ListingRid from ".$dbtable." where status = 'Active'"; 
+
+    $result = $conn->query($query);
+    $idArray = [];
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            array_push($idArray, $row['ListingRid']);
+        }
+    }
+    echo '<pre style="color: blue;">Rets Active Ids - count: '.sizeof($idArray).'</pre>';
+    mysqli_close($conn);
+    return $idArray;
+}
+
+function getAllActivesFromOurs($qvars){
+    $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+    if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+    }
+    $dbtable = $qvars['resource'].'_'.$qvars['class'];
+    $query = "select ListingRid from ".$dbtable." WHERE Status = 'Active' ORDER BY ListingRid ASC";
+    $result = $conn->query($query);
+    $idArray = [];
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            array_push($idArray, $row['ListingRid']);
+        }
+    }
+    echo '<pre style="color: blue;">OUR Active Ids - count: '.sizeof($idArray).'</pre>';
+    mysqli_close($conn);
     return $idArray;
 }
 
@@ -848,11 +890,16 @@ function cleanPropertiesTable() {
 
         // Looking for any actives that are in the rets feed but are
         // not in our database and then bringing them in.
-        // $ourActive_ids = getOurActiveIds($qvars)
-        // $retsActive_ids = getRetsActiveIds($qvars)
-        // missingActive_ids = compareAndGetBads($ourActive_ids, $retsActive_ids)
+        $ourActive_ids = getAllActivesFromOurs($qvars);
+        $retsActive_ids = getAllActivesFromRets($qvars);
+        $missingActive_ids = compareAndGetBads($ourActive_ids, $retsActive_ids);
+        if (sizeof($missingActive_ids) > 0) {
+            echo "<pre>Actives we are missing: ".implode(", ", $missingActive_ids)."</pre>";
         //$retsReturnData = getPropertyData($qvars, $pullDate, $missingActive_ids);
         // $returnString = savePropertyData($qvars, $retsReturnData);
+        } else {
+            echo " Not missing any actives.\r\n";
+        }
         //echo '<pre>'.$returnString;
         //echo '</pre>';
 
