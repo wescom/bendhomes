@@ -1284,11 +1284,16 @@ class Rets_Open_Houses {
 					
 						$html .= '<div class="open-house-meta">';
 					
-							$timecount_start = 0;
-							$timecount_end = sizeof( $openhouse ) - 13;
+							$timecount_end = sizeof( $openhouse ) - 13; // Get total number of [DateTime'$i'] keys in array. 13 is total number of other items in array.
 					
-							for( $i = $timecount_start; $i < $timecount_end; $i++ ) {
-								$html .= '<div>'. $openhouse['DateAndTime'. $i]['Date'] .' - '. $openhouse['DateAndTime'. $i]['Time'] .'</div>';
+							for( $i = 0; $i < $timecount_end; $i++ ) {
+								
+								$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
+								$date_format = $date->format('M, jS');
+								
+								$html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
+												 $i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
+								
 							}
 										
 							/*$timecount = 0;
