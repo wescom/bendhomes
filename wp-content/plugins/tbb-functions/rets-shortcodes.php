@@ -1262,13 +1262,13 @@ class Rets_Open_Houses {
 					
 					// Get Date and Times
 					$timecount_end = sizeof( $openhouse ) - 13;
-		
+					$dates_times_html = '';
 					for( $i = 0; $i < $timecount_end; $i++ ) {
 
 						$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
 						$date_format = $date->format('M jS');
 
-						$dates_times_html = sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
+						$dates_times_html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
 											$i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
 
 					}
