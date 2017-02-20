@@ -229,7 +229,7 @@ function tbb_add_openhouses() {
 		time = [],
 		url_vars = getUrlVars();
 	
-	if(url_vars['dt0'].length) {
+	if(url_vars(['dt0'] && url_vars['dt0'].length) {
 		for(var i in url_vars) {
 			//alert(i + " == " + url_vars[i]);
 			textNode = decodeURI(url_vars[i]);
