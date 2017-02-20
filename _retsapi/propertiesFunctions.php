@@ -564,7 +564,7 @@ function returnOldSolds($qvars){
     }
 
     $dbtable = $qvars['resource'].'_'.$qvars['class'];
-    $query = "SELECT ListingRid, LastModifiedDateTime from ".$dbtable." where status = 'Sold'"; 
+    $query = "SELECT ListingRid, LastModifiedDateTime, Status from ".$dbtable." where status = 'Sold'"; 
 
     $result = $conn->query($query);
     $idArray = [];
@@ -575,7 +575,7 @@ function returnOldSolds($qvars){
             $pullNumber = explode('T', $row['LastModifiedDateTime']);
             $pullNumber = (int)str_replace("-", "", $pullNumber[0]);
             if ($xMonthsAgo > $pullNumber) {
-                array_push($idArray, $row['ListingRid'].'-'.$pullNumber);
+                array_push($idArray, $row['ListingRid'].'-'.$pullNumber.'-'.$row['Status']);
             }
         }
     }
