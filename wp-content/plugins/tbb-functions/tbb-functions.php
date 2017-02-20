@@ -235,7 +235,7 @@ function tbb_add_openhouses() {
 			textNode = decodeURI(url_vars[i]);
 			time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
 		}
-		description.insertAdjacentHTML('beforebegin', '<!--div id="OpenHouse"><h3>Open House Times</h3>'+ time +'</div-->');
+		description.insertAdjacentHTML('beforebegin', '<div id="OpenHouse"><h3>Open House Times</h3>'+ time +'</div>');
 	}
 	</script>
 	<?php
