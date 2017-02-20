@@ -217,7 +217,7 @@ function tbb_add_openhouses() {
 	<script type="text/javascript">
 	var description = document.getElementById('IDX-description');
 	var openHouse = document.createElement('div');
-	openHouse.id('OpenHouse');
+	openHouse.setAttribute('class', 'OpenHouse');
 		
 	function getUrlVars() {
 		var vars = [], hash;
