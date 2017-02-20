@@ -583,29 +583,7 @@ function returnOldSolds($qvars){
     return $idArray;
 }
 
-function getAllActivesFromRets($qvars){
-    $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $dbtable = $qvars['resource'].'_'.$qvars['class'];
-    $query = "SELECT ListingRid from ".$dbtable." where status = 'Active'"; 
-
-    $result = $conn->query($query);
-    $idArray = [];
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            array_push($idArray, $row['ListingRid']);
-        }
-    }
-    echo '<pre style="color: blue;">Rets Active Ids - count: '.sizeof($idArray).'</pre>';
-    mysqli_close($conn);
-    return $idArray;
-}
-
-function getAllActivesFromOurs($qvars){
+function getAllOurActives($qvars){
     $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
     if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -871,9 +849,13 @@ function cleanPropertiesTable() {
         // Checking for any ids we have in our table that are no longer
         // in the rets feed and then removing them from our table.
         $rets_ids = [];
+        $rets_activeIds = []; //used later to compare
         $rets_idArray = runRetsQuery($qvars, $pullDate);
         foreach($rets_idArray as $id) {
             array_push($rets_ids, $id['ListingRid']);
+            if($id['Status'] == 'Active') {
+                array_push($rets_activeIds, $id['ListingRid']);
+            }
         }
         //echo "<pre>RetsIds: ".implode(", ",$rets_ids)."</pre>";
 
@@ -890,9 +872,9 @@ function cleanPropertiesTable() {
 
         // Looking for any actives that are in the rets feed but are
         // not in our database and then bringing them in.
-        $ourActive_ids = getAllActivesFromOurs($qvars);
-        $retsActive_ids = getAllActivesFromRets($qvars);
-        $missingActive_ids = compareAndGetBads($ourActive_ids, $retsActive_ids);
+        $ourActive_ids = getAllOurActives($qvars);
+        //$retsActive_ids = getAllActivesFromRets($qvars);
+        $missingActive_ids = compareAndGetBads($ourActive_ids, $rets_activeIds);
         if (sizeof($missingActive_ids) > 0) {
             echo "<pre>Actives we are missing: ".implode(", ", $missingActive_ids)."</pre>";
         //$retsReturnData = getPropertyData($qvars, $pullDate, $missingActive_ids);
@@ -900,8 +882,6 @@ function cleanPropertiesTable() {
         } else {
             echo " Not missing any actives.\r\n";
         }
-        //echo '<pre>'.$returnString;
-        //echo '</pre>';
 
         // looking for any properties with a status of 'Sold' that are older 
         // than 6 months and then deleting them from our database
