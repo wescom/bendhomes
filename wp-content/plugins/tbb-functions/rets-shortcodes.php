@@ -1260,15 +1260,18 @@ class Rets_Open_Houses {
 					
 					$full_address = $address1 .' '. $address2;
 					
-					/*for( $i = 0; $i < $timecount_end; $i++ ) {
+					// Get Date and Times
+					$timecount_end = sizeof( $openhouse ) - 13;
+		
+					for( $i = 0; $i < $timecount_end; $i++ ) {
 
 						$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
 						$date_format = $date->format('M jS');
 
-						$dates_and_times = sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
-										 $i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
+						$dates_times_html = sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
+											$i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
 
-					}*/
+					}
 					
 					// Get Link
 					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $openhouse['MLNumber'] .'/'. sanitize_title( $full_address );
@@ -1290,7 +1293,7 @@ class Rets_Open_Houses {
 							$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
 									floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
 
-							$html .= sprintf( '<div class="open-house-meta">%s</div>', $this->openhouse_date_times('html') );
+							$html .= sprintf( '<div class="open-house-meta">%s</div>', $dates_times_html );
 						
 						$html .= '</div>';
 					
@@ -1352,28 +1355,6 @@ class Rets_Open_Houses {
 		}
 		
 		return array_values( $result );
-		
-	}
-	
-	// Format date and times for either html output or url string output.
-	public function openhouse_date_times( $format ) {
-		
-		// Get total number of [DateTime'$i'] keys in array. 13 is total number of other items in array.
-		$timecount_end = sizeof( $openhouse ) - 13;
-		
-		for( $i = 0; $i < $timecount_end; $i++ ) {
-
-			$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
-			$date_format = $date->format('M jS');
-			
-			if( $format == 'html' ) {
-				$dates_and_times = sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
-							 		$i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
-			}
-
-		}
-		
-		return $dates_and_times;
 		
 	}
 	
