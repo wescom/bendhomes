@@ -226,12 +226,17 @@ function tbb_add_openhouses() {
 		}
 		return vars;
 	}
+		
+	function replaceAll(str, find, replace) {
+	  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+	}
 
 	var time = [];
 	var url_vars = getUrlVars();
 	for(var i in url_vars) {
 		//alert(i + " == " + url_vars[i]);
-		time[time.length] = '<div class="time time-'+ i +'">'+ decodeURI(url_vars[i]) +'</div>';
+		textNode = decodeURI(url_vars[i]);
+		time[time.length] = '<div class="time time-'+ i +'">'+ replaceAll(textNode, '+', ' ') +'</div>';
 	}
 		
 	description.insertAdjacentHTML('beforebegin', '<div id="OpenHouse"><!-- '+ time +' --></div>');
