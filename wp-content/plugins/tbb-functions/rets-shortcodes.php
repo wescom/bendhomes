@@ -1234,7 +1234,7 @@ class Rets_Open_Houses {
 		if( $openhouses_array ) {
 			
 			$total_listings = count( $openhouses_array );
-			$total_text = $total_listings == 1 ? 'Open House' : 'Open Houses';
+			$total_text = $total_listings == 1 ? 'Open House Available' : 'Open Houses Available';
 			
 			$count = 1;
 			
@@ -1317,7 +1317,7 @@ class Rets_Open_Houses {
 			
 		}
 		
-		return $html;
+		return $html; // Finally display results here.
 		
 	}
 	
