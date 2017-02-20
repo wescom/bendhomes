@@ -910,7 +910,7 @@ function executeUpdatePropertiesTable() {
     $scenarios = getScenarios();
 
     //$pullDate = '2001-01-01T00:00:00-08:00';
-    $pullDate = getSetPullDate("-4 hours");
+    $pullDate = getSetPullDate("-2 hours");
 
     $start = 0;
     //$start = 54500; // start index
