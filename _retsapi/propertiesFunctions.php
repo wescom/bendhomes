@@ -392,7 +392,7 @@ function savePropertyData($qvars, $itemsarr) {
             //echo "Skipping ".$escarray['ListingRid']." - ".$escarray['MLNumber']." **** Status: ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
         } else {
 
-            echo "Adding ".$escarray['ListingRid']." - ".$escarray['MLNumber']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>";
+            echo "Adding ".$escarray['ListingRid']." - ".$escarray['MLNumber']." : ".$escarray['Status']." Last Modified: ".$escarray['LastModifiedDateTime']." PullNumber: ".$pullNumber." Today: ".$xMonthsAgo."</br>\r\n";
         
             $query  = "REPLACE INTO ".$dbtable;
             $query .= " (`".implode("`, `", array_keys($escarray))."`)";
@@ -427,12 +427,12 @@ function saveOpenHouseData($qvars, $itemsarr) {
             $escarray[$key] = mysqli_real_escape_string($dbConnection, $value);
         }
 
-        echo "Adding ".$escarray['OpenHouseRid']." - ".$escarray['MLNumber']."</br>";
+        echo "Adding ".$escarray['OpenHouseRid']." - ".$escarray['MLNumber']."</br>\r\n";
         
         $query  = "REPLACE INTO ".$dbtable;
         $query .= " (`".implode("`, `", array_keys($escarray))."`)";
         $query .= " VALUES ('".implode("', '", $escarray)."') ";
-        echo "Query: ".$query."<br>";
+        echo "Query: ".$query."<br>\r\n";
         if (mysqli_query($dbConnection, $query)) {
             $reportout .= "<p style='margin: 0; background-color: green; color: #fff;'>Successfully inserted " . mysqli_affected_rows($dbConnection) . " row</p>\r\n";
         } else {
@@ -507,7 +507,7 @@ function getAllOurPropertyIds($qvars) {
 
         $dbtable = $qvars['resource'].'_'.$qvars['class'];
         $query = "select ListingRid from ".$dbtable." ORDER BY ListingRid ASC";
-        echo "<br>query: ".$query."<br>";
+        echo "<br>query: ".$query."<br>\r\n";
         $result = $conn->query($query);
 
         $idArray = [];
