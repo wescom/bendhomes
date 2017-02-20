@@ -1263,18 +1263,22 @@ class Rets_Open_Houses {
 					// Get Date and Times
 					$timecount_end = sizeof( $openhouse ) - 13;
 					$dates_times_html = '';
+					$date_times_url = '';
 					for( $i = 0; $i < $timecount_end; $i++ ) {
 
 						$date = new DateTime( $openhouse['DateAndTime'. $i]['Date'] );
 						$date_format = $date->format('M jS');
+						$time = $openhouse['DateAndTime'. $i]['Time'];
 
-						$dates_times_html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', 
-											$i, $date_format, $openhouse['DateAndTime'. $i]['Time'] );
+						$dates_times_html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', $i, $date_format, $time );
+						
+						$date_times_url .= sprintf('dt%s=%s+%s&', $i, $date_format, $time );
 
 					}
 					
 					// Get Link
-					$permalink = 'http://bendhomes.idxbroker.com/idx/details/listing/a098/'. $openhouse['MLNumber'] .'/'. sanitize_title( $full_address );
+					$permalink = sprintf( 'http://bendhomes.idxbroker.com/idx/details/listing/a098/%s/%s/?%s',
+										 $openhouse['MLNumber'], sanitize_title( $full_address ), $date_times_url ) ;
 					
 					// Begin open house output
 					$html .= sprintf( '<div class="custom-post custom-post-%s open-house %s %s"><div class="custom-post-item row-fluid">', 
