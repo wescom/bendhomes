@@ -239,7 +239,7 @@ function tbb_add_openhouses() {
 	}
 		
 	openHouse.appendChild(time);*/
-	description.insertAdjacentHTML('beforebegin', openHouse);
+	description.insertAdjacentHTML('beforebegin', '<div class="OpenHouse"></div>');
 		
 	</script>
 	<?php
