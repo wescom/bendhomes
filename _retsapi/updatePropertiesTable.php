@@ -4,10 +4,10 @@
 
         //executeUpdatePropertiesTable();
 
-        cleanPropertiesTable();
+        //cleanPropertiesTable();
 
-        //executeUpdateOpenHousesTable();
+        executeUpdateOpenHousesTable();
 
-        //cleanOpenHousesTable();
+        cleanOpenHousesTable();
 
 ?>

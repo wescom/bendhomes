@@ -752,7 +752,7 @@ function executeUpdateOpenHousesTable() {
     );
 
     $pullDate = '2001-01-01T00:00:00-08:00';
-    //$pullDate = getSetPullDate("-3 hours");
+    $pullDate = getSetPullDate("-4 days");
 
     foreach($scenarios as $qvars) {
 
