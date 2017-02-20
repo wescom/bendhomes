@@ -853,8 +853,8 @@ function cleanPropertiesTable() {
         $rets_idArray = runRetsQuery($qvars, $pullDate);
         foreach($rets_idArray as $id) {
             array_push($rets_ids, $id['ListingRid']);
-            echo " x".$id['Status'];
-            if($id['Status'] == 'Active') {
+            //echo " x".$id['Status'];
+            if($id['Status'] == 'A') {
                 array_push($rets_activeIds, $id['ListingRid']);
             }
         }
