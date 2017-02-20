@@ -189,6 +189,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
     }
 
     foreach ($idArray as $itm) {
+        var_dump($itm);
         array_push($idListArray, $itm[$getVal]);
     }
 
