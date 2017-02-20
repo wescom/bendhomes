@@ -231,7 +231,7 @@ function tbb_add_openhouses() {
 	
 	if(url_vars['dt0'] && url_vars['dt0'].length) {
 		for(var i in url_vars) {
-			if(i !== '_ga' && Object.keys(url_vars).some(function(k){ return ~k.indexOf("dt") })) {
+			if(i !== '_ga' && Object.keys(url_vars).some(function(k){ return ~k.indexOf("dt" +i) })) {
 				//alert(i + " == " + url_vars[i]);
 				textNode = decodeURI(url_vars[i]);
 				time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
