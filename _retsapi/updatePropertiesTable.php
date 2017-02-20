@@ -6,8 +6,8 @@
 
         cleanPropertiesTable();
 
-        executeUpdateOpenHousesTable();
+        //executeUpdateOpenHousesTable();
 
-        cleanOpenHousesTable();
+        //cleanOpenHousesTable();
 
 ?>
