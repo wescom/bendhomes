@@ -242,15 +242,15 @@ function tbb_add_openhouses() {
 	}
 		
 	(function($){
-		var html = '<div id="OpenHouses"><h3>Open House Date and Times</h3></h3>';
+		var html = '<div id="OpenHouses"></div>';
 		
-		var url_vars = getUrlVars();
+		/*var url_vars = getUrlVars();
 		for(var i in url_vars) {
 				//alert(i + " == " + url_vars[i]);
 			html += '<div class="time'+ i +'">'+ url_vars[i] +'</div>';
 		}
 		
-		var html += '</div>';
+		var html += '</div>';*/
 		
 		$('#IDX-description').insertBefore(html);
 	})(jQuery);
