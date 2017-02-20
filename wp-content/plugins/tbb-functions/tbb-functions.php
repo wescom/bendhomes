@@ -234,7 +234,7 @@ function tbb_add_openhouses() {
 	var url_vars = getUrlVars();
 	for(var i in url_vars)
 	{
-			alert(i + " == " + url_vars[i]);
+			//alert(i + " == " + url_vars[i]);
 	}
 	</script>
 	<?php
