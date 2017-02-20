@@ -215,21 +215,9 @@ function tbb_add_openhouses() {
 	if( is_page( array('577379', '577465') ) ) {
 	?>
 	<script type="text/javascript">
-	/*var description = document.getElementById('IDX-description');
-	function getUrlVars() {
-			var vars = [], hash;
-			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-			for(var i = 0; i < hashes.length; i++) {
-					hash = hashes[i].split('=');                        
-					vars[hash[0]] = hash[1];
-			}
-			return vars;
-	}
-
-	var url_vars = getUrlVars();
-	for(var i in url_vars) {
-			//alert(i + " == " + url_vars[i]);
-	}*/
+	var description = document.getElementById('IDX-description');
+	var openHouse = document.createElement('div');
+	openHouse.setAttribute('class', 'OpenHouse');
 		
 	function getUrlVars() {
 		var vars = [], hash;
@@ -240,20 +228,19 @@ function tbb_add_openhouses() {
 		}
 		return vars;
 	}
+
+	/*var url_vars = getUrlVars();
+	for(var i in url_vars) {
+			//alert(i + " == " + url_vars[i]);
+		var time = document.createElement('div');
+		time.setAttribute('class', 'time');
+		var textnode = document.createTextNode(url_vars[i])
+		time.appendChild(textnode);
+	}
 		
-	(function($){
-		var html = '<div id="OpenHouses"></div>';
+	openHouse.appendChild(time);*/
+	description.insertBefore(openHouse);
 		
-		/*var url_vars = getUrlVars();
-		for(var i in url_vars) {
-				//alert(i + " == " + url_vars[i]);
-			html += '<div class="time'+ i +'">'+ url_vars[i] +'</div>';
-		}
-		
-		var html += '</div>';*/
-		
-		$('#IDX-description').insertBefore(html);
-	})(jQuery);
 	</script>
 	<?php
 	}
