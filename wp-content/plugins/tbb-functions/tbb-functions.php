@@ -229,14 +229,15 @@ function tbb_add_openhouses() {
 
 	var time = [];
 	var url_vars = getUrlVars();
+		console.log(url_vars);
 	for(var i in url_vars) {
 		//alert(i + " == " + url_vars[i]);
 		textNode = decodeURI(url_vars[i]);
 		time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
 	}
 		
-	if(url_vars) {
-		description.insertAdjacentHTML('beforebegin', '<!--div id="OpenHouse"><h3>Open House Times</h3>'+ time +'</div-->');
+	if( typeof url_vars !== 'undefined' && url_vars !== null) {
+		description.insertAdjacentHTML('beforebegin', '<!--div id="OpenHouse"><h3>Open House Times</h3>'+ url_vars +'</div-->');
 	}
 		
 	</script>
