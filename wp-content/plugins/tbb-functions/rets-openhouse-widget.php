@@ -30,37 +30,16 @@ if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
-		/*for($i = 0; $i < count($result); ++$i) {
-			$date = $result[$i]['StartDateTime'];
-			$time = $result[$i]['TimeComments'];
-			
-			$html .= sprintf( '<div class="time">%s %s</div>', $date, $time );
-		}*/
-	
-		/* fetch associative array */
+		// fetch associative array
 		while ($row = mysqli_fetch_assoc($result)) {
 			$date = new DateTime( $row["StartDateTime"] );
 			$date_format = $date->format('M jS');
 			$time = $row["TimeComments"];
 			
-			$html .= sprintf( "<div class=\"time\">%s %s</div>", $date_format, $time );
+			$html .= '<div class="time">'.$date_format.' '.$time.'</div>';
 		}
 
-		/* free result set */
 		mysqli_free_result($result);
-	
-		/*while( $rows = $result->fetch_assoc() ) {
-			print_r($rows);
-			//$html .= sprintf( '<div class="time">%s %s</div>', $rows['StartDateTime'], $rows['TimeComments'] );
-			foreach( $rows AS $v ) {
-				//$date = new DateTime( $v['StartDateTime'] );
-				//$date_format = $date->format('M jS');
-				$date_format = $v['StartDateTime'];
-				$time = $v['TimeComments'];
-				
-				$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
-			}
-		}*/
 		
 	$html .= '</div>';
 	
