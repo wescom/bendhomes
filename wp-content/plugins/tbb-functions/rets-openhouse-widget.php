@@ -15,7 +15,7 @@ die("Connection failed: " . $conn->connect_error);
 }
 
 $query = "
-	SELECT MLNumber, StartDateTime, TimeComments
+	SELECT MLNumber, StartDateTime, TimeComments AS Opens
 	FROM OpenHouse_OPEN 
 	WHERE MLNumber = {$mls}
 ";
@@ -24,6 +24,9 @@ $html = "";
 $rows = array();
 
 $result = $conn->query($query);
+
+$columns = mysql_fetch_assoc( $result );
+print_r( $columns['Opens']);
 
 // Create array of returned values
 if ($result->num_rows > 0) {
@@ -39,7 +42,7 @@ if ($result->num_rows > 0) {
 	
 		while( $rows = $result->fetch_assoc() ) {
 			print_r($rows);
-			$html .= sprintf( '<div class="time">%s %s</div>', $rows['DateAndTime'], $rows['TimeComments'] );
+			//$html .= sprintf( '<div class="time">%s %s</div>', $rows['DateAndTime'], $rows['TimeComments'] );
 			/*foreach( $rows AS $v ) {
 				//$date = new DateTime( $v['DateAndTime'] );
 				//$date_format = $date->format('M jS');
