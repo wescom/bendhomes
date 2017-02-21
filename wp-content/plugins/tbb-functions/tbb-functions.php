@@ -218,8 +218,10 @@ function rets_footer_code() {
 			{
 				alert("response: "+response.html);
 			},
-			error: function() {
-				console.log("returned error open house ajax call");  // error return, so force the count high to end loop
+			error: function(xhr, status, error) {
+				var err = eval("(" + xhr.responseText + ")");
+  				console.log(err.Message);
+				//console.log("returned error open house ajax call");  // error return, so force the count high to end loop
 			}
 		});
 		</script>
