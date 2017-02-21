@@ -3,7 +3,24 @@
 // File loaded from tbb-functions/tbb-functions.php in add_action('wp_footer', 'rets_footer_code') 
 // Displays Open House date & times on single property IDX page
 
-include_once '/var/databaseIncludes/retsDBInfo.php';
+include_once plugins_url('rets-connect.clsss.php');
+
+$mls = !empty( $_GET["mls"] ) ? $_GET["mls"] : '';
+
+$query = "
+	SELECT MLNumber, StartDateTime, TimeComments
+	FROM OpenHouse_OPEN 
+	WHERE MLNumber = {$mls}
+";
+
+$openhouses_query = new Rets_DB();
+		
+$openhouses = $openhouses_query->select( $query );
+
+print_r($openhouses);
+
+
+/*include_once '/var/databaseIncludes/retsDBInfo.php';
 
 $mls = !empty( $_GET["mls"] ) ? $_GET["mls"] : '';
 //$mls = 201610228;
@@ -38,5 +55,5 @@ mysqli_close($conn);
 
 $returnText = str_replace('"', '\"', $returnText);
 $returnText = str_replace('/', '\/', $returnText);
-echo 'openHouseCallBack({"html":"'.$returnText.'"})';
-//echo '{"html": "'.$returnText.'"}';
+//echo 'openHouseCallBack({"html":"'.$returnText.'"})';
+//echo '{"html": "'.$returnText.'"}';*/
