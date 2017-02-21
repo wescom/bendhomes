@@ -3,23 +3,6 @@
 // File loaded from tbb-functions/tbb-functions.php in add_action('wp_footer', 'rets_footer_code') 
 // Displays Open House date & times on single property IDX page
 
-/*include_once '/wp-content/plugins/tbb-functions/rets-connect.clsss.php';
-
-$mls = !empty( $_GET["mls"] ) ? $_GET["mls"] : '';
-
-$query = "
-	SELECT MLNumber, StartDateTime, TimeComments
-	FROM OpenHouse_OPEN 
-	WHERE MLNumber = {$mls}
-";
-
-$openhouses_query = new Rets_DB();
-		
-$openhouses = $openhouses_query->select( $query );
-
-print_r($openhouses);*/
-
-
 include_once '/var/databaseIncludes/retsDBInfo.php';
 
 $mls = !empty( $_GET["mls"] ) ? $_GET["mls"] : '';
@@ -39,21 +22,34 @@ $query = "
 
 $result = $conn->query($query);
 
-echo $query;
+$html = '';
 
-$returnText = "";
+// Create array of returned values
 if ($result->num_rows > 0) {
-	$agFax = "";
 	while( $row = $result -> fetch_assoc() ) {
 		$rows[] = $row;
 	}
-}
+	//print_r( $rows );
+	
+	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 
-print_r( $rows );
+		foreach( $rows as $row ) {
+
+			$date = new DateTime( $row['DateAndTime'] );
+			$date_format = $date->format('M jS');
+			$time = $row['DateAndTime'];
+
+			$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
+
+		}
+
+	$html .= '</div>';
+}
 
 mysqli_close($conn);
 
-$returnText = str_replace('"', '\"', $returnText);
-$returnText = str_replace('/', '\/', $returnText);
-//echo 'openHouseCallBack({"html":"'.$returnText.'"})';
-//echo '{"html": "'.$returnText.'"}';
+$html = str_replace('"', '\"', $html);
+$html = str_replace('/', '\/', $html);
+
+echo 'openHouseCallBack({"html":"'. $html .'"})';
+
