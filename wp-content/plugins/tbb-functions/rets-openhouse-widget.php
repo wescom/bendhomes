@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
 	$html .= '</div>';
 	
 } else {
-	$html .= '<div></div>';
+	$html .= '';
 }
 
 mysqli_close($conn);
@@ -51,4 +51,3 @@ $html = str_replace('"', '\"', $html);
 $html = str_replace('/', '\/', $html);
 
 echo 'openHouseRender({"html":"'.$html.'"})';
-
