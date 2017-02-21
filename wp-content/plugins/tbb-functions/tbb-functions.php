@@ -170,19 +170,19 @@ function rets_footer_code() {
 		
 		<script>
 		function agentCallBack(json) {
-			theHtml = json.html;
-			theHtml = theHtml.replace('\"', '"');
-			theHtml = theHtml.replace('\/', '/');
+			agentHtml = json.html;
+			agentHtml = agentHtml.replace('\"', '"');
+			agentHtml = agentHtml.replace('\/', '/');
 
-			$('.sidebar').prepend(theHtml);	
+			$('.sidebar').prepend(agentHtml);	
 		}
 			
 		function openHouseCallBack(json) {
-			theHtml = json.html;
-			theHtml = theHtml.replace('\"', '"');
-			theHtml = theHtml.replace('\/', '/');
+			opensHtml = json.html;
+			opensHtml = opensHtml.replace('\"', '"');
+			opensHtml = opensHtml.replace('\/', '/');
 			
-			$('#IDX-description').insertBefore(theHtml);
+			$('#IDX-description').insertBefore(opensHtml);
 		}
 		
 		$('#idx20817_42205-2 .title').hide();
@@ -191,6 +191,8 @@ function rets_footer_code() {
 			mlsNum = urlArray[7],
 			getAgentUrl = "<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,
 			getOpensUrl = "<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;
+			
+			console.log(mlsNum);
 
 		if (urlArray.length < 8) {
 			$('.IDX-featuredAgentWrap').hide();
@@ -233,7 +235,7 @@ function rets_footer_code() {
 
 
 // Javascript to get url parameters on single property idx page to display Open House info
-//add_action('wp_footer', 'tbb_add_openhouses');
+/*add_action('wp_footer', 'tbb_add_openhouses');
 function tbb_add_openhouses() {
 	ob_start();
 	
@@ -274,7 +276,7 @@ function tbb_add_openhouses() {
 	}
 	
 	echo ob_get_clean();
-}
+}*/
 
 
 // Filter to only search Agents by name, ie post_title.

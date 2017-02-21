@@ -1272,13 +1272,13 @@ class Rets_Open_Houses {
 
 						$dates_times_html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', $i, $date_format, $time );
 						
-						$date_times_url .= sprintf('dt%s=%s+%s&', $i, $date_format, $time );
+						//$date_times_url .= sprintf('dt%s=%s+%s&', $i, $date_format, $time );
 
 					}
 					
 					// Get Link
-					$permalink = sprintf( 'http://bendhomes.idxbroker.com/idx/details/listing/a098/%s/%s/?%s',
-										 $openhouse['MLNumber'], sanitize_title( $full_address ), $date_times_url ) ;
+					$permalink = sprintf( 'http://bendhomes.idxbroker.com/idx/details/listing/a098/%s/%s/',
+										 $openhouse['MLNumber'], sanitize_title( $full_address ) ) ;
 					
 					// Begin open house output
 					$html .= sprintf( '<div class="custom-post custom-post-%s open-house %s %s"><div class="custom-post-item row-fluid">', 
