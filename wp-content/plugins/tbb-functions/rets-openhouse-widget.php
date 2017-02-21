@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
-		while( $row = mysql_fetch_assoc($result) ) {
+		while( $row = $result->fetch_assoc() ) {
 			$date_format = $row['DateAndTime'];
 			$time = $row['TimeComments'];
 			
