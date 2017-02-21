@@ -29,13 +29,13 @@ if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
-	for( $set = array(); $times_array = $result -> fetch_assoc(); $set[array_shift($times_array)] = $times_array );
+	for( $set = array(); $row = $result -> fetch_assoc(); $set[array_shift($row)] = $row );
 	
 	//while( $times_array = $result -> fetch_assoc() ) {
 		
-	print_r( $times_array );
+	print_r( $row );
 
-	foreach( $times_array as $datetime ) {
+	/*foreach( $times_array as $datetime ) {
 
 		$date = new DateTime( $datetime['DateAndTime'] );
 		$date_format = $date->format('M jS');
@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
 
 		$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
 
-	}
+	}*/
 	
 	$html .= '</div>';
 	
