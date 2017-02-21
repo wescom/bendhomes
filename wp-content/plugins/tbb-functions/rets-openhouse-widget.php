@@ -38,8 +38,6 @@ if ($result->num_rows > 0) {
 			
 			$html .= '<div class="time">'.$date_format.' '.$time.'</div>';
 		}
-
-		mysqli_free_result($result);
 		
 	$html .= '</div>';
 	
