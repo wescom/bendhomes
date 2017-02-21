@@ -6,8 +6,6 @@
 $mls = !empty( $_GET["mls"] ) ? $_GET["mls"] : '';
 //$mls = 201610228;
 
-$home_url = 'http://www.bendhomes.com';
-
 $query = "
 	SELECT MLNumber, StartDateTime, TimeComments
 	FROM OpenHouse_OPEN 
