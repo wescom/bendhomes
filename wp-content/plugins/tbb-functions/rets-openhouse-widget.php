@@ -26,24 +26,22 @@ $html = "";
 
 // Create array of returned values
 if ($result->num_rows > 0) {
-	while( $row = $result -> fetch_assoc() ) {
-		$rows[] = $row;
-	}
-	print_r( $rows );
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
+	
+	while( $row = $result -> fetch_assoc() ) {
+		
+		$date = new DateTime( $row['DateAndTime'] );
+		$date_format = $date->format('M jS');
+		$time = $row['TimeComments'];
 
-		foreach( $rows as $row ) {
-
-			$date = new DateTime( $row['DateAndTime'] );
-			$date_format = $date->format('M jS');
-			$time = $row['TimeComments'];
-
-			$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
-
-		}
-
+		$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
+		
+	}
+	
 	$html .= '</div>';
+	
+	//print_r( $rows );
 	
 } else {
 	$html .= '<div></div>';
