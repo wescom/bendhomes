@@ -29,17 +29,11 @@ if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
-		while( $row = $result->fetch_assoc() ) {
-			$rows[] = $row;
-		}
-	
-		return $rows;
-	
-		foreach( $rows as $row ) {
-			$date_format = $row['DateAndTime'];
-			$time = $row['TimeComments'];
-
-			$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
+		for($i = 0; $i < count($result); ++$i) {
+			$date = $result[$i]['DateAndTime'];
+			$time = $result[$i]['TimeComments'];
+			
+			$html .= sprintf( '<div class="time">%s %s</div>', $date, $time );
 		}
 	
 		/*while( $rows = $result->fetch_assoc() ) {
