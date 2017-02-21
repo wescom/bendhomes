@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 	while( $row = $result -> fetch_assoc() ) {
 		$rows[] = $row;
 	}
-	//print_r( $rows );
+	print_r( $rows );
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 
