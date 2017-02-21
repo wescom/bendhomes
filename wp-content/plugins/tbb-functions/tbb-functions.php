@@ -37,7 +37,6 @@ require_once( TBB_FUNCTIONS_DIR . 'admin/pages-metabox.php' );
 require_once( TBB_FUNCTIONS_DIR . 'admin/functions.php' );
 
 require_once( TBB_FUNCTIONS_DIR . 'rets-connect.class.php' );
-require_once( TBB_FUNCTIONS_DIR . 'rets-openhouse-widget.php' );
 
 require_once( TBB_FUNCTIONS_DIR . 'admin/offices.php' );
 require_once( TBB_FUNCTIONS_DIR . 'admin/agents.php' );
