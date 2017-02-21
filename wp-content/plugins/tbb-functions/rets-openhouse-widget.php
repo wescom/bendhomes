@@ -21,6 +21,7 @@ $query = "
 ";
 
 $html = "";
+$results = array();
 
 $result = $conn->query($query);
 
@@ -29,7 +30,10 @@ if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
-		print_r($result);
+		while( $row = mysql_fetch_array($result, MYSQL_ASSOC) ) {
+			$results[] = $row;
+			print_r($row);
+		}
 	
 		/*for($i = 0; $i < count($result); ++$i) {
 			$date = $result[$i]['DateAndTime'];
