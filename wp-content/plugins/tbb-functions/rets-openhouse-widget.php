@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
 	
 	$html .= '</div>';
 	
-	//print_r( $rows );
+	print_r( $rows );
 	
 } else {
 	$html .= '<div></div>';
