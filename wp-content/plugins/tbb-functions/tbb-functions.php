@@ -219,7 +219,7 @@ function rets_footer_code() {
 				alert("response: "+response.html);
 			},
 			error: function() {
-				//alert("returned error from ajax call");  // error return, so force the count high to end loop
+				console.log("returned error open house ajax call");  // error return, so force the count high to end loop
 			}
 		});
 		</script>
