@@ -39,22 +39,17 @@ $query = "
 
 $result = $conn->query($query);
 
-while ($row = $result -> fetch_assoc()) {
-	$rows[] = $row;
-}
-return $rows;
+echo $query;
 
-print_r($rows);
-
-//echo $query;
-/*$returnText = "";
-$result = $conn->query($query);
+$returnText = "";
 if ($result->num_rows > 0) {
-		$agFax = "";
-		while($row = $result->fetch_assoc()) {
-			
-		}
-}*/
+	$agFax = "";
+	while( $row = $result -> fetch_assoc() ) {
+		$rows[] = $row;
+	}
+}
+
+echo $rows;
 
 mysqli_close($conn);
 
