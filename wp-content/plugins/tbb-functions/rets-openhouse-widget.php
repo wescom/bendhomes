@@ -21,7 +21,7 @@ $query = "
 ";
 
 $html = "";
-$results = array();
+$rows = array();
 
 $result = $conn->query($query);
 
@@ -39,6 +39,7 @@ if ($result->num_rows > 0) {
 	
 		while( $rows = $result->fetch_assoc() ) {
 			print_r($rows);
+			$html .= sprintf( '<div class="time">%s %s</div>', $rows['DateAndTime'], $rows['TimeComments'] );
 			/*foreach( $rows AS $v ) {
 				//$date = new DateTime( $v['DateAndTime'] );
 				//$date_format = $date->format('M jS');
