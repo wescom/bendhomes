@@ -7,6 +7,8 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
 $mls = $_GET["mls"];
 //$mls = 201610228;
 
+$home_url = home_url();
+
 $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
 if ($conn->connect_error) {
@@ -73,7 +75,7 @@ if ($result->num_rows > 0) {
 				$agPageUrl = str_replace('--', '-', $agPageUrl);
 				$agNum = $row['OfficePhoneComplete'];
 				$agImage = str_replace('png', 'jpg', $row['images']);
-				$agImage = "http://www.bendhomes.com/_retsapi/imagesAgents/".$agImage;
+				$agImage = $home_url."/_retsapi/imagesAgents/".$agImage;
 				$agOfficeName = $row['OfficeName'];
 				$agOfficePhone = $row['OfficePhoneComplete'];
 				if ($row['ContactAddlPhoneType_1'] == 'Cellular'){
@@ -93,8 +95,8 @@ if ($result->num_rows > 0) {
 		}
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
-$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="http://www.bendhomes.com/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
-		$returnText .= '<a class="agent-image" href="http://www.bendhomes.com/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
+$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
+		$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
 		$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
 		$returnText .=  '</a>';
 		$returnText .=  '<div class="agent-info clearfix">';
@@ -110,7 +112,7 @@ $returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="http://ww
 		$returnText .=  '</div><!-- agent-info -->';
 } else {
 		$returnText .=  '<div class="rets-agent position-sidebar">';
-		$returnText .=  '<div class="rail-button-agent-wrapper"><a href="http://www.bendhomes.com/agents/" class="button">Find an Agent</a></div>';
+		$returnText .=  '<div class="rail-button-agent-wrapper"><a href="'.$home_url.'/agents/" class="button">Find an Agent</a></div>';
 		$returnText .=  '</div>';
 }
 mysqli_close($conn);
