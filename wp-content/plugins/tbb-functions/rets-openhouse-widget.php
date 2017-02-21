@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
 	}
 	//print_r( $rows );
 	
-	/*$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
+	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 
 		foreach( $rows as $row ) {
 
@@ -43,9 +43,10 @@ if ($result->num_rows > 0) {
 
 		}
 
-	$html .= '</div>';*/
+	$html .= '</div>';
 	
-	$html = '<div id="test-div"></div>';
+} else {
+	$html .= '<div id="test-div"></div>';
 }
 
 mysqli_close($conn);

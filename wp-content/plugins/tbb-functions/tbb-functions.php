@@ -182,7 +182,7 @@ function rets_footer_code() {
 			opensHtml = opensHtml.replace('\"', '"');
 			opensHtml = opensHtml.replace('\/', '/');
 			
-			$('#IDX-description').insertBefore(opensHtml);
+			$('#IDX-description').prepend(opensHtml);
 		}
 		
 		$('#idx20817_42205-2 .title').hide();
