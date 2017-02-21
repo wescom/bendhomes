@@ -53,6 +53,6 @@ mysqli_close($conn);
 $html = str_replace('"', '\"', $html);
 $html = str_replace('/', '\/', $html);
 
-echo 'openHouseCallBack({"html":"'. $html .'"})';
+echo 'openHouseRender({"html":"'. $html .'"})';
 //echo '{"html": "'.$html.'"}';
 

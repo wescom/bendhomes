@@ -120,5 +120,6 @@ mysqli_close($conn);
 
 $returnText = str_replace('"', '\"', $returnText);
 $returnText = str_replace('/', '\/', $returnText);
-echo 'agentCallBack({"html":"'.$returnText.'"})';
+
+echo 'agentRender({"html":"'.$returnText.'"})';
 //echo '{"html": "'.$returnText.'"}';

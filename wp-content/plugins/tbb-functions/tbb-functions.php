@@ -169,7 +169,7 @@ function rets_footer_code() {
 	if( is_page('577465') ) { ?>
 		
 		<script>
-		function agentCallBack(json) {
+		function agentRender(json) {
 			agentHtml = json.html;
 			agentHtml = agentHtml.replace('\"', '"');
 			agentHtml = agentHtml.replace('\/', '/');
@@ -177,7 +177,7 @@ function rets_footer_code() {
 			$('.sidebar').prepend(agentHtml);	
 		}
 			
-		function openHouseCallBack(json) {
+		function openHouseRender(json) {
 			opensHtml = json.html;
 			opensHtml = opensHtml.replace('\"', '"');
 			opensHtml = opensHtml.replace('\/', '/');
@@ -200,7 +200,7 @@ function rets_footer_code() {
 			$.ajax
 			({
 				url: getAgentUrl,
-				jsonp: "agentCallBack",
+				jsonp: "agentRender",
 				dataType:"jsonp",
 				success: function(response)
 				{
@@ -213,8 +213,8 @@ function rets_footer_code() {
 		}
 		$.ajax
 		({
-			url: getAgentUrl,
-			jsonp: "openHouseCallBack",
+			url: getOpensUrl,
+			jsonp: "openHouseRender",
 			dataType: "jsonp",
 			success: function(response)
 			{
