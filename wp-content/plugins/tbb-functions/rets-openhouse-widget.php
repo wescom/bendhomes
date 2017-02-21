@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
 			$date_format = $date->format('M jS');
 			$time = $row["TimeComments"];
 			
-			$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
+			$html .= sprintf( "<div class=\"time\">%s %s</div>", $date_format, $time );
 		}
 
 		/* free result set */
