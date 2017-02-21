@@ -15,7 +15,7 @@ die("Connection failed: " . $conn->connect_error);
 }
 
 $query = "
-	SELECT MLNumber, StartDateTime, TimeComments AS Opens
+	SELECT MLNumber, StartDateTime, TimeComments
 	FROM OpenHouse_OPEN 
 	WHERE MLNumber = {$mls}
 ";
@@ -25,8 +25,8 @@ $rows = array();
 
 $result = $conn->query($query);
 
-$columns = mysql_fetch_assoc( $result );
-print_r( $columns['Opens']);
+$tester = $result->fetch_all();
+print_r($tester);
 
 // Create array of returned values
 if ($result->num_rows > 0) {
