@@ -20,9 +20,9 @@ $query = "
 	WHERE MLNumber = {$mls}
 ";
 
-$result = $conn->query($query);
-
 $html = "";
+
+$result = $conn->query($query);
 
 // Create array of returned values
 if ($result->num_rows > 0) {
@@ -30,6 +30,8 @@ if ($result->num_rows > 0) {
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
 	while( $row = $result -> fetch_assoc() ) {
+		
+		print_r( $row );
 		
 		$date = new DateTime( $row['DateAndTime'] );
 		$date_format = $date->format('M jS');
@@ -40,8 +42,6 @@ if ($result->num_rows > 0) {
 	}
 	
 	$html .= '</div>';
-	
-	print_r( $row );
 	
 } else {
 	$html .= '<div></div>';
