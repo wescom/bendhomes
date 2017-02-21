@@ -1,6 +1,7 @@
 <?php
 
 // File loaded from tbb-functions/tbb-functions.php in add_action('wp_footer', 'rets_footer_code') 
+// Displays Agent Widget box on single property IDX pages.
 
 include_once '/var/databaseIncludes/retsDBInfo.php';
 
