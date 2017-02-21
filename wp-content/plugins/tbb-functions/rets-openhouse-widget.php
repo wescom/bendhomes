@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
 	
 		while( $row = mysql_fetch_array($result, MYSQL_ASSOC) ) {
 			$results[] = $row;
-			print_r($row);
+			print_r($results);
 		}
 	
 		/*for($i = 0; $i < count($result); ++$i) {
