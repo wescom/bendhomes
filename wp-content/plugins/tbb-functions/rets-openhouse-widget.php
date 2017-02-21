@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
 
 mysqli_close($conn);
 
-$html = str_replace('"', '\"', $html);
-$html = str_replace('/', '\/', $html);
+//$html = str_replace('"', '\"', $html);
+//$html = str_replace('/', '\/', $html);
 
 echo 'openHouseRender({"html":"'.$html.'"})';

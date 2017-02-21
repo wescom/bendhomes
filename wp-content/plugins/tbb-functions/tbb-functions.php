@@ -250,7 +250,7 @@ function rets_footer_code() {
 				url: getAgentUrl,
 				jsonp: "agentRender",
 				dataType:"jsonp",
-				success: function(response) { console.log("agent: "+response.html); },
+				success: function(response) {},
 				error: function() {}
 			});
 		}
@@ -258,7 +258,7 @@ function rets_footer_code() {
 			url: getOpensUrl,
 			jsonp: "openHouseRender",
 			dataType: "jsonp",
-			success: function(response) { console.log('open: '+response.html); },
+			success: function(response) {},
 			error: function() {}
 		});	
 		</script>
