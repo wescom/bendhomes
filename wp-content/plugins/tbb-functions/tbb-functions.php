@@ -188,7 +188,7 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 // *** Mortgage Calculator Modal
 // *** Featured Agent Widget on Single Property
 // *** Open Houses Box on Single Property
-add_action('wp_footer', 'tbb_add_modal_to_footer');
+add_action('wp_footer', 'rets_footer_code');
 function rets_footer_code() {
 	ob_start(); 
 
