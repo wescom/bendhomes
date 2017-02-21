@@ -25,9 +25,6 @@ $rows = array();
 
 $result = $conn->query($query);
 
-$tester = $result->fetch_all();
-print_r($tester);
-
 // Create array of returned values
 if ($result->num_rows > 0) {
 	
