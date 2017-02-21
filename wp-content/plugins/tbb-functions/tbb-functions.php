@@ -166,8 +166,9 @@ function rets_footer_code() {
 	<?php }
 	
 	// IDX Sidebar only
-	if( is_page('577465') ) { ?>
+	if( is_page('577465') ) {
 		
+		/**** Unminified code here. After editing this code use javascript-minifier.com to minify code and replace below. ****
 		<script>
 		function agentRender(json) {
 			agentHtml = json.html;
@@ -192,38 +193,30 @@ function rets_footer_code() {
 			getAgentUrl = "<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,
 			getOpensUrl = "<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;
 			
-			console.log(mlsNum);
+			//console.log(mlsNum);
 
 		if (urlArray.length < 8) {
 			$('.IDX-featuredAgentWrap').hide();
 		} else {
-			$.ajax
-			({
+			$.ajax({
 				url: getAgentUrl,
 				jsonp: "agentRender",
 				dataType:"jsonp",
-				success: function(response)
-				{
-					alert("response: "+response.html);
-				},
-				error: function() {
-					//alert("returned error from ajax call");  // error return, so force the count high to end loop
-				}
+				success: function(response) { alert("response: "+response.html); },
+				error: function() {}
 			});
 		}
-		$.ajax
-		({
+		$.ajax({
 			url: getOpensUrl,
 			jsonp: "openHouseRender",
 			dataType: "jsonp",
-			success: function(response)
-			{
-				alert("response: "+response.html);
-			},
-			error: function() {
-				//console.log("returned error open house ajax call");  // error return, so force the count high to end loop
-			}
+			success: function(response) { alert("response: "+response.html); },
+			error: function() {}
 		});
+		</script>*/
+		?>
+		<script>
+		function agentRender(e){agentHtml=e.html,agentHtml=agentHtml.replace('"','"'),agentHtml=agentHtml.replace("/","/"),$(".sidebar").prepend(agentHtml)}function openHouseRender(e){opensHtml=e.html,opensHtml=opensHtml.replace('"','"'),opensHtml=opensHtml.replace("/","/"),$("#IDX-description").before(opensHtml)}$("#idx20817_42205-2 .title").hide();var theUrl=window.location.href,urlArray=theUrl.split("/"),mlsNum=urlArray[7],getAgentUrl="<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,getOpensUrl="<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;urlArray.length<8?$(".IDX-featuredAgentWrap").hide():$.ajax({url:getAgentUrl,jsonp:"agentRender",dataType:"jsonp",success:function(e){alert("response: "+e.html)},error:function(){}}),$.ajax({url:getOpensUrl,jsonp:"openHouseRender",dataType:"jsonp",success:function(e){alert("response: "+e.html)},error:function(){}});	
 		</script>
 		
 	<?php }

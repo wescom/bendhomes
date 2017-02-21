@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
 	$html .= '</div>';
 	
 } else {
-	$html .= '<div id="test-div"></div>';
+	$html .= '<div></div>';
 }
 
 mysqli_close($conn);
