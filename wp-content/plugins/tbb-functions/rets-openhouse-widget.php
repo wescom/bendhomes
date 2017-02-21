@@ -3,7 +3,7 @@
 // File loaded from tbb-functions/tbb-functions.php in add_action('wp_footer', 'rets_footer_code') 
 // Displays Open House date & times on single property IDX page
 
-include_once plugins_url('rets-connect.clsss.php');
+include_once '/wp-content/plugins/tbb-functions/rets-connect.clsss.php';
 
 $mls = !empty( $_GET["mls"] ) ? $_GET["mls"] : '';
 
