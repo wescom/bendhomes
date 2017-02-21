@@ -73,6 +73,5 @@ mysqli_close($conn);
 $html = str_replace('"', '\"', $html);
 $html = str_replace('/', '\/', $html);
 
-echo 'openHouseRender({"html":"'. $html .'"})';
-//echo '{"html": "'.$html.'"}';
+echo 'openHouseRender({"html":"'.$html.'"})';
 
