@@ -39,7 +39,6 @@ if ($result->num_rows > 0) {
 	
 		while( $rows = $result->fetch_assoc() ) {
 			print_r($rows);
-			printf ("%s (%s)\n", $row[0], $row[1]);
 			/*foreach( $rows AS $v ) {
 				//$date = new DateTime( $v['DateAndTime'] );
 				//$date_format = $date->format('M jS');
@@ -49,6 +48,8 @@ if ($result->num_rows > 0) {
 				$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
 			}*/
 		}
+	
+		$result->close();
 	
 	$html .= '</div>';
 	
