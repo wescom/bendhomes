@@ -3,12 +3,14 @@
 // File loaded from tbb-functions/tbb-functions.php in add_action('wp_footer', 'rets_footer_code') 
 // Displays Open House date & times on single property IDX page
 
-require_once( TBB_FUNCTIONS_DIR . 'rets-connect.class.php' );
-
+function create_openhouse_widget() {
 $openhouses_query = new Rets_DB();
 $openhouses = $openhouses_query->select( $query );
 
 print_r($openhouses);
+}
+
+create_openhouse_widget();
 
 
 /*include_once '/var/databaseIncludes/retsDBInfo.php';
