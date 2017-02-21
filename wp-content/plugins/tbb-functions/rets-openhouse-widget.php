@@ -30,11 +30,6 @@ if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
-		while( $row = mysql_fetch_array($result, MYSQL_ASSOC) ) {
-			$results[] = $row;
-			print_r($results);
-		}
-	
 		/*for($i = 0; $i < count($result); ++$i) {
 			$date = $result[$i]['DateAndTime'];
 			$time = $result[$i]['TimeComments'];
@@ -42,17 +37,18 @@ if ($result->num_rows > 0) {
 			$html .= sprintf( '<div class="time">%s %s</div>', $date, $time );
 		}*/
 	
-		/*while( $rows = $result->fetch_assoc() ) {
+		while( $rows = $result->fetch_assoc() ) {
 			print_r($rows);
-			foreach( $rows AS $v ) {
+			printf ("%s (%s)\n", $row[0], $row[1]);
+			/*foreach( $rows AS $v ) {
 				//$date = new DateTime( $v['DateAndTime'] );
 				//$date_format = $date->format('M jS');
 				$date_format = $v['DateAndTime'];
 				$time = $v['TimeComments'];
 				
 				$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
-			}
-		}*/
+			}*/
+		}
 	
 	$html .= '</div>';
 	
