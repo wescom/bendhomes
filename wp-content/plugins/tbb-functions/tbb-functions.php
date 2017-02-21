@@ -230,7 +230,7 @@ function rets_footer_code() {
 					console.log('mlsNum');
 
 			var oldURL = "http://www.bendhomes.com/_retsapi/propertyAgentWidget.php?mls="+mlsNum;
-			var getUrl = "<?php TBB_FUNCTIONS_URL .'/rets-agent-widget.php'; ?>?mls="+mlsNum;
+			var getUrl = "<?php echo TBB_FUNCTIONS_URL .'/rets-agent-widget.php'; ?>?mls="+mlsNum;
 
 			$.ajax
 			({
