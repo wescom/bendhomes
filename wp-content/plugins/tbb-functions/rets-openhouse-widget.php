@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 
 			$date = new DateTime( $row['DateAndTime'] );
 			$date_format = $date->format('M jS');
-			$time = $row['DateAndTime'];
+			$time = $row['TimeComments'];
 
 			$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
 
