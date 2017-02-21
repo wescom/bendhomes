@@ -28,12 +28,12 @@ $result = $conn->query($query);
 if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
-	
-	for( $set = array(); $row = $result -> fetch_assoc(); $set[] = $row );
-	
-	//while( $times_array = $result -> fetch_assoc() ) {
+		
+	while( $times_array = $result -> fetch_assoc() ) {
 		
 	print_r( $row );
+	
+	}
 
 	/*foreach( $times_array as $datetime ) {
 
