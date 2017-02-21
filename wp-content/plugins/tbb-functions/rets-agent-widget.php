@@ -7,7 +7,7 @@ include_once '/var/databaseIncludes/retsDBInfo.php';
 $mls = $_GET["mls"];
 //$mls = 201610228;
 
-$home_url = home_url();
+$home_url = 'http://www.bendhomes.com';
 
 $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 

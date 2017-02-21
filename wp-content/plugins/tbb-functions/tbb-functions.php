@@ -186,7 +186,6 @@ function rets_footer_code() {
 		} else {
 			var mlsNum = urlArray[7];
 			var getUrl = "<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum;
-			var testing = "<?php echo home_url(); ?>";
 
 			$.ajax
 			({
