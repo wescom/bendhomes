@@ -1,5 +1,7 @@
 <?php
 
+// File loaded from tbb-functions/tbb-functions.php in add_action('wp_footer', 'rets_footer_code') 
+
 include_once '/var/databaseIncludes/retsDBInfo.php';
 
 $mls = $_GET["mls"];
@@ -115,5 +117,5 @@ mysqli_close($conn);
 
 $returnText = str_replace('"', '\"', $returnText);
 $returnText = str_replace('/', '\/', $returnText);
-echo 'callback({"html":"'.$returnText.'"})';
+echo 'agentCallBack({"html":"'.$returnText.'"})';
 //echo '{"html": "'.$returnText.'"}';

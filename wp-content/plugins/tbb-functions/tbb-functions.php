@@ -142,48 +142,6 @@ function tbb_custom_analytics_scripts() {
 }
 
 
-// Filter to only search Agents by name, ie post_title.
-/*add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
-function tbb_search_by_title_only( $search, &$wp_query ) {
-
-	$type = '';
-	if( isset( $_GET['post_type'] ) ) $type = $_GET['post_type'];
-	
-    if( $type == 'agent' ) {
-
-		if ( ! empty( $search ) && ! empty( $wp_query->query_vars['search_terms'] ) ) {
-			global $wpdb;
-	
-			$q = $wp_query->query_vars;
-			$n = ! empty( $q['exact'] ) ? '' : '%';
-	
-			$search = array();
-	
-			foreach ( ( array ) $q['search_terms'] as $term )
-				$search[] = $wpdb->prepare( "$wpdb->posts.post_title LIKE %s", $n . $wpdb->esc_like( $term ) . $n );
-	
-			if ( !is_user_logged_in() )
-				$search[] = "$wpdb->posts.post_password = ''";
-	
-			$search = ' AND ' . implode( ' AND ', $search );
-		}
-	}
-	
-	return $search;
-}*/
-
-
-// Only show Mailchimp newsletter popup if user is not logged in or on the login page.
-//add_filter( 'popmake_popup_is_loadable', 'tbb_popup_not_logged_in', 10, 2 );
-/*function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
-	//if( $popup_id == 292579 ) {	// Devsite
-	if( $popup_id == 353717 ) { 		// Livesite
-		return ! is_user_logged_in();
-	}
-	return $is_loadable;
-}*/
-
-
 // Additional functions loaded on IDX Home & IDX Sidebar pages
 // *** Mortgage Calculator Modal
 // *** Featured Agent Widget on Single Property
@@ -211,14 +169,15 @@ function rets_footer_code() {
 	if( is_page('577465') ) { ?>
 		
 		<script>
-			function callback(json) {
+		function agentCallBack(json) {
 			theHtml = json.html;
 			theHtml = theHtml.replace('\"', '"');
 			theHtml = theHtml.replace('\/', '/');
 
 			$('.sidebar').prepend(theHtml);	
 		}
-		   $('#idx20817_42205-2 .title').hide();
+		
+		$('#idx20817_42205-2 .title').hide();
 		var theUrl = window.location.href;
 		var urlArray = theUrl.split('/');
 
@@ -226,16 +185,12 @@ function rets_footer_code() {
 			$('.IDX-featuredAgentWrap').hide();
 		} else {
 			var mlsNum = urlArray[7];
-
-					console.log('mlsNum');
-
-			var oldURL = "http://www.bendhomes.com/_retsapi/propertyAgentWidget.php?mls="+mlsNum;
 			var getUrl = "<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum;
 
 			$.ajax
 			({
 				url: getUrl,
-				jsonp: "callback",
+				jsonp: "agentCallBack",
 				dataType:"jsonp",
 				success: function(response)
 				{
@@ -297,4 +252,46 @@ function tbb_add_openhouses() {
 	
 	echo ob_get_clean();
 }
+
+
+// Filter to only search Agents by name, ie post_title.
+/*add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
+function tbb_search_by_title_only( $search, &$wp_query ) {
+
+	$type = '';
+	if( isset( $_GET['post_type'] ) ) $type = $_GET['post_type'];
+	
+    if( $type == 'agent' ) {
+
+		if ( ! empty( $search ) && ! empty( $wp_query->query_vars['search_terms'] ) ) {
+			global $wpdb;
+	
+			$q = $wp_query->query_vars;
+			$n = ! empty( $q['exact'] ) ? '' : '%';
+	
+			$search = array();
+	
+			foreach ( ( array ) $q['search_terms'] as $term )
+				$search[] = $wpdb->prepare( "$wpdb->posts.post_title LIKE %s", $n . $wpdb->esc_like( $term ) . $n );
+	
+			if ( !is_user_logged_in() )
+				$search[] = "$wpdb->posts.post_password = ''";
+	
+			$search = ' AND ' . implode( ' AND ', $search );
+		}
+	}
+	
+	return $search;
+}*/
+
+
+// Only show Mailchimp newsletter popup if user is not logged in or on the login page.
+//add_filter( 'popmake_popup_is_loadable', 'tbb_popup_not_logged_in', 10, 2 );
+/*function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
+	//if( $popup_id == 292579 ) {	// Devsite
+	if( $popup_id == 353717 ) { 		// Livesite
+		return ! is_user_logged_in();
+	}
+	return $is_loadable;
+}*/
 
