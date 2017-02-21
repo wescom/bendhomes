@@ -122,4 +122,3 @@ $returnText = str_replace('"', '\"', $returnText);
 $returnText = str_replace('/', '\/', $returnText);
 
 echo 'agentRender({"html":"'.$returnText.'"})';
-//echo '{"html": "'.$returnText.'"}';
