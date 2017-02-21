@@ -28,22 +28,16 @@ $result = $conn->query($query);
 if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
-		
-	while( $times_array = $result -> fetch_assoc() ) {
-		
-	print_r( $row );
-	
-	}
+				
+		while( $row = $result->fetch_assoc() ) {
+			$datetime = $row['DateAndTime'];
+			$time = $row['TimeComments'];
+		}
 
-	/*foreach( $times_array as $datetime ) {
-
-		$date = new DateTime( $datetime['DateAndTime'] );
+		$date = new DateTime( $datetime );
 		$date_format = $date->format('M jS');
-		$time = $datetime['TimeComments'];
 
 		$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
-
-	}*/
 	
 	$html .= '</div>';
 	
