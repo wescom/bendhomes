@@ -30,12 +30,16 @@ if ($result->num_rows > 0) {
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
 		while( $row = $result->fetch_assoc() ) {
-			foreach( $row as $r ) {
-			$date_format = $r['DateAndTime'];
-			$time = $r['TimeComments'];
-			
+			$rows[] = $row;
+		}
+	
+		return $rows;
+	
+		foreach( $rows as $row ) {
+			$date_format = $row['DateAndTime'];
+			$time = $row['TimeComments'];
+
 			$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
-			}
 		}
 	
 		/*while( $rows = $result->fetch_assoc() ) {
