@@ -27,8 +27,6 @@ $html = "";
 // Create array of returned values
 if ($result->num_rows > 0) {
 	
-	print_r( $row );
-	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
 	while( $row = $result -> fetch_assoc() ) {
@@ -42,6 +40,8 @@ if ($result->num_rows > 0) {
 	}
 	
 	$html .= '</div>';
+	
+	print_r( $row );
 	
 } else {
 	$html .= '<div></div>';
