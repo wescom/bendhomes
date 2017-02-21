@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
 	
 		while( $row = $result->fetch_assoc() ) {
 			print_r($row);
-			foreach( $row as $k => $v ) {
+			foreach( $row AS $v ) {
 				//$date = new DateTime( $v['DateAndTime'] );
 				//$date_format = $date->format('M jS');
 				$date_format = $v['DateAndTime'];
