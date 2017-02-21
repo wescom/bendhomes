@@ -39,11 +39,12 @@ if ($result->num_rows > 0) {
 	
 		/* fetch associative array */
 		while ($row = mysqli_fetch_assoc($result)) {
+			print_r($row);
 			printf ("<div>%s (%s)\n</div>", $row["DateAndTime"], $row["TimeComments"]);
 		}
 
 		/* free result set */
-		mysqli_free_result($result);
+		mysqli_free_result($result);d
 	
 		/*while( $rows = $result->fetch_assoc() ) {
 			print_r($rows);
