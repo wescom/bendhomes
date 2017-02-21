@@ -143,7 +143,7 @@ function tbb_custom_analytics_scripts() {
 
 
 // Filter to only search Agents by name, ie post_title.
-add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
+/*add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
 function tbb_search_by_title_only( $search, &$wp_query ) {
 
 	$type = '';
@@ -170,38 +170,85 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 	}
 	
 	return $search;
-}
+}*/
 
 
 // Only show Mailchimp newsletter popup if user is not logged in or on the login page.
 //add_filter( 'popmake_popup_is_loadable', 'tbb_popup_not_logged_in', 10, 2 );
-function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
+/*function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
 	//if( $popup_id == 292579 ) {	// Devsite
 	if( $popup_id == 353717 ) { 		// Livesite
 		return ! is_user_logged_in();
 	}
 	return $is_loadable;
-}
+}*/
 
 
-// Add Mortgage Calculator Modal to Footer
+// Additional functions loaded on IDX Home & IDX Sidebar pages
+// *** Mortgage Calculator Modal
+// *** Featured Agent Widget on Single Property
+// *** Open Houses Box on Single Property
 add_action('wp_footer', 'tbb_add_modal_to_footer');
-function tbb_add_modal_to_footer() {
+function rets_footer_code() {
 	ob_start(); 
 
-	if( is_page( array('577379', '577465') ) ) {
-	?>
-	<!-- Mortgage Calculator Modal -->
-	<div id="paymentmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	// IDX Home & IDX Sidebar
+	if( is_page( array('577379', '577465') ) ) { ?>
+	
+		<!-- Mortgage Calculator Modal -->
+		<div id="paymentmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			</div>
+			<div class="modal-body">
+				<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
+			</div>
 		</div>
-		<div class="modal-body">
-			<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
-		</div>
-	</div>
-	<?php
-	}
+	
+	<?php }
+	
+	// IDX Sidebar only
+	if( is_page('577465') ) { ?>
+		
+		<script>
+			function callback(json) {
+			theHtml = json.html;
+			theHtml = theHtml.replace('\"', '"');
+			theHtml = theHtml.replace('\/', '/');
+
+			$('.sidebar').prepend(theHtml);	
+		}
+		   $('#idx20817_42205-2 .title').hide();
+		var theUrl = window.location.href;
+		var urlArray = theUrl.split('/');
+
+		if (urlArray.length < 8) {
+			$('.IDX-featuredAgentWrap').hide();
+		} else {
+			var mlsNum = urlArray[7];
+
+					console.log('mlsNum');
+
+			var oldURL = "http://www.bendhomes.com/_retsapi/propertyAgentWidget.php?mls="+mlsNum;
+			var getUrl = "<?php TBB_FUNCTIONS_URL .'/rets-agent-widget.php'; ?>?mls="+mlsNum;
+
+			$.ajax
+			({
+				url: getUrl,
+				jsonp: "callback",
+				dataType:"jsonp",
+				success: function(response)
+				{
+					alert("response: "+response.html);
+				},
+				error: function() {
+					//alert("returned error from ajax call");  // error return, so force the count high to end loop
+				}
+			});
+		}
+		</script>
+		
+	<?php }
 	
 	echo ob_get_clean();
 }
