@@ -22,7 +22,7 @@ $query = "
 
 $result = $conn->query($query);
 
-$html = '';
+$html = "";
 
 // Create array of returned values
 if ($result->num_rows > 0) {
