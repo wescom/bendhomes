@@ -29,7 +29,9 @@ if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
-	while( $row = $result -> fetch_assoc() ) {
+	for( $set = array(); $row = $result -> fetch_assoc(); $set[] = $row ) {
+	
+	//while( $row = $result -> fetch_assoc() ) {
 		
 		print_r( $row );
 		
