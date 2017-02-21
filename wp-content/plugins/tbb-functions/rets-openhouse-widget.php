@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 	
 	$html .= '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>';
 	
-	for( $set = array(); $row = $result -> fetch_assoc(); $set[array_shift($row)] = $row );
+	for( $set = array(); $row = $result -> fetch_assoc(); $set[] = $row );
 	
 	//while( $times_array = $result -> fetch_assoc() ) {
 		
