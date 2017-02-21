@@ -213,8 +213,8 @@ function rets_footer_code() {
 		}
 		$.ajax
 		({
-			url: getOpensUrl,
-			jsonp: "openHouseCallBack",
+			url: getAgentUrl,
+			jsonp: "agentCallBack",
 			dataType: "jsonp",
 			success: function(response)
 			{
