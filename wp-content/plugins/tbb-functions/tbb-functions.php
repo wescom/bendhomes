@@ -258,7 +258,7 @@ function rets_footer_code() {
 			url: getOpensUrl,
 			jsonp: "openHouseRender",
 			dataType: "jsonp",
-			success: function(response) { console.log(data); },
+			success: function(response) { console.log(response); },
 			error: function() {}
 		});	
 		</script>
