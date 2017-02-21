@@ -48,8 +48,6 @@ require_once( TBB_FUNCTIONS_DIR . 'admin/agents.php' );
 require_once( TBB_FUNCTIONS_DIR . 'tbb-shortcodes.php' );
 require_once( TBB_FUNCTIONS_DIR . 'rets-shortcodes.php' );
 
-require_once( TBB_FUNCTIONS_DIR . 'rets-openhouse-widget.php' );
-
 
 // Enqueue Additional Files
 /*add_action( 'wp_enqueue_scripts', 'tbb_enqueue_additional_files');
@@ -254,13 +252,13 @@ function rets_footer_code() {
 				error: function() {}
 			});
 		}
-		/*$.ajax({
+		$.ajax({
 			url: getOpensUrl,
 			jsonp: "openHouseRender",
 			dataType: "jsonp",
 			success: function(response) {},
 			error: function() {}
-		});*/
+		});
 		</script>
 		
 	<?php }
