@@ -254,13 +254,13 @@ function rets_footer_code() {
 				error: function() {}
 			});
 		}
-		$.ajax({
+		/*$.ajax({
 			url: getOpensUrl,
 			jsonp: "openHouseRender",
 			dataType: "jsonp",
 			success: function(response) {},
 			error: function() {}
-		});	
+		});*/
 		</script>
 		
 	<?php }
