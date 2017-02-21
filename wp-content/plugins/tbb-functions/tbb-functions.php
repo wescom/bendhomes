@@ -221,7 +221,7 @@ function rets_footer_code() {
 				alert("response: "+response.html);
 			},
 			error: function(request, status, error) {
-  				//console.log(request);
+  				console.log(status);
 				console.log(error);
 				//console.log("returned error open house ajax call");  // error return, so force the count high to end loop
 			}
