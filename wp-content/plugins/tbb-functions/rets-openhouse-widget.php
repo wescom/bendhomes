@@ -11,7 +11,7 @@ $openhouses = $openhouses_query->select( $query );
 print_r($openhouses);
 
 
-include_once '/var/databaseIncludes/retsDBInfo.php';
+/*include_once '/var/databaseIncludes/retsDBInfo.php';
 
 $mls = !empty( $_GET["mls"] ) ? $_GET["mls"] : '';
 //$mls = 201610228;
@@ -56,7 +56,7 @@ if ($result->num_rows > 0) {
 			}
 		}*/
 	
-	$html .= '</div>';
+	/*$html .= '</div>';
 	
 } else {
 	$html .= '<div></div>';
@@ -68,5 +68,5 @@ $html = str_replace('"', '\"', $html);
 $html = str_replace('/', '\/', $html);
 
 echo 'openHouseRender({"html":"'. $html .'"})';
-//echo '{"html": "'.$html.'"}';
+//echo '{"html": "'.$html.'"}';*/
 
