@@ -37,21 +37,27 @@ if ($result->num_rows > 0) {
 			$html .= sprintf( '<div class="time">%s %s</div>', $date, $time );
 		}*/
 	
-		while( $rows = $result->fetch_assoc() ) {
+		/* fetch associative array */
+		while ($row = $result->fetch_assoc()) {
+			printf ("<div>%s (%s)\n</div>", $row["DateAndTime"], $row["TimeComments"]);
+		}
+
+		/* free result set */
+		$result->free();
+	
+		/*while( $rows = $result->fetch_assoc() ) {
 			print_r($rows);
 			//$html .= sprintf( '<div class="time">%s %s</div>', $rows['DateAndTime'], $rows['TimeComments'] );
-			/*foreach( $rows AS $v ) {
+			foreach( $rows AS $v ) {
 				//$date = new DateTime( $v['DateAndTime'] );
 				//$date_format = $date->format('M jS');
 				$date_format = $v['DateAndTime'];
 				$time = $v['TimeComments'];
 				
 				$html .= sprintf( '<div class="time">%s %s</div>', $date_format, $time );
-			}*/
-		}
-	
-		$result->close();
-	
+			}
+		}*/
+		
 	$html .= '</div>';
 	
 } else {
