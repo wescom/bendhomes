@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
 		}
 
 		/* free result set */
-		mysqli_free_result($result);d
+		mysqli_free_result($result);
 	
 		/*while( $rows = $result->fetch_assoc() ) {
 			print_r($rows);
