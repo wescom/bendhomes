@@ -49,7 +49,7 @@ if ($result->num_rows > 0) {
 	}
 }
 
-echo $rows;
+print_r( $rows );
 
 mysqli_close($conn);
 
