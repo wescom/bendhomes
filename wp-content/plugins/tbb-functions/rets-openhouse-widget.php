@@ -52,4 +52,5 @@ $html = str_replace('"', '\"', $html);
 $html = str_replace('/', '\/', $html);
 
 echo 'openHouseCallBack({"html":"'. $html .'"})';
+//echo '{"html": "'.$html.'"}';
 
