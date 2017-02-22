@@ -436,7 +436,7 @@ h3.search-results-header { float: left; margin: 0; }
 .open-house.one .office-meta-wrap { line-height: 170%; }
 .open-house .office-meta-wrap .office.featured { font-size: 18px; }
 .open-house .office-meta-wrap .office.featured img { float: left; max-width: 100px; height: auto; max-height: 70px; margin: 0 15px 0 30px; padding: 0; }
-.open-house .office-meta-wrap .office.featured .office-info { padding-top: 15px; }
+.open-house .office-meta-wrap .office.featured .office-info { padding-top: 12px; }
 .open-house .openhouse-btn { border: 1px solid #ccc; outline: none; background: none; margin-top: 10px; color: #777; border-radius: 3px; padding: 3px 25px 3px 5px; position: relative; }
 .open-house .openhouse-btn:hover { background: #f7f7f7; }
 .open-house .openhouse-btn:before { font-family: "FontAwesome"; position: absolute; right: 7px; top: 3px; font-size: 9px; color: #777; }
