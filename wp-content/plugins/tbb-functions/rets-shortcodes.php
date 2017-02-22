@@ -1434,7 +1434,18 @@ class Rets_Open_Houses {
 		ob_start(); ?>
 		
 		<script>
-			
+		(function($){
+			var $openHouseBtn = $('.open-house-meta button'),
+				$minHeight = 80;
+			$openHouseBtn.hide();
+			$('.open-house-meta').each(function(){
+				if( $(this).height() >= $minHeight ) {
+					$(this).next().show();
+				} else {
+					$(this).next().hide();
+				}
+			});
+		})(jQuery);
 		</script>
 		
 		<?php return ob_get_clean();
