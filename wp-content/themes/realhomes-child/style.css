@@ -431,7 +431,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.open-house h4.custom-post-title .adr1 { font-size: 24px; line-height: 115%; margin-bottom: 8px; font-family: 'Roboto Slab',serif; color: #555; }
 .custom-post.open-house.one .listing-meta { padding-top: 11px; padding-bottom: 3px; }
 .custom-post.open-house.one .listing-meta.listing-beds { padding-left: 0; }
-.custom-post.open-house .open-house-meta { font-size: 16px; color: #666; padding-top: 10px; line-height: 170%; }
+.custom-post.open-house .open-house-meta { font-size: 16px; color: #666; padding-top: 10px; line-height: 170%; overflow: hidden; min-height: 80px; }
 .open-house .office-meta-wrap { background: url(images/brslogoxs.png) no-repeat left center; font-size: 13px; padding-left: 38px; min-height: 26px; margin-top: 15px; line-height: 125%; text-align: left; }
 .open-house.one .office-meta-wrap { line-height: 170%; }
 .open-house .office-meta-wrap .office.featured { font-size: 18px; }

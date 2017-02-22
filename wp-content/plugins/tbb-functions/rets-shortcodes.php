@@ -1241,7 +1241,7 @@ class Rets_Open_Houses {
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
-		print_r($openhouses_array);
+		//print_r($openhouses_array);
 		
 		if( !empty( $limit ) ) {
 			$openhouses_array = array_slice( $openhouses_array, 0, $limit );
@@ -1345,8 +1345,12 @@ class Rets_Open_Houses {
 						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
 								floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
 
-						if( $columns == 1 )
-							$html .= sprintf( '<div class="open-house-meta">%s</div>', $dates_times_html );
+						if( $columns == 1 ) {
+							$html .= sprintf( '<div id="openhousemeta-%s" class="open-house-meta">%s</div>', 
+											 $count, $dates_times_html );
+							$html .= sprintf( '<button type="button" data-toggle="collapse" data-target="#openhousemeta-%s">View More Times</button>',
+											 $count );
+						}
 						
 						if( $columns == 1 ) $html .= '</div>';
 					
@@ -1367,6 +1371,8 @@ class Rets_Open_Houses {
 			
 			$html .= '</div></div>';
 			
+			$html .= $this->add_scripts();
+			
 		}
 		
 		return $html; // Finally display results here.
@@ -1376,7 +1382,7 @@ class Rets_Open_Houses {
 	// Supporting functions below
 	
 	// Format $query into better array to handle multiple dates/times for same property
-	public function format_rets_query( $query_array ) {
+	private function format_rets_query( $query_array ) {
 			
 		$result = [];
 		
@@ -1419,13 +1425,20 @@ class Rets_Open_Houses {
 		
 	}
 	
-	public function create_slug( $string ) {
-				
+	private function create_slug( $string ) {
 		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
-	   
 		return $slug;
+	}
+	
+	private function add_scripts() {
+		ob_start(); ?>
 		
-	} // end create_slug
+		<script>
+			
+		</script>
+		
+		<?php return ob_get_clean();
+	}
 	
 }
 new Rets_Open_Houses();
