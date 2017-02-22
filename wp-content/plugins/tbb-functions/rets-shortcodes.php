@@ -1310,7 +1310,7 @@ class Rets_Open_Houses {
 					$company_full_link = sprintf( '<a href="%s">%s</a>', 
 												 $company_url, $openhouse['OfficeName'] );
 					
-					$agent_url = sprintf( '%s/%s/?company=%s&id=%s', 
+					$agent_url = sprintf( '%s/%s/?agent=%s&id=%s', 
 											home_url(), $agent_page, $this->create_slug( $openhouse['AgentName'] ), $openhouse['AgentMLSID'] );
 					
 					$agent_full_link = sprintf( '<a href="%s">%s</a>', 
