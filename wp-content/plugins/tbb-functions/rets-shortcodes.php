@@ -1195,43 +1195,40 @@ class Rets_Open_Houses {
 		*/
 		
 		$query = "
-			SELECT OpenHouse_OPEN.AgentFirstName,
-			OpenHouse_OPEN.AgentLastName,
-			OpenHouse_OPEN.StartDateTime,
-			OpenHouse_OPEN.TimeComments,
-			OpenHouse_OPEN.MLNumber,
-			OpenHouse_OPEN.ListingOfficeNumber,
-			OpenHouse_OPEN.AgentFirstName,
-			OpenHouse_OPEN.AgentLastName,
-			OpenHouse_OPEN.AgentMLSID,
+			SELECT 
+			OPEN.AgentFirstName,
+			OPEN.AgentLastName,
+			OPEN.StartDateTime,
+			OPEN.TimeComments,
+			OPEN.MLNumber,
+			OPEN.ListingOfficeNumber,
+			OPEN.AgentFirstName,
+			OPEN.AgentLastName,
+			OPEN.AgentMLSID,
 			
-			Property_RESI.MLNumber,
-			Property_RESI.ListingPrice,
-			Property_RESI.imagepref,
-			Property_RESI.StreetNumber,
-			Property_RESI.StreetDirection,
-			Property_RESI.StreetName,
-			Property_RESI.StreetSuffix,
-			Property_RESI.City,
-			Property_RESI.State,
-			Property_RESI.ZipCode,
-			Property_RESI.Bedrooms,
-			Property_RESI.Bathrooms,
-			Property_RESI.ShowAddressToPublic,
-			Property_RESI.PublishToInternet,
+			RESI.MLNumber,
+			RESI.ListingPrice,
+			RESI.imagepref,
+			RESI.StreetNumber,
+			RESI.StreetDirection,
+			RESI.StreetName,
+			RESI.StreetSuffix,
+			RESI.City,
+			RESI.State,
+			RESI.ZipCode,
+			RESI.Bedrooms,
+			RESI.Bathrooms,
+			RESI.ShowAddressToPublic,
+			RESI.PublishToInternet,
 			
-			Office_OFFI.OfficeNumber,
-			Office_OFFI.OfficeName,
-			Office_OFFI.featured,
-			Office_OFFI.images
+			OFFI.OfficeNumber,
+			OFFI.OfficeName,
+			OFFI.featured,
+			OFFI.images
 			
-			FROM OpenHouse_OPEN
-			LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
-			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
-			
-			LEFT OUTER JOIN Office_OFFI on OpenHouse_OPEN.ListingOfficeNumber = Office_OFFI.OfficeNumber
-			WHERE OpenHouse_OPEN.ListingOfficeNumber = Office_OFFI.OfficeNumber
-			
+			FROM OpenHouse_OPEN OPEN, Property_RESI RESI, Office_OFFI OFFI
+			WHERE OPEN.MLNumber = RESI.MLNumber
+			AND OPEN.ListingOfficeNumber = OFFI.OfficeNumber
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 		";
