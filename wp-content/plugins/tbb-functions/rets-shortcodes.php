@@ -1259,23 +1259,25 @@ class Rets_Open_Houses {
 					$html .= sprintf( '<div class="custom-post custom-post-%s open-house %s %s"><div class="custom-post-item row-fluid">', 
 							$count, $cols, $has_image_class );
 					
-						$html .= sprintf( '<div class="span6"><figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure></div>', 
+						if( $columns == 1 ) $html .= '<div class="span6">';
+					
+						$html .= sprintf( '<figure class="custom-post-image image-listing-image-%s"><a href="%s"><img src="%s" width="" height="" alt="" /></a></figure>', 
 								$count, $permalink, $image_url );
 					
-						$html .= '<div class="span6">';
+						if( $columns == 1 ) $html .= '</div><div class="span6">';
+					
+						$html .= sprintf( '<h4 class="custom-post-title"><a href="%s"><div class="adr1">%s</div><div class="adr2">%s</div></a></h4>', 
+								$permalink, $address1, $address2 );
 
-							$html .= sprintf( '<h4 class="custom-post-title"><a href="%s"><div class="adr1">%s</div><div class="adr2">%s</div></a></h4>', 
-									$permalink, $address1, $address2 );
+						$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($openhouse['ListingPrice']) );
 
-							$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($openhouse['ListingPrice']) );
+						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
+								floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
 
-							$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
-									floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
-
-							if( $columns == 1 )
-								$html .= sprintf( '<div class="open-house-meta">%s</div>', $dates_times_html );
+						if( $columns == 1 )
+							$html .= sprintf( '<div class="open-house-meta">%s</div>', $dates_times_html );
 						
-						$html .= '</div>';
+						if( $columns == 1 ) $html .= '</div>';
 					
 					$html .= '</div></div>';
 					// End open house ouput
