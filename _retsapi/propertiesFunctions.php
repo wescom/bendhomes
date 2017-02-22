@@ -701,7 +701,7 @@ function executeUpdateAgentsLookupByMLSTable() {
 
         echo '<h1 style="border: 3px solid orange; padding: 3px;">start - '.date(DATE_RSS).' - v2100</h1>';
 
-        $pullDate = getSetPullDate("-3 hours");
+        $pullDate = getSetPullDate("-3 hours");  // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
 //      $pullDate = '2001-01-01T00:00:00-08:00';
 
         $scenarios = getScenarios();
@@ -773,7 +773,7 @@ function executeUpdateOpenHousesTable() {
     );
 
     $pullDate = '2001-01-01T00:00:00-08:00';
-    $pullDate = getSetPullDate("-2 days");
+    $pullDate = getSetPullDate("-2 days");  // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
 
     foreach($scenarios as $qvars) {
 
@@ -814,7 +814,6 @@ function cleanOpenHousesTable() {
     );
 
     $pullDate = '2001-01-01T00:00:00-08:00';
-    //$pullDate = getSetPullDate("-3 hours");
 
     foreach($scenarios as $qvars) {
 
@@ -910,7 +909,7 @@ function executeUpdatePropertiesTable() {
     $scenarios = getScenarios();
 
     //$pullDate = '2001-01-01T00:00:00-08:00';
-    $pullDate = getSetPullDate("-2 hours");
+    $pullDate = getSetPullDate("-2 hours"); // 1 day, 2 days, 1 year, 2 years, 1 week, 2 weeks, etc
 
     $start = 0;
     //$start = 54500; // start index
