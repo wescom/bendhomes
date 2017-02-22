@@ -1131,7 +1131,8 @@ class Rets_Open_Houses {
 			array(
 				'class' => '',
 				'columns' => 1,
-				'limit' => ''
+				'limit' => '',
+				'show_total' => ''
 			), $args
 		);
 
@@ -1215,7 +1216,9 @@ class Rets_Open_Houses {
 			
 			$html .= '<div class="custom-posts-wrapper rets-open-houses '. $class .'"><div class="custom-posts-container clearfix">';
 			
-				$html .= '<div class="total-listings" style="margin-top:20px;margin-bottom:10px;">'. number_format( $total_listings ) .' '. $total_text .'</div>';
+				if( empty( $show_total ) )
+					$html .= sprintf( '<div class="total-listings" style="margin-top:20px;margin-bottom:10px;">%s %s</div>', 
+								 number_format( $total_listings ), $total_text );
 			
 				foreach( $openhouses_array as $openhouse ) {
 					
