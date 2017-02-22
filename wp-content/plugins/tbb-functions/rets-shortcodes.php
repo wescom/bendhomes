@@ -1132,7 +1132,10 @@ class Rets_Open_Houses {
 				'class' => '',
 				'columns' => 1,
 				'limit' => '',
-				'show_total' => ''
+				'show_total' => '',
+				'show_companies' => '',
+				'company_page' => 'company',
+				'agent_page' => 'agent'
 			), $args
 		);
 
@@ -1260,9 +1263,9 @@ class Rets_Open_Houses {
 				foreach( $openhouses_array as $openhouse ) {
 					
 					// Get Image
-					if( !empty( $openhouse['imagepref'] ) ) {
+					if( !empty( $openhouse['PropertyImage'] ) ) {
 						$has_image_class = 'with-image';
-						$image_url = home_url() .'/_retsapi/imagesProperties/'. $openhouse['imagepref'];
+						$image_url = home_url() .'/_retsapi/imagesProperties/'. $openhouse['PropertyImage'];
 					} else {
 						$has_image_class = 'without-image';
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
@@ -1286,16 +1289,43 @@ class Rets_Open_Houses {
 						$time = $openhouse['DateAndTime'. $i]['Time'];
 
 						$dates_times_html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', $i, $date_format, $time );
-						
-						//$date_times_url .= sprintf('dt%s=%s+%s&', $i, $date_format, $time );
-
 					}
 					
-					// Get Link
+					// Get Link to Property
 					$permalink = sprintf( 'http://bendhomes.idxbroker.com/idx/details/listing/a098/%s/%s/',
 										 $openhouse['MLNumber'], sanitize_title( $full_address ) ) ;
 					
-					// Begin open house output
+					// Get Company/Agent Info Box for Featured and Non-Featured
+					$office_meta = '';
+					$company_image = '';
+					if( !empty( $openhouse['OfficeImage'] ) ) {
+						$company_image_url = sprintf( '%s/_retsapi/imagesOffices/%s', home_url(), $openhouse['OfficeImage'] );
+						$company_image = sprintf( '<img src="%s" alt="" class="company-image" />', $company_image_url );
+					}
+					
+					$company_url = sprintf( '%s/%s/?company=%s&id=%s', 
+											home_url(), $company_page, $this->create_slug( $openhouse['OfficeName'] ), $openhouse['OfficeNumber'] );
+					
+					$company_full_link = sprintf( '<a href="%s">Listing Courtesy of %s</a>', 
+												 $company_url, $openhouse['OfficeName'] );
+					
+					$agent_url = sprintf( '%s/%s/?company=%s&id=%s', 
+											home_url(), $agent_page, $this->create_slug( $openhouse['AgentName'] ), $openhouse['AgentMLSID'] );
+					
+					$agent_full_link = sprintf( '<a href="%s">%s</a>', 
+											   $agent_url, $openhouse['AgentName'] );
+					
+					$office_meta .= '<div class="office featured">';
+						if( $openhouse['featured'] == 1 ) {
+							$office_meta .= sprintf( '%s<div class="office-info">%s<div>%s</div></div>', 
+													$company_image, $company_full_link, $agent_full_link );
+						} else {
+							$office_meta .= sprintf( '<div class="office-info">Listing Courtesy of %s</div>', $openhouse['OfficeName'] );
+						}
+					$office_meta .= '</div>';
+					
+					
+					// Begin Open House Output
 					$html .= sprintf( '<div class="custom-post custom-post-%s open-house %s %s"><div class="custom-post-item row-fluid">', 
 							$count, $cols, $has_image_class );
 					
@@ -1319,8 +1349,11 @@ class Rets_Open_Houses {
 						
 						if( $columns == 1 ) $html .= '</div>';
 					
+						$html .= sprintf( '<div class="span12"><div class="office-meta-wrap">%s</div></div>', $office_meta );
+					
 					$html .= '</div></div>';
 					// End open house ouput
+					
 					
 					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
@@ -1360,7 +1393,7 @@ class Rets_Open_Houses {
 			$result[$mls_num]['AgentName'] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
 			$result[$mls_num]['AgentMLSID'] = $value['AgentMLSID'];
 			$result[$mls_num]['ListingPrice'] = $value['ListingPrice'];
-			$result[$mls_num]['imagepref'] = $value['imagepref'];
+			$result[$mls_num]['PropertyImage'] = $value['imagepref'];
 			$result[$mls_num]['StreetNumber'] = $value['StreetNumber'];
 			$result[$mls_num]['StreetDirection'] = $value['StreetDirection'];
 			$result[$mls_num]['StreetName'] = $value['StreetName'];
@@ -1373,8 +1406,7 @@ class Rets_Open_Houses {
 			$result[$mls_num]['OfficeNumber'] = $value['OfficeNumber'];
 			$result[$mls_num]['OfficeName'] = $value['OfficeName'];
 			$result[$mls_num]['featured'] = $value['featured'];
-			$result[$mls_num]['images'] = $value['images'];  // 18th item in array to enter this number above
-			
+			$result[$mls_num]['OfficeImage'] = $value['images'];  // 18th item in array to enter this number above
 			$result[$mls_num]['DateAndTime'. $index] = [
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
@@ -1385,6 +1417,14 @@ class Rets_Open_Houses {
 		return array_values( $result );
 		
 	}
+	
+	public function create_slug( $string ) {
+				
+		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
+	   
+		return $slug;
+		
+	} // end create_slug
 	
 }
 new Rets_Open_Houses();
