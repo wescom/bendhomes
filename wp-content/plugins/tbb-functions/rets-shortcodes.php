@@ -1266,7 +1266,7 @@ class Rets_Open_Houses {
 							$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
 									floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
 
-							if( $colums == 1 )
+							if( $columns == 1 )
 								$html .= sprintf( '<div class="open-house-meta">%s</div>', $dates_times_html );
 						
 						$html .= '</div>';
