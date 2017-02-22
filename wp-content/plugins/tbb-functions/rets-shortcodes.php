@@ -1203,7 +1203,8 @@ class Rets_Open_Houses {
 			$openhouses_array = array_slice( $openhouses_array, 0, $limit );
 		}
 		
-		print_r($openhouses_array);
+		if(current_user_can('administrator'))
+			print_r($openhouses_array);
 				
 		if( $openhouses_array ) {
 			
