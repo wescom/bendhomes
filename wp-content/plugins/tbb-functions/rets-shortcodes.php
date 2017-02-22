@@ -429,19 +429,13 @@ class Rets_Agent {
 					$html .=  '</div></div>';
 
 				$html .= '</div></div>';
-
-				// Used for testing agent properties. Shortcode is the next function class below.
-				// Remove administrator check when ready to go live.
-				if( current_user_can('administrator') ) {
 					
-					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
+				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-						// Output property listings for agent via next shortcode built below
-						$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
+					// Output property listings for agent via next shortcode built below
+					$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
 
-					$html .= '</div></div></div>';
-
-				}
+				$html .= '</div></div></div>';
 
 			$html .= '</div>';
 
