@@ -898,7 +898,13 @@ class Rets_Company {
 
             if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
 
-                $html .= '<h1 class="company-featured-'.$company_featured.'">'.$company['OfficeName'].'</h1>';
+            	if ($company['DisplayName'] == NULL) {
+					$offDispName = $company['OfficeName'];
+				}else {
+					$offDispName = $company['DisplayName'];
+				}
+
+                $html .= '<h1 class="company-featured-'.$company_featured.'">'.$offDispName.'</h1>';
                                                 
                 if(!empty($company_office_address) && $company_featured == 1){
                     $html .= do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
