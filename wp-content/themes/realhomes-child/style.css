@@ -435,7 +435,7 @@ h3.search-results-header { float: left; margin: 0; }
 .open-house .office-meta-wrap { background: url(images/brslogoxs.png) no-repeat left center; font-size: 13px; padding-left: 38px; min-height: 26px; margin-top: 15px; line-height: 125%; text-align: left; }
 .open-house.one .office-meta-wrap { line-height: 170%; }
 .open-house .office-meta-wrap .office.featured { font-size: 18px; }
-.open-house .office-meta-wrap .office.featured img { float: left; max-width: 100px; height: auto; margin: 0 15px 0 30px; padding: 0; }
+.open-house .office-meta-wrap .office.featured img { float: left; max-width: 100px; height: auto; max-height: 70px; margin: 0 15px 0 30px; padding: 0; }
 .open-house .office-meta-wrap .office.featured .office-info { padding-top: 15px; }
 .open-house .openhouse-btn { border: 1px solid #ccc; outline: none; background: none; margin-top: 10px; color: #777; border-radius: 3px; padding: 3px 25px 3px 5px; position: relative; }
 .open-house .openhouse-btn:hover { background: #f7f7f7; }
