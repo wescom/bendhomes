@@ -1348,7 +1348,7 @@ class Rets_Open_Houses {
 						if( $columns == 1 ) {
 							$html .= sprintf( '<div id="openhousemeta-%s" class="open-house-meta collapse">%s</div>', 
 											 $count, $dates_times_html );
-							$html .= sprintf( '<button type="button" data-toggle="collapse" data-target="#openhousemeta-%s">View More Times</button>',
+							$html .= sprintf( '<button type="button" class="openhouse-btn data-toggle="collapse" data-target="#openhousemeta-%s">View More Times</button>',
 											 $count );
 						}
 						
@@ -1435,7 +1435,7 @@ class Rets_Open_Houses {
 		
 		<script>
 		(function($){
-			var $openHouseBtn = $('.open-house-meta button'),
+			var $openHouseBtn = $('.openhouse-btn'),
 				$minHeight = 80;
 			$openHouseBtn.hide();
 			$('.open-house-meta').each(function(){
