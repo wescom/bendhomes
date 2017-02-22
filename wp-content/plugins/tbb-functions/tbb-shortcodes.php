@@ -1025,8 +1025,8 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 		
 	// Get initial property price from listing and calculate all variables for monthly payment and fill form
 	var initprice = document.getElementById('IDX-detailsMainInfo').getElementsByClassName('IDX-text')[1].innerHTML.replace(/\D/g,'');
-	var initdown = initprice * ( 20 / 100 );
-	var initloanprincipal = initprice - initdown;
+	var initdown = (initprice * ( 20 / 100 )).toFixed(0);
+	var initloanprincipal = (initprice - initdown).toFixed(0);
 	var initmonths = document.mortgagecalc.years.value * 12;
 	var initinterest = document.mortgagecalc.rate.value / 1200;
 	var inittaxpermonth = (initprice / 12) * (document.mortgagecalc.taxes.value / 100);
@@ -1048,15 +1048,10 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 
 	// Form validation checking
 	if ((document.mortgagecalc.price.value === null) || (document.mortgagecalc.price.value.length === 0) || (isNaN(document.mortgagecalc.price.value) === true)){
-		//document.getElementById('priceError').innerHTML = 'Numeric value required. Example: 165000';
 	} else if ((document.mortgagecalc.down.value === null) || (document.mortgagecalc.down.value.length === 0) || (isNaN(document.mortgagecalc.down.value) === true)){
-		//document.getElementById('downError').innerHTML = 'Numeric value required. Example: 50000';
 	} else if ((document.mortgagecalc.years.value === null) || (document.mortgagecalc.years.value.length === 0) || (isNaN(document.mortgagecalc.years.value) === true)){
-		//document.getElementById('yearsError').innerHTML = 'Numeric value required. Example: 30';
 	} else if ((document.mortgagecalc.rate.value === null) || (document.mortgagecalc.rate.value.length === 0) || (isNaN(document.mortgagecalc.rate.value) === true)){
-		//document.getElementById('rateError').innerHTML = 'Numeric value required. Example: 3.25';
 	} else if ((document.mortgagecalc.taxes.value === null) || (document.mortgagecalc.taxes.value.length === 0) || (isNaN(document.mortgagecalc.taxes.value) === true)){
-		//document.getElementById('taxesError').innerHTML = 'Numeric value required. Example: 1.5';
 	} else{
 	// Set variables from form data
 	var price = document.mortgagecalc.price.value;

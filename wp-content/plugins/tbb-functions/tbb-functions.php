@@ -142,8 +142,136 @@ function tbb_custom_analytics_scripts() {
 }
 
 
+// Additional functions loaded on IDX Home & IDX Sidebar pages
+// *** Mortgage Calculator Modal
+// *** Featured Agent Widget on Single Property
+// *** Open Houses Box on Single Property
+add_action('wp_footer', 'rets_footer_code');
+function rets_footer_code() {
+	ob_start(); 
+
+	// IDX Home & IDX Sidebar
+	if( is_page( array('577379', '577465') ) ) { ?>
+	
+		<!-- Mortgage Calculator Modal -->
+		<div id="paymentmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			</div>
+			<div class="modal-body">
+				<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
+			</div>
+		</div>
+	
+	<?php }
+	
+	// IDX Sidebar only
+	if( is_page('577465') ) {
+		
+		/**** Unminified code here. After editing this code use javascript-minifier.com to minify code and replace below. ****
+		<script>
+		function agentRender(json) {
+			agentHtml = json.html;
+			agentHtml = agentHtml.replace('\"', '"');
+			agentHtml = agentHtml.replace('\/', '/');
+
+			$('.sidebar').prepend(agentHtml);	
+		}
+			
+		function openHouseRender(json) {
+			opensHtml = json.html;
+			opensHtml = opensHtml.replace('\"', '"');
+			opensHtml = opensHtml.replace('\/', '/');
+			
+			$('#IDX-description').before(opensHtml);
+		}
+		
+		$('#idx20817_42205-2 .title').hide();
+		var theUrl = window.location.href,
+			urlArray = theUrl.split('/'),
+			mlsNum = urlArray[7],
+			getAgentUrl = "<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,
+			getOpensUrl = "<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;
+			
+			//console.log(mlsNum);
+
+		if (urlArray.length < 8) {
+			$('.IDX-featuredAgentWrap').hide();
+		} else {
+			$.ajax({
+				url: getAgentUrl,
+				jsonp: "agentRender",
+				dataType:"jsonp",
+				success: function(response) {},
+				error: function() {}
+			});
+		}
+		$.ajax({
+			url: getOpensUrl,
+			jsonp: "openHouseRender",
+			dataType: "jsonp",
+			success: function(response) {},
+			error: function() {}
+		});
+		</script>*/
+		?>
+		<script>
+		function agentRender(e){agentHtml=e.html,agentHtml=agentHtml.replace('"','"'),agentHtml=agentHtml.replace("/","/"),$(".sidebar").prepend(agentHtml)}function openHouseRender(e){opensHtml=e.html,opensHtml=opensHtml.replace('"','"'),opensHtml=opensHtml.replace("/","/"),$("#IDX-description").before(opensHtml)}$("#idx20817_42205-2 .title").hide();var theUrl=window.location.href,urlArray=theUrl.split("/"),mlsNum=urlArray[7],getAgentUrl="<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,getOpensUrl="<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;urlArray.length<8?$(".IDX-featuredAgentWrap").hide():$.ajax({url:getAgentUrl,jsonp:"agentRender",dataType:"jsonp",success:function(e){},error:function(){}}),$.ajax({url:getOpensUrl,jsonp:"openHouseRender",dataType:"jsonp",success:function(e){},error:function(){}});
+		</script>
+		
+	<?php }
+	
+	echo ob_get_clean();
+}
+
+
+// Javascript to get url parameters on single property idx page to display Open House info
+/*add_action('wp_footer', 'tbb_add_openhouses');
+function tbb_add_openhouses() {
+	ob_start();
+	
+	if( is_page( array('577379', '577465') ) ) {
+	?>
+	<script type="text/javascript">
+	function getUrlVars() {
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++) {
+			hash = hashes[i].split('=');                        
+			vars[hash[0]] = hash[1];
+		}
+		return vars;
+	}
+
+	var description = document.getElementById('IDX-description'),
+		time = [],
+		url_vars = getUrlVars(),
+		dtKeys = Object.keys(url_vars);
+		
+		console.log(dtKeys);
+	
+	if(url_vars['dt0'] && url_vars['dt0'].length) {
+		for(var i in url_vars) {
+			if(i.includes('dt')) {
+				//alert(i + " == " + url_vars[i]);
+				textNode = decodeURI(url_vars[i]);
+				time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
+			}
+		}		
+		//console.log(time.join(""));
+		
+		description.insertAdjacentHTML('beforebegin', '<div id="OpenHouse" class="clearfix"><h3>Open House Times</h3>'+ time.join("") +'</div>');
+	}
+	</script>
+	<?php
+	}
+	
+	echo ob_get_clean();
+}*/
+
+
 // Filter to only search Agents by name, ie post_title.
-add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
+/*add_filter( 'posts_search', 'tbb_search_by_title_only', 500, 2 );
 function tbb_search_by_title_only( $search, &$wp_query ) {
 
 	$type = '';
@@ -170,81 +298,16 @@ function tbb_search_by_title_only( $search, &$wp_query ) {
 	}
 	
 	return $search;
-}
+}*/
 
 
 // Only show Mailchimp newsletter popup if user is not logged in or on the login page.
 //add_filter( 'popmake_popup_is_loadable', 'tbb_popup_not_logged_in', 10, 2 );
-function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
+/*function tbb_popup_not_logged_in( $is_loadable, $popup_id ) {
 	//if( $popup_id == 292579 ) {	// Devsite
 	if( $popup_id == 353717 ) { 		// Livesite
 		return ! is_user_logged_in();
 	}
 	return $is_loadable;
-}
-
-
-// Add Mortgage Calculator Modal to Footer
-add_action('wp_footer', 'tbb_add_modal_to_footer');
-function tbb_add_modal_to_footer() {
-	ob_start(); 
-
-	if( is_page( array('577379', '577465') ) ) {
-	?>
-	<!-- Mortgage Calculator Modal -->
-	<div id="paymentmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		</div>
-		<div class="modal-body">
-			<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
-		</div>
-	</div>
-	<?php
-	}
-	
-	echo ob_get_clean();
-}
-
-
-// Javascript to get url parameters on single property idx page to display Open House info
-add_action('wp_footer', 'tbb_add_openhouses');
-function tbb_add_openhouses() {
-	ob_start();
-	
-	if( is_page( array('577379', '577465') ) ) {
-	?>
-	<script type="text/javascript">
-	var description = document.getElementById('IDX-description');
-		
-	function getUrlVars() {
-		var vars = [], hash;
-		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-		for(var i = 0; i < hashes.length; i++) {
-				hash = hashes[i].split('=');                        
-				vars[hash[0]] = hash[1];
-		}
-		return vars;
-	}
-
-	var time = [];
-	var url_vars = getUrlVars();
-		console.log(url_vars);
-		console.log(url_vars['dt0']);
-	for(var i in url_vars) {
-		//alert(i + " == " + url_vars[i]);
-		textNode = decodeURI(url_vars[i]);
-		time[time.length] = '<div class="time time-'+ i +'">'+ textNode.replace('+', ' ') +'</div>';
-	}
-		
-	if(url_vars['dt0'].length) {
-		description.insertAdjacentHTML('beforebegin', '<!--div id="OpenHouse"><h3>Open House Times</h3>'+ url_vars +'</div-->');
-	}
-		
-	</script>
-	<?php
-	}
-	
-	echo ob_get_clean();
-}
+}*/
 
