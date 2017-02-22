@@ -1131,7 +1131,7 @@ class Rets_Open_Houses {
 			array(
 				'class' => '',
 				'columns' => 1,
-				'limit' => 500
+				'limit' => ''
 			), $args
 		);
 
@@ -1191,7 +1191,6 @@ class Rets_Open_Houses {
 			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
-			LIMIT {$limit}
 		";
 		
 		$openhouses_query = new Rets_DB();
@@ -1199,6 +1198,10 @@ class Rets_Open_Houses {
 		$openhouses = $openhouses_query->select( $query );
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
+		
+		if( !empty( $limit ) ) {
+			array_slice( $openhouses_array, 0, $limit );
+		}
 				
 		if( $openhouses_array ) {
 			
