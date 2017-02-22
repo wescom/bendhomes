@@ -779,9 +779,14 @@ class Rets_Companies {
 						$html .= sprintf( '<figure class="custom-post-image image-company-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s" /></a></figure>', 
 								$count, $permalink, $image_url, $company['OfficeName'] );
 
-					
+						if ($company['DisplayName'] == NULL) {
+							$offDispName = $company['OfficeName'];
+						}else {
+							$offDispName = $company['DisplayName'];
+						}
+
 						$html .= sprintf( '<div class="extra-meta company-meta"><div><h3>%s</h3><div>%s</div></div><a href="tel:%s">%s</a></div>', 
-									$company['OfficeName'], $office_address, $this->phone_link( $company['OfficePhoneComplete'] ), $company['OfficePhoneComplete'] );
+									$offDispName, $office_address, $this->phone_link( $company['OfficePhoneComplete'] ), $company['OfficePhoneComplete'] );
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 					
