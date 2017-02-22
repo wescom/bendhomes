@@ -1165,12 +1165,45 @@ class Rets_Open_Houses {
 				break;
 		}
 		
+		/* Original Query
+		SELECT OpenHouse_OPEN.AgentFirstName,
+		OpenHouse_OPEN.AgentLastName,
+		OpenHouse_OPEN.StartDateTime,
+		OpenHouse_OPEN.TimeComments,
+		OpenHouse_OPEN.MLNumber,
+
+		Property_RESI.MLNumber,
+		Property_RESI.ListingPrice,
+		Property_RESI.imagepref,
+		Property_RESI.StreetNumber,
+		Property_RESI.StreetDirection,
+		Property_RESI.StreetName,
+		Property_RESI.StreetSuffix,
+		Property_RESI.City,
+		Property_RESI.State,
+		Property_RESI.ZipCode,
+		Property_RESI.Bedrooms,
+		Property_RESI.Bathrooms,
+		Property_RESI.ShowAddressToPublic,
+		Property_RESI.PublishToInternet,
+
+		FROM OpenHouse_OPEN
+		LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+		WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+		AND ShowAddressToPublic = 1
+		AND PublishToInternet = 1
+		*/
+		
 		$query = "
 			SELECT OpenHouse_OPEN.AgentFirstName,
 			OpenHouse_OPEN.AgentLastName,
 			OpenHouse_OPEN.StartDateTime,
 			OpenHouse_OPEN.TimeComments,
 			OpenHouse_OPEN.MLNumber,
+			OpenHouse_OPEN.ListingOfficeNumber,
+			OpenHouse_OPEN.AgentFirstName,
+			OpenHouse_OPEN.AgentLastName,
+			OpenHouse_OPEN.AgentMLSID,
 			
 			Property_RESI.MLNumber,
 			Property_RESI.ListingPrice,
@@ -1185,11 +1218,20 @@ class Rets_Open_Houses {
 			Property_RESI.Bedrooms,
 			Property_RESI.Bathrooms,
 			Property_RESI.ShowAddressToPublic,
-			Property_RESI.PublishToInternet
+			Property_RESI.PublishToInternet,
+			
+			Office_OFFI.OfficeNumber,
+			Office_OFFI.OfficeName,
+			Office_OFFI.featured,
+			Office_OFFI.images
 			
 			FROM OpenHouse_OPEN
 			LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
+			
+			LEFT OUTER JOIN Office_OFFI on OpenHouse_OPEN.ListingOfficeNumber = Office_OFFI.OfficeNumber
+			WHERE OpenHouse_OPEN.ListingOfficeNumber = Office_OFFI.OfficeNumber
+			
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 		";
@@ -1197,6 +1239,8 @@ class Rets_Open_Houses {
 		$openhouses_query = new Rets_DB();
 		
 		$openhouses = $openhouses_query->select( $query );
+		
+		print_r($openhouses);
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
