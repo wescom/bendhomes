@@ -1370,9 +1370,7 @@ class Rets_Open_Houses {
 				}
 			
 			$html .= '</div></div>';
-			
-			$html .= $this->add_scripts();
-			
+						
 		}
 		
 		return $html; // Finally display results here.
@@ -1428,25 +1426,6 @@ class Rets_Open_Houses {
 	private function create_slug( $string ) {
 		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
 		return $slug;
-	}
-	
-	private function add_scripts() {
-		ob_start(); ?>
-		
-		<script>
-		(function($){
-			var openHouseBtn = $('.openhouse-btn'),
-				minHeight = 80;
-			openHouseBtn.hide();
-			$('.open-house-meta').each(function(){
-				if( $(this).height() >= minHeight ) {
-					$(this).next().show();
-				}
-			});
-		})(jQuery);
-		</script>
-		
-		<?php return ob_get_clean();
 	}
 	
 }
