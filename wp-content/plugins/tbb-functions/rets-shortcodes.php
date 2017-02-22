@@ -1348,8 +1348,8 @@ class Rets_Open_Houses {
 						if( $columns == 1 ) {
 							$html .= sprintf( '<div id="openhousemeta-%s" class="open-house-meta collapse">%s</div>', 
 											 $count, $dates_times_html );
-							$html .= sprintf( '<button type="button" class="openhouse-btn" data-toggle="collapse" data-target="#openhousemeta-%s">View More Times</button>',
-											 $count );
+							if( $openhouse['DateAndTime3'] )
+								$html .= sprintf( '<button type="button" class="openhouse-btn" data-toggle="collapse" data-target="#openhousemeta-%s">View More Times</button>', $count );
 						}
 						
 						if( $columns == 1 ) $html .= '</div>';
