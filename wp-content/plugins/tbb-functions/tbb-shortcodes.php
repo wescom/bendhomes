@@ -256,7 +256,7 @@ function tbb_mailchimp_signup_form( $atts ) {
         <label for="mce-LNAME">Last Name </label>
         <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
     </div>
-    <div class="mc-field-group input-group">
+    <div class="mc-field-group input-group" style="display:none">
     	<strong>Newsletter Types </strong>
     	<ul>
 			<li><input type="checkbox" value="2" name="group[25][2]" id="mce-group[25]-25-1" checked><label for="mce-group[25]-25-1">Bend Homes Newsletter</label></li>
