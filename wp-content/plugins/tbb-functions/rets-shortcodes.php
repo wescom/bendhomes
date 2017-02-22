@@ -1349,7 +1349,7 @@ class Rets_Open_Houses {
 						
 						if( $columns == 1 ) $html .= '</div>';
 					
-						$html .= sprintf( '<div class="clearfix"></div><div class="office-meta-wrap">%s</div></div>', $office_meta );
+						$html .= sprintf( '<div class="clearfix"></div><div class="office-meta-wrap">%s</div>', $office_meta );
 					
 					$html .= '</div></div>';
 					// End open house ouput
