@@ -1131,6 +1131,7 @@ class Rets_Open_Houses {
 			array(
 				'class' => '',
 				'columns' => 1,
+				'limit' => 500
 			), $args
 		);
 
@@ -1163,33 +1164,6 @@ class Rets_Open_Houses {
 				break;
 		}
 		
-		/*$query = "
-			SELECT OpenHouse_OPEN.AgentFirstName,
-			OpenHouse_OPEN.AgentLastName,
-			OpenHouse_OPEN.StartDateTime,
-			OpenHouse_OPEN.TimeComments,
-			OpenHouse_OPEN.MLNumber,
-			
-			Property_RESI.MLNumber,
-			Property_RESI.ListingPrice,
-			Property_RESI.imagepref,
-			Property_RESI.StreetNumber,
-			Property_RESI.StreetDirection,
-			Property_RESI.StreetName,
-			Property_RESI.StreetSuffix,
-			Property_RESI.City,
-			Property_RESI.State,
-			Property_RESI.ZipCode,
-			Property_RESI.ShowAddressToPublic,
-			Property_RESI.PublishToInternet
-			
-			FROM OpenHouse_OPEN
-			LEFT JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
-			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
-			AND ShowAddressToPublic = 1
-			AND PublishToInternet = 1
-		";*/
-		
 		$query = "
 			SELECT OpenHouse_OPEN.AgentFirstName,
 			OpenHouse_OPEN.AgentLastName,
@@ -1217,6 +1191,7 @@ class Rets_Open_Houses {
 			WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
+			LIMIT {$limit}
 		";
 		
 		$openhouses_query = new Rets_DB();
@@ -1291,7 +1266,8 @@ class Rets_Open_Houses {
 							$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
 									floatval($openhouse['Bedrooms']), floatval($openhouse['Bathrooms']) );
 
-							$html .= sprintf( '<div class="open-house-meta">%s</div>', $dates_times_html );
+							if( $colums == 1 )
+								$html .= sprintf( '<div class="open-house-meta">%s</div>', $dates_times_html );
 						
 						$html .= '</div>';
 					
