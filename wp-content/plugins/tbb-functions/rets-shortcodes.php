@@ -1434,7 +1434,7 @@ class Rets_Open_Houses {
 		ob_start(); ?>
 		
 		<script>
-		(function($){
+		//(function($){
 			var openHouseBtn = $('.openhouse-btn'),
 				minHeight = 80;
 			openHouseBtn.hide();
@@ -1442,7 +1442,7 @@ class Rets_Open_Houses {
 				if( $(this).height() >= minHeight ) {
 					$(this).next().show();
 			});
-		})(jQuery);
+		//})(jQuery);
 		</script>
 		
 		<?php return ob_get_clean();
