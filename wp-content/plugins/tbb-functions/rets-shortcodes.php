@@ -1435,15 +1435,12 @@ class Rets_Open_Houses {
 		
 		<script>
 		(function($){
-			var $openHouseBtn = $('.openhouse-btn'),
-				$minHeight = 80;
-			$openHouseBtn.hide();
+			var openHouseBtn = $('.openhouse-btn'),
+				minHeight = 80;
+			openHouseBtn.hide();
 			$('.open-house-meta').each(function(){
-				if( $(this).height() >= $minHeight ) {
+				if( $(this).height() >= minHeight ) {
 					$(this).next().show();
-				} else {
-					$(this).next().hide();
-				}
 			});
 		})(jQuery);
 		</script>
