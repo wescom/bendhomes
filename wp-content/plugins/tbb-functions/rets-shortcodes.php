@@ -1348,7 +1348,7 @@ class Rets_Open_Houses {
 						if( $columns == 1 ) {
 							$html .= sprintf( '<div id="openhousemeta-%s" class="open-house-meta collapse">%s</div>', 
 											 $count, $dates_times_html );
-							$html .= sprintf( '<button type="button" class="openhouse-btn data-toggle="collapse" data-target="#openhousemeta-%s">View More Times</button>',
+							$html .= sprintf( '<button type="button" class="openhouse-btn" data-toggle="collapse" data-target="#openhousemeta-%s">View More Times</button>',
 											 $count );
 						}
 						
@@ -1434,7 +1434,7 @@ class Rets_Open_Houses {
 		ob_start(); ?>
 		
 		<script>
-		//(function($){
+		(function($){
 			var openHouseBtn = $('.openhouse-btn'),
 				minHeight = 80;
 			openHouseBtn.hide();
@@ -1442,7 +1442,7 @@ class Rets_Open_Houses {
 				if( $(this).height() >= minHeight ) {
 					$(this).next().show();
 			});
-		//})(jQuery);
+		})(jQuery);
 		</script>
 		
 		<?php return ob_get_clean();
