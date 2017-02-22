@@ -1201,9 +1201,6 @@ class Rets_Open_Houses {
 			OPEN.StartDateTime,
 			OPEN.TimeComments,
 			OPEN.MLNumber,
-			OPEN.ListingOfficeNumber,
-			OPEN.AgentFirstName,
-			OPEN.AgentLastName,
 			OPEN.AgentMLSID,
 			
 			RESI.MLNumber,
@@ -1237,9 +1234,11 @@ class Rets_Open_Houses {
 		
 		$openhouses = $openhouses_query->select( $query );
 		
-		print_r($openhouses);
+		//print_r($openhouses);
 		
 		$openhouses_array = $this->format_rets_query( $openhouses );
+		
+		print_r($openhouses_array);
 		
 		if( !empty( $limit ) ) {
 			$openhouses_array = array_slice( $openhouses_array, 0, $limit );
@@ -1353,12 +1352,13 @@ class Rets_Open_Houses {
 			
 			if( isset( $result[$mls_num] ) )
 				//$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
-				$index = count( $result[$mls_num] ) - 13;
+				$index = count( $result[$mls_num] ) - 18;
 			else
 				$index = 0;
 
 			$result[$mls_num]['MLNumber'] = $mls_num;
 			$result[$mls_num]['AgentName'] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
+			$result[$mls_num]['AgentMLSID'] = $value['AgentMLSID'];
 			$result[$mls_num]['ListingPrice'] = $value['ListingPrice'];
 			$result[$mls_num]['imagepref'] = $value['imagepref'];
 			$result[$mls_num]['StreetNumber'] = $value['StreetNumber'];
@@ -1369,7 +1369,12 @@ class Rets_Open_Houses {
 			$result[$mls_num]['State'] = $value['State'];
 			$result[$mls_num]['ZipCode'] = $value['ZipCode'];
 			$result[$mls_num]['Bedrooms'] = $value['Bedrooms'];
-			$result[$mls_num]['Bathrooms'] = $value['Bathrooms']; // 13th array item in list so this total goes above in $index as 13
+			$result[$mls_num]['Bathrooms'] = $value['Bathrooms'];
+			$result[$mls_num]['OfficeNumber'] = $value['OfficeNumber'];
+			$result[$mls_num]['OfficeName'] = $value['OfficeName'];
+			$result[$mls_num]['featured'] = $value['featured'];
+			$result[$mls_num]['images'] = $value['images'];  // 18th item in array to enter this number above
+			
 			$result[$mls_num]['DateAndTime'. $index] = [
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
