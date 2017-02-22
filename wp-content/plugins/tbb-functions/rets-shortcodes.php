@@ -1200,8 +1200,10 @@ class Rets_Open_Houses {
 		$openhouses_array = $this->format_rets_query( $openhouses );
 		
 		if( !empty( $limit ) ) {
-			array_slice( $openhouses_array, 0, $limit );
+			$openhouses_array = array_slice( $openhouses_array, 0, $limit );
 		}
+		
+		print_r($openhouses_array);
 				
 		if( $openhouses_array ) {
 			
