@@ -524,8 +524,8 @@ class Rets_Agent_Listings {
 			Property_RESI.Bedrooms,
 			Property_RESI.Bathrooms
 			FROM Property_RESI
-			
-			WHERE ShowAddressToPublic = 1
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
 		";
@@ -1228,6 +1228,7 @@ class Rets_Open_Houses {
 			
 			FROM OpenHouse_OPEN OPEN, Property_RESI RESI, Office_OFFI OFFI
 			WHERE OPEN.MLNumber = RESI.MLNumber
+			AND RESI.Status = 'Active'
 			AND OPEN.ListingOfficeNumber = OFFI.OfficeNumber
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
