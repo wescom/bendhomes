@@ -261,7 +261,7 @@ function getPropertyData($qvars, $pullDate, $idArray){
                             $fname = '/var/www/html/_retsapi/imagesProperties/'.$photofilename;
                             $photobinary = $photo->getContent();
                             file_put_contents($fname, $photobinary, LOCK_EX);
-                            chmod($fname, 0644);
+                            chmod($fname, 0664);
                         }
                     }
 
