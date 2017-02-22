@@ -524,7 +524,7 @@ class Rets_Agent_Listings {
 			Property_RESI.Bedrooms,
 			Property_RESI.Bathrooms
 			FROM Property_RESI
-			WHERE Status = 'Active'
+			
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
