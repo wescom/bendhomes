@@ -1441,6 +1441,7 @@ class Rets_Open_Houses {
 			$('.open-house-meta').each(function(){
 				if( $(this).height() >= minHeight ) {
 					$(this).next().show();
+				}
 			});
 		})(jQuery);
 		</script>
