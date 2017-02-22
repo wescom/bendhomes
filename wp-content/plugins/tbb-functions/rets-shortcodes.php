@@ -1204,7 +1204,7 @@ class Rets_Open_Houses {
 			OPEN.StartDateTime,
 			OPEN.TimeComments,
 			OPEN.MLNumber,
-			OPEN.AgentMLSID,
+			OPEN.ListingAgentNumber,
 			
 			RESI.MLNumber,
 			RESI.ListingPrice,
@@ -1311,7 +1311,7 @@ class Rets_Open_Houses {
 												 $company_url, $openhouse['OfficeName'] );
 					
 					$agent_url = sprintf( '%s/%s/?agent=%s&id=%s', 
-											home_url(), $agent_page, $this->create_slug( $openhouse['AgentName'] ), $openhouse['AgentMLSID'] );
+											home_url(), $agent_page, $this->create_slug( $openhouse['AgentName'] ), $openhouse['AgentNumber'] );
 					
 					$agent_full_link = sprintf( '<a href="%s">%s</a>', 
 											   $agent_url, $openhouse['AgentName'] );
@@ -1392,7 +1392,7 @@ class Rets_Open_Houses {
 
 			$result[$mls_num]['MLNumber'] = $mls_num;
 			$result[$mls_num]['AgentName'] = $value['AgentFirstName'] .' '. $value['AgentLastName'];
-			$result[$mls_num]['AgentMLSID'] = $value['AgentMLSID'];
+			$result[$mls_num]['AgentNumber'] = $value['ListingAgentNumber'];
 			$result[$mls_num]['ListingPrice'] = $value['ListingPrice'];
 			$result[$mls_num]['PropertyImage'] = $value['imagepref'];
 			$result[$mls_num]['StreetNumber'] = $value['StreetNumber'];
