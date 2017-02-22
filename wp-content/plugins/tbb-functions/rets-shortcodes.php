@@ -1279,7 +1279,7 @@ class Rets_Open_Houses {
 					$full_address = $address1 .' '. $address2;
 					
 					// Get Date and Times
-					$timecount_end = sizeof( $openhouse ) - 13;
+					$timecount_end = sizeof( $openhouse ) - 18; // Use same number in format_rets_query function below.
 					$dates_times_html = '';
 					$date_times_url = '';
 					for( $i = 0; $i < $timecount_end; $i++ ) {
@@ -1349,7 +1349,7 @@ class Rets_Open_Houses {
 						
 						if( $columns == 1 ) $html .= '</div>';
 					
-						$html .= sprintf( '<div class="span12"><div class="office-meta-wrap">%s</div></div>', $office_meta );
+						$html .= sprintf( '<div class="clearfix"></div><div class="office-meta-wrap">%s</div></div>', $office_meta );
 					
 					$html .= '</div></div>';
 					// End open house ouput
