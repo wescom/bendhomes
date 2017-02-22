@@ -430,6 +430,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.open-house.one h4.custom-post-title, .custom-post.open-house.one .property-price { text-align: left; }
 .custom-post.open-house h4.custom-post-title .adr1 { font-size: 24px; line-height: 115%; margin-bottom: 8px; font-family: 'Roboto Slab',serif; color: #555; }
 .custom-post.open-house .open-house-meta { font-size: 16px; color: #666; padding-top: 10px; }
+.custom-post.open-house .office-meta-wrap { background: url(images/brslogoxs.png) no-repeat left center; font-size: 14px; padding-left: 38px; min-height: 26px; }
 
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
