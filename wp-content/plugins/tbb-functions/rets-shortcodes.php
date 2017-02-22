@@ -1298,6 +1298,7 @@ class Rets_Open_Houses {
 					// Get Company/Agent Info Box for Featured and Non-Featured
 					$office_meta = '';
 					$company_image = '';
+					$office_featured_class = $openhouse['featured'] == 1 ? 'featured' : '';
 					if( !empty( $openhouse['OfficeImage'] ) ) {
 						$company_image_url = sprintf( '%s/_retsapi/imagesOffices/%s', home_url(), $openhouse['OfficeImage'] );
 						$company_image = sprintf( '<img src="%s" alt="" class="company-image" />', $company_image_url );
@@ -1306,18 +1307,18 @@ class Rets_Open_Houses {
 					$company_url = sprintf( '%s/%s/?company=%s&id=%s', 
 											home_url(), $company_page, $this->create_slug( $openhouse['OfficeName'] ), $openhouse['OfficeNumber'] );
 					
-					$company_full_link = sprintf( '<a href="%s">Listing Courtesy of %s</a>', 
+					$company_full_link = sprintf( '<a href="%s">%s</a>', 
 												 $company_url, $openhouse['OfficeName'] );
 					
-					$agent_url = sprintf( '%s/%s/?company=%s&id=%s', 
+					$agent_url = sprintf( '%s/%s/?agent=%s&id=%s', 
 											home_url(), $agent_page, $this->create_slug( $openhouse['AgentName'] ), $openhouse['AgentMLSID'] );
 					
 					$agent_full_link = sprintf( '<a href="%s">%s</a>', 
 											   $agent_url, $openhouse['AgentName'] );
 					
-					$office_meta .= '<div class="office featured">';
+					$office_meta .= '<div class="office '. $office_featured_class .'">';
 						if( $openhouse['featured'] == 1 ) {
-							$office_meta .= sprintf( '%s<div class="office-info">%s<div>%s</div></div>', 
+							$office_meta .= sprintf( '%s<div class="office-info">Listing Courtesy of %s<div>Agent: %s</div></div>', 
 													$company_image, $company_full_link, $agent_full_link );
 						} else {
 							$office_meta .= sprintf( '<div class="office-info">Listing Courtesy of %s</div>', $openhouse['OfficeName'] );
@@ -1349,7 +1350,7 @@ class Rets_Open_Houses {
 						
 						if( $columns == 1 ) $html .= '</div>';
 					
-						$html .= sprintf( '<div class="clearfix"></div><div class="office-meta-wrap">%s</div></div>', $office_meta );
+						$html .= sprintf( '<div class="clearfix"></div><div class="office-meta-wrap">%s</div>', $office_meta );
 					
 					$html .= '</div></div>';
 					// End open house ouput
