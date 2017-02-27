@@ -1,26 +1,37 @@
 <?php
 
-echo "<h2>Plugin Admin Page</h2>";
-/*$arr = $wpdb->get_results("SELECT * FROM $wpdb->users");
-echo '<div id="dt_example"><div id="container"><form><div id="demo">';
-echo '<table cellpadding="0" cellspacing="0" border="0" class="display" id="example"><thead><tr>';
-foreach ($arr[0] as $k => $v) {
-    echo "<td>".$k."</td>";
+class RETS_Offices extends RETS_Featured_Offices {
+	
+	public function __construct() {
+        add_action( 'admin_init', array( $this, 'render_page' ) );
+    }
+	
+	public function render_page() { ?>
+		
+        <div class="wrap tbb-company-page">
+        	<h1>Featured Offices</h1> 
+            
+            <div class="company-wrap">
+            
+                	<h2 class="nav-tab-wrapper" id="tbb-company-tabs">
+                    	<a class="nav-tab nav-tab-active" id="tbb-company-tab" href="#top#company">Offices</a>
+                    </h2>
+                    
+                    <div id="sections">
+                        <section id="company" class="tbb-tab active">
+                            <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
+                                                                                            
+                            <p>
+                                <input type="hidden" name="action" value="companies_created" />
+                                <input id="company-submit" class="button-primary" type="submit" value="<?php _e( 'Update', 'tbb_company' ); ?>" />
+                            </p>
+                            </form>
+                        </section>
+                    </div>
+            
+            </div>
+        </div>
+        
+	<?php }
+	
 }
-echo '</tr></thead><tbody>';
-foreach($arr as $i=>$j){
-	echo "<tr>";
-	foreach ($arr[$i] as $k => $v) {
-	    echo "<td>".$v."</td>";
-	}
-	echo "</tr>";
-}
-echo '</tbody></table>';
-echo '</div></form></div></div>';
-?>
-
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-	$('#example').dataTable();
-});
-</script>*/

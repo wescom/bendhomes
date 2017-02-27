@@ -1,6 +1,8 @@
 <?php
 // Offices admin page
 
+require_once( TBB_FUNCTIONS_DIR . 'admin/rets-offices-page.php' );
+
 class RETS_Featured_Offices {
 	
 	function __construct() {
@@ -14,8 +16,8 @@ class RETS_Featured_Offices {
 			'Featured Offices',
 			'Offices',
 			'manage_options',
-			'offices',
-			'rets-offices-page.php',
+			'rets-offices',
+			array( $this, 'render_page' ),
 			'dashicons-building',
 			'20'
 		);
@@ -26,15 +28,13 @@ class RETS_Featured_Offices {
 	}
 	
 	function admin_action() {
-		// Do posting function here that creates/updates the companies.
-		//$this->create_company_posts();
-	
-		wp_redirect( $_SERVER['HTTP_REFERER'] .'&companies-created=true' );
 		//print_r($_POST);
 		exit();
 	}
+	
+	abstract function render_page();
 
-	public function do_page() { ?>
+	/*public function do_page() { ?>
 		
         <div class="wrap tbb-company-page">
         	<h1>Featured Offices</h1> 
@@ -60,7 +60,7 @@ class RETS_Featured_Offices {
             </div>
         </div>
         
-	<?php }
+	<?php }*/
 	
 }
 
