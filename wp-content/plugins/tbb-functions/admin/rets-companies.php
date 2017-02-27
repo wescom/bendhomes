@@ -1,7 +1,5 @@
 <?php
-// Settings page under Company Post Type
-
-include( TBB_FUNCTIONS_DIR . 'rets-connect.class.php' );
+// Offices admin page
 
 class RETS_Featured_Companies {
 	
