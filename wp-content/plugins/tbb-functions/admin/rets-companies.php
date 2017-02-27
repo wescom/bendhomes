@@ -3,13 +3,10 @@
 
 class RETS_Featured_Companies {
 	
-	private $RETS_DB;
-
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_company_files' ) );
 		add_action( 'admin_action_offices', array( $this, 'offices_admin_action' ) );
-		$this->$RETS_DB = new Rets_DB();
 	}
 	
 	/*function call_RETS_DB_select( $query ) {
@@ -80,7 +77,7 @@ class RETS_Featured_Companies {
         
 	<?php }
 	
-	function get_offices_query() {
+	/*function get_offices_query() {
 		$query = "
 			SELECT Office_OFFI.IsActive,
 			Office_OFFI.MLSID,
@@ -96,7 +93,7 @@ class RETS_Featured_Companies {
 		$offices = $this->RETS_DB->select( $query );
 				
 		return $offices;
-	}
+	}*/
 	
 }
 
