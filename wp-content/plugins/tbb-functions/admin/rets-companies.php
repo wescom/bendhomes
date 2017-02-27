@@ -75,7 +75,22 @@ class RETS_Featured_Companies {
                         <section id="company" class="tbb-tab active">
                             <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                                       
-                            <?php print_r( $this->get_offices() ); ?>
+                            <?php 
+							$offices_query = new Rets_DB();
+							$query = "
+								SELECT Office_OFFI.IsActive,
+								Office_OFFI.MLSID,
+								Office_OFFI.OfficeName,
+								Office_OFFI.OfficeDescription,
+								Office_OFFI.DisplayName,
+								Office_OFFI.featured,
+								FROM Office_OFFI
+								WHERE IsActive = 'T'
+								ORDER BY OfficeName ASC
+							";
+							$return_query = $offices_query->select( $query );				   
+											   
+							print_r( $return_query ); ?>
                                                                                             
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
