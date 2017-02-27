@@ -1,18 +1,14 @@
 <?php
 // Settings page under Company Post Type
 
+include( TBB_FUNCTIONS_DIR . 'rets-connect.class.php' );
+
 class RETS_Featured_Companies {
 
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_company_files' ) );
 		add_action( 'admin_action_offices', array( $this, 'offices_admin_action' ) );
-	}
-	
-	function call_RETS_DB( $query ) {
-		$rets_db = new Rets_DB();
-		$select = $rets_db->select( $query );
-		return $select;
 	}
 
 	function admin_menu() {
@@ -42,8 +38,28 @@ class RETS_Featured_Companies {
 		//print_r($_POST);
 		exit();
 	}
+	
+	function call_RETS_DB_select( $query ) {
+		$rets_db = new Rets_DB();
+		$select = $rets_db->select( $query );
+		return $select;
+	}
 
-	function office_settings_do_page() { ?>
+	function office_settings_do_page() { 
+		
+		$query = "
+			SELECT Office_OFFI.IsActive,
+			Office_OFFI.MLSID,
+			Office_OFFI.OfficeName,
+			Office_OFFI.OfficeDescription,
+			Office_OFFI.DisplayName,
+			Office_OFFI.featured,
+			FROM Office_OFFI
+			WHERE IsActive = 'T'
+			ORDER BY OfficeName ASC
+		";
+		
+	?>
 		
         <div class="wrap tbb-company-page">
         	<h1>Featured Offices</h1>
@@ -64,7 +80,7 @@ class RETS_Featured_Companies {
                         <section id="company" class="tbb-tab active">
                             <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                             
-                            <?php print_r( $this->get_offices_query() ); ?>
+                            <?php print_r( $this->call_RETS_DB_select( $query ) ); ?>
                             
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
@@ -78,24 +94,6 @@ class RETS_Featured_Companies {
         </div>
         
 	<?php }
-	
-	function get_offices_query() {
-		$query = "
-			SELECT Office_OFFI.IsActive,
-			Office_OFFI.MLSID,
-			Office_OFFI.OfficeName,
-			Office_OFFI.OfficeDescription,
-			Office_OFFI.DisplayName,
-			Office_OFFI.featured,
-			FROM Office_OFFI
-			WHERE IsActive = 'T'
-			ORDER BY OfficeName ASC
-		";
-		
-		$offices = $this->call_RETS_DB( $query );
-				
-		return $offices;
-	}
 	
 }
 
