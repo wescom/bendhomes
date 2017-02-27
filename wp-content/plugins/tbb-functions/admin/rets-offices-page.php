@@ -1,8 +1,7 @@
 <?php
 
-global $wpdb;
 echo "<h2>Plugin Admin Page</h2>";
-$arr = $wpdb->get_results("SELECT * FROM $wpdb->users");
+/*$arr = $wpdb->get_results("SELECT * FROM $wpdb->users");
 echo '<div id="dt_example"><div id="container"><form><div id="demo">';
 echo '<table cellpadding="0" cellspacing="0" border="0" class="display" id="example"><thead><tr>';
 foreach ($arr[0] as $k => $v) {
@@ -24,4 +23,4 @@ echo '</div></form></div></div>';
 jQuery(document).ready(function($) {
 	$('#example').dataTable();
 });
-</script>
+</script>*/
