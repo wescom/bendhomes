@@ -1,8 +1,6 @@
 <?php
 // Offices admin page
 
-include( TBB_FUNCTIONS_URI .'/rets-connect.class.php' );
-
 $rets_connect = new RETS_DB();
 
 class RETS_Featured_Companies {
@@ -80,7 +78,7 @@ class RETS_Featured_Companies {
                             <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                                       
                             <?php 			
-							print_r( $this->get_offices() ); ?>
+							echo $this->get_offices(); ?>
                                                                                             
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
