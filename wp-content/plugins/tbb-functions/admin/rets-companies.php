@@ -8,6 +8,12 @@ class RETS_Featured_Companies {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_company_files' ) );
 		add_action( 'admin_action_offices', array( $this, 'offices_admin_action' ) );
 	}
+	
+	function call_RETS_DB( $query ) {
+		$rets_db = new Rets_DB();
+		$select = $rets_db->select( $query );
+		return $select;
+	}
 
 	function admin_menu() {
 		add_menu_page(
@@ -86,10 +92,8 @@ class RETS_Featured_Companies {
 			ORDER BY OfficeName ASC
 		";
 		
-		$offices_query = new Rets_DB();
-		
-		$offices = $offices_query->select( $query );
-		
+		$offices = $this->call_RETS_DB( $query );
+				
 		return $offices;
 	}
 	
