@@ -30,7 +30,7 @@ class RETS_Featured_Offices {
 		exit();
 	}
 	
-	abstract function render_page();
+	public function render_page() {};
 
 	/*public function do_page() { ?>
 		
