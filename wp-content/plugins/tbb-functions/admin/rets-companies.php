@@ -58,7 +58,7 @@ class RETS_Featured_Companies {
                         <section id="company" class="tbb-tab active">
                             <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                             
-                            print_r( $this->get_offices_query() );
+                            <?php print_r( $this->get_offices_query() ); ?>
                             
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
