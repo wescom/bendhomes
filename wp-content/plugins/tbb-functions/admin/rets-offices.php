@@ -1,12 +1,12 @@
 <?php
 // Offices admin page
 
-class RETS_Featured_Companies {
+class RETS_Featured_Offices {
 	
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_company_files' ) );
-		add_action( 'admin_action_offices', array( $this, 'offices_admin_action' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_office_files' ) );
+		add_action( 'admin_action_offices', array( $this, 'admin_action' ) );
 	}
 
 	function admin_menu() {
@@ -15,20 +15,17 @@ class RETS_Featured_Companies {
 			'Offices',
 			'manage_options',
 			'offices',
-			array(
-				$this,
-				'office_settings_do_page'
-			),
+			TBB_FUNCTIONS_DIR . 'admin/rets-offices-page.php',
 			'dashicons-building',
 			'20'
 		);
 	}
 	
-	function enqueue_company_files() {
+	function enqueue_office_files() {
 		wp_enqueue_style( 'company', TBB_FUNCTIONS_URL . 'css/company-settings.css' );
 	}
 	
-	function offices_admin_action() {
+	function admin_action() {
 		// Do posting function here that creates/updates the companies.
 		//$this->create_company_posts();
 	
@@ -37,16 +34,10 @@ class RETS_Featured_Companies {
 		exit();
 	}
 
-	public function office_settings_do_page() { ?>
+	public function do_page() { ?>
 		
         <div class="wrap tbb-company-page">
-        	<h1>Featured Offices</h1>
-            
-            <?php if ( $_GET['companies-created'] == 'true' ) { ?>
-                <div class="updated">
-                    <p>Companies Created/Updated Successfully</p>
-                </div>
-            <?php } ?> 
+        	<h1>Featured Offices</h1> 
             
             <div class="company-wrap">
             
@@ -73,4 +64,4 @@ class RETS_Featured_Companies {
 	
 }
 
-new RETS_Featured_Companies;
+new RETS_Featured_Offices;
