@@ -15,7 +15,7 @@ class RETS_Featured_Offices {
 			'Offices',
 			'manage_options',
 			'offices',
-			'tbb-functions/admin/rets-offices-page.php',
+			'rets-offices-page.php',
 			'dashicons-building',
 			'20'
 		);
