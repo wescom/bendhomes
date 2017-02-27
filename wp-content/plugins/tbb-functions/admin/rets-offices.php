@@ -6,7 +6,7 @@ class RETS_Featured_Offices {
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_office_files' ) );
-		add_action( 'admin_action_offices', array( $this, 'admin_action' ) );
+		//add_action( 'admin_action_offices', array( $this, 'admin_action' ) );
 	}
 
 	function admin_menu() {
@@ -25,12 +25,12 @@ class RETS_Featured_Offices {
 		wp_enqueue_style( 'company', TBB_FUNCTIONS_URL . 'css/company-settings.css' );
 	}
 	
-	function admin_action() {
+	/*function admin_action() {
 		//print_r($_POST);
 		exit();
-	}
+	}*/
 	
-	public function render_page() {};
+	abstract function render_page();
 
 	/*public function do_page() { ?>
 		
