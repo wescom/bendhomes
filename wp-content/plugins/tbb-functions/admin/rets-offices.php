@@ -1,8 +1,6 @@
 <?php
 // Offices admin page
 
-require_once( TBB_FUNCTIONS_DIR . 'admin/rets-offices-page.php' );
-
 class RETS_Featured_Offices {
 	
 	function __construct() {
