@@ -1,7 +1,7 @@
 <?php
 // Offices admin page
 
-$rets_connect = new RETS_DB;
+$rets_connect = new RETS_DB();
 
 class RETS_Featured_Companies {
 	
@@ -11,8 +11,19 @@ class RETS_Featured_Companies {
 		add_action( 'admin_action_offices', array( $this, 'offices_admin_action' ) );
 	}
 	
-	function call_RETS_DB_select( $query ) {
+	function get_offices() {
 		global $rets_connect;
+		$query = "
+			SELECT Office_OFFI.IsActive,
+			Office_OFFI.MLSID,
+			Office_OFFI.OfficeName,
+			Office_OFFI.OfficeDescription,
+			Office_OFFI.DisplayName,
+			Office_OFFI.featured,
+			FROM Office_OFFI
+			WHERE IsActive = 'T'
+			ORDER BY OfficeName ASC
+		";
 		$return_query = $rets_connect->select( $query );
 		return $return_query;
 	}
@@ -66,19 +77,8 @@ class RETS_Featured_Companies {
                         <section id="company" class="tbb-tab active">
                             <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
                                       
-                            <?php 
-							$query = "
-								SELECT Office_OFFI.IsActive,
-								Office_OFFI.MLSID,
-								Office_OFFI.OfficeName,
-								Office_OFFI.OfficeDescription,
-								Office_OFFI.DisplayName,
-								Office_OFFI.featured,
-								FROM Office_OFFI
-								WHERE IsActive = 'T'
-								ORDER BY OfficeName ASC
-							";			
-							print_r( $this->call_RETS_DB_select( $query ) ); ?>
+                            <?php 			
+							print_r( $this->get_offices() ); ?>
                                                                                             
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
