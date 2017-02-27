@@ -1,6 +1,8 @@
 <?php
 // Offices admin page
 
+include( TBB_FUNCTIONS_URI .'/rets-connect.class.php' );
+
 $rets_connect = new RETS_DB();
 
 class RETS_Featured_Companies {
