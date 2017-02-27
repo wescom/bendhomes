@@ -4,7 +4,14 @@
 add_action('admin_menu', 'plugin_admin_add_page');
 function plugin_admin_add_page() {
   //http://codex.wordpress.org/Function_Reference/add_menu_page
-  add_menu_page( 'RETS Offices', 'Offices', 'manage_options', 'tbb-functions/rets-offices-page.php', 'dashicons-building', '20' );
+  add_menu_page( 
+	  'RETS Offices', 
+	  'Offices', 
+	  'manage_options', 
+	  'tbb-functions/rets-offices-page.php',
+	  '',
+	  'dashicons-building', 
+	  '20' );
 }
 function my_enqueue($hook) {
   //only for our special plugin admin page
