@@ -14,11 +14,11 @@ class RETS_Featured_Companies {
 		$this->$RETS_DB = new Rets_DB();
 	}
 	
-	function call_RETS_DB_select( $query ) {
+	/*function call_RETS_DB_select( $query ) {
 		$rets_db = new Rets_DB();
 		$select = $rets_db->select( $query );
 		return $select;
-	}
+	}*/
 
 	function admin_menu() {
 		add_menu_page(
@@ -68,9 +68,7 @@ class RETS_Featured_Companies {
                     <div id="sections">
                         <section id="company" class="tbb-tab active">
                             <form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
-                            
-                            <?php print_r( $this->get_offices_query() ); ?>
-                            
+                                                        
                             <p>
                                 <input type="hidden" name="action" value="companies_created" />
                                 <input id="company-submit" class="button-primary" type="submit" value="<?php _e( 'Update', 'tbb_company' ); ?>" />
