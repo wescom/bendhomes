@@ -9,7 +9,7 @@ class RETS_Featured_Companies {
 		add_action( 'admin_action_offices', array( $this, 'offices_admin_action' ) );
 	}
 
-	private function admin_menu() {
+	function admin_menu() {
 		add_menu_page(
 			'Featured Offices',
 			'Offices',
@@ -24,11 +24,11 @@ class RETS_Featured_Companies {
 		);
 	}
 	
-	private function enqueue_company_files() {
+	function enqueue_company_files() {
 		wp_enqueue_style( 'company', TBB_FUNCTIONS_URL . 'css/company-settings.css' );
 	}
 	
-	private function offices_admin_action() {
+	function offices_admin_action() {
 		// Do posting function here that creates/updates the companies.
 		//$this->create_company_posts();
 	
@@ -37,7 +37,7 @@ class RETS_Featured_Companies {
 		exit();
 	}
 
-	private function office_settings_do_page() { ?>
+	function office_settings_do_page() { ?>
 		
         <div class="wrap tbb-company-page">
         	<h1>Featured Offices</h1>
@@ -73,7 +73,7 @@ class RETS_Featured_Companies {
         
 	<?php }
 	
-	private function get_offices_query() {
+	function get_offices_query() {
 		$query = "
 			SELECT Office_OFFI.IsActive,
 			Office_OFFI.MLSID,
