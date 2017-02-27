@@ -1,27 +1,51 @@
 <?php
 // Offices admin page
 
-add_action('admin_menu', 'plugin_admin_add_page');
-function plugin_admin_add_page() {
-  //http://codex.wordpress.org/Function_Reference/add_menu_page
-  add_menu_page( 
-	  'RETS Offices', 
-	  'Offices', 
-	  'manage_options', 
-	  'tbb-functions/rets-offices-page.php',
-	  '',
-	  'dashicons-building', 
-	  '20' );
+if ( !defined( 'ABSPATH' ) ) exit;
+ 
+class RETS_Offices {
+ 
+    private static $instance;
+ 
+    /**
+     * Main Instance
+     *
+     * @staticvar   array   $instance
+     * @return      The one true instance
+     */
+    public static function instance() {
+         if ( ! isset( self::$instance ) ) {
+             self::$instance = new self;
+			 self::$instance->add_offices_menu();
+		}
+ 
+        return self::$instance;
+    }
+ 
+    public function add_offices_menu() {
+          
+         add_menu_page(
+            'RETS Offices',
+            'Offices',
+            'manage_options',
+            'rets-offices',
+            array(
+                $this,
+                'rets_admin_page'
+            ),
+            'dashicons-building',
+            '20'
+        );
+    }
+ 
+    public function rets_admin_page() {
+         // Echo the html here...
+		echo '<h1>RETS Offices</h1>';
+    }
+ 
 }
-function my_enqueue($hook) {
-  //only for our special plugin admin page
-  if( 'tbb-functions/rets-offices-page.php' != $hook )
-    return;
-  wp_register_style( 'rets-company', TBB_FUNCTIONS_URL . 'css/company-settings.css' );
-  wp_enqueue_style('rets-company');
-  //wp_enqueue_script('pluginscript', plugins_url('pluginpage.js', __FILE__ ), array('jquery'));
-}
-add_action( 'admin_enqueue_scripts', 'my_enqueue' );
+// Call the class and add the menus automatically. 
+$RETS_Offices = RETS_Offices::instance();
 
 
 
