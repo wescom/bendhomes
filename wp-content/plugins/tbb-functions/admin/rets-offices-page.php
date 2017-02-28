@@ -19,10 +19,9 @@ $query = "
 	ORDER BY OfficeName ASC
 ";
 
-$rows = array();
 $html = '';
+$html .= '<h1>RETS Featured Offices Query</h1>';
 $html .= $query;
-$html .= '<h1>RETS Featured Offices Testing</h1>';
 $html .= '<div class="company-wrap">
 
 		<h2 class="nav-tab-wrapper" id="tbb-company-tabs">
