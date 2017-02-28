@@ -497,10 +497,28 @@ class TT_Example_List_Table extends WP_List_Table {
          * be able to use your precisely-queried data immediately.
          */
         //$data = $this->example_data;
-		$query = "
+		/*$query = "
 			SELECT OF.OfficeName, OF.OfficeDescription, OF.DisplayName, OF.featured,
 			FROM Office_OFFI OF
-		";		
+		";*/
+		$query = "
+			SELECT Office_OFFI.IsActive,
+			Office_OFFI.MLSID,
+			Office_OFFI.OfficeName,
+			Office_OFFI.OfficeNumber,
+			Office_OFFI.OfficePhone,
+			Office_OFFI.OfficePhoneComplete,
+			Office_OFFI.StreetAddress,
+			Office_OFFI.StreetCity,
+			Office_OFFI.StreetState,
+			Office_OFFI.StreetZipCode,
+			Office_OFFI.OfficeDescription,
+			Office_OFFI.DisplayName,
+			Office_OFFI.featured,
+			Office_OFFI.images
+			FROM Office_OFFI
+			WHERE IsActive = 'T' AND featured = 1
+		";
 		print_r($query);
 		$data = $this->select( $query );
 		print_r($data);
@@ -626,9 +644,7 @@ function tt_render_list_page(){
             class in your own plugins, you can view this file <a href="<?php echo admin_url( 'plugin-editor.php?plugin='.plugin_basename(__FILE__) ); ?>" style="text-decoration:none;">in the Plugin Editor</a> or simply open <tt style="color:gray;"><?php echo __FILE__ ?></tt> in the PHP editor of your choice.</p>
             <p>Additional class details are available on the <a href="http://codex.wordpress.org/Class_Reference/WP_List_Table" target="_blank" style="text-decoration:none;">WordPress Codex</a>.</p>
         </div>
-        
-        <?php echo do_shortcode('[rets_companies]'); ?>
-        
+                
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
         <form id="movies-filter" method="get">
             <!-- For plugins, we also need to ensure that the form posts back to our current page -->
