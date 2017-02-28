@@ -528,7 +528,7 @@ class TT_Example_List_Table extends WP_List_Table {
  * menu item to the bottom of the admin menus.
  */
 function tt_add_menu_items(){
-    add_menu_page('Offices', 'Featured Offices', 'activate_plugins', 'rets-offices', 'tt_render_list_page');
+    add_menu_page('Offices', 'Offices', 'activate_plugins', 'rets-offices', 'tt_render_list_page', '20');
 } add_action('admin_menu', 'tt_add_menu_items');
 
 
