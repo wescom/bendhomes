@@ -43,7 +43,9 @@ class RETS_Featured_Offices {
 
 		$companies = $companies_query->select( $query );
 		
-        $html = '<h1>Test Admin Page</h1><div class="wrap tbb-company-page">';
+		print_r($companies);
+		
+        $html = '<h1>Test Admin Page</h1>'.$query.'<div class="wrap tbb-company-page">';
 			/*ob_start();
 			include_once( TBB_FUNCTIONS_DIR .'/admin/rets-offices-page.php' );
 			$html .= ob_get_contents();
