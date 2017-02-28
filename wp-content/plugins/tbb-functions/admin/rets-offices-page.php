@@ -53,5 +53,3 @@ $html .= '<p>
 </div>';
 
 mysqli_close($conn);
-
-echo $html;
