@@ -210,7 +210,6 @@ class TT_Example_List_Table extends WP_List_Table {
 				FROM Office_OFFI
 				WHERE IsActive = 'T'
 				AND Office_OFFI.OfficeName LIKE '%{$search}%'
-				OR Office_OFFI.DisplayName LIKE '%{$search}%'
 			";
 		}
 		
