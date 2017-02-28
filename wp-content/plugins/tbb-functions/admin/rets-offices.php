@@ -558,6 +558,9 @@ function tt_render_list_page(){
     $testListTable->prepare_items();
     
     ?>
+    <style>
+		h2 i:before { vertical-align: baseline; }	
+	</style>
     <div class="wrap">
         
 		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
