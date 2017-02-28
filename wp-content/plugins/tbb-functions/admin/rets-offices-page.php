@@ -1,6 +1,14 @@
 <?php
 // HTML page for Offices admin
 
+include_once '/var/databaseIncludes/retsDBInfo.php';
+
+$conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
+
+if ($conn->connect_error) {
+die("Connection failed: " . $conn->connect_error);
+}
+
 $query = "
 	SELECT Office_OFFI.OfficeName,
 	Office_OFFI.OfficeDescription,
@@ -11,17 +19,10 @@ $query = "
 	ORDER BY OfficeName ASC
 ";
 
-$companies_query = new Rets_DB();
-		
-$companies = $companies_query->select( $query );
-
-print_r( $companies);
-
-?>
-
-<h1>RETS Featured Offices</h1> 
-            
-<div class="company-wrap">
+$rows = array();
+$html = '';
+$html .= '<h1>RETS Featured Offices</h1>';
+$html .= '<div class="company-wrap">
 
 		<h2 class="nav-tab-wrapper" id="tbb-company-tabs">
 			<a class="nav-tab nav-tab-active" id="tbb-company-tab" href="#top#company">Offices</a>
@@ -29,9 +30,19 @@ print_r( $companies);
 
 		<div id="sections">
 			<section id="company" class="tbb-tab active">
-				<form id="create-companies" method="post" action="<?php echo admin_url( 'admin.php' ); ?>" enctype="multipart/form-data">
+				<form id="create-companies" method="post" action="'. admin_url( 'admin.php' ) .'" enctype="multipart/form-data">';
 
-				<p>
+$result = $conn->query($query);
+
+print_r( $result );
+
+/*if ($result->num_rows > 0) {
+	
+} else {
+	$html .= '';
+}*/
+
+$html .= '<p>
 					<input type="hidden" name="action" value="companies_created" />
 					<input id="company-submit" class="button-primary" type="submit" value="Update" />
 				</p>
@@ -39,4 +50,8 @@ print_r( $companies);
 			</section>
 		</div>
 
-</div>
+</div>';
+
+mysqli_close($conn);
+
+echo $html;
