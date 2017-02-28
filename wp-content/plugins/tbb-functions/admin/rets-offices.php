@@ -452,12 +452,45 @@ class TT_Example_List_Table extends WP_List_Table {
          * use sort and pagination data to build a custom query instead, as you'll
          * be able to use your precisely-queried data immediately.
          */
-		$data = $this->get_offices_array();
+		/*$data = $this->get_offices_array();
 		
 		if( $search != NULL ) {
 			$search = trim($search);
 			$data = $this->get_offices_array( $search );
+		}*/
+		
+		
+		
+		$query = "
+			SELECT Office_OFFI.IsActive,
+			Office_OFFI.MLSID,
+			Office_OFFI.OfficeName,
+			Office_OFFI.OfficeDescription,
+			Office_OFFI.DisplayName,
+			Office_OFFI.featured,
+			Office_OFFI.images
+			FROM Office_OFFI
+			WHERE IsActive = 'T'
+		";
+
+		if( $search != NULL ) {	
+			$search = trim($search);
+			$query = "
+				SELECT Office_OFFI.IsActive,
+				Office_OFFI.MLSID,
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficeDescription,
+				Office_OFFI.DisplayName,
+				Office_OFFI.featured,
+				Office_OFFI.images
+				FROM Office_OFFI
+				WHERE IsActive = 'T'
+				AND Office_OFFI.OfficeName LIKE '%{$search}%'
+			";
 		}
+		
+		$offices_query = new Rets_DB();
+		$data = $offices_query->select( $query );
                 
         
         /**
