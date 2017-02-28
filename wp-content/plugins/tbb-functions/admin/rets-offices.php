@@ -423,7 +423,9 @@ class TT_Example_List_Table extends WP_List_Table {
 			FROM Office_OFFI OF
 			WHERE IsActive = 'T'
 		";
-		$data = $wpdb->get_results( $query );
+		$companies_query = new Rets_DB();
+		
+		$data = $companies_query->select( $query );
                 
         
         /**
