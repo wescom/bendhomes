@@ -473,7 +473,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			WHERE IsActive = 'T'
 		";
 
-		if( $search != '' ) {	
+		if( $search ) {	
 			$search = trim($search);
 			$query = "
 				SELECT Office_OFFI.IsActive,
@@ -618,7 +618,7 @@ function tt_render_list_page(){
     $officeListTable = new TT_Example_List_Table();
 	
     //Fetch, prepare, sort, and filter our data...
-    $officeListTable->prepare_items();
+    $officeListTable->prepare_items( $_POST['s'] );
     
     ?>
     <style>
