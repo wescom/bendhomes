@@ -636,7 +636,7 @@ function tt_render_list_page(){
         <form id="offices-filter" method="get">
             <!-- For plugins, we also need to ensure that the form posts back to our current page -->
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
-            <?php $officeListTable->search_box( 'Search by Office Name', 'office-search' ); ?>
+            <?php $officeListTable->search_box( 'Search', 'office-search' ); ?>
             <!-- Now we can render the completed list table -->
             <?php $officeListTable->display() ?>
         </form>
