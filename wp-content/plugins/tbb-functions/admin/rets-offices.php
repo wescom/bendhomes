@@ -104,6 +104,85 @@ if(!class_exists('WP_List_Table')){
  * Our theme for this list table is going to be movies.
  */
 class TT_Example_List_Table extends WP_List_Table {
+	
+	// The database connection
+    protected static $connection;
+
+    /**
+     * Connect to the database
+     * 
+     * @return bool false on failure / mysqli MySQLi object instance on success
+     */
+    function connect() {    
+        // Try and connect to the database
+        if(!isset(self::$connection)) {
+            // Load configuration as an array. Use the actual location of your configuration file
+            //$config = parse_ini_file('./config.ini'); 
+            self::$connection = new mysqli('localhost', 'phrets', 'hCqaQvMKW9wJKQwS', 'bh_rets');
+        }
+
+        // If connection was not successful, handle the error
+        if(self::$connection === false) {
+            // Handle error - notify administrator, log to a file, show an error screen, etc.
+            return false;
+        }
+        return self::$connection;
+    }
+
+    /**
+     * Query the database
+     *
+     * @param $query The query string
+     * @return mixed The result of the mysqli::query() function
+     */
+    function query($query) {
+        // Connect to the database
+        $connection = $this -> connect();
+
+        // Query the database
+        $result = $connection -> query($query);
+
+        return $result;
+    }
+
+    /**
+     * Fetch rows from the database (SELECT query)
+     *
+     * @param $query The query string
+     * @return bool False on failure / array Database rows on success
+     */
+    function select($query) {
+        $rows = array();
+        $result = $this -> query($query);
+        if($result === false) {
+            return false;
+        }
+        while ($row = $result -> fetch_assoc()) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
+    /**
+     * Fetch the last error from the database
+     * 
+     * @return string Database error message
+     */
+    function error() {
+        $connection = $this -> connect();
+        return $connection -> error;
+    }
+
+    /**
+     * Quote and escape value for use in a database query
+     *
+     * @param string $value The value to be quoted and escaped
+     * @return string The quoted and escaped string
+     */
+    function quote($value) {
+        $connection = $this -> connect();
+        return "'" . $connection -> real_escape_string($value) . "'";
+    }
     
     /** ************************************************************************
      * Normally we would be querying data from a database and manipulating that
@@ -422,10 +501,8 @@ class TT_Example_List_Table extends WP_List_Table {
 			SELECT OF.OfficeName, OF.OfficeDescription, OF.DisplayName, OF.featured,
 			FROM Office_OFFI OF
 			WHERE IsActive = 'T'
-		";
-		$companies_query = new Rets_DB();
-		
-		$data = $companies_query->select( $query );
+		";		
+		$data = $this->select( $query );
                 
         
         /**
