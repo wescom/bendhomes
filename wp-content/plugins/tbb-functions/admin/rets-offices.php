@@ -258,7 +258,7 @@ class TT_Example_List_Table extends WP_List_Table {
         
         //Build row actions
         $actions = array(
-            'edit'      => sprintf('<a href="?page=%s&action=%s&office=%s">Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+            'edit'      => sprintf('<a href="?page=%s&action=%s&office=%s">Edit</a>',$_REQUEST['page'],'edit',$item['MLSID'])
             //'delete'    => sprintf('<a href="?page=%s&action=%s&office=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
         );
         
@@ -283,7 +283,7 @@ class TT_Example_List_Table extends WP_List_Table {
     function column_cb($item){
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
-            /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
+            /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("office")
             /*$2%s*/ $item['MLSID']                //The value of the checkbox should be the record's id
         );
     }
@@ -305,7 +305,7 @@ class TT_Example_List_Table extends WP_List_Table {
     function get_columns(){
         $columns = array(
             'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-            'OfficeName'     => 'Office Name',
+            'title'     => 'Office Name',
             'DisplayName'    => 'Display Name',
             'featured'  => 'Featured'
         );
@@ -329,7 +329,7 @@ class TT_Example_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_sortable_columns() {
         $sortable_columns = array(
-            'OfficeName'     => array('OfficeName',false),     //true means it's already sorted
+            'title'     => array('OfficeName',false),     //true means it's already sorted
             'DisplayName'    => array('DisplayName',false),
             'featured'  => array('featured',false)
         );
