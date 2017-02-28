@@ -396,7 +396,7 @@ class TT_Example_List_Table extends WP_List_Table {
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = 5;
+        $per_page = 50;
         
         
         /**
@@ -437,7 +437,6 @@ class TT_Example_List_Table extends WP_List_Table {
          * be able to use your precisely-queried data immediately.
          */
 		$data = $this->get_offices_array();
-		print_r($data);
                 
         
         /**
