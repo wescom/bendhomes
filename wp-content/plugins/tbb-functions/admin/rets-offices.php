@@ -624,13 +624,10 @@ function tt_render_list_page(){
 		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
                 
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
-        <form method="post">
-			<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
-			<?php $officeListTable->search_box('Search Offices', 'office-search'); ?>
-		</form>
         <form id="offices-filter" method="get">
             <!-- For plugins, we also need to ensure that the form posts back to our current page -->
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
+            <?php $myListTable->search_box( 'search', 'office-search' ); ?>
             <!-- Now we can render the completed list table -->
             <?php $officeListTable->display() ?>
         </form>
