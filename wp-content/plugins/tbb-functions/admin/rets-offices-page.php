@@ -19,9 +19,14 @@ $query = "
 	ORDER BY OfficeName ASC
 ";
 
+$companies_query = new Rets_DB();
+		
+$companies = $companies_query->select( $query );
+
 $html = '';
 $html .= '<h1>RETS Featured Offices Query</h1>';
 $html .= $query;
+print_r( $companies);
 $html .= '<div class="company-wrap">
 
 		<h2 class="nav-tab-wrapper" id="tbb-company-tabs">
