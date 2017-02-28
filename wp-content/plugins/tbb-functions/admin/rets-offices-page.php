@@ -1,4 +1,8 @@
-<h1>Featured Offices</h1> 
+<?php
+
+?>
+
+<h1>RETS Featured Offices</h1> 
             
 <div class="company-wrap">
 
