@@ -527,7 +527,15 @@ class TT_Example_List_Table extends WP_List_Table {
  */
 function tt_add_menu_items(){
     add_menu_page('Offices', 'Offices', 'activate_plugins', 'rets-offices', 'tt_render_list_page', 'dashicons-building', '20');
-} add_action('admin_menu', 'tt_add_menu_items');
+	$option = 'per_page';
+	$args = array(
+		'label' => 'Offices',
+		'default' => 5,
+		'option' => 'offices_per_page'
+	);
+	add_screen_option( $option, $args );
+}
+add_action('admin_menu', 'tt_add_menu_items');
 
 
 
