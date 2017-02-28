@@ -525,17 +525,18 @@ class TT_Example_List_Table extends WP_List_Table {
  * Now we just need to define an admin page. For this example, we'll add a top-level
  * menu item to the bottom of the admin menus.
  */
-function tt_add_menu_items(){
-    add_menu_page('Offices', 'Offices', 'activate_plugins', 'rets-offices', 'tt_render_list_page', 'dashicons-building', '20');
-	$option = 'per_page';
-	$args = array(
-		'label' => 'Offices',
-		'default' => 5,
-		'option' => 'offices_per_page'
-	);
-	add_screen_option( $option, $args );
-}
 add_action('admin_menu', 'tt_add_menu_items');
+function tt_add_menu_items(){
+    add_menu_page(
+		'Offices', 
+		'Offices', 
+		'activate_plugins', 
+		'rets-offices', 
+		'tt_render_list_page', 
+		'dashicons-building', 
+		'20'
+	);
+}
 
 
 
@@ -559,11 +560,10 @@ function tt_render_list_page(){
     ?>
     <div class="wrap">
         
-        <div id="icon-users" class="icon32"><br/></div>
-        <h2>Featured Offices</h2>
+		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
                 
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
-        <form id="movies-filter" method="get">
+        <form id="offices-filter" method="get">
             <!-- For plugins, we also need to ensure that the form posts back to our current page -->
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
             <!-- Now we can render the completed list table -->
