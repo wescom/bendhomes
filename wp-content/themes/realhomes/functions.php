@@ -349,7 +349,7 @@ if ( ! function_exists( 'register_theme_widgets' ) ) {
 
 
 if ( ! function_exists( 'load_theme_styles' ) ) {
-	/**
+	/*
 	 * Load Required CSS Styles
 	 */
 	function load_theme_styles() {
