@@ -34,13 +34,15 @@ $html .= '<div class="company-wrap">
 
 $result = $conn->query($query);
 
-print_r( $result );
-
-/*if ($result->num_rows > 0) {
+if ($result->num_rows > 0) {
+	
+	while( $row = mysqli_fetch_assoc($result) ) {
+		print_r( $row );
+	}
 	
 } else {
 	$html .= '';
-}*/
+}
 
 $html .= '<p>
 					<input type="hidden" name="action" value="companies_created" />
