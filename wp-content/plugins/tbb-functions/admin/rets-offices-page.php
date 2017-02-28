@@ -22,7 +22,7 @@ $query = "
 $rows = array();
 $html = '';
 $html .= $query;
-$html .= '<h1>RETS Featured Offices</h1>';
+$html .= '<h1>RETS Featured Offices Testing</h1>';
 $html .= '<div class="company-wrap">
 
 		<h2 class="nav-tab-wrapper" id="tbb-company-tabs">
