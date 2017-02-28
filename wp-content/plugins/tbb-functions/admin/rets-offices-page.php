@@ -1,4 +1,21 @@
 <?php
+// HTML page for Offices admin
+
+$query = "
+	SELECT Office_OFFI.OfficeName,
+	Office_OFFI.OfficeDescription,
+	Office_OFFI.DisplayName,
+	Office_OFFI.featured,
+	FROM Office_OFFI
+	WHERE IsActive = 'T'
+	ORDER BY OfficeName ASC
+";
+
+$companies_query = new Rets_DB();
+		
+$companies = $companies_query->select( $query );
+
+print_r( $companies);
 
 ?>
 
