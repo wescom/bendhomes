@@ -559,7 +559,7 @@ function tt_render_list_page(){
     
     ?>
     <style>
-		h2 i:before { vertical-align: baseline; }	
+		h2 i:before { vertical-align: baseline !important; color: #02888f; }	
 	</style>
     <div class="wrap">
         
