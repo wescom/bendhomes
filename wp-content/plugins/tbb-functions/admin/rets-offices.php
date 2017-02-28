@@ -520,7 +520,9 @@ class TT_Example_List_Table extends WP_List_Table {
 			WHERE IsActive = 'T' AND featured = 1
 		";
 		print_r($query);
-		$data = $this->select( $query );
+		$companies_query = new Rets_DB();
+		
+		$data = $companies_query->select( $query );
 		print_r($data);
                 
         
