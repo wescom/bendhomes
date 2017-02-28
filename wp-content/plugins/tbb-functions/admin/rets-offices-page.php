@@ -1,13 +1,13 @@
 <?php
 // HTML page for Offices admin
 
-include_once '/var/databaseIncludes/retsDBInfo.php';
+/*include_once '/var/databaseIncludes/retsDBInfo.php';
 
 $conn = new mysqli(RETSHOST, RETSUSERNAME, RETSPASSWORD, RETSDB);
 
 if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
-}
+}*/
 
 $query = "
 	SELECT Office_OFFI.OfficeName,
@@ -33,7 +33,7 @@ $html .= '<div class="company-wrap">
 			<section id="company" class="tbb-tab active">
 				<form id="create-companies" method="post" action="'. admin_url( 'admin.php' ) .'" enctype="multipart/form-data">';
 
-$result = $conn->query($query);
+/*$result = $conn->query($query);
 
 if ($result->num_rows > 0) {
 	
@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
 	
 } else {
 	$html .= '';
-}
+}*/
 
 $html .= '<p>
 					<input type="hidden" name="action" value="companies_created" />
@@ -55,4 +55,4 @@ $html .= '<p>
 
 </div>';
 
-mysqli_close($conn);
+//mysqli_close($conn);
