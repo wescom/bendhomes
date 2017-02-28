@@ -471,6 +471,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			Office_OFFI.images
 			FROM Office_OFFI
 			WHERE IsActive = 'T'
+			AND Office_OFFI.OfficeName LIKE '%America%'
 		";
 
 		if( $search != NULL ) {	
