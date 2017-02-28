@@ -32,11 +32,22 @@ class RETS_Featured_Offices {
 	
 	public function render_page() {
 		
-        $html = '<div class="wrap tbb-company-page">';
-			ob_start();
+		$query = "
+			SELECT OF.OfficeName, OF.OfficeDescription, OF.DisplayName, OF.featured,
+			FROM Office_OFFI OF
+			WHERE IsActive = 'T'
+			ORDER BY OfficeName ASC
+		";
+
+		$companies_query = new Rets_DB();
+
+		$companies = $companies_query->select( $query );
+		
+        $html = '<h1>Test Admin Page</h1><div class="wrap tbb-company-page">';
+			/*ob_start();
 			include_once( TBB_FUNCTIONS_DIR .'/admin/rets-offices-page.php' );
 			$html .= ob_get_contents();
-			ob_end_clean();
+			ob_end_clean();*/
         $html .= '</div>';
 		
 		echo $html;

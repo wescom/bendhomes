@@ -9,8 +9,6 @@ if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }*/
 
-include TBB_FUNCTIONS_DIR . 'rets-connect.class.php';
-
 $query = "
 	SELECT OF.OfficeName, OF.OfficeDescription, OF.DisplayName, OF.featured,
 	FROM Office_OFFI OF
