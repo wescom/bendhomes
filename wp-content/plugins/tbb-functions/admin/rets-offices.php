@@ -565,6 +565,15 @@ class TT_Example_List_Table extends WP_List_Table {
             'total_pages' => ceil($total_items/$per_page)   //WE have to calculate the total number of pages
         ) );
     }
+	
+	
+	public function search_box( $text, $input_id ) { ?>
+		<p class="search-box">
+		  <label class="screen-reader-text" for="<?php echo $input_id ?>"><?php echo $text; ?>:</label>
+		  <input type="search" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>" />
+		  <?php submit_button( $text, 'button', false, false, array('id' => 'search-submit') ); ?>
+	  </p>
+	<?php }
 
 
 }
@@ -627,7 +636,7 @@ function tt_render_list_page(){
         <form id="offices-filter" method="get">
             <!-- For plugins, we also need to ensure that the form posts back to our current page -->
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
-            <?php $officeListTable->search_box( 'search', 'office-search' ); ?>
+            <?php $officeListTable->search_box( 'Search by Office Name', 'office-search' ); ?>
             <!-- Now we can render the completed list table -->
             <?php $officeListTable->display() ?>
         </form>
