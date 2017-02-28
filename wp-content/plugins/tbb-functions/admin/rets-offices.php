@@ -459,7 +459,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			$data = $this->get_offices_array( $search );
 		}*/
 		
-		
+		$search = $_POST['s'];
 		
 		$query = "
 			SELECT Office_OFFI.IsActive,
@@ -473,7 +473,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			WHERE IsActive = 'T'
 		";
 
-		if( $search ) {	
+		if( $search != NULL ) {	
 			$search = trim($search);
 			$query = "
 				SELECT Office_OFFI.IsActive,
