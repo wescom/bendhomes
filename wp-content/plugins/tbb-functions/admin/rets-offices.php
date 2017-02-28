@@ -500,8 +500,8 @@ class TT_Example_List_Table extends WP_List_Table {
 		$query = "
 			SELECT OF.OfficeName, OF.OfficeDescription, OF.DisplayName, OF.featured,
 			FROM Office_OFFI OF
-			WHERE IsActive = 'T'
 		";		
+		print_r($query);
 		$data = $this->select( $query );
 		print_r($data);
                 
