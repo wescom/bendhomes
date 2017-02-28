@@ -197,9 +197,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			FROM Office_OFFI
 			WHERE IsActive = 'T' AND featured = 1
 		";
-		print_r($query);
 		$offices_query = new Rets_DB();
-
 		$data = $offices_query->select( $query );
 		
 		return $data;
@@ -305,7 +303,7 @@ class TT_Example_List_Table extends WP_List_Table {
     function get_columns(){
         $columns = array(
             'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-            'title'     => 'Office Name',
+            'title'     => 'RETS Office Name',
             'DisplayName'    => 'Display Name',
             'featured'  => 'Featured'
         );
