@@ -503,6 +503,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			WHERE IsActive = 'T'
 		";		
 		$data = $this->select( $query );
+		print_r($data);
                 
         
         /**
