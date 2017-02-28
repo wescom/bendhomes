@@ -21,6 +21,7 @@ $query = "
 
 $rows = array();
 $html = '';
+$html .= $query;
 $html .= '<h1>RETS Featured Offices</h1>';
 $html .= '<div class="company-wrap">
 
