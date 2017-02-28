@@ -166,6 +166,9 @@ class TT_Example_List_Table extends WP_List_Table {
                 'director'  => 'Stanley Kubrick'
             ),
         );*/
+	
+	
+	var $per_page = 10;
 
 
     /** ************************************************************************
@@ -390,13 +393,7 @@ class TT_Example_List_Table extends WP_List_Table {
      * @uses $this->set_pagination_args()
      **************************************************************************/
     function prepare_items() {
-        global $wpdb; //This is used only if making any database queries
-
-
-        /**
-         * First, lets decide how many records per page to show
-         */
-        $per_page = 5;
+        //global $wpdb; //This is used only if making any database queries
         
         
         /**
@@ -492,7 +489,7 @@ class TT_Example_List_Table extends WP_List_Table {
          * to ensure that the data is trimmed to only the current page. We can use
          * array_slice() to 
          */
-        $data = array_slice($data,(($current_page-1)*$per_page),$per_page);
+        $data = array_slice( $data,( ($current_page - 1) * $this->per_page ), $this->per_page );
         
         
         
@@ -508,8 +505,8 @@ class TT_Example_List_Table extends WP_List_Table {
          */
         $this->set_pagination_args( array(
             'total_items' => $total_items,                  //WE have to calculate the total number of items
-            'per_page'    => $per_page,                     //WE have to determine how many items to show on a page
-            'total_pages' => ceil($total_items/$per_page)   //WE have to calculate the total number of pages
+            'per_page'    => $this->per_page,                     //WE have to determine how many items to show on a page
+            'total_pages' => ceil($total_items/$this->per_page)   //WE have to calculate the total number of pages
         ) );
     }
 
