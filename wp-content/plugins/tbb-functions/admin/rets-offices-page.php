@@ -37,7 +37,7 @@ $result = $conn->query($query);
 if ($result->num_rows > 0) {
 	
 	while( $row = mysqli_fetch_assoc($result) ) {
-		print_r( $row );
+		$html .= '<div>'. $row['OfficeName'] .'</div>';
 	}
 	
 } else {
