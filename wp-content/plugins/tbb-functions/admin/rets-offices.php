@@ -609,8 +609,8 @@ function tt_render_list_page(){
     $officeListTable = new TT_Example_List_Table();
 	
     //Fetch, prepare, sort, and filter our data...
-	if( isset($_POST['s']) ) {
-		$officeListTable->prepare_items( $_POST['s'] );
+	if( isset($_GET['s']) ) {
+		$officeListTable->prepare_items( $_GET['s'] );
 	} else {
     	$officeListTable->prepare_items();
 	}
