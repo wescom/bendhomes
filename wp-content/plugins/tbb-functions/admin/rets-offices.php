@@ -33,10 +33,11 @@ class RETS_Featured_Offices {
 	public function render_page() {
 		
         $html = '<div class="wrap tbb-company-page">';
-			ob_start();
+			$html .= '<h1>RETS Featured Offices Testing</h1>';
+			/*ob_start();
 			include_once( TBB_FUNCTIONS_DIR .'/admin/rets-offices-page.php' );
 			$html .= ob_get_contents();
-			ob_end_clean();
+			ob_end_clean();*/
         $html .= '</div>';
 		
 		echo $html;
