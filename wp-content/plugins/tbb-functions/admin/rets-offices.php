@@ -177,8 +177,8 @@ class TT_Example_List_Table extends WP_List_Table {
                 
         //Set parent defaults
         parent::__construct( array(
-            'singular'  => 'movie',     //singular name of the listed records
-            'plural'    => 'movies',    //plural name of the listed records
+            'singular'  => 'office',     //singular name of the listed records
+            'plural'    => 'offices',    //plural name of the listed records
             'ajax'      => false        //does this table support ajax?
         ) );
         
@@ -229,8 +229,8 @@ class TT_Example_List_Table extends WP_List_Table {
      **************************************************************************/
     function column_default($item, $column_name){
         switch($column_name){
-            case 'rating':
-            case 'director':
+            case 'DisplayName':
+            case 'featured':
                 return $item[$column_name];
             default:
                 return print_r($item,true); //Show the whole array for troubleshooting purposes
@@ -258,14 +258,14 @@ class TT_Example_List_Table extends WP_List_Table {
         
         //Build row actions
         $actions = array(
-            'edit'      => sprintf('<a href="?page=%s&action=%s&movie=%s">Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-            'delete'    => sprintf('<a href="?page=%s&action=%s&movie=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
+            'edit'      => sprintf('<a href="?page=%s&action=%s&office=%s">Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+            //'delete'    => sprintf('<a href="?page=%s&action=%s&office=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
         );
         
         //Return the title contents
         return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
-            /*$1%s*/ $item['title'],
-            /*$2%s*/ $item['ID'],
+            /*$1%s*/ $item['OfficeName'],
+            /*$2%s*/ $item['MLSID'],
             /*$3%s*/ $this->row_actions($actions)
         );
     }
@@ -284,7 +284,7 @@ class TT_Example_List_Table extends WP_List_Table {
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
             /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
-            /*$2%s*/ $item['ID']                //The value of the checkbox should be the record's id
+            /*$2%s*/ $item['MLSID']                //The value of the checkbox should be the record's id
         );
     }
 
@@ -305,9 +305,9 @@ class TT_Example_List_Table extends WP_List_Table {
     function get_columns(){
         $columns = array(
             'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-            'title'     => 'Title',
-            'rating'    => 'Rating',
-            'director'  => 'Director'
+            'OfficeName'     => 'Office Name',
+            'DisplayName'    => 'Display Name',
+            'featured'  => 'Featured'
         );
         return $columns;
     }
@@ -329,9 +329,9 @@ class TT_Example_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_sortable_columns() {
         $sortable_columns = array(
-            'title'     => array('title',false),     //true means it's already sorted
-            'rating'    => array('rating',false),
-            'director'  => array('director',false)
+            'OfficeName'     => array('OfficeName',false),     //true means it's already sorted
+            'DisplayName'    => array('DisplayName',false),
+            'featured'  => array('featured',false)
         );
         return $sortable_columns;
     }
@@ -353,7 +353,7 @@ class TT_Example_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_bulk_actions() {
         $actions = array(
-            'delete'    => 'Delete'
+            'featured'    => 'Featured'
         );
         return $actions;
     }
@@ -369,8 +369,8 @@ class TT_Example_List_Table extends WP_List_Table {
     function process_bulk_action() {
         
         //Detect when a bulk action is being triggered...
-        if( 'delete'===$this->current_action() ) {
-            wp_die('Items deleted (or they would be if we had items to delete)!');
+        if( 'featured'===$this->current_action() ) {
+            //wp_die('Items deleted (or they would be if we had items to delete)!');
         }
         
     }
@@ -451,7 +451,7 @@ class TT_Example_List_Table extends WP_List_Table {
          * sorting technique would be unnecessary.
          */
         function usort_reorder($a,$b){
-            $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'title'; //If no sort, default to title
+            $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'OfficeName'; //If no sort, default to title
             $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
             $result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
             return ($order==='asc') ? $result : -$result; //Send final sort direction to usort
@@ -528,7 +528,7 @@ class TT_Example_List_Table extends WP_List_Table {
  * menu item to the bottom of the admin menus.
  */
 function tt_add_menu_items(){
-    add_menu_page('Example Plugin List Table', 'List Table Example', 'activate_plugins', 'tt_list_test', 'tt_render_list_page');
+    add_menu_page('Offices', 'Featured Offices', 'activate_plugins', 'rets-offices', 'tt_render_list_page');
 } add_action('admin_menu', 'tt_add_menu_items');
 
 
@@ -554,14 +554,7 @@ function tt_render_list_page(){
     <div class="wrap">
         
         <div id="icon-users" class="icon32"><br/></div>
-        <h2>List Table Test</h2>
-        
-        <div style="background:#ECECEC;border:1px solid #CCC;padding:0 10px;margin-top:5px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;">
-            <p>This page demonstrates the use of the <tt><a href="http://codex.wordpress.org/Class_Reference/WP_List_Table" target="_blank" style="text-decoration:none;">WP_List_Table</a></tt> class in plugins.</p> 
-            <p>For a detailed explanation of using the <tt><a href="http://codex.wordpress.org/Class_Reference/WP_List_Table" target="_blank" style="text-decoration:none;">WP_List_Table</a></tt>
-            class in your own plugins, you can view this file <a href="<?php echo admin_url( 'plugin-editor.php?plugin='.plugin_basename(__FILE__) ); ?>" style="text-decoration:none;">in the Plugin Editor</a> or simply open <tt style="color:gray;"><?php echo __FILE__ ?></tt> in the PHP editor of your choice.</p>
-            <p>Additional class details are available on the <a href="http://codex.wordpress.org/Class_Reference/WP_List_Table" target="_blank" style="text-decoration:none;">WordPress Codex</a>.</p>
-        </div>
+        <h2>Featured Offices</h2>
                 
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
         <form id="movies-filter" method="get">
