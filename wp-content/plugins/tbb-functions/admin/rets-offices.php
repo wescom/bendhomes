@@ -405,7 +405,7 @@ class TT_Example_List_Table extends WP_List_Table {
      * @uses $this->get_pagenum()
      * @uses $this->set_pagination_args()
      **************************************************************************/
-    function prepare_items() {
+    function prepare_items( $search ) {
         //global $wpdb; //This is used only if making any database queries
 
 
@@ -609,8 +609,8 @@ function tt_render_list_page(){
     $officeListTable = new TT_Example_List_Table();
 	
     //Fetch, prepare, sort, and filter our data...
-	if( isset($_GET['s']) ) {
-		$officeListTable->prepare_items( $_GET['s'] );
+	if( isset($_POST['s']) ) {
+		$officeListTable->prepare_items( $_POST['s'] );
 	} else {
     	$officeListTable->prepare_items();
 	}
