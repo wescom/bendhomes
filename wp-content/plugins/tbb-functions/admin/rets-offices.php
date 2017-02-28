@@ -373,6 +373,7 @@ class TT_Example_List_Table extends WP_List_Table {
     function prepare_items() {
         global $wpdb; //This is used only if making any database queries
 
+
         /**
          * First, lets decide how many records per page to show
          */
@@ -416,7 +417,13 @@ class TT_Example_List_Table extends WP_List_Table {
          * use sort and pagination data to build a custom query instead, as you'll
          * be able to use your precisely-queried data immediately.
          */
-        $data = $this->example_data;
+        //$data = $this->example_data;
+		$query = "
+			SELECT OF.OfficeName, OF.OfficeDescription, OF.DisplayName, OF.featured,
+			FROM Office_OFFI OF
+			WHERE IsActive = 'T'
+		";
+		$data = $wpdb->get_results( $query );
                 
         
         /**
