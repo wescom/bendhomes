@@ -185,18 +185,35 @@ class TT_Example_List_Table extends WP_List_Table {
     }
 	
 	
-	function get_offices_array() {
-		$query = "
-			SELECT Office_OFFI.IsActive,
-			Office_OFFI.MLSID,
-			Office_OFFI.OfficeName,
-			Office_OFFI.OfficeDescription,
-			Office_OFFI.DisplayName,
-			Office_OFFI.featured,
-			Office_OFFI.images
-			FROM Office_OFFI
-			WHERE IsActive = 'T'
-		";
+	function get_offices_array( $search ) {
+		if( $search == '' ) {
+			$query = "
+				SELECT Office_OFFI.IsActive,
+				Office_OFFI.MLSID,
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficeDescription,
+				Office_OFFI.DisplayName,
+				Office_OFFI.featured,
+				Office_OFFI.images
+				FROM Office_OFFI
+				WHERE IsActive = 'T'
+			";
+		} else {
+			$query = "
+				SELECT Office_OFFI.IsActive,
+				Office_OFFI.MLSID,
+				Office_OFFI.OfficeName,
+				Office_OFFI.OfficeDescription,
+				Office_OFFI.DisplayName,
+				Office_OFFI.featured,
+				Office_OFFI.images
+				FROM Office_OFFI
+				WHERE IsActive = 'T'
+				AND Office_OFFI.OfficeName LIKE '%{$search}%'
+				OR Office_OFFI.DisplayName LIKE '%{$search}%'
+			";
+		}
+		
 		$offices_query = new Rets_DB();
 		$data = $offices_query->select( $query );
 		
@@ -390,7 +407,7 @@ class TT_Example_List_Table extends WP_List_Table {
      * @uses $this->set_pagination_args()
      **************************************************************************/
     function prepare_items() {
-        global $wpdb; //This is used only if making any database queries
+        //global $wpdb; //This is used only if making any database queries
 
 
         /**
@@ -437,6 +454,11 @@ class TT_Example_List_Table extends WP_List_Table {
          * be able to use your precisely-queried data immediately.
          */
 		$data = $this->get_offices_array();
+		
+		if( $search != NULL ) {
+			$search = trim($search);
+			$data = $this->get_offices_array( $search );
+		}
                 
         
         /**
@@ -552,9 +574,14 @@ function tt_add_menu_items(){
 function tt_render_list_page(){
     
     //Create an instance of our package class...
-    $testListTable = new TT_Example_List_Table();
+    $officeListTable = new TT_Example_List_Table();
+	
     //Fetch, prepare, sort, and filter our data...
-    $testListTable->prepare_items();
+	if( isset($_POST['s']) ) {
+		$officeListTable->prepare_items( $_POST['s'] );
+	} else {
+    	$officeListTable->prepare_items();
+	}
     
     ?>
     <style>
@@ -565,11 +592,15 @@ function tt_render_list_page(){
 		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
                 
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
+        <form method="post">
+			<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
+			<?php $officeListTable->search_box('Search Offices', 'office-search'); ?>
+		</form>
         <form id="offices-filter" method="get">
             <!-- For plugins, we also need to ensure that the form posts back to our current page -->
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
             <!-- Now we can render the completed list table -->
-            <?php $testListTable->display() ?>
+            <?php $officeListTable->display() ?>
         </form>
         
     </div>
