@@ -514,13 +514,19 @@ class Edit_Rets_Office {
 			$css .= '.edit-office-wrap h3 span { color: #333; font-weight: bold; }';
 			$css .= '.wp-core-ui a.view-office { margin-left: 10px; }';
 		$css .= '</style>';
-		echo $css;
+		return $css;
+	}
+	
+	private function is_checked( $input ) {
+		$is_checked = $input == 1 ? 'checked' : '';
+		return $is_checked;
 	}
 	
 	public function display_form() {
 		
 		$office = $this->get_office_array();
 		$url = home_url(). '/company/?company='. $this->create_slug( $office['OfficeName'] );
+		
 		print_r($office);
 		
 		$html = '';
@@ -541,9 +547,9 @@ class Edit_Rets_Office {
 				
 				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Featured</label></th>
 						<td>
-							<input id="office-featured" type="checkbox" name="office[featured]" value="%s" /> 
+							<input id="office-featured" type="checkbox" name="office[featured]" value="%s" %s /> 
 						</td>
-					</tr>', $office['featured'] );
+					</tr>', $office['featured'], $this->is_checked( $office['featured'] ) );
 		
 			$html .= '</table>';
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
