@@ -510,6 +510,7 @@ class Edit_Rets_Office {
 	public function display_form() {
 		
 		$office = $this->get_office_array();
+		$url = home_url(). '/company/?company='. $this->create_slug( $office['OfficeName'] );
 		print_r($office);
 		
 		$html = '';
@@ -525,16 +526,19 @@ class Edit_Rets_Office {
 						</td>
 					</tr>', $office['DisplayName'] );
 		
-				$html .= '<p>
-            <input type="hidden" name="action" value="office_updated" />
-			<input class="button-primary" type="submit" value="Update Office" />
-			</p>';
+				$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office" href="%s&id=%s" target="_blank">View Office</a></p>', 
+								 $url, $office['OfficeNumber'] );
 		
 			$html .= '</table>';
 		$html .= '</form>';
 		
 		echo $html;
 		
+	}
+	
+	function create_slug( $string ) {
+		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
+		return $slug;
 	}
 	
 }
