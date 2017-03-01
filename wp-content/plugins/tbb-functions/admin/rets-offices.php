@@ -184,11 +184,8 @@ class TT_Example_List_Table extends WP_List_Table {
      * @return string Text to be placed inside the column <td> (movie title only)
      **************************************************************************/
 	function create_slug( $string ) {
-				
 		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
-	   
 		return $slug;
-		
 	}
 	
 	
@@ -199,7 +196,7 @@ class TT_Example_List_Table extends WP_List_Table {
         //Build row actions
         $actions = array(
             'edit' => sprintf('<a href="?page=%s&action=%s&office=%s">Edit</a>',$_REQUEST['page'],'edit',$item['OfficeNumber']),
-			'view' => sprintf('<a href="%s&id=%s">View</a>', $company_url, $item['OfficeNumber'])
+			'view' => sprintf('<a href="%s&id=%s" target="_blank">View</a>', $company_url, $item['OfficeNumber'])
             //'delete'    => sprintf('<a href="?page=%s&action=%s&office=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
         );
         
@@ -479,7 +476,7 @@ class TT_Example_List_Table extends WP_List_Table {
 
 
 
-/** ************************ REGISTER THE TEST PAGE ****************************
+/** ************************ REGISTER THE OFFICE PAGE ****************************
  *******************************************************************************
  * Now we just need to define an admin page. For this example, we'll add a top-level
  * menu item to the bottom of the admin menus.
@@ -501,7 +498,7 @@ function tt_add_menu_items(){
 
 
 
-/** *************************** RENDER TEST PAGE ********************************
+/** *************************** RENDER OFFICE PAGE ********************************
  *******************************************************************************
  * This function renders the admin page and the example list table. Although it's
  * possible to call prepare_items() and display() from the constructor, there
@@ -510,30 +507,41 @@ function tt_add_menu_items(){
  * it's the way the list tables are used in the WordPress core.
  */
 function tt_render_list_page(){
-    
-    //Create an instance of our package class...
-    $officeListTable = new TT_Example_List_Table();
 	
-    //Fetch, prepare, sort, and filter our data...
-    $officeListTable->prepare_items( $_POST['s'] );
-    
-    ?>
-    <style>
+	$action = ( isset ( $_GET["action"] ) && trim ( $_GET["action"] ) == 'edit' ) ? trim ( $_GET["action"] ) : '';
+	
+	?>
+	<style>
 		h2 i:before { vertical-align: baseline !important; color: #02888f; }	
 	</style>
-    <div class="wrap">
-        
+	<div class="wrap">
 		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
-                
-        <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
-        <form id="offices-filter" method="get">
-            <!-- For plugins, we also need to ensure that the form posts back to our current page -->
-            <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
-            <?php $officeListTable->search_box( 'Search', 'office-search' ); ?>
-            <!-- Now we can render the completed list table -->
-            <?php $officeListTable->display() ?>
-        </form>
-        
-    </div>
-    <?php
+		
+		<?php if( isset ( $_GET["action"] ) && trim ( $_GET["action"] ) == 'edit' ) { ?>
+
+			<h3>Edit Office Page</h3>
+			
+
+		<?php } else {
+
+			//Create an instance of our package class...
+			$officeListTable = new TT_Example_List_Table();
+			//Fetch, prepare, sort, and filter our data...
+			$officeListTable->prepare_items( $_POST['s'] );
+			?>
+
+			<!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
+			<form id="offices-filter" method="get">
+				<!-- For plugins, we also need to ensure that the form posts back to our current page -->
+				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
+				<?php $officeListTable->search_box( 'Search', 'office-search' ); ?>
+				<!-- Now we can render the completed list table -->
+				<?php $officeListTable->display() ?>
+			</form>
+
+		<?php } ?>
+	
+	</div><!-- end wrap -->
+	
+	<?php
 }
