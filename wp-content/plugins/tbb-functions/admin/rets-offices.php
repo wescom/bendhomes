@@ -476,12 +476,15 @@ class TT_Example_List_Table extends WP_List_Table {
 /** ************************ EDIT SINGLE OFFICE FORM *****************************
 *********************************************************************************/
 class Edit_Rets_Office {
-			
+	
+	protected $id;
+				
 	function __construct() {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 	}
 	
-	function get_office() {
+	public function get_office() {
+		$id = $this->id;
 		$query = "
 			SELECT IsActive,
 			OfficeNumber,
