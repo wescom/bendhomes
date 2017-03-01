@@ -513,7 +513,7 @@ class Edit_Rets_Office {
 		$css .= '<style type="text/css">';
 			$css .= '.edit-office-wrap h3 { color: #888; font-weight: normal; }';
 			$css .= '.edit-office-wrap h3 span { color: #333; font-weight: bold; }';
-			$css .= '.wp-core-ui a.view-office { margin-left: 10px; }';
+			$css .= 'a.view-office { margin-left: 10px !important; }';
 			$css .= '.image-wrap { width: 60px; height: 60px; float: left; margin-right: 10px; }';
 		$css .= '</style>';
 		return $css;
