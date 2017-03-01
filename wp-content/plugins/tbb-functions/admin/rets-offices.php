@@ -513,8 +513,35 @@ class Edit_Rets_Office {
 			$css .= '.edit-office-wrap h3 { color: #888; font-weight: normal; }';
 			$css .= '.edit-office-wrap h3 span { color: #333; font-weight: bold; }';
 			$css .= '.wp-core-ui a.view-office { margin-left: 10px; }';
+			$css .= '.image-wrap { width: 60px; height: 60px; float: left; margin-right: 10px; }';
 		$css .= '</style>';
 		return $css;
+	}
+	
+	public function js() {
+		$js = '';
+		$js .= '<script type="text/javascript">';
+			$js .= "jQuery(document).ready(function($) {
+					$('.office_logo_upload').click(function(e) {
+						e.preventDefault();
+
+						var custom_uploader = wp.media({
+							title: 'Custom Image',
+							button: {
+								text: 'Select Image'
+							},
+							multiple: false  // Set this to true to allow multiple files to be selected
+						})
+						.on('select', function() {
+							var attachment = custom_uploader.state().get('selection').first().toJSON();
+							$('.office_logo').attr('src', attachment.url);
+							$('.office_logo_url').val(attachment.url);
+
+						})
+						.open();
+					});
+				});";
+		$js .= '</script>';
 	}
 	
 	private function is_checked( $input ) {
@@ -538,18 +565,26 @@ class Edit_Rets_Office {
 		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data">', admin_url( 'admin.php' ) );
 			$html .= '<table class="widefat">';
 		
-				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name</label></th>
+				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
 						<td>
 							<input id="office-DisplayName" class="regular-text wide" type="text" name="office[DisplayName]" value="%s" /> 
 						</td>
 					</tr>', $office['DisplayName'] );
 		
 				
-				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Featured</label></th>
+				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Featured:</label></th>
 						<td>
 							<input id="office-featured" type="checkbox" name="office[featured]" value="%s" %s /> 
 						</td>
 					</tr>', $office['featured'], $this->is_checked( $office['featured'] ) );
+		
+				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Logo:</label></th>
+					<td>
+                        <div class="image-wrap"><img class="office-logo" src="" width="60" height="60"/></div>
+                        <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="office[images]" size="60" value="%s" />
+                        <a href="#" class="office_logo_upload button-secondary">Select Image</a>
+					</td>
+				</tr>', $office['images'] );
 		
 			$html .= '</table>';
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
