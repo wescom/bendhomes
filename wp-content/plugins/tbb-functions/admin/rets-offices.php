@@ -515,7 +515,7 @@ class Edit_Rets_Office {
 		$html = '';
 		$html .= sprintf( '<h3>Editing Office: %s</h3>', $office['OfficeName'] );
 		
-		return $html;
+		echo $html;
 		
 	}
 	
