@@ -510,8 +510,8 @@ class Edit_Rets_Office {
 	public function css() {
 		$css = '';
 		$css .= '<style type="text/css">';
-			$css .= '.edit-office-wrap h3 { color: #888; }';
-			$css .= '.edit-office-wrap h3 span { color: #333; }';
+			$css .= '.edit-office-wrap h3 { color: #888; font-weight: normal; }';
+			$css .= '.edit-office-wrap h3 span { color: #333; font-weight: bold; }';
 			$css .= '.wp-core-ui a.view-office { margin-left: 10px; }';
 		$css .= '</style>';
 		echo $css;
@@ -527,18 +527,23 @@ class Edit_Rets_Office {
 		$html .= $this->css();
 		$html = sprintf( '<div class="edit-office-wrap"><p><a href="%s/wp-admin/admin.php?page=rets-offices">&lsaquo; All Offices</a></p>', 
 						home_url() );
-		$html .= sprintf( '<h3>Editing Office: <span>%s</span></h3>', $office['OfficeName'] );
+		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
 		
 		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data">', admin_url( 'admin.php' ) );
 			$html .= '<table class="widefat">';
 		
-				$html .= sprintf( '<tr valign="top" class="alternate">
-						<th scope="row"><label>Display Name</label></th>
+				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name</label></th>
 						<td>
-							<input id="iblp_title" class="regular-text wide" type="text" name="office[DisplayName]" value="%s" /> 
+							<input id="office-DisplayName" class="regular-text wide" type="text" name="office[DisplayName]" value="%s" /> 
 						</td>
 					</tr>', $office['DisplayName'] );
 		
+				
+				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Featured</label></th>
+						<td>
+							<input id="office-featured" type="checkbox" name="office[featured]" value="%s" /> 
+						</td>
+					</tr>', $office['featured'] );
 		
 			$html .= '</table>';
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
