@@ -512,7 +512,7 @@ class Edit_Rets_Office {
 		$css .= '<style type="text/css">';
 			$css .= '.edit-office-wrap h3 { color: #888; }';
 			$css .= '.edit-office-wrap h3 span { color: #333; }';
-			$css .= 'a.view-office { margin-left: 10px; }';
+			$css .= '.wp-core-ui a.view-office { margin-left: 10px; }';
 		$css .= '</style>';
 		echo $css;
 	}
@@ -529,7 +529,7 @@ class Edit_Rets_Office {
 						home_url() );
 		$html .= sprintf( '<h3>Editing Office: <span>%s</span></h3>', $office['OfficeName'] );
 		
-		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data"', admin_url( 'admin.php' ) );
+		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data">', admin_url( 'admin.php' ) );
 			$html .= '<table class="widefat">';
 		
 				$html .= sprintf( '<tr valign="top" class="alternate">
@@ -539,10 +539,10 @@ class Edit_Rets_Office {
 						</td>
 					</tr>', $office['DisplayName'] );
 		
-				$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
-								 $url, $office['OfficeNumber'] );
 		
 			$html .= '</table>';
+			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
+								 $url, $office['OfficeNumber'] );
 		$html .= '</form></div>';
 		
 		echo $html;
