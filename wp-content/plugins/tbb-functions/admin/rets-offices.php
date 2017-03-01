@@ -516,7 +516,7 @@ class Edit_Rets_Office {
 			$css .= 'a.view-office { margin-left: 10px !important; }';
 			$css .= '.image-wrap { width: 60px; height: 60px; float: left; margin-right: 10px; }';
 		$css .= '</style>';
-		return $css;
+		echo $css;
 	}
 	
 	public function js() {
@@ -543,6 +543,7 @@ class Edit_Rets_Office {
 					});
 				});";
 		$js .= '</script>';
+		echo $js;
 	}
 	
 	private function is_checked( $input ) {
