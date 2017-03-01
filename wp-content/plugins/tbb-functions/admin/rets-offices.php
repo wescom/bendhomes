@@ -507,6 +507,16 @@ class Edit_Rets_Office {
 		return $office_array[0];
 	}
 	
+	public function css() {
+		$css = '';
+		$css .= '<style type="text/css">';
+			$css .= '.edit-office-wrap h3 { color: #888; }';
+			$css .= '.edit-office-wrap h3 span { color: #333; }';
+			$css .= 'a.view-office { margin-left: 10px; }';
+		$css .= '</style>';
+		echo $css;
+	}
+	
 	public function display_form() {
 		
 		$office = $this->get_office_array();
@@ -514,8 +524,10 @@ class Edit_Rets_Office {
 		print_r($office);
 		
 		$html = '';
-		$html = sprintf( '<p><a href="%s/wp-admin/admin.php?page=rets-offices">&lsaquo; All Offices</a></p>', home_url() );
-		$html .= sprintf( '<h3>Editing Office: %s</h3>', $office['OfficeName'] );
+		$html .= $this->css();
+		$html = sprintf( '<div class="edit-office-wrap"><p><a href="%s/wp-admin/admin.php?page=rets-offices">&lsaquo; All Offices</a></p>', 
+						home_url() );
+		$html .= sprintf( '<h3>Editing Office: <span>%s</span></h3>', $office['OfficeName'] );
 		
 		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data"', admin_url( 'admin.php' ) );
 			$html .= '<table class="widefat">';
@@ -531,7 +543,7 @@ class Edit_Rets_Office {
 								 $url, $office['OfficeNumber'] );
 		
 			$html .= '</table>';
-		$html .= '</form>';
+		$html .= '</form></div>';
 		
 		echo $html;
 		
