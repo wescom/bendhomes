@@ -116,56 +116,6 @@ class TT_Example_List_Table extends WP_List_Table {
      * 
      * @var array 
      **************************************************************************/
-    /*var $example_data = array(
-            array(
-                'ID'        => 1,
-                'title'     => '300',
-                'rating'    => 'R',
-                'director'  => 'Zach Snyder'
-            ),
-            array(
-                'ID'        => 2,
-                'title'     => 'Eyes Wide Shut',
-                'rating'    => 'R',
-                'director'  => 'Stanley Kubrick'
-            ),
-            array(
-                'ID'        => 3,
-                'title'     => 'Moulin Rouge!',
-                'rating'    => 'PG-13',
-                'director'  => 'Baz Luhrman'
-            ),
-            array(
-                'ID'        => 4,
-                'title'     => 'Snow White',
-                'rating'    => 'G',
-                'director'  => 'Walt Disney'
-            ),
-            array(
-                'ID'        => 5,
-                'title'     => 'Super 8',
-                'rating'    => 'PG-13',
-                'director'  => 'JJ Abrams'
-            ),
-            array(
-                'ID'        => 6,
-                'title'     => 'The Fountain',
-                'rating'    => 'PG-13',
-                'director'  => 'Darren Aronofsky'
-            ),
-            array(
-                'ID'        => 7,
-                'title'     => 'Watchmen',
-                'rating'    => 'R',
-                'director'  => 'Zach Snyder'
-            ),
-            array(
-                'ID'        => 8,
-                'title'     => '2001',
-                'rating'    => 'G',
-                'director'  => 'Stanley Kubrick'
-            ),
-        );*/
 
 
     /** ************************************************************************
@@ -183,41 +133,6 @@ class TT_Example_List_Table extends WP_List_Table {
         ) );
         
     }
-	
-	
-	/*function get_offices_array( $search ) {
-		if( $search == '' ) {
-			$query = "
-				SELECT Office_OFFI.IsActive,
-				Office_OFFI.MLSID,
-				Office_OFFI.OfficeName,
-				Office_OFFI.OfficeDescription,
-				Office_OFFI.DisplayName,
-				Office_OFFI.featured,
-				Office_OFFI.images
-				FROM Office_OFFI
-				WHERE IsActive = 'T'
-			";
-		} else {
-			$query = "
-				SELECT Office_OFFI.IsActive,
-				Office_OFFI.MLSID,
-				Office_OFFI.OfficeName,
-				Office_OFFI.OfficeDescription,
-				Office_OFFI.DisplayName,
-				Office_OFFI.featured,
-				Office_OFFI.images
-				FROM Office_OFFI
-				WHERE IsActive = 'T'
-				AND Office_OFFI.OfficeName LIKE '%{$search}%'
-			";
-		}
-		
-		$offices_query = new Rets_DB();
-		$data = $offices_query->select( $query );
-		
-		return $data;
-	}*/
 
 
     /** ************************************************************************
@@ -268,18 +183,30 @@ class TT_Example_List_Table extends WP_List_Table {
      * @param array $item A singular item (one full row's worth of data)
      * @return string Text to be placed inside the column <td> (movie title only)
      **************************************************************************/
+	function create_slug( $string ) {
+				
+		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
+	   
+		return $slug;
+		
+	}
+	
+	
     function column_title($item){
+		
+		$company_url = home_url(). '/company/?company='. $this->create_slug( $item['OfficeName'] );
         
         //Build row actions
         $actions = array(
-            'edit'      => sprintf('<a href="?page=%s&action=%s&office=%s">Edit</a>',$_REQUEST['page'],'edit',$item['MLSID'])
+            'edit' => sprintf('<a href="?page=%s&action=%s&office=%s">Edit</a>',$_REQUEST['page'],'edit',$item['OfficeNumber']),
+			'view' => sprintf('<a href="%s&id=%s">View</a>', $company_url, $item['OfficeNumber'])
             //'delete'    => sprintf('<a href="?page=%s&action=%s&office=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
         );
         
         //Return the title contents
         return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
             /*$1%s*/ $item['OfficeName'],
-            /*$2%s*/ $item['MLSID'],
+            /*$2%s*/ $item['OfficeNumber'],
             /*$3%s*/ $this->row_actions($actions)
         );
     }
@@ -298,7 +225,7 @@ class TT_Example_List_Table extends WP_List_Table {
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
             /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("office")
-            /*$2%s*/ $item['MLSID']                //The value of the checkbox should be the record's id
+            /*$2%s*/ $item['OfficeNumber']                //The value of the checkbox should be the record's id
         );
     }
 
@@ -452,18 +379,11 @@ class TT_Example_List_Table extends WP_List_Table {
          * use sort and pagination data to build a custom query instead, as you'll
          * be able to use your precisely-queried data immediately.
          */
-		/*$data = $this->get_offices_array();
-		
-		if( $search != NULL ) {
-			$search = trim($search);
-			$data = $this->get_offices_array( $search );
-		}*/
-		
 		$search = ( isset( $_REQUEST['s'] ) ) ? "AND Office_OFFI.OfficeName LIKE '%". trim($_REQUEST['s']) ."%'" : "";
 		
 		$query = "
 			SELECT Office_OFFI.IsActive,
-			Office_OFFI.MLSID,
+			Office_OFFI.OfficeNumber,
 			Office_OFFI.OfficeName,
 			Office_OFFI.OfficeDescription,
 			Office_OFFI.DisplayName,
@@ -473,24 +393,10 @@ class TT_Example_List_Table extends WP_List_Table {
 			WHERE IsActive = 'T'
 			{$search}
 		";
-
-		/*if( isset( $_REQUEST['s'] ) ) {	
-			$search = trim($search);
-			$query = "
-				SELECT Office_OFFI.IsActive,
-				Office_OFFI.MLSID,
-				Office_OFFI.OfficeName,
-				Office_OFFI.OfficeDescription,
-				Office_OFFI.DisplayName,
-				Office_OFFI.featured,
-				Office_OFFI.images
-				FROM Office_OFFI
-				WHERE IsActive = 'T'
-				AND Office_OFFI.OfficeName LIKE '%{$search}%'
-			";
-		}*/
 		
 		$offices_query = new Rets_DB();
+		
+		// Builds our array of Offices
 		$data = $offices_query->select( $query );
                 
         
