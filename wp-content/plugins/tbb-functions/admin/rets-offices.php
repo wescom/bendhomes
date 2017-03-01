@@ -617,7 +617,7 @@ function tt_render_list_page(){
 	</style>
     <div class="wrap">
         
-		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices Test</h2>
+		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
                 
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
         <form id="offices-filter" method="get">
