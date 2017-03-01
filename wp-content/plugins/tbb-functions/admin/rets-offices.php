@@ -504,12 +504,21 @@ class Edit_Rets_Office {
 		// Get the office
 		$office_array = $offices_query->select( $query );
 		
-		$this->office = $office_array;
+		return $office_array;
 	}
 	
-	function show_office() {
-		return $this->office;
+	public function display_form() {
+		
+		$office = $this->get_office();
+		print_r($office);
+		
+		$html = '';
+		$html .= sprintf( '<h3>Editing Office: %s</h3>', $office['OfficeName'] );
+		
+		return $html;
+		
 	}
+	
 }
 
 
@@ -558,7 +567,7 @@ function rets_render_list_page(){
 			<h3>Edit Office Page</h3>
 			
 			<?php $edit_office = new Edit_Rets_Office(); 
-			$edit_office->show_office();
+			$edit_office->display_form();
 			?>
 
 		<?php } else {
