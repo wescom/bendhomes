@@ -459,7 +459,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			$data = $this->get_offices_array( $search );
 		}*/
 		
-		$search = ( isset( $_REQUEST['s'] ) ) ? $_REQUEST['s'] : false;
+		$search = ( isset( $_REQUEST['s'] ) ) ? "AND Office_OFFI.OfficeName LIKE '%". trim($_REQUEST['s']) ."%'" : "";
 		
 		$query = "
 			SELECT Office_OFFI.IsActive,
@@ -471,9 +471,10 @@ class TT_Example_List_Table extends WP_List_Table {
 			Office_OFFI.images
 			FROM Office_OFFI
 			WHERE IsActive = 'T'
+			{$search}
 		";
 
-		if( isset( $_REQUEST['s'] ) ) {	
+		/*if( isset( $_REQUEST['s'] ) ) {	
 			$search = trim($search);
 			$query = "
 				SELECT Office_OFFI.IsActive,
@@ -487,7 +488,7 @@ class TT_Example_List_Table extends WP_List_Table {
 				WHERE IsActive = 'T'
 				AND Office_OFFI.OfficeName LIKE '%{$search}%'
 			";
-		}
+		}*/
 		
 		$offices_query = new Rets_DB();
 		$data = $offices_query->select( $query );
