@@ -521,7 +521,7 @@ class Edit_Rets_Office {
 				$html .= sprintf( '<tr valign="top" class="alternate">
 						<th scope="row"><label>Display Name</label></th>
 						<td>
-							<input id="iblp_title" class="regular-text wide" type="text" name="office[DisplayName]" value="" /> 
+							<input id="iblp_title" class="regular-text wide" type="text" name="office[DisplayName]" value="%s" /> 
 						</td>
 					</tr>', $office['DisplayName'] );
 		
