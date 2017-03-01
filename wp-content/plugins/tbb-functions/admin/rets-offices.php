@@ -562,15 +562,12 @@ function rets_render_list_page(){
 	<div class="wrap">
 		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
 		
-		<?php if( isset ( $_GET["action"] ) && trim ( $_GET["action"] ) == 'edit' ) { ?>
-
-			<h3>Edit Office Page</h3>
+		<?php if( isset ( $_GET["action"] ) && trim ( $_GET["action"] ) == 'edit' ) {
 			
-			<?php $edit_office = new Edit_Rets_Office(); 
-			$edit_office->display_form();
-			?>
+			$edit_office_form = new Edit_Rets_Office(); 
+			$edit_office_form->display_form();
 
-		<?php } else {
+		} else {
 
 			//Create an instance of our package class...
 			$officeListTable = new TT_Example_List_Table();
