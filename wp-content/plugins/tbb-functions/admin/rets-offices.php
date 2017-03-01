@@ -514,6 +514,7 @@ class Edit_Rets_Office {
 		print_r($office);
 		
 		$html = '';
+		$html = sprintf( '<p><a href="%s/wp-admin/admin.php?page=rets-offices">&lsaquo; All Offices</a></p>', home_url() );
 		$html .= sprintf( '<h3>Editing Office: %s</h3>', $office['OfficeName'] );
 		
 		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data"', admin_url( 'admin.php' ) );
@@ -526,7 +527,7 @@ class Edit_Rets_Office {
 						</td>
 					</tr>', $office['DisplayName'] );
 		
-				$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office" href="%s&id=%s" target="_blank">View Office</a></p>', 
+				$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
 								 $url, $office['OfficeNumber'] );
 		
 			$html .= '</table>';
