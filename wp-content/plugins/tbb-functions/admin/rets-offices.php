@@ -473,6 +473,36 @@ class TT_Example_List_Table extends WP_List_Table {
 }
 
 
+/** ************************ EDIT SINGLE OFFICE FORM *****************************
+*********************************************************************************/
+class Edit_Rets_Office {
+		
+	public function __construct() {
+		$this->id = isset($_GET['id']) ? mysql_real_escape_string( floatval($_GET['id']) ) : 0;
+	}
+	
+	function get_office() {
+		$query = "
+			SELECT IsActive,
+			OfficeNumber,
+			OfficeName,
+			OfficeDescription,
+			DisplayName,
+			featured,
+			images
+			FROM Office_OFFI
+			WHERE OfficeNumber = {$id}
+		";
+
+		$offices_query = new Rets_DB();
+
+		// Get the office
+		$office = $offices_query->select( $query );
+		
+		print_r( $office );
+	}
+}
+
 
 
 
@@ -493,9 +523,6 @@ function tt_add_menu_items(){
 		'20'
 	);
 }
-
-
-
 
 
 /** *************************** RENDER OFFICE PAGE ********************************
@@ -521,6 +548,9 @@ function tt_render_list_page(){
 
 			<h3>Edit Office Page</h3>
 			
+			<?php $edit_office = new Edit_Rets_Office(); 
+			$edit_office->get_office();
+			?>
 
 		<?php } else {
 
