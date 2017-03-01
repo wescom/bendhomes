@@ -515,6 +515,24 @@ class Edit_Rets_Office {
 		$html = '';
 		$html .= sprintf( '<h3>Editing Office: %s</h3>', $office['OfficeName'] );
 		
+		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data"', admin_url( 'admin.php' ) );
+			$html .= '<table class="widefat">';
+		
+				$html .= sprintf( '<tr valign="top" class="alternate">
+						<th scope="row"><label>Display Name</label></th>
+						<td>
+							<input id="iblp_title" class="regular-text wide" type="text" name="office[DisplayName]" value="" /> 
+						</td>
+					</tr>', $office['DisplayName'] );
+		
+				$html .= '<p>
+            <input type="hidden" name="action" value="office_updated" />
+			<input class="button-primary" type="submit" value="Update Office" />
+			</p>';
+		
+			$html .= '</table>';
+		$html .= '</form>';
+		
 		echo $html;
 		
 	}
