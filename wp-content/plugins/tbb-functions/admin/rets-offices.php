@@ -478,6 +478,8 @@ class TT_Example_List_Table extends WP_List_Table {
 class Edit_Rets_Office {
 	
 	protected $id;
+	
+	protected $office;
 				
 	function __construct() {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
@@ -500,9 +502,13 @@ class Edit_Rets_Office {
 		$offices_query = new Rets_DB();
 
 		// Get the office
-		$office = $offices_query->select( $query );
+		$office_array = $offices_query->select( $query );
 		
-		print_r( $office );
+		$this->office = $office_array;
+	}
+	
+	function show_office() {
+		return $this->office;
 	}
 }
 
@@ -521,7 +527,7 @@ function tt_add_menu_items(){
 		'Offices', 
 		'activate_plugins', 
 		'rets-offices', 
-		'tt_render_list_page', 
+		'rets_render_list_page', 
 		'dashicons-building', 
 		'20'
 	);
@@ -536,7 +542,7 @@ function tt_add_menu_items(){
  * so we've instead called those methods explicitly. It keeps things flexible, and
  * it's the way the list tables are used in the WordPress core.
  */
-function tt_render_list_page(){
+function rets_render_list_page(){
 	
 	$action = ( isset ( $_GET["action"] ) && trim ( $_GET["action"] ) == 'edit' ) ? trim ( $_GET["action"] ) : '';
 	
@@ -552,7 +558,7 @@ function tt_render_list_page(){
 			<h3>Edit Office Page</h3>
 			
 			<?php $edit_office = new Edit_Rets_Office(); 
-			$edit_office->get_office();
+			$edit_office->show_office();
 			?>
 
 		<?php } else {
