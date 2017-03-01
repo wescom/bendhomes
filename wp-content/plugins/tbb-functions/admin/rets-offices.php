@@ -483,6 +483,7 @@ class Edit_Rets_Office {
 				
 	function __construct() {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
+		wp_enqueue_media();
 	}
 	
 	public function get_office_array() {
@@ -590,6 +591,7 @@ class Edit_Rets_Office {
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
 								 $url, $office['OfficeNumber'] );
 		$html .= '</form></div>';
+		$html .= $this->js();
 		
 		echo $html;
 		
