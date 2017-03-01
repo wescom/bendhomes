@@ -485,7 +485,7 @@ class Edit_Rets_Office {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 	}
 	
-	public function get_office() {
+	public function get_office_array() {
 		$id = $this->id;
 		$query = "
 			SELECT IsActive,
@@ -504,12 +504,12 @@ class Edit_Rets_Office {
 		// Get the office
 		$office_array = $offices_query->select( $query );
 		
-		return $office_array;
+		return $office_array[0];
 	}
 	
 	public function display_form() {
 		
-		$office = $this->get_office();
+		$office = $this->get_office_array();
 		print_r($office);
 		
 		$html = '';
