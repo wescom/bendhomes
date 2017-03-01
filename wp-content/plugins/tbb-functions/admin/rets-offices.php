@@ -185,7 +185,7 @@ class TT_Example_List_Table extends WP_List_Table {
     }
 	
 	
-	function get_offices_array( $search ) {
+	/*function get_offices_array( $search ) {
 		if( $search == '' ) {
 			$query = "
 				SELECT Office_OFFI.IsActive,
@@ -217,7 +217,7 @@ class TT_Example_List_Table extends WP_List_Table {
 		$data = $offices_query->select( $query );
 		
 		return $data;
-	}
+	}*/
 
 
     /** ************************************************************************
@@ -405,7 +405,7 @@ class TT_Example_List_Table extends WP_List_Table {
      * @uses $this->get_pagenum()
      * @uses $this->set_pagination_args()
      **************************************************************************/
-    function prepare_items( $search ) {
+    function prepare_items() {
         //global $wpdb; //This is used only if making any database queries
 
 
@@ -459,7 +459,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			$data = $this->get_offices_array( $search );
 		}*/
 		
-		$search = $_POST['s'];
+		$search = ( isset( $_REQUEST['s'] ) ) ? $_REQUEST['s'] : false;
 		
 		$query = "
 			SELECT Office_OFFI.IsActive,
@@ -473,7 +473,7 @@ class TT_Example_List_Table extends WP_List_Table {
 			WHERE IsActive = 'T'
 		";
 
-		if( $search != NULL ) {	
+		if( isset( $_REQUEST['s'] ) ) {	
 			$search = trim($search);
 			$query = "
 				SELECT Office_OFFI.IsActive,
@@ -626,7 +626,7 @@ function tt_render_list_page(){
 	</style>
     <div class="wrap">
         
-		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
+		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices Test</h2>
                 
         <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
         <form id="offices-filter" method="get">
