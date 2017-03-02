@@ -467,7 +467,8 @@ class Edit_Rets_Office {
 		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
 			//unset( $_POST['office_update'] );
 			//$this->task = new Update_Rets_Office();
-			$this->save_office();
+			//$this->save_office();
+			$this->task = new Update_Rets_Office();
 		}
 	}
 	
@@ -587,7 +588,7 @@ class Edit_Rets_Office {
 	public function display_form() {
 		
 		$office = $this->get_office_array();		
-		print_r($office);
+		//print_r($office);
 		
 		$html = '';
 		$html .= $this->css();
@@ -681,7 +682,12 @@ class Update_Rets_Office {
 		$this->images = $_POST['images'];
 		$this->OfficeDescription = $_POST['OfficeDescription'];
 		
-		$this->query = new Rets_DB();
+		//$this->query = new Rets_DB();
+	}
+	
+	private function do_update() {
+		echo '<div>Form submitted Ya!</div>';
+		print_r($_POST);
 	}
 }
 
