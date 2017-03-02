@@ -626,8 +626,7 @@ class Edit_Rets_Office {
 	
 	public function display_form() {
 		
-		// Get office array to populate form
-		$office = $this->get_office_array();		
+		//$office = $this->get_office_array();	All office fields	
 		//print_r($office);
 		
 		$html = '';
@@ -691,11 +690,28 @@ class Edit_Rets_Office {
             exit;
         endif;
 		
+		/*$id = $this->OfficeNumber;
 		
+		$update_query = "
+			SELECT IsActive,
+			OfficeNumber,
+			OfficeName,
+			OfficeDescription,
+			DisplayName,
+			featured,
+			images
+			FROM Office_OFFI
+			WHERE OfficeNumber = {$id}
+		";
+		
+		$offices_query = new Rets_DB();
+
+		// Update the office
+		$office_array = $offices_query->select( $update_query );*/
 		
 		$message = '';
-		$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s updated successfully. Display Name: %s</p></div>', 
-							$this->rets_name(), $this->DisplayName );
+		$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s (ID: %s) updated successfully.</p></div>', 
+							$this->rets_name(), $this->OfficeNumber );
 		
 		echo $message;
 		
