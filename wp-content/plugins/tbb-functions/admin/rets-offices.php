@@ -458,12 +458,13 @@ class Edit_Rets_Office {
 	private $task;
 				
 	function __construct() {
+		// Get office ID from url
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 		
+		// Enqueue up additional files for edit page
 		add_action( 'admin_init', array(&$this, 'init') );
-		
-		//add_action( 'admin_post_office_update', array(&$this,'save_office') );
-		
+				
+		// Post action using save_office() function
 		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
 			$this->save_office();
 		}
@@ -651,7 +652,8 @@ class Edit_Rets_Office {
         echo '<pre>'; print_r($_POST); echo '</pre>';
         die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');*/
 		
-		echo '<div>Form submitted Ya!</div>';
+		$message = '';
+		$message .= '<div class="notice notice-success is-dismissible><p>Hey, it works! Ya!</p></div>';
 		print_r($_POST);
 	}
 	
