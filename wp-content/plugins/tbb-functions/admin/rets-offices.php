@@ -104,18 +104,6 @@ if(!class_exists('WP_List_Table')){
  * Our theme for this list table is going to be movies.
  */
 class TT_Example_List_Table extends WP_List_Table {
-    
-    /** ************************************************************************
-     * Normally we would be querying data from a database and manipulating that
-     * for use in your list table. For this example, we're going to simplify it
-     * slightly and create a pre-built array. Think of this as the data that might
-     * be returned by $wpdb->query()
-     * 
-     * In a real-world scenario, you would make your own custom query inside
-     * this class' prepare_items() method.
-     * 
-     * @var array 
-     **************************************************************************/
 
 
     /** ************************************************************************
@@ -413,20 +401,6 @@ class TT_Example_List_Table extends WP_List_Table {
         }
         usort($data, 'usort_reorder');
         
-        
-        /***********************************************************************
-         * ---------------------------------------------------------------------
-         * vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-         * 
-         * In a real-world situation, this is where you would place your query.
-         *
-         * For information on making queries in WordPress, see this Codex entry:
-         * http://codex.wordpress.org/Class_Reference/wpdb
-         * 
-         * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         * ---------------------------------------------------------------------
-         **********************************************************************/
-        
                 
         /**
          * REQUIRED for pagination. Let's figure out what page the user is currently 
@@ -569,24 +543,30 @@ class Edit_Rets_Office {
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
 						<td>
-							<input id="office-DisplayName" class="regular-text wide" type="text" name="office[DisplayName]" value="%s" /> 
+							<input id="office-DisplayName" class="regular-text wide" type="text" name="DisplayName" value="%s" /> 
 						</td>
 					</tr>', $office['DisplayName'] );
 		
 				
 				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Featured:</label></th>
 						<td>
-							<input id="office-featured" type="checkbox" name="office[featured]" value="%s" %s /> 
+							<input id="office-featured" type="checkbox" name="featured" value="%s" %s /> 
 						</td>
 					</tr>', $office['featured'], $this->is_checked( $office['featured'] ) );
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Logo:</label></th>
 					<td>
                         <div class="image-wrap"><img class="office-logo" src="" width="60" height="60"/></div>
-                        <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="office[images]" size="60" value="%s" />
+                        <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="images" size="60" value="%s" />
                         <a href="#" class="office_logo_upload button-secondary">Select Image</a>
 					</td>
 				</tr>', $office['images'] );
+		
+				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Office Description:</label></th>
+						<td>
+							<textarea id="office-OfficeDescription" class="regular-text wide" name="OfficeDescription">%s</textarea> 
+						</td>
+					</tr>', $office['OfficeDescription'] );
 		
 			$html .= '</table>';
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
