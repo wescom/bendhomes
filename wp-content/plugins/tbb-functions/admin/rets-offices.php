@@ -588,7 +588,7 @@ class Edit_Rets_Office {
 						home_url() );
 		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
 		
-		$html .= sprintf( '<form method="post" action="%s">', admin_url( 'admin-post.php' ) );
+		$html .= sprintf( '<form method="post" action="%s">', '' );
 			$html .= '<table class="widefat">';
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
