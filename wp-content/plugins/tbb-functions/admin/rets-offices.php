@@ -464,9 +464,7 @@ class Edit_Rets_Office {
 	private $images;
 	
 	private $OfficeDescription;
-	
-	private $query;
-				
+					
 	function __construct() {
 		// Get initial office info from ID
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
@@ -477,9 +475,6 @@ class Edit_Rets_Office {
 		// Post action
 		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' )
 			$this->save_office();
-		
-		// Query DB
-		$this->query = new Rets_DB();
 		
 		// Post variables used for save_office() function
 		$this->DisplayName = $_POST['DisplayName'];
@@ -512,7 +507,7 @@ class Edit_Rets_Office {
 			WHERE OfficeNumber = {$id}
 		";
 
-		$offices_query = $this->query;
+		$offices_query = new Rets_DB();
 
 		// Get the office
 		$office_array = $office_query->select( $query );
