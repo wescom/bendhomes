@@ -577,6 +577,13 @@ class Edit_Rets_Office {
 		return $url;
 	}
 	
+	private function get_nonce() {
+		ob_start();
+		wp_nonce_field('office_update', 'office_nonce');
+		$nonce = ob_get_clean();
+		return $nonce;
+	}
+	
 	public function display_form() {
 		
 		$office = $this->get_office_array();		
@@ -625,7 +632,7 @@ class Edit_Rets_Office {
 								<input class="button-primary" type="submit" value="Update Office" />
 								<a class="view-office button" href="%s" target="_blank">View Office</a></p>', 
 							 	$office['OfficeNumber'], 
-							 	wp_nonce_field('office_update', 'office_nonce'),
+							 	$this->get_nonce(),
 							 	$this->get_office_url( $office['OfficeName'], $office['OfficeNumber'] ) 
 					);
 		$html .= '</form></div>';
