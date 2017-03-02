@@ -465,12 +465,12 @@ class Edit_Rets_Office {
 		wp_enqueue_script('editor-functions');
 		add_thickbox();
 		
-		//add_action( 'admin_post_office_update', array( &$this, 'save_office' ) );
-		if( isset( $_POST['office_update'] ) ) {
+		add_action( 'admin_post_office_update', array( $this, 'save_office' ) );
+		/*if( isset( $_POST['office_update'] ) ) {
 			unset( $_POST['office_update'] );
 			//$this->task = new Update_Rets_Office();
 			$this->save_office();
-		}
+		}*/
 	}
 	
 	private function get_office_array() {
@@ -574,7 +574,7 @@ class Edit_Rets_Office {
 	public function display_form() {
 		
 		$office = $this->get_office_array();		
-		//print_r($office);
+		print_r($office);
 		
 		$html = '';
 		$html .= $this->css();
@@ -582,7 +582,7 @@ class Edit_Rets_Office {
 						home_url() );
 		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
 		
-		$html .= sprintf( '<form method="post" action="%s">', '' );
+		$html .= sprintf( '<form method="post" action="%s">', admin_url( 'admin-post.php' ) );
 			$html .= '<table class="widefat">';
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
@@ -640,7 +640,7 @@ class Edit_Rets_Office {
         echo '<pre>'; print_r($_POST); echo '</pre>';
         die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');
 
-        //wp_redirect($_POST['_wp_http_referer']);
+        wp_redirect($_POST['_wp_http_referer']);
 	}
 	
 }
