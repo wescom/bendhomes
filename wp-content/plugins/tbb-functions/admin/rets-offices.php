@@ -455,7 +455,16 @@ class Edit_Rets_Office {
 	
 	protected $office;
 	
-	private $task;
+	// Empty post fields
+	private $DisplayName;
+	
+	private $OfficeNumber;
+	
+	private $featured;
+	
+	private $images;
+	
+	private $OfficeDescription;
 				
 	function __construct() {
 		// Get office ID from url
@@ -466,6 +475,14 @@ class Edit_Rets_Office {
 				
 		// Post action using save_office() function
 		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
+			// Post fields
+			$this->DisplayName = $_POST['DisplayName'];
+			$this->OfficeNumber = floatval( $_POST['OfficeNumber'] );
+			$this->featured = $_POST['featured'];
+			$this->images = $_POST['images'];
+			$this->OfficeDescription = $_POST['OfficeDescription'];
+
+			// Do save function
 			$this->save_office();
 		}
 	}
@@ -585,6 +602,7 @@ class Edit_Rets_Office {
 	
 	public function display_form() {
 		
+		// Get office array to populate form
 		$office = $this->get_office_array();		
 		//print_r($office);
 		
