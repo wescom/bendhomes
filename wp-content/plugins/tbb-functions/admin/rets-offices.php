@@ -548,7 +548,7 @@ class Edit_Rets_Office {
 	
 	private function wysiwyg_editor( $input ) {
 		ob_start();
-		wp_editor( $input, 'officedescription', array('textarea_name' => 'OfficeDescription', 'media_buttons' => false, 'textarea_rows' => 15) );
+		wp_editor( $input, 'officedescription', array('textarea_name' => 'OfficeDescription', 'media_buttons' => false, 'textarea_rows' => 10) );
 		$textarea = ob_get_clean();
 		return $textarea;
 	}
