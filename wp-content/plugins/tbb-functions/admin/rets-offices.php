@@ -454,16 +454,6 @@ class Edit_Rets_Office {
 	protected $id;
 	
 	protected $office;
-	
-	private $DisplayName;
-	
-	private $OfficeNumber;
-	
-	private $featured;
-	
-	private $images;
-	
-	private $OfficeDescription;
 					
 	function __construct() {
 		// Get initial office info from ID
@@ -475,13 +465,6 @@ class Edit_Rets_Office {
 		// Post action
 		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' )
 			$this->save_office();
-		
-		// Post variables used for save_office() function
-		$this->DisplayName = $_POST['DisplayName'];
-		$this->OfficeNumber = floatval( $_POST['OfficeNumber'] );
-		$this->featured = $_POST['featured'];
-		$this->images = $_POST['images'];
-		$this->OfficeDescription = $_POST['OfficeDescription'];
 
 	}
 	
