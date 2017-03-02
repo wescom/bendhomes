@@ -462,13 +462,13 @@ class Edit_Rets_Office {
 		
 		add_action( 'admin_init', array(&$this, 'init') );
 		
-		add_action( 'admin_post_office_update', array(&$this,'save_office') );
+		//add_action( 'admin_post_office_update', array(&$this,'save_office') );
 		
-		/*if( isset( $_POST['office_update'] ) ) {
-			unset( $_POST['office_update'] );
+		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
+			//unset( $_POST['office_update'] );
 			//$this->task = new Update_Rets_Office();
 			$this->save_office();
-		}*/
+		}
 	}
 	
 	public function init() {
@@ -648,8 +648,6 @@ class Edit_Rets_Office {
 		
 		echo '<div>Form submitted Ya!</div>';
 		print_r($_POST);
-
-        wp_redirect($_POST['_wp_http_referer']);
 	}
 	
 }
