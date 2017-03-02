@@ -466,7 +466,7 @@ class Edit_Rets_Office {
 		add_thickbox();
 		
 		if( isset( $_POST['office_update'] ) ) {
-			add_action( 'admin_post_office_update', $this->save_office() );
+			$this->save_office();
 		}
 		/*if( isset( $_POST['office_update'] ) ) {
 			unset( $_POST['office_update'] );
@@ -584,7 +584,7 @@ class Edit_Rets_Office {
 						home_url() );
 		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
 		
-		$html .= sprintf( '<form method="post" action="%s">', admin_url( 'admin-post.php' ) );
+		$html .= sprintf( '<form method="post" action="%s">', '' );
 			$html .= '<table class="widefat">';
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
@@ -642,7 +642,7 @@ class Edit_Rets_Office {
         echo '<pre>'; print_r($_POST); echo '</pre>';
         die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');
 
-        wp_redirect($_POST['_wp_http_referer']);
+        //wp_redirect($_POST['_wp_http_referer']);
 	}
 	
 }
