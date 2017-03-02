@@ -458,6 +458,10 @@ class Edit_Rets_Office {
 	function __construct() {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 		wp_enqueue_media();
+		wp_enqueue_script('tiny_mce');
+		wp_enqueue_script('editor');
+		wp_enqueue_script('editor-functions');
+		add_thickbox();
 	}
 	
 	public function get_office_array() {
@@ -489,6 +493,7 @@ class Edit_Rets_Office {
 			$css .= '.edit-office-wrap h3 span { color: #333; font-weight: bold; }';
 			$css .= 'a.view-office { margin-left: 10px !important; }';
 			$css .= '.image-wrap { width: 60px; height: 60px; float: left; margin-right: 10px; }';
+			$css .= 'textarea.large-text { min-height: 300px; }';
 		$css .= '</style>';
 		echo $css;
 	}
@@ -523,6 +528,11 @@ class Edit_Rets_Office {
 	private function is_checked( $input ) {
 		$is_checked = $input == 1 ? 'checked' : '';
 		return $is_checked;
+	}
+	
+	private function wysiwyg_editor( $input ) {
+		$textarea = wp_editor( $input, 'officedescription', array( 'textarea_name' => 'OfficeDescription', 'teeny' => true ) );
+		echo $textarea;
 	}
 	
 	public function display_form() {
@@ -564,9 +574,9 @@ class Edit_Rets_Office {
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Office Description:</label></th>
 						<td>
-							<textarea id="office-OfficeDescription" class="regular-text wide" name="OfficeDescription">%s</textarea> 
+							%s 
 						</td>
-					</tr>', $office['OfficeDescription'] );
+					</tr>', $this->wysiwyg_editor( $office['OfficeDescription'] ) );
 		
 			$html .= '</table>';
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
