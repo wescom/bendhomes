@@ -567,11 +567,11 @@ class Edit_Rets_Office {
 					</td>
 				</tr>', $office['images'] );
 		
-				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Office Description:</label></th>
+				$html .= '<tr valign="top" class="alternate"><th scope="row"><label>Office Description:</label></th>
 						<td>
-							%s 
+							'. wp_editor($office['OfficeDescription'], 'officedescription', array('textarea_name' => 'OfficeDescription')) .' 
 						</td>
-					</tr>', wp_editor($office['OfficeDescription'], 'officedescription', array('textarea_name' => 'OfficeDescription')) );
+					</tr>';
 		
 			$html .= '</table>';
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
