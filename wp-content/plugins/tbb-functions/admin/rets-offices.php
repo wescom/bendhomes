@@ -493,7 +493,7 @@ class Edit_Rets_Office {
 			$css .= '.edit-office-wrap h3 span { color: #333; font-weight: bold; }';
 			$css .= 'a.view-office { margin-left: 10px !important; }';
 			$css .= '.image-wrap { width: 60px; height: 60px; float: left; margin-right: 10px; }';
-			$css .= 'textarea.large-text { min-height: 300px; }';
+			$css .= '.widefat th { padding-top: 15px; padding-bottom: 15px; }';
 		$css .= '</style>';
 		echo $css;
 	}
@@ -537,6 +537,16 @@ class Edit_Rets_Office {
 		return $textarea;
 	}
 	
+	private function placeholder_image( $input ) {
+		$placeholder = '';
+		if( !empty( $input ) ) {
+			return $input;
+		} else {
+			$placeholder = TBB_FUNCTIONS_URL .'/images/placeholder.jpg';
+			return $placeholder;
+		}
+	}
+	
 	public function display_form() {
 		
 		$office = $this->get_office_array();
@@ -568,13 +578,13 @@ class Edit_Rets_Office {
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Logo:</label></th>
 					<td>
-                        <div class="image-wrap"><img class="office-logo" src="" width="60" height="60"/></div>
+                        <div class="image-wrap"><img class="office-logo" src="%s" width="60" height="60"/></div>
                         <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="images" size="60" value="%s" />
                         <a href="#" class="office_logo_upload button-secondary">Select Image</a>
 					</td>
-				</tr>', $office['images'] );
+				</tr>', $this->placeholder_image( $office['images'] ), $office['images'] );
 		
-				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Office Description:</label></th>
+				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Office Description:</label></th>
 						<td>
 							%s 
 						</td>
