@@ -653,7 +653,7 @@ class Edit_Rets_Office {
         die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');*/
 		
 		$message = '';
-		$message .= '<div class="notice notice-success is-dismissible><p>Hey, it works! Ya!</p></div>';
+		$message .= '<div class="notice notice-success is-dismissible"><p>Hey, it works! Ya!</p></div>';
 		
 		echo $message;
 		
