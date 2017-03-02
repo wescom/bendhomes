@@ -454,6 +454,8 @@ class Edit_Rets_Office {
 	protected $id;
 	
 	protected $office;
+	
+	private $task;
 				
 	function __construct() {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
@@ -462,6 +464,12 @@ class Edit_Rets_Office {
 		wp_enqueue_script('editor');
 		wp_enqueue_script('editor-functions');
 		add_thickbox();
+		
+		add_action( 'admin_post_update_office', array( $this, 'save_office' ) );
+		/*if( isset( $_POST['office_update'] ) ) {
+			unset( $_POST['office_update'] );
+			$this->task = new Update_Rets_Office();
+		}*/
 	}
 	
 	private function get_office_array() {
@@ -573,7 +581,7 @@ class Edit_Rets_Office {
 						home_url() );
 		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
 		
-		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data">', admin_url( 'admin.php' ) );
+		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data">', admin_url( 'admin-post.php' ) );
 			$html .= '<table class="widefat">';
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
@@ -604,8 +612,15 @@ class Edit_Rets_Office {
 					</tr>', $this->wysiwyg_editor( $office['OfficeDescription'] ) );
 		
 			$html .= '</table>';
-			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s" target="_blank">View Office</a></p>', 
-								 $this->get_office_url( $office['OfficeName'], $office['OfficeNumber'] ) );
+			$html .= sprintf( '<p><input type="hidden" name="action" value="office_update" />
+								<input type="hidden" name="OfficeNumber" value="%s" />
+								%s
+								<input class="button-primary" type="submit" value="Update Office" />
+								<a class="view-office button" href="%s" target="_blank">View Office</a></p>', 
+							 	wp_nonce_field('change_office_info', 'office_nonce'),
+								$office['OfficeNumber'], 
+							 	$this->get_office_url( $office['OfficeName'], $office['OfficeNumber'] ) 
+					);
 		$html .= '</form></div>';
 		$html .= $this->js();
 		
@@ -613,6 +628,46 @@ class Edit_Rets_Office {
 		
 	}
 	
+	private function save_office() {
+		if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'change_office_info')) :
+            wp_die(new WP_Error(
+                'invalid_nonce', __('Sorry, I\'m afraid you\'re not authorized to do this.')
+            ));
+            exit;
+        endif;
+
+        echo '<pre>'; print_r($_POST); echo '</pre>';
+        die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');
+
+        wp_redirect($_POST['_wp_http_referer']);
+	}
+	
+}
+
+
+class Update_Rets_Office {
+	
+	private $DisplayName;
+	
+	private $OfficeNumber;
+	
+	private $featured;
+	
+	private $images;
+	
+	private $OfficeDescription;
+	
+	private $query;
+	
+	public function __construct() {
+		$this->DisplayName = $_POST['DisplayName'];
+		$this->OfficeNumber = floatval( $_POST['OfficeNumber'] );
+		$this->featured = $_POST['featured'];
+		$this->images = $_POST['images'];
+		$this->OfficeDescription = $_POST['OfficeDescription'];
+		
+		$this->query = new Rets_DB();
+	}
 }
 
 
