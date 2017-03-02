@@ -464,7 +464,7 @@ class Edit_Rets_Office {
 		add_thickbox();
 	}
 	
-	public function get_office_array() {
+	private function get_office_array() {
 		$id = $this->id;
 		$query = "
 			SELECT IsActive,
@@ -486,7 +486,12 @@ class Edit_Rets_Office {
 		return $office_array[0];
 	}
 	
-	public function css() {
+	private function create_slug( $string ) {
+		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
+		return $slug;
+	}
+	
+	private function css() {
 		$css = '';
 		$css .= '<style type="text/css">';
 			$css .= '.edit-office-wrap h3 { color: #888; font-weight: normal; }';
@@ -498,7 +503,7 @@ class Edit_Rets_Office {
 		echo $css;
 	}
 	
-	public function js() {
+	private function js() {
 		$js = '';
 		$js .= '<script type="text/javascript">';
 			$js .= "jQuery(document).ready(function($) {
@@ -532,7 +537,7 @@ class Edit_Rets_Office {
 	
 	private function wysiwyg_editor( $input ) {
 		ob_start();
-		wp_editor( $input, 'officedescription', array('textarea_name' => 'OfficeDescription') );
+		wp_editor( $input, 'officedescription', array('textarea_name' => 'OfficeDescription', 'media_buttons' => false) );
 		$textarea = ob_get_clean();
 		return $textarea;
 	}
@@ -603,11 +608,6 @@ class Edit_Rets_Office {
 		
 		echo $html;
 		
-	}
-	
-	function create_slug( $string ) {
-		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
-		return $slug;
 	}
 	
 }
