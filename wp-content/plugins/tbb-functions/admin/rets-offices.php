@@ -532,7 +532,7 @@ class Edit_Rets_Office {
 	
 	private function wysiwyg_editor( $input ) {
 		$textarea = wp_editor( $input, 'officedescription', array( 'textarea_name' => 'OfficeDescription', 'teeny' => true ) );
-		echo $textarea;
+		return $textarea;
 	}
 	
 	public function display_form() {
