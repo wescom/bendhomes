@@ -557,12 +557,15 @@ class Edit_Rets_Office {
 		}
 	}
 	
+	private function get_office_url( $name, $id ) {
+		$url = home_url(). '/company/?company='. $this->create_slug( $name ).'&id='. $id;
+		return $url;
+	}
+	
 	public function display_form() {
 		
-		$office = $this->get_office_array();
-		$url = home_url(). '/company/?company='. $this->create_slug( $office['OfficeName'] );
-		
-		print_r($office);
+		$office = $this->get_office_array();		
+		//print_r($office);
 		
 		$html = '';
 		$html .= $this->css();
@@ -601,8 +604,8 @@ class Edit_Rets_Office {
 					</tr>', $this->wysiwyg_editor( $office['OfficeDescription'] ) );
 		
 			$html .= '</table>';
-			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
-								 $url, $office['OfficeNumber'] );
+			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s" target="_blank">View Office</a></p>', 
+								 $this->get_office_url( $office['OfficeName'], $office['OfficeNumber'] ) );
 		$html .= '</form></div>';
 		$html .= $this->js();
 		
