@@ -465,11 +465,12 @@ class Edit_Rets_Office {
 		wp_enqueue_script('editor-functions');
 		add_thickbox();
 		
-		add_action( 'admin_post_office_update', array( &$this, 'save_office' ) );
-		/*if( isset( $_POST['office_update'] ) ) {
+		//add_action( 'admin_post_office_update', array( &$this, 'save_office' ) );
+		if( isset( $_POST['office_update'] ) ) {
 			unset( $_POST['office_update'] );
-			$this->task = new Update_Rets_Office();
-		}*/
+			//$this->task = new Update_Rets_Office();
+			$this->save_office();
+		}
 	}
 	
 	private function get_office_array() {
@@ -639,7 +640,7 @@ class Edit_Rets_Office {
         echo '<pre>'; print_r($_POST); echo '</pre>';
         die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');
 
-        wp_redirect($_POST['_wp_http_referer']);
+        //wp_redirect($_POST['_wp_http_referer']);
 	}
 	
 }
