@@ -517,6 +517,30 @@ class Edit_Rets_Office {
 		return $office_array[0];
 	}
 	
+	public function rets_name() {
+		return $this->get_office_array()['OfficeName'];
+	}
+	
+	public function rets_id() {
+		return $this->get_office_array()['OfficeNumber'];
+	}
+	
+	public function rets_displayname() {
+		return $this->get_office_array()['DisplayName'];
+	}
+	
+	public function rets_isfeatured() {
+		return $this->get_office_array()['featured'];
+	}
+	
+	public function rets_image() {
+		return $this->get_office_array()['images'];
+	}
+	
+	public function rets_description() {
+		return $this->get_office_array()['OfficeDescription'];
+	}
+	
 	private function create_slug( $string ) {
 		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
 		return $slug;
@@ -600,10 +624,6 @@ class Edit_Rets_Office {
 		return $nonce;
 	}
 	
-	public function rets_name() {
-		return $this->get_office_array()['OfficeName'];
-	}
-	
 	public function display_form() {
 		
 		// Get office array to populate form
@@ -614,7 +634,7 @@ class Edit_Rets_Office {
 		$html .= $this->css();
 		$html = sprintf( '<div class="edit-office-wrap"><p><a href="%s/wp-admin/admin.php?page=rets-offices">&lsaquo; All Offices</a></p>', 
 						home_url() );
-		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $this->rets_name(), $office['OfficeNumber'] );
+		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $this->rets_name(), $this->rets_id() );
 		
 		$html .= sprintf( '<form method="post" action="%s">', '' );
 			$html .= '<table class="widefat">';
@@ -623,14 +643,14 @@ class Edit_Rets_Office {
 						<td>
 							<input id="office-DisplayName" class="regular-text wide" type="text" name="DisplayName" value="%s" /> 
 						</td>
-					</tr>', $office['DisplayName'] );
+					</tr>', $this->rets_displayname() );
 		
 				
 				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Featured:</label></th>
 						<td>
 							<input id="office-featured" type="checkbox" name="featured" value="%s" %s /> 
 						</td>
-					</tr>', $office['featured'], $this->is_checked( $office['featured'] ) );
+					</tr>', $this->rets_isfeatured(), $this->is_checked( $this->rets_isfeatured() ) );
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Logo:</label></th>
 					<td>
@@ -638,13 +658,13 @@ class Edit_Rets_Office {
                         <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="images" size="60" value="%s" />
                         <a href="#" id="office-logo-upload" class="button-secondary">Select Image</a>
 					</td>
-				</tr>', $this->placeholder_image( $office['images'] ), $office['images'] );
+				</tr>', $this->placeholder_image( $this->rets_image() ), $this->rets_image() );
 		
 				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Office Description:</label></th>
 						<td>
 							%s 
 						</td>
-					</tr>', $this->wysiwyg_editor( $office['OfficeDescription'] ) );
+					</tr>', $this->wysiwyg_editor( $this->rets_description() ) );
 		
 			$html .= '</table>';
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_update" />
@@ -652,9 +672,9 @@ class Edit_Rets_Office {
 								%s
 								<input class="button-primary" type="submit" value="Update Office" />
 								<a class="view-office button" href="%s" target="_blank">View Office</a></p>', 
-							 	$office['OfficeNumber'], 
+							 	$this->rets_id(), 
 							 	$this->get_nonce(),
-							 	$this->get_office_url( $office['OfficeName'], $office['OfficeNumber'] ) 
+							 	$this->get_office_url( $this->rets_name(), $this->rets_id() ) 
 					);
 		$html .= '</form></div>';
 		$html .= $this->js();
@@ -675,7 +695,7 @@ class Edit_Rets_Office {
         die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');*/
 		
 		$message = '';
-		$message .= '<div class="notice notice-success is-dismissible"><p>Hey, it works! Ya!</p></div>';
+		$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s updated successfully.</p></div>', $this->rets_name() );
 		
 		echo $message;
 		
