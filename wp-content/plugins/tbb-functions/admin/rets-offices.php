@@ -492,8 +492,8 @@ class Edit_Rets_Office {
 			$css .= '.edit-office-wrap h3 { color: #888; font-weight: normal; }';
 			$css .= '.edit-office-wrap h3 span { color: #333; font-weight: bold; }';
 			$css .= 'a.view-office { margin-left: 10px !important; }';
-			$css .= '.image-wrap { width: 60px; height: 60px; float: left; margin-right: 10px; }';
-			$css .= '.widefat th { padding-top: 15px; padding-bottom: 15px; }';
+			$css .= '.image-wrap { width: 100px; height: 100px; float: left; margin-right: 10px; }';
+			$css .= '.widefat th, .widefat td { padding-top: 15px; padding-bottom: 15px; }';
 		$css .= '</style>';
 		echo $css;
 	}
@@ -583,7 +583,7 @@ class Edit_Rets_Office {
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Logo:</label></th>
 					<td>
-                        <div class="image-wrap"><img id="office-image-placeholder" class="office-logo" src="%s" width="60" height="60"/></div>
+                        <div class="image-wrap"><img id="office-image-placeholder" class="office-logo" src="%s" width="100" height="100"/></div>
                         <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="images" size="60" value="%s" />
                         <a href="#" id="office-logo-upload" class="button-secondary">Select Image</a>
 					</td>
