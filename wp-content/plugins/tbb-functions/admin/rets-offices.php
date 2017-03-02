@@ -600,6 +600,10 @@ class Edit_Rets_Office {
 		return $nonce;
 	}
 	
+	public function rets_name() {
+		return $this->get_office_array()['OfficeName'];
+	}
+	
 	public function display_form() {
 		
 		// Get office array to populate form
@@ -610,7 +614,7 @@ class Edit_Rets_Office {
 		$html .= $this->css();
 		$html = sprintf( '<div class="edit-office-wrap"><p><a href="%s/wp-admin/admin.php?page=rets-offices">&lsaquo; All Offices</a></p>', 
 						home_url() );
-		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
+		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $this->rets_name(), $office['OfficeNumber'] );
 		
 		$html .= sprintf( '<form method="post" action="%s">', '' );
 			$html .= '<table class="widefat">';
