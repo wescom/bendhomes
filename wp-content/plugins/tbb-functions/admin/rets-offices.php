@@ -475,7 +475,7 @@ class Edit_Rets_Office {
 		wp_enqueue_script('editor-functions');
 		add_thickbox();
 		
-		add_action('admin_post_office_update', array( &$this, 'save_office'));
+		add_action('admin_post_office_update', 'rets_save_office');
 	}
 	
 	private function get_office_array() {
@@ -651,6 +651,12 @@ class Edit_Rets_Office {
         //wp_redirect($_POST['_wp_http_referer']);
 	}
 	
+}
+
+function rets_save_office() {
+	wp_redirect($_POST['_wp_http_referer']);
+	echo '<div>Form submitted Ya!</div>';
+	print_r($_POST);
 }
 
 
