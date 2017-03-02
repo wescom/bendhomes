@@ -538,12 +538,17 @@ class Edit_Rets_Office {
 	}
 	
 	private function placeholder_image( $input ) {
-		$placeholder = '';
+		$image = '';
 		if( !empty( $input ) ) {
-			return $input;
+			if( filter_var( $input, FILTER_VALIDATE_URL) ) {
+				return $input;
+			} else {
+				$image = home_url() .'/_retsapi/imagesOffices/'. $input;
+				return $image;
+			}
 		} else {
-			$placeholder = TBB_FUNCTIONS_URL .'/images/placeholder.jpg';
-			return $placeholder;
+			$image = TBB_FUNCTIONS_URL .'/images/placeholder.jpg';
+			return $image;
 		}
 	}
 	
