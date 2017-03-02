@@ -455,21 +455,39 @@ class Edit_Rets_Office {
 	
 	protected $office;
 	
-	private $task;
+	private $DisplayName;
+	
+	private $OfficeNumber;
+	
+	private $featured;
+	
+	private $images;
+	
+	private $OfficeDescription;
+	
+	private $query;
 				
 	function __construct() {
+		// Get initial office info from ID
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 		
+		// Load additional scripts
 		add_action( 'admin_init', array(&$this, 'init') );
+				
+		// Post action
+		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' )
+			$this->save_office();
 		
-		//add_action( 'admin_post_office_update', array(&$this,'save_office') );
+		// Query DB
+		$this->query = new Rets_DB();
 		
-		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
-			//unset( $_POST['office_update'] );
-			//$this->task = new Update_Rets_Office();
-			//$this->save_office();
-			$this->task = new Update_Rets_Office();
-		}
+		// Post variables used for save_office() function
+		$this->DisplayName = $_POST['DisplayName'];
+		$this->OfficeNumber = floatval( $_POST['OfficeNumber'] );
+		$this->featured = $_POST['featured'];
+		$this->images = $_POST['images'];
+		$this->OfficeDescription = $_POST['OfficeDescription'];
+
 	}
 	
 	public function init() {
@@ -494,10 +512,10 @@ class Edit_Rets_Office {
 			WHERE OfficeNumber = {$id}
 		";
 
-		$offices_query = new Rets_DB();
+		$offices_query = $this->query;
 
 		// Get the office
-		$office_array = $offices_query->select( $query );
+		$office_array = $office_query->select( $query );
 		
 		return $office_array[0];
 	}
