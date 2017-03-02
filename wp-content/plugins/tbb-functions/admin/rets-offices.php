@@ -617,8 +617,8 @@ class Edit_Rets_Office {
 								%s
 								<input class="button-primary" type="submit" value="Update Office" />
 								<a class="view-office button" href="%s" target="_blank">View Office</a></p>', 
+							 	$office['OfficeNumber'], 
 							 	wp_nonce_field('change_office_info', 'office_nonce'),
-								$office['OfficeNumber'], 
 							 	$this->get_office_url( $office['OfficeName'], $office['OfficeNumber'] ) 
 					);
 		$html .= '</form></div>';
