@@ -459,20 +459,23 @@ class Edit_Rets_Office {
 				
 	function __construct() {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
+		
+		add_action('admin_init', array(&$this, 'init'));
+		/*if( isset( $_POST['office_update'] ) ) {
+			unset( $_POST['office_update'] );
+			//$this->task = new Update_Rets_Office();
+			$this->save_office();
+		}*/
+	}
+	
+	public function init() {
 		wp_enqueue_media();
 		wp_enqueue_script('tiny_mce');
 		wp_enqueue_script('editor');
 		wp_enqueue_script('editor-functions');
 		add_thickbox();
 		
-		if( isset( $_POST['office_update'] ) ) {
-			$this->save_office();
-		}
-		/*if( isset( $_POST['office_update'] ) ) {
-			unset( $_POST['office_update'] );
-			//$this->task = new Update_Rets_Office();
-			$this->save_office();
-		}*/
+		add_action('admin_post_office_update', array( &$this, 'save_office'));
 	}
 	
 	private function get_office_array() {
