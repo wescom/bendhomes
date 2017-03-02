@@ -684,18 +684,18 @@ class Edit_Rets_Office {
 	}
 	
 	public function save_office() {
-		/*if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'office_update')) :
+		if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'office_update')) :
             wp_die(new WP_Error(
                 'invalid_nonce', __('Sorry, I\'m afraid you\'re not authorized to do this.')
             ));
             exit;
         endif;
-
-        echo '<pre>'; print_r($_POST); echo '</pre>';
-        die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');*/
+		
+		
 		
 		$message = '';
-		$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s updated successfully.</p></div>', $this->rets_name() );
+		$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s updated successfully. Display Name: %s</p></div>', 
+							$this->rets_name(), $this->DisplayName );
 		
 		echo $message;
 		
