@@ -454,18 +454,19 @@ class Edit_Rets_Office {
 	protected $id;
 	
 	protected $office;
-					
+	
+	private $task;
+				
 	function __construct() {
-		// Get initial office info from ID
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 		
-		// Load additional scripts
 		add_action( 'admin_init', array(&$this, 'init') );
-				
-		// Post action
-		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' )
+		
+		//add_action( 'admin_post_office_update', array(&$this,'save_office') );
+		
+		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
 			$this->save_office();
-
+		}
 	}
 	
 	public function init() {
@@ -493,7 +494,7 @@ class Edit_Rets_Office {
 		$offices_query = new Rets_DB();
 
 		// Get the office
-		$office_array = $office_query->select( $query );
+		$office_array = $offices_query->select( $query );
 		
 		return $office_array[0];
 	}
@@ -657,7 +658,7 @@ class Edit_Rets_Office {
 }
 
 
-class Update_Rets_Office {
+/*class Update_Rets_Office {
 	
 	private $DisplayName;
 	
@@ -685,7 +686,7 @@ class Update_Rets_Office {
 		echo '<div>Form submitted Ya!</div>';
 		print_r($_POST);
 	}
-}
+}*/
 
 
 
