@@ -632,7 +632,7 @@ class Edit_Rets_Office {
 	}
 	
 	private function save_office() {
-		if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'office_update')) :
+		/*if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'office_update')) :
             wp_die(new WP_Error(
                 'invalid_nonce', __('Sorry, I\'m afraid you\'re not authorized to do this.')
             ));
@@ -640,7 +640,10 @@ class Edit_Rets_Office {
         endif;
 
         echo '<pre>'; print_r($_POST); echo '</pre>';
-        die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');
+        die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');*/
+		
+		echo '<div>Form submitted Ya!</div>';
+		print_r($_POST);
 
         //wp_redirect($_POST['_wp_http_referer']);
 	}
