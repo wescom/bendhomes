@@ -581,7 +581,7 @@ class Edit_Rets_Office {
 						home_url() );
 		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
 		
-		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data">', admin_url( 'admin-post.php' ) );
+		$html .= sprintf( '<form method="post" action="%s">', admin_url( 'admin-post.php' ) );
 			$html .= '<table class="widefat">';
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
@@ -618,7 +618,7 @@ class Edit_Rets_Office {
 								<input class="button-primary" type="submit" value="Update Office" />
 								<a class="view-office button" href="%s" target="_blank">View Office</a></p>', 
 							 	$office['OfficeNumber'], 
-							 	wp_nonce_field('change_office_info', 'office_nonce'),
+							 	wp_nonce_field('office_update', 'office_nonce'),
 							 	$this->get_office_url( $office['OfficeName'], $office['OfficeNumber'] ) 
 					);
 		$html .= '</form></div>';
@@ -629,7 +629,7 @@ class Edit_Rets_Office {
 	}
 	
 	private function save_office() {
-		if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'change_office_info')) :
+		/*if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'office_update')) :
             wp_die(new WP_Error(
                 'invalid_nonce', __('Sorry, I\'m afraid you\'re not authorized to do this.')
             ));
@@ -637,7 +637,7 @@ class Edit_Rets_Office {
         endif;
 
         echo '<pre>'; print_r($_POST); echo '</pre>';
-        die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');
+        die('Hey, it works!  You can now edit the \'save_office\' method to sanitize and save your settings as you require.');*/
 
         wp_redirect($_POST['_wp_http_referer']);
 	}
