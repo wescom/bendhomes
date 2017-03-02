@@ -460,7 +460,10 @@ class Edit_Rets_Office {
 	function __construct() {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 		
-		add_action('admin_init', array(&$this, 'init'));
+		add_action( 'admin_init', array(&$this, 'init') );
+		
+		add_action( 'admin_post_office_update', array(&$this,'save_office') );
+		
 		/*if( isset( $_POST['office_update'] ) ) {
 			unset( $_POST['office_update'] );
 			//$this->task = new Update_Rets_Office();
@@ -474,8 +477,6 @@ class Edit_Rets_Office {
 		wp_enqueue_script('editor');
 		wp_enqueue_script('editor-functions');
 		add_thickbox();
-		
-		add_action('admin_post_office_update', 'rets_save_office');
 	}
 	
 	private function get_office_array() {
@@ -587,7 +588,7 @@ class Edit_Rets_Office {
 						home_url() );
 		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
 		
-		$html .= sprintf( '<form method="post" action="%s">', admin_url( 'admin.php' ) );
+		$html .= sprintf( '<form method="post" action="%s">', admin_url( 'admin-post.php' ) );
 			$html .= '<table class="widefat">';
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
@@ -634,7 +635,7 @@ class Edit_Rets_Office {
 		
 	}
 	
-	private function save_office() {
+	public function save_office() {
 		/*if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'office_update')) :
             wp_die(new WP_Error(
                 'invalid_nonce', __('Sorry, I\'m afraid you\'re not authorized to do this.')
@@ -648,15 +649,9 @@ class Edit_Rets_Office {
 		echo '<div>Form submitted Ya!</div>';
 		print_r($_POST);
 
-        //wp_redirect($_POST['_wp_http_referer']);
+        wp_redirect($_POST['_wp_http_referer']);
 	}
 	
-}
-
-function rets_save_office() {
-	wp_redirect($_POST['_wp_http_referer']);
-	echo '<div>Form submitted Ya!</div>';
-	print_r($_POST);
 }
 
 
