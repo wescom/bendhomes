@@ -465,7 +465,7 @@ class Edit_Rets_Office {
 		wp_enqueue_script('editor-functions');
 		add_thickbox();
 		
-		add_action( 'admin_post_update_office', array( $this, 'save_office' ) );
+		add_action( 'admin_post_office_update', array( &$this, 'save_office' ) );
 		/*if( isset( $_POST['office_update'] ) ) {
 			unset( $_POST['office_update'] );
 			$this->task = new Update_Rets_Office();
