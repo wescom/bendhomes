@@ -530,11 +530,6 @@ class Edit_Rets_Office {
 		return $is_checked;
 	}
 	
-	private function wysiwyg_editor( $input ) {
-		$textarea = wp_editor( $input, 'officedescription', array( 'textarea_name' => 'OfficeDescription', 'teeny' => true ) );
-		return $textarea;
-	}
-	
 	public function display_form() {
 		
 		$office = $this->get_office_array();
@@ -576,7 +571,7 @@ class Edit_Rets_Office {
 						<td>
 							%s 
 						</td>
-					</tr>', $this->wysiwyg_editor( $office['OfficeDescription'] ) );
+					</tr>', wp_editor($office['OfficeDescription'], 'officedescription', array('textarea_name' => 'OfficeDescription')) );
 		
 			$html .= '</table>';
 			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
