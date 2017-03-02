@@ -654,6 +654,9 @@ class Edit_Rets_Office {
 		
 		$message = '';
 		$message .= '<div class="notice notice-success is-dismissible><p>Hey, it works! Ya!</p></div>';
+		
+		echo $message;
+		
 		print_r($_POST);
 	}
 	
