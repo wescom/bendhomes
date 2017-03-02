@@ -502,7 +502,7 @@ class Edit_Rets_Office {
 		$js = '';
 		$js .= '<script type="text/javascript">';
 			$js .= "jQuery(document).ready(function($) {
-					$('.office_logo_upload').click(function(e) {
+					$('#office-logo-upload').click(function(e) {
 						e.preventDefault();
 
 						var custom_uploader = wp.media({
@@ -514,8 +514,8 @@ class Edit_Rets_Office {
 						})
 						.on('select', function() {
 							var attachment = custom_uploader.state().get('selection').first().toJSON();
-							$('.office_logo').attr('src', attachment.url);
-							$('.office_logo_url').val(attachment.url);
+							$('#office-image-placeholder').attr('src', attachment.url);
+							$('#office-images').val(attachment.url);
 
 						})
 						.open();
@@ -583,9 +583,9 @@ class Edit_Rets_Office {
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Logo:</label></th>
 					<td>
-                        <div class="image-wrap"><img class="office-logo" src="%s" width="60" height="60"/></div>
+                        <div class="image-wrap"><img id="office-image-placeholder" class="office-logo" src="%s" width="60" height="60"/></div>
                         <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="images" size="60" value="%s" />
-                        <a href="#" class="office_logo_upload button-secondary">Select Image</a>
+                        <a href="#" id="office-logo-upload" class="button-secondary">Select Image</a>
 					</td>
 				</tr>', $this->placeholder_image( $office['images'] ), $office['images'] );
 		
