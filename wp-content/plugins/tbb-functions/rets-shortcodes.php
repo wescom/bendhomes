@@ -947,8 +947,14 @@ class Rets_Company {
 
 					$html .= '</div><!-- end span9 or span12 -->';
 				$html .= '</div><!-- end .row-fluid -->';
+			
+				if( $company_featured == 1 && !empty( $company['OfficeDescription'] ) ) {
+					$html .= sprintf( '<div class="row-fluid clearfix office-description">%s</div>', $company['OfficeDescription'] );
+				}
 
-				$html .= do_shortcode('[rets_company_agents]');
+				//if( $company_featured == 1 ) {
+					$html .= do_shortcode('[rets_company_agents]');
+				//}
 
 			$html .= '</div></article>';
 			// End HTML output
