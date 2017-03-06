@@ -469,22 +469,22 @@ class Edit_Rets_Office {
 		$db_query = new Rets_DB();
 		
 		// Quote and escape post values to get ready to insert into DB.
-		$OfficeNumber = $db_query->quote( floatval( $_POST['OfficeNumber'] ) );
+		$OfficeNumber = mysql_real_escape_string( floatval( $_POST['OfficeNumber'] ) );
 		
-		$DisplayName = $db_query->quote( $_POST['DisplayName'] );
+		$DisplayName = mysql_real_escape_string( $_POST['DisplayName'] );
 		
-		$featured = $db_query->quote( floatval( $_POST['featured'] ) );
+		$featured = mysql_real_escape_string( floatval( $_POST['featured'] ) );
 		
-		$images = $db_query->quote( $_POST['images'] );
+		$images = mysql_real_escape_string( $_POST['images'] );
 		
-		$OfficeDescription = $db_query->quote( wp_kses_post( $_POST['OfficeDescription'] ) );
+		$OfficeDescription = mysql_real_escape_string( wp_kses_post( $_POST['OfficeDescription'] ) );
 		
 		$update_query = "
 			UPDATE Office_OFFI
-			SET DisplayName= `{$DisplayName}`,
-			featured = `{$featured}`,
-			images = `{$images}`,
-			OfficeDescription = `{$OfficeDescription}`,
+			SET DisplayName= {$DisplayName},
+			featured = {$featured},
+			images = {$images},
+			OfficeDescription = {$OfficeDescription},
 			WHERE OfficeNumber = {$OfficeNumber}
 		";
 
