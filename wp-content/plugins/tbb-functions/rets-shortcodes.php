@@ -948,14 +948,16 @@ class Rets_Company {
 					$html .= '</div><!-- end span9 or span12 -->';
 				$html .= '</div><!-- end .row-fluid -->';
 			
-				if( !empty( $company['OfficeDescription'] ) ) {
+				// Show office description if office is featured
+				if( $company_featured == 1 && !empty( $company['OfficeDescription'] ) ) {
 					$html .= sprintf( '<div class="row-fluid clearfix office-description">%s</div>', 
 									 wpautop( str_replace('\"', '', $company['OfficeDescription'] ) ) );
 				}
 
-				//if( $company_featured == 1 ) {
+				// Show agents list if office is featured
+				if( $company_featured == 1 ) {
 					$html .= do_shortcode('[rets_company_agents]');
-				//}
+				}
 
 			$html .= '</div></article>';
 			// End HTML output
