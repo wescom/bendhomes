@@ -255,7 +255,7 @@ class Edit_Rets_Office {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 		
 		// Enqueue up additional files for edit page
-		add_action( 'admin_enqueue_scripts', array($this, 'enqueue_scripts') );
+		add_action( 'admin_head', array($this, 'enqueue_scripts') );
 		
 		/*wp_enqueue_media();
 		wp_enqueue_script('tiny_mce');
