@@ -493,10 +493,10 @@ class Edit_Rets_Office {
 		);*/
 		
 		$update_query = "
-			INSERT INTO `Office_OFFI` 
-			(`DisplayName`) 
-			VALUES (" . $DisplayName . ") 
-			WHERE OfficeNumber = ". $OfficeNumber;
+			UPDATE Office_OFFI
+			SET DisplayName={$DisplayName}
+			WHERE OfficeNumber={$OfficeNumber}
+		";
 
 		// Update the office
 		$update_office = $db_query->query( $update_query );
