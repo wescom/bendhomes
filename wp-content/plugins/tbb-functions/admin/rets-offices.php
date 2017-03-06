@@ -533,7 +533,7 @@ function rets_add_menu_items(){
     add_menu_page(
 		'Offices', 
 		'Offices', 
-		'activate_plugins', 
+		'edit_posts', 
 		'rets-offices', 
 		'rets_render_office_page', 
 		'dashicons-building', 
@@ -557,7 +557,7 @@ function rets_render_office_page() { ?>
 		.column-images img { width: 50px; max-height: 50px; }
 	</style>
 	<div class="wrap">
-		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
+		<h2><i class="dashicons-before dashicons-building"></i> RETS Offices</h2>
 		
 		<?php if( isset ( $_GET["action"] ) && trim ( $_GET["action"] ) == 'edit' ) {
 			
