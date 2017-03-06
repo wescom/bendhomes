@@ -481,10 +481,10 @@ class Edit_Rets_Office {
 		
 		$update_query = "
 			UPDATE Office_OFFI
-			SET DisplayName= '{$DisplayName}',
-			featured = '{$featured}',
-			images = '{$images}',
-			OfficeDescription = '{$OfficeDescription}',
+			SET DisplayName= `{$DisplayName}`,
+			featured = `{$featured}`,
+			images = `{$images}`,
+			OfficeDescription = `{$OfficeDescription}`,
 			WHERE OfficeNumber = {$OfficeNumber}
 		";
 
