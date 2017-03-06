@@ -551,8 +551,8 @@ function rets_render_office_page() { ?>
 		h2 i:before { vertical-align: baseline !important; color: #02888f; }
 		.widefat td, .widefat td p, .widefat td ol, .widefat td ul { font-size: 14px; }
 		.column-title i.dashicons { font-size: 16px; color: green; margin-top: 2px; }
-		.column-featured, .column-OfficeDescription { color: silver; }
-		.column-featured span, .column-OfficeDescription span { color: green; }
+		.widefat td.column-featured, .widefat td.column-OfficeDescription { color: silver; }
+		.widefat td.column-featured span, .widefat td.column-OfficeDescription span { color: green; }
 		.column-images img { width: 50px; max-height: 50px; }
 	</style>
 	<div class="wrap">
