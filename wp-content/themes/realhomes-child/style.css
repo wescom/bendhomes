@@ -344,6 +344,7 @@ h3.search-results-header { float: left; margin: 0; }
 .agents-list-wrap figure.agent-image .no-agent-image:before { content: "No Image"; position: absolute; top: 50%; left: 50%; margin-top: -10px; margin-left: -30px; color: #aaa; font-size: 14px; text-align: center; }
 .company-agent .agent-name { min-height: 40px; padding: 10px; font-size: 16px; font-weight: 300; }
 .single article ul.contacts-list { margin-left: 0; }
+.office-description { padding-bottom: 20px; border-bottom: 1px solid #ddd; margin-bottom: 30px; clear: both; }
 
 
 /* --- Sidebar Widget Styling --- */

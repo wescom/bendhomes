@@ -949,7 +949,8 @@ class Rets_Company {
 				$html .= '</div><!-- end .row-fluid -->';
 			
 				if( !empty( $company['OfficeDescription'] ) ) {
-					$html .= sprintf( '<div class="row-fluid clearfix office-description">%s</div>', $company['OfficeDescription'] );
+					$html .= sprintf( '<div class="row-fluid clearfix office-description">%s</div>', 
+									 htmlentities( stripslashes( $company['OfficeDescription'] ) ) );
 				}
 
 				//if( $company_featured == 1 ) {
