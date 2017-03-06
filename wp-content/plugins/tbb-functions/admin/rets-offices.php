@@ -477,16 +477,18 @@ class Edit_Rets_Office {
 		
 		$images = mysql_real_escape_string( $_POST['images'] );
 		
-		$OfficeDescription = mysql_real_escape_string( wp_kses_post( $_POST['OfficeDescription'] ) );
+		$OfficeDescription = mysql_real_escape_string( $_POST['OfficeDescription'] );
 		
-		$update_query = "
+		// featured = {$featured},
+			//images = {$images},
+			//OfficeDescription = {$OfficeDescription},
+		
+		$update_query = '
 			UPDATE Office_OFFI
-			SET DisplayName= {$DisplayName},
-			featured = {$featured},
-			images = {$images},
-			OfficeDescription = {$OfficeDescription},
+			SET DisplayName = "{$DisplayName}",
+			
 			WHERE OfficeNumber = {$OfficeNumber}
-		";
+		';
 
 		// Update the office
 		$update_office = $db_query->query( $update_query );
