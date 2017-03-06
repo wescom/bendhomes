@@ -254,14 +254,12 @@ class Edit_Rets_Office {
 		// Get office ID from url
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 		
-		// Enqueue up additional files for edit page
-		add_action( 'admin_head', array($this, 'enqueue_scripts') );
-		
-		/*wp_enqueue_media();
+		// Enqueue up additional files for Media Manager and TinyMCE
+		if ( !did_action('wp_enqueue_media') ) wp_enqueue_media();
 		wp_enqueue_script('tiny_mce');
 		wp_enqueue_script('editor');
 		wp_enqueue_script('editor-functions');
-		add_thickbox();*/
+		add_thickbox();
 				
 		// Post action using save_office() function
 		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
@@ -275,15 +273,6 @@ class Edit_Rets_Office {
 			// Do save function
 			$this->save_office();
 		}
-	}
-	
-	// Enqueue up additional scripts for handling the Media Manager and TinyMCE
-	public function enqueue_scripts() {
-		wp_enqueue_media();
-		wp_enqueue_script('tiny_mce');
-		wp_enqueue_script('editor');
-		wp_enqueue_script('editor-functions');
-		add_thickbox();
 	}
 	
 	// Get the office ID from the url
