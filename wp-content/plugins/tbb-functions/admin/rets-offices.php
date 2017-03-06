@@ -469,7 +469,7 @@ class Edit_Rets_Office {
 		$db_query = new Rets_DB();
 		
 		// Quote and escape post values to get ready to insert into DB.
-		$OfficeNumber = $db_query->quote( floatval( $_POST['OfficeNumber'] ) );
+		$OfficeNumber = floatval( $_POST['OfficeNumber'] );
 		
 		$DisplayName = $db_query->quote( $_POST['DisplayName'] );
 		
@@ -492,7 +492,11 @@ class Edit_Rets_Office {
 				floatval( $_POST['OfficeNumber'] )
 		);*/
 		
-		$update_query = "INSERT INTO `Office_OFFI` (`DisplayName`) VALUES (" . $DisplayName . ") WHERE OfficeNumber = ". $OfficeNumber;
+		$update_query = "
+			INSERT INTO `Office_OFFI` 
+			(`DisplayName`) 
+			VALUES (" . $DisplayName . ") 
+			WHERE OfficeNumber = ". $OfficeNumber;
 
 		// Update the office
 		$update_office = $db_query->query( $update_query );
