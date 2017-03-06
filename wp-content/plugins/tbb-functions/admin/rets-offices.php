@@ -499,8 +499,10 @@ class Edit_Rets_Office {
 		// Update the office
 		$update_office = $update_office_query->select( $update_query );
 		
+		$message .= $update_office_query->error();
+		
 		if( !empty( $update_office_query->error() ) ) {
-			$message .= '<div class="notice notice-error">Something went wrong. Office not saved.</div>';
+			$message .= '<div class="notice notice-error"><p>Something went wrong. Office not saved.</p></div>';
 		} else {
 			$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s (ID: %s) updated successfully.</p></div>', 
 							$this->rets_name(), $this->OfficeNumber );
