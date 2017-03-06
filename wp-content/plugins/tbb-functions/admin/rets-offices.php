@@ -469,15 +469,15 @@ class Edit_Rets_Office {
 		$db_query = new Rets_DB();
 		
 		// Quote and escape post values to get ready to insert into DB.
-		$OfficeNumber = floatval( $_POST['OfficeNumber'] );
+		$OfficeNumber = $db_query->quote( $_POST['OfficeNumber'] );
 		
 		$DisplayName = $db_query->quote( $_POST['DisplayName'] );
 		
-		$featured = mysql_real_escape_string( floatval( $_POST['featured'] ) );
+		$featured = $db_query->quote( $_POST['featured'] );
 		
-		$images = mysql_real_escape_string( $_POST['images'] );
+		$images = $db_query->quote( $_POST['images'] );
 		
-		$OfficeDescription = mysql_real_escape_string( $_POST['OfficeDescription'] );
+		$OfficeDescription = $db_query->quote( $_POST['OfficeDescription'] );
 		
 		// featured = {$featured},
 			//images = {$images},
@@ -494,7 +494,10 @@ class Edit_Rets_Office {
 		
 		$update_query = "
 			UPDATE Office_OFFI
-			SET DisplayName={$DisplayName}
+			SET DisplayName={$DisplayName},
+			featured={$featured},
+			images={$images},
+			OfficeDescription={$OfficeDescription}
 			WHERE OfficeNumber={$OfficeNumber}
 		";
 
