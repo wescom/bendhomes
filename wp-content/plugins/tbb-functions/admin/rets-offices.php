@@ -255,7 +255,7 @@ class Edit_Rets_Office {
 		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
 		
 		// Enqueue up additional files for edit page
-		add_action( 'admin_init', array(&$this, 'init') );
+		add_action( 'admin_enqueue_scripts', array(&$this, 'enqueue_scripts') );
 				
 		// Post action using save_office() function
 		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
@@ -272,7 +272,7 @@ class Edit_Rets_Office {
 	}
 	
 	// Enqueue up additional scripts for handling the Media Manager and TinyMCE
-	public function init() {
+	public function enqueue_scripts() {
 		wp_enqueue_media();
 		wp_enqueue_script('tiny_mce');
 		wp_enqueue_script('editor');
