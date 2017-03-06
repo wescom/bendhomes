@@ -44,8 +44,6 @@ class Office_List_Table extends WP_List_Table {
     function column_default($item, $column_name){
         switch($column_name){
             case 'DisplayName':
-            case 'featured':
-                return $item[$column_name];
 			case 'images' :
 				return $item[$column_name];
             default:
@@ -90,6 +88,7 @@ class Office_List_Table extends WP_List_Table {
 				$image_url = home_url() .'/_retsapi/imagesOffices/'. $item['images'];
 			}
 			
+			// Return the logo image if there's one set
 			return sprintf('<img src="%s" class="logo" alt="" width="" height="" />', $image_url );
 		}
 	}
@@ -108,7 +107,6 @@ class Office_List_Table extends WP_List_Table {
             //'cb' => '<input type="checkbox" />', // Not used. Only needed for bulk actions
             'title' => 'RETS Office Name',
             'DisplayName' => 'Display Name',
-            'featured' => 'Featured',
 			'images' => 'Logo'
         );
         return $columns;
@@ -548,7 +546,9 @@ function rets_render_office_page() { ?>
 	
 	<style>
 		h2 i:before { vertical-align: baseline !important; color: #02888f; }
-		.column-title i.dashicons { font-size: 16px; color: green; }
+		.widefat td, .widefat td p, .widefat td ol, .widefat td ul { font-size: 14px; }
+		.column-title i.dashicons { font-size: 16px; color: green; margin-top: 2px; }
+		.column-images { width: 50px; max-height: 50px; }
 	</style>
 	<div class="wrap">
 		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
