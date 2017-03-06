@@ -46,6 +46,8 @@ class Office_List_Table extends WP_List_Table {
             case 'DisplayName':
             case 'featured':
                 return $item[$column_name];
+			case 'images' :
+				return $item[$column_name];
             default:
                 return print_r($item,true); //Show the whole array for troubleshooting purposes
         }
@@ -66,7 +68,7 @@ class Office_List_Table extends WP_List_Table {
             //'delete'    => sprintf('<a href="?page=%s&action=%s&office=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
         );
 		
-		$star_icon = $item['featured'] == 1 ? '<i class="fa fa-star" style="color:yellow"></i>' : '';
+		$star_icon = $item['featured'] == 1 ? '<i class="dashicons dashicons-star-filled"></i>' : '';
         
         //Return the title contents
         return sprintf('%1$s %2$s <span style="color:silver">(id:%3$s)</span>%4$s',
@@ -76,6 +78,21 @@ class Office_List_Table extends WP_List_Table {
             /*%4$s*/ $this->row_actions($actions)
         );
     }
+	
+	function column_images($item) {
+		$image = '';
+		if( !empty( $item['images'] ) ) {
+			// First: See if the image is from the media gallery
+			if( filter_var( $input, FILTER_VALIDATE_URL) ) {
+				$image_url = $item['images'];
+			} else {
+			// Second: If not use the image from /_retsapi folder
+				$image_url = home_url() .'/_retsapi/imagesOffices/'. $item['images'];
+			}
+			
+			return sprintf('<img src="%s" class="logo" alt="" width="" height="" />', $image_url );
+		}
+	}
 
 	// Not used. This is if we wanted to create bulk actions
     function column_cb($item){
@@ -88,10 +105,11 @@ class Office_List_Table extends WP_List_Table {
 
     function get_columns(){
         $columns = array(
-            //'cb'        => '<input type="checkbox" />', // Not used. Only needed for bulk actions
-            'title'     => 'RETS Office Name',
-            'DisplayName'    => 'Display Name',
-            'featured'  => 'Featured'
+            //'cb' => '<input type="checkbox" />', // Not used. Only needed for bulk actions
+            'title' => 'RETS Office Name',
+            'DisplayName' => 'Display Name',
+            'featured' => 'Featured',
+			'images' => 'Logo'
         );
         return $columns;
     }
@@ -528,7 +546,10 @@ function rets_add_menu_items(){
  */
 function rets_render_office_page() { ?>
 	
-	<style>h2 i:before { vertical-align: baseline !important; color: #02888f; }</style>
+	<style>
+		h2 i:before { vertical-align: baseline !important; color: #02888f; }
+		.column-title i.dashicons { font-size: 16px; color: green; }
+	</style>
 	<div class="wrap">
 		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
 		
