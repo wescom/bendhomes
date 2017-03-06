@@ -45,11 +45,11 @@ class Office_List_Table extends WP_List_Table {
         switch($column_name){
             case 'DisplayName':
 			case 'featured' :
-				return $item[$column_name];
+				//return $item[$column_name];
 			case 'images' :
-				return $item[$column_name];
+				//return $item[$column_name];
 			case 'OfficeDescription' :
-				return $item[$column_name];
+				//return $item[$column_name];
             default:
                 return print_r($item,true); //Show the whole array for troubleshooting purposes
         }
@@ -86,7 +86,7 @@ class Office_List_Table extends WP_List_Table {
 	}
 	
 	function column_OfficeDescription($item) {
-		$has_desc = !empty( $item['OfficeDescription'] ) ? 'Yes' : 'No';
+		$has_desc = !empty( $item['OfficeDescription'] ) ? 'Yes' : '';
 		return $has_desc;
 	}
 	
@@ -94,7 +94,7 @@ class Office_List_Table extends WP_List_Table {
 		$image = '';
 		if( !empty( $item['images'] ) ) {
 			// First: See if the image is from the media gallery
-			if( filter_var( $input, FILTER_VALIDATE_URL) ) {
+			if( filter_var( $item['images'], FILTER_VALIDATE_URL) ) {
 				$image_url = $item['images'];
 			} else {
 			// Second: If not use the image from /_retsapi folder
