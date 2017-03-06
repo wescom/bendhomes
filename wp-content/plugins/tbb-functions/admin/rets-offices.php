@@ -169,8 +169,10 @@ class Office_List_Table extends WP_List_Table {
         // This is where the bulk actions would run if we used them.
         //$this->process_bulk_action();
 		
+		$offices_query = new Rets_DB();
+		
         // If the search box is used display matching offices in List Table
-		$search = ( isset( $_REQUEST['s'] ) ) ? "AND Office_OFFI.OfficeName LIKE '%". trim($_REQUEST['s']) ."%'" : "";
+		$search = ( isset( $_REQUEST['s'] ) ) ? $offices_query->quote("AND Office_OFFI.OfficeName LIKE '%". trim($_REQUEST['s']) ."%'") : "";
 		
 		$query = "
 			SELECT Office_OFFI.IsActive,
@@ -184,8 +186,6 @@ class Office_List_Table extends WP_List_Table {
 			WHERE IsActive = 'T'
 			{$search}
 		";
-		
-		$offices_query = new Rets_DB();
 		
 		// Builds our array of Offices
 		$data = $offices_query->select( $query );       
@@ -241,7 +241,7 @@ class Edit_Rets_Office {
 				
 	function __construct() {
 		// Get office ID from url
-		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
+		$this->id = isset($_GET['office']) ? floatval($_GET['office']) : 0;
 		
 		// Enqueue up additional files for Media Manager and TinyMCE
 		if ( !did_action('wp_enqueue_media') ) wp_enqueue_media();
@@ -259,7 +259,10 @@ class Edit_Rets_Office {
 	
 	// Get the office ID from the url
 	private function get_office_array() {
-		$id = $this->id;
+		$offices_query = new Rets_DB();
+		
+		$id = $offices_query->quote( $this->id );
+		
 		$query = "
 			SELECT IsActive,
 			OfficeNumber,
@@ -271,8 +274,6 @@ class Edit_Rets_Office {
 			FROM Office_OFFI
 			WHERE OfficeNumber = {$id}
 		";
-
-		$offices_query = new Rets_DB();
 
 		// Get the office
 		$office_array = $offices_query->select( $query );
@@ -479,19 +480,6 @@ class Edit_Rets_Office {
 		
 		$OfficeDescription = $db_query->quote( $_POST['OfficeDescription'] );
 		
-		// featured = {$featured},
-			//images = {$images},
-			//OfficeDescription = {$OfficeDescription},
-		
-		/*$update_query = sprintf("
-			UPDATE Office_OFFI
-			SET DisplayName = '%s',
-			WHERE OfficeNumber = '%s'
-		",
-				mysql_real_escape_string( $_POST['DisplayName'] ),
-				floatval( $_POST['OfficeNumber'] )
-		);*/
-		
 		$update_query = "
 			UPDATE Office_OFFI
 			SET DisplayName={$DisplayName},
@@ -509,14 +497,11 @@ class Edit_Rets_Office {
 								$db_query->error($update_query) );
 			print_r($update_office);
 		} else {
-			$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s (ID: %s) updated successfully.</p></div>', 
-								$this->rets_name(), $OfficeNumber );
-			print_r($update_office);
+			$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s updated successfully.</p></div>', 
+								$this->rets_name() );
 		}
 		
-		echo $message;
-		
-		print_r($_POST);
+		echo $message;		
 	}
 	
 }
