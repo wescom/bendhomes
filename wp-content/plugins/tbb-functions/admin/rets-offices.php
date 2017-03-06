@@ -469,9 +469,9 @@ class Edit_Rets_Office {
 		$db_query = new Rets_DB();
 		
 		// Quote and escape post values to get ready to insert into DB.
-		$OfficeNumber = mysql_real_escape_string( floatval( $_POST['OfficeNumber'] ) );
+		$OfficeNumber = $db_query->quote( floatval( $_POST['OfficeNumber'] ) );
 		
-		$DisplayName = mysql_real_escape_string( $_POST['DisplayName'] );
+		$DisplayName = $db_query->quote( $_POST['DisplayName'] );
 		
 		$featured = mysql_real_escape_string( floatval( $_POST['featured'] ) );
 		
@@ -483,14 +483,16 @@ class Edit_Rets_Office {
 			//images = {$images},
 			//OfficeDescription = {$OfficeDescription},
 		
-		$update_query = sprintf("
+		/*$update_query = sprintf("
 			UPDATE Office_OFFI
 			SET DisplayName = '%s',
 			WHERE OfficeNumber = '%s'
 		",
 				mysql_real_escape_string( $_POST['DisplayName'] ),
-				mysql_real_escape_string( floatval( $_POST['OfficeNumber'] ) )
-		);
+				floatval( $_POST['OfficeNumber'] )
+		);*/
+		
+		$update_query = "INSERT INTO `Office_OFFI` (`DisplayName`) VALUES (" . $DisplayName . ") WHERE OfficeNumber = ". $OfficeNumber;
 
 		// Update the office
 		$update_office = $db_query->query( $update_query );
