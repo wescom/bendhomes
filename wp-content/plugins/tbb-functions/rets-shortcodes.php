@@ -760,9 +760,17 @@ class Rets_Companies {
 										
 					$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
 					
+					$office_name = $company['DisplayName'] == NULL ? $company['OfficeName'] : $company['DisplayName'];
+					
 					if( !empty( $company['images'] ) ) {
 						$has_image_class = 'with-image';
-						$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
+						// If image has full url, i.e. from wordpress media gallery, use it
+						if( filter_var( $company['images'], FILTER_VALIDATE_URL) ) {
+							$image_url = $company['images'];
+						} else {
+							// Otherwise use the image in /_retsapi folder
+							$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
+						}
 					} else {
 						$has_image_class = 'without-image';
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
@@ -779,14 +787,8 @@ class Rets_Companies {
 						$html .= sprintf( '<figure class="custom-post-image image-company-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s" /></a></figure>', 
 								$count, $permalink, $image_url, $company['OfficeName'] );
 
-						if ($company['DisplayName'] == NULL) {
-							$offDispName = $company['OfficeName'];
-						}else {
-							$offDispName = $company['DisplayName'];
-						}
-
 						$html .= sprintf( '<div class="extra-meta company-meta"><div><h3>%s</h3><div>%s</div></div><a href="tel:%s">%s</a></div>', 
-									$offDispName, $office_address, $this->phone_link( $company['OfficePhoneComplete'] ), $company['OfficePhoneComplete'] );
+									$office_name, $office_address, $this->phone_link( $company['OfficePhoneComplete'] ), $company['OfficePhoneComplete'] );
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 					
@@ -871,75 +873,85 @@ class Rets_Company {
 			
 			//print_r( $company );
 			
+			// Is company featured
 			$company_featured = $company['featured'];
 			$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
+			
+			// Office name
+			$office_name = $company['DisplayName'] == NULL ? $company['OfficeName'] : $company['DisplayName'];
 
+			// Office address
 			$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
 			
-			$html .= '<article class="about-company company-single clearfix"><div class="detail">';
-
-			$html .= '<div class="row-fluid">';
-
-			if( !empty( $company['images'] ) ) {
-				$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
-				$html .= '<div class="span3"><figure class="company-pic">';
-                $html .= '<a title="" href="">';
-                $html .= '<img src="'.$image_url.'"/>';
-                $html .= '</a></figure></div>';
-
-                $html .= '<div class="span9">';
-			} else {
-				$html .= '<div class="span12">';
-			}
-			// Company Contact Info
+			// Office Contact Info
             $company_office_phone = $company['OfficePhoneComplete'];
             $company_office_fax = $company['OfficeFax'];
             $company_office_address = $company['StreetAddress'] .' '. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
+			
+			
+			// Start HTML output
+			$html .= '<article class="about-company company-single clearfix"><div class="detail">';
 
-            if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
+				$html .= '<div class="row-fluid">';
 
-            	if ($company['DisplayName'] == NULL) {
-					$offDispName = $company['OfficeName'];
-				}else {
-					$offDispName = $company['DisplayName'];
-				}
+					if( !empty( $company['images'] ) ) {
+						
+						// If image comes from wordpress media gallery, i.e. has a full url, use it
+						if( filter_var( $company['images'], FILTER_VALIDATE_URL) ) {
+							$image_url = $company['images'];
+						} else {
+							// Otherwise use the image from /_retsapi folder
+							$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
+						}
+						
+						$html .= '<div class="span3">';
+							$html .= '<figure class="company-pic"><img src="'.$image_url.'"/></figure>';
+						$html .= '</div>';
 
-                $html .= '<h1 class="company-featured-'.$company_featured.'">'.$offDispName.'</h1>';
-                                                
-                if(!empty($company_office_address) && $company_featured == 1){
-                    $html .= do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
-                } else {
-					$html .= '<p>'. $company_office_address .'</p>';
-				}
-
-                $html .= '<ul class="contacts-list">';
-                if(!empty($company_office_phone)){
-
-                    $html .= '<li class="office">';
-					$html .= 'Office: '; 
-					if( $company_featured == 1 ) {
-						$html .= '<a href="tel:'. $this->phone_link( $company_office_phone ) .'">'. $company_office_phone .'</a>';
+						$html .= '<div class="span9">';
 					} else {
-						$html .= $company_office_phone;
-					} 
-                    $html .= '</li>';
-                }
-                if(!empty($company_office_fax)){
-                    $html .= '<li class="fax">';
-                    $html .= 'Fax: ';
-                    $html .= $company_office_fax;
-                    $html .= '</li>';
-                }
+						$html .= '<div class="span12">';
+					}
 
-                $html .= '</ul>';
-            }
+					$html .= '<h1 class="company-featured-'.$company_featured.'">'.$office_name.'</h1>';
 
-			$html .= '</div><!-- end span9 or span12 -->';
-			$html .= '</div><!-- end .row-fluid -->';
+					if(!empty($company_office_address) && $company_featured == 1){
+						$html .= do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
+					} else {
+						$html .= '<p>'. $company_office_address .'</p>';
+					}
 
-			$html .= do_shortcode('[rets_company_agents]');
+					if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
 
-			$html .= '</div></article>';			
+						$html .= '<ul class="contacts-list">';
+						if(!empty($company_office_phone)){
+
+							$html .= '<li class="office">';
+							$html .= 'Office: '; 
+							if( $company_featured == 1 ) {
+								$html .= '<a href="tel:'. $this->phone_link( $company_office_phone ) .'">'. $company_office_phone .'</a>';
+							} else {
+								$html .= $company_office_phone;
+							} 
+							$html .= '</li>';
+						}
+						if(!empty($company_office_fax)){
+							$html .= '<li class="fax">';
+							$html .= 'Fax: ';
+							$html .= $company_office_fax;
+							$html .= '</li>';
+						}
+
+						$html .= '</ul>';
+					}
+
+					$html .= '</div><!-- end span9 or span12 -->';
+				$html .= '</div><!-- end .row-fluid -->';
+
+				$html .= do_shortcode('[rets_company_agents]');
+
+			$html .= '</div></article>';
+			// End HTML output
 			
 		}
 		
