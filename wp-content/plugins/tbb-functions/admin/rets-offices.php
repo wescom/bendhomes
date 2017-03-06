@@ -45,11 +45,11 @@ class Office_List_Table extends WP_List_Table {
         switch($column_name){
             case 'DisplayName':
 			case 'featured' :
-				//return $item[$column_name];
+				return $item[$column_name];
 			case 'images' :
-				//return $item[$column_name];
+				return $item[$column_name];
 			case 'OfficeDescription' :
-				//return $item[$column_name];
+				return $item[$column_name];
             default:
                 return print_r($item,true); //Show the whole array for troubleshooting purposes
         }
@@ -81,7 +81,7 @@ class Office_List_Table extends WP_List_Table {
     }
 	
 	function column_featured($item) {
-		$featured_icon = !empty( $item['featured'] ) ? '<i class="dashicons dashicons-yes"></i>' : '';
+		$featured_icon = !empty( $item['featured'] ) ? 'Yes' : '';
 		return $featured_icon;
 	}
 	
