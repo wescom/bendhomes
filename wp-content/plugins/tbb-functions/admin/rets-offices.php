@@ -65,12 +65,15 @@ class Office_List_Table extends WP_List_Table {
 			'view' => sprintf('<a href="%s&id=%s" target="_blank">View</a>', $company_url, $item['OfficeNumber'])
             //'delete'    => sprintf('<a href="?page=%s&action=%s&office=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
         );
+		
+		$star_icon = $item['featured'] == 1 ? '<i class="fa fa-star" style="color:yellow"></i>' : '';
         
         //Return the title contents
-        return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
-            /*$1%s*/ $item['OfficeName'],
-            /*$2%s*/ $item['OfficeNumber'],
-            /*$3%s*/ $this->row_actions($actions)
+        return sprintf('%1$s %2$s <span style="color:silver">(id:%3$s)</span>%4$s',
+			/*%1$s*/$star_icon,
+            /*%2$s*/ $item['OfficeName'],
+            /*%3$s*/ $item['OfficeNumber'],
+            /*%4$s*/ $this->row_actions($actions)
         );
     }
 
