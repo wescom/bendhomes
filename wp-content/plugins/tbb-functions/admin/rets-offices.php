@@ -44,7 +44,11 @@ class Office_List_Table extends WP_List_Table {
     function column_default($item, $column_name){
         switch($column_name){
             case 'DisplayName':
+			case 'featured' :
+				return $item[$column_name];
 			case 'images' :
+				return $item[$column_name];
+			case 'OfficeDescription' :
 				return $item[$column_name];
             default:
                 return print_r($item,true); //Show the whole array for troubleshooting purposes
@@ -63,7 +67,6 @@ class Office_List_Table extends WP_List_Table {
         $actions = array(
             'edit' => sprintf('<a href="?page=%s&action=%s&office=%s">Edit</a>',$_REQUEST['page'],'edit',$item['OfficeNumber']),
 			'view' => sprintf('<a href="%s&id=%s" target="_blank">View</a>', $company_url, $item['OfficeNumber'])
-            //'delete'    => sprintf('<a href="?page=%s&action=%s&office=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
         );
 		
 		$star_icon = $item['featured'] == 1 ? '<i class="dashicons dashicons-star-filled"></i>' : '';
@@ -76,6 +79,16 @@ class Office_List_Table extends WP_List_Table {
             /*%4$s*/ $this->row_actions($actions)
         );
     }
+	
+	function column_featured($item) {
+		$featured_icon = !empty( $item['featured'] ) ? '<i class="dashicons dashicons-yes"></i>' : '';
+		return $featured_icon;
+	}
+	
+	function column_OfficeDescription($item) {
+		$has_desc = !empty( $item['OfficeDescription'] ) ? 'Yes' : 'No';
+		return $has_desc;
+	}
 	
 	function column_images($item) {
 		$image = '';
@@ -107,6 +120,8 @@ class Office_List_Table extends WP_List_Table {
             //'cb' => '<input type="checkbox" />', // Not used. Only needed for bulk actions
             'title' => 'RETS Office Name',
             'DisplayName' => 'Display Name',
+			'featured' => 'Featured',
+			'OfficeDescription' => 'Description',
 			'images' => 'Logo'
         );
         return $columns;
