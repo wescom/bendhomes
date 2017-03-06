@@ -483,12 +483,14 @@ class Edit_Rets_Office {
 			//images = {$images},
 			//OfficeDescription = {$OfficeDescription},
 		
-		$update_query = '
+		$update_query = sprintf("
 			UPDATE Office_OFFI
-			SET DisplayName = "'.$DisplayName.'",
-			
-			WHERE OfficeNumber = '.$OfficeNumber.'
-		';
+			SET DisplayName = '%s',
+			WHERE OfficeNumber = '%s'
+		",
+				mysql_real_escape_string( $_POST['DisplayName'] ),
+				mysql_real_escape_string( floatval( $_POST['OfficeNumber'] ) )
+		);
 
 		// Update the office
 		$update_office = $db_query->query( $update_query );
@@ -496,9 +498,11 @@ class Edit_Rets_Office {
 		if( $update_office === false ) {
 			$message .= sprintf( '<div class="notice notice-error"><p>Something went wrong. Office not saved. %s</p></div>',
 								$db_query->error($update_query) );
+			print_r($update_office);
 		} else {
 			$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s (ID: %s) updated successfully.</p></div>', 
-							$this->rets_name(), $OfficeNumber );
+								$this->rets_name(), $OfficeNumber );
+			print_r($update_office);
 		}
 		
 		echo $message;
