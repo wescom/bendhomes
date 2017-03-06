@@ -950,7 +950,7 @@ class Rets_Company {
 			
 				if( !empty( $company['OfficeDescription'] ) ) {
 					$html .= sprintf( '<div class="row-fluid clearfix office-description">%s</div>', 
-									 wpautop( stripslashes( $company['OfficeDescription'] ) ) );
+									 wpautop( str_replace('\"', '', $company['OfficeDescription'] ) ) );
 				}
 
 				//if( $company_featured == 1 ) {

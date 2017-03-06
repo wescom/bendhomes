@@ -242,9 +242,7 @@ class Edit_Rets_Office {
 	function __construct() {
 		// Get office ID from url
 		$this->id = isset($_GET['office']) ? floatval($_GET['office']) : 0;
-		
-		add_action( 'tiny_mce_before_init', array( $this, 'init_tiny_mce') );
-		
+				
 		// Enqueue up additional files for Media Manager and TinyMCE
 		if ( !did_action('wp_enqueue_media') ) wp_enqueue_media();
 		wp_enqueue_script('tiny_mce');
@@ -257,18 +255,6 @@ class Edit_Rets_Office {
 			// Do save function
 			$this->save_office();
 		}
-	}
-	
-	public function init_tiny_mce( $init ) {
-		// Don't remove line breaks
-	   $init['remove_linebreaks'] = false; 
-	   // Convert newline characters to BR tags
-	   $init['convert_newlines_to_brs'] = true; 
-	   // Do not remove redundant BR tags
-	   $init['remove_redundant_brs'] = false;
-
-	   // Pass $init back to WordPress
-	   return $init;
 	}
 	
 	// Get the office ID from the url
