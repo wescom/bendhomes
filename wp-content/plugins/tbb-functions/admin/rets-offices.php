@@ -548,7 +548,8 @@ function rets_render_office_page() { ?>
 		h2 i:before { vertical-align: baseline !important; color: #02888f; }
 		.widefat td, .widefat td p, .widefat td ol, .widefat td ul { font-size: 14px; }
 		.column-title i.dashicons { font-size: 16px; color: green; margin-top: 2px; }
-		.column-images { width: 50px; max-height: 50px; }
+		.column-images { text-align: center; }
+		.column-images img { width: 50px; max-height: 50px; }
 	</style>
 	<div class="wrap">
 		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
