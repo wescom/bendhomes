@@ -81,12 +81,12 @@ class Office_List_Table extends WP_List_Table {
     }
 	
 	function column_featured($item) {
-		$featured_icon = !empty( $item['featured'] ) ? 'Featured: Yes' : '';
+		$featured_icon = !empty( $item['featured'] ) ? 'Featured: <span>Yes</span>' : '';
 		return $featured_icon;
 	}
 	
 	function column_OfficeDescription($item) {
-		$has_desc = !empty( $item['OfficeDescription'] ) ? 'Description: Yes' : '';
+		$has_desc = !empty( $item['OfficeDescription'] ) ? 'Description: <span>Yes</span>' : '';
 		return $has_desc;
 	}
 	
@@ -551,6 +551,8 @@ function rets_render_office_page() { ?>
 		h2 i:before { vertical-align: baseline !important; color: #02888f; }
 		.widefat td, .widefat td p, .widefat td ol, .widefat td ul { font-size: 14px; }
 		.column-title i.dashicons { font-size: 16px; color: green; margin-top: 2px; }
+		.column-featured, .column-OfficeDescription { color: silver; }
+		.column-featured span, .column-OfficeDescription span { color: green; }
 		.column-images img { width: 50px; max-height: 50px; }
 	</style>
 	<div class="wrap">
