@@ -172,7 +172,7 @@ class Office_List_Table extends WP_List_Table {
 		$offices_query = new Rets_DB();
 		
         // If the search box is used display matching offices in List Table
-		$search = ( isset( $_REQUEST['s'] ) ) ? $offices_query->quote("AND Office_OFFI.OfficeName LIKE '%". trim($_REQUEST['s']) ."%'") : "";
+		$search = ( isset( $_REQUEST['s'] ) ) ? "AND Office_OFFI.OfficeName LIKE '%". trim($_REQUEST['s']) ."%'" : "";
 		
 		$query = "
 			SELECT Office_OFFI.IsActive,
