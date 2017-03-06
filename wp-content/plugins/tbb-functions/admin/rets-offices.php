@@ -238,17 +238,6 @@ class Edit_Rets_Office {
 	protected $id;
 	
 	protected $office;
-	
-	// Empty post fields
-	private $DisplayName;
-	
-	private $OfficeNumber;
-	
-	private $featured;
-	
-	private $images;
-	
-	private $OfficeDescription;
 				
 	function __construct() {
 		// Get office ID from url
@@ -263,13 +252,6 @@ class Edit_Rets_Office {
 				
 		// Post action using save_office() function
 		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
-			// Post fields
-			$this->DisplayName = mysql_real_escape_string( $_POST['DisplayName'] );
-			$this->OfficeNumber = mysql_real_escape_string( floatval( $_POST['OfficeNumber'] ) );
-			$this->featured = mysql_real_escape_string( floatval( $_POST['featured'] ) );
-			$this->images = mysql_real_escape_string( $_POST['images'] );
-			$this->OfficeDescription = wp_kses_post( $_POST['OfficeDescription'] );
-
 			// Do save function
 			$this->save_office();
 		}
@@ -483,29 +465,38 @@ class Edit_Rets_Office {
         endif;
 		
 		$message = '';
-		$id = $this->OfficeNumber;
+		
+		$db_query = new Rets_DB();
+		
+		// Quote and escape post values to get ready to insert into DB.
+		$OfficeNumber = $db_query->quote( floatval( $_POST['OfficeNumber'] ) );
+		
+		$DisplayName = $db_query->quote( $_POST['DisplayName'] );
+		
+		$featured = $db_query->quote( floatval( $_POST['featured'] ) );
+		
+		$images = $db_query->quote( $_POST['images'] );
+		
+		$OfficeDescription = $db_query->quote( wp_kses_post( $_POST['OfficeDescription'] ) );
 		
 		$update_query = "
 			UPDATE Office_OFFI
-			SET DisplayName= '{$this->DisplayName}',
-			featured = '{$this->featured}',
-			images = '{$this->images}',
-			OfficeDescription = '{$this->OfficeDescription}',
-			WHERE OfficeNumber = {$this->OfficeNumber}
+			SET DisplayName= '{$DisplayName}',
+			featured = '{$featured}',
+			images = '{$images}',
+			OfficeDescription = '{$OfficeDescription}',
+			WHERE OfficeNumber = {$OfficeNumber}
 		";
-		
-		$update_office_query = new Rets_DB();
 
 		// Update the office
-		$update_office = $update_office_query->select( $update_query );
-		
-		$message .= $update_office_query->error();
-		
-		if( !empty( $update_office_query->error() ) ) {
-			$message .= '<div class="notice notice-error"><p>Something went wrong. Office not saved.</p></div>';
+		$update_office = $db_query->query( $update_query );
+				
+		if( $update_office === false ) {
+			$message .= sprintf( '<div class="notice notice-error"><p>Something went wrong. Office not saved. %s</p></div>',
+								$db_query->error($update_query) );
 		} else {
 			$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s (ID: %s) updated successfully.</p></div>', 
-							$this->rets_name(), $this->OfficeNumber );
+							$this->rets_name(), $OfficeNumber );
 		}
 		
 		echo $message;
