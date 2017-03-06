@@ -81,12 +81,12 @@ class Office_List_Table extends WP_List_Table {
     }
 	
 	function column_featured($item) {
-		$featured_icon = !empty( $item['featured'] ) ? 'Yes' : '';
+		$featured_icon = !empty( $item['featured'] ) ? 'Featured: Yes' : '';
 		return $featured_icon;
 	}
 	
 	function column_OfficeDescription($item) {
-		$has_desc = !empty( $item['OfficeDescription'] ) ? 'Yes' : '';
+		$has_desc = !empty( $item['OfficeDescription'] ) ? 'Description: Yes' : '';
 		return $has_desc;
 	}
 	
