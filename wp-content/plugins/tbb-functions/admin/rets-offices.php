@@ -483,9 +483,7 @@ class Edit_Rets_Office {
 		$message = '';
 		
 		$db_query = new Rets_DB();
-		
-		print_r($_POST);
-		
+				
 		// Quote and escape post values to get ready to insert into DB.
 		$OfficeNumber = $db_query->quote( $_POST['OfficeNumber'] );
 		
@@ -513,11 +511,11 @@ class Edit_Rets_Office {
 		if( $update_office === false ) {
 			$message .= sprintf( '<div class="notice notice-error"><p>Something went wrong. Office not saved. %s</p></div>',
 								$db_query->error($update_query) );
-			print_r($update_office);
+			//print_r($update_office);
 		} else {
 			$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s updated successfully.</p></div>', 
 								$this->rets_name() );
-			print_r($update_office);
+			//print_r($update_office);
 		}
 		
 		echo $message;		
