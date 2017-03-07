@@ -500,7 +500,7 @@ class Edit_Rets_Office {
 		}*/
 		//$featured = $db_query->quote( $_POST['featured'] );
 		
-		$featured = isset($_POST["featured"]) ? trim($_POST["featured"]) : 0;
+		$featured = isset($_POST["featured"]) ? 1 : 0;
 		
 		$images = $db_query->quote( $_POST['images'] );
 		
