@@ -369,11 +369,7 @@ class Rets_Agent {
 
 			print_r( $agent );
 
-			$category_classes = 'not_featured';
-			if ($agent['Office_OFFI.featured']) {
-					$category_classes = 'featured';
-			}
-			//$category_classes = $agent['Office_OFFI.featured'] == 1 ? 'featured' : 'not-featured';
+			$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
 			
 			if( !empty( $agent['theImage'] ) ) {
 				$has_image_class = 'width-image';
@@ -431,13 +427,15 @@ class Rets_Agent {
 					$html .=  '</div></div>';
 
 				$html .= '</div></div>';
-					
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
+			
+				if( $agent['featured'] == 1 ) {		
+					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-					// Output property listings for agent via next shortcode built below
-					$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
+						// Output property listings for agent via next shortcode built below
+						$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
 
-				$html .= '</div></div></div>';
+					$html .= '</div></div></div>';
+				}
 
 			$html .= '</div>';
 
