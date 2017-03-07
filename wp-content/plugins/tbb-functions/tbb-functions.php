@@ -33,16 +33,10 @@ define('TBB_FUNCTIONS_DIR', plugin_dir_path(__FILE__));
 *****/
 require_once( TBB_FUNCTIONS_DIR . 'admin/dashboard_widget.php' );
 require_once( TBB_FUNCTIONS_DIR . 'admin/pages-metabox.php' );
-
 require_once( TBB_FUNCTIONS_DIR . 'admin/functions.php' );
 
 require_once( TBB_FUNCTIONS_DIR . 'rets-connect.class.php' );
-
 require_once( TBB_FUNCTIONS_DIR . 'admin/rets-offices.php' );
-//require_once( TBB_FUNCTIONS_DIR . 'admin/agents.php' );
-
-//require_once( TBB_FUNCTIONS_DIR . 'post-types/post-type-company.php' );
-//require_once( TBB_FUNCTIONS_DIR . 'admin/settings-agents.php' );
 
 require_once( TBB_FUNCTIONS_DIR . 'tbb-shortcodes.php' );
 require_once( TBB_FUNCTIONS_DIR . 'rets-shortcodes.php' );
