@@ -182,6 +182,20 @@ class Rets_Agents {
 		
 		//print_r( $agents );
 		
+		if( empty( $show_search ) ) {
+			
+			$html .= '<div class="custom-search-wrap">';
+				$html .= '
+					<form role="search" action="'. site_url('/') .'agents" method="get" id="searchform">
+						<input type="text" class="search-field" name="search" placeholder="Find an agent"/>
+						<input type="hidden" name="post_type" value="agent" />
+						<input type="submit" class="btn real-btn" alt="Search" value="Search" />
+					</form>
+				';
+			$html .= '</div>';
+
+		}
+		
 		if( $agents ) {
 			
 			$total_agents = count( $agents );
@@ -191,22 +205,6 @@ class Rets_Agents {
 			$count = 1;
 			
 			$html .= '<div class="custom-posts-wrapper post-agent rets-agents"><div class="custom-posts-container clearfix">';
-			
-				//$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</div>';
-			
-				if( empty( $show_search ) ) {
-			
-					$html .= '<div class="custom-search-wrap">';
-						$html .= '
-							<form role="search" action="'. site_url('/') .'agents" method="get" id="searchform">
-								<input type="text" class="search-field" name="search" placeholder="Find an agent"/>
-								<input type="hidden" name="post_type" value="agent" />
-								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
-							</form>
-						';
-					$html .= '</div>';
-
-				}
 
 				$current_url = $this->get_current_url();
 			
@@ -276,10 +274,10 @@ class Rets_Agents {
 					$count++;
 					
 				}
+						
+		} else {
 			
-			
-			
-			//$html .= sprintf( '</div>%s</div>', $this->pagination( $limit, $total_agents, '3' ) );
+			$html .= '<div>Sorry, your search returned 0 results. Please try modifying your search and try again.</div>';
 			
 		}
 		
