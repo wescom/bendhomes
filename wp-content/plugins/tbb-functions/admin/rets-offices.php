@@ -436,9 +436,9 @@ class Edit_Rets_Office {
 				
 				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Featured:</label></th>
 						<td>
-							<input id="office-featured" type="checkbox" name="featured" value="%s" %s /> 
+							<input id="office-featured" type="checkbox" name="featured" value="" %s /> 
 						</td>
-					</tr>', $this->rets_isfeatured(), $this->is_checked( $this->rets_isfeatured() ) );
+					</tr>', $this->is_checked( $this->rets_isfeatured() ) );
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Logo:</label></th>
 					<td>
@@ -491,14 +491,14 @@ class Edit_Rets_Office {
 		
 		$DisplayName = $db_query->quote( $_POST['DisplayName'] );
 		
-		$featured = $this->is_checked( $_POST['featured'] ) == 1 ? 1 : 0;
+		//$featured = $this->is_checked( $_POST['featured'] ) == 1 ? 1 : 0;
 		
 		/*if( isset( $_POST['featured']) && $_POST['featured'] == 1 ) {
 			$featured = 1;
 		} else {
 			$featured = 0;
 		}*/
-		//$featured = $db_query->quote( $_POST['featured'] );
+		$featured = $db_query->quote( $_POST['featured'] );
 		
 		$images = $db_query->quote( $_POST['images'] );
 		
