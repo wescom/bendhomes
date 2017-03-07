@@ -400,9 +400,10 @@ class Rets_Agent {
 
 				$html .= '<div class="agent-info-wrap"><div class="row-fluid">';
 
-					
-					$html .= sprintf('<div class="span4"><img src="%s" alt="%s" width="" height="" class="alignleft" /></div>', 
-									 $image_url, $agent['FullName'] );
+					if( $agent['featured'] == 1 ) {
+						$html .= sprintf('<div class="span4"><img src="%s" alt="%s" width="" height="" class="alignleft" /></div>', 
+										 $image_url, $agent['FullName'] );
+					}
 
 					$html .= sprintf('<div class="span8"><h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
@@ -415,13 +416,15 @@ class Rets_Agent {
 							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Office)</small></div>', 
 											$this->phone_link($office_phone), $office_phone );
 			
-						if ( !empty($agent_cell) )
-							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Cell)</small></div>', 
-											$this->phone_link($agent_cell), $agent_cell );
-			
-						if ( !empty($agent_fax) )
-							$html .= sprintf( '<div class="office">%s <small>(Fax)</small></div>', 
-											$agent_fax );
+						if( $agent['featured'] == 1 ) {
+							if ( !empty($agent_cell) )
+								$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Cell)</small></div>', 
+												$this->phone_link($agent_cell), $agent_cell );
+
+							if ( !empty($agent_fax) )
+								$html .= sprintf( '<div class="office">%s <small>(Fax)</small></div>', 
+												$agent_fax );
+						}
 			
 					$html .=  '</div></div>';
 
