@@ -515,6 +515,7 @@ class Edit_Rets_Office {
 		} else {
 			$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s updated successfully.</p></div>', 
 								$this->rets_name() );
+			print_r($update_office);
 		}
 		
 		echo $message;		
