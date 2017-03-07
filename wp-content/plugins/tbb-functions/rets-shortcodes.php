@@ -131,7 +131,8 @@ class Rets_Agents {
 				Office_OFFI.StreetAddress,
 				Office_OFFI.StreetCity,
 				Office_OFFI.StreetState,
-				Office_OFFI.StreetZipCode
+				Office_OFFI.StreetZipCode,
+				Office_OFFI.featured
 				FROM ActiveAgent_MEMB
 				LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 				LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
@@ -160,7 +161,8 @@ class Rets_Agents {
 				Office_OFFI.StreetAddress,
 				Office_OFFI.StreetCity,
 				Office_OFFI.StreetState,
-				Office_OFFI.StreetZipCode
+				Office_OFFI.StreetZipCode,
+				Office_OFFI.featured
 				FROM ActiveAgent_MEMB
 				LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 				LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
