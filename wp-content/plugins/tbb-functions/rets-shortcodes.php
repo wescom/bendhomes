@@ -236,7 +236,7 @@ class Rets_Agents {
 										
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
 					
-					if( !empty( $agent['images'] ) ) {
+					if( !empty( $agent['images'] ) && $agent['featured'] == 1 ) {
 						$has_image_class = 'width-image';
 						$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['images'];
 					} else {
