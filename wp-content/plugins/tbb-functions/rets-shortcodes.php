@@ -353,7 +353,8 @@ class Rets_Agent {
 			Office_OFFI.StreetAddress,
 			Office_OFFI.StreetCity,
 			Office_OFFI.StreetState,
-			Office_OFFI.StreetZipCode
+			Office_OFFI.StreetZipCode,
+			Office_OFFI.featured
 			FROM ActiveAgent_MEMB
 			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
@@ -366,13 +367,14 @@ class Rets_Agent {
 
 		if( $agent ) {
 
-			//print_r( $agent );
+			print_r( $agent );
 
 			$category_classes = 'not_featured';
-			if ($agent['ActiveAgent_MEMB.featured'] == 1 || $agent['Office_OFFI.featured']) {
+			if ($agent['Office_OFFI.featured']) {
 					$category_classes = 'featured';
 			}
-			//$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
+			//$category_classes = $agent['Office_OFFI.featured'] == 1 ? 'featured' : 'not-featured';
+			
 			if( !empty( $agent['theImage'] ) ) {
 				$has_image_class = 'width-image';
 				$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['theImage'];
