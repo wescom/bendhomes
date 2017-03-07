@@ -367,7 +367,7 @@ class Rets_Agent {
 
 		if( $agent ) {
 
-			print_r( $agent );
+			//print_r( $agent );
 
 			$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
 			
