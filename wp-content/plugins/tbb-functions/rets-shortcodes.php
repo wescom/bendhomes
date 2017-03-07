@@ -165,7 +165,6 @@ class Rets_Agents {
 				LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 				LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
 				WHERE ActiveAgent_MEMB.OfficeNumber <> 99999
-				AND (Office_OFFI.featured = 1 OR ActiveAgent_MEMB.featured = 1)
 				AND ActiveAgent_MEMB.FullName LIKE '%{$searchString}%'
 				{$sort_order}
 				LIMIT {$limit}
