@@ -491,15 +491,6 @@ class Edit_Rets_Office {
 		
 		$DisplayName = $db_query->quote( $_POST['DisplayName'] );
 		
-		//$featured = $this->is_checked( $_POST['featured'] ) == 1 ? 1 : 0;
-		
-		/*if( isset( $_POST['featured']) && $_POST['featured'] == 1 ) {
-			$featured = 1;
-		} else {
-			$featured = 0;
-		}*/
-		//$featured = $db_query->quote( $_POST['featured'] );
-		
 		$featured = isset($_POST["featured"]) ? 1 : 0;
 		
 		$images = $db_query->quote( $_POST['images'] );
