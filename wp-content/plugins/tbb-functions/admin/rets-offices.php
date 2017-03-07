@@ -484,6 +484,8 @@ class Edit_Rets_Office {
 		
 		$db_query = new Rets_DB();
 		
+		print_r($_POST);
+		
 		// Quote and escape post values to get ready to insert into DB.
 		$OfficeNumber = $db_query->quote( $_POST['OfficeNumber'] );
 		
