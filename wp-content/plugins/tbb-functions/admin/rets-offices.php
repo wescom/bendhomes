@@ -501,7 +501,7 @@ class Edit_Rets_Office {
 			SET DisplayName={$DisplayName},
 			featured={$featured},
 			images={$images},
-			OfficeDescription=".mysql_real_escape_string($OfficeDescription)."
+			OfficeDescription={$OfficeDescription}
 			WHERE OfficeNumber={$OfficeNumber}
 		";
 
