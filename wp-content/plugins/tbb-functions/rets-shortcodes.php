@@ -955,7 +955,7 @@ class Rets_Company {
 				// Show office description if office is featured
 				if( $company_featured == 1 && !empty( $company['OfficeDescription'] ) ) {
 					$html .= sprintf( '<div class="row-fluid clearfix office-description">%s</div>', 
-									 wpautop( htmlspecialchars( $company['OfficeDescription'] ) ) );
+									 wpautop( $company['OfficeDescription'] ) );
 				}
 
 				// Show agents list if office is featured
