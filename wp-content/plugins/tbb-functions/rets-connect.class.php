@@ -87,6 +87,6 @@ class Rets_DB {
 	
 	public function mysql_escape($value) {
 		$connection = $this -> connect();
-		return $connection -> mysqli_real_escape_string($value);
+		return "'" . $connection -> mysql_real_escape_string($value) . "'";
 	}
 }
