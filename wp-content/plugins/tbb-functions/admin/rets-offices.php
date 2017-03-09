@@ -493,7 +493,8 @@ class Edit_Rets_Office {
 		
 		$images = $db_query->quote( $_POST['images'] );
 		
-		$OfficeDescription = '"'.$_POST['OfficeDescription'].'"';
+		$OfficeDescription = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $_POST['OfficeDescription'] );
+		$OfficeDescription = strip_tags( $OfficeDescription, '<p><a><br><br/><br /><em><div><ul><ol><li><b><strong><blockquote>');
 		//$OfficeDescription = str_replace('\&quot;', '', $OfficeDescription);
 		
 		$update_query = "
