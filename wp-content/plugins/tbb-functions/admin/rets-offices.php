@@ -493,8 +493,8 @@ class Edit_Rets_Office {
 		
 		$images = $db_query->quote( $_POST['images'] );
 		
-		$OfficeDescription = $db_query->quote( $_POST['OfficeDescription'] );
-		$OfficeDescription = str_replace('\&quot;', '', $OfficeDescription);
+		$OfficeDescription = $db_query->mysql_escape( $_POST['OfficeDescription'] );
+		//$OfficeDescription = str_replace('\&quot;', '', $OfficeDescription);
 		
 		$update_query = "
 			UPDATE Office_OFFI
