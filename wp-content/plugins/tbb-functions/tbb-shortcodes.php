@@ -1302,7 +1302,7 @@ class TBB_Churches_List {
 		
 		$html .= '<div class="church-filters">';
 		
-			$html .= '<div class="option-bar small">View by Area: <span class="selectwrap"><select name="church-filter" onchange="location=this.value;"><option value="">Select Area</option>';
+			$html .= '<div class="option-bar small">View by Area: <span class="selectwrap"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value="">Select Area</option>';
 		
 			$locations = array();
 			foreach( $rows as $location ) {
