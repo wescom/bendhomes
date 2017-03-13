@@ -1321,10 +1321,10 @@ class TBB_Churches_List {
 		
 			if( isset($_GET['location']) ) {
 				$html .= sprintf( ' <a href="%s">View Full List</a>', $current_url );
-				$html .= sprintf( '<p class="viewing">Viewing Location: %s</p><hr>', $_GET['location'] );
+				$html .= sprintf( '<p class="viewing">Viewing Location: %s</p>', $_GET['location'] );
 			}
 		
-		$html .= '</div>'; // End church filter
+		$html .= '<hr></div>'; // End church filter
 		
 		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
 				
