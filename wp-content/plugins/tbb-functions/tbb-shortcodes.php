@@ -1308,13 +1308,17 @@ class TBB_Churches_List {
 				$name = $row->{'title'}->{'$t'};
 				$content = $row->{'content'}->{'$t'};
 				$content_array = explode( ',', $content );
+				$email = $content_array[0];
+				$phone = $content_array[1];
+				$website = $content_array[2];
+				$notes = $content_array[3];
 
-				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: %s, %s, %s, %s<br>%s</p></div>',
+				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: %s<br>%s<br>%s<br>%s<br>%s</p></div>',
 								$name, 
-								 $this->cap_first($content_array[0]), 
-								 $this->cap_first($content_array[1]), 
-								 $this->cap_first($content_array[2]), 
-								 $this->cap_first($content_array[3]) 
+								 $this->cap_first( $email ), 
+								 $this->cap_first( $phone ), 
+								 $this->cap_first( $website ), 
+								 $this->cap_first( $notes ) 
 						);
 
 			}
