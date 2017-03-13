@@ -1299,8 +1299,18 @@ class TBB_Churches_List {
 		
 		//print_r( $json );
 		
-		$total_churches = $json->{'feed'}->{'openSearch$totalResults'}->{'$t'};
+		$html .= '<div class="church-filters">View by Area: <select name="church-filter" onchange="location=this.value;">';
+		
+			foreach( $rows as $location ) {
+				$location_content = $location->{'content'}->{'$t'};
+				$location_array = explode( ',', $location_content );
+				$item = str_replace( 'location:', '', $location_array[0] );
 				
+				$html .= sprintf( '<option value="%s?location=%s">%s</option>', $_SERVER['REQUEST_URI'], $item, $item );
+			}
+		
+		$html .= '</select></div>';
+		
 		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
 		
 			$html .= sprintf( '<h4 class="total">%s: %s</h4>', $total_text, $total_churches );
@@ -1316,7 +1326,7 @@ class TBB_Churches_List {
 				$phone = str_replace( 'phone:', 'Phone:', $content_array[3] );
 				$url = str_replace( 'url:', 'Website:', $content_array[4] );
 
-				$html .= '<div class="row-fluid church-item"><p>';
+				$html .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
 				
 					$html .= sprintf( '<div class="name">Name: <strong>%s</strong></div>', $name );
 					$html .= sprintf( '<div class="denomination">%s</div>', $denomination );
@@ -1325,7 +1335,7 @@ class TBB_Churches_List {
 					$html .= sprintf( '<div class="phone">%s</div>', $phone );
 					$html .= sprintf( '<div class="website">%s</div>', $url );
 				
-				$html .= '</p></div>';
+				$html .= '</article>';
 
 			}
 		
