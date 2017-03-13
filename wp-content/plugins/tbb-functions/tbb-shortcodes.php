@@ -1322,22 +1322,32 @@ class TBB_Churches_List {
 				$name = $row->{'title'}->{'$t'};
 				$content = $row->{'content'}->{'$t'};
 				$content_array = explode( ',', $content );
-				$location = str_replace( 'location:', 'Location:', $content_array[0] );
-				$denomination = str_replace( 'denomination:', 'Denomination:', $content_array[1] );
-				$address = str_replace( 'address:', 'Address:', $content_array[2] );
-				$phone = str_replace( 'phone:', 'Phone:', $content_array[3] );
-				$url = str_replace( 'url:', 'Website:', $content_array[4] );
+				$location = str_replace( 'location: ', '', $content_array[0] );
+				$denomination = str_replace( 'denomination: ', '', $content_array[1] );
+				$address = str_replace( 'address: ', '', $content_array[2] );
+				$phone = str_replace( 'phone: ', '', $content_array[3] );
+				$url = str_replace( 'url: ', '', $content_array[4] );
 
-				$html .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
+				/*$html .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
 				
 					$html .= sprintf( '<div class="name">Name: <strong>%s</strong></div>', $name );
-					$html .= sprintf( '<div class="denomination">%s</div>', $denomination );
-					$html .= sprintf( '<div class="location">%s</div>', $location );
-					$html .= sprintf( '<div class="address">%s</div>', $address );
-					$html .= sprintf( '<div class="phone">%s</div>', $phone );
-					$html .= sprintf( '<div class="website">%s</div>', $url );
+					$html .= sprintf( '<div class="denomination">Denomination: %s</div>', $denomination );
+					$html .= sprintf( '<div class="location">Location: %s</div>', $location );
+					$html .= sprintf( '<div class="address">Address: %s</div>', $address );
+					$html .= sprintf( '<div class="phone">Phone: %s</div>', $phone );
+					$html .= sprintf( '<div class="website">Website: %s</div>', $url );
 				
-				$html .= '</article>';
+				$html .= '</article>';*/
+				
+				if( $_GET['location'] && $_GET['location'] == $location ) {
+					
+					$this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					
+				} else {
+					
+					$this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					
+				}
 
 			}
 		
@@ -1347,6 +1357,23 @@ class TBB_Churches_List {
 		return $html;
 		
 	} // end function render
+	
+	private function church_item( $n, $d, $l, $a, $p, $u ) {
+		
+		$output = '';
+		$output .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
+				
+			$output .= sprintf( '<div class="name">Name: <strong>%s</strong></div>', $n );
+			$output .= sprintf( '<div class="denomination">Denomination: %s</div>', $d );
+			$output .= sprintf( '<div class="location">Location: %s</div>', $l );
+			$output .= sprintf( '<div class="address">Address: %s</div>', $a );
+			$output .= sprintf( '<div class="phone">Phone: %s</div>', $p );
+			$output .= sprintf( '<div class="website">Website: %s</div>', $u );
+
+		$output .= '</article>';
+		
+		return $output;
+	}
 	
 }
 new TBB_Churches_List();
