@@ -1339,7 +1339,7 @@ class TBB_Churches_List {
 				
 				$html .= '</article>';*/
 				
-				if( $_GET['location'] && $_GET['location'] == $location ) {
+				if( !empty($_GET['location']) && $_GET['location'] == $location ) {
 					
 					$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
 					
