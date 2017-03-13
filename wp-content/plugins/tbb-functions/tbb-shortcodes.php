@@ -1341,11 +1341,11 @@ class TBB_Churches_List {
 				
 				if( $_GET['location'] && $_GET['location'] == $location ) {
 					
-					$this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
 					
 				} else {
 					
-					$this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
 					
 				}
 
