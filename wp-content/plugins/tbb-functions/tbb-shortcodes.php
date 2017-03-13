@@ -1316,9 +1316,16 @@ class TBB_Churches_List {
 				$phone = str_replace( 'phone:', 'Phone:', $content_array[3] );
 				$url = str_replace( 'url:', 'Website:', $content_array[4] );
 
-				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: <strong>%s</strong><br>%s<br>%s<br>%s<br>%s<br>%s</p></div>',
-								$name, $location, $denomination, $address, $phone, $url
-						);
+				$html .= '<div class="row-fluid church-item"><p>';
+				
+					$html .= sprintf( '<div class="name">Name: <strong>%s</strong></div>', $name );
+					$html .= sprintf( '<div class="denomination">%s</div>', $denomination );
+					$html .= sprintf( '<div class="location">%s</div>', $location );
+					$html .= sprintf( '<div class="address">%s</div>', $address );
+					$html .= sprintf( '<div class="phone">%s</div>', $phone );
+					$html .= sprintf( '<div class="website">%s</div>', $url );
+				
+				$html .= '</p></div>';
 
 			}
 		
