@@ -1274,8 +1274,6 @@ class TBB_Churches_List {
     }
 	
 	public function render( $args ) {
-		
-		$google_key = '14ok04FVOzKjd_MzNNlI1-vQJ_4WTDSH3mDPRoWMRp_g';
 				
 		$defaults = shortcode_atts(
 			array(
@@ -1285,18 +1283,39 @@ class TBB_Churches_List {
 
 		extract( $defaults );
 		
+		$google_key = '14ok04FVOzKjd_MzNNlI1-vQJ_4WTDSH3mDPRoWMRp_g';
+		
+		$url = 'https://spreadsheets.google.com/feeds/list/'. $google_key .'/1/public/basic?alt=json';
+		
+		$file = file_get_contents( $url );
+		
+		$json = json_decode($file);
+		
+		$rows = $json->{'feed'}->{'entry'};
+		
+		print_f( $rows );
+		
 		$html = '';
+				
+		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
 		
-		$html .= $this->get_google_js( $google_key );
+		/*foreach($rows as $row) {
+			$html .= '<p>';
+				$title = $row->{'gsx$title'}->{'$t'};
+				$author = $row->{'gsx$author'}->{'$t'};
+				$review = $row->{'gsx$review'}->{'$t'};
+				echo $title . ' by ' . $author . '<br>' . $review;
+			$html .= '</p>';
+		}*/
 		
-		$html .= sprintf( '<div id="church-wrapper" class="%s"></div>', $class );
+		$html .= '</div>';
 		
 		return $html;
 		
 	} // end render
 	
 	private function get_google_js( $key ) {
-		$url = 'https://spreadsheets.google.com/feeds/list/'. $key .'/1/public/basic?alt=json';
+		
 		ob_start(); ?>
 		<script type="text/javascript">
 		var JSONURL = '<?php echo $url; ?>';
