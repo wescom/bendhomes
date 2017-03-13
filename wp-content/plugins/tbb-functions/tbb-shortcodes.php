@@ -1308,12 +1308,12 @@ class TBB_Churches_List {
 				$name = $row->{'title'}->{'$t'};
 				$content = $row->{'content'}->{'$t'};
 				$content_array = explode( ',', $content );
-				$email = $content_array[0];
+				$email = str_replace( 'email:', 'Email:', $content_array[0] );
 				$phone = str_replace( 'phone:', 'Phone:', $content_array[1] );
 				$website = str_replace( 'website:', 'Website:', $content_array[2] );
 				$notes = str_replace( 'notes:', 'Notes:', $content_array[3] );
 
-				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: %s<br>%s<br>%s<br>%s<br>%s</p></div>',
+				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: <strong>%s</strong><br>%s<br>%s<br>%s<br>%s</p></div>',
 								$name, $email, $phone, $website, $notes 
 						);
 
