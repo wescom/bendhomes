@@ -1258,3 +1258,81 @@ function tbb_share_bar( $atts ) {
 	</script>*/
 	
 } // end SHARE_BAR shortcode
+
+
+// Chruches directory pulled from google spreadsheet.
+// Shortcode: [tbb_churches]
+class TBB_Churches_List {
+	
+	public static $args;
+	
+    public function __construct() {
+		
+        add_shortcode('tbb_churches', array($this, 'render'));
+		
+		
+    }
+	
+	public function render( $args ) {
+		
+		$google_key = '14ok04FVOzKjd_MzNNlI1-vQJ_4WTDSH3mDPRoWMRp_g';
+				
+		$defaults = shortcode_atts(
+			array(
+				'class' => 'churches',
+			), $args
+		);
+
+		extract( $defaults );
+		
+		$html = '';
+		
+		$html .= $this->get_google_js( $google_key );
+		
+		$html .= sprintf( '<div id="church-wrapper" class="%s"></div>', $class );
+		
+		return $html;
+		
+	} // end render
+	
+	private function get_google_js( $key ) {
+		$url = 'https://spreadsheets.google.com/feeds/list/'. $key .'/1/public/basic?alt=json';
+		ob_start(); ?>
+		<script type="text/javascript">
+		var JSONURL = '<?php echo $url; ?>';
+		function callback(data){
+			var rows = [];
+			var cells = data.feed.entry;
+
+			for (var i = 0; i < cells.length; i++){
+				var rowObj = {};
+				rowObj.name = cells[i].title.$t;
+				var rowCols = cells[i].content.$t.split(',');
+				for (var j = 0; j < rowCols.length; j++){
+					var keyVal = rowCols[j].split(':');
+					rowObj[keyVal[0].trim()] = keyVal[1].trim();
+				}
+				rows.push(rowObj);
+			}
+
+			var raw = document.createElement('p');
+			raw.innerText = JSON.stringify(rows);
+			document.body.appendChild(raw);
+		}
+
+		$(document).ready(function(){
+			$.ajax({
+				url:JSONURL,
+				success: function(data){
+					callback(data);
+				}
+			});
+		});	
+		</script>
+		<?php
+		$script = ob_get_clean();
+		return $script;
+	}
+	
+}
+new TBB_Churches_List();
