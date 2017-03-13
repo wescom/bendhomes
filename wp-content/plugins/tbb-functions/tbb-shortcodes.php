@@ -1339,13 +1339,15 @@ class TBB_Churches_List {
 				
 				$html .= '</article>';*/
 				
-				if( !empty($_GET['location']) && $_GET['location'] == $location ) {
+				if( !empty($_GET['location']) ) {
 					
-					$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					if( $_GET['location'] == $location ) {
+						$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					}
 					
 				} else {
 					
-					$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					//$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
 					
 				}
 
