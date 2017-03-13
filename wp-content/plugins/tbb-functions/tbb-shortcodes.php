@@ -1301,10 +1301,13 @@ class TBB_Churches_List {
 		
 		$html .= '<div class="church-filters">View by Area: <select name="church-filter" onchange="location=this.value;">';
 		
+			$locations = array();
 			foreach( $rows as $location ) {
 				$location_content = $location->{'content'}->{'$t'};
 				$location_array = explode( ',', $location_content );
 				$item = str_replace( 'location: ', '', $location_array[0] );
+				if( in_array( $item, $locations ) )
+					continue;
 				
 				$html .= sprintf( '<option value="%s%s?location=%s">%s</option>', home_url(), $_SERVER['REQUEST_URI'], $item, $item );
 			}
