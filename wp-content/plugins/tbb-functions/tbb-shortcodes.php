@@ -1374,7 +1374,8 @@ class TBB_Churches_List {
 			if( !empty( $p) )
 				$output .= sprintf( '<div class="phone">Phone: %s</div>', $p );
 			if( !empty( $u ) )
-				$output .= sprintf( '<div class="website">Website: %s</div>', $u );
+				$output .= sprintf( '<div class="website">Website: <a href="%s" target="_blank">%s</a></div>', 
+								   filter_var($u, FILTER_VALIDATE_URL), $u );
 
 		$output .= '</article>';
 		
