@@ -1285,7 +1285,7 @@ class TBB_Churches_List {
 		
 		$google_key = '14ok04FVOzKjd_MzNNlI1-vQJ_4WTDSH3mDPRoWMRp_g';
 		
-		/*$url = 'https://spreadsheets.google.com/feeds/list/'. $google_key .'/1/public/basic?alt=json';
+		$url = 'https://spreadsheets.google.com/feeds/list/'. $google_key .'/1/public/basic?alt=json';
 		
 		$file = file_get_contents( $url );
 		
@@ -1293,11 +1293,7 @@ class TBB_Churches_List {
 		
 		$rows = $json->{'feed'}->{'entry'};
 		
-		print_r( $rows );*/
-		
-		$data = $this->get_googlesheet_data( $google_key );
-		
-		print_r( $data );
+		print_r( $rows );
 		
 		$html = '';
 				
