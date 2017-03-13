@@ -1275,6 +1275,8 @@ class TBB_Churches_List {
 	
 	public function render( $args ) {
 				
+		$html = '';
+		
 		$defaults = shortcode_atts(
 			array(
 				'class' => 'churches',
@@ -1293,13 +1295,13 @@ class TBB_Churches_List {
 		
 		$rows = $json->{'feed'}->{'entry'};
 		
-		print_r( $json );
+		//print_r( $json );
 		
-		$html = '';
+		$total_churches = $json->{'feed'}->{'openSearch$totalResults'}->{'$t'};
 				
-		$html .= sprintf( '<div id="church-wrapper" class="%s church">', $class );
+		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
 		
-			$html .= sprintf( '<div class="total">Total Churches: %s</div>', $json->{'feed'}->{'openSearch$totalResults'}->{'$t'} );
+			$html .= sprintf( '<div class="total">Total Churches: %s</div>', $total_churches );
 		
 			foreach($rows as $row) {
 
@@ -1307,8 +1309,13 @@ class TBB_Churches_List {
 				$content = $row->{'content'}->{'$t'};
 				$content_array = explode( ',', $content );
 
-				$html .= sprintf( '<p>Name: %s, %s, %s, %s<br>%s</p>',
-								$name, $content_array[0], $content_array[1], $content_array[2], $content_array[3] );
+				$html .= sprintf( '<div class="row church-item"><p>Name: %s, %s, %s, %s<br>%s</p></div>',
+								$name, 
+								 ucfirst($content_array[0]), 
+								 ucfirst($content_array[1]), 
+								 ucfirst($content_array[2]), 
+								 ucfirst($content_array[3]) 
+						);
 
 			}
 		
@@ -1317,48 +1324,6 @@ class TBB_Churches_List {
 		return $html;
 		
 	} // end render
-	
-	private function get_googlesheet_data( $sp_key ) {
-		// construct Google spreadsheet URL:
-        $url = "https://spreadsheets.google.com/feeds/cells/{$sp_key}/1/public/basic?alt=json";
-
-        // UA
-        //$userAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.9) Gecko/20100315 Firefox/3.5.9";
-        $curl = curl_init();
-        // set URL
-        curl_setopt($curl, CURLOPT_URL, $url);
-
-        // setting curl options
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);// return page to the variable
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);// allow redirects
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); // return into a variable
-        curl_setopt($curl, CURLOPT_TIMEOUT, 30000); // times out after 4s
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
-        //curl_setopt($curl, CURLOPT_USERAGENT, $userAgent);
-
-        // grab URL and pass it to the variable
-        $str = curl_exec($curl);
-        curl_close($curl);
-
-        // extract pure JSON from response
-        $str  = substr($str, 2, strlen($str) - 4);
-        $data = json_decode($str, true);
-
-        // https://spreadsheets.google.com/feeds/cells/0Am9NwGgzBIuBdDhSQ3FKMjRDZjAyYlZscUhmNUdKQnc/1/public/basic/R1C2
-        $id_marker = "https://spreadsheets.google.com/feeds/cells/{$sp_key}/1/public/basic/";
-        $entries   = $data["feed"]["entry"];
-
-        $result = array();
-        foreach($entries as $entry) {
-           $content = $entry["content"];
-           $ind = str_replace($id_marker."R", "", $entry["id"]['$t']);
-           $ii  = explode("C", $ind);
-           $result[$ii[0]-1][$ii[1]-1] = $entry["content"]['$t'];
-        }
-
-        return $result;
-	}
 	
 }
 new TBB_Churches_List();
