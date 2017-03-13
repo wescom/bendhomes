@@ -1358,7 +1358,7 @@ class TBB_Churches_List {
 					
 				} else {
 					
-					//$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
 					
 				}
 
