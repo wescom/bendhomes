@@ -1293,7 +1293,7 @@ class TBB_Churches_List {
 		
 		$rows = $json->{'feed'}->{'entry'};
 		
-		print_f( $rows );
+		print_r( $rows );
 		
 		$html = '';
 				
