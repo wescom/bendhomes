@@ -1301,7 +1301,7 @@ class TBB_Churches_List {
 				
 		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
 		
-			$html .= sprintf( '<div class="total">Total Churches: %s</div>', $total_churches );
+			$html .= sprintf( '<h4 class="total">Total Churches: %s</h4>', $total_churches );
 		
 			foreach($rows as $row) {
 
@@ -1309,7 +1309,7 @@ class TBB_Churches_List {
 				$content = $row->{'content'}->{'$t'};
 				$content_array = explode( ',', $content );
 
-				$html .= sprintf( '<div class="row church-item"><p>Name: %s, %s, %s, %s<br>%s</p></div>',
+				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: %s, %s, %s, %s<br>%s</p></div>',
 								$name, 
 								 ucfirst($content_array[0]), 
 								 ucfirst($content_array[1]), 
