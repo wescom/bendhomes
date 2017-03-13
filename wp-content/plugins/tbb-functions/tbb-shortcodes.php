@@ -1310,28 +1310,21 @@ class TBB_Churches_List {
 				$content_array = explode( ',', $content );
 				$email = $content_array[0];
 				$phone = str_replace( 'phone:', 'Phone:', $content_array[1] );
-				$website = $content_array[2];
-				$notes = $content_array[3];
+				$website = str_replace( 'website:', 'Website:', $content_array[2] );
+				$notes = str_replace( 'notes:', 'Notes:', $content_array[3] );
 
 				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: %s<br>%s<br>%s<br>%s<br>%s</p></div>',
-								$name, 
-								 $this->cap_first( $email ), 
-								 $phone, 
-								 $this->cap_first( $website ), 
-								 $this->cap_first( $notes ) 
+								$name, $email, $phone, $website, $notes 
 						);
 
 			}
 		
 		$html .= '</div>';
 		
+		// Output churches list
 		return $html;
 		
-	} // end render
-	
-	private function cap_first( $string ) {
-		return ucfirst( $string );
-	}
+	} // end function render
 	
 }
 new TBB_Churches_List();
