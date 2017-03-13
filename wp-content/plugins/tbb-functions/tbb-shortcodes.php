@@ -1291,13 +1291,13 @@ class TBB_Churches_List {
 		
 		$json = json_decode($file);
 		
-		$rows = $json->{'feed'}->{'entry'};
+		//$rows = $json->{'feed'}->{'entry'};
 		
 		print_r( $json );
 		
 		$html = '';
 				
-		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
+		$html .= sprintf( '<div id="church-wrapper" class="%s class">', $class );
 		
 		/*foreach($rows as $row) {
 			$html .= '<p>';
