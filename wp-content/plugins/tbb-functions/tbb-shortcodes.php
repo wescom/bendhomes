@@ -1321,10 +1321,10 @@ class TBB_Churches_List {
 		
 			if( !empty($_GET['location']) ) {
 				$html .= sprintf( ' <a href="%s">View Full List</a>', $current_url );
-				$html .= sprintf( '<div class="viewing">Viewing Location: %s</div>', $_GET['location'] );
+				$html .= sprintf( '<p class="viewing">Viewing Location: %s</p><hr>', $_GET['location'] );
 			}
 		
-		$html .= '</div>';
+		$html .= '</div>'; // End church filter
 		
 		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
 				
@@ -1338,28 +1338,15 @@ class TBB_Churches_List {
 				$address = str_replace( 'address: ', '', $content_array[2] );
 				$phone = str_replace( 'phone: ', '', $content_array[3] );
 				$url = str_replace( 'url: ', '', $content_array[4] );
-
-				/*$html .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
-				
-					$html .= sprintf( '<div class="name">Name: <strong>%s</strong></div>', $name );
-					$html .= sprintf( '<div class="denomination">Denomination: %s</div>', $denomination );
-					$html .= sprintf( '<div class="location">Location: %s</div>', $location );
-					$html .= sprintf( '<div class="address">Address: %s</div>', $address );
-					$html .= sprintf( '<div class="phone">Phone: %s</div>', $phone );
-					$html .= sprintf( '<div class="website">Website: %s</div>', $url );
-				
-				$html .= '</article>';*/
 				
 				if( !empty($_GET['location']) ) {
-					
+					// Filter by location if url param exists
 					if( $_GET['location'] == $location ) {
 						$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
 					}
-					
 				} else {
-					
+					// Otherwise just show everything
 					$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
-					
 				}
 
 			}
@@ -1369,19 +1356,25 @@ class TBB_Churches_List {
 		// Output churches list
 		return $html;
 		
-	} // end function render
+	}
 	
+	// Church item content is inside a function so we don't have to duplicate it using filters
 	private function church_item( $n, $d, $l, $a, $p, $u ) {
 		
 		$output = '';
 		$output .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
 				
-			$output .= sprintf( '<div class="name">Name: <strong>%s</strong></div>', $n );
-			$output .= sprintf( '<div class="denomination">Denomination: %s</div>', $d );
-			$output .= sprintf( '<div class="location">Location: %s</div>', $l );
-			$output .= sprintf( '<div class="address">Address: %s</div>', $a );
-			$output .= sprintf( '<div class="phone">Phone: %s</div>', $p );
-			$output .= sprintf( '<div class="website">Website: %s</div>', $u );
+			$output .= sprintf( '<div class="name"><strong>%s</strong></div>', $n );
+			if( !empty( $d ) )
+				$output .= sprintf( '<div class="denomination">Denomination: %s</div>', $d );
+			if( !empty( $l ) )
+				$output .= sprintf( '<div class="location">Location: %s</div>', $l );
+			if( !empty($a) )
+				$output .= sprintf( '<div class="address">Address: %s</div>', $a );
+			if( !empty( $p) )
+				$output .= sprintf( '<div class="phone">Phone: %s</div>', $p );
+			if( !empty( $u ) )
+				$output .= sprintf( '<div class="website">Website: %s</div>', $u );
 
 		$output .= '</article>';
 		
