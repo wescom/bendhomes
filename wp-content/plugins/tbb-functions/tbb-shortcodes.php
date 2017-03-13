@@ -1307,8 +1307,8 @@ class TBB_Churches_List {
 				$content = $row->{'content'}->{'$t'};
 				$content_array = explode( ',', $content );
 
-				$html .= sprintf( '<p>Name: %s, %s, %s, %s</p>',
-								$name, $content_array[0], $content_array[1], $content_array[2] );
+				$html .= sprintf( '<p>Name: %s, %s, %s, %s<br>%s</p>',
+								$name, $content_array[0], $content_array[1], $content_array[2], $content_array[3] );
 
 			}
 		
