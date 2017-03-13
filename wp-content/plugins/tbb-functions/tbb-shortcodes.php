@@ -1310,6 +1310,7 @@ class TBB_Churches_List {
 					continue;
 				
 				$html .= sprintf( '<option value="%s%s?location=%s">%s</option>', home_url(), $_SERVER['REQUEST_URI'], $item, $item );
+				$locations[] = $item;
 			}
 		
 		$html .= '</select></div>';
