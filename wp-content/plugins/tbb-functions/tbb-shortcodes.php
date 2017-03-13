@@ -1286,7 +1286,8 @@ class TBB_Churches_List {
 
 		extract( $defaults );
 		
-		$google_key = '14ok04FVOzKjd_MzNNlI1-vQJ_4WTDSH3mDPRoWMRp_g';
+		//$google_key = '14ok04FVOzKjd_MzNNlI1-vQJ_4WTDSH3mDPRoWMRp_g';
+		$google_key = '1UJ94-Y3lldgxCQMaqHfdx4Lla424t1CuAffIVa-fNxg';
 		
 		$url = 'https://spreadsheets.google.com/feeds/list/'. $google_key .'/1/public/basic?alt=json';
 		
@@ -1309,13 +1310,14 @@ class TBB_Churches_List {
 				$name = $row->{'title'}->{'$t'};
 				$content = $row->{'content'}->{'$t'};
 				$content_array = explode( ',', $content );
-				$email = str_replace( 'email:', 'Email:', $content_array[0] );
-				$phone = str_replace( 'phone:', 'Phone:', $content_array[1] );
-				$website = str_replace( 'website:', 'Website:', $content_array[2] );
-				$notes = str_replace( 'notes:', 'Notes:', $content_array[3] );
+				$location = str_replace( 'location:', 'Location:', $content_array[0] );
+				$denomination = str_replace( 'denomination:', 'Denomination:', $content_array[1] );
+				$address = str_replace( 'address:', 'Address:', $content_array[2] );
+				$phone = str_replace( 'phone:', 'Phone:', $content_array[3] );
+				$url = str_replace( 'url:', 'Website:', $content_array[4] );
 
-				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: <strong>%s</strong><br>%s<br>%s<br>%s<br>%s</p></div>',
-								$name, $email, $phone, $website, $notes 
+				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: <strong>%s</strong><br>%s<br>%s<br>%s<br>%s<br>%s</p></div>',
+								$name, $location, $denomination, $address, $phone, $url
 						);
 
 			}
