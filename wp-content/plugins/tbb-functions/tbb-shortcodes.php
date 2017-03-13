@@ -1306,15 +1306,13 @@ class TBB_Churches_List {
 				$location_array = explode( ',', $location_content );
 				$item = str_replace( 'location: ', '', $location_array[0] );
 				
-				$html .= sprintf( '<option value="%s?location=%s">%s</option>', $_SERVER['REQUEST_URI'], $item, $item );
+				$html .= sprintf( '<option value="%s%s?location=%s">%s</option>', home_url(), $_SERVER['REQUEST_URI'], $item, $item );
 			}
 		
 		$html .= '</select></div>';
 		
 		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
-		
-			$html .= sprintf( '<h4 class="total">%s: %s</h4>', $total_text, $total_churches );
-		
+				
 			foreach($rows as $row) {
 
 				$name = $row->{'title'}->{'$t'};
