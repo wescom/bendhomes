@@ -1320,10 +1320,10 @@ class TBB_Churches_List {
 	
 	private function get_googlesheet_data( $sp_key ) {
 		// construct Google spreadsheet URL:
-        $url = "https://spreadsheets.google.com/feeds/cells/{$sp_key}/1/public/basic?alt=json-in-script&callback=_";
+        $url = "https://spreadsheets.google.com/feeds/cells/{$sp_key}/1/public/basic?alt=json";
 
         // UA
-        $userAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.9) Gecko/20100315 Firefox/3.5.9";
+        //$userAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.9) Gecko/20100315 Firefox/3.5.9";
         $curl = curl_init();
         // set URL
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -1335,7 +1335,7 @@ class TBB_Churches_List {
         curl_setopt($curl, CURLOPT_TIMEOUT, 30000); // times out after 4s
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($curl, CURLOPT_USERAGENT, $userAgent);
+        //curl_setopt($curl, CURLOPT_USERAGENT, $userAgent);
 
         // grab URL and pass it to the variable
         $str = curl_exec($curl);
