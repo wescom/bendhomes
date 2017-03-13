@@ -1291,7 +1291,7 @@ class TBB_Churches_List {
 		
 		$json = json_decode($file);
 		
-		//$rows = $json->{'feed'}->{'entry'};
+		$rows = $json->{'feed'}->{'entry'};
 		
 		print_r( $json );
 		
@@ -1299,14 +1299,18 @@ class TBB_Churches_List {
 				
 		$html .= sprintf( '<div id="church-wrapper" class="%s class">', $class );
 		
-		/*foreach($rows as $row) {
-			$html .= '<p>';
-				$title = $row->{'gsx$title'}->{'$t'};
-				$author = $row->{'gsx$author'}->{'$t'};
-				$review = $row->{'gsx$review'}->{'$t'};
-				echo $title . ' by ' . $author . '<br>' . $review;
-			$html .= '</p>';
-		}*/
+			$html .= sprintf( '<div class="total">Total Churches: %s</div>', $json->{'feed'}->{'openSearch$totalResults'}->{'$t'} );
+		
+			foreach($rows as $row) {
+
+				$name = $row->{'title'}->{'$t'};
+				$content = $row->{'content'}->{'$t'};
+				$content_array = exploe( ',', $content );
+
+				$html .= sprintf( '<p>Name: %s, %s, %s, %s</p>',
+								$name, $content_array[0], $content_array[1], $content_array[2] );
+
+			}
 		
 		$html .= '</div>';
 		
