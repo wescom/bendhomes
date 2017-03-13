@@ -1304,7 +1304,7 @@ class TBB_Churches_List {
 			foreach( $rows as $location ) {
 				$location_content = $location->{'content'}->{'$t'};
 				$location_array = explode( ',', $location_content );
-				$item = str_replace( 'location:', '', $location_array[0] );
+				$item = str_replace( 'location: ', '', $location_array[0] );
 				
 				$html .= sprintf( '<option value="%s?location=%s">%s</option>', $_SERVER['REQUEST_URI'], $item, $item );
 			}
