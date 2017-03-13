@@ -1280,6 +1280,7 @@ class TBB_Churches_List {
 		$defaults = shortcode_atts(
 			array(
 				'class' => 'churches',
+				'total_text' => 'Total Churches'
 			), $args
 		);
 
@@ -1301,7 +1302,7 @@ class TBB_Churches_List {
 				
 		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
 		
-			$html .= sprintf( '<h4 class="total">Total Churches: %s</h4>', $total_churches );
+			$html .= sprintf( '<h4 class="total">%s: %s</h4>', $total_text, $total_churches );
 		
 			foreach($rows as $row) {
 
