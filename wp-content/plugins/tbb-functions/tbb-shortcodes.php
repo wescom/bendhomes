@@ -1304,11 +1304,11 @@ class TBB_Churches_List {
 			foreach($rows as $row) {
 
 				$name = $row->{'title'}->{'$t'};
-				$content = $row->{'content'}->{'$t'};
-				$content_array = exploe( ',', $content );
+				//$content = $row->{'content'}->{'$t'};
+				//$content_array = exploe( ',', $content );
 
-				$html .= sprintf( '<p>Name: %s, %s, %s, %s</p>',
-								$name, $content_array[0], $content_array[1], $content_array[2] );
+				$html .= sprintf( '<p>Name: %s</p>',
+								$name );
 
 			}
 		
