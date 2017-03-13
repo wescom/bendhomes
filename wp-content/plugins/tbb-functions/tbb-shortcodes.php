@@ -1297,11 +1297,13 @@ class TBB_Churches_List {
 		
 		$rows = $json->{'feed'}->{'entry'};
 		
+		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?');
+		
 		//print_r( $json );
 		
-		$html .= '<div class="church-filters">View by Area: <select name="church-filter" onchange="location=this.value;">';
+		$html .= '<div class="church-filters">';
 		
-			$html .= '<option value="">Select Area</option>';
+			$html .= 'View by Area: <select name="church-filter" onchange="location=this.value;"><option value="">Select Area</option>';
 		
 			$locations = array();
 			foreach( $rows as $location ) {
@@ -1311,11 +1313,18 @@ class TBB_Churches_List {
 				if( in_array( $item, $locations ) )
 					continue;
 				
-				$html .= sprintf( '<option value="%s%s?location=%s">%s</option>', home_url(), strtok($_SERVER['REQUEST_URI'], '?'), $item, $item );
+				$html .= sprintf( '<option value="%s?location=%s">%s</option>', $current_url, $item, $item );
 				$locations[] = $item;
 			}
 		
-		$html .= '</select></div>';
+			$html .= '</select>';
+		
+			if( !empty($_GET['location']) ) {
+				$html .= sprintf( ' <a href="%s">View Full List</a>', $current_url );
+				$html .= sprintf( '<div class="viewing">Viewing Location: %s</div>', $_GET['location'] );
+			}
+		
+		$html .= '</div>';
 		
 		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
 				
