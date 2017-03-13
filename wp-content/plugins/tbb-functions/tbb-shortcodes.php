@@ -1317,7 +1317,7 @@ class TBB_Churches_List {
 
 			var raw = document.createElement('p');
 			raw.innerText = JSON.stringify(rows);
-			document.body.appendChild(raw);
+			document.getElementById('church-wrapper').innerHTML(raw);
 		}
 
 		$(document).ready(function(){
