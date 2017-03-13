@@ -1311,10 +1311,10 @@ class TBB_Churches_List {
 
 				$html .= sprintf( '<div class="row-fluid church-item"><p>Name: %s, %s, %s, %s<br>%s</p></div>',
 								$name, 
-								 ucfirst($content_array[0]), 
-								 ucfirst($content_array[1]), 
-								 ucfirst($content_array[2]), 
-								 ucfirst($content_array[3]) 
+								 $this->cap_first($content_array[0]), 
+								 $this->cap_first($content_array[1]), 
+								 $this->cap_first($content_array[2]), 
+								 $this->cap_first($content_array[3]) 
 						);
 
 			}
@@ -1324,6 +1324,10 @@ class TBB_Churches_List {
 		return $html;
 		
 	} // end render
+	
+	private function cap_first( $string ) {
+		return ucfirst( $string );
+	}
 	
 }
 new TBB_Churches_List();
