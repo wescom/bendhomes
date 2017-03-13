@@ -1299,7 +1299,7 @@ class TBB_Churches_List {
 				
 		$html .= sprintf( '<div id="church-wrapper" class="%s church">', $class );
 		
-			//$html .= sprintf( '<div class="total">Total Churches: %s</div>', $json->{'feed'}->{'openSearch$totalResults'}->{'$t'} );
+			$html .= sprintf( '<div class="total">Total Churches: %s</div>', $json->{'feed'}->{'openSearch$totalResults'}->{'$t'} );
 		
 			foreach($rows as $row) {
 
