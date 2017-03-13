@@ -1371,7 +1371,7 @@ class TBB_Churches_List {
 			if( !empty($a) )
 				$output .= sprintf( '<div class="address">Address: %s</div>', $a );
 			if( !empty( $p) )
-				$output .= sprintf( '<div class="phone">Phone: %s</div>', $p );
+				$output .= sprintf( '<div class="phone">Phone: <a href="tel:%s">%s</a></div>', preg_replace( '/\D/', '', $p ), $p );
 			if( !empty( $u ) )
 				$output .= sprintf( '<div class="website">Website: <a href="%s" target="_blank">%s</a></div>', 
 								   esc_url( str_replace( ' ', '', $u ) ), $u );
