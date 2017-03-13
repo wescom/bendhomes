@@ -1279,8 +1279,7 @@ class TBB_Churches_List {
 		
 		$defaults = shortcode_atts(
 			array(
-				'class' => 'churches',
-				'total_text' => 'Total Churches'
+				'class' => 'churches'
 			), $args
 		);
 
@@ -1358,7 +1357,7 @@ class TBB_Churches_List {
 		
 	}
 	
-	// Church item content is inside a function so we don't have to duplicate it using filters
+	// Church item content is inside a function so we don't have to duplicate it above
 	private function church_item( $n, $d, $l, $a, $p, $u ) {
 		
 		$output = '';
