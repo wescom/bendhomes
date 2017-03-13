@@ -1319,7 +1319,7 @@ class TBB_Churches_List {
 		
 			$html .= '</select>';
 		
-			if( !empty($_GET['location']) ) {
+			if( isset($_GET['location']) ) {
 				$html .= sprintf( ' <a href="%s">View Full List</a>', $current_url );
 				$html .= sprintf( '<p class="viewing">Viewing Location: %s</p><hr>', $_GET['location'] );
 			}
@@ -1339,7 +1339,7 @@ class TBB_Churches_List {
 				$phone = str_replace( 'phone: ', '', $content_array[3] );
 				$url = str_replace( 'url: ', '', $content_array[4] );
 				
-				if( !empty($_GET['location']) ) {
+				if( isset($_GET['location']) ) {
 					// Filter by location if url param exists
 					if( $_GET['location'] == $location ) {
 						$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
@@ -1374,8 +1374,7 @@ class TBB_Churches_List {
 			if( !empty( $p) )
 				$output .= sprintf( '<div class="phone">Phone: %s</div>', $p );
 			if( !empty( $u ) )
-				$output .= sprintf( '<div class="website">Website: <a href="%s" target="_blank">%s</a></div>', 
-								   filter_var($u, FILTER_VALIDATE_URL), $u );
+				$output .= sprintf( '<div class="website">Website: <a href="%s" target="_blank">%s</a></div>', $u, $u );
 
 		$output .= '</article>';
 		
