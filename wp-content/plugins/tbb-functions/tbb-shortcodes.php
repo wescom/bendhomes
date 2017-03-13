@@ -1285,7 +1285,7 @@ class TBB_Churches_List {
 		
 		$google_key = '14ok04FVOzKjd_MzNNlI1-vQJ_4WTDSH3mDPRoWMRp_g';
 		
-		$url = 'https://spreadsheets.google.com/feeds/list/'. $google_key .'/1/public/basic?alt=json';
+		/*$url = 'https://spreadsheets.google.com/feeds/list/'. $google_key .'/1/public/basic?alt=json';
 		
 		$file = file_get_contents( $url );
 		
@@ -1293,7 +1293,11 @@ class TBB_Churches_List {
 		
 		$rows = $json->{'feed'}->{'entry'};
 		
-		print_r( $rows );
+		print_r( $rows );*/
+		
+		$data = $this->get_googlesheet_data( $google_key );
+		
+		print_r( $data );
 		
 		$html = '';
 				
@@ -1314,43 +1318,46 @@ class TBB_Churches_List {
 		
 	} // end render
 	
-	private function get_google_js( $key ) {
-		
-		ob_start(); ?>
-		<script type="text/javascript">
-		var JSONURL = '<?php echo $url; ?>';
-		function callback(data){
-			var rows = [];
-			var cells = data.feed.entry;
+	private function get_googlesheet_data( $sp_key ) {
+		// construct Google spreadsheet URL:
+        $url = "https://spreadsheets.google.com/feeds/cells/{$sp_key}/1/public/basic?alt=json-in-script&callback=_";
 
-			for (var i = 0; i < cells.length; i++){
-				var rowObj = {};
-				rowObj.name = cells[i].title.$t;
-				var rowCols = cells[i].content.$t.split(',');
-				for (var j = 0; j < rowCols.length; j++){
-					var keyVal = rowCols[j].split(':');
-					rowObj[keyVal[0].trim()] = keyVal[1].trim();
-				}
-				rows.push(rowObj);
-			}
+        // UA
+        $userAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.9) Gecko/20100315 Firefox/3.5.9";
+        $curl = curl_init();
+        // set URL
+        curl_setopt($curl, CURLOPT_URL, $url);
 
-			var raw = document.createElement('p');
-			raw.innerText = JSON.stringify(rows);
-			document.getElementById('church-wrapper').innerHTML(raw);
-		}
+        // setting curl options
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);// return page to the variable
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);// allow redirects
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); // return into a variable
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30000); // times out after 4s
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($curl, CURLOPT_USERAGENT, $userAgent);
 
-		$(document).ready(function(){
-			$.ajax({
-				url:JSONURL,
-				success: function(data){
-					callback(data);
-				}
-			});
-		});	
-		</script>
-		<?php
-		$script = ob_get_clean();
-		return $script;
+        // grab URL and pass it to the variable
+        $str = curl_exec($curl);
+        curl_close($curl);
+
+        // extract pure JSON from response
+        $str  = substr($str, 2, strlen($str) - 4);
+        $data = json_decode($str, true);
+
+        // https://spreadsheets.google.com/feeds/cells/0Am9NwGgzBIuBdDhSQ3FKMjRDZjAyYlZscUhmNUdKQnc/1/public/basic/R1C2
+        $id_marker = "https://spreadsheets.google.com/feeds/cells/{$sp_key}/1/public/basic/";
+        $entries   = $data["feed"]["entry"];
+
+        $result = array();
+        foreach($entries as $entry) {
+           $content = $entry["content"];
+           $ind = str_replace($id_marker."R", "", $entry["id"]['$t']);
+           $ii  = explode("C", $ind);
+           $result[$ii[0]-1][$ii[1]-1] = $entry["content"]['$t'];
+        }
+
+        return $result;
 	}
 	
 }
