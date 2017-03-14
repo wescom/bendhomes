@@ -1381,17 +1381,18 @@ class TBB_Churches_List {
 				$address = str_replace( 'address: ', '', $content_array[2] );
 				$city = str_replace( 'city: ', '', $content_array[3] );
 				$state = str_replace( 'state: ', '', $content_array[4] );
-				$phone = str_replace( 'phone: ', '', $content_array[5] );
-				$url = str_replace( 'url: ', '', $content_array[6] );
+				$zip = str_replace( 'zip: ', '', $content_array[5] );
+				$phone = str_replace( 'phone: ', '', $content_array[6] );
+				$url = str_replace( 'url: ', '', $content_array[7] );
 				
 				if( isset($_GET['location']) ) {
 					// Filter by location if url param exists
 					if( $_GET['location'] == $location ) {
-						$html .= $this->church_item( $name, $denomination, $address, $city, $state, $phone, $url );
+						$html .= $this->church_item( $name, $denomination, $address, $city, $state, $zip, $phone, $url );
 					}
 				} else {
 					// Otherwise just show everything
-					$html .= $this->church_item( $name, $denomination, $address, $city, $state, $phone, $url );
+					$html .= $this->church_item( $name, $denomination, $address, $city, $state, $zip, $phone, $url );
 				}
 
 			}
@@ -1404,7 +1405,7 @@ class TBB_Churches_List {
 	}
 	
 	// Church item content is inside a function so we don't have to duplicate it above
-	private function church_item( $n, $d, $a, $c, $s, $p, $u ) {
+	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
 		
 		$output = '';
 		$output .= '<article class="row-fluid church-item">';
@@ -1415,7 +1416,7 @@ class TBB_Churches_List {
 			if( !empty($a) )
 				$output .= '<div class="address">';
 					$output .= sprintf( '<div>%s</div>', $a );
-					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s</div>', $c, $s );
+					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s</div>', $c, $s, $z );
 				$output .= '</div>';
 			if( !empty( $p) )
 				$output .= sprintf( '<div class="phone"><a href="tel:%s">%s</a></div>', 
@@ -1429,19 +1430,23 @@ class TBB_Churches_List {
 		return $output;
 	}
 	
-	// Create array of map data for google map
+	// Create array of json map data for google map
 	private function json_map_data( $data ) {
 		$map_data = array();
 		
-		foreach( $data as $map_item ) {
+		foreach( $data as $item ) {
 			$map_item = array();
-			$map_item['title'] = $map_item->{'title'}->{'$t'};
-			$map_content = $map_item->{'content'}->{'$t'};
+			// Map item title
+			$map_item['title'] = $item->{'title'}->{'$t'};
+			$map_content = $item->{'content'}->{'$t'};
 			$map_content_array = explode( ',', $map_content );
 			
-			$map_item['lat'] = str_replace( 'latitude: ', '', $content_array[7] );
-			$map_item['lng'] = str_replace( 'longitude: ', '', $content_array[8] );
+			// Map item latitude
+			$map_item['lat'] = str_replace( 'latitude: ', '', $content_array[8] );
+			// Map item longitude
+			$map_item['lng'] = str_replace( 'longitude: ', '', $content_array[9] );
 			
+			// Add each map_item to map_data array.
 			$map_data[] = $map_item;
 		}
 		
