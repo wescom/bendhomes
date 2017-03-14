@@ -1267,11 +1267,15 @@ class TBB_Churches_List {
 	public static $args;
 	
     public function __construct() {
-		
-        add_shortcode('tbb_churches', array($this, 'render'));
-		
-		
+        add_shortcode( 'tbb_churches', array($this, 'render') );
+		add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
     }
+	
+	public function enqueue() {
+		wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js', false );
+		wp_enqueue_script( 'map-json', TBB_FUNCTIONS_URL .'/js/data.json', '', '', false );
+		wp_enqueue_script( 'markerclusterer', TBB_FUNCTIONS_URL .'/js/markerclusterer.js', '', '', false );
+	}
 	
 	public function render( $args ) {
 				
@@ -1326,6 +1330,10 @@ class TBB_Churches_List {
 			}
 		
 		$html .= '</div>'; // End church filter
+		
+		$html .= '<div id="church-map" class="map-wrap clearfix row-fluid">';
+			$html .= '<div id="map-container"><div id="map"></div></div>';
+		$html .= '</div>'; // End Map
 		
 		$html .= sprintf( '<div id="church-wrapper" class="row-fluid clearfix %s"><hr>', $class );
 				
