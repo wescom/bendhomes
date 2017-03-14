@@ -1409,8 +1409,12 @@ class TBB_Churches_List {
 			$map_item = array();
 			// Map item title
 			$map_item['title'] = $item->{'title'}->{'$t'};
+			
 			$map_content = $item->{'content'}->{'$t'};
 			$map_content_array = explode( ',', $map_content );
+			
+			$location = str_replace( 'location: ', '', $map_content_array[0] );
+			
 			// Get last 2 items in array, which is Latitude & Longitude
 			$lat_long_array = array_slice( $map_content_array, -2 );
 			
@@ -1428,7 +1432,7 @@ class TBB_Churches_List {
 	
 	// Create all javascript using google-maps-api, google-map-info-box, & markerclusterer.
 	// Add json_map_data function above as variable in myData.
-	public function map_script( $json_array ) {
+	private function map_script( $json_array ) {
 		ob_start(); ?>
 		<script type="text/javascript">
 		function initChurchesMap() {
@@ -1457,8 +1461,6 @@ class TBB_Churches_List {
 				markers[i] = new google.maps.Marker({
 					position: new google.maps.LatLng(mapData[i].lat,mapData[i].lng),
 					map: map,
-					// icon: mapData[i].icon,
-					//icon: image,
 					title: mapData[i].title,
 					animation: google.maps.Animation.DROP,
 					visible: true
