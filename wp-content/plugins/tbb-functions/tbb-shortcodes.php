@@ -1367,9 +1367,9 @@ class TBB_Churches_List {
 		$output = '';
 		$output .= '<article class="row-fluid church-item">';
 				
-			$output .= sprintf( '<div class="name"><strong>%s</strong></div>', $n );
+			$output .= sprintf( '<h4 class="name"><strong>%s</strong></h4>', $n );
 			if( !empty( $d ) )
-				$output .= sprintf( '<div class="denomination"><span>Denomination:</span> %s</div>', $d );
+				$output .= sprintf( '<div class="denomination"><small>Denomination:</small> %s</div>', $d );
 			if( !empty($a) )
 				$output .= '<div class="address">';
 					$output .= sprintf( '<div>%s</div>', $a );
@@ -1398,7 +1398,9 @@ class TBB_Churches_List {
 			.selectbox-wrapper ul li:first-child { display: none; }
 			.selectwrap input { margin-bottom: 0; }
 			.church-item { margin-bottom: 1em; }
-			.denomination span, .church-filters span.label-text { color: #999; }
+			.church-item h4 { margin-bottom: 6px; }
+			.denomination small, .church-filters span.label-text { color: #999; }
+			.church-item a[href="tel:"] { color: #555; }
 		</style>
 		<?php
 		$css = ob_get_clean();
