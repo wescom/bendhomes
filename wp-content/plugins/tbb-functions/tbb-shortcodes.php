@@ -1321,8 +1321,8 @@ class TBB_Churches_List {
 			$html .= '</select></span></div>';
 		
 			if( isset($_GET['location']) ) {
-				$html .= sprintf( ' <a href="%s">View Full List</a>', $current_url );
-				$html .= sprintf( '<p class="viewing">Viewing Location: %s</p>', $_GET['location'] );
+				$html .= sprintf( ' <a href="%s" class="full-list"><i class="fa fa-angle-left"></i> View Full List</a>', $current_url );
+				$html .= sprintf( '<div class="viewing">Viewing Location: %s</div>', $_GET['location'] );
 			}
 		
 		$html .= '</div>'; // End church filter
@@ -1391,6 +1391,7 @@ class TBB_Churches_List {
 		ob_start(); ?>
 		<style type="text/css">
 			.church-filters .option-bar.small { text-align:right; }
+			.church-filters .full-list { color: #999; font-size: 14px; }
 			.church-filters .selectwrap { display:inline-block; }
 			.selectbox-wrapper { text-align: left; border-bottom: 2px solid #dedede; }
 			.selectbox-wrapper ul { margin: 0 !important; }
