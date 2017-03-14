@@ -1300,9 +1300,9 @@ class TBB_Churches_List {
 		
 		//print_r( $json );
 		
-		$html .= '<div class="church-filters">';
+		$html .= '<div class="church-filters clearfix row-fluid">';
 		
-			$html .= '<div class="option-bar small">View by Area: <span class="selectwrap"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value="">Select Area</option>';
+			$html .= '<div class="option-bar small" style="text-align:right;"><span style="line-height:40px;">View by Area: </span><span class="selectwrap" style="display:inline-block;"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value="">Select Area</option>';
 		
 			$locations = array();
 			foreach( $rows as $location ) {
@@ -1323,9 +1323,9 @@ class TBB_Churches_List {
 				$html .= sprintf( '<p class="viewing">Viewing Location: %s</p>', $_GET['location'] );
 			}
 		
-		$html .= '<hr></div>'; // End church filter
+		$html .= '</div>'; // End church filter
 		
-		$html .= sprintf( '<div id="church-wrapper" class="%s">', $class );
+		$html .= sprintf( '<div id="church-wrapper" class="row-fluid clearfix %s"><hr>', $class );
 				
 			foreach($rows as $row) {
 
