@@ -1439,8 +1439,8 @@ class TBB_Churches_List {
 			var location_center = new google.maps.LatLng(mapData[0].lat,mapData[0].lng);
 
 			var mapOptions = {
-				zoom: 12,
-				maxZoom: 16,
+				zoom: 13,
+				maxZoom: 18,
 				scrollwheel: false
 			}
 
@@ -1481,7 +1481,7 @@ class TBB_Churches_List {
 					maxWidth: 0,
 					alignBottom: true,
 					pixelOffset: new google.maps.Size( -122, -48 ),
-					zIndex: "10",
+					zIndex: 10,
 					closeBoxMargin: "0",
 					closeBoxURL: "<?php echo get_template_directory_uri() . '/images/map/close.png'; ?>",
 					infoBoxClearance: new google.maps.Size( 1, 1 ),
@@ -1554,6 +1554,7 @@ class TBB_Churches_List {
 			#map .map-info-window { position: relative; background: #fff; width: 244px; border-bottom: 3px #4dc7ec solid; margin-bottom: 17px; }
 			#map .map-info-window .prop-title { margin: 0; padding: 10px; text-align: center; }
 			#map .map-info-window .arrow-down { width: 0; height: 0; border-style: solid; border-width: 10px 10px 0; border-color: #4dc7ec transparent transparent; position: absolute; bottom: -13px; left: 112px; }
+			#map .infoBox img { z-index: 10; }
 		</style>
 		<?php
 		$css = ob_get_clean();
