@@ -1269,12 +1269,43 @@ class TBB_Churches_List {
     public function __construct() {
         add_shortcode( 'tbb_churches', array($this, 'render') );
 		add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
+		add_action( 'wp_head', array($this, 'map_script') );
     }
 	
 	public function enqueue() {
 		wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js', false );
-		wp_enqueue_script( 'map-json', TBB_FUNCTIONS_URL .'/js/data.json', '', '', false );
-		wp_enqueue_script( 'markerclusterer', TBB_FUNCTIONS_URL .'/js/markerclusterer.js', '', '', false );
+		wp_enqueue_script( 'map-json', TBB_FUNCTIONS_URL .'js/data.json', '', '', false );
+		wp_enqueue_script( 'markerclusterer', TBB_FUNCTIONS_URL .'js/markerclusterer.js', '', '', false );
+	}
+	
+	public function map_script() {
+		ob_start(); ?>
+		<script type="text/javascript">
+		  function initialize() {
+			var center = new google.maps.LatLng(37.4419, -122.1419);
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+			  zoom: 3,
+			  center: center,
+			  mapTypeId: google.maps.MapTypeId.ROADMAP
+			});
+
+			var markers = [];
+			for (var i = 0; i < 100; i++) {
+			  var dataPhoto = data.photos[i];
+			  var latLng = new google.maps.LatLng(dataPhoto.latitude,
+				  dataPhoto.longitude);
+			  var marker = new google.maps.Marker({
+				position: latLng
+			  });
+			  markers.push(marker);
+			}
+			var markerCluster = new MarkerClusterer(map, markers, {imagePath: '../images/m'});
+		  }
+		  google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+		<?php
+		echo ob_get_clean();
 	}
 	
 	public function render( $args ) {
