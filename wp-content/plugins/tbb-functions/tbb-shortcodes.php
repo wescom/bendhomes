@@ -1367,16 +1367,17 @@ class TBB_Churches_List {
 				
 			$output .= sprintf( '<div class="name"><strong>%s</strong></div>', $n );
 			if( !empty( $d ) )
-				$output .= sprintf( '<div class="denomination">Denomination: %s</div>', $d );
+				$output .= sprintf( '<div class="denomination"><span style="color:#999;">Denomination:</span> %s</div>', $d );
 			if( !empty($a) )
-				$output .= '<div class="address">Address:';
+				$output .= '<div class="address">';
 					$output .= sprintf( '<div>%s</div>', $a );
 					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s</div>', $c, $s );
 				$output .= '</div>';
 			if( !empty( $p) )
-				$output .= sprintf( '<div class="phone">Phone: <a href="tel:%s">%s</a></div>', preg_replace( '/\D/', '', $p ), $p );
+				$output .= sprintf( '<div class="phone"><span style="color:#999;">Phone:</span> <a href="tel:%s">%s</a></div>', 
+								   preg_replace( '/\D/', '', $p ), $p );
 			if( !empty( $u ) )
-				$output .= sprintf( '<div class="website">Website: <a href="%s" target="_blank">%s</a></div>', 
+				$output .= sprintf( '<div class="website"><span style="color:#999;">Website:</span> <a href="%s" target="_blank">%s</a></div>', 
 								   esc_url( str_replace( ' ', '', $u ) ), $u );
 
 		$output .= '</article>';
