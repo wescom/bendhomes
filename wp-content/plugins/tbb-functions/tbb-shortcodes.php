@@ -1439,7 +1439,7 @@ class TBB_Churches_List {
 			var location_center = new google.maps.LatLng(mapData[0].lat,mapData[0].lng);
 
 			var mapOptions = {
-				zoom: 13,
+				zoom: 15,
 				maxZoom: 18,
 				scrollwheel: false
 			}
@@ -1500,7 +1500,7 @@ class TBB_Churches_List {
 			// Marker Clusters
 			var markerClustererOptions = {
 				ignoreHidden: true,
-				maxZoom: 14,
+				maxZoom: 18,
 				styles: [{
 					textColor: '#ffffff',
 					url: "<?php echo get_template_directory_uri() . '/images/map/cluster-icon.png'; ?>",
