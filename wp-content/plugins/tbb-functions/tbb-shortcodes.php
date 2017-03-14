@@ -1406,6 +1406,7 @@ class TBB_Churches_List {
 	
 	// Church item content is inside a function so we don't have to duplicate it above
 	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
+		$url = esc_url( str_replace( ' ', '', $u ) );
 		
 		$output = '';
 		$output .= '<article class="row-fluid church-item">';
@@ -1422,9 +1423,8 @@ class TBB_Churches_List {
 			if( !empty( $p) )
 				$output .= sprintf( '<div class="phone"><a href="tel:%s">%s</a></div>', 
 								   preg_replace( '/\D/', '', $p ), $p );
-			if( !empty( $u ) )
-				$output .= sprintf( '<div class="website"><a href="%s" target="_blank">%s</a></div>', 
-								   esc_url( str_replace( ' ', '', $u ) ), $u );
+			if( !empty( $u ) && filter_var( $url, FILTER_VALIDATE_URL) )
+				$output .= sprintf( '<div class="website"><a href="%s" target="_blank">%s</a></div>', $url, $u );
 
 		$output .= '</article>';
 		
