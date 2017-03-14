@@ -1300,9 +1300,11 @@ class TBB_Churches_List {
 		
 		//print_r( $json );
 		
+		$html .= $this->css();
+		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
-			$html .= '<div class="option-bar small" style="text-align:right;"><span style="line-height:40px;">View by Area: </span><span class="selectwrap" style="display:inline-block;"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value="">Select Area</option>';
+			$html .= '<div class="option-bar small"><span class="label">View by Area: </span><span class="selectwrap"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value="">Select Area</option>';
 		
 			$locations = array();
 			foreach( $rows as $location ) {
@@ -1363,26 +1365,44 @@ class TBB_Churches_List {
 	private function church_item( $n, $d, $a, $c, $s, $p, $u ) {
 		
 		$output = '';
-		$output .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
+		$output .= '<article class="row-fluid church-item">';
 				
 			$output .= sprintf( '<div class="name"><strong>%s</strong></div>', $n );
 			if( !empty( $d ) )
-				$output .= sprintf( '<div class="denomination"><span style="color:#999;">Denomination:</span> %s</div>', $d );
+				$output .= sprintf( '<div class="denomination"><span>Denomination:</span> %s</div>', $d );
 			if( !empty($a) )
 				$output .= '<div class="address">';
 					$output .= sprintf( '<div>%s</div>', $a );
 					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s</div>', $c, $s );
 				$output .= '</div>';
 			if( !empty( $p) )
-				$output .= sprintf( '<div class="phone"><span style="color:#999;">Phone:</span> <a href="tel:%s">%s</a></div>', 
+				$output .= sprintf( '<div class="phone"><a href="tel:%s">%s</a></div>', 
 								   preg_replace( '/\D/', '', $p ), $p );
 			if( !empty( $u ) )
-				$output .= sprintf( '<div class="website"><span style="color:#999;">Website:</span> <a href="%s" target="_blank">%s</a></div>', 
+				$output .= sprintf( '<div class="website"><a href="%s" target="_blank">%s</a></div>', 
 								   esc_url( str_replace( ' ', '', $u ) ), $u );
 
 		$output .= '</article>';
 		
 		return $output;
+	}
+	
+	private function css() {
+		ob_start(); ?>
+		<style type="text/css">
+			.church-filters .option-bar.small { text-align:right; }
+			.church-filters .selectwrap { display:inline-block; }
+			.selectbox-wrapper { text-align: left; border-bottom: 2px solid #dedede; }
+			.selectbox-wrapper ul { margin: 0 !important; }
+			.selectbox-wrapper ul li { padding: 4px 8px; }
+			.selectbox-wrapper ul li:first-child { display: none; }
+			.selectwrap input { margin-bottom: 0; }
+			.church-item { margin-bottom: 1em; }
+			.denomination span, .church-filters span.label { color: #999; }
+		</style>
+		<?php
+		$css = ob_get_clean();
+		return $css;
 	}
 	
 }
