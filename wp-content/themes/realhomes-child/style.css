@@ -426,7 +426,7 @@ h3.search-results-header { float: left; margin: 0; }
 
 .custom-post.open-house .custom-post-item { width: auto; line-height: 1; }
 .custom-post.open-house.one .custom-post-item { text-align: left;  margin-left: 0; margin-right: 0; }
-.custom-post.open-house .custom-post-image { width: 100%; max-width: none; margin-right: 0; }
+.custom-post.open-house .custom-post-image { width: 100%; max-width: none; margin-right: 0; min-height: 170px; }
 .custom-post.open-house h4.custom-post-title { float: none !important; width: auto !important; }
 .custom-post.open-house.one h4.custom-post-title, .custom-post.open-house.one .property-price { text-align: left; }
 .custom-post.open-house h4.custom-post-title .adr1 { font-size: 24px; line-height: 115%; margin-bottom: 8px; font-family: 'Roboto Slab',serif; color: #555; }
@@ -444,6 +444,16 @@ h3.search-results-header { float: left; margin: 0; }
 .open-house .openhouse-btn:before { font-family: "FontAwesome"; position: absolute; right: 7px; top: 3px; font-size: 9px; color: #777; }
 .open-house .openhouse-btn:before { content: "\f077" }
 .open-house .openhouse-btn.collapsed:before { content: "\f078"; }
+.custom-post.open-house.three .custom-post-item, .custom-post.open-house.four .custom-post-item,
+.custom-post.open-house.five .custom-post-item, .custom-post.open-house.six .custom-post-item { min-height: 390px; }
+.rets-open-houses .custom-post.three .custom-post-item, .rets-open-houses .custom-post.four .custom-post-item,
+.rets-open-houses .custom-post.five .custom-post-item, .rets-open-houses .custom-post.six .custom-post-item { padding-bottom: 20px; }
+.open-house.three .office-meta-wrap, .open-house.four .office-meta-wrap,
+.open-house.five .office-meta-wrap, .open-house.six .office-meta-wrap { padding-left: 0; padding-bottom: 30px; background-position: right bottom; }
+.open-house.three .office-meta-wrap .office.featured img, .open-house.four .office-meta-wrap .office.featured img,
+.open-house.five .office-meta-wrap .office.featured img, .open-house.six .office-meta-wrap .office.featured img { max-width: 40px; margin-left: 0; margin-bottom: 15px; }
+.open-house.three .office-meta-wrap .office.featured .office-info, .open-house.four .office-meta-wrap .office.featured .office-info,
+.open-house.five .office-meta-wrap .office.featured .office-info, .open-house.six .office-meta-wrap .office.featured .office-info { padding-top: 0; font-size: 13px; line-height: 18px; }
 
 /* --- Mailchimp Form Modal --- */
 .pum-theme-353711, .pum-theme-default-theme { background: rgba(0,0,0,.7) !important; }
