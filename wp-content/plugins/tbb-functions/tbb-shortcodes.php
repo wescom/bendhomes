@@ -1304,7 +1304,7 @@ class TBB_Churches_List {
 		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
-			$html .= '<div class="option-bar small"><span class="label">View by Area: </span><span class="selectwrap"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value="">Select Area</option>';
+			$html .= '<div class="option-bar small"><span class="label-text">View by Area: </span><span class="selectwrap"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value="">Select Area</option>';
 		
 			$locations = array();
 			foreach( $rows as $location ) {
@@ -1398,7 +1398,7 @@ class TBB_Churches_List {
 			.selectbox-wrapper ul li:first-child { display: none; }
 			.selectwrap input { margin-bottom: 0; }
 			.church-item { margin-bottom: 1em; }
-			.denomination span, .church-filters span.label { color: #999; }
+			.denomination span, .church-filters span.label-text { color: #999; }
 		</style>
 		<?php
 		$css = ob_get_clean();
