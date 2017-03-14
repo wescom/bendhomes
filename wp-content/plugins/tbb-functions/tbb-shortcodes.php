@@ -1282,28 +1282,154 @@ class TBB_Churches_List {
 	public function map_script() {
 		ob_start(); ?>
 		<script type="text/javascript">
-		  function initialize() {
+function initChurchesMap() {
+
+	// Properties Array
+	var mapData = <?php echo $this->json_map_data( $rows ); ?>
+
+	// Map Center Location - From Theme Options
+	var location_center = new google.maps.LatLng(mapData[0].lat,mapData[0].lng);
+
+	var mapOptions = {
+		zoom: 12,
+		maxZoom: 16,
+		scrollwheel: false
+	}
+
+	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+	var bounds = new google.maps.LatLngBounds();
+
+	// Loop to generate marker and infowindow based on mapData array
+	var markers = new Array();
+	var info_windows = new Array();
+
+	for (var i=0; i < mapData.length; i++) {
+
+		/*var url = mapData[i].icon;
+		var size = new google.maps.Size( 42, 57 );
+		if( window.devicePixelRatio > 1.5 ) {
+			if ( mapData[i].retinaIcon ) {
+				url = mapData[i].retinaIcon;
+				size = new google.maps.Size( 83, 113 );
+			}
+		}
+
+		var image = {
+			url: url,
+			size: size,
+			scaledSize: new google.maps.Size( 42, 57 ),
+			origin: new google.maps.Point( 0, 0 ),
+			anchor: new google.maps.Point( 21, 56 )
+		};*/
+
+		markers[i] = new google.maps.Marker({
+			position: new google.maps.LatLng(mapData[i].lat,mapData[i].lng),
+			map: map,
+			// icon: mapData[i].icon,
+			//icon: image,
+			title: mapData[i].title,
+			animation: google.maps.Animation.DROP,
+			visible: true
+		});
+
+		bounds.extend(markers[i].getPosition());
+
+		var boxText = document.createElement("div");
+		boxText.className = 'map-info-window';
+
+		var innerHTML = "";
+		/*if ( properties[i].thumb ) {
+			innerHTML += '<a class="thumb-link" href="' + properties[i].url + '">' +
+						'<img class="prop-thumb" src="' + properties[i].thumb + '" alt="' + properties[i].title + '"/>' +
+						'</a>';
+		}*/
+
+		innerHTML += '<h5 class="prop-title">' + mapData[i].title + '</h5>';
+
+		innerHTML += '<div class="arrow-down"></div>';
+
+		boxText.innerHTML = innerHTML;
+
+
+		var myOptions = {
+			content: boxText,
+			disableAutoPan: true,
+			maxWidth: 0,
+			alignBottom: true,
+			pixelOffset: new google.maps.Size( -122, -48 ),
+			zIndex: null,
+			closeBoxMargin: "0 0 -16px -16px",
+			closeBoxURL: "<?php echo get_template_directory_uri() . '/images/map/close.png'; ?>",
+			infoBoxClearance: new google.maps.Size( 1, 1 ),
+			isHidden: false,
+			pane: "floatPane",
+			enableEventPropagation: false
+		};
+
+		var ib = new InfoBox( myOptions );
+
+		attachInfoBoxToMarker( map, markers[i], ib );
+	}
+
+	map.fitBounds(bounds);
+
+	// Marker Clusters
+	var markerClustererOptions = {
+		ignoreHidden: true,
+		maxZoom: 14,
+		styles: [{
+			textColor: '#ffffff',
+			url: "<?php echo get_template_directory_uri() . '/images/map/cluster-icon.png'; ?>",
+			height: 48,
+			width: 48
+		}]
+	};
+
+	var markerClusterer = new MarkerClusterer( map, markers, markerClustererOptions );
+
+	function attachInfoBoxToMarker( map, marker, infoBox ){
+		google.maps.event.addListener( marker, 'click', function(){
+			var scale = Math.pow( 2, map.getZoom() );
+			var offsety = ( (100/scale) || 0 );
+			var projection = map.getProjection();
+			var markerPosition = marker.getPosition();
+			var markerScreenPosition = projection.fromLatLngToPoint( markerPosition );
+			var pointHalfScreenAbove = new google.maps.Point( markerScreenPosition.x, markerScreenPosition.y - offsety );
+			var aboveMarkerLatLng = projection.fromPointToLatLng( pointHalfScreenAbove );
+			map.setCenter( aboveMarkerLatLng );
+			infoBox.open( map, marker );
+		});
+	}
+
+}
+
+google.maps.event.addDomListener(window,"load",initChurchesMap);
+			
+			
+			
+		  /*function initialize() {
 			var center = new google.maps.LatLng(44.0612384, -121.384684);
 
 			var map = new google.maps.Map(document.getElementById('map'), {
-			  zoom: 5,
+			  zoom: 8,
 			  center: center,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
 			var markers = [];
 			for (var i = 0; i < 1000; i++) {
-			  var dataPhoto = data.photos[i];
-			  var latLng = new google.maps.LatLng(dataPhoto.latitude,
-				  dataPhoto.longitude);
+			  var mapData = data.photos[i];
+			  var latLng = new google.maps.LatLng(mapData.latitude,
+				  mapData.longitude);
 			  var marker = new google.maps.Marker({
 				position: latLng
 			  });
 			  markers.push(marker);
 			}
-			var markerCluster = new MarkerClusterer(map, markers, {imagePath: '<?php echo TBB_FUNCTIONS_URL; ?>images/m'});
+			var markerCluster = new MarkerClusterer(map, markers, {imagePath: '<?php //echo TBB_FUNCTIONS_URL; ?>images/m'});
 		  }
-		  google.maps.event.addDomListener(window, 'load', initialize);
+		  google.maps.event.addDomListener(window, 'load', initialize);*/
 		</script>
 		<?php
 		echo ob_get_clean();
@@ -1338,7 +1464,7 @@ class TBB_Churches_List {
 		
 		$html .= $this->css();
 		
-		$html .= sprintf( '<script type="text/javascript">var map_data = "%s"</script>', $this->json_map_data( $rows ) );
+		//$html .= sprintf( '<script type="text/javascript">var map_data = "%s"</script>', $this->json_map_data( $rows ) );
 		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
