@@ -1413,11 +1413,12 @@ class TBB_Churches_List {
 			$output .= sprintf( '<h4 class="name"><strong>%s</strong></h4>', $n );
 			if( !empty( $d ) )
 				$output .= sprintf( '<div class="denomination"><small>Denomination:</small> %s</div>', $d );
-			if( !empty($a) )
+			if( !empty($a) ) {
 				$output .= '<div class="address">';
 					$output .= sprintf( '<div>%s</div>', $a );
 					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s</div>', $c, $s, $z );
 				$output .= '</div>';
+			}
 			if( !empty( $p) )
 				$output .= sprintf( '<div class="phone"><a href="tel:%s">%s</a></div>', 
 								   preg_replace( '/\D/', '', $p ), $p );
