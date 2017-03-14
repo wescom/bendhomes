@@ -1437,6 +1437,7 @@ class TBB_Churches_List {
 			.selectbox-wrapper ul li { padding: 4px 8px; }
 			.selectbox-wrapper ul li:first-child { display: none; }
 			.selectwrap input { margin-bottom: 0; }
+			#church-map { padding-top: 1em; }
 			#church-map #map { width: 100%; height: 400px; }
 			.church-item { margin-bottom: 1em; }
 			.church-item h4 { margin-bottom: 6px; }
