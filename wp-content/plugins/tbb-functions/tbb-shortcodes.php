@@ -1334,7 +1334,7 @@ class TBB_Churches_List {
 		
 		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?');
 		
-		//print_r( $json );
+		print_r( $json );
 		
 		$html .= $this->css();
 		
