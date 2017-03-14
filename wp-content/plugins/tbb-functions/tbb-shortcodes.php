@@ -1273,7 +1273,7 @@ class TBB_Churches_List {
     }
 	
 	public function enqueue() {
-		wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js', false );
+		wp_enqueue_script( 'google-maps', '//maps.googleapis.com/maps/api/js?key=AIzaSyBzmtlh7yHJ_EuPTJ3XsFF-YsVp-Hn-qtA', false );
 		wp_enqueue_script( 'map-json', TBB_FUNCTIONS_URL .'js/data.json', '', '', false );
 		wp_enqueue_script( 'markerclusterer', TBB_FUNCTIONS_URL .'js/markerclusterer.js', '', '', false );
 	}
