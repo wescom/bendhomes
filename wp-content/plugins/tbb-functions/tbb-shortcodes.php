@@ -1269,7 +1269,7 @@ class TBB_Churches_List {
     public function __construct() {
         add_shortcode( 'tbb_churches', array($this, 'render') );
 		add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
-		add_action( 'wp_head', array($this, 'map_script') );
+		add_action( 'wp_footer', array($this, 'map_script') );
     }
 	
 	public function enqueue() {
@@ -1283,9 +1283,6 @@ class TBB_Churches_List {
 		ob_start(); ?>
 		<script type="text/javascript">
 function initChurchesMap() {
-
-	// Properties Array
-	var mapData = <?php echo $this->json_map_data( $rows ); ?>
 
 	// Map Center Location - From Theme Options
 	var location_center = new google.maps.LatLng(mapData[0].lat,mapData[0].lng);
@@ -1432,7 +1429,7 @@ google.maps.event.addDomListener(window,"load",initChurchesMap);
 		  google.maps.event.addDomListener(window, 'load', initialize);*/
 		</script>
 		<?php
-		echo ob_get_clean();
+		return ob_get_clean();
 	}
 	
 	public function render( $args ) {
@@ -1464,7 +1461,7 @@ google.maps.event.addDomListener(window,"load",initChurchesMap);
 		
 		$html .= $this->css();
 		
-		//$html .= sprintf( '<script type="text/javascript">var map_data = "%s"</script>', $this->json_map_data( $rows ) );
+		$html .= sprintf( '<script type="text/javascript">var mapData = "%s"</script>', $this->json_map_data( $rows ) );
 		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
