@@ -1343,11 +1343,11 @@ class TBB_Churches_List {
 				if( isset($_GET['location']) ) {
 					// Filter by location if url param exists
 					if( $_GET['location'] == $location ) {
-						$html .= $this->church_item( $name, $denomination, $location, $address, $city, $state, $phone, $url );
+						$html .= $this->church_item( $name, $denomination, $address, $city, $state, $phone, $url );
 					}
 				} else {
 					// Otherwise just show everything
-					$html .= $this->church_item( $name, $denomination, $location, $address, $city, $state, $phone, $url );
+					$html .= $this->church_item( $name, $denomination, $address, $city, $state, $phone, $url );
 				}
 
 			}
@@ -1368,10 +1368,8 @@ class TBB_Churches_List {
 			$output .= sprintf( '<div class="name"><strong>%s</strong></div>', $n );
 			if( !empty( $d ) )
 				$output .= sprintf( '<div class="denomination">Denomination: %s</div>', $d );
-			if( !empty( $l ) )
-				$output .= sprintf( '<div class="location">Location: %s</div>', $l );
 			if( !empty($a) )
-				$output .= '<div class="address">';
+				$output .= '<div class="address">Address:';
 					$output .= sprintf( '<div>%s</div>', $a );
 					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s</div>', $c, $s );
 				$output .= '</div>';
