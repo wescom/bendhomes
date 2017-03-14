@@ -1269,7 +1269,7 @@ class TBB_Churches_List {
     public function __construct() {
         add_shortcode( 'tbb_churches', array($this, 'render') );
 		add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
-		add_action( 'wp_head', array($this, 'map_script') );
+		add_action( 'wp_footer', array($this, 'map_script') );
     }
 	
 	public function enqueue() {
@@ -1429,7 +1429,7 @@ google.maps.event.addDomListener(window,"load",initChurchesMap);
 		  google.maps.event.addDomListener(window, 'load', initialize);*/
 		</script>
 		<?php
-		return ob_get_clean();
+		echo ob_get_clean();
 	}
 	
 	public function render( $args ) {
