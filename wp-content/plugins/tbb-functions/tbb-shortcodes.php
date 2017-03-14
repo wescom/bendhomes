@@ -1269,7 +1269,6 @@ class TBB_Churches_List {
     public function __construct() {
         add_shortcode( 'tbb_churches', array($this, 'render') );
 		add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
-		add_action( 'wp_footer', array($this, 'map_script') );
     }
 	
 	public function enqueue() {
@@ -1279,10 +1278,13 @@ class TBB_Churches_List {
 		wp_enqueue_script( 'map-json', TBB_FUNCTIONS_URL .'js/data.json', array('google-map-api'), '', false );
 	}
 	
-	public function map_script() {
+	public function map_script( $json_array ) {
 		ob_start(); ?>
 		<script type="text/javascript">
 function initChurchesMap() {
+
+	// Properties Array
+	var mapData = <?php echo $json_array; ?>
 
 	// Map Center Location - From Theme Options
 	var location_center = new google.maps.LatLng(mapData[0].lat,mapData[0].lng);
@@ -1429,7 +1431,7 @@ google.maps.event.addDomListener(window,"load",initChurchesMap);
 		  google.maps.event.addDomListener(window, 'load', initialize);*/
 		</script>
 		<?php
-		echo ob_get_clean();
+		return ob_get_clean();
 	}
 	
 	public function render( $args ) {
@@ -1457,11 +1459,12 @@ google.maps.event.addDomListener(window,"load",initChurchesMap);
 		
 		//print_r( $json );
 		
-		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?');
+		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?'); 
 		
 		$html .= $this->css();
 		
-		$html .= sprintf( '<script type="text/javascript">var mapData = "%s"</script>', $this->json_map_data( $rows ) );
+		// Add json array to map script and print whole script here
+		$html .= sprintf( '%s', $this->map_script( $this->json_map_data( $rows ) ) );
 		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
