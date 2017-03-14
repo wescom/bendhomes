@@ -1332,9 +1332,9 @@ class TBB_Churches_List {
 		
 		$rows = $json->{'feed'}->{'entry'};
 		
-		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?');
+		//print_r( $json );
 		
-		print_r( $json );
+		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?');
 		
 		$html .= $this->css();
 		
