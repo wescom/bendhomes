@@ -1400,7 +1400,7 @@ class TBB_Churches_List {
 			.church-item { margin-bottom: 1em; }
 			.church-item h4 { margin-bottom: 6px; }
 			.denomination small, .church-filters span.label-text { color: #999; }
-			.church-item a[href="tel:"] { color: #555; }
+			.church-item .phone a, .church-item .phone a:hover, .church-item .phone a:active { color: #555; }
 		</style>
 		<?php
 		$css = ob_get_clean();
