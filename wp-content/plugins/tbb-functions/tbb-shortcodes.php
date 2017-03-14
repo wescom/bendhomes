@@ -1335,17 +1335,19 @@ class TBB_Churches_List {
 				$location = str_replace( 'location: ', '', $content_array[0] );
 				$denomination = str_replace( 'denomination: ', '', $content_array[1] );
 				$address = str_replace( 'address: ', '', $content_array[2] );
-				$phone = str_replace( 'phone: ', '', $content_array[3] );
-				$url = str_replace( 'url: ', '', $content_array[4] );
+				$city = str_replace( 'city: ', '', $content_array[3] );
+				$state = str_replace( 'state: ', '', $content_array[4] );
+				$phone = str_replace( 'phone: ', '', $content_array[5] );
+				$url = str_replace( 'url: ', '', $content_array[6] );
 				
 				if( isset($_GET['location']) ) {
 					// Filter by location if url param exists
 					if( $_GET['location'] == $location ) {
-						$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
+						$html .= $this->church_item( $name, $denomination, $location, $address, $city, $state, $phone, $url );
 					}
 				} else {
 					// Otherwise just show everything
-					$html .= $this->church_item( $name, $denomination, $location, $address, $phone, $url );
+					$html .= $this->church_item( $name, $denomination, $location, $address, $city, $state, $phone, $url );
 				}
 
 			}
@@ -1358,7 +1360,7 @@ class TBB_Churches_List {
 	}
 	
 	// Church item content is inside a function so we don't have to duplicate it above
-	private function church_item( $n, $d, $l, $a, $p, $u ) {
+	private function church_item( $n, $d, $l, $a, $c, $s, $p, $u ) {
 		
 		$output = '';
 		$output .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
@@ -1369,7 +1371,10 @@ class TBB_Churches_List {
 			if( !empty( $l ) )
 				$output .= sprintf( '<div class="location">Location: %s</div>', $l );
 			if( !empty($a) )
-				$output .= sprintf( '<div class="address">Address: %s</div>', $a );
+				$output .= '<div class="address">';
+					$output .= sprintf( '<div>%s</div>', $a );
+					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s</div>', $c, $s );
+				$output .= '</div>';
 			if( !empty( $p) )
 				$output .= sprintf( '<div class="phone">Phone: <a href="tel:%s">%s</a></div>', preg_replace( '/\D/', '', $p ), $p );
 			if( !empty( $u ) )
