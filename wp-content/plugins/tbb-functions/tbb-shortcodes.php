@@ -1283,16 +1283,16 @@ class TBB_Churches_List {
 		ob_start(); ?>
 		<script type="text/javascript">
 		  function initialize() {
-			var center = new google.maps.LatLng(37.4419, -122.1419);
+			var center = new google.maps.LatLng(44.0612384, -121.384684);
 
 			var map = new google.maps.Map(document.getElementById('map'), {
-			  zoom: 3,
+			  zoom: 5,
 			  center: center,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
 			var markers = [];
-			for (var i = 0; i < 100; i++) {
+			for (var i = 0; i < 1000; i++) {
 			  var dataPhoto = data.photos[i];
 			  var latLng = new google.maps.LatLng(dataPhoto.latitude,
 				  dataPhoto.longitude);
@@ -1337,6 +1337,8 @@ class TBB_Churches_List {
 		//print_r( $json );
 		
 		$html .= $this->css();
+		
+		$html .= sprintf( '<script type="text/javascript">var map_data = "%s"</script>', $this->json_map_data( $rows ) );
 		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
@@ -1427,6 +1429,26 @@ class TBB_Churches_List {
 		return $output;
 	}
 	
+	// Create array of map data for google map
+	private function json_map_data( $data ) {
+		$map_data = array();
+		
+		foreach( $data as $map_item ) {
+			$map_item = array();
+			$map_item['title'] = $map_item->{'title'}->{'$t'};
+			$map_content = $map_item->{'content'}->{'$t'};
+			$map_content_array = explode( ',', $map_content );
+			
+			$map_item['lat'] = str_replace( 'latitude: ', '', $content_array[7] );
+			$map_item['lng'] = str_replace( 'longitude: ', '', $content_array[8] );
+			
+			$map_data[] = $map_item;
+		}
+		
+		return json_encode( $map_data );
+	}
+	
+	// CSS
 	private function css() {
 		ob_start(); ?>
 		<style type="text/css">
