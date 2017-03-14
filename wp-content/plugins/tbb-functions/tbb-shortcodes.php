@@ -1300,7 +1300,7 @@ class TBB_Churches_List {
 			  });
 			  markers.push(marker);
 			}
-			var markerCluster = new MarkerClusterer(map, markers, {imagePath: '../images/m'});
+			var markerCluster = new MarkerClusterer(map, markers, {imagePath: '<?php echo TBB_FUNCTIONS_URL; ?>images/m'});
 		  }
 		  google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
