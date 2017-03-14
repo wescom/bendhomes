@@ -1441,11 +1441,13 @@ class TBB_Churches_List {
 			$map_item['title'] = $item->{'title'}->{'$t'};
 			$map_content = $item->{'content'}->{'$t'};
 			$map_content_array = explode( ',', $map_content );
+			// Get last 2 items in array, which is Latitude & Longitude
+			$lat_long_array = array_slice( $map_content_array, -2 );
 			
 			// Map item latitude
-			$map_item['lat'] = str_replace( 'latitude: ', '', $content_array[8] );
+			$map_item['lat'] = str_replace( 'latitude: ', '', $lat_long_array[0] );
 			// Map item longitude
-			$map_item['lng'] = str_replace( 'longitude: ', '', $content_array[9] );
+			$map_item['lng'] = str_replace( 'longitude: ', '', $lat_long_array[1] );
 			
 			// Add each map_item to map_data array.
 			$map_data[] = $map_item;
