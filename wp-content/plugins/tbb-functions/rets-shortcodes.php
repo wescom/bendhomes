@@ -1299,7 +1299,7 @@ class Rets_Open_Houses {
 			
 				foreach( $openhouses_array as $openhouse ) {
 					
-					// Get Image
+					// Get Property Image
 					if( !empty( $openhouse['PropertyImage'] ) ) {
 						$has_image_class = 'with-image';
 						$image_url = home_url() .'/_retsapi/imagesProperties/'. $openhouse['PropertyImage'];
@@ -1337,8 +1337,15 @@ class Rets_Open_Houses {
 					$company_image = '';
 					$office_featured_class = $openhouse['featured'] == 1 ? 'featured' : '';
 					if( !empty( $openhouse['OfficeImage'] ) ) {
-						$company_image_url = sprintf( '%s/_retsapi/imagesOffices/%s', home_url(), $openhouse['OfficeImage'] );
-						$company_image = sprintf( '<img src="%s" alt="" class="company-image" />', $company_image_url );
+						// If image comes from wordpress media gallery, i.e. has a full url, use it
+						if( filter_var( $openhouse['OfficeImage'], FILTER_VALIDATE_URL) ) {
+							$company_image_url = $openhouse['OfficeImage'];
+						} else {
+							// Otherwise use the image from /_retsapi folder
+							$company_image_url = home_url() .'/_retsapi/imagesOffices/'. $openhouse['OfficeImage'];
+						}						
+						$company_image = sprintf( '<img src="%s" alt="%s" class="company-image" />', 
+												 $company_image_url, $openhouse['OfficeName'] );
 					}
 					
 					$company_url = sprintf( '%s/%s/?company=%s&id=%s', 
