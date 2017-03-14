@@ -1360,7 +1360,7 @@ class TBB_Churches_List {
 	}
 	
 	// Church item content is inside a function so we don't have to duplicate it above
-	private function church_item( $n, $d, $l, $a, $c, $s, $p, $u ) {
+	private function church_item( $n, $d, $a, $c, $s, $p, $u ) {
 		
 		$output = '';
 		$output .= '<article class="row-fluid church-item" style="margin-bottom:1em;">';
