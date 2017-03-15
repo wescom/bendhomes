@@ -1307,8 +1307,10 @@ class TBB_Churches_List {
 		
 		$html .= $this->css();
 		
+		$location_param = isset($_GET['location']) ? $_GET['location'] : '';
+		
 		// Add json array to map script and print whole script here
-		$html .= sprintf( '%s', $this->map_script( $this->json_map_data( $rows ) ) );
+		$html .= sprintf( '%s', $this->map_script( $this->json_map_data( $rows, $location_param ) ) );
 		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
@@ -1328,9 +1330,9 @@ class TBB_Churches_List {
 		
 			$html .= '</select></span></div>';
 		
-			if( isset($_GET['location']) ) {
+			if( !empty( $location_param ) ) {
 				$html .= sprintf( ' <a href="%s" class="full-list"><i class="fa fa-angle-left"></i> View Full List</a>', $current_url );
-				$html .= sprintf( '<div class="viewing">Viewing Location: %s</div>', $_GET['location'] );
+				$html .= sprintf( '<div class="viewing">Viewing Location: %s</div>', $location_param );
 			}
 		
 		$html .= '</div>'; // End church filter
@@ -1355,9 +1357,9 @@ class TBB_Churches_List {
 				$phone = str_replace( 'phone: ', '', $content_array[6] );
 				$url = str_replace( 'url: ', '', $content_array[7] );
 				
-				if( isset($_GET['location']) ) {
+				if( !empty( $location_param ) ) {
 					// Filter by location if url param exists
-					if( $_GET['location'] == $location ) {
+					if( $location_param == $location ) {
 						$html .= $this->church_item( $name, $denomination, $address, $city, $state, $zip, $phone, $url );
 					}
 				} else {
@@ -1402,7 +1404,7 @@ class TBB_Churches_List {
 	}
 	
 	// Create array of json map data for google map
-	private function json_map_data( $data ) {
+	private function json_map_data( $data, $param ) {
 		$map_data = array();
 		
 		foreach( $data as $item ) {
@@ -1413,8 +1415,6 @@ class TBB_Churches_List {
 			$map_content = $item->{'content'}->{'$t'};
 			$map_content_array = explode( ',', $map_content );
 			
-			$location = str_replace( 'location: ', '', $map_content_array[0] );
-			
 			// Get last 2 items in array, which is Latitude & Longitude
 			$lat_long_array = array_slice( $map_content_array, -2 );
 			
@@ -1423,8 +1423,16 @@ class TBB_Churches_List {
 			// Map item longitude
 			$map_item['lng'] = str_replace( 'longitude: ', '', $lat_long_array[1] );
 			
-			// Add each map_item to map_data array.
-			$map_data[] = $map_item;
+			$location = str_replace( 'location: ', '', $map_content_array[0] );
+			
+			if( !empty( $param ) ) {
+				if( $location == $param ) {
+					$map_data[] = $map_item;
+				}
+			} else {
+				// Add each map_item to map_data array.
+				$map_data[] = $map_item;
+			}
 		}
 		
 		return json_encode( $map_data );
