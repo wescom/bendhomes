@@ -1415,9 +1415,16 @@ class TBB_Churches_List {
 			$map_content = $item->{'content'}->{'$t'};
 			$map_content_array = explode( ',', $map_content );
 			
+			$map_item['address1'] = str_replace( 'address: ', '', $map_content_array[2] );
+			
+			$city = str_replace( 'city: ', '', $map_content_array[3] );
+			$state = str_replace( 'state: ', '', $map_content_array[4] );
+			$zip = str_replace( 'zip: ', '', $map_content_array[5] );
+			
+			$map_item['address2'] = $city .', '. $state .' '. $zip;
+			
 			// Get last 2 items in array, which is Latitude & Longitude
 			$lat_long_array = array_slice( $map_content_array, -2 );
-			
 			// Map item latitude
 			$map_item['lat'] = str_replace( 'latitude: ', '', $lat_long_array[0] );
 			// Map item longitude
@@ -1426,11 +1433,12 @@ class TBB_Churches_List {
 			$location = str_replace( 'location: ', '', $map_content_array[0] );
 			
 			if( !empty( $param ) ) {
+				// If the location matches the location url param add item to array
 				if( $location == $param ) {
 					$map_data[] = $map_item;
 				}
 			} else {
-				// Add each map_item to map_data array.
+				// Otherwise add all map_item to map_data array.
 				$map_data[] = $map_item;
 			}
 		}
@@ -1481,6 +1489,7 @@ class TBB_Churches_List {
 
 				var innerHTML = "";
 				innerHTML += '<h5 class="prop-title">' + mapData[i].title + '</h5>';
+				innerHTML += '<div class="prop-address">' + mapData[i].address1 + '<br>'+ mapData[i].address2 +'</div>';
 				innerHTML += '<div class="arrow-down"></div>';
 
 				boxText.innerHTML = innerHTML;
@@ -1510,7 +1519,7 @@ class TBB_Churches_List {
 			// Marker Clusters
 			var markerClustererOptions = {
 				ignoreHidden: true,
-				maxZoom: 18,
+				maxZoom: 16,
 				styles: [{
 					textColor: '#ffffff',
 					url: "<?php echo get_template_directory_uri() . '/images/map/cluster-icon.png'; ?>",
