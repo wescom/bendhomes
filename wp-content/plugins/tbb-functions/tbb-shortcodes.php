@@ -1564,10 +1564,10 @@ class TBB_Churches_List {
 	private function css() {
 		ob_start(); ?>
 		<style type="text/css">
-			.church-filters .option-bar.small { text-align:right; }
+			.church-filters .option-bar.small { float: right; }
 			.church-filters .full-list { color: #999; font-size: 14px; }
 			.church-filters .selectwrap { display:inline-block; }
-			.selectbox-wrapper { text-align: left; border-bottom: 2px solid #dedede; }
+			.selectbox-wrapper { border-bottom: 2px solid #dedede; }
 			.selectbox-wrapper ul { margin: 0 !important; }
 			.selectbox-wrapper ul li { padding: 4px 8px; }
 			.selectbox-wrapper ul li:first-child { display: none; }
@@ -1576,9 +1576,10 @@ class TBB_Churches_List {
 			#church-map #map { width: 100%; height: 400px; }
 			.church-item { margin-bottom: 1em; }
 			.church-item h4 { margin-bottom: 6px; }
+			.church-item a { color: #02888f; }
 			.denomination small, .church-filters span.label-text { color: #999; }
 			.church-item .phone a, .church-item .phone a:hover, .church-item .phone a:active { color: #555; }
-			.church-item .address a { display: inline-block; margin-left: 10px; }
+			.church-item .address a { display: inline-block; margin-left: 10px; font-size: 14px; }
 			#map-container { background: url("<?php echo TBB_FUNCTIONS_URL; ?>images/loader.gif") no-repeat center center #f4f4f4; }
 			#map .map-info-window { position: relative; background: #fff; width: 244px; border-bottom: 3px #4dc7ec solid; margin-bottom: 17px; box-shadow: 2px 5px 10px rgba(0,0,0,.25); }
 			#map .map-info-window .prop-title { margin: 0; padding: 10px; text-align: center; font-size: 14px; }
