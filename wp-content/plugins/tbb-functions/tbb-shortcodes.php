@@ -1415,13 +1415,15 @@ class TBB_Churches_List {
 			$map_content = $item->{'content'}->{'$t'};
 			$map_content_array = explode( ',', $map_content );
 			
-			$map_item['address1'] = str_replace( 'address: ', '', $map_content_array[2] );
-			
 			$city = str_replace( 'city: ', '', $map_content_array[3] );
 			$state = str_replace( 'state: ', '', $map_content_array[4] );
 			$zip = str_replace( 'zip: ', '', $map_content_array[5] );
 			
+			$map_item['address1'] = str_replace( 'address: ', '', $map_content_array[2] );
 			$map_item['address2'] = $city .', '. $state .' '. $zip;
+			
+			$map_item['url'] = sprintf( 'https://www.google.com/maps/place/%s', 
+									   urlencode( $map_item['address1']).'+'.$map_item['address2'] );
 			
 			// Get last 2 items in array, which is Latitude & Longitude
 			$lat_long_array = array_slice( $map_content_array, -2 );
@@ -1490,6 +1492,7 @@ class TBB_Churches_List {
 				var innerHTML = "";
 				innerHTML += '<div class="prop-title">' + mapData[i].title + '</div>';
 				innerHTML += '<div class="prop-address">' + mapData[i].address1 + '<br>'+ mapData[i].address2 +'</div>';
+				innerHTML += '<div class="prop-link"><a href="' + mapData[i].url + '">Get Directions</a></div>';
 				innerHTML += '<div class="arrow-down"></div>';
 
 				boxText.innerHTML = innerHTML;
