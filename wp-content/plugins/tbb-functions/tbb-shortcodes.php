@@ -1422,15 +1422,16 @@ class TBB_Churches_List {
 			$map_item['address1'] = str_replace( 'address: ', '', $map_content_array[2] );
 			$map_item['address2'] = $city .', '. $state .' '. $zip;
 			
-			$map_item['url'] = sprintf( 'https://www.google.com/maps/place/%s', 
-									   urlencode( $map_item['address1'].'+'.$map_item['address2'] ) );
-			
 			// Get last 2 items in array, which is Latitude & Longitude
 			$lat_long_array = array_slice( $map_content_array, -2 );
 			// Map item latitude
 			$map_item['lat'] = str_replace( 'latitude: ', '', $lat_long_array[0] );
 			// Map item longitude
 			$map_item['lng'] = str_replace( 'longitude: ', '', $lat_long_array[1] );
+			
+			$url_part = $map_item['title'] .' '. $city;
+			$map_item['url'] = sprintf( 'https://www.google.com/maps/place/%s/@%s,%s', 
+									   urlencode( $url_part ), $map_item['lat'], $map_item['lng'] );
 			
 			$location = str_replace( 'location: ', '', $map_content_array[0] );
 			
@@ -1492,7 +1493,7 @@ class TBB_Churches_List {
 				var innerHTML = "";
 				innerHTML += '<div class="prop-title">' + mapData[i].title + '</div>';
 				innerHTML += '<div class="prop-address">' + mapData[i].address1 + '<br>'+ mapData[i].address2 +'</div>';
-				innerHTML += '<div class="prop-link"><a href="' + mapData[i].url + '">Get Directions</a></div>';
+				innerHTML += '<div class="prop-link"><a href="' + mapData[i].url + '" target="_blank">Get Directions</a></div>';
 				innerHTML += '<div class="arrow-down"></div>';
 
 				boxText.innerHTML = innerHTML;
@@ -1576,7 +1577,7 @@ class TBB_Churches_List {
 			#map-container { background: url("<?php echo TBB_FUNCTIONS_URL; ?>images/loader.gif") no-repeat center center #f4f4f4; }
 			#map .map-info-window { position: relative; background: #fff; width: 244px; border-bottom: 3px #4dc7ec solid; margin-bottom: 17px; box-shadow: 2px 5px 10px rgba(0,0,0,.25); }
 			#map .map-info-window .prop-title { margin: 0; padding: 10px; text-align: center; font-size: 14px; }
-			#map .map-info-window .prop-address { text-align: center; padding-bottom: 10px; font-size: 12px; }
+			#map .map-info-window .prop-address, #map .map-info-window .prop-link { text-align: center; padding-bottom: 10px; font-size: 12px; }
 			#map .map-info-window .arrow-down { width: 0; height: 0; border-style: solid; border-width: 10px 10px 0; border-color: #4dc7ec transparent transparent; position: absolute; bottom: -13px; left: 112px; }
 			#map .infoBox img { z-index: 10; }
 		</style>
