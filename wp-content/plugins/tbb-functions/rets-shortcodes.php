@@ -333,7 +333,7 @@ class Rets_Agent {
 		extract( $defaults );
 
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
-		$id = mysql_real_escape_string( floatval( $id ) );
+		$id = mysqli_real_escape_string( floatval( $id ) );
 
 		$query = "
 			SELECT ActiveAgent_MEMB.FullName,
@@ -862,7 +862,7 @@ class Rets_Company {
 		extract( $defaults );
 		
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $office_number;
-		$id = mysql_real_escape_string( floatval( $id ) );
+		$id = mysqli_real_escape_string( floatval( $id ) );
 	
 		$query = "
 			SELECT * FROM Office_OFFI 
@@ -1008,7 +1008,7 @@ class Rets_Company_Agents {
 		);
 
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $office_number;
-		$id = mysql_real_escape_string( floatval( $id ) );
+		$id = mysqli_real_escape_string( floatval( $id ) );
 
 		extract( $defaults );
 		
