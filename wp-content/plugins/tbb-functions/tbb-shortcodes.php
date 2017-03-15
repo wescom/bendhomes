@@ -1356,7 +1356,7 @@ class TBB_Churches_List {
 		$html .= '<table class="table table-bordered table-striped table-hover">';
 		
 		$html .= '<thead><tr>
-					<th>Name</th><th>Denomination</th><th>Address></th><th>Phone</th><th>Website</th>
+					<th>Name</th><th>Denomination</th><th>Address</th><th>Phone</th><th>Website</th>
 				  </tr></thead><tbody>';
 				
 			foreach($rows as $row) {
@@ -1418,8 +1418,7 @@ class TBB_Churches_List {
 			$output .= sprintf( '<td class="phone"><a href="tel:%s">%s</a></td>', 
 							   preg_replace( '/\D/', '', $p ), $p );
 		
-			if( !empty( $u ) && filter_var( $url, FILTER_VALIDATE_URL) )
-				$output .= sprintf( '<td class="website">%s</td>', $url );
+			$output .= sprintf( '<td class="website">%s</td>', $url );
 
 		$output .= '</tr>';
 		
