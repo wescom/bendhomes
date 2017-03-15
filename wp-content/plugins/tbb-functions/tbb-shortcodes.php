@@ -1423,7 +1423,7 @@ class TBB_Churches_List {
 			$map_item['address2'] = $city .', '. $state .' '. $zip;
 			
 			$map_item['url'] = sprintf( 'https://www.google.com/maps/place/%s', 
-									   urlencode( $map_item['address1']).'+'.$map_item['address2'] );
+									   urlencode( $map_item['address1'].'+'.$map_item['address2'] ) );
 			
 			// Get last 2 items in array, which is Latitude & Longitude
 			$lat_long_array = array_slice( $map_content_array, -2 );
