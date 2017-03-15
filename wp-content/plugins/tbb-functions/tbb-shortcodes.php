@@ -1352,6 +1352,12 @@ class TBB_Churches_List {
 		$html .= '</div>'; // End Map
 		
 		$html .= sprintf( '<div id="church-wrapper" class="row-fluid clearfix %s"><hr>', $class );
+		
+		$html .= '<table class="table table-bordered table-striped table-hover">';
+		
+		$html .= '<thead><tr>
+					<th>Name</th><th>Denomination</th><th>Address></th><th>Phone</th><th>Website</th>
+				  </tr></thead><tbody>';
 				
 			foreach($rows as $row) {
 
@@ -1379,6 +1385,8 @@ class TBB_Churches_List {
 
 			}
 		
+		$html .= '</tbody></table>';
+		
 		$html .= '</div>'; // end church-wrapper
 		
 		// Outputs the entire shortcode here
@@ -1389,30 +1397,31 @@ class TBB_Churches_List {
 	// Single church item content inside this function so we don't have to duplicate it above
 	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
 		$url = esc_url( str_replace( ' ', '', $u ) );
+		$url = filter_var( $url, FILTER_VALIDATE_URL) ? '<a href="'.$url.'" target="_blank">Visit Website</a>' : '';
 		
 		$map_part = $n .' '. $c;
 		$map_url = sprintf( 'https://www.google.com/maps/place/%s', urlencode( $map_part ) );
 		
 		$output = '';
-		$output .= '<article class="row-fluid church-item">';
+		$output .= '<tr class="church-item">';
 				
-			$output .= sprintf( '<h4 class="name"><strong>%s</strong></h4>', $n );
-			if( !empty( $d ) )
-				$output .= sprintf( '<div class="denomination"><small>Denomination:</small> %s</div>', $d );
-			if( !empty($a) ) {
-				$output .= '<div class="address">';
-					$output .= sprintf( '<div>%s</div>', $a );
-					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s <a href="%s" target="_blank">Get Directions</a></div>', 
-														  $c, $s, $z, $map_url );
-				$output .= '</div>';
-			}
-			if( !empty( $p) )
-				$output .= sprintf( '<div class="phone"><a href="tel:%s">%s</a></div>', 
-								   preg_replace( '/\D/', '', $p ), $p );
-			if( !empty( $u ) && filter_var( $url, FILTER_VALIDATE_URL) )
-				$output .= sprintf( '<div class="website"><a href="%s" target="_blank">%s</a></div>', $url, $u );
+			$output .= sprintf( '<td class="name"><strong>%s</strong></td>', $n );
+		
+			$output .= sprintf( '<td class="denomination">%s</td>', $d );
 
-		$output .= '</article>';
+			$output .= '<td class="address">';
+				$output .= sprintf( '<div>%s</div>', $a );
+				if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s <a href="%s" target="_blank">Get Directions</a></div>', 
+													  $c, $s, $z, $map_url );
+			$output .= '</td>';
+			
+			$output .= sprintf( '<td class="phone"><a href="tel:%s">%s</a></td>', 
+							   preg_replace( '/\D/', '', $p ), $p );
+		
+			if( !empty( $u ) && filter_var( $url, FILTER_VALIDATE_URL) )
+				$output .= sprintf( '<td class="website">%s</td>', $url );
+
+		$output .= '</tr>';
 		
 		return $output;
 	}
