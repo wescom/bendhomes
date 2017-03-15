@@ -1356,7 +1356,7 @@ class TBB_Churches_List {
 		$html .= '<table class="table table-bordered table-striped table-hover">';
 		
 		$html .= '<thead><tr>
-					<th>Name</th><th>Denomination</th><th>Address</th><th>Phone</th><th>Website</th>
+					<th>Name</th><th>Denomination</th><th>Address</th><th>City</th><th>Contact</th>
 				  </tr></thead><tbody>';
 				
 			foreach($rows as $row) {
@@ -1411,14 +1411,14 @@ class TBB_Churches_List {
 
 			$output .= '<td class="address">';
 				$output .= sprintf( '<div>%s</div>', $a );
-				if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s <a href="%s" target="_blank">Get Directions</a></div>', 
+				if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s<div><a href="%s" target="_blank">Get Directions</a></div></div>', 
 													  $c, $s, $z, $map_url );
 			$output .= '</td>';
 			
-			$output .= sprintf( '<td class="phone"><a href="tel:%s">%s</a></td>', 
-							   preg_replace( '/\D/', '', $p ), $p );
+			$output .= sprintf( '<td class="city">%s</td>', $c );
 		
-			$output .= sprintf( '<td class="website">%s</td>', $url );
+			$output .= sprintf( '<td class="contact"><div><a href="tel:%s">%s</a></div><div>%s</div></td>',
+							  preg_replace( '/\D/', '', $p ), $p, $url );
 
 		$output .= '</tr>';
 		
