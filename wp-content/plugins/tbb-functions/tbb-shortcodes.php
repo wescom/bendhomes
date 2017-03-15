@@ -1380,6 +1380,9 @@ class TBB_Churches_List {
 	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
 		$url = esc_url( str_replace( ' ', '', $u ) );
 		
+		$map_part = $n .' '. $c;
+		$map_url = sprintf( 'https://www.google.com/maps/place/%s/@%s,%s', urlencode( $map_part ) );
+		
 		$output = '';
 		$output .= '<article class="row-fluid church-item">';
 				
@@ -1389,7 +1392,8 @@ class TBB_Churches_List {
 			if( !empty($a) ) {
 				$output .= '<div class="address">';
 					$output .= sprintf( '<div>%s</div>', $a );
-					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s</div>', $c, $s, $z );
+					if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s <a href="%s" target="_blank">Get Directions</a></div>', 
+														  $c, $s, $z, $map_url );
 				$output .= '</div>';
 			}
 			if( !empty( $p) )
@@ -1574,6 +1578,7 @@ class TBB_Churches_List {
 			.church-item h4 { margin-bottom: 6px; }
 			.denomination small, .church-filters span.label-text { color: #999; }
 			.church-item .phone a, .church-item .phone a:hover, .church-item .phone a:active { color: #555; }
+			.church-item .address a { display: inline-block; margin-left: 10px; }
 			#map-container { background: url("<?php echo TBB_FUNCTIONS_URL; ?>images/loader.gif") no-repeat center center #f4f4f4; }
 			#map .map-info-window { position: relative; background: #fff; width: 244px; border-bottom: 3px #4dc7ec solid; margin-bottom: 17px; box-shadow: 2px 5px 10px rgba(0,0,0,.25); }
 			#map .map-info-window .prop-title { margin: 0; padding: 10px; text-align: center; font-size: 14px; }
