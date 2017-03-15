@@ -1301,15 +1301,21 @@ class TBB_Churches_List {
 		
 		$rows = $json->{'feed'}->{'entry'};
 		
-		//print_r( $json );
+		//print_r( $json ); // test to see the data returned from google sheet
 		
 		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?'); 
 		
+		// Add custom css from function below
 		$html .= $this->css();
 		
+		// Get location url parameter if it exists
 		$location_param = isset($_GET['location']) ? $_GET['location'] : '';
 		
+		// Hold json array as variable
 		$json_array = $this->json_map_data( $rows, $location_param );
+		
+		// Get total count of churches
+		$total_array = json_decode( $json_array, true );
 		
 		// Add json array to map script and print whole script here
 		$html .= sprintf( '%s', $this->map_script( $json_array ) );
@@ -1332,13 +1338,11 @@ class TBB_Churches_List {
 		
 			$html .= '</select></span></div>';
 		
-			$total_array = json_decode( $json_array, true );
-		
-			$html .= sprintf( '<p class="total-count">%s</p>', count( $total_array ) );
-		
 			if( !empty( $location_param ) ) {
 				$html .= sprintf( ' <a href="%s" class="full-list"><i class="fa fa-angle-left"></i> View Full List</a>', $current_url );
-				$html .= sprintf( '<div class="viewing">Viewing Location: %s</div>', $location_param );
+				$html .= sprintf( '<div class="viewing">%s Churches in %s</div>', count( $total_array ), $location_param );
+			} else {
+				$html .= sprintf( '<div class="viewing">%s Total Churches</div>', count( $total_array ) );
 			}
 		
 		$html .= '</div>'; // End church filter
@@ -1375,14 +1379,14 @@ class TBB_Churches_List {
 
 			}
 		
-		$html .= '</div>';
+		$html .= '</div>'; // end church-wrapper
 		
-		// Output churches list
+		// Outputs the entire shortcode here
 		return $html;
 		
 	}
 	
-	// Church item content is inside a function so we don't have to duplicate it above
+	// Single church item content inside this function so we don't have to duplicate it above
 	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
 		$url = esc_url( str_replace( ' ', '', $u ) );
 		
@@ -1434,11 +1438,10 @@ class TBB_Churches_List {
 			
 			// Get last 2 items in array, which is Latitude & Longitude
 			$lat_long_array = array_slice( $map_content_array, -2 );
-			// Map item latitude
 			$map_item['lat'] = str_replace( 'latitude: ', '', $lat_long_array[0] );
-			// Map item longitude
 			$map_item['lng'] = str_replace( 'longitude: ', '', $lat_long_array[1] );
 			
+			// Create link to google maps using church title and city
 			$url_part = $map_item['title'] .' '. $city;
 			$map_item['url'] = sprintf( 'https://www.google.com/maps/place/%s/@%s,%s', 
 									   urlencode( $url_part ), $map_item['lat'], $map_item['lng'] );
@@ -1446,16 +1449,17 @@ class TBB_Churches_List {
 			$location = str_replace( 'location: ', '', $map_content_array[0] );
 			
 			if( !empty( $param ) ) {
-				// If the location matches the location url param add item to array
+				// If the location matches the location param add item to array
 				if( $location == $param ) {
 					$map_data[] = $map_item;
 				}
 			} else {
-				// Otherwise add all map_item to map_data array.
+				// Otherwise add all map_item to map_data array to display all churches
 				$map_data[] = $map_item;
 			}
 		}
 		
+		// Return the json array to be used in render function
 		return json_encode( $map_data );
 	}
 	
@@ -1566,7 +1570,8 @@ class TBB_Churches_List {
 		}
 		google.maps.event.addDomListener(window,"load",initChurchesMap);*/
 			
-		//********* Production minified code from above.
+		//********* Production minified code taken from above.
+		//********* Only edit the js above then reminify and replace this minified code
 		function initChurchesMap(){function e(e,o,n){google.maps.event.addListener(o,"click",function(){var t=Math.pow(2,e.getZoom()),a=100/t||0,i=e.getProjection(),r=o.getPosition(),l=i.fromLatLngToPoint(r),s=new google.maps.Point(l.x,l.y-a),g=i.fromPointToLatLng(s);e.setCenter(g),n.open(e,o)})}for(var o=<?php echo $json_array; ?>,n=(new google.maps.LatLng(o[0].lat,o[0].lng),{zoom:15,maxZoom:18,scrollwheel:!1}),t=new google.maps.Map(document.getElementById("map"),n),a=new google.maps.LatLngBounds,i=new Array,r=(new Array,0);r<o.length;r++){i[r]=new google.maps.Marker({position:new google.maps.LatLng(o[r].lat,o[r].lng),map:t,title:o[r].title,animation:google.maps.Animation.DROP,visible:!0}),a.extend(i[r].getPosition());var l=document.createElement("div");l.className="map-info-window";var s="";s+='<div class="prop-title">'+o[r].title+"</div>",s+='<div class="prop-address">'+o[r].address1+"<br>"+o[r].address2+"</div>",s+='<div class="prop-link"><a href="'+o[r].url+'" target="_blank">Get Directions</a></div>',s+='<div class="arrow-down"></div>',l.innerHTML=s;var g={content:l,disableAutoPan:!0,maxWidth:0,alignBottom:!0,pixelOffset:new google.maps.Size(-122,-48),zIndex:10,closeBoxMargin:"0",closeBoxURL:"<?php echo get_template_directory_uri() . '/images/map/close.png'; ?>",infoBoxClearance:new google.maps.Size(1,1),isHidden:!1,pane:"floatPane",enableEventPropagation:!1},d=new InfoBox(g);e(t,i[r],d)}t.fitBounds(a);var p={ignoreHidden:!0,maxZoom:16,styles:[{textColor:"#ffffff",url:"<?php echo get_template_directory_uri() . '/images/map/cluster-icon.png'; ?>",height:48,width:48}]};new MarkerClusterer(t,i,p)}google.maps.event.addDomListener(window,"load",initChurchesMap);
 		</script>
 		<?php
@@ -1574,7 +1579,7 @@ class TBB_Churches_List {
 		return ob_get_clean();
 	}
 	
-	// CSS
+	// Shortcode CSS
 	private function css() {
 		ob_start(); ?>
 		<style type="text/css">
