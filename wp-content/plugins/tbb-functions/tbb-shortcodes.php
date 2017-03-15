@@ -1381,7 +1381,7 @@ class TBB_Churches_List {
 		$url = esc_url( str_replace( ' ', '', $u ) );
 		
 		$map_part = $n .' '. $c;
-		$map_url = sprintf( 'https://www.google.com/maps/place/%s/@%s,%s', urlencode( $map_part ) );
+		$map_url = sprintf( 'https://www.google.com/maps/place/%s', urlencode( $map_part ) );
 		
 		$output = '';
 		$output .= '<article class="row-fluid church-item">';
