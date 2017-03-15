@@ -1417,7 +1417,7 @@ class TBB_Churches_List {
 			
 			$output .= sprintf( '<td class="city">%s</td>', $c );
 		
-			$output .= sprintf( '<td class="contact"><div><a href="tel:%s">%s</a></div><div>%s</div></td>',
+			$output .= sprintf( '<td class="contact"><p><a href="tel:%s">%s</a></p><div>%s</div></td>',
 							  preg_replace( '/\D/', '', $p ), $p, $url );
 
 		$output .= '</tr>';
