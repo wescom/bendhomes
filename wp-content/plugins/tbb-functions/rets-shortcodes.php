@@ -109,7 +109,7 @@ class Rets_Agents {
 		}
 
 		$searchString = '';
-		$searchString = $_GET['search'];
+		$searchString = trim( $_GET['search'] );
 		
 		if ($searchString == '') {
 			$query = "
@@ -333,7 +333,7 @@ class Rets_Agent {
 		extract( $defaults );
 
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
-		$id = mysqli_real_escape_string( floatval( $id ) );
+		$id = trim( floatval( $id ) );
 
 		$query = "
 			SELECT ActiveAgent_MEMB.FullName,
@@ -514,6 +514,8 @@ class Rets_Agent_Listings {
 				break;
 		}
 		
+		$agent_id = trim( floatval($agent_id) );
+		
 		$query = "
 			SELECT Property_RESI.MLNumber,
 			Property_RESI.ListingPrice,
@@ -682,7 +684,7 @@ class Rets_Companies {
 		}
 
 		$searchString = '';
-		$searchString = $_GET['search'];
+		$searchString = trim( $_GET['search'] );
 		//$html .= 'serach: '.$searchString;
 
 		if ($searchString == '') {
@@ -862,7 +864,7 @@ class Rets_Company {
 		extract( $defaults );
 		
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $office_number;
-		$id = mysqli_real_escape_string( floatval( $id ) );
+		$id = trim( floatval( $id ) );
 	
 		$query = "
 			SELECT * FROM Office_OFFI 
@@ -1008,7 +1010,7 @@ class Rets_Company_Agents {
 		);
 
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $office_number;
-		$id = mysqli_real_escape_string( floatval( $id ) );
+		$id = trim( floatval( $id ) );
 
 		extract( $defaults );
 		
@@ -1203,35 +1205,6 @@ class Rets_Open_Houses {
 				$cols = "one";
 				break;
 		}
-		
-		/* Original Query
-		SELECT OpenHouse_OPEN.AgentFirstName,
-		OpenHouse_OPEN.AgentLastName,
-		OpenHouse_OPEN.StartDateTime,
-		OpenHouse_OPEN.TimeComments,
-		OpenHouse_OPEN.MLNumber,
-
-		Property_RESI.MLNumber,
-		Property_RESI.ListingPrice,
-		Property_RESI.imagepref,
-		Property_RESI.StreetNumber,
-		Property_RESI.StreetDirection,
-		Property_RESI.StreetName,
-		Property_RESI.StreetSuffix,
-		Property_RESI.City,
-		Property_RESI.State,
-		Property_RESI.ZipCode,
-		Property_RESI.Bedrooms,
-		Property_RESI.Bathrooms,
-		Property_RESI.ShowAddressToPublic,
-		Property_RESI.PublishToInternet,
-
-		FROM OpenHouse_OPEN
-		LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
-		WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
-		AND ShowAddressToPublic = 1
-		AND PublishToInternet = 1
-		*/
 		
 		$query = "
 			SELECT 
