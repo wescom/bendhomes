@@ -1309,8 +1309,10 @@ class TBB_Churches_List {
 		
 		$location_param = isset($_GET['location']) ? $_GET['location'] : '';
 		
+		$json_array = $this->json_map_data( $rows, $location_param );
+		
 		// Add json array to map script and print whole script here
-		$html .= sprintf( '%s', $this->map_script( $this->json_map_data( $rows, $location_param ) ) );
+		$html .= sprintf( '%s', $this->map_script( $json_array ) );
 		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
@@ -1329,6 +1331,10 @@ class TBB_Churches_List {
 			}
 		
 			$html .= '</select></span></div>';
+		
+			$total_array = json_decode( $json_array, true );
+		
+			$html .= sprintf( '<p class="total-count">%s</p>', count( $total_array ) );
 		
 			if( !empty( $location_param ) ) {
 				$html .= sprintf( ' <a href="%s" class="full-list"><i class="fa fa-angle-left"></i> View Full List</a>', $current_url );
