@@ -1269,7 +1269,6 @@ class TBB_Churches_List {
     public function __construct() {
         add_shortcode( 'tbb_churches', array($this, 'render') );
 		add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
-		add_action( 'wp_head', $this->css() );
     }
 	
 	public function enqueue() {
@@ -1307,7 +1306,7 @@ class TBB_Churches_List {
 		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?'); 
 		
 		// Add custom css from function below
-		//$html .= $this->css();
+		$html .= $this->css();
 		
 		// Get location url parameter if it exists
 		$location_param = isset($_GET['location']) ? $_GET['location'] : '';
