@@ -1320,6 +1320,10 @@ class TBB_Churches_List {
 		// Add json array to map script and print whole script here
 		$html .= sprintf( '%s', $this->map_script( $json_array ) );
 		
+		$html .= '<div id="church-map" class="map-wrap clearfix row-fluid">';
+			$html .= '<div id="map-container"><div id="map"></div></div>';
+		$html .= '</div>'; // End Map
+		
 		$html .= '<div class="church-filters clearfix row-fluid">';
 		
 			$html .= '<div class="option-bar small"><span class="label-text">View by Area: </span><span class="selectwrap"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value="">Select Area</option>';
@@ -1346,10 +1350,6 @@ class TBB_Churches_List {
 			}
 		
 		$html .= '</div>'; // End church filter
-		
-		$html .= '<div id="church-map" class="map-wrap clearfix row-fluid">';
-			$html .= '<div id="map-container"><div id="map"></div></div>';
-		$html .= '</div>'; // End Map
 		
 		$html .= sprintf( '<div id="church-wrapper" class="row-fluid clearfix %s"><hr>', $class );
 		
@@ -1605,6 +1605,7 @@ class TBB_Churches_List {
 			#church-map #map { width: 100%; height: 400px; }
 			.table-bordered { border-collapse: collapse; }
 			.church-item .website { text-align: center; }
+			.church-item .contact p { margin-bottom: 10px; }
 			.church-item a { color: #02888f; }
 			.denomination small, .church-filters span.label-text { color: #999; }
 			.church-item .phone a, .church-item .phone a:hover, .church-item .phone a:active { color: #555; }
