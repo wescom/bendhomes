@@ -1403,7 +1403,7 @@ class TBB_Churches_List {
 	// Single church item content inside this function so we don't have to duplicate it above
 	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
 		$url = esc_url( str_replace( ' ', '', $u ) );
-		$url = filter_var( $url, FILTER_VALIDATE_URL) ? '<a href="'.$url.'" target="_blank">Website</a>' : '';
+		$url = filter_var( $url, FILTER_VALIDATE_URL) ? '<a href="'.$url.'" target="_blank" class="btn btn-sm"><i class="fa fa-globe"></i> Website</a>' : '';
 		
 		$map_part = $n .' '. $c;
 		$map_url = sprintf( 'https://www.google.com/maps/place/%s', urlencode( $map_part ) );
@@ -1423,7 +1423,7 @@ class TBB_Churches_List {
 			
 			$output .= sprintf( '<td class="city">%s</td>', $c );
 		
-			$output .= sprintf( '<td class="contact"><p><a href="tel:%s">Phone</a></p><div>%s</div></td>',
+			$output .= sprintf( '<td class="contact"><p><a href="tel:%s" class="btn btn-sm"><i class="fa fa-mobile"></i> Phone</a></p><div>%s</div></td>',
 							  preg_replace( '/\D/', '', $p ), $url );
 
 		$output .= '</tr>';
@@ -1620,6 +1620,7 @@ class TBB_Churches_List {
 			.table-bordered { border-collapse: collapse; }
 			.church-item .website { text-align: center; }
 			.church-item .contact p { margin-bottom: 10px; }
+			.church-item .btn-sm { padding: 2px 11px; text-transform: uppercase; font-size: 12px; font-weight: 600; color: #02888f; }
 			.church-item a { color: #02888f; }
 			.denomination small, .church-filters .viewing, .church-filters span.label-text { color: #999; }
 			.church-item .phone a, .church-item .phone a:hover, .church-item .phone a:active { color: #555; }
