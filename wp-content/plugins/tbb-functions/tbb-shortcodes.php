@@ -1358,7 +1358,11 @@ class TBB_Churches_List {
 		$html .= '<table id="sortable-table" class="table table-bordered table-striped table-hover" width="100%" cellspacing="0">';
 		
 		$html .= '<thead><tr>
-					<th>Name</th><th>Denomination</th><th>Address</th><th>City</th><th>Contact</th>
+					<th class="name">Name</th>
+					<th class="denom">Denomination</th>
+					<th class="address">Address</th>
+					<th class="city">City</th>
+					<th class="contact">Contact</th>
 				  </tr></thead><tbody>';
 				
 			foreach($rows as $row) {
@@ -1586,7 +1590,8 @@ class TBB_Churches_List {
 		<script async defer type="text/javascript">
 		$(document).ready(function() {
 			$('#sortable-table').DataTable({
-				"paging": 50,
+				"pageLength": 25,
+				"lengthMenu": [ [25, 50, 100, -1], [25, 50, 100, "All"] ]
 			});
 		} );
 		function initChurchesMap(){function e(e,o,n){google.maps.event.addListener(o,"click",function(){var t=Math.pow(2,e.getZoom()),a=100/t||0,i=e.getProjection(),r=o.getPosition(),l=i.fromLatLngToPoint(r),s=new google.maps.Point(l.x,l.y-a),g=i.fromPointToLatLng(s);e.setCenter(g),n.open(e,o)})}for(var o=<?php echo $json_array; ?>,n=(new google.maps.LatLng(o[0].lat,o[0].lng),{zoom:15,maxZoom:18,scrollwheel:!1}),t=new google.maps.Map(document.getElementById("map"),n),a=new google.maps.LatLngBounds,i=new Array,r=(new Array,0);r<o.length;r++){i[r]=new google.maps.Marker({position:new google.maps.LatLng(o[r].lat,o[r].lng),map:t,title:o[r].title,animation:google.maps.Animation.DROP,visible:!0}),a.extend(i[r].getPosition());var l=document.createElement("div");l.className="map-info-window";var s="";s+='<div class="prop-title">'+o[r].title+"</div>",s+='<div class="prop-address">'+o[r].address1+"<br>"+o[r].address2+"</div>",s+='<div class="prop-link"><a href="'+o[r].url+'" target="_blank">Get Directions</a></div>',s+='<div class="arrow-down"></div>',l.innerHTML=s;var g={content:l,disableAutoPan:!0,maxWidth:0,alignBottom:!0,pixelOffset:new google.maps.Size(-122,-48),zIndex:10,closeBoxMargin:"0",closeBoxURL:"<?php echo get_template_directory_uri() . '/images/map/close.png'; ?>",infoBoxClearance:new google.maps.Size(1,1),isHidden:!1,pane:"floatPane",enableEventPropagation:!1},d=new InfoBox(g);e(t,i[r],d)}t.fitBounds(a);var p={ignoreHidden:!0,maxZoom:16,styles:[{textColor:"#ffffff",url:"<?php echo get_template_directory_uri() . '/images/map/cluster-icon.png'; ?>",height:48,width:48}]};new MarkerClusterer(t,i,p)}google.maps.event.addDomListener(window,"load",initChurchesMap);
@@ -1625,18 +1630,19 @@ class TBB_Churches_List {
 			#map .map-info-window .prop-address, #map .map-info-window .prop-link { text-align: center; padding-bottom: 10px; font-size: 12px; }
 			#map .map-info-window .arrow-down { width: 0; height: 0; border-style: solid; border-width: 10px 10px 0; border-color: #4dc7ec transparent transparent; position: absolute; bottom: -13px; left: 112px; }
 			#map .infoBox img { z-index: 10; }
-			select.sortable-table_length { width: auto; marign: 0 5px; }
+			.dataTables_length select, select.sortable-table_length { width: auto; marign: 0 5px; }
 			table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled { background-repeat: no-repeat; background-position: center right; }
 			table.dataTable thead .sorting_asc { background-image: url("https://cdn.datatables.net/1.10.13/images/sort_asc.png"); }
 			table.dataTable thead .sorting_desc { background-image: url("https://cdn.datatables.net/1.10.13/images/sort_desc.png") }
 			table.dataTable thead .sorting { background-image: url("https://cdn.datatables.net/1.10.13/images/sort_both.png"); }
+			table.dataTable thead .sorting.address, table.dataTable thead .sorting.contact { background-image: none; }
 			table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc { cursor: pointer; }
 			.dataTables_wrapper .dataTables_length { float: left; margin-bottom: 7px; }
 			.dataTables_wrapper .dataTables_filter { float: right; margin-bottom: 7px; }
-			.dataTables_wrapper .dataTables_filter input { margin-bottom: 0; }
-			.dataTables_wrapper .dataTables_info { clear: both; float: left; padding-top: 18px; font-size: 14px; }
-			.dataTables_wrapper .dataTables_paginate { float: right;text-align: right; padding-top: 15px; font-size: 14px; }
-			.dataTables_wrapper .dataTables_paginate .paginate_button { box-sizing: border-box; display: inline-block; padding: 1px 10px; margin-left: 5px; text-align: center; text-decoration: none !important; cursor: pointer; border: 1px solid transparent; border-radius: 2px; }
+			.dataTables_wrapper .dataTables_filter input { margin-bottom: 0; margin-left: 5px; }
+			.dataTables_wrapper .dataTables_info { clear: both; float: left; font-size: 14px; }
+			.dataTables_wrapper .dataTables_paginate { float: right;text-align: right; font-size: 14px; }
+			.dataTables_wrapper .dataTables_paginate .paginate_button { color: #555; box-sizing: border-box; display: inline-block; padding: 1px 10px; margin-left: 5px; text-align: center; text-decoration: none !important; cursor: pointer; border: 1px solid transparent; border-radius: 2px; }
 			.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active { cursor: default; border: 1px solid transparent; background: transparent; box-shadow: none; }
 			.dataTables_wrapper .dataTables_paginate .paginate_button:hover { background: #e8e8e8; border: 1px solid #ddd; }
 			.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover { color: #fff !important; border: 1px solid #02888f; background-color: #02888f; }
