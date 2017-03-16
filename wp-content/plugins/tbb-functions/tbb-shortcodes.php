@@ -1630,7 +1630,7 @@ class TBB_Churches_List {
 			#map .map-info-window .prop-address, #map .map-info-window .prop-link { text-align: center; padding-bottom: 10px; font-size: 12px; }
 			#map .map-info-window .arrow-down { width: 0; height: 0; border-style: solid; border-width: 10px 10px 0; border-color: #4dc7ec transparent transparent; position: absolute; bottom: -13px; left: 112px; }
 			#map .infoBox img { z-index: 10; }
-			.dataTables_length select, select.sortable-table_length { width: auto; marign: 0 5px; }
+			.dataTables_length select { width: auto; margin: 0 5px; }
 			table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled { background-repeat: no-repeat; background-position: center right; }
 			table.dataTable thead .sorting_asc { background-image: url("<?php echo TBB_FUNCTIONS_URL; ?>images/sort_asc.png"); }
 			table.dataTable thead .sorting_desc { background-image: url("<?php echo TBB_FUNCTIONS_URL; ?>images/sort_desc.png") }
