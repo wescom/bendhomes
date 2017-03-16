@@ -1362,7 +1362,7 @@ class TBB_Churches_List {
 					<th class="denom">Denomination</th>
 					<th class="address">Address</th>
 					<th class="city">City</th>
-					<th class="contact">Contact</th>
+					<th class="contact" style="min-width:100px;">Contact</th>
 				  </tr></thead><tbody>';
 				
 			foreach($rows as $row) {
@@ -1423,8 +1423,8 @@ class TBB_Churches_List {
 			
 			$output .= sprintf( '<td class="city">%s</td>', $c );
 		
-			$output .= sprintf( '<td class="contact"><p><a href="tel:%s" class="btn btn-sm"><i class="fa fa-mobile"></i> Phone</a></p></td>',
-							  preg_replace( '/\D/', '', $p ) );
+			$output .= sprintf( '<td class="contact"><p><a href="tel:%s">%s</a></p></td>',
+							  preg_replace( '/\D/', '', $p ), $p );
 
 		$output .= '</tr>';
 		
