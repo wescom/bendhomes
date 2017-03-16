@@ -1403,7 +1403,7 @@ class TBB_Churches_List {
 	// Single church item content inside this function so we don't have to duplicate it above
 	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
 		$url = esc_url( str_replace( ' ', '', $u ) );
-		$url = filter_var( $url, FILTER_VALIDATE_URL) ? '<a href="'.$url.'" target="_blank">Visit Website</a>' : '';
+		$url = filter_var( $url, FILTER_VALIDATE_URL) ? '<a href="'.$url.'" target="_blank">Website</a>' : '';
 		
 		$map_part = $n .' '. $c;
 		$map_url = sprintf( 'https://www.google.com/maps/place/%s', urlencode( $map_part ) );
@@ -1423,8 +1423,8 @@ class TBB_Churches_List {
 			
 			$output .= sprintf( '<td class="city">%s</td>', $c );
 		
-			$output .= sprintf( '<td class="contact"><p><a href="tel:%s">%s</a></p><div>%s</div></td>',
-							  preg_replace( '/\D/', '', $p ), $p, $url );
+			$output .= sprintf( '<td class="contact"><p><a href="tel:%s">Phone</a></p><div>%s</div></td>',
+							  preg_replace( '/\D/', '', $p ), $url );
 
 		$output .= '</tr>';
 		
