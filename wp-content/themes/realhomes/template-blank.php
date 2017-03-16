@@ -29,7 +29,7 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
 </script>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> style="background: #fff;">
 
 <?php the_content(); ?>
                                     
