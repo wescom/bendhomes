@@ -1272,7 +1272,7 @@ class TBB_Churches_List {
     }
 	
 	public function enqueue() {
-		wp_enqueue_style( 'datatables', 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css' );
+		//wp_enqueue_style( 'datatables', 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css' );
 		wp_enqueue_script( 'google-map-api', '//maps.googleapis.com/maps/api/js?key=AIzaSyBzmtlh7yHJ_EuPTJ3XsFF-YsVp-Hn-qtA', false );
 		wp_enqueue_script( 'google-map-info-box', TBB_FUNCTIONS_URL .'js/infobox.min.js', array('google-map-api'), '', false );
 		wp_enqueue_script( 'markerclusterer', TBB_FUNCTIONS_URL .'js/markerclusterer.js', array('google-map-api'), '', false );
@@ -1608,7 +1608,7 @@ class TBB_Churches_List {
 			.selectbox-wrapper ul li { padding: 4px 8px; }
 			.selectbox-wrapper ul li:first-child { display: none; }
 			.selectwrap input { margin-bottom: 0; }
-			#church-map { padding-top: 1em; }
+			#church-map { padding-bottom: 30px; }
 			#church-map #map { width: 100%; height: 400px; }
 			.church-filters { padding-top: 20px; padding-bottom: 20px; border-top: 1px solid #ddd; margin-top: 30px; }
 			.church-filters .viewing { padding-top: 2px; }
@@ -1625,7 +1625,7 @@ class TBB_Churches_List {
 			#map .map-info-window .prop-address, #map .map-info-window .prop-link { text-align: center; padding-bottom: 10px; font-size: 12px; }
 			#map .map-info-window .arrow-down { width: 0; height: 0; border-style: solid; border-width: 10px 10px 0; border-color: #4dc7ec transparent transparent; position: absolute; bottom: -13px; left: 112px; }
 			#map .infoBox img { z-index: 10; }
-			.sortable-table_length { width: auto; marign: 0 5px; }
+			select.sortable-table_length { width: auto; marign: 0 5px; }
 			table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled { background-repeat: no-repeat; background-position: center right; }
 			table.dataTable thead .sorting_asc { background-image: url("https://cdn.datatables.net/1.10.13/images/sort_asc.png"); }
 			table.dataTable thead .sorting_desc { background-image: url("https://cdn.datatables.net/1.10.13/images/sort_desc.png") }
