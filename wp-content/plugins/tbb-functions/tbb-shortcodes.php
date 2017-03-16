@@ -1411,7 +1411,7 @@ class TBB_Churches_List {
 		$output = '';
 		$output .= '<tr class="church-item">';
 				
-			$output .= sprintf( '<td class="name"><strong>%s</strong></td>', $n );
+			$output .= sprintf( '<td class="name"><p><strong>%s</strong></p>%s</td>', $n, $url );
 		
 			$output .= sprintf( '<td class="denomination">%s</td>', $d );
 
@@ -1423,8 +1423,8 @@ class TBB_Churches_List {
 			
 			$output .= sprintf( '<td class="city">%s</td>', $c );
 		
-			$output .= sprintf( '<td class="contact"><p><a href="tel:%s" class="btn btn-sm"><i class="fa fa-mobile"></i> Phone</a></p><div>%s</div></td>',
-							  preg_replace( '/\D/', '', $p ), $url );
+			$output .= sprintf( '<td class="contact"><p><a href="tel:%s" class="btn btn-sm"><i class="fa fa-mobile"></i> Phone</a></p></td>',
+							  preg_replace( '/\D/', '', $p ) );
 
 		$output .= '</tr>';
 		
