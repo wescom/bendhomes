@@ -1594,6 +1594,15 @@ class TBB_Churches_List {
 				"lengthMenu": [ [25, 50, 100, -1], [25, 50, 100, "All"] ]
 			});
 		} );
+		function paginateScroll() {
+			$('html, body').animate({
+			   scrollTop: $(".dataTables_wrapper").offset().top
+			}, 100);
+			console.log('pagination button clicked');
+			$(".paginate_button").unbind('click', paginateScroll);
+			$(".paginate_button").bind('click', paginateScroll);
+		}
+		paginateScroll();
 		function initChurchesMap(){function e(e,o,n){google.maps.event.addListener(o,"click",function(){var t=Math.pow(2,e.getZoom()),a=100/t||0,i=e.getProjection(),r=o.getPosition(),l=i.fromLatLngToPoint(r),s=new google.maps.Point(l.x,l.y-a),g=i.fromPointToLatLng(s);e.setCenter(g),n.open(e,o)})}for(var o=<?php echo $json_array; ?>,n=(new google.maps.LatLng(o[0].lat,o[0].lng),{zoom:15,maxZoom:18,scrollwheel:!1}),t=new google.maps.Map(document.getElementById("map"),n),a=new google.maps.LatLngBounds,i=new Array,r=(new Array,0);r<o.length;r++){i[r]=new google.maps.Marker({position:new google.maps.LatLng(o[r].lat,o[r].lng),map:t,title:o[r].title,animation:google.maps.Animation.DROP,visible:!0}),a.extend(i[r].getPosition());var l=document.createElement("div");l.className="map-info-window";var s="";s+='<div class="prop-title">'+o[r].title+"</div>",s+='<div class="prop-address">'+o[r].address1+"<br>"+o[r].address2+"</div>",s+='<div class="prop-link"><a href="'+o[r].url+'" target="_blank">Get Directions</a></div>',s+='<div class="arrow-down"></div>',l.innerHTML=s;var g={content:l,disableAutoPan:!0,maxWidth:0,alignBottom:!0,pixelOffset:new google.maps.Size(-122,-48),zIndex:10,closeBoxMargin:"0",closeBoxURL:"<?php echo get_template_directory_uri() . '/images/map/close.png'; ?>",infoBoxClearance:new google.maps.Size(1,1),isHidden:!1,pane:"floatPane",enableEventPropagation:!1},d=new InfoBox(g);e(t,i[r],d)}t.fitBounds(a);var p={ignoreHidden:!0,maxZoom:16,styles:[{textColor:"#ffffff",url:"<?php echo get_template_directory_uri() . '/images/map/cluster-icon.png'; ?>",height:48,width:48}]};new MarkerClusterer(t,i,p)}google.maps.event.addDomListener(window,"load",initChurchesMap);
 		</script>
 		<?php
