@@ -1632,9 +1632,9 @@ class TBB_Churches_List {
 			#map .infoBox img { z-index: 10; }
 			.dataTables_length select, select.sortable-table_length { width: auto; marign: 0 5px; }
 			table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled { background-repeat: no-repeat; background-position: center right; }
-			table.dataTable thead .sorting_asc { background-image: url("https://cdn.datatables.net/1.10.13/images/sort_asc.png"); }
-			table.dataTable thead .sorting_desc { background-image: url("https://cdn.datatables.net/1.10.13/images/sort_desc.png") }
-			table.dataTable thead .sorting { background-image: url("https://cdn.datatables.net/1.10.13/images/sort_both.png"); }
+			table.dataTable thead .sorting_asc { background-image: url("<?php echo TBB_FUNCTIONS_URL; ?>images/sort_asc.png"); }
+			table.dataTable thead .sorting_desc { background-image: url("<?php echo TBB_FUNCTIONS_URL; ?>images/sort_desc.png") }
+			table.dataTable thead .sorting { background-image: url("<?php echo TBB_FUNCTIONS_URL; ?>images/sort_both.png"); }
 			table.dataTable thead .sorting.address, table.dataTable thead .sorting.contact { background-image: none; }
 			table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc { cursor: pointer; }
 			.dataTables_wrapper .dataTables_length { float: left; margin-bottom: 7px; }
