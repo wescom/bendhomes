@@ -1355,7 +1355,7 @@ class TBB_Churches_List {
 		
 		$html .= sprintf( '<div id="church-wrapper" class="row-fluid clearfix %s">', $class );
 		
-		$html .= '<table id="sortable-table" class="table table-bordered table-striped table-hover" width="100%" cellspacing="0">';
+		$html .= '<table id="sortable-table" class="table table-bordered table-striped" width="100%" cellspacing="0">';
 		
 		$html .= '<thead><tr>
 					<th class="name">Name</th>
@@ -1411,7 +1411,7 @@ class TBB_Churches_List {
 		$output = '';
 		$output .= '<tr class="church-item">';
 				
-			$output .= sprintf( '<td class="name"><p><strong>%s</strong></p>%s</td>', $n, $url );
+			$output .= sprintf( '<td class="name"><div><strong>%s</strong></div>%s</td>', $n, $url );
 		
 			$output .= sprintf( '<td class="denomination">%s</td>', $d );
 
@@ -1619,8 +1619,7 @@ class TBB_Churches_List {
 			.church-filters .viewing { padding-top: 2px; }
 			.table-bordered { border-collapse: collapse; }
 			.church-item .website { text-align: center; }
-			.church-item .contact p { margin-bottom: 10px; }
-			.church-item .btn-sm { padding: 2px 11px; text-transform: uppercase; font-size: 12px; font-weight: 600; color: #02888f; }
+			.church-item .btn-sm { padding: 1px 7px; margin-top: 8px; letter-spacing: .05em; font-size: 12px; font-weight: 400; color: #02888f; }
 			.church-item a { color: #02888f; }
 			.denomination small, .church-filters .viewing, .church-filters span.label-text { color: #999; }
 			.church-item .phone a, .church-item .phone a:hover, .church-item .phone a:active { color: #555; }
