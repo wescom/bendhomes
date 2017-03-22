@@ -1252,3 +1252,403 @@ function tbb_share_bar( $atts ) {
 	</script>*/
 	
 } // end SHARE_BAR shortcode
+
+
+// Chruches directory pulled from google spreadsheet.
+// Shortcode: [tbb_churches]
+class TBB_Churches_List {
+	
+	public static $args;
+	
+    public function __construct() {
+        add_shortcode( 'tbb_churches', array($this, 'render') );
+		add_action( 'wp_enqueue_scripts', array($this, 'enqueue') );
+    }
+	
+	public function enqueue() {
+		//wp_enqueue_style( 'datatables', 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css' );
+		wp_enqueue_script( 'google-map-api', '//maps.googleapis.com/maps/api/js?key=AIzaSyBzmtlh7yHJ_EuPTJ3XsFF-YsVp-Hn-qtA', false );
+		wp_enqueue_script( 'google-map-info-box', TBB_FUNCTIONS_URL .'js/infobox.min.js', array('google-map-api'), '', false );
+		wp_enqueue_script( 'markerclusterer', TBB_FUNCTIONS_URL .'js/markerclusterer.js', array('google-map-api'), '', false );
+		wp_enqueue_script( 'datatables', 'https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js', array('jquery'), '', false );
+	}
+	
+	// Render the shortcode
+	public function render( $args ) {
+				
+		$html = '';
+		
+		$defaults = shortcode_atts(
+			array(
+				'class' => 'churches'
+			), $args
+		);
+
+		extract( $defaults );
+		
+		//$google_key = '14ok04FVOzKjd_MzNNlI1-vQJ_4WTDSH3mDPRoWMRp_g';
+		$google_key = '1UJ94-Y3lldgxCQMaqHfdx4Lla424t1CuAffIVa-fNxg';
+		
+		$url = 'https://spreadsheets.google.com/feeds/list/'. $google_key .'/1/public/basic?alt=json';
+		
+		$file = file_get_contents( $url );
+		
+		$json = json_decode($file);
+		
+		$rows = $json->{'feed'}->{'entry'};
+		
+		//print_r( $json ); // test to see the data returned from google sheet
+		
+		$current_url = home_url() .''. strtok($_SERVER['REQUEST_URI'], '?'); 
+		
+		// Add custom css from function below
+		$html .= $this->css();
+		
+		// Get location url parameter if it exists
+		$location_param = isset($_GET['location']) ? $_GET['location'] : '';
+		
+		// Hold json array as variable
+		$json_array = $this->json_map_data( $rows, $location_param );
+		
+		// Get total count of churches
+		$total_array = json_decode( $json_array, true );
+		
+		// Add json array to map script and print whole script here
+		$html .= sprintf( '%s', $this->map_script( $json_array ) );
+		
+		$html .= '<div class="church-filters clearfix row-fluid">';
+		
+			$html .= '<div class="option-bar small"><span class="label-text">Filter Map by Area: </span><span class="selectwrap"><select name="church-filter" class="search-select" onchange="location=this.value;"><option value=""> - Select City - </option>';
+		
+			$locations = array();
+			foreach( $rows as $location ) {
+				$location_content = $location->{'content'}->{'$t'};
+				$location_array = explode( ',', $location_content );
+				$item = str_replace( 'location: ', '', $location_array[0] );
+				if( in_array( $item, $locations ) )
+					continue;
+				
+				$html .= sprintf( '<option value="%s?location=%s">%s</option>', $current_url, $item, $item );
+				$locations[] = $item;
+			}
+		
+			$html .= '</select></span></div>';
+		
+			if( !empty( $location_param ) ) {
+				$html .= sprintf( ' <a href="%s" class="full-list"><i class="fa fa-angle-left"></i> View Full List</a>', $current_url );
+				$html .= sprintf( '<div class="viewing">%s Churches in %s</div>', count( $total_array ), $location_param );
+			} else {
+				$html .= sprintf( '<div class="viewing">%s Total Churches</div>', count( $total_array ) );
+			}
+		
+		$html .= '</div>'; // End church filter
+		
+		$html .= '<div id="church-map" class="map-wrap clearfix row-fluid">';
+			$html .= '<div id="map-container"><div id="map"></div></div>';
+		$html .= '</div>'; // End Map
+		
+		$html .= sprintf( '<div id="church-wrapper" class="row-fluid clearfix %s">', $class );
+		
+		$html .= '<table id="sortable-table" class="table table-bordered table-striped" width="100%" cellspacing="0">';
+		
+		$html .= '<thead><tr>
+					<th class="name">Name</th>
+					<th class="denom">Denomination</th>
+					<th class="address">Address</th>
+					<th class="city">City</th>
+					<th class="contact" style="min-width:100px;">Contact</th>
+				  </tr></thead><tbody>';
+				
+			foreach($rows as $row) {
+
+				$name = $row->{'title'}->{'$t'};
+				$content = $row->{'content'}->{'$t'};
+				$content_array = explode( ',', $content );
+				$location = str_replace( 'location: ', '', $content_array[0] );
+				$denomination = str_replace( 'denomination: ', '', $content_array[1] );
+				$address = str_replace( 'address: ', '', $content_array[2] );
+				$city = str_replace( 'city: ', '', $content_array[3] );
+				$state = str_replace( 'state: ', '', $content_array[4] );
+				$zip = str_replace( 'zip: ', '', $content_array[5] );
+				$phone = str_replace( 'phone: ', '', $content_array[6] );
+				$url = str_replace( 'url: ', '', $content_array[7] );
+				
+				if( !empty( $location_param ) ) {
+					// Filter by location if url param exists
+					if( $location_param == $location ) {
+						$html .= $this->church_item( $name, $denomination, $address, $city, $state, $zip, $phone, $url );
+					}
+				} else {
+					// Otherwise just show everything
+					$html .= $this->church_item( $name, $denomination, $address, $city, $state, $zip, $phone, $url );
+				}
+
+			}
+		
+		$html .= '</tbody></table>';
+		
+		$html .= '</div>'; // end church-wrapper
+		
+		// Outputs the entire shortcode here
+		return $html;
+		
+	}
+	
+	// Single church item content inside this function so we don't have to duplicate it above
+	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
+		$url = esc_url( str_replace( ' ', '', $u ) );
+		$url = filter_var( $url, FILTER_VALIDATE_URL) ? '<a href="'.$url.'" target="_blank" class="btn btn-sm"><i class="fa fa-globe"></i> Website</a>' : '';
+		
+		$map_part = $n .' '. $c;
+		$map_url = sprintf( 'https://www.google.com/maps/place/%s', urlencode( $map_part ) );
+		
+		$output = '';
+		$output .= '<tr class="church-item">';
+				
+			$output .= sprintf( '<td class="name"><div><strong>%s</strong></div>%s</td>', $n, $url );
+		
+			$output .= sprintf( '<td class="denomination">%s</td>', $d );
+
+			$output .= '<td class="address">';
+				$output .= sprintf( '<div>%s</div>', $a );
+				if( !empty( $c ) ) $output .= sprintf( '<div>%s, %s %s<div><a href="%s" target="_blank">Get Directions</a></div></div>', 
+													  $c, $s, $z, $map_url );
+			$output .= '</td>';
+			
+			$output .= sprintf( '<td class="city">%s</td>', $c );
+		
+			$output .= sprintf( '<td class="contact"><p><a href="tel:%s">%s</a></p></td>',
+							  preg_replace( '/\D/', '', $p ), $p );
+
+		$output .= '</tr>';
+		
+		return $output;
+	}
+	
+	// Create array of json map data for google map
+	private function json_map_data( $data, $param ) {
+		$map_data = array();
+		
+		foreach( $data as $item ) {
+			$map_item = array();
+			// Map item title
+			$map_item['title'] = $item->{'title'}->{'$t'};
+			
+			$map_content = $item->{'content'}->{'$t'};
+			$map_content_array = explode( ',', $map_content );
+			
+			$city = str_replace( 'city: ', '', $map_content_array[3] );
+			$state = str_replace( 'state: ', '', $map_content_array[4] );
+			$zip = str_replace( 'zip: ', '', $map_content_array[5] );
+			
+			$map_item['address1'] = str_replace( 'address: ', '', $map_content_array[2] );
+			$map_item['address2'] = $city .', '. $state .' '. $zip;
+			
+			// Get last 2 items in array, which is Latitude & Longitude
+			$lat_long_array = array_slice( $map_content_array, -2 );
+			$map_item['lat'] = str_replace( 'latitude: ', '', $lat_long_array[0] );
+			$map_item['lng'] = str_replace( 'longitude: ', '', $lat_long_array[1] );
+			
+			// Create link to google maps using church title and city
+			$url_part = $map_item['title'] .' '. $city;
+			$map_item['url'] = sprintf( 'https://www.google.com/maps/place/%s/@%s,%s', 
+									   urlencode( $url_part ), $map_item['lat'], $map_item['lng'] );
+			
+			$location = str_replace( 'location: ', '', $map_content_array[0] );
+			
+			if( !empty( $param ) ) {
+				// If the location matches the location param add item to array
+				if( $location == $param ) {
+					$map_data[] = $map_item;
+				}
+			} else {
+				// Otherwise add all map_item to map_data array to display all churches
+				$map_data[] = $map_item;
+			}
+		}
+		
+		// Return the json array to be used in render function
+		return json_encode( $map_data );
+	}
+	
+	// Create all javascript using google-maps-api, google-map-info-box, & markerclusterer.
+	// Add json_map_data function above as variable in myData.
+	private function map_script( $json_array ) {
+		ob_start(); 
+
+		/********** Unminified code displayed here for editing.
+		/********** Minified code below used for production.
+		/********** Make edits to the UNMINIFIED code only, then reminify and replace code below
+		/********** Remember the mapData array is using the php $json_array variable.
+		
+		/*function initChurchesMap() {
+
+			// Properties Array
+			var mapData = <?php //echo $json_array; ?>
+
+			var location_center = new google.maps.LatLng(mapData[0].lat,mapData[0].lng);
+
+			var mapOptions = {
+				zoom: 15,
+				maxZoom: 18,
+				scrollwheel: false
+			}
+
+			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+			var bounds = new google.maps.LatLngBounds();
+
+			// Loop to generate marker and infowindow based on mapData array
+			var markers = new Array();
+			var info_windows = new Array();
+
+			for (var i=0; i < mapData.length; i++) {
+
+				markers[i] = new google.maps.Marker({
+					position: new google.maps.LatLng(mapData[i].lat,mapData[i].lng),
+					map: map,
+					title: mapData[i].title,
+					animation: google.maps.Animation.DROP,
+					visible: true
+				});
+
+				bounds.extend(markers[i].getPosition());
+
+				var boxText = document.createElement("div");
+				boxText.className = 'map-info-window';
+
+				var innerHTML = "";
+				innerHTML += '<div class="prop-title">' + mapData[i].title + '</div>';
+				innerHTML += '<div class="prop-address">' + mapData[i].address1 + '<br>'+ mapData[i].address2 +'</div>';
+				innerHTML += '<div class="prop-link"><a href="' + mapData[i].url + '" target="_blank">Get Directions</a></div>';
+				innerHTML += '<div class="arrow-down"></div>';
+
+				boxText.innerHTML = innerHTML;
+
+				var myOptions = {
+					content: boxText,
+					disableAutoPan: true,
+					maxWidth: 0,
+					alignBottom: true,
+					pixelOffset: new google.maps.Size( -122, -48 ),
+					zIndex: 10,
+					closeBoxMargin: "0",
+					closeBoxURL: "<?php echo get_template_directory_uri() . '/images/map/close.png'; ?>",
+					infoBoxClearance: new google.maps.Size( 1, 1 ),
+					isHidden: false,
+					pane: "floatPane",
+					enableEventPropagation: false
+				};
+
+				var ib = new InfoBox( myOptions );
+
+				attachInfoBoxToMarker( map, markers[i], ib );
+			}
+
+			map.fitBounds(bounds);
+
+			// Marker Clusters
+			var markerClustererOptions = {
+				ignoreHidden: true,
+				maxZoom: 16,
+				styles: [{
+					textColor: '#ffffff',
+					url: "<?php echo get_template_directory_uri() . '/images/map/cluster-icon.png'; ?>",
+					height: 48,
+					width: 48
+				}]
+			};
+
+			var markerClusterer = new MarkerClusterer( map, markers, markerClustererOptions );
+
+			function attachInfoBoxToMarker( map, marker, infoBox ){
+				google.maps.event.addListener( marker, 'click', function(){
+					var scale = Math.pow( 2, map.getZoom() );
+					var offsety = ( (100/scale) || 0 );
+					var projection = map.getProjection();
+					var markerPosition = marker.getPosition();
+					var markerScreenPosition = projection.fromLatLngToPoint( markerPosition );
+					var pointHalfScreenAbove = new google.maps.Point( markerScreenPosition.x, markerScreenPosition.y - offsety );
+					var aboveMarkerLatLng = projection.fromPointToLatLng( pointHalfScreenAbove );
+					map.setCenter( aboveMarkerLatLng );
+					infoBox.open( map, marker );
+				});
+			}
+
+		}
+		google.maps.event.addDomListener(window,"load",initChurchesMap);*/
+			
+		//********* Production minified code taken from above.
+		//********* Only edit the js above then reminify and replace this minified code
+		?>
+		<script async defer type="text/javascript">
+		$(document).ready(function() {
+			$('#sortable-table').DataTable({
+				"pageLength": 25,
+				"lengthMenu": [ [25, 50, 100, -1], [25, 50, 100, "All"] ]
+			});
+			/*function paginateScroll() {
+				$('html, body').animate({ scrollTop: $(".dataTables_wrapper").offset().top - 100 }, 500);
+				$(".paginate_button").unbind('click', paginateScroll); $(".paginate_button").bind('click', paginateScroll);
+			}paginateScroll();*/
+		} );
+		function initChurchesMap(){function e(e,o,n){google.maps.event.addListener(o,"click",function(){var t=Math.pow(2,e.getZoom()),a=100/t||0,i=e.getProjection(),r=o.getPosition(),l=i.fromLatLngToPoint(r),s=new google.maps.Point(l.x,l.y-a),g=i.fromPointToLatLng(s);e.setCenter(g),n.open(e,o)})}for(var o=<?php echo $json_array; ?>,n=(new google.maps.LatLng(o[0].lat,o[0].lng),{zoom:15,maxZoom:18,scrollwheel:!1}),t=new google.maps.Map(document.getElementById("map"),n),a=new google.maps.LatLngBounds,i=new Array,r=(new Array,0);r<o.length;r++){i[r]=new google.maps.Marker({position:new google.maps.LatLng(o[r].lat,o[r].lng),map:t,title:o[r].title,animation:google.maps.Animation.DROP,visible:!0}),a.extend(i[r].getPosition());var l=document.createElement("div");l.className="map-info-window";var s="";s+='<div class="prop-title">'+o[r].title+"</div>",s+='<div class="prop-address">'+o[r].address1+"<br>"+o[r].address2+"</div>",s+='<div class="prop-link"><a href="'+o[r].url+'" target="_blank">Get Directions</a></div>',s+='<div class="arrow-down"></div>',l.innerHTML=s;var g={content:l,disableAutoPan:!0,maxWidth:0,alignBottom:!0,pixelOffset:new google.maps.Size(-122,-48),zIndex:10,closeBoxMargin:"0",closeBoxURL:"<?php echo get_template_directory_uri() . '/images/map/close.png'; ?>",infoBoxClearance:new google.maps.Size(1,1),isHidden:!1,pane:"floatPane",enableEventPropagation:!1},d=new InfoBox(g);e(t,i[r],d)}t.fitBounds(a);var p={ignoreHidden:!0,maxZoom:16,styles:[{textColor:"#ffffff",url:"<?php echo get_template_directory_uri() . '/images/map/cluster-icon.png'; ?>",height:48,width:48}]};new MarkerClusterer(t,i,p)}google.maps.event.addDomListener(window,"load",initChurchesMap);
+		</script>
+		<?php
+		
+		return ob_get_clean();
+	}
+	
+	// Shortcode CSS
+	private function css() {
+		ob_start(); ?>
+		<style type="text/css">
+			.church-filters .option-bar.small { float: right; }
+			.church-filters .full-list { color: #999; font-size: 14px; }
+			.church-filters .selectwrap { display:inline-block; }
+			.selectbox-wrapper { border-bottom: 2px solid #dedede; }
+			.selectbox-wrapper ul { margin: 0 !important; }
+			.selectbox-wrapper ul li { padding: 4px 8px; }
+			.selectbox-wrapper ul li:first-child { display: none; }
+			.selectwrap input { margin-bottom: 0; }
+			#church-map { padding-bottom: 30px; }
+			#church-map #map { width: 100%; height: 400px; }
+			.church-filters { padding-top: 20px; padding-bottom: 20px; border-top: 1px solid #ddd; margin-top: 30px; }
+			.church-filters .viewing { padding-top: 2px; }
+			.table-bordered { border-collapse: collapse; }
+			.church-item .website { text-align: center; }
+			.church-item .btn-sm { padding: 1px 7px; margin-top: 8px; letter-spacing: .05em; font-size: 12px; font-weight: 400; color: #02888f; }
+			.church-item a { color: #02888f; }
+			.denomination small, .church-filters .viewing, .church-filters span.label-text { color: #999; }
+			.church-item .phone a, .church-item .phone a:hover, .church-item .phone a:active { color: #555; }
+			.church-item .address a { font-size: 14px; }
+			#map-container { background: url("<?php echo TBB_FUNCTIONS_URL; ?>images/loader.gif") no-repeat center center #f4f4f4; }
+			#map .map-info-window { position: relative; background: #fff; width: 244px; border-bottom: 3px #4dc7ec solid; margin-bottom: 17px; box-shadow: 2px 5px 10px rgba(0,0,0,.25); }
+			#map .map-info-window .prop-title { margin: 0; padding: 10px; text-align: center; font-size: 14px; }
+			#map .map-info-window .prop-address, #map .map-info-window .prop-link { text-align: center; padding-bottom: 10px; font-size: 12px; }
+			#map .map-info-window .arrow-down { width: 0; height: 0; border-style: solid; border-width: 10px 10px 0; border-color: #4dc7ec transparent transparent; position: absolute; bottom: -13px; left: 112px; }
+			#map .infoBox img { z-index: 10; }
+			.dataTables_length select { width: auto; margin: 0 5px; }
+			table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled { background-repeat: no-repeat; background-position: center right; }
+			table.dataTable thead .sorting_asc { background-image: url("<?php echo TBB_FUNCTIONS_URL; ?>images/sort_asc.png"); }
+			table.dataTable thead .sorting_desc { background-image: url("<?php echo TBB_FUNCTIONS_URL; ?>images/sort_desc.png") }
+			table.dataTable thead .sorting { background-image: url("<?php echo TBB_FUNCTIONS_URL; ?>images/sort_both.png"); }
+			table.dataTable thead .sorting.address, table.dataTable thead .sorting.contact { background-image: none; }
+			table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc { cursor: pointer; }
+			.dataTables_wrapper .dataTables_length { float: left; margin-bottom: 7px; }
+			.dataTables_wrapper .dataTables_filter { float: right; margin-bottom: 7px; }
+			.dataTables_wrapper .dataTables_filter input { margin-bottom: 0; margin-left: 5px; }
+			.dataTables_wrapper .dataTables_info { clear: both; float: left; font-size: 14px; }
+			.dataTables_wrapper .dataTables_paginate { float: right;text-align: right; font-size: 14px; }
+			.dataTables_wrapper .dataTables_paginate .paginate_button { color: #555; box-sizing: border-box; display: inline-block; padding: 1px 10px; margin-left: 5px; text-align: center; text-decoration: none !important; cursor: pointer; border: 1px solid transparent; border-radius: 2px; }
+			.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active { cursor: default; border: 1px solid transparent; background: transparent; box-shadow: none; }
+			.dataTables_wrapper .dataTables_paginate .paginate_button:hover { background: #e8e8e8; border: 1px solid #ddd; }
+			.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover { color: #fff !important; border: 1px solid #02888f; background-color: #02888f; }
+		</style>
+		<?php
+		$css = ob_get_clean();
+		echo $css;
+	}
+	
+}
+new TBB_Churches_List();

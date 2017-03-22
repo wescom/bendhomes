@@ -109,7 +109,7 @@ class Rets_Agents {
 		}
 
 		$searchString = '';
-		$searchString = $_GET['search'];
+		$searchString = trim( $_GET['search'] );
 		
 		if ($searchString == '') {
 			$query = "
@@ -131,7 +131,8 @@ class Rets_Agents {
 				Office_OFFI.StreetAddress,
 				Office_OFFI.StreetCity,
 				Office_OFFI.StreetState,
-				Office_OFFI.StreetZipCode
+				Office_OFFI.StreetZipCode,
+				Office_OFFI.featured
 				FROM ActiveAgent_MEMB
 				LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 				LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
@@ -160,11 +161,13 @@ class Rets_Agents {
 				Office_OFFI.StreetAddress,
 				Office_OFFI.StreetCity,
 				Office_OFFI.StreetState,
-				Office_OFFI.StreetZipCode
+				Office_OFFI.StreetZipCode,
+				Office_OFFI.featured
 				FROM ActiveAgent_MEMB
 				LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 				LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
-				WHERE ActiveAgent_MEMB.OfficeNumber <> 99999 AND ActiveAgent_MEMB.FullName LIKE '%{$searchString}%'
+				WHERE ActiveAgent_MEMB.OfficeNumber <> 99999
+				AND ActiveAgent_MEMB.FullName LIKE '%{$searchString}%'
 				{$sort_order}
 				LIMIT {$limit}
 			";
@@ -180,6 +183,20 @@ class Rets_Agents {
 		
 		//print_r( $agents );
 		
+		if( empty( $show_search ) ) {
+			
+			$html .= '<div class="custom-search-wrap">';
+				$html .= '
+					<form role="search" action="'. site_url('/') .'agents" method="get" id="searchform">
+						<input type="text" class="search-field" name="search" placeholder="Find an agent"/>
+						<input type="hidden" name="post_type" value="agent" />
+						<input type="submit" class="btn real-btn" alt="Search" value="Search" />
+					</form>
+				';
+			$html .= '</div>';
+
+		}
+		
 		if( $agents ) {
 			
 			$total_agents = count( $agents );
@@ -189,22 +206,6 @@ class Rets_Agents {
 			$count = 1;
 			
 			$html .= '<div class="custom-posts-wrapper post-agent rets-agents"><div class="custom-posts-container clearfix">';
-			
-				//$html .= '<div style="padding: 0 10px; color: #999;">'. number_format( $total_agents ) .' Total Agents</div>';
-			
-				if( empty( $show_search ) ) {
-			
-					$html .= '<div class="custom-search-wrap">';
-						$html .= '
-							<form role="search" action="'. site_url('/') .'agents" method="get" id="searchform">
-								<input type="text" class="search-field" name="search" placeholder="Find an agent"/>
-								<input type="hidden" name="post_type" value="agent" />
-								<input type="submit" class="btn real-btn" alt="Search" value="Search" />
-							</form>
-						';
-					$html .= '</div>';
-
-				}
 
 				$current_url = $this->get_current_url();
 			
@@ -237,7 +238,7 @@ class Rets_Agents {
 										
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
 					
-					if( !empty( $agent['images'] ) ) {
+					if( !empty( $agent['images'] ) && $agent['featured'] == 1 ) {
 						$has_image_class = 'width-image';
 						$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['images'];
 					} else {
@@ -274,10 +275,10 @@ class Rets_Agents {
 					$count++;
 					
 				}
+						
+		} else {
 			
-			
-			
-			//$html .= sprintf( '</div>%s</div>', $this->pagination( $limit, $total_agents, '3' ) );
+			$html .= '<div>Sorry, your search returned 0 results. Please try modifying your search and try again.</div>';
 			
 		}
 		
@@ -332,7 +333,7 @@ class Rets_Agent {
 		extract( $defaults );
 
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $member_number;
-		$id = mysql_real_escape_string( floatval( $id ) );
+		$id = trim( floatval( $id ) );
 
 		$query = "
 			SELECT ActiveAgent_MEMB.FullName,
@@ -353,7 +354,8 @@ class Rets_Agent {
 			Office_OFFI.StreetAddress,
 			Office_OFFI.StreetCity,
 			Office_OFFI.StreetState,
-			Office_OFFI.StreetZipCode
+			Office_OFFI.StreetZipCode,
+			Office_OFFI.featured
 			FROM ActiveAgent_MEMB
 			LEFT JOIN Agent_MEMB on ActiveAgent_MEMB.MemberNumber = Agent_MEMB.MemberNumber
 			LEFT JOIN Office_OFFI on ActiveAgent_MEMB.OfficeNumber = Office_OFFI.OfficeNumber
@@ -368,11 +370,8 @@ class Rets_Agent {
 
 			//print_r( $agent );
 
-			$category_classes = 'not_featured';
-			if ($agent['ActiveAgent_MEMB.featured'] == 1 || $agent['Office_OFFI.featured']) {
-					$category_classes = 'featured';
-			}
-			//$category_classes = $agent['ActiveAgent_MEMB.featured'] == 1 ? 'featured' : 'not-featured';
+			$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
+			
 			if( !empty( $agent['theImage'] ) ) {
 				$has_image_class = 'width-image';
 				$image_url = home_url() .'/_retsapi/imagesAgents/'. $agent['theImage'];
@@ -403,9 +402,10 @@ class Rets_Agent {
 
 				$html .= '<div class="agent-info-wrap"><div class="row-fluid">';
 
-					
-					$html .= sprintf('<div class="span4"><img src="%s" alt="%s" width="" height="" class="alignleft" /></div>', 
-									 $image_url, $agent['FullName'] );
+					if( $agent['featured'] == 1 ) {
+						$html .= sprintf('<div class="span4"><img src="%s" alt="%s" width="" height="" class="alignleft" /></div>', 
+										 $image_url, $agent['FullName'] );
+					}
 
 					$html .= sprintf('<div class="span8"><h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
@@ -418,24 +418,28 @@ class Rets_Agent {
 							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Office)</small></div>', 
 											$this->phone_link($office_phone), $office_phone );
 			
-						if ( !empty($agent_cell) )
-							$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Cell)</small></div>', 
-											$this->phone_link($agent_cell), $agent_cell );
-			
-						if ( !empty($agent_fax) )
-							$html .= sprintf( '<div class="office">%s <small>(Fax)</small></div>', 
-											$agent_fax );
+						if( $agent['featured'] == 1 ) {
+							if ( !empty($agent_cell) )
+								$html .= sprintf( '<div class="office"><a href="tel:%s">%s</a> <small>(Cell)</small></div>', 
+												$this->phone_link($agent_cell), $agent_cell );
+
+							if ( !empty($agent_fax) )
+								$html .= sprintf( '<div class="office">%s <small>(Fax)</small></div>', 
+												$agent_fax );
+						}
 			
 					$html .=  '</div></div>';
 
 				$html .= '</div></div>';
-					
-				$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
+			
+				if( $agent['featured'] == 1 ) {		
+					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
-					// Output property listings for agent via next shortcode built below
-					$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
+						// Output property listings for agent via next shortcode built below
+						$html .= do_shortcode(' [rets_agent_listings agent_id="'. $id .'" class="agent-properties"] ');
 
-				$html .= '</div></div></div>';
+					$html .= '</div></div></div>';
+				}
 
 			$html .= '</div>';
 
@@ -509,6 +513,8 @@ class Rets_Agent_Listings {
 				$cols = "one";
 				break;
 		}
+		
+		$agent_id = trim( floatval($agent_id) );
 		
 		$query = "
 			SELECT Property_RESI.MLNumber,
@@ -678,7 +684,7 @@ class Rets_Companies {
 		}
 
 		$searchString = '';
-		$searchString = $_GET['search'];
+		$searchString = trim( $_GET['search'] );
 		//$html .= 'serach: '.$searchString;
 
 		if ($searchString == '') {
@@ -760,9 +766,17 @@ class Rets_Companies {
 										
 					$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
 					
+					$office_name = $company['DisplayName'] == NULL ? $company['OfficeName'] : $company['DisplayName'];
+					
 					if( !empty( $company['images'] ) ) {
 						$has_image_class = 'with-image';
-						$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
+						// If image has full url, i.e. from wordpress media gallery, use it
+						if( filter_var( $company['images'], FILTER_VALIDATE_URL) ) {
+							$image_url = $company['images'];
+						} else {
+							// Otherwise use the image in /_retsapi folder
+							$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
+						}
 					} else {
 						$has_image_class = 'without-image';
 						$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
@@ -779,14 +793,8 @@ class Rets_Companies {
 						$html .= sprintf( '<figure class="custom-post-image image-company-image-%s"><a href="%s"><img src="%s" width="" height="" alt="%s" /></a></figure>', 
 								$count, $permalink, $image_url, $company['OfficeName'] );
 
-						if ($company['DisplayName'] == NULL) {
-							$offDispName = $company['OfficeName'];
-						}else {
-							$offDispName = $company['DisplayName'];
-						}
-
 						$html .= sprintf( '<div class="extra-meta company-meta"><div><h3>%s</h3><div>%s</div></div><a href="tel:%s">%s</a></div>', 
-									$offDispName, $office_address, $this->phone_link( $company['OfficePhoneComplete'] ), $company['OfficePhoneComplete'] );
+									$office_name, $office_address, $this->phone_link( $company['OfficePhoneComplete'] ), $company['OfficePhoneComplete'] );
 					
 						$html .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', $permalink );
 					
@@ -856,7 +864,7 @@ class Rets_Company {
 		extract( $defaults );
 		
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $office_number;
-		$id = mysql_real_escape_string( floatval( $id ) );
+		$id = trim( floatval( $id ) );
 	
 		$query = "
 			SELECT * FROM Office_OFFI 
@@ -871,75 +879,94 @@ class Rets_Company {
 			
 			//print_r( $company );
 			
+			// Is company featured
 			$company_featured = $company['featured'];
 			$category_classes = $company['featured'] == 1 ? 'featured' : 'not-featured';
+			
+			// Office name
+			$office_name = $company['DisplayName'] == NULL ? $company['OfficeName'] : $company['DisplayName'];
 
+			// Office address
 			$office_address = $company['StreetAddress'] .'<br>'. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
 			
-			$html .= '<article class="about-company company-single clearfix"><div class="detail">';
-
-			$html .= '<div class="row-fluid">';
-
-			if( !empty( $company['images'] ) ) {
-				$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
-				$html .= '<div class="span3"><figure class="company-pic">';
-                $html .= '<a title="" href="">';
-                $html .= '<img src="'.$image_url.'"/>';
-                $html .= '</a></figure></div>';
-
-                $html .= '<div class="span9">';
-			} else {
-				$html .= '<div class="span12">';
-			}
-			// Company Contact Info
+			// Office Contact Info
             $company_office_phone = $company['OfficePhoneComplete'];
             $company_office_fax = $company['OfficeFax'];
             $company_office_address = $company['StreetAddress'] .' '. $company['StreetCity'] .', '. $company['StreetState'] .' '. $company['StreetZipCode'];
+			
+			
+			// Start HTML output
+			$html .= '<article class="about-company company-single clearfix"><div class="detail">';
 
-            if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
+				$html .= '<div class="row-fluid">';
 
-            	if ($company['DisplayName'] == NULL) {
-					$offDispName = $company['OfficeName'];
-				}else {
-					$offDispName = $company['DisplayName'];
-				}
+					if( !empty( $company['images'] ) ) {
+						
+						// If image comes from wordpress media gallery, i.e. has a full url, use it
+						if( filter_var( $company['images'], FILTER_VALIDATE_URL) ) {
+							$image_url = $company['images'];
+						} else {
+							// Otherwise use the image from /_retsapi folder
+							$image_url = home_url() .'/_retsapi/imagesOffices/'. $company['images'];
+						}
+						
+						$html .= '<div class="span3">';
+							$html .= '<figure class="company-pic"><img src="'.$image_url.'"/></figure>';
+						$html .= '</div>';
 
-                $html .= '<h1 class="company-featured-'.$company_featured.'">'.$offDispName.'</h1>';
-                                                
-                if(!empty($company_office_address) && $company_featured == 1){
-                    $html .= do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
-                } else {
-					$html .= '<p>'. $company_office_address .'</p>';
-				}
-
-                $html .= '<ul class="contacts-list">';
-                if(!empty($company_office_phone)){
-
-                    $html .= '<li class="office">';
-					$html .= 'Office: '; 
-					if( $company_featured == 1 ) {
-						$html .= '<a href="tel:'. $this->phone_link( $company_office_phone ) .'">'. $company_office_phone .'</a>';
+						$html .= '<div class="span9">';
 					} else {
-						$html .= $company_office_phone;
-					} 
-                    $html .= '</li>';
-                }
-                if(!empty($company_office_fax)){
-                    $html .= '<li class="fax">';
-                    $html .= 'Fax: ';
-                    $html .= $company_office_fax;
-                    $html .= '</li>';
-                }
+						$html .= '<div class="span12">';
+					}
 
-                $html .= '</ul>';
-            }
+					$html .= '<h1 class="company-featured-'.$company_featured.'">'.$office_name.'</h1>';
 
-			$html .= '</div><!-- end span9 or span12 -->';
-			$html .= '</div><!-- end .row-fluid -->';
+					if(!empty($company_office_address) && $company_featured == 1){
+						$html .= do_shortcode('<p>[MAP_LINK address="'. $company_office_address .'"]'. $company_office_address .'[/MAP_LINK]</p>');
+					} else {
+						$html .= '<p>'. $company_office_address .'</p>';
+					}
 
-			$html .= do_shortcode('[rets_company_agents]');
+					if( !empty( $company_office_phone ) || !empty( $company_office_fax ) ) {
 
-			$html .= '</div></article>';			
+						$html .= '<ul class="contacts-list">';
+						if(!empty($company_office_phone)){
+
+							$html .= '<li class="office">';
+							$html .= 'Office: '; 
+							if( $company_featured == 1 ) {
+								$html .= '<a href="tel:'. $this->phone_link( $company_office_phone ) .'">'. $company_office_phone .'</a>';
+							} else {
+								$html .= $company_office_phone;
+							} 
+							$html .= '</li>';
+						}
+						if(!empty($company_office_fax)){
+							$html .= '<li class="fax">';
+							$html .= 'Fax: ';
+							$html .= $company_office_fax;
+							$html .= '</li>';
+						}
+
+						$html .= '</ul>';
+					}
+
+					$html .= '</div><!-- end span9 or span12 -->';
+				$html .= '</div><!-- end .row-fluid -->';
+			
+				// Show office description if office is featured
+				if( $company_featured == 1 && !empty( $company['OfficeDescription'] ) ) {
+					$html .= sprintf( '<div class="row-fluid clearfix office-description">%s</div>', 
+									 wpautop( $company['OfficeDescription'] ) );
+				}
+
+				// Show agents list if office is featured
+				if( $company_featured == 1 ) {
+					$html .= do_shortcode('[rets_company_agents]');
+				}
+
+			$html .= '</div></article>';
+			// End HTML output
 			
 		}
 		
@@ -983,7 +1010,7 @@ class Rets_Company_Agents {
 		);
 
 		$id = !empty( $_GET['id'] ) ? $_GET['id'] : $office_number;
-		$id = mysql_real_escape_string( floatval( $id ) );
+		$id = trim( floatval( $id ) );
 
 		extract( $defaults );
 		
@@ -1179,35 +1206,6 @@ class Rets_Open_Houses {
 				break;
 		}
 		
-		/* Original Query
-		SELECT OpenHouse_OPEN.AgentFirstName,
-		OpenHouse_OPEN.AgentLastName,
-		OpenHouse_OPEN.StartDateTime,
-		OpenHouse_OPEN.TimeComments,
-		OpenHouse_OPEN.MLNumber,
-
-		Property_RESI.MLNumber,
-		Property_RESI.ListingPrice,
-		Property_RESI.imagepref,
-		Property_RESI.StreetNumber,
-		Property_RESI.StreetDirection,
-		Property_RESI.StreetName,
-		Property_RESI.StreetSuffix,
-		Property_RESI.City,
-		Property_RESI.State,
-		Property_RESI.ZipCode,
-		Property_RESI.Bedrooms,
-		Property_RESI.Bathrooms,
-		Property_RESI.ShowAddressToPublic,
-		Property_RESI.PublishToInternet,
-
-		FROM OpenHouse_OPEN
-		LEFT OUTER JOIN Property_RESI on OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
-		WHERE OpenHouse_OPEN.MLNumber = Property_RESI.MLNumber
-		AND ShowAddressToPublic = 1
-		AND PublishToInternet = 1
-		*/
-		
 		$query = "
 			SELECT 
 			OPEN.AgentFirstName,
@@ -1274,7 +1272,7 @@ class Rets_Open_Houses {
 			
 				foreach( $openhouses_array as $openhouse ) {
 					
-					// Get Image
+					// Get Property Image
 					if( !empty( $openhouse['PropertyImage'] ) ) {
 						$has_image_class = 'with-image';
 						$image_url = home_url() .'/_retsapi/imagesProperties/'. $openhouse['PropertyImage'];
@@ -1312,8 +1310,15 @@ class Rets_Open_Houses {
 					$company_image = '';
 					$office_featured_class = $openhouse['featured'] == 1 ? 'featured' : '';
 					if( !empty( $openhouse['OfficeImage'] ) ) {
-						$company_image_url = sprintf( '%s/_retsapi/imagesOffices/%s', home_url(), $openhouse['OfficeImage'] );
-						$company_image = sprintf( '<img src="%s" alt="" class="company-image" />', $company_image_url );
+						// If image comes from wordpress media gallery, i.e. has a full url, use it
+						if( filter_var( $openhouse['OfficeImage'], FILTER_VALIDATE_URL) ) {
+							$company_image_url = $openhouse['OfficeImage'];
+						} else {
+							// Otherwise use the image from /_retsapi folder
+							$company_image_url = home_url() .'/_retsapi/imagesOffices/'. $openhouse['OfficeImage'];
+						}						
+						$company_image = sprintf( '<img src="%s" alt="%s" class="company-image" />', 
+												 $company_image_url, $openhouse['OfficeName'] );
 					}
 					
 					$company_url = sprintf( '%s/%s/?company=%s&id=%s', 

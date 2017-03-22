@@ -1,94 +1,19 @@
 <?php
 // Offices admin page
 
-/*class RETS_Featured_Offices {
-	
-	function __construct() {
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_office_files' ) );
-		//add_action( 'admin_action_offices', array( $this, 'admin_action' ) );
-	}
-
-	function admin_menu() {
-		add_menu_page(
-			'Featured Offices',
-			'Offices',
-			'manage_options',
-			'rets-offices',
-			array( $this, 'render_page' ),
-			'dashicons-building',
-			'20'
-		);
-	}
-	
-	function enqueue_office_files() {
-		wp_enqueue_style( 'company', TBB_FUNCTIONS_URL . 'css/company-settings.css' );
-	}
-	
-	/*function admin_action() {
-		//print_r($_POST);
-		exit();
-	}
-	
-	public function render_page() {
-		
-		$query = "
-			SELECT OF.OfficeName, OF.OfficeDescription, OF.DisplayName, OF.featured,
-			FROM Office_OFFI OF
-			WHERE IsActive = 'T'
-			ORDER BY OfficeName ASC
-		";
-
-		$companies_query = new Rets_DB();
-
-		$companies = $companies_query->select( $query );
-		
-		print_r($companies);
-		
-        $html = '<h1>Test Admin Page</h1>'.$query.'<div class="wrap tbb-company-page">';
-			/*ob_start();
-			include_once( TBB_FUNCTIONS_DIR .'/admin/rets-offices-page.php' );
-			$html .= ob_get_contents();
-			ob_end_clean();
-        $html .= '</div>';
-		
-		echo $html;
-        
-	}
-	
-}
-
-new RETS_Featured_Offices;*/
-
-
-
 
 /*************************** LOAD THE BASE CLASS *******************************
  *******************************************************************************
  * The WP_List_Table class isn't automatically available to plugins, so we need
- * to check if it's available and load it if necessary. In this tutorial, we are
- * going to use the WP_List_Table class directly from WordPress core.
+ * to check if it's available and load it if necessary.
  *
  * IMPORTANT:
  * Please note that the WP_List_Table class technically isn't an official API,
- * and it could change at some point in the distant future. Should that happen,
- * I will update this plugin with the most current techniques for your reference
- * immediately.
- *
- * If you are really worried about future compatibility, you can make a copy of
- * the WP_List_Table class (file path is shown just below) to use and distribute
- * with your plugins. If you do that, just remember to change the name of the
- * class to avoid conflicts with core.
- *
- * Since I will be keeping this tutorial up-to-date for the foreseeable future,
- * I am going to work with the copy of the class provided in WordPress core.
+ * and it could change at some point in the distant future.
  */
 if(!class_exists('WP_List_Table')){
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
-
-
-
 
 /************************** CREATE A PACKAGE CLASS *****************************
  *******************************************************************************
@@ -97,31 +22,13 @@ if(!class_exists('WP_List_Table')){
  * need to define and override some methods so that our data can be displayed
  * exactly the way we need it to be.
  * 
- * To display this example on a page, you will first need to instantiate the class,
- * then call $yourInstance->prepare_items() to handle any data manipulation, then
- * finally call $yourInstance->display() to render the table to the page.
+ * To display offices on a page, we first need to instantiate the class,
+ * then call $ourInstance->prepare_items() to handle any data manipulation, then
+ * finally call $ourInstance->display() to render the table to the page.
  * 
- * Our theme for this list table is going to be movies.
  */
-class TT_Example_List_Table extends WP_List_Table {
-    
-    /** ************************************************************************
-     * Normally we would be querying data from a database and manipulating that
-     * for use in your list table. For this example, we're going to simplify it
-     * slightly and create a pre-built array. Think of this as the data that might
-     * be returned by $wpdb->query()
-     * 
-     * In a real-world scenario, you would make your own custom query inside
-     * this class' prepare_items() method.
-     * 
-     * @var array 
-     **************************************************************************/
+class Office_List_Table extends WP_List_Table {
 
-
-    /** ************************************************************************
-     * REQUIRED. Set up a constructor that references the parent constructor. We 
-     * use the parent reference to set some default configs.
-     ***************************************************************************/
     function __construct(){
         global $status, $page;
                 
@@ -134,90 +41,72 @@ class TT_Example_List_Table extends WP_List_Table {
         
     }
 
-
-    /** ************************************************************************
-     * Recommended. This method is called when the parent class can't find a method
-     * specifically build for a given column. Generally, it's recommended to include
-     * one method for each column you want to render, keeping your package class
-     * neat and organized. For example, if the class needs to process a column
-     * named 'title', it would first see if a method named $this->column_title() 
-     * exists - if it does, that method will be used. If it doesn't, this one will
-     * be used. Generally, you should try to use custom column methods as much as 
-     * possible. 
-     * 
-     * Since we have defined a column_title() method later on, this method doesn't
-     * need to concern itself with any column with a name of 'title'. Instead, it
-     * needs to handle everything else.
-     * 
-     * For more detailed insight into how columns are handled, take a look at 
-     * WP_List_Table::single_row_columns()
-     * 
-     * @param array $item A singular item (one full row's worth of data)
-     * @param array $column_name The name/slug of the column to be processed
-     * @return string Text or HTML to be placed inside the column <td>
-     **************************************************************************/
     function column_default($item, $column_name){
         switch($column_name){
             case 'DisplayName':
-            case 'featured':
-                return $item[$column_name];
+			case 'featured' :
+				return $item[$column_name];
+			case 'images' :
+				return $item[$column_name];
+			case 'OfficeDescription' :
+				return $item[$column_name];
             default:
                 return print_r($item,true); //Show the whole array for troubleshooting purposes
         }
     }
 
-
-    /** ************************************************************************
-     * Recommended. This is a custom column method and is responsible for what
-     * is rendered in any column with a name/slug of 'title'. Every time the class
-     * needs to render a column, it first looks for a method named 
-     * column_{$column_title} - if it exists, that method is run. If it doesn't
-     * exist, column_default() is called instead.
-     * 
-     * This example also illustrates how to implement rollover actions. Actions
-     * should be an associative array formatted as 'slug'=>'link html' - and you
-     * will need to generate the URLs yourself. You could even ensure the links
-     * 
-     * 
-     * @see WP_List_Table::::single_row_columns()
-     * @param array $item A singular item (one full row's worth of data)
-     * @return string Text to be placed inside the column <td> (movie title only)
-     **************************************************************************/
 	function create_slug( $string ) {
 		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
 		return $slug;
 	}
 	
-	
     function column_title($item){
-		
 		$company_url = home_url(). '/company/?company='. $this->create_slug( $item['OfficeName'] );
         
         //Build row actions
         $actions = array(
             'edit' => sprintf('<a href="?page=%s&action=%s&office=%s">Edit</a>',$_REQUEST['page'],'edit',$item['OfficeNumber']),
 			'view' => sprintf('<a href="%s&id=%s" target="_blank">View</a>', $company_url, $item['OfficeNumber'])
-            //'delete'    => sprintf('<a href="?page=%s&action=%s&office=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
         );
+		
+		$star_icon = $item['featured'] == 1 ? '<i class="dashicons dashicons-star-filled"></i>' : '';
         
         //Return the title contents
-        return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
-            /*$1%s*/ $item['OfficeName'],
-            /*$2%s*/ $item['OfficeNumber'],
-            /*$3%s*/ $this->row_actions($actions)
+        return sprintf('%1$s %2$s <span style="color:silver">(id:%3$s)</span>%4$s',
+			/*%1$s*/$star_icon,
+            /*%2$s*/ $item['OfficeName'],
+            /*%3$s*/ $item['OfficeNumber'],
+            /*%4$s*/ $this->row_actions($actions)
         );
     }
+	
+	function column_featured($item) {
+		$featured_icon = !empty( $item['featured'] ) ? 'Featured: <span>Yes</span>' : '';
+		return $featured_icon;
+	}
+	
+	function column_OfficeDescription($item) {
+		$has_desc = !empty( $item['OfficeDescription'] ) ? 'Description: <span>Yes</span>' : '';
+		return $has_desc;
+	}
+	
+	function column_images($item) {
+		$image = '';
+		if( !empty( $item['images'] ) ) {
+			// First: See if the image is from the media gallery
+			if( filter_var( $item['images'], FILTER_VALIDATE_URL) ) {
+				$image_url = $item['images'];
+			} else {
+			// Second: If not use the image from /_retsapi folder
+				$image_url = home_url() .'/_retsapi/imagesOffices/'. $item['images'];
+			}
+			
+			// Return the logo image if there's one set
+			return sprintf('<img src="%s" class="logo" alt="" width="" height="" />', $image_url );
+		}
+	}
 
-
-    /** ************************************************************************
-     * REQUIRED if displaying checkboxes or using bulk actions! The 'cb' column
-     * is given special treatment when columns are processed. It ALWAYS needs to
-     * have it's own method.
-     * 
-     * @see WP_List_Table::::single_row_columns()
-     * @param array $item A singular item (one full row's worth of data)
-     * @return string Text to be placed inside the column <td> (movie title only)
-     **************************************************************************/
+	// Not used. This is if we wanted to create bulk actions
     function column_cb($item){
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
@@ -226,92 +115,42 @@ class TT_Example_List_Table extends WP_List_Table {
         );
     }
 
-
-    /** ************************************************************************
-     * REQUIRED! This method dictates the table's columns and titles. This should
-     * return an array where the key is the column slug (and class) and the value 
-     * is the column's title text. If you need a checkbox for bulk actions, refer
-     * to the $columns array below.
-     * 
-     * The 'cb' column is treated differently than the rest. If including a checkbox
-     * column in your table you must create a column_cb() method. If you don't need
-     * bulk actions or checkboxes, simply leave the 'cb' entry out of your array.
-     * 
-     * @see WP_List_Table::::single_row_columns()
-     * @return array An associative array containing column information: 'slugs'=>'Visible Titles'
-     **************************************************************************/
     function get_columns(){
         $columns = array(
-            'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-            'title'     => 'RETS Office Name',
-            'DisplayName'    => 'Display Name',
-            'featured'  => 'Featured'
+            //'cb' => '<input type="checkbox" />', // Not used. Only needed for bulk actions
+            'title' => 'RETS Office Name',
+            'DisplayName' => 'Display Name',
+			'featured' => 'Featured',
+			'OfficeDescription' => 'Description',
+			'images' => 'Logo'
         );
         return $columns;
     }
 
-
-    /** ************************************************************************
-     * Optional. If you want one or more columns to be sortable (ASC/DESC toggle), 
-     * you will need to register it here. This should return an array where the 
-     * key is the column that needs to be sortable, and the value is db column to 
-     * sort by. Often, the key and value will be the same, but this is not always
-     * the case (as the value is a column name from the database, not the list table).
-     * 
-     * This method merely defines which columns should be sortable and makes them
-     * clickable - it does not handle the actual sorting. You still need to detect
-     * the ORDERBY and ORDER querystring variables within prepare_items() and sort
-     * your data accordingly (usually by modifying your query).
-     * 
-     * @return array An associative array containing all the columns that should be sortable: 'slugs'=>array('data_values',bool)
-     **************************************************************************/
     function get_sortable_columns() {
         $sortable_columns = array(
-            'title'     => array('OfficeName',false),     //true means it's already sorted
+            'title'     => array('OfficeName',true), //true means it's already sorted
             'DisplayName'    => array('DisplayName',false),
             'featured'  => array('featured',false)
         );
         return $sortable_columns;
     }
 
-
-    /** ************************************************************************
-     * Optional. If you need to include bulk actions in your list table, this is
-     * the place to define them. Bulk actions are an associative array in the format
-     * 'slug'=>'Visible Title'
-     * 
-     * If this method returns an empty value, no bulk action will be rendered. If
-     * you specify any bulk actions, the bulk actions box will be rendered with
-     * the table automatically on display().
-     * 
-     * Also note that list tables are not automatically wrapped in <form> elements,
-     * so you will need to create those manually in order for bulk actions to function.
-     * 
-     * @return array An associative array containing all the bulk actions: 'slugs'=>'Visible Titles'
-     **************************************************************************/
-    function get_bulk_actions() {
+    // Not used. This is where the bulk actions would be defined IF we used them.
+    /*function get_bulk_actions() {
         $actions = array(
             'featured'    => 'Featured'
         );
         return $actions;
-    }
+    }*/
 
-
-    /** ************************************************************************
-     * Optional. You can handle your bulk actions anywhere or anyhow you prefer.
-     * For this example package, we will handle it in the class to keep things
-     * clean and organized.
-     * 
-     * @see $this->prepare_items()
-     **************************************************************************/
-    function process_bulk_action() {
-        
+    // Not used. This is where the bulk actions would be processed if we used them.
+    /*function process_bulk_action() {  
         //Detect when a bulk action is being triggered...
         if( 'featured'===$this->current_action() ) {
             //wp_die('Items deleted (or they would be if we had items to delete)!');
-        }
-        
-    }
+        } 
+    }*/
 
 
     /** ************************************************************************
@@ -330,52 +169,24 @@ class TT_Example_List_Table extends WP_List_Table {
      * @uses $this->set_pagination_args()
      **************************************************************************/
     function prepare_items() {
-        //global $wpdb; //This is used only if making any database queries
-
-
-        /**
-         * First, lets decide how many records per page to show
-         */
+        
+		// First, lets decide how many records per page to show
         $per_page = 50;
         
-        
-        /**
-         * REQUIRED. Now we need to define our column headers. This includes a complete
-         * array of columns to be displayed (slugs & titles), a list of columns
-         * to keep hidden, and a list of columns that are sortable. Each of these
-         * can be defined in another method (as we've done here) before being
-         * used to build the value for our _column_headers property.
-         */
+        // REQUIRED. Now we need to define our column headers.
         $columns = $this->get_columns();
         $hidden = array();
         $sortable = $this->get_sortable_columns();
         
-        
-        /**
-         * REQUIRED. Finally, we build an array to be used by the class for column 
-         * headers. The $this->_column_headers property takes an array which contains
-         * 3 other arrays. One for all columns, one for hidden columns, and one
-         * for sortable columns.
-         */
+        // REQUIRED. Finally, we build an array to be used by the class for column 
         $this->_column_headers = array($columns, $hidden, $sortable);
         
-        
-        /**
-         * Optional. You can handle your bulk actions however you see fit. In this
-         * case, we'll handle them within our package just to keep things clean.
-         */
-        $this->process_bulk_action();
-        
-        
-        /**
-         * Instead of querying a database, we're going to fetch the example data
-         * property we created for use in this plugin. This makes this example 
-         * package slightly different than one you might build on your own. In 
-         * this example, we'll be using array manipulation to sort and paginate 
-         * our data. In a real-world implementation, you will probably want to 
-         * use sort and pagination data to build a custom query instead, as you'll
-         * be able to use your precisely-queried data immediately.
-         */
+        // This is where the bulk actions would run if we used them.
+        //$this->process_bulk_action();
+		
+		$offices_query = new Rets_DB();
+		
+        // If the search box is used display matching offices in List Table
 		$search = ( isset( $_REQUEST['s'] ) ) ? "AND Office_OFFI.OfficeName LIKE '%". trim($_REQUEST['s']) ."%'" : "";
 		
 		$query = "
@@ -391,20 +202,10 @@ class TT_Example_List_Table extends WP_List_Table {
 			{$search}
 		";
 		
-		$offices_query = new Rets_DB();
-		
 		// Builds our array of Offices
-		$data = $offices_query->select( $query );
-                
+		$data = $offices_query->select( $query );       
         
-        /**
-         * This checks for sorting input and sorts the data in our array accordingly.
-         * 
-         * In a real-world situation involving a database, you would probably want 
-         * to handle sorting by passing the 'orderby' and 'order' values directly 
-         * to a custom query. The returned data will be pre-sorted, and this array
-         * sorting technique would be unnecessary.
-         */
+        // This checks for sorting input and sorts the data in our array accordingly.
         function usort_reorder($a,$b){
             $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'OfficeName'; //If no sort, default to title
             $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
@@ -413,53 +214,25 @@ class TT_Example_List_Table extends WP_List_Table {
         }
         usort($data, 'usort_reorder');
         
-        
-        /***********************************************************************
-         * ---------------------------------------------------------------------
-         * vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-         * 
-         * In a real-world situation, this is where you would place your query.
-         *
-         * For information on making queries in WordPress, see this Codex entry:
-         * http://codex.wordpress.org/Class_Reference/wpdb
-         * 
-         * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-         * ---------------------------------------------------------------------
-         **********************************************************************/
-        
-                
-        /**
-         * REQUIRED for pagination. Let's figure out what page the user is currently 
-         * looking at. We'll need this later, so you should always include it in 
-         * your own package classes.
-         */
+        // REQUIRED for pagination. Let's figure out what page the user is currently looking at.
         $current_page = $this->get_pagenum();
         
-        /**
-         * REQUIRED for pagination. Let's check how many items are in our data array. 
-         * In real-world use, this would be the total number of items in your database, 
-         * without filtering. We'll need this later, so you should always include it 
-         * in your own package classes.
-         */
+        // REQUIRED for pagination. Let's check how many items are in our data array.
         $total_items = count($data);
-        
         
         /**
          * The WP_List_Table class does not handle pagination for us, so we need
          * to ensure that the data is trimmed to only the current page. We can use
-         * array_slice() to 
+         * array_slice() for this
          */
         $data = array_slice($data,(($current_page-1)*$per_page),$per_page);
-        
-        
         
         /**
          * REQUIRED. Now we can add our *sorted* data to the items property, where 
          * it can be used by the rest of the class.
          */
         $this->items = $data;
-        
-        
+           
         /**
          * REQUIRED. We also have to register our pagination options & calculations.
          */
@@ -482,12 +255,29 @@ class Edit_Rets_Office {
 	protected $office;
 				
 	function __construct() {
-		$this->id = isset($_GET['office']) ? mysql_real_escape_string( floatval($_GET['office']) ) : 0;
-		wp_enqueue_media();
+		// Get office ID from url
+		$this->id = isset($_GET['office']) ? floatval($_GET['office']) : 0;
+				
+		// Enqueue up additional files for Media Manager and TinyMCE
+		if ( !did_action('wp_enqueue_media') ) wp_enqueue_media();
+		wp_enqueue_script('tiny_mce');
+		wp_enqueue_script('editor');
+		wp_enqueue_script('editor-functions');
+		add_thickbox();
+				
+		// Post action using save_office() function
+		if ( !empty($_POST['action']) && $_POST['action'] === 'office_update' ) {
+			// Do save function
+			$this->save_office();
+		}
 	}
 	
-	public function get_office_array() {
-		$id = $this->id;
+	// Get the office ID from the url
+	private function get_office_array() {
+		$offices_query = new Rets_DB();
+		
+		$id = $offices_query->quote( $this->id );
+		
 		$query = "
 			SELECT IsActive,
 			OfficeNumber,
@@ -500,30 +290,60 @@ class Edit_Rets_Office {
 			WHERE OfficeNumber = {$id}
 		";
 
-		$offices_query = new Rets_DB();
-
 		// Get the office
 		$office_array = $offices_query->select( $query );
 		
 		return $office_array[0];
 	}
 	
-	public function css() {
+	public function rets_name() {
+		return $this->get_office_array()['OfficeName'];
+	}
+	
+	public function rets_id() {
+		return $this->get_office_array()['OfficeNumber'];
+	}
+	
+	public function rets_displayname() {
+		return $this->get_office_array()['DisplayName'];
+	}
+	
+	public function rets_isfeatured() {
+		return $this->get_office_array()['featured'];
+	}
+	
+	public function rets_image() {
+		return $this->get_office_array()['images'];
+	}
+	
+	public function rets_description() {
+		return $this->get_office_array()['OfficeDescription'];
+	}
+	
+	private function create_slug( $string ) {
+		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
+		return $slug;
+	}
+	
+	private function css() {
 		$css = '';
 		$css .= '<style type="text/css">';
 			$css .= '.edit-office-wrap h3 { color: #888; font-weight: normal; }';
 			$css .= '.edit-office-wrap h3 span { color: #333; font-weight: bold; }';
 			$css .= 'a.view-office { margin-left: 10px !important; }';
-			$css .= '.image-wrap { width: 60px; height: 60px; float: left; margin-right: 10px; }';
+			$css .= '.image-wrap { width: 100px; height: 100px; float: left; margin-right: 10px; }';
+			$css .= '.widefat th, .widefat td { padding-top: 15px; padding-bottom: 15px; }';
 		$css .= '</style>';
 		echo $css;
 	}
 	
-	public function js() {
+	// Loads the media modal when selecting a logo, 
+	// then puts image url into hidden input field and placeholder image src
+	private function js() {
 		$js = '';
 		$js .= '<script type="text/javascript">';
 			$js .= "jQuery(document).ready(function($) {
-					$('.office_logo_upload').click(function(e) {
+					$('#office-logo-upload').click(function(e) {
 						e.preventDefault();
 
 						var custom_uploader = wp.media({
@@ -535,8 +355,8 @@ class Edit_Rets_Office {
 						})
 						.on('select', function() {
 							var attachment = custom_uploader.state().get('selection').first().toJSON();
-							$('.office_logo').attr('src', attachment.url);
-							$('.office_logo_url').val(attachment.url);
+							$('#office-image-placeholder').attr('src', attachment.url);
+							$('#office-images').val(attachment.url);
 
 						})
 						.open();
@@ -546,51 +366,104 @@ class Edit_Rets_Office {
 		echo $js;
 	}
 	
+	// Sets the checkbox to checked or not depending if the database value is 1 or 0
 	private function is_checked( $input ) {
 		$is_checked = $input == 1 ? 'checked' : '';
 		return $is_checked;
 	}
 	
+	// Loads wordpress TinyMCE for textarea
+	private function wysiwyg_editor( $input ) {
+		ob_start();
+		wp_editor( $input, 'officedescription', array('textarea_name' => 'OfficeDescription', 'media_buttons' => false, 'textarea_rows' => 10) );
+		$textarea = ob_get_clean();
+		return $textarea;
+	}
+	
+	// Get the correct logo. Either the one in _retsapi, wordpress media, or placeholder logo.
+	private function placeholder_image( $input ) {
+		$image = '';
+		if( !empty( $input ) ) {
+			// First: See if the image is from the media gallery
+			if( filter_var( $input, FILTER_VALIDATE_URL) ) {
+				return $input;
+			} else {
+			// Second: If not use the image from /_retsapi folder
+				$image = home_url() .'/_retsapi/imagesOffices/'. $input;
+				return $image;
+			}
+		} else {
+			// Third: If neither exist just use a placeholder image
+			$image = TBB_FUNCTIONS_URL .'/images/placeholder.jpg';
+			return $image;
+		}
+	}
+	
+	private function get_office_url( $name, $id ) {
+		$url = home_url(). '/company/?company='. $this->create_slug( $name ).'&id='. $id;
+		return $url;
+	}
+	
+	// Return the nonce instead of straight echoing it by default.
+	private function get_nonce() {
+		ob_start();
+		wp_nonce_field('office_update', 'office_nonce');
+		$nonce = ob_get_clean();
+		return $nonce;
+	}
+	
+	// Render the Edit Office form.
 	public function display_form() {
 		
-		$office = $this->get_office_array();
-		$url = home_url(). '/company/?company='. $this->create_slug( $office['OfficeName'] );
-		
-		print_r($office);
+		//$office = $this->get_office_array();	// All office fields	
+		//print_r($office);
 		
 		$html = '';
 		$html .= $this->css();
 		$html = sprintf( '<div class="edit-office-wrap"><p><a href="%s/wp-admin/admin.php?page=rets-offices">&lsaquo; All Offices</a></p>', 
 						home_url() );
-		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $office['OfficeName'], $office['OfficeNumber'] );
+		$html .= sprintf( '<h3>Editing Office: <span>%s</span> <small>(id: %s)</small></h3>', $this->rets_name(), $this->rets_id() );
 		
-		$html .= sprintf( '<form method="post" action="%s" enctype="multipart/form-data">', admin_url( 'admin.php' ) );
+		$html .= sprintf( '<form method="post" action="%s">', '' );
 			$html .= '<table class="widefat">';
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Display Name:</label></th>
 						<td>
-							<input id="office-DisplayName" class="regular-text wide" type="text" name="office[DisplayName]" value="%s" /> 
+							<input id="office-DisplayName" class="regular-text wide" type="text" name="DisplayName" value="%s" /> 
 						</td>
-					</tr>', $office['DisplayName'] );
+					</tr>', $this->rets_displayname() );
 		
 				
 				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Featured:</label></th>
 						<td>
-							<input id="office-featured" type="checkbox" name="office[featured]" value="%s" %s /> 
+							<input id="office-featured" type="checkbox" name="featured" value="%s" %s /> 
 						</td>
-					</tr>', $office['featured'], $this->is_checked( $office['featured'] ) );
+					</tr>', $this->rets_isfeatured(), $this->is_checked( $this->rets_isfeatured() ) );
 		
 				$html .= sprintf( '<tr valign="top" class="alternate"><th scope="row"><label>Logo:</label></th>
 					<td>
-                        <div class="image-wrap"><img class="office-logo" src="" width="60" height="60"/></div>
-                        <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="office[images]" size="60" value="%s" />
-                        <a href="#" class="office_logo_upload button-secondary">Select Image</a>
+                        <div class="image-wrap"><img id="office-image-placeholder" class="office-logo" src="%s" width="100" height="100"/></div>
+                        <input id="office-images" class="regular-text office_logo_url top-align" type="text" name="images" size="60" value="%s" />
+                        <a href="#" id="office-logo-upload" class="button-secondary">Select Image</a>
 					</td>
-				</tr>', $office['images'] );
+				</tr>', $this->placeholder_image( $this->rets_image() ), $this->rets_image() );
+		
+				$html .= sprintf( '<tr valign="top"><th scope="row"><label>Office Description:</label></th>
+						<td>
+							%s 
+						</td>
+					</tr>', $this->wysiwyg_editor( $this->rets_description() ) );
 		
 			$html .= '</table>';
-			$html .= sprintf( '<p><input type="hidden" name="action" value="office_updated" /><input class="button-primary" type="submit" value="Update Office" /><a class="view-office button" href="%s&id=%s" target="_blank">View Office</a></p>', 
-								 $url, $office['OfficeNumber'] );
+			$html .= sprintf( '<p><input type="hidden" name="action" value="office_update" />
+								<input type="hidden" name="OfficeNumber" value="%s" />
+								%s
+								<input class="button-primary" type="submit" value="Update Office" />
+								<a class="view-office button" href="%s" target="_blank">View Office</a></p>', 
+							 	$this->rets_id(), 
+							 	$this->get_nonce(),
+							 	$this->get_office_url( $this->rets_name(), $this->rets_id() ) 
+					);
 		$html .= '</form></div>';
 		$html .= $this->js();
 		
@@ -598,29 +471,73 @@ class Edit_Rets_Office {
 		
 	}
 	
-	function create_slug( $string ) {
-		$slug = strtolower( preg_replace( '/[^A-Za-z0-9-]+/', '-', $string ) );
-		return $slug;
+	// Update the office on save.
+	public function save_office() {
+		if(!isset( $_POST['office_nonce']) || ! wp_verify_nonce( $_POST['office_nonce'], 'office_update')) :
+            wp_die(new WP_Error(
+                'invalid_nonce', __('Sorry, I\'m afraid you\'re not authorized to do this.')
+            ));
+            exit;
+        endif;
+		
+		$message = '';
+		
+		$db_query = new Rets_DB();
+				
+		// Quote and escape post values to get ready to insert into DB.
+		$OfficeNumber = $db_query->quote( $_POST['OfficeNumber'] );
+		
+		$DisplayName = $db_query->quote( $_POST['DisplayName'] );
+		
+		$featured = isset($_POST["featured"]) ? 1 : 0;
+		
+		$images = $db_query->quote( $_POST['images'] );
+		
+		$OfficeDescription = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $_POST['OfficeDescription'] );
+		$OfficeDescription = "'". strip_tags( $OfficeDescription, '<p><a><br><br/><br /><em><div><ul><ol><li><b><strong><blockquote>') ."'";
+		//$OfficeDescription = str_replace('\&quot;', '', $OfficeDescription);
+		
+		$update_query = "
+			UPDATE Office_OFFI
+			SET DisplayName={$DisplayName},
+			featured={$featured},
+			images={$images},
+			OfficeDescription={$OfficeDescription}
+			WHERE OfficeNumber={$OfficeNumber}
+		";
+
+		// Update the office
+		$update_office = $db_query->query( $update_query );
+				
+		if( $update_office === false ) {
+			$message .= sprintf( '<div class="notice notice-error"><p>Something went wrong. Office not saved. %s</p></div>',
+								$db_query->error($update_query) );
+			//print_r($update_office);
+		} else {
+			$message .= sprintf( '<div class="notice notice-success is-dismissible"><p>%s updated successfully.</p></div>', 
+								$this->rets_name() );
+			//print_r($update_office);
+		}
+		
+		echo $message;		
 	}
 	
 }
 
 
-
-
 /** ************************ REGISTER THE OFFICE PAGE ****************************
  *******************************************************************************
- * Now we just need to define an admin page. For this example, we'll add a top-level
- * menu item to the bottom of the admin menus.
+ * Now we just need to define an admin page. For this, we'll add a top-level
+ * menu item called Offices after the Pages menu.
  */
-add_action('admin_menu', 'tt_add_menu_items');
-function tt_add_menu_items(){
+add_action('admin_menu', 'rets_add_menu_items');
+function rets_add_menu_items(){
     add_menu_page(
 		'Offices', 
 		'Offices', 
-		'activate_plugins', 
+		'edit_posts', 
 		'rets-offices', 
-		'rets_render_list_page', 
+		'rets_render_office_page', 
 		'dashicons-building', 
 		'20'
 	);
@@ -629,42 +546,37 @@ function tt_add_menu_items(){
 
 /** *************************** RENDER OFFICE PAGE ********************************
  *******************************************************************************
- * This function renders the admin page and the example list table. Although it's
- * possible to call prepare_items() and display() from the constructor, there
- * are often times where you may need to include logic here between those steps,
- * so we've instead called those methods explicitly. It keeps things flexible, and
- * it's the way the list tables are used in the WordPress core.
+ * This function renders the admin page and the office list table.
  */
-function rets_render_list_page(){
+function rets_render_office_page() { ?>
 	
-	$action = ( isset ( $_GET["action"] ) && trim ( $_GET["action"] ) == 'edit' ) ? trim ( $_GET["action"] ) : '';
-	
-	?>
 	<style>
-		h2 i:before { vertical-align: baseline !important; color: #02888f; }	
+		h2 i:before { vertical-align: baseline !important; color: #02888f; }
+		.widefat td, .widefat td p, .widefat td ol, .widefat td ul { font-size: 14px; }
+		.column-title i.dashicons { font-size: 16px; color: green; margin-top: 2px; }
+		.widefat td.column-featured, .widefat td.column-OfficeDescription { color: silver; }
+		.widefat td.column-featured span, .widefat td.column-OfficeDescription span { color: green; }
+		.column-images img { width: 50px; max-height: 50px; }
 	</style>
 	<div class="wrap">
-		<h2><i class="dashicons-before dashicons-building"></i> Featured Offices</h2>
+		<h2><i class="dashicons-before dashicons-building"></i> RETS Offices</h2>
 		
 		<?php if( isset ( $_GET["action"] ) && trim ( $_GET["action"] ) == 'edit' ) {
 			
+			// Render the Single Office Edit Page
 			$edit_office_form = new Edit_Rets_Office(); 
 			$edit_office_form->display_form();
 
 		} else {
-
-			//Create an instance of our package class...
-			$officeListTable = new TT_Example_List_Table();
-			//Fetch, prepare, sort, and filter our data...
+		
+			// Render the Office List Table
+			$officeListTable = new Office_List_Table();
 			$officeListTable->prepare_items( $_POST['s'] );
 			?>
 
-			<!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
 			<form id="offices-filter" method="get">
-				<!-- For plugins, we also need to ensure that the form posts back to our current page -->
 				<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
 				<?php $officeListTable->search_box( 'Search', 'office-search' ); ?>
-				<!-- Now we can render the completed list table -->
 				<?php $officeListTable->display() ?>
 			</form>
 
