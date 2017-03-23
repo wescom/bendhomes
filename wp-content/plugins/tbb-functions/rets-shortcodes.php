@@ -1447,3 +1447,78 @@ class Rets_Open_Houses {
 	
 }
 new Rets_Open_Houses();
+
+
+// Display Sold/Pending listings with search form
+class Rets_Sold_Pending {
+	
+	public static $args;
+	
+    public function __construct() {
+		
+        add_shortcode('rets_sold_pending', array($this, 'render'));
+		
+    }
+     
+    public function render( $args ) {
+		
+		$html = '';
+		$defaults = shortcode_atts(
+			array(
+				'class' => '',
+				'columns' => 1,
+				'limit' => '',
+			), $args
+		);
+
+		extract( $defaults );
+		
+		switch( $columns ) {
+			case "6":
+				$cols_per_row = 6;
+				$cols = "six";
+				break;
+			case "5":
+				$cols_per_row = 5;
+				$cols = "five";
+				break;
+			case "4":
+				$cols_per_row = 4;
+				$cols = "four";
+				break;
+			case "3":
+				$cols_per_row = 3;
+				$cols = "three";
+				break;
+			case "2":
+				$cols_per_row = 2;
+				$cols = "two";
+				break;
+			case "1":
+				$cols_per_row = 1;
+				$cols = "one";
+				break;
+		}
+		
+		$query = "";
+		
+		$sp_query = new Rets_DB();
+		
+		$sp_array = $sp_query->select( $query );
+		
+		if( !empty( $limit ) ) {
+			$sp_array = array_slice( $sp_array, 0, $limit );
+		}
+		
+		if( $sp_array ) {
+			
+			$total = count( $sp_array );
+			$total_text = $total == 1 ? 'Sold/Pending Property' : 'Sold/Pending Properties';
+		}
+		
+		return $html;
+		
+	}
+
+}
+new Rets_Sold_Pending();
