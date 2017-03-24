@@ -1467,7 +1467,7 @@ class Rets_Sold_Pending {
 			array(
 				'class' => '',
 				'columns' => 1,
-				'limit' => '',
+				'limit' => '50',
 			), $args
 		);
 
@@ -1500,7 +1500,25 @@ class Rets_Sold_Pending {
 				break;
 		}
 		
-		$query = "";
+		$query = "
+			SELECT RESI.MLNumber,
+			RESI.ListingPrice,
+			RESI.imagepref,
+			RESI.StreetNumber,
+			RESI.StreetDirection,
+			RESI.StreetName,
+			RESI.StreetSuffix,
+			RESI.City,
+			RESI.State,
+			RESI.ZipCode,
+			RESI.Bedrooms,
+			RESI.Bathrooms
+			FROM Property_RESI RESI
+			WHERE Status = 'Sold'
+			OR Status = 'Pending
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+		";
 		
 		$sp_query = new Rets_DB();
 		
