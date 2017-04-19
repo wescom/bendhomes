@@ -97,13 +97,17 @@ if ($result->num_rows > 0) {
 						$agFax = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
 				}
 		}
+	
+		$agClass = !empty( $agImage ) ? '' : ' style="margin-left: 0;"';
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
 		$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
-		$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-		$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
-		$returnText .=  '</a>';
-		$returnText .=  '<div class="agent-info clearfix">';
+		if( !empty( $agImage ) ) {
+			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
+			$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
+			$returnText .=  '</a>';
+		}
+		$returnText .=  '<div class="agent-info clearfix"'. $agClass .'>';
 		$returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
 		$returnText .=  '<div class="contacts-list">';
 		if ($agOfficePhone != "")
@@ -175,13 +179,17 @@ if ($result->num_rows > 0) {
 						$agFax = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
 				}
 		}
+		
+		$agClass = !empty( $agImage ) ? '' : ' style="margin-left: 0;"';
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
 		$returnText .=  '<h3 class="title">Contact an Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
-		$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-		$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
-		$returnText .=  '</a>';
-		$returnText .=  '<div class="agent-info clearfix">';
+		if( !empty( $agImage ) ) {
+			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
+			$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
+			$returnText .=  '</a>';
+		}
+		$returnText .=  '<div class="agent-info clearfix"'. $agClass .'>';
 		$returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
 		$returnText .=  '<div class="contacts-list">';
 		if ($agOfficePhone != "")
