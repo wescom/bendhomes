@@ -98,11 +98,11 @@ if ($result->num_rows > 0) {
 				}
 		}
 	
-		$agClass = !empty( $row['images'] ) ? '' : ' style="margin-left: 0;"';
+		$agClass = $row['images'] == "" ? ' style="margin-left: 0;"' : '';
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
 		$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
-		if( !empty( $row['images'] ) ) {
+		if( $row['images'] != "" ) {
 			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
 			$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
 			$returnText .=  '</a>';
@@ -180,11 +180,11 @@ if ($result->num_rows > 0) {
 				}
 		}
 		
-		$agClass = !empty( $row['images'] ) ? '' : ' style="margin-left: 0;"';
+		$agClass = $row['images'] == "" ? ' style="margin-left: 0;"' : '';
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
 		$returnText .=  '<h3 class="title">Contact an Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
-		if( !empty( $row['images'] ) ) {
+		if( $row['images'] != "" ) {
 			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
 			$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
 			$returnText .=  '</a>';
