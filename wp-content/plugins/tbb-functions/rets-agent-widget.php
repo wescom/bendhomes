@@ -99,11 +99,15 @@ if ($result->num_rows > 0) {
 				}
 		}
 	
+		$agClass = $image == "" ? ' style="margin-left: 0;"' : '';
+	
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
 		$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
-		$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-		$returnText .=  '<!-- '.$image.' --><image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
-		$returnText .=  '</a>';
+		if( $image != "" ) {
+			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
+			$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
+			$returnText .=  '</a>';
+		}
 		$returnText .=  '<div class="agent-info clearfix"'. $agClass .'>';
 		$returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
 		$returnText .=  '<div class="contacts-list">';
@@ -182,11 +186,11 @@ if ($result->num_rows > 0) {
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
 		$returnText .=  '<h3 class="title">Contact an Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
-		//if( $row['images'] != "" ) {
+		if( $image != "" ) {
 			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
 			$returnText .=  '<!-- '.$image.' --><image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
 			$returnText .=  '</a>';
-		//}
+		}
 		$returnText .=  '<div class="agent-info clearfix"'. $agClass .'>';
 		$returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
 		$returnText .=  '<div class="contacts-list">';
