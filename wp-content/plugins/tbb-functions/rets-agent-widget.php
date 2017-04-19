@@ -78,7 +78,8 @@ if ($result->num_rows > 0) {
 				$agPageUrl = str_replace(' ', '-', $agName);
 				$agPageUrl = str_replace('--', '-', $agPageUrl);
 				$agNum = $row['OfficePhoneComplete'];
-				$agImage = str_replace('png', 'jpg', $row['images']);
+				$image = $row['images'];
+				$agImage = str_replace('png', 'jpg', $image);
 				$agImage = $home_url."/_retsapi/imagesAgents/".$agImage;
 				$agOfficeName = $row['OfficeName'];
 				$agOfficePhone = $row['OfficePhoneComplete'];
