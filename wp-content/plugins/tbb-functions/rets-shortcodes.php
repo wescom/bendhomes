@@ -1510,12 +1510,9 @@ class Rets_Sold_Pending {
 			RESI.StreetSuffix,
 			RESI.City,
 			RESI.State,
-			RESI.ZipCode,
-			RESI.Bedrooms,
-			RESI.Bathrooms
+			RESI.ZipCode
 			FROM Property_RESI RESI
-			WHERE Status = 'Sold'
-			OR Status = 'Pending
+			WHERE (Status = 'Sold' OR Status = 'Pending)
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 		";
