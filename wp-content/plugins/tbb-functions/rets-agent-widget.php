@@ -102,7 +102,7 @@ if ($result->num_rows > 0) {
 		$agClass = $image == "" ? ' style="margin-left: 0;"' : '';
 	
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
-		$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
+		$returnText .=  '<h3 class="title">Listing Agent:<div><strong><a href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
 		if( $image != "" ) {
 			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
 			$returnText .=  '<image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
@@ -186,7 +186,7 @@ if ($result->num_rows > 0) {
 		$agClass2 = $image2 == "" ? ' style="margin-left: 0;"' : '';
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
-		$returnText .=  '<h3 class="title">Contact an Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl2.'&id='.$agId2.'">'.$agName2.'</a></strong></div></h3>';
+		$returnText .=  '<h3 class="title">Contact an Agent:<div><strong><a href="'.$home_url.'/agent/?agent='.$agPageUrl2.'&id='.$agId2.'">'.$agName2.'</a></strong></div></h3>';
 		if( $image2 != "" ) {
 			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl2.'&id='.$agId2.'">';
 			$returnText .=  '<image src="'.$agImage2.'" alt="'.$agName2.' for '.$agOfficeName2.'" />';
