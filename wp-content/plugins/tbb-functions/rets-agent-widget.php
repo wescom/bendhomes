@@ -178,7 +178,7 @@ if ($result->num_rows > 0) {
 				}
 		}
 		
-		$agClass = $row['images'] == "" ? ' style="margin-left: 0;"' : '';
+		$agClass = $image == "" ? ' style="margin-left: 0;"' : '';
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
 		$returnText .=  '<h3 class="title">Contact an Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
