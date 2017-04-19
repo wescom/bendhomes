@@ -155,51 +155,52 @@ if ($result->num_rows > 0) {
 	
 	// Show a random featured agent instead if the current property agent is not featured.
 	if ($result2->num_rows > 0) {
-		$agFax = "";
-		while($row = $result2->fetch_assoc()) {
-				$agName = $row['FullName'];
-				$agPageUrl = str_replace(' ', '-', $agName);
-				$agPageUrl = str_replace('--', '-', $agPageUrl);
-				$agNum = $row['OfficePhoneComplete'];
-				$image = $row['images'];
-				$agImage = str_replace('png', 'jpg', $image);
-				$agImage = $home_url."/_retsapi/imagesAgents/".$agImage;
-				$agOfficeName = $row['OfficeName'];
-				$agOfficePhone = $row['OfficePhoneComplete'];
-				if ($row['ContactAddlPhoneType_1'] == 'Cellular'){
-						$agCell = $row['ContactPhoneAreaCode_1']."-".$row['ContactPhoneNumber_1'];
-				} elseif ($row['ContactAddlPhoneType_2'] == 'Cellular'){
-						$agCell = $row['ContactPhoneAreaCode_2']."-".$row['ContactPhoneNumber_2'];
-				} elseif ($row['ContactAddlPhoneType_1'] == 'Cellular'){
-						$agCell = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
+		$agFax2 = "";
+		while($row2 = $result2->fetch_assoc()) {
+				$agId2 = $row2['MemberNumber'];
+				$agName2 = $row2['FullName'];
+				$agPageUrl2 = str_replace(' ', '-', $agName2);
+				$agPageUrl2 = str_replace('--', '-', $agPageUrl2);
+				$agNum2 = $row2['OfficePhoneComplete'];
+				$image2 = $row2['images'];
+				$agImage2 = str_replace('png', 'jpg', $image2);
+				$agImage2 = $home_url."/_retsapi/imagesAgents/".$agImage2;
+				$agOfficeName2 = $row2['OfficeName'];
+				$agOfficePhone2 = $row2['OfficePhoneComplete'];
+				if ($row2['ContactAddlPhoneType_1'] == 'Cellular'){
+						$agCell2 = $row2['ContactPhoneAreaCode_1']."-".$row2['ContactPhoneNumber_1'];
+				} elseif ($row2['ContactAddlPhoneType_2'] == 'Cellular'){
+						$agCell2 = $row2['ContactPhoneAreaCode_2']."-".$row2['ContactPhoneNumber_2'];
+				} elseif ($row2['ContactAddlPhoneType_1'] == 'Cellular'){
+						$agCell2 = $row2['ContactPhoneAreaCode_3']."-".$row2['ContactPhoneNumber_3'];
 				}
-				if ($row['ContactAddlPhoneType_1'] == 'Fax'){
-						$agFax = $row['ContactPhoneAreaCode_1']."-".$row['ContactPhoneNumber_1'];
-				} elseif ($row['ContactAddlPhoneType_2'] == 'Fax'){
-						$agFax = $row['ContactPhoneAreaCode_2']."-".$row['ContactPhoneNumber_2'];
-				} elseif ($row['ContactAddlPhoneType_1'] == 'Fax'){
-						$agFax = $row['ContactPhoneAreaCode_3']."-".$row['ContactPhoneNumber_3'];
+				if ($row2['ContactAddlPhoneType_1'] == 'Fax'){
+						$agFax2 = $row2['ContactPhoneAreaCode_1']."-".$row2['ContactPhoneNumber_1'];
+				} elseif ($row2['ContactAddlPhoneType_2'] == 'Fax'){
+						$agFax2 = $row2['ContactPhoneAreaCode_2']."-".$row2['ContactPhoneNumber_2'];
+				} elseif ($row2['ContactAddlPhoneType_1'] == 'Fax'){
+						$agFax2 = $row2['ContactPhoneAreaCode_3']."-".$row2['ContactPhoneNumber_3'];
 				}
 		}
 		
-		$agClass = $image == "" ? ' style="margin-left: 0;"' : '';
+		$agClass2 = $image2 == "" ? ' style="margin-left: 0;"' : '';
 
 		$returnText = '<section class="rets-agent agent-widget clearfix">';
-		$returnText .=  '<h3 class="title">Contact an Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl.'&id='.$agId.'">'.$agName.'</a></strong></div></h3>';
-		if( $image != "" ) {
-			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl.'&id='.$agId.'">';
-			$returnText .=  '<!-- '.$image.' --><image src="'.$agImage.'" alt="'.$agName.' for '.$agOfficeName.'" />';
+		$returnText .=  '<h3 class="title">Contact an Agent:<div><strong><a href="'.$home_url.'/agent/?'.$agPageUrl2.'&id='.$agId2.'">'.$agName2.'</a></strong></div></h3>';
+		if( $image2 != "" ) {
+			$returnText .= '<a class="agent-image" href="'.$home_url.'/agent/?agent='.$agPageUrl2.'&id='.$agId2.'">';
+			$returnText .=  '<image src="'.$agImage2.'" alt="'.$agName2.' for '.$agOfficeName2.'" />';
 			$returnText .=  '</a>';
 		}
-		$returnText .=  '<div class="agent-info clearfix"'. $agClass .'>';
-		$returnText .=  '<div class="agent-office-name">'.$agOfficeName.'</div>';
+		$returnText .=  '<div class="agent-info clearfix"'. $agClass2 .'>';
+		$returnText .=  '<div class="agent-office-name">'.$agOfficeName2.'</div>';
 		$returnText .=  '<div class="contacts-list">';
-		if ($agOfficePhone != "")
-				$returnText .=  '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone).'">'.$agOfficePhone.'</a> (Office)</span>';
-		if ($agCell != "")
-				$returnText .=  '<span class="mobile"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell).'">'.$agCell.'</a> (Cell)</span>';
-		if ($agFax != "")
-				$returnText .=  '<span class="fax"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax).'">'.$agFax.'</a> (Fax)</span>';
+		if ($agOfficePhone2 != "")
+				$returnText .=  '<span class="office"><a href="tel:'.preg_replace("/[^0-9]/", "", $agOfficePhone2).'">'.$agOfficePhone2.'</a> (Office)</span>';
+		if ($agCell2 != "")
+				$returnText .=  '<span class="mobile"><a href="tel:'.preg_replace("/[^0-9]/", "", $agCell2).'">'.$agCell2.'</a> (Cell)</span>';
+		if ($agFax2 != "")
+				$returnText .=  '<span class="fax"><a href="tel:'.preg_replace("/[^0-9]/", "", $agFax2).'">'.$agFax2.'</a> (Fax)</span>';
 		$returnText .=  '</div><!-- contacts-list -->';
 		$returnText .=  '</div><!-- agent-info -->';
 	
