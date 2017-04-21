@@ -75,7 +75,7 @@ if( is_front_page() ) {
 									<div class="slide-description">
 										<h3><a href="'. $slide['link'] .'">'. $slide['content'] .'</a></h3>
 										<div>'. $slide['office'] .'</div>
-										<a href="'. $slide['link'] .'" class="know-more">View Property</a>
+										<a href="'. $slide['link'] .'" class="know-more">View</a>
 									</div>
 								</div>
 								';
