@@ -152,5 +152,7 @@ wp_footer();
 do_action('custom_footer_scripts');
 ?>
 
+<img src="http://www.placelocal.com/retarget_pixel.php?cid=622639&uuid=4f6aed34-1a21-11e7-9768-002590592b46" width="1" height="1" style="display:none" />
+<img src="http://www.placelocal.com/retarget_pixel.php?cid=622651&uuid=acc6e8a0-1a23-11e7-9768-002590592b46" width="1" height="1" style="display:none" />
 </body>
 </html>
