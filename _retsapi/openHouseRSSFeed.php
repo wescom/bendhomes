@@ -83,7 +83,6 @@ function getOpenHouseData($open){
                   'MLNumber' => $open['MLNumber'],
                   'startDateTime' => $open['startDateTime'],
                   'timeComments' => $open['timeComments'],
-
                   'images' => $row['images'],
                   'StreetNumber' => $row['StreetNumber'],
                   'StreetName' => $row['StreetName'],
