@@ -36,7 +36,7 @@ function getAllOpens() {
 
         mysqli_close($con);
     }
-    return $statusArray;
+    return $opensArray;
 }
 
 function getOpenHouseData($open){
@@ -49,8 +49,8 @@ function displayRssFeed($opensWithData){
 }
 
 echo '<h1>RSS Feed Start</h1>';
-$opensArray = array();
 $opensArray = getAllOpens();
+$opensArray = 
 $opensWithData = array();
 
 foreach($opensArray as $open){
