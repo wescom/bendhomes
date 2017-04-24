@@ -129,7 +129,7 @@ function displayRssFeed($opensWithData){
         $dateArray = explode("|", $itm['startDateTime']);
         $commArray = explode("|", $itm['timeComments']);
         $count = 0;
-        echo "<description>"
+        echo "<description>";
         foreach($dateArray as $date) {
             echo $date." (".$commArray[$count].") ";
             $count++;
