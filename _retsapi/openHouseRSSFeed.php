@@ -64,12 +64,12 @@ function getOpenHouseData($open){
 
     $rec = array();
 
-    $query = "(SELECT images, StreetNumber, StreetName, StreetSuffix, City, SquareFootage := 0, ListingPrice from Property_BUSI Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, SquareFootage, ListingPrice from Property_COMM Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, SquareFootage, ListingPrice from Property_FARM Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, SquareFootage := 0, ListingPrice from Property_LAND Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, SquareFootage, ListingPrice from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, SquareFootage, ListingPrice from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
+    $query = "(SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_BUSI Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_COMM Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_FARM Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_LAND Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
 
     echo "query: ".$query;
 
@@ -91,7 +91,6 @@ function getOpenHouseData($open){
                   'StreetName' => $row['StreetName'],
                   'StreetSuffix' => $row['StreetSuffix'],
                   'area' => $row['City'],
-                  'SquareFootage' => $row['SquareFootage'],
                   'ListingPrice' => $row['ListingPrice'],
             );
         }
