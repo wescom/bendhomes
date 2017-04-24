@@ -692,42 +692,42 @@ class Rets_Companies {
 
 		if ($searchString == '') {
 			$query = "
-				SELECT Office_OFFI.IsActive,
-				Office_OFFI.MLSID,
-				Office_OFFI.OfficeName,
-				Office_OFFI.OfficeNumber,
-				Office_OFFI.OfficePhone,
-				Office_OFFI.OfficePhoneComplete,
-				Office_OFFI.StreetAddress,
-				Office_OFFI.StreetCity,
-				Office_OFFI.StreetState,
-				Office_OFFI.StreetZipCode,
-				Office_OFFI.OfficeDescription,
-				Office_OFFI.DisplayName,
-				Office_OFFI.featured,
-				Office_OFFI.images
-				FROM Office_OFFI
+				SELECT OFFI.IsActive,
+				OFFI.MLSID,
+				OFFI.OfficeName,
+				OFFI.OfficeNumber,
+				OFFI.OfficePhone,
+				OFFI.OfficePhoneComplete,
+				OFFI.StreetAddress,
+				OFFI.StreetCity,
+				OFFI.StreetState,
+				OFFI.StreetZipCode,
+				OFFI.OfficeDescription,
+				OFFI.DisplayName,
+				OFFI.featured,
+				OFFI.images
+				FROM Office_OFFI OFFI
 				WHERE IsActive = 'T' AND featured = 1
 				{$sort_order}
 			";
 		} else {
 			$query = "
-				SELECT Office_OFFI.IsActive,
-				Office_OFFI.MLSID,
-				Office_OFFI.OfficeName,
-				Office_OFFI.OfficeNumber,
-				Office_OFFI.OfficePhone,
-				Office_OFFI.OfficePhoneComplete,
-				Office_OFFI.StreetAddress,
-				Office_OFFI.StreetCity,
-				Office_OFFI.StreetState,
-				Office_OFFI.StreetZipCode,
-				Office_OFFI.OfficeDescription,
-				Office_OFFI.DisplayName,
-				Office_OFFI.featured,
-				Office_OFFI.images
-				FROM Office_OFFI
-				WHERE IsActive = 'T' AND Office_OFFI.OfficeName LIKE '%{$searchString}%'
+				SELECT OFFI.IsActive,
+				OFFI.MLSID,
+				OFFI.OfficeName,
+				OFFI.OfficeNumber,
+				OFFI.OfficePhone,
+				OFFI.OfficePhoneComplete,
+				OFFI.StreetAddress,
+				OFFI.StreetCity,
+				OFFI.StreetState,
+				OFFI.StreetZipCode,
+				OFFI.OfficeDescription,
+				OFFI.DisplayName,
+				OFFI.featured,
+				OFFI.images
+				FROM Office_OFFI OFFI
+				WHERE IsActive = 'T' AND OfficeName LIKE '%{$searchString}%'
 				{$sort_order}
 			";
 		}
