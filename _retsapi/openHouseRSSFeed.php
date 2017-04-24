@@ -45,7 +45,7 @@ function getAllOpens() {
 
 function getOpenHouseData($open){
     
-    echo '<p style="background-color: green;">using date: '.$open['MLNumber'].' - '.$open['startDate'].'</p>';
+    echo '<p style="background-color: green; color:white">MLNumber: '.$open['MLNumber'].' - StartDate: '.$open['startDateTime'].'</p>';
 
     return $open;
 }
