@@ -21,7 +21,7 @@ function getAllOpens() {
 
     $opensArray = array();
 
-    $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, description, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN";
+    $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN";
     $result = $conn->query($query);  
 
     if ($result->num_rows > 0) {
@@ -31,7 +31,6 @@ function getAllOpens() {
                       'afname' => $row['AgentFirstName'], 
                       'alname' => $row['AgentLastName'], 
                       'officeNum' => $row['ListingOfficeNumber'],
-                      'description' => $row['description'],
                       'MLNumber' => $row['MLNumber'],
                       'startDateTime' => $row['StartDateTime'],
                       'timeComments' => $row['TimeComments']
