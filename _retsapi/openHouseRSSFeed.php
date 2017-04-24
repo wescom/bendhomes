@@ -24,6 +24,7 @@ function getAllOpens() {
     $endDate = '2017-04-30';
     $dt = date("Y-m-d");
     echo "<h2>".$dt."</h2>";
+    $dt = strtotime($dt);
     $dt = strtotime("+7 day", $dt);
     $dt = date("Y-m-d",$dt);
     echo "<h2>".$dt."</h2>";
