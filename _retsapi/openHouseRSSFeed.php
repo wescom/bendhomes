@@ -21,7 +21,9 @@ function getAllOpens() {
 
     $opensArray = array();
 
-    $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN";
+    $endDate = '2017-04-30';
+
+    $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN where StartDateTime < '".$endDate."'";
     $result = $conn->query($query);  
 
     if ($result->num_rows > 0) {
