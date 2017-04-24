@@ -101,7 +101,7 @@ function getOpenHouseData($open){
 function displayRssFeed($opensWithData){
     echo '<?xml version="1.0" encoding="UTF-8"?>';
     echo '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:ynews="http://news.yahoo.com/rss/" xmlns:bing="http://bing.com/schema/media/" xmlns:dc="http://purl.org/dc/elements/1.1/">';
-    echo '<channel>'
+    echo '<channel>';
     echo '<title>BendHomes Open Houses</title>';
     echo '<link>http://www.bendhomes.com/_retsapi/openHouseRSSFeed.php</link>';
     echo '<description>BendHomes Open Houses RSS Feed</description>';
