@@ -27,7 +27,7 @@ function getAllOpens() {
     if ($result->num_rows > 0) {
 
         while($row = $result->fetch_assoc()) {
-            var_dump($row);
+            //var_dump($row);
             $rec = array(
                       'afname' => $row['AgentFirstName'], 
                       'alname' => $row['AgentLastName'], 
@@ -36,7 +36,7 @@ function getAllOpens() {
                       'startDateTime' => $row['StartDateTime'],
                       'timeComments' => $row['TimeComments']
             );
-            array_push($opnesArray, $rec);
+            array_push($opensArray, $rec);
         }
     }
     $conn->close();
