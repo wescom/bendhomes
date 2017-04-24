@@ -40,6 +40,7 @@ function getAllOpens() {
         }
     }
     $conn->close();
+    var_dump($opensArray);
     return $opensArray;
 }
 
