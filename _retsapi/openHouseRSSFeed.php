@@ -26,19 +26,29 @@ function getAllOpens() {
     $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN where StartDateTime < '".$endDate."'";
     $result = $conn->query($query);  
 
+    $oldMls = 0;
+    $rec = array();
     if ($result->num_rows > 0) {
 
         while($row = $result->fetch_assoc()) {
-            $rec = array(
-                      'afname' => $row['AgentFirstName'], 
-                      'alname' => $row['AgentLastName'], 
-                      'officeNum' => $row['ListingOfficeNumber'],
-                      'MLNumber' => $row['MLNumber'],
-                      'startDateTime' => $row['StartDateTime'],
-                      'timeComments' => $row['TimeComments']
-            );
-            array_push($opensArray, $rec);
+            if ($row['MLNumber'] == $oldMls) {
+                $rec['startDateTime'] = $rec['startDateTime']. "|".$row['StartDateTime'];
+                $rec['timeComments'] = $rec['timeComments']. "|".$row['TimeComments'];
+            } else {
+              array_push($opensArray, $rec);
+              $oldMls = $row['MLNumber'];
+              $rec = (
+                        'afname' => $row['AgentFirstName'], 
+                        'alname' => $row['AgentLastName'], 
+                        'officeNum' => $row['ListingOfficeNumber'],
+                        'MLNumber' => $row['MLNumber'],
+                        'startDateTime' => $row['StartDateTime'],
+                        'timeComments' => $row['TimeComments']
+              );
+            }
+            
         }
+        array_push($opensArray, $rec);  // push last record
     }
     $conn->close();
     return $opensArray;
