@@ -108,8 +108,9 @@ function displayRssFeed($opensWithData){
     echo '<language>en-us</language>';
 
     foreach($opensWithData as $itm){
+      var_dump($itm);
         echo "<item>";
-        echo "<title>".$itm['StreetNumber']." ".$itm['StreetNumber']." ".$itm['StreetSuffix'].", ".$itm['City']."</title>";
+        echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['City']."</title>";
         echo "<description>".$itm['startDateTime']. " ".$itm['timeComments']."</description>";
 
         $imgArray = explode("|", $itm['images']);
@@ -132,7 +133,6 @@ foreach($opensArray as $open){
     array_push($opensWithData, $openWithData);
 }
 
-var_dump($opensWithData);
 displayRssFeed($opensWithData);
 
 
