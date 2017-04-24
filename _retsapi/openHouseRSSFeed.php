@@ -93,8 +93,7 @@ function getOpenHouseData($open){
         }
     }
 
-
-    return $open;
+    return $rec;
 }
 
 function displayRssFeed($opensWithData){
