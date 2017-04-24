@@ -40,13 +40,14 @@ function getAllOpens() {
         }
     }
     $conn->close();
-    var_dump($opensArray);
     return $opensArray;
 }
 
 function getOpenHouseData($open){
-    var_dump($open);
+    
     echo '<p style="background-color: green;">using date: '.$open['MLNumber'].' - '.$open['startDate'].'</p>';
+
+    return $open;
 }
 
 function displayRssFeed($opensWithData){
@@ -55,12 +56,12 @@ function displayRssFeed($opensWithData){
 
 echo '<h1>RSS Feed Start</h1>';
 $opensArray = getAllOpens();
-$opensArray = 
+
 $opensWithData = array();
 
 foreach($opensArray as $open){
     $openWithData = getOpenHouseData($open);
-    array_push($opensWithData);
+    array_push($opensWithData, $openWithData);
 }
 
 displayRssFeed($opensWithData);
