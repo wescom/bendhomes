@@ -79,12 +79,12 @@ function getOpenHouseData($open){
 
         while($row = $result->fetch_assoc()) {
             $rec = array(
-                  'afname' => $open['AgentFirstName'], 
-                  'alname' => $open['AgentLastName'], 
-                  'officeNum' => $open['ListingOfficeNumber'],
+                  'afname' => $open['afname'], 
+                  'alname' => $open['alname'], 
+                  'officeNum' => $open['officeNum'],
                   'MLNumber' => $open['MLNumber'],
-                  'startDateTime' => $open['StartDateTime'],
-                  'timeComments' => $open['TimeComments'],
+                  'startDateTime' => $open['startDateTime'],
+                  'timeComments' => $open['timeComments'],
 
                   'images' => $row['images'],
                   'StreetNumber' => $row['StreetNumber'],
