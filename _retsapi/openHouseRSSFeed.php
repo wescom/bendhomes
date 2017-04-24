@@ -131,7 +131,7 @@ function displayRssFeed($opensWithData){
         $count = 0;
         echo "<description>";
         foreach($dateArray as $date) {
-            echo $date." (".$commArray[$count].") ";
+            echo $date." (".$commArray[$count]."), ";
             $count++;
         }
         echo " Agent: ".$itm['afname']." ".$itm['alname'];
