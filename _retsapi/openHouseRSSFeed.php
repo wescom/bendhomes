@@ -106,9 +106,10 @@ function displayRssFeed($opensWithData){
     echo '<language>en-us</language>';
 
     foreach($opensWithData as $itm){
-      //var_dump($itm);
+   
         echo "<item>";
         echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['area']." - $".$itm['ListingPrice']."</title>";
+        echo "<link><![CDATA[http://bendhomes.idxbroker.com/idx/details/listing/a098/".$itm['MLNumber']."]]></link>";
         echo "<description>".$itm['startDateTime']. " ".$itm['timeComments']."</description>";
 
         $imgArray = explode("|", $itm['images']);
