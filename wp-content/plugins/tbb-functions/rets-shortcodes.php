@@ -350,6 +350,7 @@ class Rets_Agent {
 			Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
 			Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
 			Office_OFFI.OfficeName,
+			Office_OFFI.DisplayName,
 			Office_OFFI.OfficePhoneComplete,
 			Office_OFFI.StreetAddress,
 			Office_OFFI.StreetCity,
@@ -380,6 +381,8 @@ class Rets_Agent {
 				$image_url = get_stylesheet_directory_uri(). '/images/blank-profile-placeholder.jpg';
 			}
 
+			$office_name = $agent['DisplayName'] != '' ? $agent['DisplayName'] : $agent['OfficeName'];
+			
 			$office_address = $agent['StreetAddress'] .'<br>'. $agent['StreetCity'] .', '. $agent['StreetState'] .' '. $agent['StreetZipCode'];
 			
 			$office_phone = $agent['OfficePhoneComplete'];
@@ -410,7 +413,7 @@ class Rets_Agent {
 					$html .= sprintf('<div class="span8"><h1 class="agent-name">%s</h1>', $agent['FullName'] );
 
 					$html .= sprintf( '<div class="extra-meta agent-meta"><div>%s<div>%s</div>',
-											$agent['OfficeName'], $office_address );
+											$office_name, $office_address );
 			
 					$html .=  '<div class="contacts-list">';
 					
