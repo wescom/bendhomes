@@ -49,6 +49,7 @@ function displayRssFeed($opensWithData){
 
 }
 
+echo '<h1>RSS Feed Start</h1>';
 $opensArray = array();
 $opensArray = getAllOpens();
 $opensWithData = array();
