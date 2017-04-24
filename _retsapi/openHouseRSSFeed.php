@@ -106,9 +106,9 @@ function displayRssFeed($opensWithData){
     echo '<language>en-us</language>';
 
     foreach($opensWithData as $itm){
-      var_dump($itm);
+      //var_dump($itm);
         echo "<item>";
-        echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['City']."</title>";
+        echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['area']."</title>";
         echo "<description>".$itm['startDateTime']. " ".$itm['timeComments']."</description>";
 
         $imgArray = explode("|", $itm['images']);
@@ -121,7 +121,6 @@ function displayRssFeed($opensWithData){
     echo '</rss>';
 }
 
-echo '<h1>RSS Feed Start</h1>';
 $opensArray = getAllOpens();
 
 $opensWithData = array();
