@@ -16,26 +16,25 @@ function getAllOpens() {
     $opensArray = array();
     if (mysqli_connect_errno()) {
         echo "failed to connect ".mysqli_connect_error();
-        }
-        else {
-                $qry = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, description, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN";
+    }
+    else {
+        $qry = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, description, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN";
 
-                $result = mysqli_query($con, $qry);
-                while($row = mysqli_fetch_array($result)) {
-                        $rec = array(
-                              'afname' => $row['AgentFirstName'], 
-                              'alname' => $row['AgentLastName'], 
-                              'officeNum' => $row['ListingOfficeNumber'],
-                              'description' => $row['description'],
-                              'MLNumber' => $row['MLNumber'],
-                              'startDateTime' => $row['StartDateTime'],
-                              'timeComments' => $row['TimeComments']
-                        );
-                        array_push($opnesArray, $rec);
-                }
-
-                mysqli_close($con);
+        $result = mysqli_query($con, $qry);
+        while($row = mysqli_fetch_array($result)) {
+            $rec = array(
+                  'afname' => $row['AgentFirstName'], 
+                  'alname' => $row['AgentLastName'], 
+                  'officeNum' => $row['ListingOfficeNumber'],
+                  'description' => $row['description'],
+                  'MLNumber' => $row['MLNumber'],
+                  'startDateTime' => $row['StartDateTime'],
+                  'timeComments' => $row['TimeComments']
+            );
+            array_push($opnesArray, $rec);
         }
+
+        mysqli_close($con);
     }
     return $statusArray;
 }
