@@ -71,6 +71,8 @@ function getOpenHouseData($open){
     $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, RESISRHI, SquareFootage, ListingPrice from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
     $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, RESISRHI, SquareFootage, ListingPrice from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
 
+    echo "query: ".$query;
+    
     $result = $conn->query($query); 
 
     if ($result->num_rows > 0) {
