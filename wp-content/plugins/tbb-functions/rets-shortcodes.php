@@ -520,19 +520,19 @@ class Rets_Agent_Listings {
 		$agent_id = trim( floatval($agent_id) );
 		
 		$query = "
-			SELECT Property_RESI.MLNumber,
-			Property_RESI.ListingPrice,
-			Property_RESI.imagepref,
-			Property_RESI.StreetNumber,
-			Property_RESI.StreetDirection,
-			Property_RESI.StreetName,
-			Property_RESI.StreetSuffix,
-			Property_RESI.City,
-			Property_RESI.State,
-			Property_RESI.ZipCode,
-			Property_RESI.Bedrooms,
-			Property_RESI.Bathrooms
-			FROM Property_RESI
+			SELECT RESI.MLNumber,
+			RESI.ListingPrice,
+			RESI.imagepref,
+			RESI.StreetNumber,
+			RESI.StreetDirection,
+			RESI.StreetName,
+			RESI.StreetSuffix,
+			RESI.City,
+			RESI.State,
+			RESI.ZipCode,
+			RESI.Bedrooms,
+			RESI.Bathrooms
+			FROM Property_RESI RESI
 			WHERE Status = 'Active'
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
