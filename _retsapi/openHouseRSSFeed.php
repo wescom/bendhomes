@@ -110,7 +110,7 @@ function displayRssFeed($opensWithData){
         echo "<item>";
         echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['area']." - $".$itm['ListingPrice']."</title>";
         echo "<link><![CDATA[http://bendhomes.idxbroker.com/idx/details/listing/a098/".$itm['MLNumber']."]]></link>";
-        echo "<description>".$itm['startDateTime']. " ".$itm['timeComments']."</description>";
+        echo "<description>".$itm['startDateTime']. " ".$itm['timeComments']." Agent: ".$itm['afname']." ".$itm['alname']."</description>";
 
         $imgArray = explode("|", $itm['images']);
         echo '<media:content medium="image" type="image/jpeg" url="http://www.bendhomes.com/_retsapi/imagesProperties/'.$imgArray[0].'">';
