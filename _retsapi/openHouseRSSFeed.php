@@ -19,8 +19,10 @@ function getAllOpens() {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    $opensArray = array();
+
     $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, description, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN";
-    $result = $conn->query($query);
+    $result = $conn->query($query);  
 
     if ($result->num_rows > 0) {
 
