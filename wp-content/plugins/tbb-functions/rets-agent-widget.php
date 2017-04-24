@@ -52,6 +52,7 @@ $query = "
 		Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
 		Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
 		Office_OFFI.OfficeName,
+		Office_OFFI.DisplayName,
 		Office_OFFI.OfficePhoneComplete,
 		Office_OFFI.StreetAddress,
 		Office_OFFI.StreetCity,
@@ -81,7 +82,7 @@ if ($result->num_rows > 0) {
 				$image = $row['images'];
 				$agImage = str_replace('png', 'jpg', $image);
 				$agImage = $home_url."/_retsapi/imagesAgents/".$agImage;
-				$agOfficeName = $row['OfficeName'];
+				$agOfficeName = $row['DisplayName'] != '' ? $row['DisplayName'] : $row['OfficeName'];
 				$agOfficePhone = $row['OfficePhoneComplete'];
 				if ($row['ContactAddlPhoneType_1'] == 'Cellular'){
 						$agCell = $row['ContactPhoneAreaCode_1']."-".$row['ContactPhoneNumber_1'];
@@ -137,6 +138,7 @@ if ($result->num_rows > 0) {
 			Agent_MEMB.ContactPhoneAreaCode3 as 'ContactPhoneAreaCode_3',
 			Agent_MEMB.ContactPhoneNumber3 as 'ContactPhoneNumber_3',
 			Office_OFFI.OfficeName,
+			Office_OFFI.DisplayName,
 			Office_OFFI.OfficePhoneComplete,
 			Office_OFFI.StreetAddress,
 			Office_OFFI.StreetCity,
@@ -165,7 +167,7 @@ if ($result->num_rows > 0) {
 				$image2 = $row2['images'];
 				$agImage2 = str_replace('png', 'jpg', $image2);
 				$agImage2 = $home_url."/_retsapi/imagesAgents/".$agImage2;
-				$agOfficeName2 = $row2['OfficeName'];
+				$agOfficeName2 = $row['DisplayName'] != '' ? $row['DisplayName'] : $row2['OfficeName'];
 				$agOfficePhone2 = $row2['OfficePhoneComplete'];
 				if ($row2['ContactAddlPhoneType_1'] == 'Cellular'){
 						$agCell2 = $row2['ContactPhoneAreaCode_1']."-".$row2['ContactPhoneNumber_1'];
