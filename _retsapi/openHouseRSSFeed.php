@@ -124,7 +124,7 @@ function displayRssFeed($opensWithData){
     foreach($opensWithData as $itm){
    
         echo "<item>";
-        echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['area']." - $".$itm['ListingPrice']."</title>";
+        echo "<title>".$itm['MLNumber'].": ".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['area']." - $".$itm['ListingPrice']."</title>";
         echo "<link><![CDATA[http://bendhomes.idxbroker.com/idx/details/listing/a098/".$itm['MLNumber']."]]></link>";
         $dateArray = explode("|", $itm['startDateTime']);
         $commArray = explode("|", $itm['timeComments']);
