@@ -45,7 +45,7 @@ function getAllOpens() {
 
 function getOpenHouseData($open){
     
-    echo '<p style="background-color: green; color:white">MLNumber: '.$open['MLNumber'].' - StartDate: '.$open['startDateTime'].'</p>';
+    //echo '<p style="background-color: green; color:white">MLNumber: '.$open['MLNumber'].' - StartDate: '.$open['startDateTime'].'</p>';
 
     $db = array(
         'host' => 'localhost',
@@ -70,8 +70,6 @@ function getOpenHouseData($open){
     $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_LAND Where MLNumber = ".$open['MLNumber'].")";
     $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
     $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
-
-    echo "query: ".$query;
 
     $result = $conn->query($query); 
 
@@ -101,7 +99,27 @@ function getOpenHouseData($open){
 }
 
 function displayRssFeed($opensWithData){
+    echo '<?xml version="1.0" encoding="UTF-8"?>';
+    echo '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:ynews="http://news.yahoo.com/rss/" xmlns:bing="http://bing.com/schema/media/" xmlns:dc="http://purl.org/dc/elements/1.1/">';
+    echo '<channel>'
+    echo '<title>BendHomes Open Houses</title>';
+    echo '<link>http://www.bendhomes.com/_retsapi/openHouseRSSFeed.php</link>';
+    echo '<description>BendHomes Open Houses RSS Feed</description>';
+    echo '<language>en-us</language>';
 
+    foreach($opensWithData as $itm){
+        echo "<item>";
+        echo "<title>".$itm['StreetNumber']." ".$itm['StreetNumber']." ".$itm['StreetSuffix'].", ".$itm['City']."</title>";
+        echo "<description>".$itm['startDateTime']. " ".$itm['timeComments']."</description>";
+
+        $imgArray = explode("|", $itm['images']);
+        echo '<media:content medium="image" type="image/jpeg" url="http://www.bendhomes.com/_retsapi/imagesProperties/'.$imgArray[0].'">';
+        echo '</media:content>';
+        echo "</item>";
+    }
+
+    echo '</channel>';
+    echo '</rss>';
 }
 
 echo '<h1>RSS Feed Start</h1>';
