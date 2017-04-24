@@ -10,32 +10,34 @@ function getAllOpens() {
         'password' => 'hCqaQvMKW9wJKQwS',
         'database' => 'bh_rets'
     );
-    $con = mysqli_connect($db['host'], $db['username'], $db['password'], $db['database']);
-    unset($db);
- 
-    $opensArray = array();
-    if (mysqli_connect_errno()) {
-        echo "failed to connect ".mysqli_connect_error();
-    }
-    else {
-        $qry = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, description, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN";
 
-        $result = mysqli_query($con, $qry);
-        while($row = mysqli_fetch_array($result)) {
+
+    $conn = new mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+    unset($db);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, description, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+
+        while($row = $result->fetch_assoc()) {
             $rec = array(
-                  'afname' => $row['AgentFirstName'], 
-                  'alname' => $row['AgentLastName'], 
-                  'officeNum' => $row['ListingOfficeNumber'],
-                  'description' => $row['description'],
-                  'MLNumber' => $row['MLNumber'],
-                  'startDateTime' => $row['StartDateTime'],
-                  'timeComments' => $row['TimeComments']
+                      'afname' => $row['AgentFirstName'], 
+                      'alname' => $row['AgentLastName'], 
+                      'officeNum' => $row['ListingOfficeNumber'],
+                      'description' => $row['description'],
+                      'MLNumber' => $row['MLNumber'],
+                      'startDateTime' => $row['StartDateTime'],
+                      'timeComments' => $row['TimeComments']
             );
             array_push($opnesArray, $rec);
         }
-
-        mysqli_close($con);
     }
+    $conn->close();
     return $opensArray;
 }
 
