@@ -38,7 +38,9 @@ function getAllOpens() {
                 $rec['startDateTime'] = $rec['startDateTime']. "|".$row['StartDateTime'];
                 $rec['timeComments'] = $rec['timeComments']. "|".$row['TimeComments'];
             } else {
-              array_push($opensArray, $rec);
+              if ($oldMls != 0){
+                  array_push($opensArray, $rec);
+              }
               $oldMls = $row['MLNumber'];
               $rec = array(
                         'afname' => $row['AgentFirstName'], 
