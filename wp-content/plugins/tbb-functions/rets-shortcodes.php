@@ -1102,14 +1102,6 @@ class Rets_Company_Agents {
 					}
 										
 					$permalink = home_url() .'/'. $linkto .'/?agent='. $this->create_slug( $agent['FullName'] ) .'&id='. $agent['MemberNumber'];
-														
-						/*$html .= '<div class="company-agent">';
-						$html .= '<a class="company-agent-inner" href="'.$permalink.'">';
-						$html .= '<figure class="agent-image">';
-						$html .= '<img src="'.$image_url.'" alt="'.$agent['FullName'].'" width="" height="" />';
-						$html .= '</figure>';                                                        
-						$html .= '<div class="agent-name">'.$agent['FullName'].'</div>';
-						$html .= '</a></div>';*/
 
 					// Begin agent output
 					$html .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
@@ -1292,7 +1284,7 @@ class Rets_Open_Houses {
 					$full_address = $address1 .' '. $address2;
 					
 					// Get Date and Times
-					$timecount_end = sizeof( $openhouse ) - 18; // Use same number in format_rets_query function below.
+					$timecount_end = sizeof( $openhouse ) - 19; // Use same number in format_rets_query function below.
 					$dates_times_html = '';
 					$date_times_url = '';
 					for( $i = 0; $i < $timecount_end; $i++ ) {
@@ -1303,6 +1295,9 @@ class Rets_Open_Houses {
 
 						$dates_times_html .= sprintf('<div class="datetime datetime-%s">%s, %s</div>', $i, $date_format, $time );
 					}
+					
+					// Get Office Name
+					$office_name = $openhouse['DisplayName'] != NULL ? $openhouse['DisplayName'] : $openhouse['OfficeName'];
 					
 					// Get Link to Property
 					$permalink = sprintf( 'http://bendhomes.idxbroker.com/idx/details/listing/a098/%s/%s/',
@@ -1321,14 +1316,14 @@ class Rets_Open_Houses {
 							$company_image_url = home_url() .'/_retsapi/imagesOffices/'. $openhouse['OfficeImage'];
 						}						
 						$company_image = sprintf( '<img src="%s" alt="%s" class="company-image" />', 
-												 $company_image_url, $openhouse['OfficeName'] );
+												 $company_image_url, $office_name );
 					}
 					
 					$company_url = sprintf( '%s/%s/?company=%s&id=%s', 
-											home_url(), $company_page, $this->create_slug( $openhouse['OfficeName'] ), $openhouse['OfficeNumber'] );
+											home_url(), $company_page, $this->create_slug( $office_name ), $openhouse['OfficeNumber'] );
 					
 					$company_full_link = sprintf( '<a href="%s">%s</a>', 
-												 $company_url, $openhouse['OfficeName'] );
+												 $company_url, $office_name );
 					
 					$agent_url = sprintf( '%s/%s/?agent=%s&id=%s', 
 											home_url(), $agent_page, $this->create_slug( $openhouse['AgentName'] ), $openhouse['AgentNumber'] );
@@ -1341,7 +1336,7 @@ class Rets_Open_Houses {
 							$office_meta .= sprintf( '%s<div class="office-info">Listing Courtesy of %s<div>Agent: %s</div></div>', 
 													$company_image, $company_full_link, $agent_full_link );
 						} else {
-							$office_meta .= sprintf( '<div class="office-info">Listing Courtesy of %s</div>', $openhouse['OfficeName'] );
+							$office_meta .= sprintf( '<div class="office-info">Listing Courtesy of %s</div>', $office_name );
 						}
 					$office_meta .= '</div>';
 					
@@ -1410,7 +1405,7 @@ class Rets_Open_Houses {
 			
 			if( isset( $result[$mls_num] ) )
 				//$index = ( ( count( $result[$mls_num] ) - 1 ) / 2 ) + 1;
-				$index = count( $result[$mls_num] ) - 18;
+				$index = count( $result[$mls_num] ) - 19;
 			else
 				$index = 0;
 
@@ -1430,8 +1425,9 @@ class Rets_Open_Houses {
 			$result[$mls_num]['Bathrooms'] = $value['Bathrooms'];
 			$result[$mls_num]['OfficeNumber'] = $value['OfficeNumber'];
 			$result[$mls_num]['OfficeName'] = $value['OfficeName'];
+			$result[$mls_num]['DisplayName'] = $value['DisplayName'];
 			$result[$mls_num]['featured'] = $value['featured'];
-			$result[$mls_num]['OfficeImage'] = $value['images'];  // 18th item in array to enter this number above
+			$result[$mls_num]['OfficeImage'] = $value['images'];  // 19th item in array so enter this number above
 			$result[$mls_num]['DateAndTime'. $index] = [
 				'Date' => $value['StartDateTime'],
 				'Time' => $value['TimeComments']
