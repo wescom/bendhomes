@@ -38,7 +38,7 @@ function getAllOpens() {
               array_push($opensArray, $rec);
               $oldMls = $row['MLNumber'];
               $rec = array(
-                        'afname' = $row['AgentFirstName'], 
+                        'afname' => $row['AgentFirstName'], 
                         'alname' => $row['AgentLastName'], 
                         'officeNum' => $row['ListingOfficeNumber'],
                         'MLNumber' => $row['MLNumber'],
