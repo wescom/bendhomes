@@ -27,7 +27,7 @@ function getAllOpens() {
                               'alname' => $row['AgentLastName'], 
                               'officeNum' => $row['ListingOfficeNumber'],
                               'description' => $row['description'],
-                              'MLNumber' = > $row['MLNumber'],
+                              'MLNumber' => $row['MLNumber'],
                               'startDateTime' => $row['StartDateTime'],
                               'timeComments' => $row['TimeComments']
                         );
