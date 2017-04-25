@@ -146,7 +146,7 @@ function displayRssFeed($opensWithData){
                     $firstLoop = false;
                     echo $date." (".$commArray[$count].")";
                 } else {
-                    echo $date.", (".$commArray[$count].")";
+                    echo ", ".$date." (".$commArray[$count].")";
                 }
                 $count++;
             }
