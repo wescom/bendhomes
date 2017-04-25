@@ -80,6 +80,7 @@ function getOpenHouseData($open){
     $query .= " UNION (SELECT images, Status from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
     $query .= " UNION (SELECT images, Status from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
 
+    echo "query: ".$query;
     $result = $conn->query($query); 
 
     if ($result->num_rows > 0) {
