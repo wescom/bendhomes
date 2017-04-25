@@ -133,7 +133,7 @@ foreach($opensArray as $open){
 }
 
 emptyDirectory();
-//resizeAndSavePhoto($opensWithData);
+resizeAndSavePhoto($opensWithData);
 
 
 ?>
