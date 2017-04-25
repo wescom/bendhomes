@@ -101,7 +101,7 @@ function resizeAndSavePhoto($opensWithImages){
             echo "MLS: ".$itm['MLNumber']." - resizing photos: ";
             $imgArray = explode("|", $itm['images']);
             foreach($mgArray as $img){
-                echo $img." - "
+                echo $img." - ";
             }
         }
 }
