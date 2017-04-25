@@ -87,7 +87,8 @@ function getOpenHouseData($open){
         while($row = $result->fetch_assoc()) {
             $rec = array(
                   'images' => $row['images'],
-                  'Status' => $row['Status']
+                  'Status' => $row['Status'],
+                  'MLNumber' => $open['MLNumber']
             );
         }
     }
