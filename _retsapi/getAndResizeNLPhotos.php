@@ -97,7 +97,7 @@ function getOpenHouseData($open){
 }
 
 function emptyDirectory() {
-    $files = glob('./imagesNewsletters/*.jpg'); // get all file names
+    $files = glob('/var/www/html/_retsapi/imagesNewsletters/*.jpg'); // get all file names
     foreach($files as $file){ // iterate files
         if(is_file($file))
         unlink($file); // delete file
@@ -113,9 +113,9 @@ function resizeAndSavePhoto($opensWithImages){
             echo $imgArray[0];
 
             $pic = new Imagick();
-            $pic->readImage("./imagesProperties/".$imgArray[0]);
+            $pic->readImage("/var/www/html/_retsapi/imagesProperties/".$imgArray[0]);
             $pic->resizeImage("250","175",Imagick::FILTER_LANCZOS,1);
-            $pic->writeImage("./imagesNewsletters/".$imgArray[0]);
+            $pic->writeImage("/var/www/html/_retsapi/imagesNewsletters/".$imgArray[0]);
             $pic->clear();
             $pic->destroy();
         }
