@@ -138,8 +138,8 @@ function displayRssFeed($opensWithData){
             echo $date." (".$commArray[$count]."), ";
             $count++;
         }
-        echo "<dc:creator>".htmlspecialchars($itm['officeName'], ENT_QUOTES)."</dc:creator>";
         echo "</description>";
+        echo "<dc:creator>".htmlspecialchars($itm['officeName'], ENT_QUOTES)."</dc:creator>";
         $imgArray = explode("|", $itm['images']);
         echo '<media:content medium="image" type="image/jpeg" url="http://www.bendhomes.com/_retsapi/imagesProperties/'.$imgArray[0].'">';
         echo '</media:content>';
