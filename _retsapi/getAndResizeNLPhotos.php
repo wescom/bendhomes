@@ -98,11 +98,9 @@ function getOpenHouseData($open){
 function resizeAndSavePhoto($opensWithImages){
     foreach($opensWithImages as $itm){
         if ($itm['Status'] == 'Active'){
-            echo "MLS: ".$itm['MLNumber']." - resizing photos: ";
+            echo "MLS: ".$itm['MLNumber']." - resizing photo: ";
             $imgArray = explode("|", $itm['images']);
-            foreach($mgArray as $img){
-                echo $img." - ";
-            }
+            echo $imgArray[0];
         }
     }
 }
@@ -111,7 +109,6 @@ function resizeAndSavePhoto($opensWithImages){
 $opensArray = getAllOpens();
 
 $opensWithData = array();
-var_dump($opensWithData);
 
 foreach($opensArray as $open){
     $openWithData = getOpenHouseData($open);
