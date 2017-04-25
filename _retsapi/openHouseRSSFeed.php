@@ -133,6 +133,7 @@ function displayRssFeed($opensWithData){
             echo "<item>";
             echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['area']." - $".$price."</title>";
             $linkAddress = $itm['StreetNumber']."-".$itm['StreetName']."-".$itm['StreetSuffix']."-".$itm['area']."-".$itm['State']."-".$itm['ZipCode'];
+            $linkAddress = htmlspecialchars($linkAddress, ENT_QUOTES);
             echo "<link><![CDATA[http://bendhomes.idxbroker.com/idx/details/listing/a098/".$itm['MLNumber']."/".$linkAddress."]]></link>";
             $dateArray = explode("|", $itm['startDateTime']);
             $commArray = explode("|", $itm['timeComments']);
