@@ -26,7 +26,7 @@ function getAllOpens() {
     $dt = strtotime("+8 day", $dt);
     $endDate = date("Y-m-d",$dt);
 
-    $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN where StartDateTime < '".$endDate."' Order by MLNumber";
+    $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN where StartDateTime < '".$endDate."' Order by MLNumber, StartDateTime";
     $result = $conn->query($query);  
 
     $oldMls = 0;
