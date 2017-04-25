@@ -139,9 +139,15 @@ function displayRssFeed($opensWithData){
             $commArray = explode("|", $itm['timeComments']);
             $count = 0;
             echo "<description>";
+            $firstLoop = true;
             foreach($dateArray as $date) {
                 $date = date("D", strtotime($date));
-                echo $date." (".$commArray[$count]."), ";
+                if ($firstLoop == true) {
+                    $firstLoop = false;
+                    echo $date." (".$commArray[$count].")";
+                } else {
+                    echo $date.", (".$commArray[$count].")";
+                }
                 $count++;
             }
             echo "</description>";
