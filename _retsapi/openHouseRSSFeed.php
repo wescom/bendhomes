@@ -131,6 +131,7 @@ function displayRssFeed($opensWithData){
         $count = 0;
         echo "<description>";
         foreach($dateArray as $date) {
+            $date = date("D", strtotime($date));
             echo $date." (".$commArray[$count]."), ";
             $count++;
         }
