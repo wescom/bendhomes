@@ -138,7 +138,7 @@ function displayRssFeed($opensWithData){
             echo $date." (".$commArray[$count]."), ";
             $count++;
         }
-        echo " Office: ".htmlspecialchars($itm['officeName'], 'ENT_QUOTES');
+        echo " Office: ".htmlspecialchars($itm['officeName'], ENT_QUOTES);
         echo "</description>";
         $imgArray = explode("|", $itm['images']);
         echo '<media:content medium="image" type="image/jpeg" url="http://www.bendhomes.com/_retsapi/imagesProperties/'.$imgArray[0].'">';
