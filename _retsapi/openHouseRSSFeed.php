@@ -1,6 +1,18 @@
 <?php
 
-/* ##### Populate API bh_rets database with data ##### */
+/* #########################################################
+
+        Hit database for open houses and create an rss feed of them. 
+        Currently goes back 7 days from current day hit.  This also
+        depends on the script running in the background that grabs
+        the images from thier normal full size folder and using 
+        imagick, creates a smaller usable size for things such as
+        mailchimp.  That file is called getAndResizeNLPhotos.php.  
+        It is run from the /var/shellscripts folder script called
+        getAndResizeNLPhotos.sh via a crontab job once an hour so the
+        photos will be up to date with the rets table data.
+
+############################################################ */
 
 
 function getAllOpens() {
