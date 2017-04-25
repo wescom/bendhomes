@@ -96,7 +96,12 @@ function getOpenHouseData($open){
     return $rec;
 }
 
+function emptyDirectory() {
+    // empty the directory imagesNewsletters
+}
+
 function resizeAndSavePhoto($opensWithImages){
+    
     foreach($opensWithImages as $itm){
         if ($itm['Status'] == 'Active'){
             echo "MLS: ".$itm['MLNumber']." - resizing photo: ";
@@ -116,7 +121,7 @@ foreach($opensArray as $open){
     array_push($opensWithData, $openWithData);
 }
 
-var_dump($opensWithData);
+emptyDirectory();
 resizeAndSavePhoto($opensWithData);
 
 
