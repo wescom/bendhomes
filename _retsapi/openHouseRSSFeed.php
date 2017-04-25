@@ -133,14 +133,12 @@ function displayRssFeed($opensWithData){
         $commArray = explode("|", $itm['timeComments']);
         $count = 0;
         echo "<description>";
-        $descString = "";
         foreach($dateArray as $date) {
             $date = date("D", strtotime($date));
-            $descString .= $date." (".$commArray[$count]."), ";
+            echo $date." (".$commArray[$count]."), ";
             $count++;
         }
-        $descString .= "<br />".$itm['officeName'];
-        echo htmlspecialchars($descString, ENT_QUOTES);
+        echo "<dc:creator>".htmlspecialchars($itm['officeName'], ENT_QUOTES)."</dc:creator>";
         echo "</description>";
         $imgArray = explode("|", $itm['images']);
         echo '<media:content medium="image" type="image/jpeg" url="http://www.bendhomes.com/_retsapi/imagesProperties/'.$imgArray[0].'">';
