@@ -98,7 +98,7 @@ function getOpenHouseData($open){
 function resizeAndSavePhoto($opensWithImages){
     foreach($opensWithImages as $itm){
         if ($itm['Status'] == 'Active'){
-            echo "MLS: ".$itm['MLNumber']." - resizing photos: "
+            echo "MLS: ".$itm['MLNumber']." - resizing photos: ";
             $imgArray = explode("|", $itm['images']);
             foreach($mgArray as $img){
                 echo $img." - "
