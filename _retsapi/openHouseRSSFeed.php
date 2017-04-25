@@ -81,12 +81,12 @@ function getOpenHouseData($open){
 
     $rec = array();
 
-    $query = "(SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_BUSI Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_COMM Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_FARM Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_LAND Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
+    $query = "(SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice, Status  from Property_BUSI Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice, Status from Property_COMM Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice, Status  from Property_FARM Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice, Status  from Property_LAND Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice, Status  from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, StreetNumber, StreetName, StreetSuffix, City, ListingPrice, Status  from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
 
     $result = $conn->query($query); 
 
@@ -107,6 +107,7 @@ function getOpenHouseData($open){
                   'StreetSuffix' => $row['StreetSuffix'],
                   'area' => $row['City'],
                   'ListingPrice' => $row['ListingPrice'],
+                  'Status' => $row['Status']
             );
         }
     }
@@ -124,26 +125,28 @@ function displayRssFeed($opensWithData){
     echo '<language>en-us</language>';
 
     foreach($opensWithData as $itm){
-        $price = number_format($itm['ListingPrice']);
-   
-        echo "<item>";
-        echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['area']." - $".$price."</title>";
-        echo "<link><![CDATA[http://bendhomes.idxbroker.com/idx/details/listing/a098/".$itm['MLNumber']."]]></link>";
-        $dateArray = explode("|", $itm['startDateTime']);
-        $commArray = explode("|", $itm['timeComments']);
-        $count = 0;
-        echo "<description>";
-        foreach($dateArray as $date) {
-            $date = date("D", strtotime($date));
-            echo $date." (".$commArray[$count]."), ";
-            $count++;
+        if ($itm['Status'] == 'Active'){
+            $price = number_format($itm['ListingPrice']);
+       
+            echo "<item>";
+            echo "<title>".$itm['StreetNumber']." ".$itm['StreetName']." ".$itm['StreetSuffix'].", ".$itm['area']." - $".$price."</title>";
+            echo "<link><![CDATA[http://bendhomes.idxbroker.com/idx/details/listing/a098/".$itm['MLNumber']."]]></link>";
+            $dateArray = explode("|", $itm['startDateTime']);
+            $commArray = explode("|", $itm['timeComments']);
+            $count = 0;
+            echo "<description>";
+            foreach($dateArray as $date) {
+                $date = date("D", strtotime($date));
+                echo $date." (".$commArray[$count]."), ";
+                $count++;
+            }
+            echo "</description>";
+            echo "<dc:creator>".htmlspecialchars($itm['officeName'], ENT_QUOTES)."</dc:creator>";
+            $imgArray = explode("|", $itm['images']);
+            echo '<media:content medium="image" type="image/jpeg" url="http://www.bendhomes.com/_retsapi/imagesProperties/'.$imgArray[0].'">';
+            echo '</media:content>';
+            echo "</item>";
         }
-        echo "</description>";
-        echo "<dc:creator>".htmlspecialchars($itm['officeName'], ENT_QUOTES)."</dc:creator>";
-        $imgArray = explode("|", $itm['images']);
-        echo '<media:content medium="image" type="image/jpeg" url="http://www.bendhomes.com/_retsapi/imagesProperties/'.$imgArray[0].'">';
-        echo '</media:content>';
-        echo "</item>";
     }
 
     echo '</channel>';
