@@ -104,6 +104,7 @@ function resizeAndSavePhoto($opensWithImages){
                 echo $img." - ";
             }
         }
+    }
 }
 
 
