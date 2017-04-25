@@ -112,6 +112,7 @@ $opensArray = getAllOpens();
 var_dump($opensArray);
 
 $opensWithData = array();
+var_dump($opensWithData);
 
 foreach($opensArray as $open){
     $openWithData = getOpenHouseData($open);
