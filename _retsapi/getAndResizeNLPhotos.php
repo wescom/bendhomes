@@ -107,6 +107,13 @@ function resizeAndSavePhoto($opensWithImages){
             echo "MLS: ".$itm['MLNumber']." - resizing photo: ";
             $imgArray = explode("|", $itm['images']);
             echo $imgArray[0];
+
+            $pic = new Imagick();
+            $pic->readImage("./imagesProperties/".$imgArray[0]);
+            $pic->resizeImage("250","175",Imagick::FILTER_LANCZOS,1);
+            $pic->writeImage("./imagesNewsletters/".$imgArray[0]);
+            $pic->clear();
+            $pic->destroy();
         }
     }
 }
