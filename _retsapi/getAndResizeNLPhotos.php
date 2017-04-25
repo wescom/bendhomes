@@ -97,7 +97,11 @@ function getOpenHouseData($open){
 }
 
 function emptyDirectory() {
-    // empty the directory imagesNewsletters
+    $files = glob('./imagesNewsletters/*.jpg'); // get all file names
+    foreach($files as $file){ // iterate files
+        if(is_file($file))
+        unlink($file); // delete file
+    }
 }
 
 function resizeAndSavePhoto($opensWithImages){
@@ -129,7 +133,7 @@ foreach($opensArray as $open){
 }
 
 emptyDirectory();
-resizeAndSavePhoto($opensWithData);
+//resizeAndSavePhoto($opensWithData);
 
 
 ?>
