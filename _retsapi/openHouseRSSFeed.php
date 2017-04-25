@@ -26,7 +26,7 @@ function getAllOpens() {
     $dt = strtotime("+8 day", $dt);
     $endDate = date("Y-m-d",$dt);
 
-    $query = "SELECT AgentFirstName, AgentLastName, ListingOfficeNumber, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN where StartDateTime < '".$endDate."' Order by MLNumber, StartDateTime";
+    $query = "SELECT AgentFirstName, AgentLastName, OfficeName, ListingOfficeNumber, MLNumber, StartDateTime, TimeComments from OpenHouse_OPEN where StartDateTime < '".$endDate."' Order by MLNumber, StartDateTime";
     $result = $conn->query($query);  
 
     $oldMls = 0;
@@ -46,6 +46,7 @@ function getAllOpens() {
                         'afname' => $row['AgentFirstName'], 
                         'alname' => $row['AgentLastName'], 
                         'officeNum' => $row['ListingOfficeNumber'],
+                        'officeName' => $row['OfficeName'],
                         'MLNumber' => $row['MLNumber'],
                         'startDateTime' => $row['StartDateTime'],
                         'timeComments' => $row['TimeComments']
@@ -96,6 +97,7 @@ function getOpenHouseData($open){
                   'afname' => $open['afname'], 
                   'alname' => $open['alname'], 
                   'officeNum' => $open['officeNum'],
+                  'officeName' => $open['officeName'],
                   'MLNumber' => $open['MLNumber'],
                   'startDateTime' => $open['startDateTime'],
                   'timeComments' => $open['timeComments'],
@@ -136,7 +138,7 @@ function displayRssFeed($opensWithData){
             echo $date." (".$commArray[$count]."), ";
             $count++;
         }
-        echo " Agent: ".$itm['afname']." ".$itm['alname'];
+        echo " Office: ".$itm['officeName'];
         echo "</description>";
         $imgArray = explode("|", $itm['images']);
         echo '<media:content medium="image" type="image/jpeg" url="http://www.bendhomes.com/_retsapi/imagesProperties/'.$imgArray[0].'">';
