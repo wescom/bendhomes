@@ -73,12 +73,12 @@ function getOpenHouseData($open){
 
     $rec = array();
 
-    $query = "(SELECT images, Status  from Property_BUSI Where MLNumber = ".$open['MLNumber'].")";
+    $query = "(SELECT images, Status from Property_BUSI Where MLNumber = ".$open['MLNumber'].")";
     $query .= " UNION (SELECT Status from Property_COMM Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, Status  from Property_FARM Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, Status  from Property_LAND Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, Status  from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
-    $query .= " UNION (SELECT images, Status  from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, Status from Property_FARM Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, Status from Property_LAND Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, Status from Property_MULT Where MLNumber = ".$open['MLNumber'].")";
+    $query .= " UNION (SELECT images, Status from Property_RESI Where MLNumber = ".$open['MLNumber'].")";
 
     $result = $conn->query($query); 
 
@@ -109,6 +109,7 @@ function resizeAndSavePhoto($opensWithImages){
 
 
 $opensArray = getAllOpens();
+var_dump($opensArray);
 
 $opensWithData = array();
 
