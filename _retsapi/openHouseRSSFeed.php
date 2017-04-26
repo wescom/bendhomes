@@ -47,14 +47,17 @@ function getAllOpens() {
 
         while($row = $result->fetch_assoc()) {
             if ($row['MLNumber'] == $oldMls) {
+                // this means we already have this msl in array, so concat the new listing time only
                 $rec['startDateTime'] = $rec['startDateTime']. "|".$row['StartDateTime'];
                 $rec['timeComments'] = $rec['timeComments']. "|".$row['TimeComments'];
             } else {
-              if ($oldMls != 0){
-                  array_push($opensArray, $rec);
-              }
-              $oldMls = $row['MLNumber'];
-              $rec = array(
+                // this is a new mls, so create the array, but don't push yet - next loop could be same
+                // mls and just new show time.  In that case we concat to the startDateTime and TimeComments
+                if ($oldMls != 0){
+                    array_push($opensArray, $rec);  // make sure not the first loop with empty array
+                }
+                $oldMls = $row['MLNumber'];
+                $rec = array(
                         'afname' => $row['AgentFirstName'], 
                         'alname' => $row['AgentLastName'], 
                         'officeNum' => $row['ListingOfficeNumber'],
@@ -62,9 +65,8 @@ function getAllOpens() {
                         'MLNumber' => $row['MLNumber'],
                         'startDateTime' => $row['StartDateTime'],
                         'timeComments' => $row['TimeComments']
-              );
+                );
             }
-            
         }
         array_push($opensArray, $rec);  // push last record
     }
@@ -106,14 +108,14 @@ function getOpenHouseData($open){
 
         while($row = $result->fetch_assoc()) {
             $rec = array(
-                  'afname' => $open['afname'], 
+                  'afname' => $open['afname'],          // push the old data onto the array
                   'alname' => $open['alname'], 
                   'officeNum' => $open['officeNum'],
                   'officeName' => $open['officeName'],
                   'MLNumber' => $open['MLNumber'],
                   'startDateTime' => $open['startDateTime'],
                   'timeComments' => $open['timeComments'],
-                  'images' => $row['images'],
+                  'images' => $row['images'],               // push the new data onto the array
                   'StreetNumber' => $row['StreetNumber'],
                   'StreetName' => $row['StreetName'],
                   'StreetSuffix' => $row['StreetSuffix'],
@@ -174,6 +176,9 @@ function displayRssFeed($opensWithData){
     echo '</channel>';
     echo '</rss>';
 }
+
+
+// entry point of file
 
 $opensArray = getAllOpens();
 

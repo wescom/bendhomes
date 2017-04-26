@@ -454,7 +454,7 @@ function executeCleanAgentsAndOfficesTables() {
   foreach($scenarios as $qvars) {
 
     $retsIdArray = runRetsQuery($qvars, $pullDate);
-
+    echo '<pre>'.$retsIdArray.'</pre>';
 
     $ourIdArray = getOurIds($qvars);
 
