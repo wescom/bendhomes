@@ -147,6 +147,11 @@ function getAllAgentData($qvars, $pullDate, $idArray) {
       $dataType = 'MemberNumber';
   }
 
+  foreach($idArray as $id){
+    $membType = $rets->GetObject($qvars['resource'], 'MemberType', $id,'*', 0);
+    echo "$membType..";
+  }
+
   $idList = implode(",", $idArray);
 
   $query = "(".$dataType."=".$idList.")";
