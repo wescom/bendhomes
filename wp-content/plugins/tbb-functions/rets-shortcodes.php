@@ -694,7 +694,7 @@ class Rets_Agent_Listings {
 					
 					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
-						$html .= '<div class="clearfix"></div>';
+						$html .= '<div class="clearfix hidden-phone"></div>';
 					}
 
 					$count++;
@@ -918,7 +918,7 @@ class Rets_Companies {
 					
 					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
-						$html .= '<div class="clearfix"></div>';
+						$html .= '<div class="clearfix hidden-phone"></div>';
 					}
 
 					$count++;
@@ -1231,7 +1231,7 @@ class Rets_Company_Agents {
 					
 					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
-						$html .= '<div class="clearfix"></div>';
+						$html .= '<div class="clearfix hidden-phone"></div>';
 					}
 
 					$count++;
@@ -1489,7 +1489,7 @@ class Rets_Open_Houses {
 					
 					$clearfix_test = $count / $cols_per_row;
 					if( is_int( $clearfix_test ) ) {
-						$html .= '<div class="clearfix"></div>';
+						$html .= '<div class="clearfix hidden-phone"></div>';
 					}
 
 					$count++;
