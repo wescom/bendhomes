@@ -534,11 +534,8 @@ class Rets_Agent_Listings {
 			RESI.Bedrooms,
 			RESI.Bathrooms
 			FROM Property_RESI RESI
-			WHERE Status = 'Active'
-			AND ShowAddressToPublic = 1
-			AND PublishToInternet = 1
-			AND ListingAgentNumber = {$agent_id}
-			OR ListingCoAgentNumber = {$agent_id}
+			WHERE (ListingAgentNumber = {$agent_id} OR ListingCoAgentNumber = {$agent_id})
+			AND (Status = 'Active' AND ShowAddressToPublic = 1 AND PublishToInternet = 1)
 		";
 		
 		$query2 = "
@@ -556,11 +553,8 @@ class Rets_Agent_Listings {
 			MULT.Bedrooms,
 			MULT.Bathrooms
 			FROM Property_MULT MULT
-			WHERE Status = 'Active'
-			AND ShowAddressToPublic = 1
-			AND PublishToInternet = 1
-			AND ListingAgentNumber = {$agent_id}
-			OR ListingCoAgentNumber = {$agent_id}
+			WHERE (ListingAgentNumber = {$agent_id} OR ListingCoAgentNumber = {$agent_id})
+			AND (Status = 'Active' AND ShowAddressToPublic = 1 AND PublishToInternet = 1)
 		";
 		
 		$query3 = "
@@ -576,11 +570,8 @@ class Rets_Agent_Listings {
 			LAND.State,
 			LAND.ZipCode
 			FROM Property_LAND LAND
-			WHERE Status = 'Active'
-			AND ShowAddressToPublic = 1
-			AND PublishToInternet = 1
-			AND ListingAgentNumber = {$agent_id}
-			OR ListingCoAgentNumber = {$agent_id}
+			WHERE (ListingAgentNumber = {$agent_id} OR ListingCoAgentNumber = {$agent_id})
+			AND (Status = 'Active' AND ShowAddressToPublic = 1 AND PublishToInternet = 1)
 		";
 		
 		$query4 = "
@@ -598,11 +589,8 @@ class Rets_Agent_Listings {
 			FARM.Bedrooms,
 			FARM.Bathrooms
 			FROM Property_FARM FARM
-			WHERE Status = 'Active'
-			AND ShowAddressToPublic = 1
-			AND PublishToInternet = 1
-			AND ListingAgentNumber = {$agent_id}
-			OR ListingCoAgentNumber = {$agent_id}
+			WHERE (ListingAgentNumber = {$agent_id} OR ListingCoAgentNumber = {$agent_id})
+			AND (Status = 'Active' AND ShowAddressToPublic = 1 AND PublishToInternet = 1)
 		";
 		
 		$query5 = "
@@ -618,11 +606,8 @@ class Rets_Agent_Listings {
 			COMM.State,
 			COMM.ZipCode
 			FROM Property_COMM COMM
-			WHERE Status = 'Active'
-			AND ShowAddressToPublic = 1
-			AND PublishToInternet = 1
-			AND ListingAgentNumber = {$agent_id}
-			OR ListingCoAgentNumber = {$agent_id}
+			WHERE (ListingAgentNumber = {$agent_id} OR ListingCoAgentNumber = {$agent_id})
+			AND (Status = 'Active' AND ShowAddressToPublic = 1 AND PublishToInternet = 1)
 		";
 		
 		$query6 = "
@@ -638,11 +623,8 @@ class Rets_Agent_Listings {
 			BUSI.State,
 			BUSI.ZipCode
 			FROM Property_BUSI BUSI
-			WHERE Status = 'Active'
-			AND ShowAddressToPublic = 1
-			AND PublishToInternet = 1
-			AND ListingAgentNumber = {$agent_id}
-			OR ListingCoAgentNumber = {$agent_id}
+			WHERE (ListingAgentNumber = {$agent_id} OR ListingCoAgentNumber = {$agent_id})
+			AND (Status = 'Active' AND ShowAddressToPublic = 1 AND PublishToInternet = 1) 
 		";
 		
 		$listings_query = new Rets_DB();
