@@ -636,6 +636,7 @@ class Rets_Agent_Listings {
 		$listings5 = $listings_query->select( $query5 );
 		$listings6 = $listings_query->select( $query6 );
 		
+		// Merge all the property queries into one array
 		$listings = $this->merge_arrays_obj( $listings1, $listings2, $listings3, $listings4, $listings5, $listings6 );
 		
 		/*if(current_user_can('administrator')) {
