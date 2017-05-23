@@ -563,8 +563,10 @@ class Rets_Agent_Listings {
 		
 		$listings_query = new Rets_DB();
 		
-		$listings = $listings_query->select( $query1 );
-		$listings[] = $listings_query->select( $query2 );
+		$listings1 = $listings_query->select( $query1 );
+		$listings2 = $listings_query->select( $query2 );
+		
+		$listings = $this->merge_arrays_obj( $listings1, $listings2 );
 		
 		if(current_user_can('administrator')) {
 			print_r( $listings );
@@ -632,6 +634,18 @@ class Rets_Agent_Listings {
 		
 		return $html;
 		
+	}
+	
+	public function merge_arrays_obj() {
+		$func_info = debug_backtrace();
+		$func_args = $func_info[0]['args'];
+		$return_array_data = array();
+		foreach( $func_args as $args_index => $args_data ) {
+			if( is_array( $args_data ) || is_object( $args_data ) ) {
+				$return_array_data = array_merge( $return_array_data, $args_data );
+			}
+		}
+		return $return_array_data;
 	}
 	
 }
