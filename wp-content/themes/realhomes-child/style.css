@@ -497,7 +497,7 @@ h3.search-results-header { float: left; margin: 0; }
 	#mortgage-calculator #acww-widget { height: 840px !important; }
 	#mortgage-calculator #acww-widget-iframe { height: 850px !important; }
 	.brands-carousel .row-fluid .span2, .brands-carousel .row-fluid .span2:first-child { width: 33.3333%; margin-bottom: 15px; }
-	.custom-post.four, #IDX-showcaseGallery-42624 .IDX-showcaseCell, #IDX-showcaseGallery-42095 .IDX-showcaseCell { width: 50% !important; min-width: 50%; }
+	.custom-post.one, .custom-post.two, .custom-post.three, .custom-post.four, .custom-post.five, .custom-post.six, #IDX-showcaseGallery-42624 .IDX-showcaseCell, #IDX-showcaseGallery-42095 .IDX-showcaseCell { width: 50% !important; min-width: 50%; }
 }
 
 @media(max-width: 767px) {
@@ -533,7 +533,7 @@ h3.search-results-header { float: left; margin: 0; }
 	.brands-carousel .row-fluid .span2, .brands-carousel .row-fluid .span2:first-child { width: auto; }
 	.mort-calc-form-wrap input[type="text"], .mort-calc-form-wrap select { width: 97.5%; }
 	.share-bar-wrap { padding-left: 0; }
-	.custom-post.four, #IDX-showcaseGallery-42624 .IDX-showcaseCell, #IDX-showcaseGallery-42095 .IDX-showcaseCell { width: 100% !important; min-width: 100%; }
+	.custom-post.one, .custom-post.two, .custom-post.three, .custom-post.four, .custom-post.five, .custom-post.six, #IDX-showcaseGallery-42624 .IDX-showcaseCell, #IDX-showcaseGallery-42095 .IDX-showcaseCell { width: 100% !important; min-width: 100%; }
 }
 
 @media(max-width: 480px) {
