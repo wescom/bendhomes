@@ -538,6 +538,7 @@ class Rets_Agent_Listings {
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
+			OR ListingCoAgentNumber = {$agent_id}
 		";
 		
 		$query2 = "
@@ -559,6 +560,7 @@ class Rets_Agent_Listings {
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
+			OR ListingCoAgentNumber = {$agent_id}
 		";
 		
 		$query3 = "
@@ -578,6 +580,7 @@ class Rets_Agent_Listings {
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
+			OR ListingCoAgentNumber = {$agent_id}
 		";
 		
 		$query4 = "
@@ -599,6 +602,7 @@ class Rets_Agent_Listings {
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
+			OR ListingCoAgentNumber = {$agent_id}
 		";
 		
 		$query5 = "
@@ -618,6 +622,7 @@ class Rets_Agent_Listings {
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
+			OR ListingCoAgentNumber = {$agent_id}
 		";
 		
 		$query6 = "
@@ -637,6 +642,7 @@ class Rets_Agent_Listings {
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
 			AND ListingAgentNumber = {$agent_id}
+			OR ListingCoAgentNumber = {$agent_id}
 		";
 		
 		$listings_query = new Rets_DB();
