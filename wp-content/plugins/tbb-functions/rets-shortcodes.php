@@ -613,7 +613,7 @@ class Rets_Agent_Listings {
 			COMM.City,
 			COMM.State,
 			COMM.ZipCode
-			COMM Property_COMM COMM
+			FROM Property_COMM COMM
 			WHERE Status = 'Active'
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
@@ -632,7 +632,7 @@ class Rets_Agent_Listings {
 			BUSI.City,
 			BUSI.State,
 			BUSI.ZipCode
-			BUSI Property_BUSI BUSI
+			FROM Property_BUSI BUSI
 			WHERE Status = 'Active'
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
