@@ -604,7 +604,9 @@ class Rets_Agent_Listings {
 		
 		$listings = $listings_query->select( $query );
 		
-		//print_r( $listings );
+		if(current_user_can('administrator')) {
+			print_r( $listings );
+		}
 		
 		if( $listings ) {
 			
