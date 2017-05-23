@@ -561,12 +561,32 @@ class Rets_Agent_Listings {
 			AND ListingAgentNumber = {$agent_id}
 		";
 		
+		$query3 = "
+			SELECT 
+			LAND.MLNumber,
+			LAND.ListingPrice,
+			LAND.imagepref,
+			LAND.StreetNumber,
+			LAND.StreetDirection,
+			LAND.StreetName,
+			LAND.StreetSuffix,
+			LAND.City,
+			LAND.State,
+			LAND.ZipCode
+			FROM Property_LAND LAND
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+			AND ListingAgentNumber = {$agent_id}
+		";
+		
 		$listings_query = new Rets_DB();
 		
 		$listings1 = $listings_query->select( $query1 );
 		$listings2 = $listings_query->select( $query2 );
+		$listings3 = $listings_query->select( $query3 );
 		
-		$listings = $this->merge_arrays_obj( $listings1, $listings2 );
+		$listings = $this->merge_arrays_obj( $listings1, $listings2, $listings3 );
 		
 		if(current_user_can('administrator')) {
 			print_r( $listings );
@@ -613,8 +633,10 @@ class Rets_Agent_Listings {
 					
 						$html .= sprintf( '<h5 class="property-price">%s</h5>', number_format($listing['ListingPrice']) );
 
-						$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
-								floatval($listing['Bedrooms']), floatval($listing['Bathrooms']) );
+						if( !empty( $listing['Bedrooms'] ) && !empty( $listing['Bathrooms'] ) ) {
+							$html .= sprintf( '<div class="listing-meta listing-beds">%s Bedrooms</div><div class="listing-meta listing-baths">%s Bathrooms</div>', 
+									floatval($listing['Bedrooms']), floatval($listing['Bathrooms']) );
+						}
 					
 					$html .= '</div></div>';
 					// End agent ouput
