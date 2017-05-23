@@ -519,7 +519,7 @@ class Rets_Agent_Listings {
 		
 		$agent_id = trim( floatval($agent_id) );
 		
-		$query = "
+		$query1 = "
 			SELECT 
 			RESI.MLNumber,
 			RESI.ListingPrice,
@@ -533,8 +533,28 @@ class Rets_Agent_Listings {
 			RESI.ZipCode,
 			RESI.Bedrooms,
 			RESI.Bathrooms
-			
 			FROM Property_RESI RESI
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+			AND ListingAgentNumber = {$agent_id}
+		";
+		
+		$query2 = "
+			SELECT 
+			MULT.MLNumber,
+			MULT.ListingPrice,
+			MULT.imagepref,
+			MULT.StreetNumber,
+			MULT.StreetDirection,
+			MULT.StreetName,
+			MULT.StreetSuffix,
+			MULT.City,
+			MULT.State,
+			MULT.ZipCode,
+			MULT.Bedrooms,
+			MULT.Bathrooms
+			FROM Property_MULT MULT
 			WHERE Status = 'Active'
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
@@ -543,7 +563,8 @@ class Rets_Agent_Listings {
 		
 		$listings_query = new Rets_DB();
 		
-		$listings = $listings_query->select( $query );
+		$listings = $listings_query->select( $query1 );
+		$listings[] = $listings_query->select( $query2 );
 		
 		if(current_user_can('administrator')) {
 			print_r( $listings );
