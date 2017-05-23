@@ -436,6 +436,7 @@ class Rets_Agent {
 				$html .= '</div></div>';
 			
 				if( $agent['featured'] == 1 ) {		
+					$html .= '<div class="clearfix"></div>';
 					$html .= '<div class="row-fluid"><div class="span12"><div class="agent-properties-wrap">';
 
 						// Output property listings for agent via next shortcode built below
