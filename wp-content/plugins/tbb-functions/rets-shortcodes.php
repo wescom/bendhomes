@@ -532,68 +532,9 @@ class Rets_Agent_Listings {
 			RESI.State,
 			RESI.ZipCode,
 			RESI.Bedrooms,
-			RESI.Bathrooms,
+			RESI.Bathrooms
 			
-			MULT.MLNumber,
-			MULT.ListingPrice,
-			MULT.imagepref,
-			MULT.StreetNumber,
-			MULT.StreetDirection,
-			MULT.StreetName,
-			MULT.StreetSuffix,
-			MULT.City,
-			MULT.State,
-			MULT.ZipCode,
-			MULT.Bedrooms,
-			MULT.Bathrooms,
-			
-			LAND.MLNumber,
-			LAND.ListingPrice,
-			LAND.imagepref,
-			LAND.StreetNumber,
-			LAND.StreetDirection,
-			LAND.StreetName,
-			LAND.StreetSuffix,
-			LAND.City,
-			LAND.State,
-			LAND.ZipCode,
-			
-			FARM.MLNumber,
-			FARM.ListingPrice,
-			FARM.imagepref,
-			FARM.StreetNumber,
-			FARM.StreetDirection,
-			FARM.StreetName,
-			FARM.StreetSuffix,
-			FARM.City,
-			FARM.State,
-			FARM.ZipCode,
-			FARM.Bedrooms,
-			FARM.Bathrooms,
-			
-			COMM.MLNumber,
-			COMM.ListingPrice,
-			COMM.imagepref,
-			COMM.StreetNumber,
-			COMM.StreetDirection,
-			COMM.StreetName,
-			COMM.StreetSuffix,
-			COMM.City,
-			COMM.State,
-			COMM.ZipCode,
-			
-			BUSI.MLNumber,
-			BUSI.ListingPrice,
-			BUSI.imagepref,
-			BUSI.StreetNumber,
-			BUSI.StreetDirection,
-			BUSI.StreetName,
-			BUSI.StreetSuffix,
-			BUSI.City,
-			BUSI.State,
-			BUSI.ZipCode
-			
-			FROM Property_RESI RESI, Property_MULT MULT, Property_LAND LAND, Property_FARM FARM, Property_COMM COMM, Property_BUSI BUSI
+			FROM Property_RESI RESI
 			WHERE Status = 'Active'
 			AND ShowAddressToPublic = 1
 			AND PublishToInternet = 1
