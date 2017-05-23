@@ -99,13 +99,13 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
 
 							<a id="menu-toggle" class="menu-control" href="#sidr"><i class="fa fa-bars"></i></a>
 
-							<a href="http://bendhomes.idxbroker.com/idx/search/advanced">Advanced Search</a>
+							<a class="nav-advanced-search hidden-phone" href="http://bendhomes.idxbroker.com/idx/search/advanced">Advanced Search</a>
 							
-							<a href="http://bendhomes.idxbroker.com/idx/map/mapsearch">Map Search</a>
+							<a class="nav-map-search hidden-phone" href="http://bendhomes.idxbroker.com/idx/map/mapsearch">Map Search</a>
 
-							<a href="http://bendhomes.idxbroker.com/idx/userlogin">Login / Register</a>
+							<a class="nav-login" href="http://bendhomes.idxbroker.com/idx/userlogin">Login / Register</a>
 
-							<a href="http://bendhomes.idxbroker.com/idx/myaccount">Profile</a>
+							<a class="nav-profile" href="http://bendhomes.idxbroker.com/idx/myaccount">Profile</a>
 
 						</div>
 
