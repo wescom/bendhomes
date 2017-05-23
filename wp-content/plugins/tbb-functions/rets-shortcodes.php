@@ -580,13 +580,75 @@ class Rets_Agent_Listings {
 			AND ListingAgentNumber = {$agent_id}
 		";
 		
+		$query4 = "
+			SELECT 
+			FARM.MLNumber,
+			FARM.ListingPrice,
+			FARM.imagepref,
+			FARM.StreetNumber,
+			FARM.StreetDirection,
+			FARM.StreetName,
+			FARM.StreetSuffix,
+			FARM.City,
+			FARM.State,
+			FARM.ZipCode,
+			FARM.Bedrooms,
+			FARM.Bathrooms
+			FROM Property_FARM FARM
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+			AND ListingAgentNumber = {$agent_id}
+		";
+		
+		$query5 = "
+			SELECT 
+			COMM.MLNumber,
+			COMM.ListingPrice,
+			COMM.imagepref,
+			COMM.StreetNumber,
+			COMM.StreetDirection,
+			COMM.StreetName,
+			COMM.StreetSuffix,
+			COMM.City,
+			COMM.State,
+			COMM.ZipCode
+			COMM Property_COMM COMM
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+			AND ListingAgentNumber = {$agent_id}
+		";
+		
+		$query6 = "
+			SELECT 
+			BUSI.MLNumber,
+			BUSI.ListingPrice,
+			BUSI.imagepref,
+			BUSI.StreetNumber,
+			BUSI.StreetDirection,
+			BUSI.StreetName,
+			BUSI.StreetSuffix,
+			BUSI.City,
+			BUSI.State,
+			BUSI.ZipCode
+			BUSI Property_BUSI BUSI
+			WHERE Status = 'Active'
+			AND ShowAddressToPublic = 1
+			AND PublishToInternet = 1
+			AND ListingAgentNumber = {$agent_id}
+		";
+		
 		$listings_query = new Rets_DB();
 		
 		$listings1 = $listings_query->select( $query1 );
 		$listings2 = $listings_query->select( $query2 );
 		$listings3 = $listings_query->select( $query3 );
+		$listings4 = $listings_query->select( $query4 );
+		$listings5 = $listings_query->select( $query5 );
+		$listings6 = $listings_query->select( $query6 );
 		
-		$listings = $this->merge_arrays_obj( $listings1, $listings2, $listings3 );
+		$listings = $this->merge_arrays_obj( $listings1, $listings2, $listings3, $listings4, $listings5, $listings6 );
 		
 		if(current_user_can('administrator')) {
 			print_r( $listings );
