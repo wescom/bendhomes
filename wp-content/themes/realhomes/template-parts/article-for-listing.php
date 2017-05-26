@@ -16,7 +16,7 @@
             <small class="post-meta <?php echo $format; ?>-meta thumb-<?php echo has_post_thumbnail()?'exist':'not-exist'; ?>">
                 <span><?php _e('Posted on', 'framework'); ?> <span class="date"> <?php the_time('F d, Y'); ?></span></span>
                 <span><?php _e('by', 'framework'); ?>
-                    <span class="author-link"><?php the_author() ?>
+					<span class="author-link"><a href="http://www.bendbulletin.com/" target="_blank"><?php the_author() ?></a>
                     </span> 
                     <?php _e('in', 'framework'); ?> <?php the_category(', '); ?> 
                     <?php if (function_exists('z_taxonomy_image')) z_taxonomy_image(); ?>
