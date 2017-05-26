@@ -27,7 +27,7 @@ get_header();
                                                 <h1 class="post-title"><?php the_title(); ?></h1>
                                                 <div class="post-meta <?php echo $format; ?>-meta thumb-<?php echo has_post_thumbnail()?'exist':'not-exist'; ?>">
                                                     <span> <?php _e('Posted on', 'framework'); ?>  <span class="date"> <?php the_time('F d, Y'); ?> </span></span>
-                                                    <span> <?php _e('by', 'framework'); ?> <?php the_author(); ?> <?php _e('in', 'framework'); ?>  <?php the_category(', '); ?>  </span>
+                                                    <a href="http://www.bendbulletin.com/" target="_blank"> <?php _e('by', 'framework'); ?> <?php the_author(); ?> <?php _e('in', 'framework'); ?>  <?php the_category(', '); ?>  </a>
                                                 </div>
                                             </header>
                                             <?php
