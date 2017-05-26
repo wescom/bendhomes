@@ -36,6 +36,8 @@ footer a:hover { text-decoration: underline; }
 .modal-address a { font-weight: bold; color: #4EA0AC; display: inline-block; padding: 3px 10px; }
 .modal-header i { margin-right: 5px; }
 
+.sidebar-wrap { min-width: 300px; }
+
 #property-slider-two.flexslider .slides { max-height: 460px; overflow: hidden; }
 #property-slider-two.flexslider .slides li img { width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
 
@@ -472,13 +474,11 @@ h3.search-results-header { float: left; margin: 0; }
 	.page-carousel .brands-carousel { padding-left: 0; padding-right: 0; }
 	.brands-carousel .row-fluid .span2, .brands-carousel .row-fluid .span2:first-child { margin-left: 0; width: 20%; }	
 	.main-wrap { width: 600px; }
-	.sidebar-wrap { min-width: 300px; }
 }
 
 @media(max-width: 980px) {
 	.container { width: 95%; }
 	.main-wrap, .sidebar-wrap { width: 98%; margin-left: 2%; }
-	.sidebar { min-width: 300px; }
 	#menu-toggle { display: block; }
 	#header-top { float: none; }
 	.user-nav, #logo { float: none; width: auto; text-align: center; }
