@@ -36,6 +36,7 @@ footer a:hover { text-decoration: underline; }
 .modal-address a { font-weight: bold; color: #4EA0AC; display: inline-block; padding: 3px 10px; }
 .modal-header i { margin-right: 5px; }
 
+.container { width: 1200px; }
 .sidebar-wrap { min-width: 300px; }
 
 #property-slider-two.flexslider .slides { max-height: 460px; overflow: hidden; }
