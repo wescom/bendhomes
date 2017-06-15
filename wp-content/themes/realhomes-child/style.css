@@ -15,6 +15,9 @@ footer a, #footer-bottom p { color: #fff !important; }
 footer a:hover { text-decoration: underline; }
 
 .brands-carousel .row-fluid .span2 { width: 17.4359%; }
+.single-post .type-post p > br, .single-post .type-post p .bylineClass br { display: none; }
+.single-post .type-post p .bylineClass a { font-size: 14px; color: #ec894d; }
+.single-post .type-post p .bylineClass a:hover { color: #394041; }
 
 .advance-search-form .real-btn { background-position: center center; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; -o-transition: all .3s ease; transition: all .3s ease; }
 .advance-search-form .real-btn.submitting { padding-right: 30px; background: url(images/loader.gif) no-repeat right center #006267; border-right: 10px solid #006267; }
