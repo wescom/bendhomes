@@ -16,6 +16,7 @@ footer a:hover { text-decoration: underline; }
 
 .brands-carousel .row-fluid .span2 { width: 17.4359%; }
 .single-post .type-post p > br, .single-post .type-post p .bylineClass br { display: none; }
+.single-post .type-post p .bylineClass { display: block; }
 .single-post .type-post p .bylineClass a { font-size: 14px; color: #ec894d; }
 .single-post .type-post p .bylineClass a:hover { color: #394041; }
 
