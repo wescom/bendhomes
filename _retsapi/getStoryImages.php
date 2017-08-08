@@ -20,7 +20,7 @@ foreach($x->channel->item as $entry)
                 echo " --- ".$image." ---";
                 if ($image != "")
                 {
-                		$guid = $entry->guid;
+                        $guid = $entry->guid;
                         $guidArray = explode("-", $guid);
                         $cmsId = $guidArray[0];
                         $newName = $cmsId.".jpg";
