@@ -33,14 +33,11 @@ get_header();
                                             <?php
 											$content = get_the_content();
 											if(strpos( $content, '<img' ) !== false) {
-											//if(($c = get_the_content()) && strstr('<img',$c)) {
 												echo $content;
 											} else {
 												get_template_part( 'post-formats/' . $format );
 												echo $content;
 											}
-                                            //get_template_part( 'post-formats/' . $format );
-                                            //the_content();
                                             ?>
                                     </article>
                                     <?php
