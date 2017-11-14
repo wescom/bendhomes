@@ -296,7 +296,8 @@ function tbb_custom_posts( $defaults ) {
 		'order' => 'ASC',
 		'orderby' => 'name',
 		'show_search' => '',
-		'show_pagination' => ''
+		'show_pagination' => '',
+		'skip_words' => ''
 	), $defaults );
 	
 	$classes = sanitize_text_field( $defaults['classes'] );
@@ -377,6 +378,11 @@ function tbb_custom_posts( $defaults ) {
 	// Adds list of ids to query
 	if ( !empty( $post_ids ) ) {
 		$args['post__in'] = $post_ids;
+	}
+	
+	// Skip posts with specific words
+	if ( $defaults['skip_words'] ) {
+		$args['s'] = $defaults['skip_words'];
 	}
 	
 	// Adds offset to query
