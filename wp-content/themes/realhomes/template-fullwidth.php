@@ -92,15 +92,16 @@ if( is_front_page() ) {
 			</div>
 		</div>
 
+		<?php /*
 		<div class="banner-search-wrap">
 			<div class="container">
 				<div class="clearfix">
 					<h1 class="page-title">Welcome to BendHomes.com</h1>
-					<?php /*<div class="header-search"><?php echo do_shortcode('[idx-omnibar styles="1" extra="0" min_price="1" ]'); ?></div>*/ ?>
-					<div class="header-search"><script type="text/javascript" id="idxwidgetsrc-41723" src="//bendhomes.idxbroker.com/idx/quicksearchjs.php?widgetid=41723"></script></div>
+					<div class="header-search"><?php echo do_shortcode('[idx-omnibar styles="1" extra="0" min_price="1" ]'); ?></div>
 				</div>
 			</div>
 		</div>
+		*/ ?>
 	
 	<?php 
 	// If no slide images are set just display the basic header with search bar overlay.
