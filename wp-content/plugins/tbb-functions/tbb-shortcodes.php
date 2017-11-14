@@ -380,7 +380,7 @@ function tbb_custom_posts( $defaults ) {
 		$args['post__in'] = $post_ids;
 	}
 	
-	// Skip posts with specific words
+	// Skip posts with specific word
 	if ( $defaults['skip_words'] ) {
 		$args['s'] = $defaults['skip_words'];
 	}
@@ -582,7 +582,18 @@ function tbb_custom_posts( $defaults ) {
 			if( $image_parts['filename'] == 'default' ) $image = '';
 			
 			$has_image_class = !empty( $image ) ? 'with-image' : 'without-image';
-			
+			$image_src = !empty( $image ) ? $image[0] : '';
+			$image_width = !empty( $image ) ? $image[1] : '';
+			$image_height = !empty( $image ) ? $image[2] : '';
+	
+			// If its a post with no image use a placeholder image
+			if( $defaults['type'] == 'post' && empty( $image ) ) {
+				$image = get_stylesheet_directory_uri() .'/images/bh-placeholder.jpg';
+				$has_image_class = 'with-image';
+				$image_src = $image;
+				$image_width = '244';
+				$image_height = '163';
+			}
 			
 			// Begin item output
 			$output .= sprintf( '<div class="custom-post custom-post-%s %s %s %s %s"><div class="custom-post-item clearfix">', 
@@ -590,7 +601,7 @@ function tbb_custom_posts( $defaults ) {
 			
 				if( empty( $defaults['featured_image'] ) && !empty( $image ) ) {
 					$output .= sprintf( '<figure class="custom-post-image image-%s %s"><a href="%s"><img src="%s" width="%s" height="%s" /></a></figure>', 
-									$count, $image_size, $permalink, $image[0], $image[1], $image[2] );
+									$count, $image_size, $permalink, $image_src, $image_width, $image_height );
 				}
 				
 				if( $defaults['type'] == 'property' ) $output .= $property_price;
