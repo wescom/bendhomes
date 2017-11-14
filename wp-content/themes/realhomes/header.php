@@ -181,7 +181,7 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
 
                 </header>
 				
-				<div class="header-search" style="border-top:1px solid #222">
+				<div class="header-search" style="border-top:1px solid #444">
 					<script type="text/javascript" id="idxwidgetsrc-41723" src="//bendhomes.idxbroker.com/idx/quicksearchjs.php?widgetid=41723"></script>
 				</div>
 
