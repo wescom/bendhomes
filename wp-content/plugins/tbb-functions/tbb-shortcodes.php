@@ -602,7 +602,7 @@ function tbb_custom_posts( $defaults ) {
 				$output .= $additional_meta;
 				
 				if( $defaults['type'] != 'property' ) {
-					$output .= sprintf( '<a class="more-details" href="%s">More Details <i class="fa fa-caret-right"></i></a>', 
+					$output .= sprintf( '<a class="more-details" href="%s">View More <i class="fa fa-caret-right"></i></a>', 
 									$permalink );
 				}
 								
