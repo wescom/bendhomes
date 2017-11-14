@@ -352,13 +352,6 @@ function tbb_custom_posts( $defaults ) {
 		$cat_slugs = array();
 	}
 	
-	// Transform skip_words into array
-	if ( $defaults['skip_words'] ) {
-		$skip_words_array = explode( ',', $defaults['skip_words'] );
-	} else {
-		$skip_words_array = array();
-	}
-	
 	// Enable order A-Z & Z-A select field if url contains ?sort= param
 	$url_sort = '';
 	$url_sort = $_GET['sort'];
@@ -388,20 +381,8 @@ function tbb_custom_posts( $defaults ) {
 	}
 	
 	// Skip posts with specific words
-	if ( !empty( $skip_words_array ) ) {
-		$args['meta_query'] = array(
-			'relation' => 'OR',
-			array(
-				'key' => 'title',
-				'value' => '-BizDeeds',
-				'compare' => 'NOT LIKE'
-			),
-			array(
-				'key' => 'title',
-				'value' => 'Property transactions',
-				'compare' => 'NOT LIKE'
-			)
-		);
+	if ( $defaults['skip_words'] ) {
+		$args['s'] = $defaults['skip_words'];
 	}
 	
 	// Adds offset to query
