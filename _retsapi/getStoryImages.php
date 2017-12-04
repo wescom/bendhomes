@@ -6,7 +6,7 @@ $feedHGURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Expor
 $feedSPURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=SPbendhomesfeed&areas=topStory,listStories1,listStories2&imgwidth=940";
 
 $urlArray = [$feedReURL, $feedHGURL, $feedSPURL];
-
+var_dump($urlArray);
 foreach ($urlArray as $url)
 {
         $content = file_get_contents($url);
