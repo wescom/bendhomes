@@ -21,26 +21,30 @@ foreach ($urlArray as $url)
 
                 if (isset($ns_media->content));
                 {
-                        $image = (string)$ns_media->content->attributes()['url'];
+                        $imgCount = 0;
+                        foreach($ns_media->content as $oneImg){
+                                $imgCount++;
+                                $image = (string)$oneImg->attributes()['url'];
 
-                        echo " --- ".$image." ---";
-                        if ($image != "")
-                        {
-                                $guid = $entry->guid;
-                                $guidArray = explode("-", $guid);
-                                $cmsId = $guidArray[0];
-                                $newName = $cmsId.".jpg";
-                                echo $newName;
-                                $ch = curl_init($image);
-                                $fileName = '/var/www/html/_retsapi/imagesStories/'.$newName;
-                                $fp = fopen($fileName, 'wb');
-                                curl_setopt($ch, CURLOPT_FILE, $fp);
-                                curl_setopt($ch, CURLOPT_HEADER, 0);
-                                curl_exec($ch);
-                                curl_close($ch);
-                                fclose($fp);
-                                $contents = file_get_contents($image);
-                                file_put_contents($fileName, $contents);
+                                echo " --- ".$image." ---";
+                                if ($image != "")
+                                {
+                                        $guid = $entry->guid;
+                                        $guidArray = explode("-", $guid);
+                                        $cmsId = $guidArray[0];
+                                        $newName = $cmsId."_".$imgCount.".jpg";
+                                        echo $newName;
+                                        $ch = curl_init($image);
+                                        $fileName = '/var/www/html/_retsapi/imagesStories/'.$newName;
+                                        $fp = fopen($fileName, 'wb');
+                                        curl_setopt($ch, CURLOPT_FILE, $fp);
+                                        curl_setopt($ch, CURLOPT_HEADER, 0);
+                                        curl_exec($ch);
+                                        curl_close($ch);
+                                        fclose($fp);
+                                        $contents = file_get_contents($image);
+                                        file_put_contents($fileName, $contents);
+                                }
                         }
                 }
                 echo "</li>";
