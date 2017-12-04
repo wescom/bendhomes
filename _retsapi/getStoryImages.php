@@ -1,5 +1,6 @@
 <?php
 
+echo "starting import";
 $feedReURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=realestate&areas=topStory,listStories1,listStories2&imgwidth=940";
 $feedHGURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=homeandgarden&areas=topStory,listStories1,listStories2&imgwidth=940";
 $feedSPURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=SPbendhomesfeed&areas=topStory,listStories1,listStories2&imgwidth=940";
