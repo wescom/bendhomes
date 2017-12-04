@@ -10,6 +10,7 @@ $urlArray = [$feedReURL, $feedHGURL, $feedSPURL];
 foreach ($urlArray as $url)
 {
         $content = file_get_contents($url);
+        echo $content;
         $x = new SimpleXmlElement($content);
 
         echo "<ul>";
