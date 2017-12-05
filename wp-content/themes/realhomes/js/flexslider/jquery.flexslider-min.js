@@ -7,6 +7,7 @@
 $(document).ready(function() {
   $('.flexslider').flexslider({
     animation: "slide",
-	allowOneSlide: "true"
+	allowOneSlide: true,
+	slideshow: false
   });
 });
