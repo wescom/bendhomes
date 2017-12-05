@@ -22,7 +22,7 @@
                 </span>
             </small>
         </header>
-        <p><?php framework_excerpt(30);  ?></p>
-    	<?php /*<a class="real-btn" href="<?php the_permalink(); ?>"><?php _e('Read more', 'framework'); ?></a>*/ ?>
+        <p><?php //framework_excerpt(30);  ?><?php echo strip_tags( get_the_excerpt() ); ?></p>
+		<div><a class="real-btn" href="<?php the_permalink(); ?>"><?php _e('Read more', 'framework'); ?></a></div>
     </div>
 </article>
