@@ -22,6 +22,6 @@
                 </span>
             </small>
         </header>
-		<div><?php //framework_excerpt(30);  ?><?php echo str_replace( '&#013; ', '', get_the_excerpt() ); ?></div>
+		<div><?php //framework_excerpt(30);  ?><?php //echo str_replace( '&#013; ', '', get_the_excerpt() ); ?></div>
     </div>
 </article>
