@@ -5,10 +5,8 @@
 if (!function_exists('inspiry_enqueue_child_styles')) {
     function inspiry_enqueue_child_styles(){
         if ( !is_admin() ) {
-            // dequeue and deregister parent default css
             wp_dequeue_style( 'parent-default' );
             wp_deregister_style( 'parent-default' );
-            // dequeue parent custom css
             wp_dequeue_style( 'parent-custom' );
 			wp_dequeue_style( 'bootstrap-css' );
 			wp_dequeue_style( 'flexslider' );
@@ -18,16 +16,30 @@ if (!function_exists('inspiry_enqueue_child_styles')) {
 			wp_dequeue_style( 'font-awesome' );
 			wp_deregister_style( 'font-awesome' );
 			
-            // parent default css
-            //wp_enqueue_style( 'parent-default', get_template_directory_uri().'/style.css' );
-            // parent custom css
-            //wp_enqueue_style( 'parent-custom' );
 			wp_register_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), '', 'all' );
 			wp_enqueue_style( 'font-awesome' );
-            // child default css
+            // child  style.css
             wp_enqueue_style('child-default', get_stylesheet_uri(), '', '', 'all' );
-            // child custom css
-            //wp_enqueue_style('child-custom',  get_stylesheet_directory_uri() . '/child-custom.css', array('child-default'), '1.0', 'all' );
+			
+			// Deregister all scripts here to combine into one script below
+			wp_dequeue_script( 'flexslider' );
+            wp_dequeue_script( 'easing' );
+            wp_dequeue_script( 'elastislide' );
+            wp_dequeue_script( 'pretty-photo' );
+            wp_dequeue_script( 'swipebox' );
+            wp_dequeue_script( 'isotope' );
+            wp_dequeue_script( 'jcarousel' );
+            wp_dequeue_script( 'jqvalidate' );
+            wp_dequeue_script( 'jqform' );
+            wp_dequeue_script( 'selectbox' );
+            wp_dequeue_script( 'jqtransit' );
+            wp_dequeue_script( 'bootstrap' );
+			// Combined scripts One
+			wp_register_script( 'scripts-one', get_stylesheet_directory_uri() .'/js/scripts.one.js', array('jquery'), '', true );
+			
+			// Deregister custom.js
+			//wp_dequeue_script( 'custom' );
+			
 			
 			//wp_enqueue_script( 'superfish', get_stylesheet_directory_uri().'/js/superfish.min.js', array( 'jquery' ), '', true );
 			wp_enqueue_script( 'touchwipe', get_stylesheet_directory_uri().'/js/jquery.touchwipe.min.js', array( 'jquery' ), '', true );
