@@ -35,7 +35,8 @@ if (!function_exists('inspiry_enqueue_child_styles')) {
             wp_dequeue_script( 'jqtransit' );
             wp_dequeue_script( 'bootstrap' );
 			// Combined scripts One
-			wp_register_script( 'scripts-one', get_stylesheet_directory_uri() .'/js/scripts.one.js', array('jquery'), '', false );
+			wp_register_script( 'scripts-one', get_stylesheet_directory_uri() .'/js/scripts.one.js', array('jquery'), '', true );
+			wp_enqueue_script( 'scripts-one' );
 			
 			// Deregister custom.js
 			//wp_dequeue_script( 'custom' );
