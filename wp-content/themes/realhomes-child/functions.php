@@ -11,16 +11,19 @@ if (!function_exists('inspiry_enqueue_child_styles')) {
             // dequeue parent custom css
             wp_dequeue_style( 'parent-custom' );
 			wp_dequeue_style( 'bootstrap-css' );
+			wp_dequeue_style( 'flexslider' );
 			wp_dequeue_style( 'pretty-photo-css' );
 			wp_dequeue_style( 'swipebox' );
 			wp_dequeue_style( 'main-css' );
 			wp_dequeue_style( 'font-awesome' );
+			wp_deregister_style( 'font-awesome' );
 			
             // parent default css
             //wp_enqueue_style( 'parent-default', get_template_directory_uri().'/style.css' );
             // parent custom css
             //wp_enqueue_style( 'parent-custom' );
-			wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' );
+			wp_register_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), '', 'all' );
+			wp_enqueue_style( 'font-awesome' );
             // child default css
             wp_enqueue_style('child-default', get_stylesheet_uri(), '', '', 'all' );
             // child custom css
