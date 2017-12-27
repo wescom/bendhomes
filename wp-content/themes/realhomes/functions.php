@@ -607,6 +607,8 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                 INSPIRY_THEME_VERSION,
                 true
             );
+			
+			// Register one combined script of everything above
 
             // Enqueue Scripts that are needed on all the pages
             wp_enqueue_script( 'jquery' );
@@ -653,7 +655,7 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                 }
 
                 // Google Map API
-                wp_enqueue_script(
+                /*wp_enqueue_script(
                     'google-map-api',
                     esc_url_raw(
                         add_query_arg(
@@ -667,23 +669,23 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
                     array(),
                     '3.21',
                     false
-                );
+                );*/
 				// ******* END COMMENT OUT *********/
 
                 // Google Map Info Box API
-                wp_enqueue_script(
+                /*wp_enqueue_script(
                     'google-map-info-box',
                     esc_url_raw( $js_directory_uri . 'infobox.min.js' ),
                     array( 'google-map-api' ),
                     '1.1.9'
-                );
+                );*/
 
-                wp_enqueue_script(
+                /*wp_enqueue_script(
                     'google-map-marker-clusterer',
                     esc_url_raw( $js_directory_uri . 'markerclusterer.min.js' ),
                     array( 'google-map-api' ),
                     '2.1.1'
-                );
+                );*/
 
             }
 
@@ -758,13 +760,13 @@ if ( ! function_exists( 'load_theme_scripts' ) ) {
              * Login, Register and Forgot Password Script
              */
             if ( ! is_user_logged_in() ) {
-                wp_enqueue_script(
+                /*wp_enqueue_script(
                     'inspiry-login-register',
                     $js_directory_uri . 'inspiry-login-register.min.js',
                     array( 'jquery' ),
                     INSPIRY_THEME_VERSION,
                     true
-                );
+                );*/
             }
 
             // Finally enqueue theme's main script

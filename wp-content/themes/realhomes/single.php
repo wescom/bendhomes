@@ -31,13 +31,16 @@ get_header();
                                                 </div>
                                             </header>
                                             <?php
-											$content = get_the_content();
+										
+											echo the_content();
+										
+											/*$content = get_the_content();
 											if(strpos( $content, '<img' ) !== false) {
 												echo $content;
 											} else {
 												get_template_part( 'post-formats/' . $format );
 												echo $content;
-											}
+											}*/
                                             ?>
                                     </article>
                                     <?php

@@ -101,6 +101,12 @@
                     slider.removeClass('loading');
                 }
             });
+			
+			$('.hentry .flexslider').flexslider({
+				animation: "slide",
+				allowOneSlide: true,
+				slideshow: false
+			});
 
             // Remove Flex Slider Navigation for Smaller Screens Like IPhone Portrait
             $('.slider-wrapper , .listing-slider').hover(function(){

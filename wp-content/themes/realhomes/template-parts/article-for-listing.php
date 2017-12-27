@@ -22,7 +22,6 @@
                 </span>
             </small>
         </header>
-        <p><?php framework_excerpt(30);  ?></p>
-    	<?php /*<a class="real-btn" href="<?php the_permalink(); ?>"><?php _e('Read more', 'framework'); ?></a>*/ ?>
+		<div><?php //framework_excerpt(30);  ?><?php //echo str_replace( '&#013; ', '', get_the_excerpt() ); ?></div>
     </div>
 </article>

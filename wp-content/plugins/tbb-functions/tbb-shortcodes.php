@@ -1283,11 +1283,12 @@ class TBB_Churches_List {
     }
 	
 	public function enqueue() {
-		//wp_enqueue_style( 'datatables', 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css' );
-		wp_enqueue_script( 'google-map-api', '//maps.googleapis.com/maps/api/js?key=AIzaSyBzmtlh7yHJ_EuPTJ3XsFF-YsVp-Hn-qtA', false );
-		wp_enqueue_script( 'google-map-info-box', TBB_FUNCTIONS_URL .'js/infobox.min.js', array('google-map-api'), '', false );
-		wp_enqueue_script( 'markerclusterer', TBB_FUNCTIONS_URL .'js/markerclusterer.js', array('google-map-api'), '', false );
-		wp_enqueue_script( 'datatables', 'https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js', array('jquery'), '', false );
+		if( is_page( '888' ) ) {
+			wp_enqueue_script( 'google-map-api', '//maps.googleapis.com/maps/api/js?key=AIzaSyBzmtlh7yHJ_EuPTJ3XsFF-YsVp-Hn-qtA', false );
+			wp_enqueue_script( 'google-map-info-box', TBB_FUNCTIONS_URL .'js/infobox.min.js', array('google-map-api'), '', false );
+			wp_enqueue_script( 'markerclusterer', TBB_FUNCTIONS_URL .'js/markerclusterer.js', array('google-map-api'), '', false );
+			wp_enqueue_script( 'datatables', 'https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js', array('jquery'), '', false );
+		}
 	}
 	
 	// Render the shortcode

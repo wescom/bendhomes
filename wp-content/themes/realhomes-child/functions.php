@@ -5,24 +5,39 @@
 if (!function_exists('inspiry_enqueue_child_styles')) {
     function inspiry_enqueue_child_styles(){
         if ( !is_admin() ) {
-            // dequeue and deregister parent default css
             wp_dequeue_style( 'parent-default' );
             wp_deregister_style( 'parent-default' );
-            // dequeue parent custom css
             wp_dequeue_style( 'parent-custom' );
-            // parent default css
-            wp_enqueue_style( 'parent-default', get_template_directory_uri().'/style.css' );
-            // parent custom css
-            wp_enqueue_style( 'parent-custom' );
-            // child default css
-            wp_enqueue_style('child-default', get_stylesheet_uri(), array('parent-default'), '1.0', 'all' );
-            // child custom css
-            //wp_enqueue_style('child-custom',  get_stylesheet_directory_uri() . '/child-custom.css', array('child-default'), '1.0', 'all' );
+			wp_dequeue_style( 'bootstrap-css' );
+			wp_dequeue_style( 'flexslider' );
+			wp_dequeue_style( 'pretty-photo-css' );
+			wp_dequeue_style( 'swipebox' );
+			wp_dequeue_style( 'main-css' );
+			wp_dequeue_style( 'font-awesome' );
+			wp_deregister_style( 'font-awesome' );
 			
-			//wp_enqueue_script( 'superfish', get_stylesheet_directory_uri().'/js/superfish.min.js', array( 'jquery' ), '', true );
-			wp_enqueue_script( 'touchwipe', get_stylesheet_directory_uri().'/js/jquery.touchwipe.min.js', array( 'jquery' ), '', true );
-			wp_enqueue_script( 'sidr', get_stylesheet_directory_uri().'/js/jquery.sidr.min.js', array( 'jquery' ), '', true );
-			//wp_enqueue_script( 'menufit', get_stylesheet_directory_uri().'/js/jquery.menufit.min.js', array( 'jquery' ), '', true );
+			wp_register_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), '', 'all' );
+			wp_enqueue_style( 'font-awesome' );
+            // child  style.css
+            wp_enqueue_style('child-default', get_stylesheet_uri(), '', '', 'all' );
+			
+			// Deregister all scripts here to combine into one script below
+			wp_dequeue_script( 'flexslider' );
+            wp_dequeue_script( 'easing' );
+            wp_dequeue_script( 'elastislide' );
+            wp_dequeue_script( 'pretty-photo' );
+            wp_dequeue_script( 'swipebox' );
+            wp_dequeue_script( 'isotope' );
+            wp_dequeue_script( 'jcarousel' );
+            wp_dequeue_script( 'jqvalidate' );
+            wp_dequeue_script( 'jqform' );
+            wp_dequeue_script( 'selectbox' );
+            wp_dequeue_script( 'jqtransit' );
+            wp_dequeue_script( 'bootstrap' );
+			// Combined scripts into one file
+			wp_register_script( 'scripts-one', get_stylesheet_directory_uri() .'/js/scripts.one.js', array('jquery'), '', true );
+			wp_enqueue_script( 'scripts-one' );
+			
 			wp_enqueue_script('custom');
         }
     }
@@ -172,9 +187,6 @@ function child_theme_head_script() {
 // This will help keep things more readable but still have a minified version of the code for production.
 ?>
 function refreshAd(e){googletag.pubads().refresh()}var googletag=googletag||{};googletag.cmd=googletag.cmd||[],function(){var e=document.createElement("script");e.async=!0,e.type="text/javascript";var g="https:"==document.location.protocol;e.src=(g?"https:":"http:")+"//www.googletagservices.com/tag/js/gpt.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}(),googletag.cmd.push(function(){var e,g,t,o,a,d,n,i=document.documentElement.clientWidth;i>=320&&768>i?(e=[320,50],g=[320,50],t=[320,50],o=[[180,150],[160,600]],a=[180,180],d=[[300,250],[300,600]],n=[200,200]):i>=768&&992>i?(e=[320,50],g=[320,50],t=[320,50],o=[160,600],a=[180,180],d=[[300,250],[300,600]],n=[200,200]):i>=992?(e=[[970,90],[728,90]],g=[728,90],t=[[970,90],[728,90]],o=[160,600],a=[180,180],d=[[300,250],[300,600]],n=[200,200]):(e=[728,90],g=[728,90],t=[728,90],o=[160,600],a=[180,180],d=[[300,250],[300,600]],n=[200,200]);var s=1459980402618,r=getKey,l=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+s+"-1").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+s+"-2").addService(googletag.pubads()),p=googletag.defineSlot("/38749147/BendHomes-Rectangle",o,"div-gpt-ad-"+s+"-3").addService(googletag.pubads()),v=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",t,"div-gpt-ad-"+s+"-4").addService(googletag.pubads()),m=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-"+s+"-5").addService(googletag.pubads()),S=googletag.defineSlot("/38749147/BendHomes-Rectangle2",d,"div-gpt-ad-"+s+"-6").addService(googletag.pubads()),u=googletag.defineSlot("/38749147/BendHomes-Partners1",a,"div-gpt-ad-"+s+"-7").addService(googletag.pubads()),b=googletag.defineSlot("/38749147/BendHomes-Partners2",a,"div-gpt-ad-"+s+"-8").addService(googletag.pubads()),f=googletag.defineSlot("/38749147/BendHomes-Partners3",a,"div-gpt-ad-"+s+"-9").addService(googletag.pubads()),B=googletag.defineSlot("/38749147/BendHomes-Partners4",a,"div-gpt-ad-"+s+"-10").addService(googletag.pubads()),T=googletag.defineSlot("/38749147/BendHomes-Partners5",a,"div-gpt-ad-"+s+"-11").addService(googletag.pubads()),H=googletag.defineSlot("/38749147/BendHomes-MortCalc",n,"div-gpt-ad-"+s+"-12").addService(googletag.pubads()),h=googletag.defineSlot("/38749147/BendHomes-Rectangle3",d,"div-gpt-ad-"+s+"-13").addService(googletag.pubads()),w=googletag.defineSlot("/38749147/BendHomes-Rectangle4",d,"div-gpt-ad-"+s+"-14").addService(googletag.pubads());l.setTargeting("section",[r]),c.setTargeting("section",[r]),p.setTargeting("section",[r]),v.setTargeting("section",[r]),m.setTargeting("section",[r]),S.setTargeting("section",[r]),u.setTargeting("section",[r]),b.setTargeting("section",[r]),f.setTargeting("section",[r]),B.setTargeting("section",[r]),T.setTargeting("section",[r]),H.setTargeting("section",[r]),h.setTargeting("section",[r]),w.setTargeting("section",[r]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([l,c,p,v])})});
-	
-	
-/*function refreshAd(e){googletag.pubads().refresh()}var getKey=<?php echo json_encode($sectionKey); ?>,googletag=googletag||{};googletag.cmd=googletag.cmd||[],function(){var e=document.createElement("script");e.async=!0,e.type="text/javascript";var g="https:"==document.location.protocol;e.src=(g?"https:":"http:")+"//www.googletagservices.com/tag/js/gpt.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}(),googletag.cmd.push(function(){var e,g,t,o,a,d,n,i=document.documentElement.clientWidth;i>=320&&768>i?(e=[320,50],g=[320,50],t=[320,50],o=[[180,150],[160,600]],a=[180,180],d=[300,250],n=[200,200]):i>=768&&992>i?(e=[320,50],g=[320,50],t=[320,50],o=[160,600],a=[180,180],d=[300,250],n=[200,200]):i>=992?(e=[[970,90],[728,90]],g=[728,90],t=[[970,90],[728,90]],o=[160,600],a=[180,180],d=[300,250],n=[200,200]):(e=[728,90],g=[728,90],t=[728,90],o=[160,600],a=[180,180],d=[300,250],n=[200,200]);var s=1459980402618,r=getKey,l=googletag.defineSlot("/38749147/BendHomes-topLeaderboard",e,"div-gpt-ad-"+s+"-0").addService(googletag.pubads()),c=googletag.defineSlot("/38749147/BendHomes-middleLeaderboard",g,"div-gpt-ad-"+s+"-1").addService(googletag.pubads()),p=googletag.defineSlot("/38749147/BendHomes-Rectangle",o,"div-gpt-ad-"+s+"-2").addService(googletag.pubads()),v=googletag.defineSlot("/38749147/BendHomes-bottomLeaderboard",t,"div-gpt-ad-"+s+"-3").addService(googletag.pubads()),m=googletag.defineSlot("/38749147/BendHomes-Rectangle",d,"div-gpt-ad-1481219839325-0").addService(googletag.pubads()),S=googletag.defineSlot("/38749147/BendHomes-Rectangle2",d,"div-gpt-ad-1481223431350-0").addService(googletag.pubads()),u=googletag.defineSlot("/38749147/BendHomes-Partners1",a,"div-gpt-ad-"+s+"-5").addService(googletag.pubads()),b=googletag.defineSlot("/38749147/BendHomes-Partners2",a,"div-gpt-ad-"+s+"-6").addService(googletag.pubads()),f=googletag.defineSlot("/38749147/BendHomes-Partners3",a,"div-gpt-ad-"+s+"-7").addService(googletag.pubads()),B=googletag.defineSlot("/38749147/BendHomes-Partners4",a,"div-gpt-ad-"+s+"-8").addService(googletag.pubads()),H=googletag.defineSlot("/38749147/BendHomes-Partners5",a,"div-gpt-ad-"+s+"-9").addService(googletag.pubads());googletag.defineSlot("/38749147/BendHomes-MortCalc",n,"div-gpt-ad-1486507604128-0").addService(googletag.pubads());l.setTargeting("section",[r]),c.setTargeting("section",[r]),p.setTargeting("section",[r]),v.setTargeting("section",[r]),m.setTargeting("section",[r]),S.setTargeting("section",[r]),u.setTargeting("section",[r]),b.setTargeting("section",[r]),f.setTargeting("section",[r]),B.setTargeting("section",[r]),H.setTargeting("section",[r]),googletag.pubads().collapseEmptyDivs(),googletag.enableServices(),$(window).resize(function(){googletag.pubads().refresh([l,c,p,v])})});*/
 </script>
   
   <?php
