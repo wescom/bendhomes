@@ -221,6 +221,10 @@ function rets_footer_code() {
 		
 	<?php 
 	}
+	
+
+	echo ob_get_clean();
+
 	?>
 
 	<script type="text/javascript">
@@ -232,8 +236,6 @@ function rets_footer_code() {
 	</script>
 
 	<?php 
-
-	echo ob_get_clean();
 }
 
 
