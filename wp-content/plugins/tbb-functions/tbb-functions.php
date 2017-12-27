@@ -219,16 +219,20 @@ function rets_footer_code() {
 
 
 		
-	<?php }
+	<?php 
+	}
+	?>
+
+	<script>
+		console.log("im here");
+	</script>
 	
+	<?php 
+
 	echo ob_get_clean();
 }
 
-?>
-<script>
-	console.log("im here");
-</script>
-<?php 
+
 
 // Javascript to get url parameters on single property idx page to display Open House info
 /*add_action('wp_footer', 'tbb_add_openhouses');
