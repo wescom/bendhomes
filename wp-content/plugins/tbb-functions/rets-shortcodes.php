@@ -117,6 +117,7 @@ class Rets_Agents {
 				ActiveAgent_MEMB.MemberNumber,
 				ActiveAgent_MEMB.IsActive,
 				ActiveAgent_MEMB.images,
+				ActiveAgent_MEMB.featured,
 				Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
 				Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
 				Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
@@ -147,6 +148,7 @@ class Rets_Agents {
 				ActiveAgent_MEMB.MemberNumber,
 				ActiveAgent_MEMB.IsActive,
 				ActiveAgent_MEMB.images,
+				ActiveAgent_MEMB.featured as agFeatured,
 				Agent_MEMB.ContactAddlPhoneType1 as 'ContactAddlPhoneType_1',
 				Agent_MEMB.ContactPhoneAreaCode1 as 'ContactPhoneAreaCode_1',
 				Agent_MEMB.ContactPhoneNumber1 as 'ContactPhoneNumber_1',
@@ -235,7 +237,10 @@ class Rets_Agents {
 							</script>';
 			
 				foreach( $agents as $agent ) {
-										
+					if ($agent['agFeatured'] == 1) {
+						$agent['featured'] = 1;
+					}		
+					
 					$category_classes = $agent['featured'] == 1 ? 'featured' : 'not-featured';
 					
 					if( !empty( $agent['images'] ) && $agent['featured'] == 1 ) {
