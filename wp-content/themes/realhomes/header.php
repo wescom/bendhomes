@@ -185,7 +185,7 @@ var trackOutboundLink=function(n,t){ga("send","event",t,"click",n,{transport:"be
 				<div class="header-search" style="border-top:1px solid #444;margin-top:10px;padding-bottom:9px;">
 					<script type="text/javascript" id="idxwidgetsrc-41723" src="//bendhomes.idxbroker.com/idx/quicksearchjs.php?widgetid=41723"></script>
 					<div style="text-align:right;padding:0 1%;font-size:12px;font-weight:400;letter-spacing:.04em;">
-						<a href="http://bendhomes.idxbroker.com/idx/search/advanced" style="color:#929A9B">Advanced Search</a> &nbsp;| &nbsp;<a href="http://bendhomes.idxbroker.com/idx/map/mapsearch" style="color:#929A9B">Map Search</a>
+						<a href="http://bendhomes.idxbroker.com/idx/search/advanced" style="color:#C9DA2D">Advanced Search</a> &nbsp;| &nbsp;<a href="http://bendhomes.idxbroker.com/idx/map/mapsearch" style="color:#929A9B">Map Search</a>
 					</div>
 				</div>
 
