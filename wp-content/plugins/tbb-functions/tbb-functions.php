@@ -226,7 +226,7 @@ function rets_footer_code() {
 	<script>
 		console.log("im here");
 		var theButton = "<div class='IDX-btn IDX-btn-primary'><a href='http://bendhomes.idxbroker.com/idx/map/mapsearch'>Map Search</a></div>";
-		$('#IDX-resultsRefineSubmit').after(theButton);
+		//$('#IDX-resultsRefineSubmit').after(theButton);
 
 	</script>
 
