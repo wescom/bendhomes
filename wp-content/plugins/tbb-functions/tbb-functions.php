@@ -184,6 +184,12 @@ function rets_footer_code() {
 			
 			$('#IDX-description').before(opensHtml);
 		}
+
+		function mapSearchButtonRender() {
+			console.log('inserting button');
+			var theButton = "<div class='IDX-btn IDX-btn-primary'><a href=''>Map Search</a></div>";
+			$('#IDX-resultsRefineSubmit').after(theButton);
+		}
 		
 		$('#idx20817_42205-2 .title').hide();
 		var theUrl = window.location.href,
@@ -212,10 +218,13 @@ function rets_footer_code() {
 			success: function(response) {},
 			error: function() {}
 		});
+
+		mapSearchButtonRender();
+
 		</script>*/
 		?>
 		<script>
-		function agentRender(e){agentHtml=e.html,agentHtml=agentHtml.replace('"','"'),agentHtml=agentHtml.replace("/","/"),$(".sidebar").prepend(agentHtml)}function openHouseRender(e){opensHtml=e.html,opensHtml=opensHtml.replace('"','"'),opensHtml=opensHtml.replace("/","/"),$("#IDX-description").before(opensHtml)}$("#idx20817_42205-2 .title").hide();var theUrl=window.location.href,urlArray=theUrl.split("/"),mlsNum=urlArray[7],getAgentUrl="<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,getOpensUrl="<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;urlArray.length<8?$(".IDX-featuredAgentWrap").hide():$.ajax({url:getAgentUrl,jsonp:"agentRender",dataType:"jsonp",success:function(e){},error:function(){}}),$.ajax({url:getOpensUrl,jsonp:"openHouseRender",dataType:"jsonp",success:function(e){},error:function(){}})console.log("herexxx");
+		function agentRender(e){agentHtml=e.html,agentHtml=agentHtml.replace('"','"'),agentHtml=agentHtml.replace("/","/"),$(".sidebar").prepend(agentHtml)}function openHouseRender(e){opensHtml=e.html,opensHtml=opensHtml.replace('"','"'),opensHtml=opensHtml.replace("/","/"),$("#IDX-description").before(opensHtml)}function mapSearchButtonRender(){console.log("inserting button");var e="<div class='IDX-btn IDX-btn-primary'><a href=''>Map Search</a></div>";$("#IDX-resultsRefineSubmit").after(e)}$("#idx20817_42205-2 .title").hide();var theUrl=window.location.href,urlArray=theUrl.split("/"),mlsNum=urlArray[7],getAgentUrl="<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,getOpensUrl="<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;urlArray.length<8?$(".IDX-featuredAgentWrap").hide():$.ajax({url:getAgentUrl,jsonp:"agentRender",dataType:"jsonp",success:function(e){},error:function(){}}),$.ajax({url:getOpensUrl,jsonp:"openHouseRender",dataType:"jsonp",success:function(e){},error:function(){}}),mapSearchButtonRender();
 		</script>
 		
 	<?php }
