@@ -225,17 +225,14 @@ function rets_footer_code() {
 
 	echo ob_get_clean();
 
-	?>
-
-	<script type="text/javascript">
-		console.log("im herexx");
-		var theButton = "<div class='IDX-btn IDX-btn-primary'><a href='http://bendhomes.idxbroker.com/idx/map/mapsearch'>Map Search</a></div>";
+	echo "<script type='text/javascript'>";
+		echo "console.log('im herexx');";
+		$theButton = '<div class="IDX-btn IDX-btn-primary"><a href="http://bendhomes.idxbroker.com/idx/map/mapsearch">Map Search</a></div>';
 		//$('#IDX-resultsRefineSubmit').after(theButton);
-		var target = document.getElementById("IDX-resultsRefineSubmit");
-		target.parentNode.insertBefore(theButton, target.nextSibling);
-	</script>
+		echo "var target = document.getElementById('IDX-resultsRefineSubmit');";
+		echo "target.parentNode.insertBefore('".$theButton."', target.nextSibling);";
+	echo "</script>";
 
-	<?php 
 }
 
 
