@@ -143,6 +143,7 @@ add_action('wp_footer', 'rets_footer_code');
 function rets_footer_code() {
 	ob_start(); 
 
+
 	// IDX Home & IDX Sidebar
 	if( is_page( array('577379', '577465') ) ) { ?>
 	
@@ -214,7 +215,7 @@ function rets_footer_code() {
 		</script>*/
 		?>
 		<script>
-		function agentRender(e){agentHtml=e.html,agentHtml=agentHtml.replace('"','"'),agentHtml=agentHtml.replace("/","/"),$(".sidebar").prepend(agentHtml)}function openHouseRender(e){opensHtml=e.html,opensHtml=opensHtml.replace('"','"'),opensHtml=opensHtml.replace("/","/"),$("#IDX-description").before(opensHtml)}$("#idx20817_42205-2 .title").hide();var theUrl=window.location.href,urlArray=theUrl.split("/"),mlsNum=urlArray[7],getAgentUrl="<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,getOpensUrl="<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;urlArray.length<8?$(".IDX-featuredAgentWrap").hide():$.ajax({url:getAgentUrl,jsonp:"agentRender",dataType:"jsonp",success:function(e){},error:function(){}}),$.ajax({url:getOpensUrl,jsonp:"openHouseRender",dataType:"jsonp",success:function(e){},error:function(){}});
+		function agentRender(e){agentHtml=e.html,agentHtml=agentHtml.replace('"','"'),agentHtml=agentHtml.replace("/","/"),$(".sidebar").prepend(agentHtml)}function openHouseRender(e){opensHtml=e.html,opensHtml=opensHtml.replace('"','"'),opensHtml=opensHtml.replace("/","/"),$("#IDX-description").before(opensHtml)}$("#idx20817_42205-2 .title").hide();var theUrl=window.location.href,urlArray=theUrl.split("/"),mlsNum=urlArray[7],getAgentUrl="<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,getOpensUrl="<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;urlArray.length<8?$(".IDX-featuredAgentWrap").hide():$.ajax({url:getAgentUrl,jsonp:"agentRender",dataType:"jsonp",success:function(e){},error:function(){}}),$.ajax({url:getOpensUrl,jsonp:"openHouseRender",dataType:"jsonp",success:function(e){},error:function(){}})console.log("herexxx");
 		</script>
 		
 	<?php }
