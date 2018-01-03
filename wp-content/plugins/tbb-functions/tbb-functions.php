@@ -187,11 +187,11 @@ function rets_footer_code() {
 
 		function mapSearchButtonRender() {
 			console.log('inserting button');
-			var theSearch = "<input id='IDX-resultsRefineSubmit' class='IDX-btn IDX-btn-primary' value='Search' type='submit'>";
-			var theButton = "<div class='IDX-btn IDX-btn-primary' id='mapSearchButton'><a href='http://bendhomes.idxbroker.com/idx/map/mapsearch'>Map Search</a></div>";
-			var theHtml = "<div class='row'>"+theSearch+theButton+"</div>";
-			//$('#IDX-resultsRefineSubmit').after(the);
-			document.getElementById('IDX-resultsRefineSubmit').innerHTML = theHtml;
+			//var theSearch = "<input id='IDX-resultsRefineSubmit' class='IDX-btn IDX-btn-primary' value='Search' type='submit'>";
+			var theButton = "<div class='IDX-btn IDX-btn-primary pull-left' id='mapSearchButton'><a href='http://bendhomes.idxbroker.com/idx/map/mapsearch'>Map Search</a></div>";
+			//var theHtml = "<div class='row'>"+theSearch+theButton+"</div>";
+			$('#IDX-resultsRefineSubmit').after(theButton);
+			//document.getElementById('IDX-resultsRefineSubmit').innerHTML = theHtml;
 		}
 
 		console.log('in tbb-functions');
@@ -241,7 +241,7 @@ function rets_footer_code() {
 		</script>*/
 		?>
 		<script>
-		function agentRender(e){agentHtml=e.html,agentHtml=agentHtml.replace('"','"'),agentHtml=agentHtml.replace("/","/"),$(".sidebar").prepend(agentHtml)}function openHouseRender(e){opensHtml=e.html,opensHtml=opensHtml.replace('"','"'),opensHtml=opensHtml.replace("/","/"),$("#IDX-description").before(opensHtml)}function mapSearchButtonRender(){console.log("inserting button");var e="<input id='IDX-resultsRefineSubmit' class='IDX-btn IDX-btn-primary' value='Search' type='submit'>",t="<div class='IDX-btn IDX-btn-primary' id='mapSearchButton'><a href='http://bendhomes.idxbroker.com/idx/map/mapsearch'>Map Search</a></div>",n="<div class='row'>"+e+t+"</div>";document.getElementById("IDX-resultsRefineSubmit").innerHTML=n}console.log("in tbb-functions");var interval=setInterval(function(){"complete"===document.readyState&&(clearInterval(interval),console.log("calling mapSearchButtonRender"),mapSearchButtonRender(),done())},100);$("#idx20817_42205-2 .title").hide();var theUrl=window.location.href,urlArray=theUrl.split("/"),mlsNum=urlArray[7],getAgentUrl="<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,getOpensUrl="<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;theUrl.indexOf("details/listing")>0&&(urlArray.length<8?$(".IDX-featuredAgentWrap").hide():$.ajax({url:getAgentUrl,jsonp:"agentRender",dataType:"jsonp",success:function(e){},error:function(){}})),$.ajax({url:getOpensUrl,jsonp:"openHouseRender",dataType:"jsonp",success:function(e){},error:function(){}});
+		function agentRender(e){agentHtml=e.html,agentHtml=agentHtml.replace('"','"'),agentHtml=agentHtml.replace("/","/"),$(".sidebar").prepend(agentHtml)}function openHouseRender(e){opensHtml=e.html,opensHtml=opensHtml.replace('"','"'),opensHtml=opensHtml.replace("/","/"),$("#IDX-description").before(opensHtml)}function mapSearchButtonRender(){console.log("inserting button");var e="<div class='IDX-btn IDX-btn-primary pull-left' id='mapSearchButton'><a href='http://bendhomes.idxbroker.com/idx/map/mapsearch'>Map Search</a></div>";$("#IDX-resultsRefineSubmit").after(e)}console.log("in tbb-functions");var interval=setInterval(function(){"complete"===document.readyState&&(clearInterval(interval),console.log("calling mapSearchButtonRender"),mapSearchButtonRender(),done())},100);$("#idx20817_42205-2 .title").hide();var theUrl=window.location.href,urlArray=theUrl.split("/"),mlsNum=urlArray[7],getAgentUrl="<?php echo TBB_FUNCTIONS_URL .'rets-agent-widget.php'; ?>?mls="+mlsNum,getOpensUrl="<?php echo TBB_FUNCTIONS_URL .'rets-openhouse-widget.php'; ?>?mls="+mlsNum;theUrl.indexOf("details/listing")>0&&(urlArray.length<8?$(".IDX-featuredAgentWrap").hide():$.ajax({url:getAgentUrl,jsonp:"agentRender",dataType:"jsonp",success:function(e){},error:function(){}})),$.ajax({url:getOpensUrl,jsonp:"openHouseRender",dataType:"jsonp",success:function(e){},error:function(){}});
 		</script>
 		
 	<?php }
