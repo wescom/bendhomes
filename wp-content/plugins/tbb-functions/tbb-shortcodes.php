@@ -1415,13 +1415,13 @@ class TBB_Churches_List {
 	// Single church item content inside this function so we don't have to duplicate it above
 	private function church_item( $n, $d, $a, $c, $s, $z, $p, $u ) {
 		$url = esc_url( str_replace( ' ', '', $u ) );
-		$url = $url == 'none' ? '' : $url;
+		$url = $url == 'http://none' ? '' : $url;
 		$url = filter_var( $url, FILTER_VALIDATE_URL) ? '<a href="'.$url.'" target="_blank" class="btn btn-sm"><i class="fa fa-globe"></i> Website</a>' : '';
 		
 		$map_part = $n .' '. $c;
 		$map_url = sprintf( 'https://www.google.com/maps/place/%s', urlencode( $map_part ) );
 		
-		$phone = $p == 'none' ? '' : '<a href="tel:'. preg_replace( '/\D/', '', $p ) .'">'. $p .'</a>';
+		$phone = $p == ' none' ? '' : '<a href="tel:'. preg_replace( '/\D/', '', $p ) .'">'. $p .'</a>';
 		
 		$output = '';
 		$output .= '<tr class="church-item">';
