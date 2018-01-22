@@ -155,7 +155,10 @@ function rets_footer_code() {
 			<div class="modal-body">
 				<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
 				<div class="modal-dfp-ad" style="text-align: center;">
-					<?php echo do_shortcode('[dfp_ad type="mortcalcmodal" class="square"]'); ?>
+					<?php //echo do_shortcode('[dfp_ad type="mortcalcmodal" class="square"]'); ?>
+					<a href="https://www.evergreenhomeloans.com/bend/?ref=bh" target="_blank">
+						<img src="http://www.bendhomes.com/wp-content/uploads/2017/05/evergreen-home-loans.jpg" alt="Evergreen Home Loans" title="Evergreen Home Loans" width="200" height="200" />
+					</a>
 				</div>
 			</div>
 		</div>
