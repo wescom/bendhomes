@@ -155,7 +155,7 @@ function rets_footer_code() {
 			<div class="modal-body">
 				<?php echo do_shortcode('[MORT_CALC_FORM]'); ?>
 				<div class="modal-dfp-ad" style="text-align: center;">
-					<?php //echo do_shortcode('[dfp_ad type="mortcalcmodal" class="square"]'); ?>
+					<?php echo do_shortcode('[dfp_ad type="mortcalcmodal" class="square"]'); ?>
 				</div>
 			</div>
 		</div>
