@@ -916,7 +916,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	$span_check = !empty($content) ? 'span8' : 'span12';
 	
 	$sale_price              = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
-    $annual_interest_percent = 2.5; // percent
+    $annual_interest_percent = 0.0; // percent
     $year_term               = 30;  // years
     $down_percent            = 20;  // percent
 	$tax_insurance			 = 1.3;
@@ -956,7 +956,13 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 			
 					<h3 class="text-center">Monthly Payment Estimator</h3>
 					<h2 id="monthly-payment" class="text-center">
-						$<?php echo number_format($monthly_payment); ?> per month
+						<?php 
+							if ($annual_interest_percent == 0) {
+								echo "Enter interest rate below.";
+							} else {
+								echo "$".number_format($monthly_payment). "per month";
+							}
+						?>
 					</h2>
 					<div class="text-center">
 						<small>Loan Amount: <strong id="loan-amt">$<?php echo number_format($financing_price); ?></strong></small>
@@ -1050,7 +1056,8 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	document.getElementById('loan-amt').innerHTML = '$' + addCommas(initloanprincipal);
 	document.getElementById('taxes-per').innerHTML = '$' + Math.round(inittaxpermonth) + '/mo.';
 		
-	var estimatedpayment = '<div id="est-payment"><a href="#paymentmodal" data-toggle="modal"><i class="fa fa-calculator"></i> $' + addCommas(initmonthlypayment) + '/mo.</a></div>';
+	//var estimatedpayment = '<div id="est-payment"><a href="#paymentmodal" data-toggle="modal"><i class="fa fa-calculator"></i> $' + addCommas(initmonthlypayment) + '/mo.</a></div>';
+	var estimatedpayment = '<div id="est-payment"><a href="#paymentmodal" data-toggle="modal"><i class="fa fa-calculator"></i> Estimate $/mo.</a></div>';
 	document.getElementById('IDX-detailsMainInfo').getElementsByClassName('IDX-field-listingPrice')[0].insertAdjacentHTML('beforeend', estimatedpayment);
 
 	// Set up dynamic form
