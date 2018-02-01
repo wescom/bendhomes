@@ -916,7 +916,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	$span_check = !empty($content) ? 'span8' : 'span12';
 	
 	$sale_price              = intval( get_post_meta( $id, 'REAL_HOMES_property_price', true ) );
-    $annual_interest_percent = 3.5; // percent
+    $annual_interest_percent = 0.0; // percent
     $year_term               = 30;  // years
     $down_percent            = 20;  // percent
 	$tax_insurance			 = 1.3;
