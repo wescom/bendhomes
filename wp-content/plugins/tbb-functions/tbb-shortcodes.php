@@ -973,7 +973,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 							</div>
 							<div class="row-fluid">
 								<div class="form-item span6 interest-item percent"><label for="rate">Interest Rate</label>
-									<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" autocomplete="on" value="<?php echo $annual_interest_percent; ?>"> 
+									<input id="mort-interest-value" type="text" onkeypress="return validNumber(event)" onChange="myPayment();" onkeyup="this.onchange();" name="rate" autocomplete="off" value="<?php echo $annual_interest_percent; ?>"> 
 									<div class="smpc-error" id="rateError"></div>
 								</div>
 								<div class="form-item span6 term-item time"><label for="years">Loan Type</label>
