@@ -957,7 +957,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 					<h3 class="text-center">Monthly Payment Estimator</h3>
 					<h2 id="monthly-payment" class="text-center">
 						<?php 
-							if ($annual_interest_percent == 0) {
+							if (is_nan($monthly_payment)) {
 								echo "Enter interest rate below.";
 							} else {
 								echo "$".number_format($monthly_payment). "per month";
