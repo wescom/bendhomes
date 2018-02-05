@@ -960,7 +960,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 							if (is_nan($monthly_payment)) {
 								echo "Enter interest rate below.";
 							} else {
-								echo "$".number_format($monthly_payment). "per month";
+								echo "$".number_format($monthly_payment). "per month.";
 							}
 						?>
 					</h2>
