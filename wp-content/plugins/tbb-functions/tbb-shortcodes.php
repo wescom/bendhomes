@@ -1083,7 +1083,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	var interest = document.mortgagecalc.rate.value / 1200;
 	var taxpermonth = (price / 12) * (document.mortgagecalc.taxes.value / 100);
 	// Calculate mortgage payment and display result
-	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+' per month';
+	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+' per month..';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
 	}
