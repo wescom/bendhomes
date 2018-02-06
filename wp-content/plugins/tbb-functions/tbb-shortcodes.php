@@ -1055,7 +1055,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	if (initmonthlypayment == 0) {
 		document.getElementById('monthly-payment').innerHTML = 'Enter interest rate below.';
 	} else {
-		document.getElementById('monthly-payment').innerHTML = '$' + addCommas(initmonthlypayment) + ' per month.';	
+		document.getElementById('monthly-payment').innerHTML = '$' + addCommas(initmonthlypayment) + ' per month';	
 	}
 	document.getElementById('loan-amt').innerHTML = '$' + addCommas(initloanprincipal);
 	document.getElementById('taxes-per').innerHTML = '$' + Math.round(inittaxpermonth) + '/mo.';
@@ -1083,7 +1083,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	var interest = document.mortgagecalc.rate.value / 1200;
 	var taxpermonth = (price / 12) * (document.mortgagecalc.taxes.value / 100);
 	// Calculate mortgage payment and display result
-	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+' per month..';
+	var monthlypayment = '$' + (loanprincipal * interest / (1 - (Math.pow(1/(1 + interest), months))) + taxpermonth).toFixed(0)+' per month';
 	document.getElementById('monthly-payment').innerHTML = addCommas(monthlypayment);
 	}
 	}
