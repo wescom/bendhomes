@@ -1052,7 +1052,7 @@ function tbb_mortgage_calc_form( $atts, $content = null ) {
 	
 	document.getElementById('mort-price-value').value = initprice;
 	document.getElementById('mort-down-value').value = initdown;
-	if ((initmonthlypayment == 0) || (isNaN(initmonthlypayment)) {
+	if ((initmonthlypayment == 0) || (isNaN(initmonthlypayment))) {
 		document.getElementById('monthly-payment').innerHTML = 'Enter interest rate below.';
 	} else {
 		document.getElementById('monthly-payment').innerHTML = '$' + addCommas(initmonthlypayment) + ' per month';	
