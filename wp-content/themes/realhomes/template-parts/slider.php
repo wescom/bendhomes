@@ -56,7 +56,7 @@ $slider_query = new WP_Query( $slider_args );
 if ( $slider_query->have_posts() ) { ?>
 
 <div id="home-flexslider" class="clearfix">
-    <div class="flexslider loading janelleClass">
+    <div class="flexslider loading">
         <ul class="slides">
 
 		<?php
