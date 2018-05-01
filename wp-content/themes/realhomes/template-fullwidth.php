@@ -56,10 +56,17 @@ if( is_front_page() ) {
 	];
 		
 	// If there's slides set for the homepage display the slider with slides and search bar.
+	$janDev = 0;
+	if (isset($_GET['janDev'])) {
+		$janDev = 1;
+	}
+	if ($janDev == 1) {
+		echo "Janelle Dev";
+	}
 	if( !empty( $slides_array ) ) { ?>
 
 		<div id="home-flexslider" class="clearfix">
-			<div class="flexslider loading janellexxx">
+			<div class="flexslider loading janelle">
 				<ul class="slides">
 
 					<?php
@@ -156,6 +163,7 @@ if( is_front_page() ) {
 		</div> <!-- End span12 -->
 
 	</div><!-- End contents row -->
+	<?php echo "xxxyyy"; ?>
 
 </div><!-- End Content -->
 
