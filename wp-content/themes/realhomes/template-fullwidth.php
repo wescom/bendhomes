@@ -59,7 +59,7 @@ if( is_front_page() ) {
 	if( !empty( $slides_array ) ) { ?>
 
 		<div id="home-flexslider" class="clearfix">
-			<div class="flexslider loading">
+			<div class="flexslider loading janellexxx">
 				<ul class="slides">
 
 					<?php

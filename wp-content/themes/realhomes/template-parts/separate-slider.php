@@ -18,7 +18,7 @@ if ( $slides_query->have_posts() ) {
 	?>
 	<!-- Slider -->
 	<div id="home-flexslider" class="clearfix">
-		<div class="flexslider loading">
+		<div class="flexslider loading janlleSeparate">
 			<ul class="slides">
 				<?php
 				while ( $slides_query->have_posts() ) :
