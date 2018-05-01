@@ -163,7 +163,6 @@ if( is_front_page() ) {
 		</div> <!-- End span12 -->
 
 	</div><!-- End contents row -->
-	<?php echo "xxxyyy"; ?>
 
 </div><!-- End Content -->
 
