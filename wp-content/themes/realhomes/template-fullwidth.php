@@ -60,11 +60,14 @@ if( is_front_page() ) {
 	if (isset($_GET['janDev'])) {
 		$janDev = 1;
 	}
-	if ($janDev == 1) {
-		echo "Janelle Dev";
-	}
+
 	if( !empty( $slides_array ) ) { ?>
 
+		<?php if ($janDev == 1) { ?>
+			
+			<h3>Janelle Dev</h3>
+
+		<?php } else { ?>
 		<div id="home-flexslider" class="clearfix">
 			<div class="flexslider loading janelle">
 				<ul class="slides">
@@ -98,6 +101,8 @@ if( is_front_page() ) {
 				</ul>
 			</div>
 		</div>
+
+		<?php } ?>
 
 		<?php /*
 		<div class="banner-search-wrap">
