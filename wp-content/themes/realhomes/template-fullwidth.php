@@ -68,7 +68,7 @@ if( is_front_page() ) {
 			<h3>Janelle Dev</h3>
 
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-6" width="50%">
 					<div class="promo-block">
 						<div id="home-flexslider" class="clearfix">
 							<div class="flexslider loading">
@@ -105,7 +105,7 @@ if( is_front_page() ) {
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-6" width="50%">
 					Story list here
 				</div>
 			</div>
