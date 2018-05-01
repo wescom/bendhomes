@@ -118,8 +118,6 @@ switch($theme_homepage_module){
                         get_template_part("template-parts/home-news-posts") ;
                     }
 
-                    echo "xxxyyy";
-                    
                     ?>
 
                     
