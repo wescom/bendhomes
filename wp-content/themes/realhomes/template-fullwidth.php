@@ -67,9 +67,52 @@ if( is_front_page() ) {
 			
 			<h3>Janelle Dev</h3>
 
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="promo-block">
+						<div id="home-flexslider" class="clearfix">
+							<div class="flexslider loading">
+								<ul class="slides">
+
+									<?php
+									foreach( $slides_array as $slide ) {
+										if( !empty( $slide['image'] ) ) {
+
+											$image = wp_get_attachment_image_src( $slide['image'], 'property_detail_slider_image_two' );
+
+											$content = '';
+											if( !empty( $slide['content'] ) ) {
+												$content = '
+												<div class="desc-wrap">
+													<div class="slide-description">
+														<h3><a href="'. $slide['link'] .'">'. $slide['content'] .'</a></h3>
+														<div>'. $slide['office'] .'</div>
+														<a href="'. $slide['link'] .'" class="know-more">View</a>
+													</div>
+												</div>
+												';
+											}
+
+											// Output the slide
+											echo sprintf('<li>%s<a href="%s"><img src="%s" alt="" width="%s" height="%s" /></a></li>',
+														$content, $slide['link'], $image[0], $image[1], $image[2] );
+										}	
+									}
+									?>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					Story list here
+				</div>
+			</div>
+
 		<?php } else { ?>
 		<div id="home-flexslider" class="clearfix">
-			<div class="flexslider loading janelle">
+			<div class="flexslider loading">
 				<ul class="slides">
 
 					<?php
