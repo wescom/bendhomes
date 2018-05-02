@@ -101,6 +101,19 @@
                     slider.removeClass('loading');
                 }
             });
+
+            // Flex Slider for Homepage
+            $('#new-flexslider .flexslider').flexslider({
+                animation: "fade",
+                slideshowSpeed: 7000,
+                animationSpeed:	1500,
+                directionNav: true,
+                controlNav: false,
+                keyboardNav: true,
+                start: function (slider) {
+                    slider.removeClass('loading');
+                }
+            });
 			
 			$('.hentry .flexslider').flexslider({
 				animation: "slide",
