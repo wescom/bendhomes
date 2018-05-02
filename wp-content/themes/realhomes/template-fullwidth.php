@@ -113,7 +113,9 @@ if( is_front_page() ) {
 						$recent_posts = new WP_Query(
 							array(
 								'post_type'		=> 'post',
-								'posts_per_page' => 5
+								'posts_per_page' => 5,
+								'post_status' => 'publish',
+								'order' => 'DESC'
 							)
 						);
 
@@ -142,7 +144,9 @@ if( is_front_page() ) {
 							</div>
 						</div>
 
-							<?php } } ?>
+							<?php } } 
+							 wp_reset_query();
+							?>
 					</div>
 				</div>
 			</div>
