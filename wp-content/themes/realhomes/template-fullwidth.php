@@ -124,18 +124,18 @@ if( is_front_page() ) {
 							if (count($contentArray) > 0) {
 								$imgArray = explode('"', $contentArray[1]);
 								$imgUrl = $imgArray[0];
-								$imgUrl = str_replace(".jpg", "-1-1-244x163.jpg", $imgUrl);
+								$imgUrl = str_replace(".jpg", "-1-244x163.jpg", $imgUrl);
 							}
 							
 							//url: http://www.bendhomes.com/wp-content/uploads/2018/04/CMSID6194444_1.jpg
-							echo "url: ".$imgUrl;
+							//echo "url: ".$imgUrl;
                 		?>
              
 						<div class="story-item clearfix category-1829475">
 						
 						
 							<a href="<?php echo $post['guid']; ?>">
-								<img src="http://www.bendbulletin.com/csp/mediapool/sites/dt.common.streams.StreamServer.cls?STREAMOID=QS8hYYIS7pTIsC8w4x6ucc$daE2N3K4ZzOUsqbU5sYsXgo6amXLEQ9mb4ncBKZHKWCsjLu883Ygn4B49Lvm9bPe2QeMKQdVeZmXF$9l$4uCZ8QDXhaHEp3rvzXRJFdy0KqPHLoMevcTLo3h8xh70Y6N_U_CryOsw6FTOdKL_jpQ-&amp;CONTENTTYPE=image/jpeg" class="pull-right" alt="" width="140" height="93">
+								<img src="<?php echo $imgUrl; ?>" class="pull-right" alt="" width="140" height="93">
 							</a>
 								
 							<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray all-uppercase"><?php echo $catName; ?></a></small></div>	
