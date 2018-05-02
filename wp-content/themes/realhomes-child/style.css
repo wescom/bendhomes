@@ -653,5 +653,5 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	width: auto; /*proper aspect ratio of images*/
 	overflow: hidden;
     max-width: 100%; /*maximum width for all slides*/
-    margin: 0 auto; /*centering images in the container*/
+    margin: 0 auto !important; /*centering images in the container*/
 }
