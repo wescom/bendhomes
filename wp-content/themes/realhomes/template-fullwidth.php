@@ -107,6 +107,8 @@ if( is_front_page() ) {
 				</div>
 				<div class="col-sm-6 relative">
 					<div class="story-loop-wrap top-stories-list">
+
+					<?php for (i = 0; i< 6; i++) {  ?>
 						<div class="story-item clearfix category-1829475">
 						
 					
@@ -124,6 +126,8 @@ if( is_front_page() ) {
 								</div>
 							</cite>
 						</div>
+
+					<?php } ?>
 					</div>
 				</div>
 			</div>
