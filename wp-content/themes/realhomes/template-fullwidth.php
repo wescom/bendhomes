@@ -129,7 +129,7 @@ if( is_front_page() ) {
 							</h2>
 							<cite class="author-wrap">		
 								<div class="pop">		
-									<span><?php echo date("'M j, Y g:iA'", strtotime($post['post_date'])); ?>/span>
+									<span><?php echo date("M j, Y", strtotime($post['post_date'])); ?></span>
 								</div>
 							</cite>
 						</div>
