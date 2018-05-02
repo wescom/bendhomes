@@ -587,6 +587,10 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	.home-recent-posts figure { min-height: 163px; }	
 }
 
+.home-top-blob {
+	width: 98%;
+	margin: 0 auto;
+}
 .story-item {
 	padding-bottom: 10px;
 	margin-bottom: 10px;
@@ -609,7 +613,7 @@ a.city-square:hover { background: #02888F; color: #fff; }
 }
 
 .top-stories-list a {
-
+	color: #2A3744;
 }
 
 .top-stories-list h2 {

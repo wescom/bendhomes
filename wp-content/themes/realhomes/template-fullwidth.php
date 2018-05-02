@@ -67,7 +67,7 @@ if( is_front_page() ) {
 			
 			<h3>Janelle Dev</h3>
 
-			<div class="row">
+			<div class="row home-top-blob">
 				<div class="col-sm-6">
 					<div class="promo-block">
 						<div id="home-flexslider" class="clearfix">
