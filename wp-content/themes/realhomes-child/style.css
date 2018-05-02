@@ -610,6 +610,7 @@ a.city-square:hover { background: #02888F; color: #fff; }
 .top-stories-list img {
 	max-width: 150px;
 	margin-left: 15px; 
+	margin-right: 5px;
 }
 
 .top-stories-list a {
@@ -621,6 +622,9 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	line-height: 28px;
 	margin-top: 0;
 	margin-bottom: 0; 
+}
+.no-right-padding {
+	padding-right: 0px;
 }
 
 .relative {
