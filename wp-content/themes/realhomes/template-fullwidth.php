@@ -108,29 +108,24 @@ if( is_front_page() ) {
 
 					<?php
 						// The Query
-						$recent_posts_query = new WP_Query( $recent_posts_args );
+						$args = array( 'numberposts' => '5' );
+						$recent_posts = wp_get_recent_posts($args);
 
-						var_dump($recent_posts_query);
+						var_dump($recent_posts);
 						// The Loop
-						if ( $recent_posts_query->have_posts() ) {
-							while ( $recent_posts_query->have_posts() ) {
-								$recent_posts_query->the_post();
-								$format = get_post_format( $post->ID );
-								if (false === $format) {
-									$format = 'standard';
-								}
+						foreach ( $recent_posts as $post ) {
                 		?>
              
 						<div class="story-item clearfix category-1829475">
 						
 					
-							<a href="<?php the_permalink(); ?>">
+							<a href="">
 								<img src="http://www.bendbulletin.com/csp/mediapool/sites/dt.common.streams.StreamServer.cls?STREAMOID=QS8hYYIS7pTIsC8w4x6ucc$daE2N3K4ZzOUsqbU5sYsXgo6amXLEQ9mb4ncBKZHKWCsjLu883Ygn4B49Lvm9bPe2QeMKQdVeZmXF$9l$4uCZ8QDXhaHEp3rvzXRJFdy0KqPHLoMevcTLo3h8xh70Y6N_U_CryOsw6FTOdKL_jpQ-&amp;CONTENTTYPE=image/jpeg" class="pull-right" alt="" width="140" height="93">
 							</a>
 								
 							<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray all-uppercase">business</a></small></div>	
 							<h2>
-								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								<a href=""><?php $post['post_title'] ?></a>
 							</h2>
 							<cite class="author-wrap">		
 								<div class="pop">		
