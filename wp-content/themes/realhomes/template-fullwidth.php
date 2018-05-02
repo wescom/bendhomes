@@ -132,7 +132,7 @@ if( is_front_page() ) {
 								
 							<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray all-uppercase">business</a></small></div>	
 							<h2>
-								<a href="http://www.bendbulletin.com/business/6208285-151/redmond-airport-travelers-need-to-remove-electronics-for?referrer=home&amp;referrer=top">Travelers must remove electronics from carry-on bags</a>
+								<a href="http://www.bendbulletin.com/business/6208285-151/redmond-airport-travelers-need-to-remove-electronics-for?referrer=home&amp;referrer=top">Travelers must remove electronics from carry-ons</a>
 							</h2>
 							<cite class="author-wrap">		
 								<div class="pop">		
