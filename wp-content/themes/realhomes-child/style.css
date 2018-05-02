@@ -648,6 +648,10 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	color: #888;
 }
 
-.new-flexslider {
-    margin-top: 0px !important;
+.new-flexslider .slides img {
+    max-height: 600px; /*maximum height for all slides*/
+	width: auto; /*proper aspect ratio of images*/
+	overflow: hidden;
+    max-width: 100%; /*maximum width for all slides*/
+    margin: 0 auto; /*centering images in the container*/
 }

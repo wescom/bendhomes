@@ -68,7 +68,7 @@ if( is_front_page() ) {
 			<div class="row home-top-blob">
 				<div class="col-sm-6 no-right-padding">
 					<div class="promo-block">
-						<div id="home-flexslider" class="clearfix">
+						<div id="home-flexslider" class="clearfix new-flexsider">
 							<div class="flexslider loading">
 								<ul class="slides">
 
