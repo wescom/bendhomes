@@ -624,7 +624,7 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	margin-top: 0;
 	margin-bottom: 0; 
 }
-.story-item section small a {
+.story-item > section > small > a {
 	text-transform: uppercase;
 	color: #777777;
 	font-size: 11px;
