@@ -589,7 +589,7 @@ a.city-square:hover { background: #02888F; color: #fff; }
 
 .home-top-blob {
 	width: 98%;
-	margin: 0 auto;
+	margin-left: 1%;
 }
 .story-item {
 	padding-bottom: 10px;
@@ -615,6 +615,7 @@ a.city-square:hover { background: #02888F; color: #fff; }
 
 .top-stories-list a {
 	color: #2A3744;
+	font-size: .8em;
 }
 
 .top-stories-list h2 {
@@ -633,7 +634,7 @@ a.city-square:hover { background: #02888F; color: #fff; }
 
 .author-wrap {
 	display: inline-block;
-	margin: 8px 8px 0 0;
+	margin: 1px 3px 0 0;
 }
 .author-wrap span a {
 	font-weight: bold;
