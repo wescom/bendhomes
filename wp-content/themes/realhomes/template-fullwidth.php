@@ -105,7 +105,7 @@ if( is_front_page() ) {
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6" width="50%">
+				<div class="col-sm-6">
 					Story list here
 				</div>
 			</div>
