@@ -134,7 +134,7 @@ if( is_front_page() ) {
 							</cite>
 						</div>
 
-							<?php } } ?>
+							<?php }  ?>
 					</div>
 				</div>
 			</div>
