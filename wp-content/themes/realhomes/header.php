@@ -23,7 +23,7 @@
 
     wp_head();
     ?>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    
 
 <script type="text/javascript">
 <?php /* Unminified
