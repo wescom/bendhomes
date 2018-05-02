@@ -118,6 +118,14 @@ if( is_front_page() ) {
 							foreach($catArray as $cat) {
 								$catName = $cat->cat_name;
 							} 
+
+							$postContent = $post['post_content'];
+							$contentArray = explode('src="', $postContent);
+							if (count($contentArray) > 0) {
+								$imgArray = explode('"', $contentArray[1]);
+								$imgUrl = $imgArray[0];
+							}
+							echo "url: ".$imgUrl;
                 		?>
              
 						<div class="story-item clearfix category-1829475">
