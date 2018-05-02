@@ -127,11 +127,9 @@ if( is_front_page() ) {
 							<h2>
 								<a href="<?php $post['guid']; ?>"><?php echo $post['post_title'] ?></a>
 							</h2>
-							<cite class="author-wrap">		
-								<div class="pop">		
-									<span><?php echo date("M j, Y", strtotime($post['post_date'])); ?></span>
-								</div>
-							</cite>
+							<div class="pub-date-wrap">			
+								<?php echo date("M j, Y", strtotime($post['post_date'])); ?>
+							</div>
 						</div>
 
 							<?php }  ?>
