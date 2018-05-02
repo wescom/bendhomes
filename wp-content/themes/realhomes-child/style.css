@@ -587,3 +587,51 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	.home-recent-posts figure { min-height: 163px; }	
 }
 
+.story-item {
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ddd;
+	position: relative;
+}
+.top-stories-list h2 {
+    font-size: 20px;
+	line-height: 24px; 
+}
+	
+.top-stories-list h2 {
+	font-size: 24px;
+	line-height: 28px; 
+}
+
+.top-stories-list img {
+	max-width: 150px;
+	margin-left: 15px; 
+}
+
+.top-stories-list a {
+
+}
+
+.top-stories-list h2 {
+	font-size: 24px;
+	line-height: 28px;
+	margin-top: 0;
+	margin-bottom: 0; 
+}
+
+.relative {
+	position: relative;
+}
+
+.author-wrap {
+	display: inline-block;
+	margin: 8px 8px 0 0;
+}
+.author-wrap span a {
+	font-weight: bold;
+	color: #2A3744;
+}
+
+cite {
+	font-style: normal;
+}
