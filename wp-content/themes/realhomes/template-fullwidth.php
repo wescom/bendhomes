@@ -111,7 +111,7 @@ if( is_front_page() ) {
 						$args = array( 'numberposts' => '5' );
 						$recent_posts = wp_get_recent_posts($args);
 
-						var_dump($recent_posts);
+						//var_dump($recent_posts);
 						// The Loop
 						foreach ( $recent_posts as $post ) {
 							$catArray = get_the_category($post['ID']);
