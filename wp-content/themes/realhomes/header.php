@@ -23,7 +23,7 @@
 
     wp_head();
     ?>
-    
+   
 
 <script type="text/javascript">
 <?php /* Unminified
