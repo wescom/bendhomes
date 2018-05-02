@@ -109,30 +109,38 @@ if( is_front_page() ) {
 					<?php
 						// The Query
 						$args = array( 'numberposts' => '5' );
-						$recent_posts = wp_get_recent_posts($args);
+						$categories = array('Home & Garden', 'Latest Real Estate News', 'Special Publications');
+						$recent_posts = new WP_Query(
+							array(
+								'post_type'		=> 'post',
+								'posts_per_page' => 5,
+								'category_name'	=> $categories
+							)
+						);
 
-						var_dump($recent_posts);
+						//var_dump($recent_posts);
 						// The Loop
-						foreach ( $recent_posts as $post ) {
+						if ($recent_posts->have_posts()) {
+							while ($recent_posts->have_posts())  {
                 		?>
              
 						<div class="story-item clearfix category-1829475">
 						
 						
-							<a href="<?php echo $post['guid']; ?>">
+							<a href="<?php the_permalink(); ?>">
 								<img src="http://www.bendbulletin.com/csp/mediapool/sites/dt.common.streams.StreamServer.cls?STREAMOID=QS8hYYIS7pTIsC8w4x6ucc$daE2N3K4ZzOUsqbU5sYsXgo6amXLEQ9mb4ncBKZHKWCsjLu883Ygn4B49Lvm9bPe2QeMKQdVeZmXF$9l$4uCZ8QDXhaHEp3rvzXRJFdy0KqPHLoMevcTLo3h8xh70Y6N_U_CryOsw6FTOdKL_jpQ-&amp;CONTENTTYPE=image/jpeg" class="pull-right" alt="" width="140" height="93">
 							</a>
 								
 							<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray all-uppercase">business</a></small></div>	
 							<h2>
-								<a href="<?php $post['guid']; ?>"><?php echo $post['post_title'] ?></a>
+								<a href="<?php the_permalink(); ?>"><?php the_title() ?></a>
 							</h2>
 							<div class="pub-date-wrap">			
-								<?php echo "Published ".date("M j, Y", strtotime($post['post_date'])); ?>
+								<?php the_time('M j, Y g:iA'); ?>
 							</div>
 						</div>
 
-							<?php }  ?>
+							<?php } } ?>
 					</div>
 				</div>
 			</div>
