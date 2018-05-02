@@ -590,6 +590,7 @@ a.city-square:hover { background: #02888F; color: #fff; }
 .home-top-blob {
 	width: 98%;
 	margin-left: 1%;
+	margin-top:10px;
 }
 .story-item {
 	padding-bottom: 10px;
