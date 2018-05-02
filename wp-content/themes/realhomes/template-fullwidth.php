@@ -111,7 +111,7 @@ if( is_front_page() ) {
 						
 					
 							<a href="http://www.bendbulletin.com/business/6208285-151/redmond-airport-travelers-need-to-remove-electronics-for?referrer=home&amp;referrer=top">
-								<img src="/csp/mediapool/sites/dt.common.streams.StreamServer.cls?STREAMOID=QS8hYYIS7pTIsC8w4x6ucc$daE2N3K4ZzOUsqbU5sYsXgo6amXLEQ9mb4ncBKZHKWCsjLu883Ygn4B49Lvm9bPe2QeMKQdVeZmXF$9l$4uCZ8QDXhaHEp3rvzXRJFdy0KqPHLoMevcTLo3h8xh70Y6N_U_CryOsw6FTOdKL_jpQ-&amp;CONTENTTYPE=image/jpeg" class="pull-right" alt="" width="140" height="93">
+								<img src="http://www.bendbulletin.com/csp/mediapool/sites/dt.common.streams.StreamServer.cls?STREAMOID=QS8hYYIS7pTIsC8w4x6ucc$daE2N3K4ZzOUsqbU5sYsXgo6amXLEQ9mb4ncBKZHKWCsjLu883Ygn4B49Lvm9bPe2QeMKQdVeZmXF$9l$4uCZ8QDXhaHEp3rvzXRJFdy0KqPHLoMevcTLo3h8xh70Y6N_U_CryOsw6FTOdKL_jpQ-&amp;CONTENTTYPE=image/jpeg" class="pull-right" alt="" width="140" height="93">
 							</a>
 								
 							<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray">business</a></small></div>	
