@@ -92,8 +92,8 @@ if( is_front_page() ) {
 											}
 
 											// Output the slide
-											echo sprintf('<li>%s<a href="%s"><img src="%s" alt="" width="%s" height="%s" /></a></li>',
-														$content, $slide['link'], $image[0], $image[1], $image[2] );
+											echo sprintf('<li>%s<a href="%s"><img src="%s" alt="" height="%s" /></a></li>',
+														$content, $slide['link'], $image[0], "100%");
 										}	
 									}
 									?>
