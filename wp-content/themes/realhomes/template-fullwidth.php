@@ -115,7 +115,8 @@ if( is_front_page() ) {
 						// The Loop
 						foreach ( $recent_posts as $post ) {
 							$catArray = get_the_category($post['ID']);
-							$catName = $catArray[0]['NAME'];
+							$catName = "stuff";
+							var_dump($catArray[0]);
                 		?>
              
 						<div class="story-item clearfix category-1829475">
