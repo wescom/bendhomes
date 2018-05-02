@@ -128,7 +128,7 @@ if( is_front_page() ) {
 								<a href="<?php $post['guid']; ?>"><?php echo $post['post_title'] ?></a>
 							</h2>
 							<div class="pub-date-wrap">			
-								<?php echo "published ".date("M j, Y", strtotime($post['post_date'])); ?>
+								<?php echo "Published ".date("M j, Y", strtotime($post['post_date'])); ?>
 							</div>
 						</div>
 
