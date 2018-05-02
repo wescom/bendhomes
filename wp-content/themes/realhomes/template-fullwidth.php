@@ -128,7 +128,7 @@ if( is_front_page() ) {
 							}
 							
 							//url: http://www.bendhomes.com/wp-content/uploads/2018/04/CMSID6194444_1.jpg
-							echo "url: ".$imgUrl;
+							//echo "url: ".$imgUrl;
                 		?>
              
 						<div class="story-item clearfix category-1829475">
