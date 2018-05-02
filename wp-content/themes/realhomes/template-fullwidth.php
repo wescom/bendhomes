@@ -124,7 +124,7 @@ if( is_front_page() ) {
 							if (count($contentArray) > 0) {
 								$imgArray = explode('"', $contentArray[1]);
 								$imgUrl = $imgArray[0];
-								//$imgUrl = str_replace(".jpg", "-1-244x163.jpg", $imgUrl);
+								$imgUrl = str_replace(".jpg", "-1-244x163.jpg", $imgUrl);
 							}
 							
 							//url: http://www.bendhomes.com/wp-content/uploads/2018/04/CMSID6194444_1.jpg
