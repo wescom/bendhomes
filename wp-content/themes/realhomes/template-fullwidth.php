@@ -113,8 +113,7 @@ if( is_front_page() ) {
 						$recent_posts = new WP_Query(
 							array(
 								'post_type'		=> 'post',
-								'posts_per_page' => 5,
-								'category_name'	=> $categories
+								'posts_per_page' => 5
 							)
 						);
 
@@ -122,21 +121,24 @@ if( is_front_page() ) {
 						// The Loop
 						if ($recent_posts->have_posts()) {
 							while ($recent_posts->have_posts())  {
+
+								$c = get_the_category();
+								$cat = $c[0]->cat_name;
                 		?>
              
-						<div class="story-item clearfix category-1829475">
+						<div class="story-item clearfix category">
 						
 						
-							<a href="<?php the_permalink(); ?>">
+							<a href="<?php echo the_permalink(); ?>">
 								<img src="http://www.bendbulletin.com/csp/mediapool/sites/dt.common.streams.StreamServer.cls?STREAMOID=QS8hYYIS7pTIsC8w4x6ucc$daE2N3K4ZzOUsqbU5sYsXgo6amXLEQ9mb4ncBKZHKWCsjLu883Ygn4B49Lvm9bPe2QeMKQdVeZmXF$9l$4uCZ8QDXhaHEp3rvzXRJFdy0KqPHLoMevcTLo3h8xh70Y6N_U_CryOsw6FTOdKL_jpQ-&amp;CONTENTTYPE=image/jpeg" class="pull-right" alt="" width="140" height="93">
 							</a>
 								
-							<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray all-uppercase">business</a></small></div>	
+							<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray all-uppercase"><?php echo $cat; ?></a></small></div>	
 							<h2>
-								<a href="<?php the_permalink(); ?>"><?php the_title() ?></a>
+								<a href="<?php echo the_permalink(); ?>"><?php echo the_title() ?></a>
 							</h2>
 							<div class="pub-date-wrap">			
-								<?php the_time('M j, Y g:iA'); ?>
+								<?php echo the_time('M j, Y g:iA'); ?>
 							</div>
 						</div>
 
