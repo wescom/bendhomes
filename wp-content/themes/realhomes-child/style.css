@@ -642,15 +642,8 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	position: relative;
 }
 
-.author-wrap {
-	display: inline-block;
-	margin: 1px 3px 0 0;
-}
-.author-wrap span a {
+.pub-date-wrap {
+	font-size: 0.8em;
 	font-weight: bold;
-	color: #2A3744;
-}
-
-cite {
-	font-style: normal;
+	color: #888;
 }
