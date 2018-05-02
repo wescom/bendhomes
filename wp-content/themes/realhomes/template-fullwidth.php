@@ -64,8 +64,6 @@ if( is_front_page() ) {
 	if( !empty( $slides_array ) ) { ?>
 
 		<?php if ($janDev == 1) { ?>
-			
-			<h3>Janelle Dev</h3>
 
 			<div class="row home-top-blob">
 				<div class="col-sm-6 no-right-padding">
