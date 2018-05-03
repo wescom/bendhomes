@@ -115,9 +115,15 @@
                 }
             });
 
-            var storyHeight = $('.story-loop-wrap').height();
-            $('.new-flexslider > .flexslider > .slides').height(storyHeight);
-            $('.new-flexslider > .flexslider > .slides > li > a > img').height(storyHeight);
+            if ($(window).width() > 992) {
+                var storyHeight = $('.story-loop-wrap').height();
+                $('.new-flexslider > .flexslider > .slides').height(storyHeight);
+                $('.new-flexslider > .flexslider > .slides > li > a > img').height(storyHeight);
+            } else {
+                var storyHeight = 200;
+                $('.new-flexslider > .flexslider > .slides').height(storyHeight);
+                $('.new-flexslider > .flexslider > .slides > li > a > img').height(storyHeight);
+            }
 			
 			$('.hentry .flexslider').flexslider({
 				animation: "slide",
