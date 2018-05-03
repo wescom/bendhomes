@@ -15,7 +15,6 @@ Version: 1.3
 .new-flexslider .flexslider .slides img {
 	display: block;
 	width: auto; /*proper aspect ratio of images*/
-	height: 100%;
 	overflow-x: hidden;
 	
 }
