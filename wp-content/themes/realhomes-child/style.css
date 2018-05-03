@@ -620,8 +620,8 @@ a.city-square:hover { background: #02888F; color: #fff; }
 }
 
 .new-flex-li {
-	overflow:hidden;
-	horizontal-align: middle;
+	overflow: hidden;
+	text-align: center;
 }
 .story-loop-wrap {
 	padding-left: 10px;
