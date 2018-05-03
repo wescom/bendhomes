@@ -138,7 +138,11 @@ if( is_front_page() ) {
 								<img src="<?php echo $imgUrl; ?>" class="pull-right" alt="" width="140" height="93">
 							</a>
 								
-							<div class="section"><small><a href="/category/<?php echo str_replace(" ", "-", $catName); ?>/" class="color-darkgray all-uppercase"><?php echo $catName; ?></a></small></div>	
+							<?php 
+								$catLink = str_replace("&", "and", $catname);
+								$catLink = str_replace(" ", "-", $catLink);
+							?>
+							<div class="section"><small><a href="/category/<?php echo $catLink; ?>/" class="color-darkgray all-uppercase"><?php echo $catName; ?></a></small></div>	
 							<h2>
 								<a href="<?php $post['guid']; ?>"><?php echo $post['post_title'] ?></a>
 							</h2>
