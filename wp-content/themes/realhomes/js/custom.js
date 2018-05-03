@@ -114,6 +114,10 @@
                     slider.removeClass('loading');
                 }
             });
+
+            var storyHeight = $('.story-loop-wrap').height();
+            $('.new-flexslider > .flexslider > .slides').height(storyHeight);
+            $('.new-flexslider > .flexslider > .slides > img').height(storyHeight);
 			
 			$('.hentry .flexslider').flexslider({
 				animation: "slide",
