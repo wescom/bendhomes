@@ -116,7 +116,6 @@
             });
 
             var storyHeight = $('.story-loop-wrap').height();
-            console.log("storyHeight: ", storyHeight);
             $('.new-flexslider > .flexslider > .slides').height(storyHeight);
             $('.new-flexslider > .flexslider > .slides > li > a > img').height(storyHeight);
 			
