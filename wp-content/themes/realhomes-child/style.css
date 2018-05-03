@@ -599,6 +599,17 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	.home-recent-posts figure { min-height: 163px; }	
 }
 
+
+#new-flexslider .flexslider{border:none;margin:auto;border-radius:0;}
+#new-flexslider .flexslider.loading{min-height:320px;background:url(/wp-content/themes/realhomes/images/slider-loader.gif) center center no-repeat}
+#new-flexslider .flex-direction-nav li a{display:block;text-indent:-999em;text-align:left;width:48px;height:48px;position:absolute;top:50%;margin-top:-22px;z-index:150;cursor:pointer;transition:none;text-shadow:none;outline:0}
+#new-flexslider .flex-direction-nav li a::before,.advance-search .more-options-wrapper.collapsed{display:none}
+#new-flexslider .flex-direction-nav li a:focus{outline:0}
+#new-flexslider .flex-direction-nav li a.flex-next{background:url(/wp-content/themes/realhomes/images/slider-nav-right.png) no-repeat;right:30px}
+#new-flexslider .flex-direction-nav li a.flex-next:hover{background-position:bottom}
+#new-flexslider .flex-direction-nav li a.flex-prev{background:url(/wp-content/themes/realhomes/images/slider-nav-left.png) no-repeat;left:30px}
+#new-flexslider .flex-direction-nav li a.flex-prev:hover{background-position:bottom}
+
 .home-top-blob {
 	width: 98%;
 	margin-left: 1%;
