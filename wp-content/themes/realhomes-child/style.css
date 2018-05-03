@@ -18,8 +18,8 @@ Version: 1.3
 	height: 600px;
 	overflow-x: hidden;
 	max-width: none !important;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: auto !important;
+	margin-right: auto !important;
 	
 }
 
@@ -621,7 +621,6 @@ a.city-square:hover { background: #02888F; color: #fff; }
 
 .new-flex-li {
 	overflow: hidden;
-	text-align: center;
 }
 .story-loop-wrap {
 	padding-left: 10px;
