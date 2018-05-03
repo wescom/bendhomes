@@ -17,6 +17,7 @@ Version: 1.3
 	width: auto; /*proper aspect ratio of images*/
 	height: 600px;
 	overflow-x: hidden;
+	max-width: none !important;
 	
 }
 
@@ -616,6 +617,9 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	margin-top:10px;
 }
 
+.new-flex-li {
+	overflow:hidden;
+}
 .story-loop-wrap {
 	padding-left: 10px;
 }
