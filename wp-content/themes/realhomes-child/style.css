@@ -561,6 +561,7 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	.page-spacer { height: 20px; }
 	#home-flexslider .flexslider { height: auto; }
 	#home-flexslider .desc-wrap, #overview .property-item .printer-icon { display: none; }
+	#new-flexslider .desc-wrap, #overview .property-item .printer-icon { display: none; }
 	#home-flexslider .flexslider .slides img { margin-top: 0; }
 	.property-items .span6 { width: auto; margin-right: 2%; }
 	.property-item .detail { float: none; }
