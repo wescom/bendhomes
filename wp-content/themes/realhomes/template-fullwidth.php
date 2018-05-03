@@ -64,10 +64,11 @@ if( is_front_page() ) {
 	if( !empty( $slides_array ) ) { ?>
 
 		<?php if ($janDev == 1) { ?>
-
-			<div class="row home-top-blob">
-				<div class="col-sm-6 no-right-padding">
-					<div class="promo-block">
+			
+			<div class="container">
+				<div class="row home-top-blob">
+					<div class="col-sm-6 no-right-padding">
+					
 						<div id="new-flexslider" class="clearfix new-flexslider">
 							<div class="flexslider loading">
 								<ul class="slides">
@@ -99,12 +100,12 @@ if( is_front_page() ) {
 									?>
 
 								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 relative">
-					<div class="story-loop-wrap top-stories-list">
+							</div><!-- flexslider -->
+						</div><!-- new-flexslider -->
+					</div><!-- col-sm-6 -->
+
+					<div class="col-sm-6 relative">
+						<div class="story-loop-wrap top-stories-list">
 
 					<?php
 						// The Query
@@ -131,26 +132,27 @@ if( is_front_page() ) {
 							//echo "url: ".$imgUrl;
                 		?>
              
-						<div class="story-item clearfix category-1829475">
-						
-						
-							<a href="<?php echo $post['guid']; ?>">
-								<img src="<?php echo $imgUrl; ?>" class="pull-right" alt="" width="140" height="93">
-							</a>
-								
-							<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray all-uppercase"><?php echo $catName; ?></a></small></div>	
-							<h2>
-								<a href="<?php $post['guid']; ?>"><?php echo $post['post_title'] ?></a>
-							</h2>
-							<div class="pub-date-wrap">			
-								<?php echo "Published ".date("M j, Y", strtotime($post['post_date'])); ?>
-							</div>
-						</div>
+							<div class="story-item clearfix category-1829475">
+							
+							
+								<a href="<?php echo $post['guid']; ?>">
+									<img src="<?php echo $imgUrl; ?>" class="pull-right" alt="" width="140" height="93">
+								</a>
+									
+								<div class="section"><small><a href="/business?referrer=topstory" class="color-darkgray all-uppercase"><?php echo $catName; ?></a></small></div>	
+								<h2>
+									<a href="<?php $post['guid']; ?>"><?php echo $post['post_title'] ?></a>
+								</h2>
+								<div class="pub-date-wrap">			
+									<?php echo "Published ".date("M j, Y", strtotime($post['post_date'])); ?>
+								</div>
+							</div><!-- story-item -->
 
 							<?php }  ?>
-					</div>
-				</div>
-			</div>
+						</div><!--story-loop-wrap-->
+					</div><!-- col-sm-6 -->
+				</div><!-- row home-top-blob -->
+			</div><!-- container -->
 
 		<?php } else { ?>
 		<div id="home-flexslider" class="clearfix">
