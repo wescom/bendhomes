@@ -139,7 +139,7 @@ if( is_front_page() ) {
 							</a>
 								
 							<?php 
-								$catLink = str_replace("&", "and", $catname);
+								$catLink = str_replace("&", "and", $catName);
 								$catLink = str_replace(" ", "-", $catLink);
 							?>
 							<div class="section"><small><a href="/category/<?php echo $catLink; ?>/" class="color-darkgray all-uppercase"><?php echo $catName; ?></a></small></div>	
