@@ -66,7 +66,7 @@ if( is_front_page() ) {
 		<?php if ($janDev == 1) { ?>
 			
 			<div class="row home-top-blob">
-				<div class="col-sm-6 no-right-padding">
+				<div class="col-md-6 no-right-padding">
 					<div class="promo-block">
 						<div id="new-flexslider" class="clearfix new-flexslider">
 							<div class="flexslider loading">
@@ -103,7 +103,7 @@ if( is_front_page() ) {
 						</div><!-- new-flexslider -->
 					</div><!-- promo-block -->
 				</div><!-- col-sm-6 -->
-				<div class="col-sm-6 relative">
+				<div class="col-md-6 relative">
 					<div class="story-loop-wrap top-stories-list">
 
 					<?php
