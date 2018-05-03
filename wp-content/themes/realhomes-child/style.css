@@ -602,6 +602,10 @@ a.city-square:hover { background: #02888F; color: #fff; }
 	margin-left: 1%;
 	margin-top:10px;
 }
+
+.story-loop-wrap {
+	padding-left: 10px;
+}
 .story-item {
 	padding-bottom: 10px;
 	margin-bottom: 10px;
