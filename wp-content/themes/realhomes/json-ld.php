@@ -34,7 +34,7 @@ if (is_front_page()) {
 	$payload["@type"] = "WebPage"; 
 	$payload["name"] = "Bendhomes ".$post_data->post_title; 
 	$payload["logo"] = "http://www.bendhomes.com/wp-content/uploads/2017/12/BendHomes.comLogoArt.png"; 
-	$payload["url"] = $post_url; 
+	$payload["url"] = "http://www.bendhomes.com".$_SERVER['REQUEST_URI']; 
 	$payload["sameAs"] = array( "https://twitter.com/BendHomes541", "https://www.facebook.com/bendhomes541/", "https://plus.google.com/101058950766867205838" ); 
 	$payload["contactPoint"] = array( array( "@type" => "ContactPoint", "telephone" => "541 382 1811", "email" => "info@bendhomes.com", "contactType" => "sales" ) ); 
 	$payload["identifier"] = $post_data->post_title;
