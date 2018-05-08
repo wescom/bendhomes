@@ -26,9 +26,9 @@
     ?>
 
     <?php include('json-ld.php'); ?>
-    <script type="application/ld+json">// <![CDATA[
+    <script type="application/ld+json">
         <?php echo json_encode($payload); ?>
-    // ]]></script>
+    </script>
     
 
 <script type="text/javascript">
