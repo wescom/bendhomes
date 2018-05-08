@@ -24,6 +24,10 @@
     wp_head();
 
     ?>
+
+    <!--?php include('json-ld.php'); ?--><script type="application/ld+json">// <![CDATA[
+    <?php echo json_encode($payload); ?>
+    // ]]></script>
     
 
 <script type="text/javascript">
