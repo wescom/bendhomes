@@ -28,7 +28,7 @@ if (is_single()) { // this gets the data for the user who wrote that particular 
 	} else {
 		$payload["image"] = "http://www.bendhomes.com/wp-content/uploads/2017/12/BendHomes.comLogoArt.png";
 	}
-	$payload["ArticleSection"] = $category[0]->cat_name; 
+	$payload["articleSection"] = $category[0]->cat_name; 
 	$payload["identifier"] = $post_data->ID;
 	$payload["publisher"] = array( array( "@type" => "Organization", "telephone" => "541 382 1811", "email" => "info@bendhomes.com", "name" => "Bendhomes", "logo" => array("@type" => "ImageObject", "url" => "http://www.bendhomes.com/wp-content/uploads/2017/12/BendHomes.comLogoArt.png")  ) ); 
 
