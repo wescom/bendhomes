@@ -26,7 +26,7 @@ if (is_single()) { // this gets the data for the user who wrote that particular 
 	if ($post_thumb) {
 		$payload["image"] = $post_thumb; 
 	} else {
-		$payload["image"] = "http://www.bendhomes.com/wp-content/uploads/2017/12/BendHomes.comLogoArt.png" 
+		$payload["image"] = "http://www.bendhomes.com/wp-content/uploads/2017/12/BendHomes.comLogoArt.png";
 	}
 	$payload["ArticleSection"] = $category[0]->cat_name; 
 	$payload["identifier"] = $post_data->ID;
