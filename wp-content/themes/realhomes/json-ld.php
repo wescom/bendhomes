@@ -20,7 +20,9 @@ if (is_single()) { // this gets the data for the user who wrote that particular 
 
 	$payload["@type"] = "NewsArticle"; 
 	$payload["url"] = $post_url; 
-	$payload["author"] = array( "@type" => "Person", "name" => $author_data->display_name, ); 
+	//$payload["author"] = array( "@type" => "Person", "name" => $author_data->display_name, ); 
+	$payload["author"] = $author_data->display_name;
+	$payload["creator"] = $author_data->display_name;
 	$payload["headline"] = $post_data->post_title; 
 	$payload["datePublished"] = $post_data->post_date; 
 	if ($post_thumb) {
