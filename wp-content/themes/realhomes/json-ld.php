@@ -26,7 +26,6 @@ if (is_single()) { // this gets the data for the user who wrote that particular 
 	$payload["image"] = $post_thumb; 
 	$payload["ArticleSection"] = $category[0]->cat_name; 
 	$payload["identifier"] = $post_data->ID;
-	$payload["Publisher"] = "Bendhomes"; 
 
 } // we do all this separately so we keep the right things for organization together 
 
