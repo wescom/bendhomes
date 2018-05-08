@@ -18,7 +18,7 @@ if (is_single()) { // this gets the data for the user who wrote that particular 
 	$post_url = get_permalink(); 
 	$post_thumb = wp_get_attachment_url(get_post_thumbnail_id($post->ID)); 
 
-	$payload["@type"] = "Article"; 
+	$payload["@type"] = "NewsArticle"; 
 	$payload["url"] = $post_url; 
 	$payload["author"] = array( "@type" => "Person", "name" => $author_data->display_name, ); 
 	$payload["headline"] = $post_data->post_title; 
