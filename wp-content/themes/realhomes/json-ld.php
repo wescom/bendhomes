@@ -6,9 +6,9 @@ $payload["@context"] = "http://schema.org/"; // this has all the data of the pos
 
 $post_data = get_post_data(); // stuff for any page, if it exists 
 
-echo "<!--";
+/*echo "<!--";
 echo print_r($post_data);
-echo " -->";
+echo " -->";*/
 
 $category = get_the_category(); // stuff for specific pages 
 
