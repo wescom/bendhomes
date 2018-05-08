@@ -10,7 +10,7 @@ echo "<!--";
 echo print_r($post_data);
 echo " -->";
 
-/*$category = get_the_category(); // stuff for specific pages 
+$category = get_the_category(); // stuff for specific pages 
 
 if (is_single()) { // this gets the data for the user who wrote that particular item 
 
@@ -25,18 +25,19 @@ if (is_single()) { // this gets the data for the user who wrote that particular 
 	$payload["datePublished"] = $post_data->post_date; 
 	$payload["image"] = $post_thumb; 
 	$payload["ArticleSection"] = $category[0]->cat_name; 
-	$payload["identifier"] = $post
+	$payload["identifier"] = $post_data->ID;
 	$payload["Publisher"] = "Bendhomes"; 
 
 } // we do all this separately so we keep the right things for organization together 
 
 if (is_front_page()) { 
 	$payload["@type"] = "WebPage"; 
-	$payload["name"] = "Builtvisible"; 
-	$payload["logo"] = "http://builtvisible.com/wp-content/uploads/2014/05/BUILTVISIBLE-Badge-Logo-512x602-medium.png"; 
-	$payload["url"] = "http://builtvisible.com/"; 
-	$payload["sameAs"] = array( "https://twitter.com/builtvisible", "https://www.facebook.com/builtvisible", "https://www.linkedin.com/company/builtvisible", "https://plus.google.com/+SEOgadget/" ); 
-	$payload["contactPoint"] = array( array( "@type" => "ContactPoint", "telephone" => "+44 20 7148 0453", "email" => "hello@builtvisible.com", "contactType" => "sales" ) ); 
+	$payload["name"] = "Bendhomes ".$post_data->post_title; 
+	$payload["logo"] = "http://www.bendhomes.com/wp-content/uploads/2017/12/BendHomes.comLogoArt.png"; 
+	$payload["url"] = $post_url; 
+	$payload["sameAs"] = array( "https://twitter.com/BendHomes541", "https://www.facebook.com/bendhomes541/", "https://plus.google.com/101058950766867205838" ); 
+	$payload["contactPoint"] = array( array( "@type" => "ContactPoint", "telephone" => "541 382 1811", "email" => "info@bendhomes.com", "contactType" => "sales" ) ); 
+	$payload["identifier"] = $post_data->post_title;
 } 
 
 if (is_author()) { // this gets the data for the user who wrote that particular item 
