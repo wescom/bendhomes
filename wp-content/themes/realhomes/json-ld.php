@@ -50,7 +50,7 @@ if (is_author()) { // this gets the data for the user who wrote that particular 
 } 
 
 
-*/
+
 
 
 
