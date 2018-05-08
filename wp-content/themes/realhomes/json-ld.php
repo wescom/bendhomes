@@ -30,7 +30,8 @@ if (is_single()) { // this gets the data for the user who wrote that particular 
 
 } // we do all this separately so we keep the right things for organization together 
 
-if (is_front_page()) { 
+//if (is_front_page()) { 
+else {
 	$payload["@type"] = "WebPage"; 
 	$payload["name"] = "Bendhomes ".$post_data->post_title; 
 	$payload["url"] = "http://www.bendhomes.com".$_SERVER['REQUEST_URI']; 
