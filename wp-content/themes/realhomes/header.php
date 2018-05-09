@@ -9,6 +9,11 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<meta name="format-detection" content="telephone=no">
 
+    <?php include('json-ld.php'); ?>
+    <script type="application/ld+json">
+        <?php echo json_encode($payload); ?>
+    </script>
+
     <?php
     if ( !function_exists( 'has_site_icon' ) || !has_site_icon() ) {
 	    $favicon = get_option( 'theme_favicon' );
@@ -24,11 +29,6 @@
     wp_head();
 
     ?>
-
-    <?php include('json-ld.php'); ?>
-    <script type="application/ld+json">
-        <?php echo json_encode($payload); ?>
-    </script>
     
 
 <script type="text/javascript">
