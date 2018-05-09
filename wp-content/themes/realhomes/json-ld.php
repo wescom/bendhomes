@@ -26,9 +26,9 @@ if (is_single()) { // this gets the data for the user who wrote that particular 
 	$payload["headline"] = $post_data->post_title; 
 	$payload["datePublished"] = $post_data->post_date; 
 	if ($post_thumb) {
-		$payload["image"] = array("@type": "ImageObject", "src": $post_thumb); 
+		$payload["image"] = array("@type" => "ImageObject", "src" => $post_thumb); 
 	} else {
-		$payload["image"] = array("@type": "ImageObject", "src" : "http://www.bendhomes.com/wp-content/uploads/2017/12/BendHomes.comLogoArt.png");
+		$payload["image"] = array("@type" => "ImageObject", "src" => "http://www.bendhomes.com/wp-content/uploads/2017/12/BendHomes.comLogoArt.png");
 	}
 	$payload["articleSection"] = $category[0]->cat_name; 
 	$payload["identifier"] = $post_data->ID;
