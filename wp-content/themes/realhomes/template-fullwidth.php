@@ -144,7 +144,7 @@ if( is_front_page() ) {
 							?>
 							<div class="section"><small><a href="/category/<?php echo $catLink; ?>/" class="color-darkgray all-uppercase"><?php echo $catName; ?></a></small></div>	
 							<h2>
-								<a href="<?php $post['guid']; ?>"><?php echo $post['post_title'] ?></a>
+								<a href="<?php echo $post['guid']; ?>"><?php echo $post['post_title'] ?></a>
 							</h2>
 							<div class="pub-date-wrap">			
 								<?php echo "Published ".date("M j, Y", strtotime($post['post_date'])); ?>
