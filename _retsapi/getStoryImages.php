@@ -1,11 +1,11 @@
 <?php
 
 echo "starting import";
-$feedReURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=realestate&areas=topStory,listStories1,listStories2&imgwidth=940";
-$feedHGURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=homeandgarden&areas=topStory,listStories1,listStories2&imgwidth=940";
-$feedSPURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=SPbendhomesfeed&areas=topStory,listStories1,listStories2&imgwidth=940";
+$feedReURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=realestatenews&areas=topStory,listStories1,listStories2&imgwidth=940";
+$feedHGURL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=SPhomeandgarden&areas=topStory,listStories1,listStories2&imgwidth=940";
+$feed97URL = "http://www.bendbulletin.com/csp/mediapool/sites/BendBulletin/Exports/mrss.csp?publication=BendBulletin&section=Area97&areas=topStory,listStories1,listStories2&imgwidth=940";
 
-$urlArray = [$feedReURL, $feedHGURL, $feedSPURL];
+$urlArray = [$feedReURL, $feedHGURL, $feed97URL];
 var_dump($urlArray);
 foreach ($urlArray as $url)
 {
