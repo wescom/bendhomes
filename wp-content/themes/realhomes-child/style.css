@@ -418,7 +418,7 @@ h3.search-results-header { float: left; margin: 0; }
 .custom-post.four { width: 25%; }
 .custom-post.five { width: 20%; }
 .custom-post.six { width: 16.66667%; }
-.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 40px; border: 1px solid #dedede; background: #fff; position: relative; text-align: center; }
+.custom-post .custom-post-item { margin-left: 2%; margin-right: 2%; margin-bottom: 30px; padding: 10px 10px 40px; border: 1px solid #dedede; background: #fff; position: relative; text-align: center; min-height: 250px;}
 .custom-post.one .custom-post-item, .custom-post.two .custom-post-item { min-height: 210px; }
 .search-results.post-type-archive-company .custom-post.one .custom-post-item, .search-results.post-type-archive-company .custom-post.two .custom-post-item { min-height: 0; }
 .custom-post.four .custom-post-item { padding-bottom: 30px; }
