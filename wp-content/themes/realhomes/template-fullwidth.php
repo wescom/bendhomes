@@ -63,7 +63,7 @@ if( is_front_page() ) {
 
 	if( !empty( $slides_array ) ) { ?>
 
-		<?php if ($janDev == 1) { ?>
+		<?php if ($janDev <> 1) { ?>
 			
 			<div class="row home-top-blob">
 				<div class="col-md-6 no-right-padding">
