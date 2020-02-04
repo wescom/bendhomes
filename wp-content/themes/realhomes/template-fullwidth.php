@@ -66,7 +66,8 @@ if( is_front_page() ) {
 		<?php if ($janDev <> 1) { ?>
 			
 			<div class="row home-top-blob">
-				<div class="col-md-6 no-right-padding">
+				<!-- expand to full width because hiding stories <div class="col-md-6 no-right-padding"> -->
+				<div class="col-md-12 no-right-padding">
 					<div class="promo-block">
 						<div id="new-flexslider" class="clearfix new-flexslider">
 							<div class="flexslider loading">
@@ -103,6 +104,7 @@ if( is_front_page() ) {
 						</div><!-- new-flexslider -->
 					</div><!-- promo-block -->
 				</div><!-- col-sm-6 -->
+<!-- exclude stories from Home page
 				<div class="col-md-6 relative">
 					<div class="story-loop-wrap top-stories-list">
 
@@ -149,11 +151,12 @@ if( is_front_page() ) {
 							<div class="pub-date-wrap">			
 								<?php echo "Published ".date("M j, Y", strtotime($post['post_date'])); ?>
 							</div>
-						</div><!-- story-item -->
+						</div>
 
 							<?php }  ?>
-					</div><!--story-loop-wrap-->
-				</div><!-- col-sm-6 -->
+					</div>
+				</div>
+-->
 			</div><!-- row home-top-blob -->
 
 		<?php } else { ?>
